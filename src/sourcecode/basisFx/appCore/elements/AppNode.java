@@ -2,10 +2,10 @@ package basisFx.appCore.elements;
 
 import basisFx.appCore.AnchorCoordinate;
 import basisFx.appCore.events.AppEvent;
-import basisFx.appCustomLogic.settings.CSSID;
+import basisFx.domainModel.settings.CSSID;
 import basisFx.appCore.FontLogic;
-import basisFx.appCustomLogic.settings.WindowsTitlesNames;
-import basisFx.appCustomLogic.settings.FontsStore;
+import basisFx.domainModel.settings.WindowsTitlesNames;
+import basisFx.domainModel.settings.FontsStore;
 import javafx.geometry.Insets;
 import java.util.ArrayList;
 import java.util.Iterator;

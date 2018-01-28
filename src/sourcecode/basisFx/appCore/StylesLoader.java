@@ -6,7 +6,7 @@
 package basisFx.appCore;
 
 
-import basisFx.appCustomLogic.settings.Styles;
+import basisFx.domainModel.settings.Styles;
 import javafx.scene.Scene;
 
 /**

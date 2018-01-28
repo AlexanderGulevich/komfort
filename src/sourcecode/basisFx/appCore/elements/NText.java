@@ -5,7 +5,7 @@
  */
 package basisFx.appCore.elements;
 
-import basisFx.appCustomLogic.settings.WindowsTitlesNames;
+import basisFx.domainModel.settings.WindowsTitlesNames;
 import javafx.scene.Node;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;

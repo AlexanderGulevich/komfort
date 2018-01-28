@@ -5,7 +5,7 @@
  */
 package basisFx.appCore.elements;
 
-import basisFx.appCustomLogic.settings.IMGpath;
+import basisFx.domainModel.settings.IMGpath;
 import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;

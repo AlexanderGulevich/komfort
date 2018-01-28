@@ -6,7 +6,7 @@
 package basisFx.appCore.events;
 
 import basisFx.appCore.elements.AppNode;
-import basisFx.appCustomLogic.settings.Settings;
+import basisFx.domainModel.settings.Settings;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.geometry.Insets;

@@ -5,7 +5,7 @@
  */
 package basisFx.appCore;
 
-import static basisFx.appCustomLogic.settings.Settings.PRELODER_COUNT_LIMIT;
+import static basisFx.domainModel.settings.Settings.PRELODER_COUNT_LIMIT;
 import com.sun.javafx.application.LauncherImpl;
 import javafx.application.Platform;
 import javafx.application.Preloader;

@@ -53,7 +53,7 @@ gradle.taskGraph.whenReady {taskGraph ->
 configurations.each{
     
      it->println it
-    
+
 }
 println "\n\n  " 
 }
