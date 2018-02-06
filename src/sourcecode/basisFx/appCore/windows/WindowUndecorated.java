@@ -9,11 +9,9 @@ import basisFx.appCore.elements.NButton;
 import basisFx.appCore.elements.NImgView;
 import basisFx.appCore.elements.NText;
 import basisFx.appCore.events.AppEvent;
-import basisFx.appCore.menu.MenuRepresent;
-import basisFx.appCore.menu.MenuSketchUtils;
-import basisFx.appCore.menu.MenuCreator;
 import basisFx.domainModel.settings.IMGpath;
 import basisFx.domainModel.settings.Settings;
+import basisFx.domainModel.settings.TopButtons;
 import basisFx.domainModel.settings.WindowsTitlesNames;
 import javafx.geometry.Insets;
 import javafx.scene.control.ContentDisplay;
@@ -28,20 +26,22 @@ import javafx.stage.StageStyle;
  */
 public class WindowUndecorated extends WindowFx{
     
-    private NButton  minimaze;
-    private NButton  maximaze;
-    private NButton  closing;
+    private NButton  hideButton;
+    private NButton  maximazeButton;
+    private NButton  closingButton;
     private NText title;
     private Text textIcon;
     private NImgView  imageViewIcon;
     
     
     
+    
 
     public WindowUndecorated(double w,double h, Stage primaryStage) {
         this.stage=primaryStage;
-        createTransparentRoot();
-        createInerRoot();
+        setTransparentRoot();
+        setVisibleRoot();
+        
           
         this.width=w;
         this.height=h;
@@ -50,8 +50,8 @@ public class WindowUndecorated extends WindowFx{
 
     public WindowUndecorated(double w,double h) {
          this.stage=new Stage();
-        createTransparentRoot();
-        createInerRoot();
+        setTransparentRoot();
+        setVisibleRoot();
         this.width=w;
         this.height=h;
        
@@ -62,7 +62,7 @@ public class WindowUndecorated extends WindowFx{
     void initIcon() {
 
         imageViewIcon=AppNode.NodeBuilder.create()
-                .setCoordinate(innerRoot, 5d, null, null, 5d)
+                .setCoordinate(titlePanel, 5d, null, null, 5d)
                 .setSize(15d, 15d)
                 .setStage(stage)
                 .createNImgView()
@@ -78,7 +78,7 @@ public class WindowUndecorated extends WindowFx{
     public WindowUndecorated setTextIcon(AnchorCoordinate c,FontsStore f, Double fHeight,String tIcn){
         textIcon=(Text) AppNode.NodeBuilder.create()
                  .setCoordinate(c)
-                 .setParentAnchor(innerRoot)
+                 .setParentAnchor(titlePanel)
                  .setFont(f, fHeight)
                  .setId(CSSID.ROOT_TEXT_ICON)
                  .setText(tIcn)
@@ -91,51 +91,54 @@ public class WindowUndecorated extends WindowFx{
     @Override
     void initControlTopButton() {
         
-        double fontHeight=15d;
-        double topMatgin=0d;
-        double height=25d;
-        double width=25d;
-        Insets padding=new Insets(0d, 0d, 0d, 0d);
-        
+        double fontHeight=TopButtons.FONT_HEIGHT;
+        double topMatgin=TopButtons.TOP_MARGIN;
+        double height=TopButtons.FONT_HEIGHT;
+        double width=TopButtons.BUTTON_WIDTH;
+        Insets padding=TopButtons.PADDING;
+        FontsStore fs=TopButtons.FONT_STORE;
+        String closeStr=TopButtons.CLOSE_String;
+        String hideStr=TopButtons.HIDE_String;
+        String maximazeStr=TopButtons.MAXIMAZE_String;
         
          //крестик
-         closing= AppNode.NodeBuilder.create().
-                setFont(FontsStore.FAWESOME5SOLID, fontHeight).
+         closingButton= AppNode.NodeBuilder.create().
+                setFont(fs, fontHeight).
                 setSize(width,height).
                 setPadding(padding).
                 setCoordinate(topMatgin, 0d, null, null).
                 setId(CSSID.TOP_CONTROL_BUTTON).
-                setParentAnchor(innerRoot).
+                setParentAnchor(titlePanel).
                 setStage(stage).
                 setEvent(AppEvent.createClosingWindowEvent()).
                 createNButton().
-                setString("", ContentDisplay.CENTER);
+                setString(closeStr, ContentDisplay.CENTER);
 
 
-         minimaze= AppNode.NodeBuilder.create().
-                 setFont(FontsStore.FAWESOME5SOLID, fontHeight).
+         hideButton= AppNode.NodeBuilder.create().
+                 setFont(fs, fontHeight).
                  setEvent(AppEvent.createHidingWindowEvent()).
                  setSize(width,height).
                  setPadding(padding).
                  setCoordinate(topMatgin, width+width, null, null).
                  setId(CSSID.TOP_CONTROL_BUTTON).
-                 setParentAnchor(innerRoot).
+                 setParentAnchor(titlePanel).
                  setStage(stage).
                  createNButton().
-                 setString("", ContentDisplay.CENTER);
+                 setString(hideStr, ContentDisplay.CENTER);
          
        
-         maximaze= AppNode.NodeBuilder.create().
-                setFont(FontsStore.FAWESOME5SOLID, fontHeight).
+         maximazeButton= AppNode.NodeBuilder.create().
+                setFont(fs, fontHeight).
                 setEvent(AppEvent.createMaximazingSwitcher()).
                 setSize(width,height).
                 setPadding(padding).
                 setCoordinate(topMatgin, width, null, null).
                 setId(CSSID.TOP_CONTROL_BUTTON).
-                setParentAnchor(innerRoot).
+                setParentAnchor(titlePanel).
                 setStage(stage).
                 createNButton().
-                setString("", ContentDisplay.CENTER);
+                setString(maximazeStr, ContentDisplay.CENTER);
          
          
                 
@@ -146,12 +149,13 @@ public class WindowUndecorated extends WindowFx{
     @Override
     void initTitle() {
         
-        title=AppNode.NodeBuilder.create().
-                  setCoordinate(innerRoot,0d, null, null, 40d).
-                  setFont(FontsStore.FIRA_BOLD, Settings.MAIN_TITLE_HEIGHT).
-                  setId(CSSID.TITLE_WINDOW_TEXT).
-                  setText(WindowsTitlesNames.MAIN_WINDOW_NAME).
-                  createNText();
+        title=AppNode.NodeBuilder.create()
+                .setParentAnchor(titlePanel)
+                .setCoordinate(titleTextCoordinate)
+                .setFont(Settings.MAIN_TITLE_FONT, Settings.MAIN_TITLE_HEIGHT)
+                .setId(CSSID.TITLE_WINDOW_TEXT)
+                .setText(WindowsTitlesNames.MAIN_WINDOW_NAME)
+                .createNText();
 
           
 
@@ -161,7 +165,7 @@ public class WindowUndecorated extends WindowFx{
     public WindowUndecorated setContentLayer(double t,double r,double b,double l) {
       
         this.contentLauer=(AnchorPane) AppNode.NodeBuilder.create()
-               .setCoordinate(innerRoot, t, r, b, l)
+               .setCoordinate(visibleRoot, t, r, b, l)
                .setId(CSSID.MAIN_CONTENT_ANCHOR)
                .setStage(stage)
                .createNpAnchor().getElement();

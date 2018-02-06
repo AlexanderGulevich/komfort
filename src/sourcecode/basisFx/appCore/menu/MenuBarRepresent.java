@@ -21,44 +21,15 @@ import javafx.scene.layout.AnchorPane;
  *
  * @author Alek
  */
-public class RMenuBar extends MenuRepresent{
+public class MenuBarRepresent extends MenuRepresent{
     
     private  NMenuBar nMenuBar;
     private  MenuBar menuBar=new MenuBar();
-    private  CSSID css;
-    private  MenuSketchUtils menuComponent;
-    private  AnchorPane ap;
-    private  AnchorCoordinate c;
+    
 
-    @Override
-    public void setCss(CSSID css) {
-        this.css = css;
-    }
-
-    @Override
-    public void setMenuComponent(MenuSketchUtils menuComponent) {
-        this.menuComponent = menuComponent;
-    }
-
-    @Override
-    public void setParentAnchor(AnchorPane ap) {
-        this.ap = ap;
-    }
-
-    @Override
-    public void setCoordinate(AnchorCoordinate c) {
-        this.c = c;
+    public MenuBarRepresent() {
     }
     
-    
-    
-    
-
-    public RMenuBar() {
-    }
-    
-    
-
     
     @Override
     public void make() {
@@ -79,13 +50,13 @@ public class RMenuBar extends MenuRepresent{
     */
     
     @Override
-    public <T> void makeStructuredMenuView(MenuSketchUtils menuHierarchy, T parentMenu) {
+    public <T> void makeStructuredMenuView(MenuComponents menuHierarchy, T parentMenu) {
         
-        ArrayList<MenuSketchUtils> h=menuHierarchy.getComponents();
+        ArrayList<MenuComponents> h=menuHierarchy.getComponents();
         
                         
-        for (Iterator<MenuSketchUtils> iterator = h.iterator(); iterator.hasNext();) {
-            MenuSketchUtils next = iterator.next();
+        for (Iterator<MenuComponents> iterator = h.iterator(); iterator.hasNext();) {
+            MenuComponents next = iterator.next();
 
             if (next.isComposit){
                 

@@ -37,9 +37,11 @@ protected Stage stage;
             public void handle(MouseEvent event) {
                  if (event.isPrimaryButtonDown() && event.getClickCount() == 1) {
                     
-                xOffset = stage.getX() - event.getScreenX();
-                yOffset = stage.getY() - event.getScreenY();
-                    
+                     if(!stage.isMaximized()){
+                        xOffset = stage.getX() - event.getScreenX();
+                        yOffset = stage.getY() - event.getScreenY();
+                     }
+
                 }             
                 
               
@@ -50,9 +52,10 @@ protected Stage stage;
          node.setOnMouseDragged(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-            
-                stage.setX(event.getScreenX() + xOffset);
-                stage.setY(event.getScreenY() + yOffset);
+                 if(!stage.isMaximized()){
+                        stage.setX(event.getScreenX() + xOffset);
+                        stage.setY(event.getScreenY() + yOffset);
+                 }
             }
         });
        

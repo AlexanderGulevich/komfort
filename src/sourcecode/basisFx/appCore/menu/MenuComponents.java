@@ -7,9 +7,9 @@ import javafx.scene.layout.AnchorPane;
  *
  * @author Alek
  */
-public class MenuSketchUtils{ 
+public class MenuComponents{ 
     
-    private  ArrayList<MenuSketchUtils> components=new ArrayList<>();
+    private  ArrayList<MenuComponents> components=new ArrayList<>();
     protected TargetFM factory;
     protected String name;
     public enum composit{COMPOSITE, SIMPLE}
@@ -18,31 +18,31 @@ public class MenuSketchUtils{
     protected AnchorPane parent;
 
  
-    public static MenuSketchUtils create(String n,TargetFM fm,composit c){
+    public static MenuComponents create(String n,TargetFM fm,composit c){
     
-        MenuSketchUtils mh=new MenuSketchUtils(c);
+        MenuComponents mh=new MenuComponents(c);
         mh.setName(n);
         mh.setFactory(fm);
         return mh;
     
     }
-    public static MenuSketchUtils createHeadElement(){
+    public static MenuComponents createHeadElement(){
        
        
-       return create(null, null, MenuSketchUtils.composit.COMPOSITE);
+       return create(null, null, MenuComponents.composit.COMPOSITE);
     
     }
   
-    private MenuSketchUtils(composit c) {
+    private MenuComponents(composit c) {
         if (c==composit.COMPOSITE) {
             this.isComposit=true;
         }
     }
     
-    public MenuSketchUtils add(MenuSketchUtils ... m){
+    public MenuComponents add(MenuComponents ... m){
         
         for (int i = 0; i < m.length; i++) {
-            MenuSketchUtils concrete = m[i];
+            MenuComponents concrete = m[i];
             this.components.add(concrete);
             
         } 
@@ -56,19 +56,19 @@ public class MenuSketchUtils{
     }
     
     
-    public MenuSketchUtils setId(String id){
+    public MenuComponents setId(String id){
     
         this.id=id;
         return this;
         
     }
     
-    public MenuSketchUtils remove(MenuSketchUtils c ){
+    public MenuComponents remove(MenuComponents c ){
         components.remove(c);
         return this;
     }
     
-    public MenuSketchUtils setFactory(TargetFM factory ){
+    public MenuComponents setFactory(TargetFM factory ){
         this.factory=factory;
         return this;
     }
@@ -78,7 +78,7 @@ public class MenuSketchUtils{
     }
     
         
-    public MenuSketchUtils setName(String n ){
+    public MenuComponents setName(String n ){
         this.name=n;
         return this;
     }
@@ -88,7 +88,7 @@ public class MenuSketchUtils{
     }
     
 
-    public ArrayList<MenuSketchUtils> getComponents() {
+    public ArrayList<MenuComponents> getComponents() {
         return components;
     }
     

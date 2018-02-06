@@ -9,27 +9,41 @@ import javafx.scene.layout.AnchorPane;
  *
  * @author Alek
  */
-public class MenuCreator {
+public final class MenuCreator {
     private MenuSketch nodes;
     private CSSID css;
     private AnchorPane anchorPane;
     private AnchorCoordinate coordinate;
     private MenuRepresent represent;
+    private Double width;
+    private Double height;
     
-    public void init() {
+    public MenuCreator init() {
         
         represent.setParentAnchor(anchorPane);
         represent.setCoordinate(coordinate);
         represent.setCss(css);
         represent.setMenuComponent(nodes.getMenuHierarchy());
         
+        if(this.height!=null)represent.setHeight(height);
+        if(this.width!=null)represent.setWidth(width);
+        
         represent.make();
+        
+        return this;
         
        
         
     } 
 
-    public MenuCreator setNodes(MenuSketch nodes) {
+    public MenuRepresent getRepresent() {
+        return represent;
+    }
+    
+    
+    
+
+    public MenuCreator setMenuSketch(MenuSketch nodes) {
         this.nodes = nodes;
         this.nodes.initSpiritNodes();
         return this;
@@ -40,7 +54,7 @@ public class MenuCreator {
         return this;
     }
 
-    public MenuCreator setAnchorPane(AnchorPane anchorPane) {
+    public MenuCreator setParentAnchor(AnchorPane anchorPane) {
         this.anchorPane = anchorPane;
         return this;
     }
@@ -55,9 +69,22 @@ public class MenuCreator {
         return this;
     }
 
+
+    public MenuCreator setWidth(double w) {
+        this.width = w;
+        return this;
+    }
+
+    public MenuCreator setHeight(double h) {
+        this.height = h;
+        return this;
+    }
+
     public static MenuCreator create(){
         return new MenuCreator();
     }
+    
+    
     
     
       

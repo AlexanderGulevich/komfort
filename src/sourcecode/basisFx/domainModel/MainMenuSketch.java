@@ -1,25 +1,20 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package basisFx.domainModel;
 
 import  basisFx.appCore.menu.MenuSketch;
-import basisFx.appCore.menu.MenuSketchUtils;
-import basisFx.appCore.menu.MenuSketchUtils.composit;
-import static basisFx.appCore.menu.MenuSketchUtils.create;
+import basisFx.appCore.menu.MenuComponents;
+import basisFx.appCore.menu.MenuComponents.composit;
+import static basisFx.appCore.menu.MenuComponents.create;
 
 /**
  *
  * @author Alek
  */
-public class MainMenu extends MenuSketch{
+public class MainMenuSketch extends MenuSketch{
 
     @Override
     public void initSpiritNodes() {
         
-       this.menuHierarchy=MenuSketchUtils.createHeadElement();
+       this.menuHierarchy=MenuComponents.createHeadElement();
        
        menuHierarchy.add(
                create("ВЭД", null, composit.COMPOSITE),

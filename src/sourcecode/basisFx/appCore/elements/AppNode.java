@@ -43,6 +43,7 @@ public abstract class AppNode <T extends Node> {
     protected String text;
     protected Insets insets;
     protected DropShadow dropShadow;
+    protected String stringId;
   
 
 //    protected abstract void display();
@@ -63,6 +64,7 @@ public abstract class AppNode <T extends Node> {
         this.insets=builder.insects;
         this.dropShadow=builder.dropShadow;
         if(id!=null)element.setId(id);
+        if(this.stringId!=null)element.setId(stringId);
         elocateEvents();
         bond(this);
         
@@ -156,11 +158,13 @@ public abstract class AppNode <T extends Node> {
         protected Stage stage;
         protected String text;
         protected DropShadow dropShadow;
+        protected String stringId;
+       
         
         public static NodeBuilder create(){
             return new NodeBuilder();
         }
-       
+        
        
         public NodeBuilder setDropShadow(DropShadow d) {
             this.dropShadow=d;
@@ -196,6 +200,10 @@ public abstract class AppNode <T extends Node> {
     }
         public NodeBuilder setId(CSSID css){
             this.id=css.get();
+            return this;
+    }
+        public NodeBuilder setId(String id){
+            this.stringId=id;
             return this;
     }
         public NodeBuilder setInsets(Insets i){
@@ -299,6 +307,12 @@ public abstract class AppNode <T extends Node> {
      public  NMenuBar createNMenuBar(){
         return new <MenuBar>  NMenuBar(this);
     }
+
+        public static class create {
+
+            public create() {
+            }
+        }
 
        
 

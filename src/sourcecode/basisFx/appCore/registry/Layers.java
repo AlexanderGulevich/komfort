@@ -12,16 +12,16 @@ import javafx.scene.layout.AnchorPane;
  * @author Alek
  */
 public  class Layers {
-        private    static  AnchorPane root;
+        private    static  AnchorPane visibleRoot;
         private    static  AnchorPane transparentRoot;
         private    static  AnchorPane contentLayer;  
         
         
-    public static AnchorPane getRoot() {
-        return root;
+    public static AnchorPane getVisibleRoot() {
+        return visibleRoot;
     }
-    public static void setInerRoot(AnchorPane r) {
-        root = r;
+    public static void setVisibleRoot(AnchorPane r) {
+        visibleRoot = r;
     }
     public  static  AnchorPane getTransparentRoot() {
         return transparentRoot;

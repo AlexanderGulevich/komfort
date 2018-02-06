@@ -10,10 +10,10 @@ package basisFx.appCore.menu;
  * @author Alek
  */
 public abstract class MenuSketch {
-    protected MenuSketchUtils menuHierarchy;
+    protected MenuComponents menuHierarchy;
     public abstract void initSpiritNodes();
 
-    public MenuSketchUtils getMenuHierarchy() {
+    public MenuComponents getMenuHierarchy() {
         return menuHierarchy;
     }
     

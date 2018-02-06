@@ -6,7 +6,7 @@
 package basisFx.appCore;
 
 
-import basisFx.domainModel.settings.Styles;
+import basisFx.domainModel.settings.StylesPathes;
 import javafx.scene.Scene;
 
 /**
@@ -28,14 +28,14 @@ public class StylesLoader {
     }
     
     
-    private void loadNonStatic(Scene scene,Styles st){
+    private void loadNonStatic(Scene scene,StylesPathes st){
     
         scene.getStylesheets().add(getClass().getResource(
               st.get()
       ).toExternalForm());
     }
     
-    public static void load(Scene scene,Styles st){
+    public static void load(Scene scene,StylesPathes st){
     
       getInstanse().loadNonStatic(scene, st);
         

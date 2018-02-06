@@ -15,20 +15,64 @@ import javafx.scene.layout.AnchorPane;
  */
 public abstract class MenuRepresent {
     
-
-    public abstract <T> void   makeStructuredMenuView(MenuSketchUtils c, T parentMenu );
+    protected  CSSID css;
+    protected  MenuComponents menuComponent;
+    protected  AnchorPane ap;
+    protected  AnchorCoordinate c;
+    protected Double width;
+    protected Double height;
     
-    public abstract void setCss(CSSID css);
-    public abstract void setMenuComponent(MenuSketchUtils menuComponent);
-    public abstract void setParentAnchor(AnchorPane ap);
-    public abstract void setCoordinate(AnchorCoordinate c);
+    
+    public abstract <T> void   makeStructuredMenuView(MenuComponents c, T parentMenu );
+    
     public abstract void make();
+    
+    
+    
+    public void setCss(CSSID id) {
+        this.css = id;
+         }
+      
+    public void setMenuComponent(MenuComponents menuComponent) {
+        this.menuComponent = menuComponent;
+    }
+
+
+    public void setParentAnchor(AnchorPane ap) {
+        this.ap = ap;
+    }
+
+    public void setCoordinate(AnchorCoordinate c) {
+        this.c = c;
+    }
+
+    public void setWidth(Double width) {
+        this.width = width;
+    }
+
+    public void setHeight(Double height) {
+        this.height = height;
+    }
+    
+    
+    
+
+    
+    
+    
     
     //StaticFabricsMethods
     
-    public static RMenuBar menuNBarFabric(){
+    public static MenuBarRepresent menuNBarFabric(){
          
-        return new RMenuBar();
+        return new MenuBarRepresent();
+        
+        
+    }
+    
+    public static LeftSideMenuRepresent menuLeftSideFabric(){
+         
+        return new LeftSideMenuRepresent();
         
         
     }

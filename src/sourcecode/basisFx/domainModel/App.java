@@ -1,6 +1,7 @@
 package basisFx.domainModel;
 
 import basisFx.appCore.AnchorCoordinate;
+import basisFx.appCore.menu.LeftSideMenuRepresent;
 import basisFx.domainModel.settings.Settings;
 import javafx.stage.Stage;
 import basisFx.appCore.windows.WindowFx;
@@ -20,21 +21,18 @@ public class App{
         
 
         WindowFx.createUnDecoratedWindow(Settings.WIDTH, Settings.HEIGHT, primaryStage)
-//                .setTextIcon(new AnchorCoordinate(0d, null, null, 0d),FontsStore.MATERIAL_ICONS, 30d,  "")
-                .setContentLayer(40d,0d,0d,150d)
+                .setTitlePanelCoordinate(new AnchorCoordinate(0d,0d,null,0d))
+                .setTitleTextCoordinate(new AnchorCoordinate(0d, null, null, 90d))
+                .setContentLayer(40d,0d,0d,70d)
                 .windowShow();
         
+          
+        
+        new MainMenuView();
         
         
-        MenuCreator.create()
-                .setAnchorPane(Layers.getContentLayer())
-                .setCoordinate(new AnchorCoordinate(0d, 0d, null, 0d))
-                .setCss(CSSID.MENUS)
-                .setNodes(new MainMenu())
-                .setRepresent(MenuRepresent.menuNBarFabric())
-                .init();
-        
-        
+                
+                
 
        
         

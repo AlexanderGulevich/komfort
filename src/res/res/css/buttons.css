@@ -1,6 +1,8 @@
 #TOP_CONTROL_BUTTON:focused{
     /*-fx-color:yellowgreen;*/
-    -fx-text-fill:#D5F1E2;
+    -fx-text-fill:#B28865;
+    
+    
     /*-fx-opacity:1;*/
     -fx-border-radius:0;
     /*-fx-border-color:#57b75733;*/
@@ -8,20 +10,25 @@
      -fx-background-insets: 0, 0, 0, 0;
      -fx-background-radius: 0;
 }
-#TOP_CONTROL_BUTTON:selected{
-    /*-fx-color:yellowgreen;*/
+/*#TOP_CONTROL_BUTTON:selected{
+    -fx-color:yellowgreen;
     -fx-text-fill:#57b75733;
 
-}
+}*/
 #TOP_CONTROL_BUTTON:armed{
-    /*-fx-color:yellowgreen;*/
-    -fx-text-fill:#41a9c9b3;
+    -fx-color:yellowgreen;
+    -fx-text-fill:#FFC392;
 
 }
 #TOP_CONTROL_BUTTON{
     /*-fx-base: #184947;*/
-    -fx-text-fill:#D5F1E2;
-    -fx-background-color:#1F4D5C;
+    /*-fx-text-fill:#D5F1E2;*/
+ 
+    /*-fx-text-fill:#1F4D5C;*/
+    -fx-text-fill:#B28865;
+    
+    -fx-background-color:transparent;
+    /*-fx-background-color:#1F4D5C;*/
     -fx-background-radius: 0;
     -fx-border-radius:0;
     -fx-background-insets: 0, 0, 0, 0;

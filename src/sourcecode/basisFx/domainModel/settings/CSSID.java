@@ -5,8 +5,6 @@
  */
 package basisFx.domainModel.settings;
 
-import java.util.logging.Logger;
-
 /**
  *
  * @author Alek
@@ -15,12 +13,22 @@ public enum CSSID {
     
     TOP_CONTROL_BUTTON("TOP_CONTROL_BUTTON"),
     MAIN_CONTENT_ANCHOR("MAIN_CONTENT_ANCHOR"),
-    INNER_ROOT("INNER_ROOT"),
+    VISIBLE_ROOT("VISIBLE_ROOT"),
     MENUS("MENUS"),
     MAIN_MENU("MAIN_MENU"),
     TRANSPARENT_ROOT("TRANSPARENT_ROOT"),
     ROOT_TEXT_ICON("ROOT_TEXT_ICON"),
-    TITLE_WINDOW_TEXT("TITLE_WINDOW_TEXT");
+    TITLE_WINDOW_TEXT("TITLE_WINDOW_TEXT"),
+    TITLE_PANEL("TITLE_PANEL"),
+    LEFT_SIDE_MENU_ROOT("LEFT_SIDE_MENU_ROOT"),
+    LEFT_SIDE_MENU_ICON_PANEL("LEFT_SIDE_MENU_ICON_PANEL"),
+    LEFT_SIDE_MENU_ICON("LEFT_SIDE_MENU_ICON"),
+    LEFT_SIDE_MENU_ICON_TEXT("LEFT_SIDE_MENU_ICON_TEXT"),
+    top("top");
+    
+    
+    
+    
 
     private final String id;
 

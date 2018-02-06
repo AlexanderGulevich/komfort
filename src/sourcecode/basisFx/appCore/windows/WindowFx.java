@@ -1,18 +1,20 @@
 package basisFx.appCore.windows;
 
+import basisFx.appCore.AnchorCoordinate;
 import basisFx.appCore.StylesLoader;
+import basisFx.appCore.StylesLodingStore;
 import basisFx.appCore.registry.Layers;
 import basisFx.appCore.elements.AppNode;
 import basisFx.appCore.events.AppEvent;
-import basisFx.appCore.menu.MenuCreator;
 import basisFx.domainModel.settings.CSSID;
-import basisFx.domainModel.settings.Styles;
+import basisFx.domainModel.settings.StylesPathes;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+
 
 /**
  *
@@ -30,10 +32,13 @@ public abstract class WindowFx {
     protected  Stage stage;
     protected  Scene scene;
     protected  AnchorPane root;
-    protected AnchorPane innerRoot;
+    protected AnchorPane visibleRoot;
     protected AnchorPane contentLauer;
     protected Boolean iconIneded;
 ////    protected String titleName;
+    protected AnchorPane titlePanel;
+    protected AnchorCoordinate titlePanelCoordinate;
+    protected AnchorCoordinate titleTextCoordinate;
  
     
     
@@ -49,24 +54,23 @@ public abstract class WindowFx {
 
       stage.setScene(scene);
 
-      StylesLoader.load(scene, Styles.MAIN);
-      StylesLoader.load(scene, Styles.BUTTONS);
-      StylesLoader.load(scene, Styles.PANES);
-      StylesLoader.load(scene, Styles.TABLES);
-      StylesLoader.load(scene, Styles.MENUS);
-      StylesLoader.load(scene, Styles.WINDOWS);
-      StylesLoader.load(scene, Styles.MENU_BAR);
+      new StylesLodingStore(scene);
+      
       scene.setFill( Color.TRANSPARENT);
       stage.initStyle(StageStyle.TRANSPARENT);
 
     }
 
-    
-     public void windowShow(){
+    public WindowFx getWindow(){
+     return this;
+    }
+     public WindowFx windowShow(){
+         setTitlePanel();
          windowInit();
          initTitle();
          initControlTopButton();
          stage.show();
+         return this;
          
      }
      
@@ -77,7 +81,7 @@ public abstract class WindowFx {
      
      
      
-     protected void createTransparentRoot(){
+     protected void setTransparentRoot(){
                  this.root=(AnchorPane) AppNode.NodeBuilder.create()
                          .setId(CSSID.TRANSPARENT_ROOT)
                          .setStage(stage)
@@ -88,21 +92,43 @@ public abstract class WindowFx {
                 Layers.setTransparentRoot(root);
      }
      
-     protected void createInerRoot(){
-                 this.innerRoot=(AnchorPane) AppNode.NodeBuilder.create()
+     protected void setVisibleRoot(){
+                 this.visibleRoot=(AnchorPane) AppNode.NodeBuilder.create()
                          .setCoordinate(root, 0d, 0d, 0d, 0d)
-                         .setId(CSSID.INNER_ROOT)
+                         .setId(CSSID.VISIBLE_ROOT)
                          .setStage(stage)
 //                         .setDropShadow(new DropShadow())
-                         .setEvent(AppEvent.createDbClickEvent(
-                                 AppEvent.createMaximazingSwitcher()
-                         ))
+                         .createNpAnchor()
+                         .getElement();
+                 
+                 Layers.setVisibleRoot(visibleRoot);
+     }
+     
+     protected void setTitlePanel(){
+                 this.titlePanel=(AnchorPane) AppNode.NodeBuilder.create()
+                         .setCoordinate(this.titlePanelCoordinate)
+                         .setParentAnchor(visibleRoot)
+                         .setId(CSSID.TITLE_PANEL)
+                         .setStage(stage)
+//                         .setEvent(AppEvent.createMaximazingSwitcher())
                          .setEvent(AppEvent.createStageDragging())
                          .createNpAnchor()
                          .getElement();
                  
-                 Layers.setInerRoot(innerRoot);
+     
+
      }
+     
+      public WindowFx setTitlePanelCoordinate(AnchorCoordinate c){
+          this.titlePanelCoordinate=c;
+          return this;
+      }
+     
+      public WindowFx setTitleTextCoordinate(AnchorCoordinate c){
+          this.titleTextCoordinate=c;
+          return this;
+      }
+     
      
      public abstract WindowFx setContentLayer(double t,double r,double b,double l);
      
