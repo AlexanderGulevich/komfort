@@ -1,7 +1,8 @@
 
 #MAIN_CONTENT_ANCHOR{
 
-     -fx-background-color: white;
+     -fx-background-color: #ECF1F2;
+     -fx-padding:2 3 3 3;
 
      /*-fx-background-color: #F7F4FB;-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.4), 10, 0.5, 0.0, 0.0);*/
     
@@ -26,7 +27,7 @@
 #TITLE_WINDOW_TEXT{ 
     
     /*-fx-fill:  #7ea2ae;*/
-    -fx-fill:  #FFC392;
+    -fx-fill:  #9ca8af;
     /*-fx-opacity:0.4;*/
     
     
@@ -47,17 +48,20 @@
  
 }
 #TITLE_PANEL{
+-fx-pref-height:40;
+
+
  
- -fx-background-color:  white;
- -fx-background-image: url("/res/img/z1.png");
- /*-fx-border-width: 0 0 1 0;*/ 
- /*-fx-border-color: darkgoldenrod darkgoldenrod darkgoldenrod darkgoldenrod;*/
+ -fx-border-width: 0 0 1 0; 
+ -fx-border-color: darkgoldenrod darkgoldenrod #dce0e1 darkgoldenrod;
  /*-fx-effect: dropshadow(three-pass-box, #1F4D5C,  3, 0.05, 0.0, 0.0);*/
     
 }
 
 #TITLE_WINDOW_IMG{
      
- -fx-background-image: url("/res/img/logo.png");
+ -fx-background-image: url("/res/img/logo3.png");
+ 
+-fx-pref-width:170;
     
 }

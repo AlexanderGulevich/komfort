@@ -35,7 +35,7 @@ public class MenuBarRepresent extends MenuRepresent{
     public void make() {
         
         this.nMenuBar=AppNode.NodeBuilder.create()
-                .setParentAnchor(ap)
+                .setParent(ap)
                 .setCoordinate(c)
                 .setId(css)
                 .createNMenuBar();

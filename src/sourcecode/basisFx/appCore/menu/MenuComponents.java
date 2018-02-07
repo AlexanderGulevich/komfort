@@ -12,6 +12,9 @@ public class MenuComponents{
     private  ArrayList<MenuComponents> components=new ArrayList<>();
     protected TargetFM factory;
     protected String name;
+    protected String metaInf;
+
+    
     public enum composit{COMPOSITE, SIMPLE}
     protected String id;
     protected boolean isComposit=false;
@@ -23,6 +26,15 @@ public class MenuComponents{
         MenuComponents mh=new MenuComponents(c);
         mh.setName(n);
         mh.setFactory(fm);
+        return mh;
+    
+    }
+    public static MenuComponents create(String n,TargetFM fm,composit c, String metaInf){
+    
+        MenuComponents mh=new MenuComponents(c);
+        mh.setName(n);
+        mh.setFactory(fm);
+        mh.setMeta(metaInf);
         return mh;
     
     }
@@ -62,6 +74,9 @@ public class MenuComponents{
         return this;
         
     }
+    private void setMeta(String metaInf) {
+        this.metaInf=metaInf;
+    }
     
     public MenuComponents remove(MenuComponents c ){
         components.remove(c);
@@ -85,6 +100,10 @@ public class MenuComponents{
     
     public  String getName( ){
         return this.name;
+    }
+
+    public String getMetaInf() {
+        return metaInf;
     }
     
 

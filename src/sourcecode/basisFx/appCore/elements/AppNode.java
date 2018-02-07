@@ -189,7 +189,7 @@ public abstract class AppNode <T extends Node> {
 
        
         public NodeBuilder setCoordinate(AnchorPane ap,Double top,Double right,Double bottom,Double left) {
-            setParentAnchor(ap);
+            setParent(ap);
             this.coordinate=new AnchorCoordinate();
             this.coordinate.setTop(top);
             this.coordinate.setBottom(bottom);
@@ -222,7 +222,7 @@ public abstract class AppNode <T extends Node> {
              this.insects = insects;
              return this;
     }
-        public NodeBuilder setParentAnchor(AnchorPane ap) {
+        public NodeBuilder setParent(AnchorPane ap) {
             this.hasBond=true;
             this.parentAnchor=ap;
             return this;

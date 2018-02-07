@@ -107,7 +107,7 @@ public abstract class WindowFx {
      protected void setTitlePanel(){
                  this.titlePanel=(AnchorPane) AppNode.NodeBuilder.create()
                          .setCoordinate(this.titlePanelCoordinate)
-                         .setParentAnchor(visibleRoot)
+                         .setParent(visibleRoot)
                          .setId(CSSID.TITLE_PANEL)
                          .setStage(stage)
 //                         .setEvent(AppEvent.createMaximazingSwitcher())

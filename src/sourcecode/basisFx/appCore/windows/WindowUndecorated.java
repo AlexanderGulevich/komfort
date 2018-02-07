@@ -80,7 +80,7 @@ public class WindowUndecorated extends WindowFx{
     public WindowUndecorated setTextIcon(AnchorCoordinate c,FontsStore f, Double fHeight,String tIcn){
         textIcon=(Text) AppNode.NodeBuilder.create()
                  .setCoordinate(c)
-                 .setParentAnchor(titlePanel)
+                 .setParent(titlePanel)
                  .setFont(f, fHeight)
                  .setId(CSSID.ROOT_TEXT_ICON)
                  .setText(tIcn)
@@ -109,8 +109,7 @@ public class WindowUndecorated extends WindowFx{
                 setSize(width,height).
                 setPadding(padding).
                 setCoordinate(topMatgin, 0d, null, null).
-                setId(CSSID.TOP_CONTROL_BUTTON).
-                setParentAnchor(titlePanel).
+                setId(CSSID.TOP_CONTROL_BUTTON).setParent(titlePanel).
                 setStage(stage).
                 setEvent(AppEvent.createClosingWindowEvent()).
                 createNButton().
@@ -123,8 +122,7 @@ public class WindowUndecorated extends WindowFx{
                  setSize(width,height).
                  setPadding(padding).
                  setCoordinate(topMatgin, width+width, null, null).
-                 setId(CSSID.TOP_CONTROL_BUTTON).
-                 setParentAnchor(titlePanel).
+                 setId(CSSID.TOP_CONTROL_BUTTON).setParent(titlePanel).
                  setStage(stage).
                  createNButton().
                  setString(hideStr, ContentDisplay.CENTER);
@@ -136,8 +134,7 @@ public class WindowUndecorated extends WindowFx{
                 setSize(width,height).
                 setPadding(padding).
                 setCoordinate(topMatgin, width, null, null).
-                setId(CSSID.TOP_CONTROL_BUTTON).
-                setParentAnchor(titlePanel).
+                setId(CSSID.TOP_CONTROL_BUTTON).setParent(titlePanel).
                 setStage(stage).
                 createNButton().
                 setString(maximazeStr, ContentDisplay.CENTER);
@@ -154,7 +151,7 @@ public class WindowUndecorated extends WindowFx{
         if (this.titleView==TITLE_VIEW.TEXT) {
             
             title=AppNode.NodeBuilder.create()
-                    .setParentAnchor(titlePanel)
+                    .setParent(titlePanel)
                     .setCoordinate(titleNameCoordinate)
                     .setFont(Settings.MAIN_TITLE_FONT, Settings.MAIN_TITLE_HEIGHT)
                     .setId(CSSID.TITLE_WINDOW_TEXT)
@@ -165,7 +162,7 @@ public class WindowUndecorated extends WindowFx{
         if (this.titleView==TITLE_VIEW.IMG) {
         
             imageViewTitle=AppNode.NodeBuilder.create()
-                    .setParentAnchor(titlePanel)
+                    .setParent(titlePanel)
                     .setCoordinate(titleNameCoordinate)
                     .setId(CSSID.TITLE_WINDOW_IMG)
                     .setWidth(140d)

@@ -1,7 +1,8 @@
 #LEFT_SIDE_MENU_ROOT{
          /*-fx-background-color: white;*/
+         
 
-    
+     -fx-pref-width: 60;
          
          
 }
@@ -11,6 +12,7 @@
          /*-fx-background-color: #3f828a;*/
          /*-fx-background-color: #53A5B2;*/
          -fx-background-color: #003641;
+         -fx-pref-width: 60;
      
 }
 
@@ -21,13 +23,61 @@
 }
 
 #TOP_ICON_PANEL{
-    /*-fx-background-color: red;*/
-        -fx-background-image: url("/res/img/logo2.png");
+    -fx-pref-height: 40;
+        -fx-background-image: url("/res/img/logo33.png");
+      -fx-background-size:60;
     
     
 }
 
 #LEFT_SIDE_MENU_NAMES_PANEL{
-     -fx-background-color: red;
+     -fx-background-color: white;
+     /*-fx-border-color:#57b75733;*/
+     -fx-border-color:derive(#003641,120%);;
+     
+     
+     -fx-border-width: 0.5 0.5 0.5 0.5; 
+     
+     
     
+}
+
+#LEFT_SIDE_MENU_ICON{
+    
+     /*-fx-text-fill:#5f7d8b;*/
+     -fx-text-fill:white;
+    -fx-background-color:#003641;
+    -fx-background-radius: 0;
+    -fx-border-radius:0;
+    -fx-background-insets: 0, 0, 0, 0;
+    -fx-background-radius: 0;
+    -fx-color:yellowgreen;
+     -fx-pref-width: 60;
+     -fx-pref-height:40;
+}
+#LEFT_SIDE_MENU_ICON:armed{
+    
+     /*-fx-text-fill:#5f7d8b;*/
+     -fx-text-fill:white;
+    -fx-background-color:red;
+    -fx-background-radius: 0;
+    -fx-border-radius:0;
+    -fx-background-insets: 0, 0, 0, 0;
+    -fx-background-radius: 0;
+    /*-fx-color:yellowgreen;*/
+     -fx-pref-width: 60;
+     -fx-pref-height:40;
+}
+#LEFT_SIDE_MENU_ICON:focused{
+    
+     /*-fx-text-fill:#5f7d8b;*/
+     -fx-text-fill:white;
+    /*-fx-background-color:transparent;*/
+    -fx-background-radius: 0;
+    -fx-border-radius:0;
+    -fx-background-insets: 0, 0, 0, 0;
+    -fx-background-radius: 0;
+    -fx-color:yellowgreen;
+     -fx-pref-width: 60;
+     -fx-pref-height:40;
 }

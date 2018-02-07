@@ -23,6 +23,7 @@ public class NButton <T extends Node>extends AppNode{
         element.setPrefSize(width, height);
         if(insects!=null)element.setPadding(insects);
         if(font!=null)element.setFont(font);
+        if(this.text!=null)element.setText(this.text);
         
     }
 

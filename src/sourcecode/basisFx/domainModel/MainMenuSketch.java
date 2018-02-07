@@ -17,12 +17,14 @@ public class MainMenuSketch extends MenuSketch{
        this.menuHierarchy=MenuComponents.createHeadElement();
        
        menuHierarchy.add(
-               create("ВЭД", null, composit.COMPOSITE),
-               create("ВЭД", null, composit.COMPOSITE),
-               create("ВЭД", null, composit.COMPOSITE),
-               create("ВЭД", null, composit.COMPOSITE),
-               create("ВЭД", null, composit.COMPOSITE),
-               create("ВЭД", null, composit.COMPOSITE)
+//              
+               create("1", null, composit.COMPOSITE,""),
+               create("2", null, composit.COMPOSITE,""),
+               create("3", null, composit.COMPOSITE,""),
+               create("4", null, composit.COMPOSITE,""),
+               create("5", null, composit.COMPOSITE,""),
+               create("6", null, composit.COMPOSITE,""),
+               create("7", null, composit.COMPOSITE,"")
                                         );
     }
     

@@ -1,8 +1,8 @@
 #TOP_CONTROL_BUTTON:focused{
     /*-fx-color:yellowgreen;*/
-    -fx-text-fill:#B28865;
+    /*-fx-text-fill:#B28865;*/
     
-    
+       -fx-text-fill:#5f7d8b;
     /*-fx-opacity:1;*/
     -fx-border-radius:0;
     /*-fx-border-color:#57b75733;*/
@@ -17,16 +17,18 @@
 }*/
 #TOP_CONTROL_BUTTON:armed{
     -fx-color:yellowgreen;
-    -fx-text-fill:#FFC392;
+  
+     -fx-text-fill:#5c93ac;
 
 }
 #TOP_CONTROL_BUTTON{
     /*-fx-base: #184947;*/
     /*-fx-text-fill:#D5F1E2;*/
  
-    /*-fx-text-fill:#1F4D5C;*/
-    -fx-text-fill:#B28865;
+    -fx-text-fill:#5f7d8b;
+    /*-fx-text-fill:#B28865;*/
     
+  
     -fx-background-color:transparent;
     /*-fx-background-color:#1F4D5C;*/
     -fx-background-radius: 0;

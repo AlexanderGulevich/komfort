@@ -11,6 +11,7 @@ import basisFx.appCore.registry.Layers;
 import java.sql.SQLException;
 import basisFx.appCore.menu.LeftSideMenuRepresent.namesPanelPalaced;
 import basisFx.appCore.windows.WindowUndecorated;
+import basisFx.domainModel.settings.CSSID;
 
 /**
  *
@@ -24,23 +25,22 @@ public class App{
         WindowFx.createUnDecoratedWindow(Settings.WIDTH, Settings.HEIGHT, primaryStage)
                 .setKindOfTitle(WindowUndecorated.TITLE_VIEW.IMG)
                 .setTitlePanelCoordinate(new AnchorCoordinate(0d,0d,null,0d))
-                .setTitleNameCoordinate(new AnchorCoordinate(5d, null, null, 90d))
-                .setContentLayer(40d,0d,0d,70d)
+                .setTitleNameCoordinate(new AnchorCoordinate(5d, null, null, 70d))
+                .setContentLayer(40d,0d,0d,60d)
                 .windowShow();
         
-          //        
+                  
 //        MenuCreator.create()
 //                .setParentAnchor(Layers.getContentLayer())
 //                .setCoordinate(new AnchorCoordinate(0d, 0d, null, 0d))
 //                .setCss(CSSID.MENUS)
-//                .setNodes(new MainMenu())
+//                .setMenuSketch(new MainMenuSketch())
 //                .setRepresent(MenuRepresent.menuNBarFabric())
 //                .init();
   
              MenuCreator.create()
                 .setParentAnchor(Layers.getVisibleRoot())
-                .setCoordinate(new AnchorCoordinate(40d, null, 0d, 0.5d))
-                .setWidth(70d)
+                .setCoordinate(new AnchorCoordinate(40d, null, 0d, 0d))
                 .setMenuSketch(new MainMenuSketch())
                 .setRepresent(MenuRepresent.menuLeftSideFabric(namesPanelPalaced.CONTENT_PANEL))
                 .init();
