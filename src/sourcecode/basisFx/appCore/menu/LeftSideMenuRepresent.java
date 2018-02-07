@@ -15,6 +15,16 @@ public class LeftSideMenuRepresent extends MenuRepresent{
     private AnchorPane rootLeftSide;
     private AnchorPane iconpanel;
     private AnchorPane namesPanel;
+    private AnchorPane topIconPanel;
+    public enum  namesPanelPalaced{NOT_EXIST, CONTENT_PANEL,LEFT_SIDE};
+    private namesPanelPalaced npPalaced;
+    
+
+    public LeftSideMenuRepresent(namesPanelPalaced np) {
+        this.npPalaced=np;
+    }
+    
+       
 
     public AnchorPane getRootLeftSide() {
         return rootLeftSide;
@@ -57,14 +67,36 @@ public class LeftSideMenuRepresent extends MenuRepresent{
                 .getElement();
    
         
-//        this.namesPanel=(AnchorPane) AppNode.NodeBuilder.create()
-//                .setParentAnchor(rootLeftSide)
-//                .setCoordinate(new AnchorCoordinate(0d,null,0d,width/3))
-//                .setWidth(width/3*2)
-//                .setId(CSSID.LEFT_SIDE_MENU_ICON_TEXT)
-//                .createNpAnchor()
-//                .getElement();
+
+      this.topIconPanel =(AnchorPane) AppNode.NodeBuilder.create()
+                .setCoordinate(new AnchorCoordinate(0d, 0d, null, 0d))
+                .setParentAnchor(iconpanel)
+                .setWidth(40d)
+                .setHeight(45d)
+                .setId(CSSID.TOP_ICON_PANEL)
+                .createNpAnchor()
+                .getElement();
+                
+
+      
+      
+      
+        if (this.npPalaced==namesPanelPalaced.CONTENT_PANEL) {
+                
+            this.namesPanel=(AnchorPane) AppNode.NodeBuilder.create()
+                .setParentAnchor(Layers.getContentLayer())
+                .setCoordinate(new AnchorCoordinate(0d,0d,null,0d))
+                .setHeight(30d)
+                .setId(CSSID.LEFT_SIDE_MENU_NAMES_PANEL)
+                .createNpAnchor()
+                .getElement();
+              
 //   
+        }else{
+            System.out.println("basisFx.appCore.menu.LeftSideMenuRepresent.make()");
+        
+        }
+
       
         
         

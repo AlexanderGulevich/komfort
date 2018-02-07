@@ -38,7 +38,7 @@ public abstract class WindowFx {
 ////    protected String titleName;
     protected AnchorPane titlePanel;
     protected AnchorCoordinate titlePanelCoordinate;
-    protected AnchorCoordinate titleTextCoordinate;
+    protected AnchorCoordinate titleNameCoordinate;
  
     
     
@@ -124,8 +124,8 @@ public abstract class WindowFx {
           return this;
       }
      
-      public WindowFx setTitleTextCoordinate(AnchorCoordinate c){
-          this.titleTextCoordinate=c;
+      public WindowFx setTitleNameCoordinate(AnchorCoordinate c){
+          this.titleNameCoordinate=c;
           return this;
       }
      

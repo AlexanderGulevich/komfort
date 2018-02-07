@@ -5,6 +5,7 @@ import basisFx.appCore.registry.Layers;
 import basisFx.domainModel.settings.CSSID;
 import basisFx.domainModel.settings.FontsStore;
 import basisFx.appCore.elements.AppNode;
+import basisFx.appCore.elements.NAnchor;
 import basisFx.appCore.elements.NButton;
 import basisFx.appCore.elements.NImgView;
 import basisFx.appCore.elements.NText;
@@ -32,9 +33,9 @@ public class WindowUndecorated extends WindowFx{
     private NText title;
     private Text textIcon;
     private NImgView  imageViewIcon;
-    
-    
-    
+    private NAnchor  imageViewTitle;
+    public static enum TITLE_VIEW{IMG,TEXT};
+    public  TITLE_VIEW titleView=TITLE_VIEW.IMG;
     
 
     public WindowUndecorated(double w,double h, Stage primaryStage) {
@@ -58,21 +59,22 @@ public class WindowUndecorated extends WindowFx{
         
     }
     
+    public WindowUndecorated setKindOfTitle(TITLE_VIEW tw){
+    
+        this.titleView=tw;
+        return this;
+        
+    }
 
     void initIcon() {
-
-        imageViewIcon=AppNode.NodeBuilder.create()
+  
+             imageViewIcon=AppNode.NodeBuilder.create()
                 .setCoordinate(titlePanel, 5d, null, null, 5d)
                 .setSize(15d, 15d)
                 .setStage(stage)
                 .createNImgView()
                 .setImg(IMGpath.ICONTOOP);
-
-   
-        
-                
-                
-       
+  
     }
     
     public WindowUndecorated setTextIcon(AnchorCoordinate c,FontsStore f, Double fHeight,String tIcn){
@@ -149,14 +151,27 @@ public class WindowUndecorated extends WindowFx{
     @Override
     void initTitle() {
         
-        title=AppNode.NodeBuilder.create()
-                .setParentAnchor(titlePanel)
-                .setCoordinate(titleTextCoordinate)
-                .setFont(Settings.MAIN_TITLE_FONT, Settings.MAIN_TITLE_HEIGHT)
-                .setId(CSSID.TITLE_WINDOW_TEXT)
-                .setText(WindowsTitlesNames.MAIN_WINDOW_NAME)
-                .createNText();
-
+        if (this.titleView==TITLE_VIEW.TEXT) {
+            
+            title=AppNode.NodeBuilder.create()
+                    .setParentAnchor(titlePanel)
+                    .setCoordinate(titleNameCoordinate)
+                    .setFont(Settings.MAIN_TITLE_FONT, Settings.MAIN_TITLE_HEIGHT)
+                    .setId(CSSID.TITLE_WINDOW_TEXT)
+                    .setText(WindowsTitlesNames.MAIN_WINDOW_NAME)
+                    .createNText();
+        }
+        
+        if (this.titleView==TITLE_VIEW.IMG) {
+        
+            imageViewTitle=AppNode.NodeBuilder.create()
+                    .setParentAnchor(titlePanel)
+                    .setCoordinate(titleNameCoordinate)
+                    .setId(CSSID.TITLE_WINDOW_IMG)
+                    .setWidth(140d)
+                    .setHeight(32d)
+                    .createNpAnchor();
+        }
           
 
     }

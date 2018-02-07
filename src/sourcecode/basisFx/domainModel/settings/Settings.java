@@ -5,6 +5,8 @@
  */
 package basisFx.domainModel.settings;
 
+import basisFx.appCore.windows.WindowUndecorated.TITLE_VIEW;
+
 
 
 /**
@@ -22,7 +24,6 @@ public abstract class Settings {
 // public static final double PRELODER_COUNT_LIMIT = 50000;
  public static final double PRELODER_COUNT_LIMIT = 10;
  public static final FontsStore MAIN_TITLE_FONT = FontsStore.FIRA_BOLD;
- 
  
  
     

@@ -70,9 +70,9 @@ public abstract class MenuRepresent {
         
     }
     
-    public static LeftSideMenuRepresent menuLeftSideFabric(){
+    public static LeftSideMenuRepresent menuLeftSideFabric(LeftSideMenuRepresent.namesPanelPalaced np){
          
-        return new LeftSideMenuRepresent();
+        return new LeftSideMenuRepresent(np);
         
         
     }

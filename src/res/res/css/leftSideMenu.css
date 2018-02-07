@@ -10,23 +10,24 @@
          /*-fx-background-color: #14333D;*/
          /*-fx-background-color: #3f828a;*/
          /*-fx-background-color: #53A5B2;*/
-    
+         -fx-background-color: #003641;
+     
 }
 
 #LEFT_SIDE_MENU_ICON_TEXT{
     
          -fx-background-color: #c84164;
-    
+   
 }
-#topIconPanel{
-    -fx-background-color: red;
-        /*-fx-background-image: url("/res/img/logo2.png");*/
-    
-    
-}
-#top{
+
+#TOP_ICON_PANEL{
     /*-fx-background-color: red;*/
         -fx-background-image: url("/res/img/logo2.png");
     
+    
+}
+
+#LEFT_SIDE_MENU_NAMES_PANEL{
+     -fx-background-color: red;
     
 }

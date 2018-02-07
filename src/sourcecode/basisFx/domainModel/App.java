@@ -1,15 +1,16 @@
 package basisFx.domainModel;
 
 import basisFx.appCore.AnchorCoordinate;
-import basisFx.appCore.menu.LeftSideMenuRepresent;
+
 import basisFx.domainModel.settings.Settings;
 import javafx.stage.Stage;
 import basisFx.appCore.windows.WindowFx;
 import basisFx.appCore.menu.MenuCreator;
 import basisFx.appCore.menu.MenuRepresent;
 import basisFx.appCore.registry.Layers;
-import basisFx.domainModel.settings.CSSID;
 import java.sql.SQLException;
+import basisFx.appCore.menu.LeftSideMenuRepresent.namesPanelPalaced;
+import basisFx.appCore.windows.WindowUndecorated;
 
 /**
  *
@@ -21,14 +22,28 @@ public class App{
         
 
         WindowFx.createUnDecoratedWindow(Settings.WIDTH, Settings.HEIGHT, primaryStage)
+                .setKindOfTitle(WindowUndecorated.TITLE_VIEW.IMG)
                 .setTitlePanelCoordinate(new AnchorCoordinate(0d,0d,null,0d))
-                .setTitleTextCoordinate(new AnchorCoordinate(0d, null, null, 90d))
+                .setTitleNameCoordinate(new AnchorCoordinate(5d, null, null, 90d))
                 .setContentLayer(40d,0d,0d,70d)
                 .windowShow();
         
-          
-        
-        new MainMenuView();
+          //        
+//        MenuCreator.create()
+//                .setParentAnchor(Layers.getContentLayer())
+//                .setCoordinate(new AnchorCoordinate(0d, 0d, null, 0d))
+//                .setCss(CSSID.MENUS)
+//                .setNodes(new MainMenu())
+//                .setRepresent(MenuRepresent.menuNBarFabric())
+//                .init();
+  
+             MenuCreator.create()
+                .setParentAnchor(Layers.getVisibleRoot())
+                .setCoordinate(new AnchorCoordinate(40d, null, 0d, 0.5d))
+                .setWidth(70d)
+                .setMenuSketch(new MainMenuSketch())
+                .setRepresent(MenuRepresent.menuLeftSideFabric(namesPanelPalaced.CONTENT_PANEL))
+                .init();
         
         
                 

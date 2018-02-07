@@ -2,6 +2,7 @@
 #MAIN_CONTENT_ANCHOR{
 
      -fx-background-color: white;
+
      /*-fx-background-color: #F7F4FB;-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.4), 10, 0.5, 0.0, 0.0);*/
     
    
@@ -55,3 +56,8 @@
     
 }
 
+#TITLE_WINDOW_IMG{
+     
+ -fx-background-image: url("/res/img/logo.png");
+    
+}
