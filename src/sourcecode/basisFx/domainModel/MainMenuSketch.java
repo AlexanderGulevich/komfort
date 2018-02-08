@@ -19,12 +19,12 @@ public class MainMenuSketch extends MenuSketch{
        menuHierarchy.add(
 //              
                create("Списки", null, composit.COMPOSITE,""),
-               create("Списки", null, composit.COMPOSITE,""),
-               create("Списки", null, composit.COMPOSITE,""),
-               create("Списки", null, composit.COMPOSITE,""),
-               create("Списки", null, composit.COMPOSITE,""),
-               create("Списки", null, composit.COMPOSITE,""),
-               create("Списки", null, composit.COMPOSITE,"")
+               create("Затраты", null, composit.COMPOSITE,""),
+               create("Отчеты", null, composit.COMPOSITE,""),
+               create("Ресурсы", null, composit.COMPOSITE,""),
+               create("Задачи", null, composit.COMPOSITE,""),
+               create("Объекты", null, composit.COMPOSITE,""),
+               create("Профит", null, composit.COMPOSITE,"")
                                         );
     }
     

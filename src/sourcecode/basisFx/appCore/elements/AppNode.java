@@ -15,6 +15,7 @@ import javafx.scene.control.MenuBar;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -306,6 +307,9 @@ public abstract class AppNode <T extends Node> {
     }
      public  NMenuBar createNMenuBar(){
         return new <MenuBar>  NMenuBar(this);
+    }
+     public  NFlowPane createNFlowPane(){
+        return new <FlowPane>  NFlowPane(this);
     }
 
         public static class create {

@@ -23,6 +23,8 @@ public class LeftSideMenuRepresent extends MenuRepresent{
     public enum  namesPanelPalaced{NOT_EXIST, CONTENT_PANEL,LEFT_SIDE};
     private namesPanelPalaced npPalaced;
     private double heightCounterForIcon=0d;
+    public static AnchorPane textPanel;
+    
     
 
     public LeftSideMenuRepresent(namesPanelPalaced np) {
@@ -55,7 +57,7 @@ public class LeftSideMenuRepresent extends MenuRepresent{
          
         
         for (Iterator<MenuComponents> iterator = components.iterator(); iterator.hasNext();) {
-            MenuComponents next = iterator.next();
+            MenuComponents topLevel = iterator.next();
             
             
             this.heightCounterForIcon+=42d;
@@ -64,32 +66,11 @@ public class LeftSideMenuRepresent extends MenuRepresent{
             AppNode.NodeBuilder.create()
                     .setId(CSSID.LEFT_SIDE_MENU_ICON)
                     .setCoordinate(this.heightCounterForIcon, 0d, null, 0d)
-                    .setText(next.getMetaInf())
+                    .setText(topLevel.getMetaInf())
                     .setFont(FontsStore.MATERIAL_ICONS, 25)
-                    .setEvent(new AppEvent() {
-                        @Override
-                        public void setElement(AppNode node) {
-                            
-                        }
-
-                        @Override
-                        public void run() {
-                           
-                        }
-            })
+                    .setEvent(AppEvent.createleftSideMenuIconClick(topLevel))
                     .setParent(this.iconpanel)
                     .createNButton();
-            
-            
-            
-            AppNode.NodeBuilder.create()
-                    .setId(CSSID.LEFT_SIDE_MENU_ICON_TEXT)
-                    .setCoordinate(10d, 250d, 10d, null)
-                    .setParent(Layers.getTitlePanel())
-                    .setText(next.getName())
-                    .setFont(FontsStore.ROBOTO, 25)
-                    .createNText();
-                    
             
             
             
@@ -127,6 +108,14 @@ public class LeftSideMenuRepresent extends MenuRepresent{
                 .getElement();
                 
 
+      textPanel =(AnchorPane) AppNode.NodeBuilder.create()
+                .setCoordinate(new AnchorCoordinate(10d, 70d, 0d, null))
+                .setId(CSSID.LEFT_SIDE_MENU_ICON_TEXT_PANEL)
+                .setParent(Layers.getTitlePanel())
+                .createNpAnchor()
+                .getElement();
+                
+
       
       
       
@@ -141,9 +130,9 @@ public class LeftSideMenuRepresent extends MenuRepresent{
                 .getElement();
               
 //   
-        }else{
-            System.out.println("basisFx.appCore.menu.LeftSideMenuRepresent.make()");
-        
+        }
+         if (this.npPalaced==namesPanelPalaced.NOT_EXIST) {
+          
         }
 
       

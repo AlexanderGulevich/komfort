@@ -84,6 +84,13 @@
 
 #LEFT_SIDE_MENU_ICON_TEXT{
     
+     -fx-fill:#22515B;
+    
+    -fx-opacity:0.4;
+}
+#LEFT_SIDE_MENU_ICON_TEXT_PANEL{
+    -fx-pref-width: 110;
     
     
+     
 }

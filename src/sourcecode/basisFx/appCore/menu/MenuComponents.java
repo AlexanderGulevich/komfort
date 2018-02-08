@@ -110,6 +110,14 @@ public class MenuComponents{
     public ArrayList<MenuComponents> getComponents() {
         return components;
     }
+
+    public boolean isComposit() {
+        return isComposit;
+    }
+
+    public AnchorPane getParent() {
+        return parent;
+    }
     
     
    
