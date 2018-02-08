@@ -15,6 +15,7 @@ public  class Layers {
         private    static  AnchorPane visibleRoot;
         private    static  AnchorPane transparentRoot;
         private    static  AnchorPane contentLayer;  
+        private    static  AnchorPane titlePanel;  
         
         
     public static AnchorPane getVisibleRoot() {
@@ -35,6 +36,15 @@ public  class Layers {
     public  static void setContentLayer(AnchorPane c) {
         contentLayer = c;
     }
+
+    public static AnchorPane getTitlePanel() {
+        return titlePanel;
+    }
+
+    public static void setTitlePanel(AnchorPane titlePanel) {
+        Layers.titlePanel = titlePanel;
+    }
+    
     
     
 }

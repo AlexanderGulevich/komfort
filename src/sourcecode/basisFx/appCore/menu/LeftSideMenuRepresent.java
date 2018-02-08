@@ -2,6 +2,7 @@ package basisFx.appCore.menu;
 
 import basisFx.appCore.AnchorCoordinate;
 import basisFx.appCore.elements.AppNode;
+import basisFx.appCore.events.AppEvent;
 import basisFx.appCore.registry.Layers;
 import basisFx.domainModel.settings.CSSID;
 import basisFx.domainModel.settings.FontsStore;
@@ -59,15 +60,39 @@ public class LeftSideMenuRepresent extends MenuRepresent{
             
             this.heightCounterForIcon+=42d;
             
-            
+            //создание кнопок вертикальных
             AppNode.NodeBuilder.create()
                     .setId(CSSID.LEFT_SIDE_MENU_ICON)
                     .setCoordinate(this.heightCounterForIcon, 0d, null, 0d)
                     .setText(next.getMetaInf())
                     .setFont(FontsStore.MATERIAL_ICONS, 25)
-//                    .setEvent(e)
+                    .setEvent(new AppEvent() {
+                        @Override
+                        public void setElement(AppNode node) {
+                            
+                        }
+
+                        @Override
+                        public void run() {
+                           
+                        }
+            })
                     .setParent(this.iconpanel)
                     .createNButton();
+            
+            
+            
+            AppNode.NodeBuilder.create()
+                    .setId(CSSID.LEFT_SIDE_MENU_ICON_TEXT)
+                    .setCoordinate(10d, 250d, 10d, null)
+                    .setParent(Layers.getTitlePanel())
+                    .setText(next.getName())
+                    .setFont(FontsStore.ROBOTO, 25)
+                    .createNText();
+                    
+            
+            
+            
             
             
         }

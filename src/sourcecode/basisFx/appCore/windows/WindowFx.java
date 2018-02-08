@@ -115,7 +115,7 @@ public abstract class WindowFx {
                          .createNpAnchor()
                          .getElement();
                  
-     
+     Layers.setTitlePanel(titlePanel);
 
      }
      

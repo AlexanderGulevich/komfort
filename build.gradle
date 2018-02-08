@@ -12,9 +12,9 @@ apply plugin: "jacoco"
 
 
 buildScan {
-    licenseAgreementUrl = 'https://gradle.com/terms-of-service' 
-    licenseAgree = 'yes'                                        
-    publishAlways()                                             
+    licenseAgreementUrl = 'https://gradle.com/terms-of-service'
+    licenseAgree = 'yes'
+    publishAlways()
 }
 
 
@@ -34,28 +34,28 @@ tasks.whenTaskAdded { task ->
 
 
 gradle.taskGraph.whenReady {taskGraph ->
-   println "\n\n||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||" 
+   println "\n\n||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||"
     println "Found " + taskGraph.allTasks.size() + " tasks."
     taskGraph.allTasks.forEach { task ->
         print"\n"
-        print task 
+        print task
         print  "  --dependsOn-- "
         task.dependsOn.forEach { dep ->
-             print   dep 
+             print   dep
         }
     }
-     println "\n\n||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n\n" 
-    
+     println "\n\n||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n\n"
+
 }
 
 
- println "\n КОНФИГУРАЦИИ \n" 
+ println "\n КОНФИГУРАЦИИ \n"
 configurations.each{
-    
+
      it->println it
 
 }
-println "\n\n  " 
+println "\n\n  "
 }
 //info()
 
@@ -123,7 +123,7 @@ test.finalizedBy(project.tasks.jacocoTestReport)
 
 jacocoTestReport {
    additionalSourceDirs = files(sourceSets.main.allJava.srcDirs)
-   
+
     reports {
         xml.enabled true
         csv.enabled true
@@ -134,10 +134,10 @@ jacocoTestReport {
 
 //
 //repositories {
-//   
+//
 //}
 //dependencies {
-//   
+//
 //}
 
 
@@ -148,9 +148,9 @@ repositories {
 }
 
 dependencies {
-    
+
      compile 'org.kordamp.bootstrapfx:bootstrapfx-core:0.2.2'
-  
+
 
     testCompile group: 'junit', name: 'junit', version: '4.12'
     testCompile group: 'org.hamcrest', name: 'hamcrest-all', version: '1.3'
@@ -158,37 +158,37 @@ dependencies {
     testRuntime("org.junit.vintage:junit-vintage-engine:4.12.0-M4")
     testRuntime("org.junit.jupiter:junit-jupiter-engine:5.0.0-M4")
     testCompile("org.junit.platform:junit-platform-runner:1.0.0-M4")
-    
+
 //    compile group: 'com.guigarage', name: 'flatter', version: '0.7'
 //    compile group: 'org.aerofx', name: 'aerofx', version: '0.2'
 //    compile group: 'com.aquafx-project', name: 'aquafx', version: '0.2'
-    
+
     compile group: 'log4j', name: 'log4j', version: '1.2.17'
 
     compile group: 'com.jfoenix', name: 'jfoenix', version: '1.11.0'
-	
+
     testCompile group: 'org.hsqldb', name: 'hsqldb', version: '2.4.0'
-	
-	
+
+
     compile group: 'us.fatehi', name: 'schemacrawler-hsqldb', version: '14.17.04'
-    
-	 compile 'com.google.code.gson:gson:2.8.2'	
+
+	 compile 'com.google.code.gson:gson:2.8.2'
 	 compile group: 'com.google.guava', name: 'guava', version: '23.5-jre'
 	 compile group: 'com.google.inject', name: 'guice', version: '4.1.0'
 	 compile group: 'com.google.http-client', name: 'google-http-client', version: '1.23.0'
-    
+
     compile group: 'org.apache.poi', name: 'poi', version: '3.16'
     compile group: 'org.apache.poi', name: 'poi-ooxml', version: '3.16'
     compile group: 'org.apache.poi', name: 'poi-ooxml-schemas', version: '3.16'
     compile group: 'org.apache.poi', name: 'poi-scratchpad', version: '3.16'
-    
+
     compile group: 'org.xerial', name: 'sqlite-jdbc', version: '3.21.0'
 
     compile group: 'org.controlsfx', name: 'controlsfx', version: '9.0.0'
-    
+
     compile group: 'org.hibernate', name: 'hibernate-core', version: '5.2.12.Final'
-    
-    
+
+
 //    compile group: 'de.jensd', name: 'fontawesomefx', version: '8.9'
 //    compile group: 'de.jensd', name: 'fontawesomefx-commons', version: '9.1.2'
 //    compile group: 'de.jensd', name: 'fontawesomefx-materialicons', version: '2.2.0-9.1.2'
@@ -202,17 +202,17 @@ dependencies {
 
 
 jar  {
-    
+
     baseName = 'Komfort'
     version =  '0.1'
-    
+
     manifest {
         attributes(
             "Class-Path": configurations.compile.collect {  "lib/" + it.getName() }.join(" "),
-             'Main-Class': mainClass, 
+             'Main-Class': mainClass,
              'Manifest-Version': 1.0
 //            ,'SplashScreen-Image:': "splash/splash.png"
-            
+
 
         )
     }
@@ -248,23 +248,33 @@ distributions {
       }
 
         from jar
-        
+
 //       into ('splash') {
 //        from ('src/res/splash')  include '**/*.png'
 //      }
-    
 
-            
+
+
     }
   }
 }
- 
+
+
+
+task runApp(type: JavaExec) {
+   classpath = sourceSets.main.runtimeClasspath
+
+   main = 'basisFx.appCore.EntryPoint'
+
+ }
+
+
 build.dependsOn jacocoTestReport
 build.dependsOn projectReport
 build.dependsOn buildDashboard
 build.dependsOn copyLib
 
- 
+
 
 //build.dependsOn distZip
 
