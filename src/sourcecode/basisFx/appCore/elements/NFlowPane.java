@@ -24,7 +24,15 @@ public class NFlowPane <T extends Node> extends AppNode{
         init(builder);
         
 
-        element.setPrefSize(width, height);
+       
+        if(this.height!=null) {
+            element.setPrefHeight(this.height);
+        }
+        if(this.width!=null) {
+            element.setPrefWidth(this.width);
+        }
+        
+        
         if(dropShadow!=null)element.setEffect(dropShadow);
         if(insects!=null)element.setPadding(insects);
 

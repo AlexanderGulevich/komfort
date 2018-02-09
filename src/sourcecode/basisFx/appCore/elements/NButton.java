@@ -5,6 +5,7 @@
  */
 package basisFx.appCore.elements;
 
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.ContentDisplay;
@@ -19,13 +20,30 @@ public class NButton <T extends Node>extends AppNode{
     
  
     public NButton(NodeBuilder builder) {
+        
+        
         element =new Button();
         Button element=(Button) this.element;
+        
+        
+        
+        
         init(builder);
-        element.setPrefSize(width, height);
+        
+        
+       
+        if(this.height!=null) {
+            element.setPrefHeight(this.height);
+        }
+        if(this.width!=null) {
+            element.setPrefWidth(this.width);
+        }
+        
+
         if(insects!=null)element.setPadding(insects);
         if(font!=null)element.setFont(font);
         if(this.text!=null)element.setText(this.text);
+   
         
 //        
         if(this.maxHeight!=null)element.setMaxHeight(this.maxHeight);

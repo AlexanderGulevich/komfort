@@ -28,8 +28,8 @@ import javafx.stage.Stage;
 public abstract class AppNode <T extends Node> {
     protected String id;
     protected T element;
-    protected double width;
-    protected double height;
+    protected Double width;
+    protected Double height;
     protected AnchorCoordinate coordinate;
     protected AppNode parentAppNode;
     protected AppNode childAppNode;
@@ -171,8 +171,8 @@ public abstract class AppNode <T extends Node> {
     public static class NodeBuilder{
 
         protected String id;
-        protected double width;
-        protected double height;
+        protected Double width;
+        protected Double height;
         protected AnchorCoordinate coordinate;
         protected AppNode parent;
         protected ArrayList <AppNode> children=new ArrayList<>();
@@ -242,11 +242,11 @@ public abstract class AppNode <T extends Node> {
             this.insects=i;
             return this;
     }
-        public NodeBuilder setWidth(double w){
+        public NodeBuilder setWidth(Double w){
             this.width=w;
             return this;
     }
-        public NodeBuilder setHeight(double h){
+        public NodeBuilder setHeight(Double h){
             this.height=h;
             return this;
     }

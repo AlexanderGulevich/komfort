@@ -83,9 +83,7 @@ public class leftSideMenuIconClick extends AppEvent{
                           .setId(CSSID.LEFT_SIDE_MENU_HORIZONTAL_BUTTONS)
                           .setText(nextInerLevel.getName())
                           .setFont(FontsStore.ROBOTO_LIGHT, 15d)
-//                          .setInsects(new Insets(0d, 1d, 0, 1d))
-//                          .setMinWidth(150d)
-//                          .setMaxWidth(300d)
+                          .setInsects(new Insets(0d, 10d, 0, 10d))
                           .setParent(LeftSideMenuRepresent.namesPanel)
                           .createNButton();
 

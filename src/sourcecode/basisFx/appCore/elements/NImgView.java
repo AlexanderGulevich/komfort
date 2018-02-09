@@ -35,8 +35,8 @@ public class NImgView <T extends Node> extends AppNode{
        ImageView element=(ImageView) this.element;
       
        element.setImage(this.img);
-       element.setFitHeight(width);
-       element.setFitWidth(height);
+       element.setFitHeight(this.height);
+       element.setFitWidth(this.width);
        return this;
     }
     

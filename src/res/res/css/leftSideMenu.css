@@ -97,7 +97,7 @@
 
 #LEFT_SIDE_MENU_HORIZONTAL_BUTTONS{
     
-      /*-fx-background-color:transparent;*/
-      -fx-padding:1;
+      -fx-background-color:transparent;
+      -fx-padding:3 5 3 5;
     
 }
