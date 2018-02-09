@@ -20,10 +20,10 @@ public class MainMenuSketch extends MenuSketch{
        menuHierarchy.addInerLevel(//              
                create("Списки", null, composit.COMPOSITE,"")
                        .addInerLevel(
-                               create("1111", null, composit.SIMPLE),
-                               create("1122211", null, composit.SIMPLE),
-                               create("33", null, composit.SIMPLE),
-                               create("444", null, composit.SIMPLE)
+                               create("Оборудование", null, composit.SIMPLE),
+                               create("Персонал", null, composit.SIMPLE),
+                               create("Поставщики", null, composit.SIMPLE),
+                               create("Потребители", null, composit.SIMPLE)
                        ),
                create("Затраты", null, composit.COMPOSITE,"")
                .addInerLevel(

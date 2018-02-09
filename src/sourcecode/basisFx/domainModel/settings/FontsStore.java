@@ -16,7 +16,8 @@ public enum FontsStore {
     WEBHOSTINGHUB("/res/font/webhostinghub-glyphs.ttf"),
     MARGOT("/res/font/Margot.ttf"),
     MATERIAL_ICONS("/res/font/MaterialIcons-Regular.ttf"),
-    ROBOTO("/res/font/Roboto-Bold.ttf"),
+    ROBOTO_BOLD("/res/font/Roboto-Bold.ttf"),
+    ROBOTO_LIGHT("/res/font/Roboto-Light.ttf"),
     FIRA_BOLD("/res/font/FiraSans-Bold.ttf");
     
 

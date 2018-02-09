@@ -12,6 +12,7 @@ import basisFx.domainModel.settings.CSSID;
 import basisFx.domainModel.settings.FontsStore;
 import java.util.ArrayList;
 import java.util.Iterator;
+import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.text.Text;
 
@@ -63,7 +64,7 @@ public class leftSideMenuIconClick extends AppEvent{
                 .setParent(LeftSideMenuRepresent.textPanel)
                 .setCoordinate(0d, 10d, 0d, 0d)
                 .setText(component.getName())
-                .setFont(FontsStore.ROBOTO, 20)
+                .setFont(FontsStore.ROBOTO_BOLD, 20)
                 .createNText().getElement();
         }
 
@@ -81,7 +82,10 @@ public class leftSideMenuIconClick extends AppEvent{
                           AppNode.NodeBuilder.create()
                           .setId(CSSID.LEFT_SIDE_MENU_HORIZONTAL_BUTTONS)
                           .setText(nextInerLevel.getName())
-                          .setMinWidth(100d)
+                          .setFont(FontsStore.ROBOTO_LIGHT, 15d)
+//                          .setInsects(new Insets(0d, 1d, 0, 1d))
+//                          .setMinWidth(150d)
+//                          .setMaxWidth(300d)
                           .setParent(LeftSideMenuRepresent.namesPanel)
                           .createNButton();
 
