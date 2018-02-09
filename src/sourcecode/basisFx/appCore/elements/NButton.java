@@ -16,6 +16,8 @@ import javafx.scene.text.Text;
  */
 public class NButton <T extends Node>extends AppNode{
     
+    
+ 
     public NButton(NodeBuilder builder) {
         element =new Button();
         Button element=(Button) this.element;
@@ -24,6 +26,16 @@ public class NButton <T extends Node>extends AppNode{
         if(insects!=null)element.setPadding(insects);
         if(font!=null)element.setFont(font);
         if(this.text!=null)element.setText(this.text);
+        
+//        
+        if(this.maxHeight!=null)element.setMaxHeight(this.maxHeight);
+//        
+        if(this.maxWidth!=null)element.setMaxWidth(this.maxWidth);
+        
+        if(this.minHeight!=null)element.setMinHeight(this.minHeight);
+//        
+        if(this.minWidth!=null)element.setMinWidth(this.minWidth);
+   
         
     }
 
@@ -53,13 +65,15 @@ public class NButton <T extends Node>extends AppNode{
         
         
         Button element=(Button) this.element;
-    
+        
+       
         element.setText(str);
         element.setContentDisplay(cd);
         
         return this;
     }
-  
+
+   
 
     
    

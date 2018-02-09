@@ -68,32 +68,26 @@ public class leftSideMenuIconClick extends AppEvent{
         }
 
     private void setButtons() {
-       
+       LeftSideMenuRepresent.namesPanel.getChildren().clear();
         
              if(this.component.isComposit()){
             
-            
                ArrayList<MenuComponents> inerLevelComponents=  component.getComponents();
-               
+//               
                 for (Iterator<MenuComponents> iterator1 = inerLevelComponents.iterator(); iterator1.hasNext();) {
                     MenuComponents nextInerLevel = iterator1.next();
-                    
-                      //создание кнопок горизонтальных
-                AppNode.NodeBuilder.create()
-    //                    .setId(CSSID.LEFT_SIDE_MENU_ICON)
-                        .setCoordinate(this.heightCounterForIcon, 0d, null, 0d)
-                        .setText(topLevel.getMetaInf())
-                        .setFont(FontsStore.MATERIAL_ICONS, 25)
-                        .setEvent(AppEvent.createleftSideMenuIconClick(topLevel))
-                        .setParent(this.iconpanel)
-                        .createNButton();
+                  
+                    //создание кнопок горизонтальных
+                          AppNode.NodeBuilder.create()
+                          .setId(CSSID.LEFT_SIDE_MENU_HORIZONTAL_BUTTONS)
+                          .setText(nextInerLevel.getName())
+                          .setMinWidth(100d)
+                          .setParent(LeftSideMenuRepresent.namesPanel)
+                          .createNButton();
 
-            
-                    
-                    
-                    
+//                    
                 }
-              
+//              
             
             
             }

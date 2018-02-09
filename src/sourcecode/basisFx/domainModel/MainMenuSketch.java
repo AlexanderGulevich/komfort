@@ -4,6 +4,7 @@ import  basisFx.appCore.menu.MenuSketch;
 import basisFx.appCore.menu.MenuComponents;
 import basisFx.appCore.menu.MenuComponents.composit;
 import static basisFx.appCore.menu.MenuComponents.create;
+import static basisFx.appCore.menu.MenuComponents.create;
 
 /**
  *
@@ -16,10 +17,21 @@ public class MainMenuSketch extends MenuSketch{
         
        this.menuHierarchy=MenuComponents.createHeadElement();
        
-       menuHierarchy.add(
-//              
-               create("Списки", null, composit.COMPOSITE,""),
-               create("Затраты", null, composit.COMPOSITE,""),
+       menuHierarchy.addInerLevel(//              
+               create("Списки", null, composit.COMPOSITE,"")
+                       .addInerLevel(
+                               create("1111", null, composit.SIMPLE),
+                               create("1122211", null, composit.SIMPLE),
+                               create("33", null, composit.SIMPLE),
+                               create("444", null, composit.SIMPLE)
+                       ),
+               create("Затраты", null, composit.COMPOSITE,"")
+               .addInerLevel(
+                               create("dfwfwf", null, composit.SIMPLE),
+                               create("hrth", null, composit.SIMPLE),
+                               create("tyty", null, composit.SIMPLE),
+                               create("44tytnje4", null, composit.SIMPLE)
+                       ),
                create("Отчеты", null, composit.COMPOSITE,""),
                create("Ресурсы", null, composit.COMPOSITE,""),
                create("Задачи", null, composit.COMPOSITE,""),

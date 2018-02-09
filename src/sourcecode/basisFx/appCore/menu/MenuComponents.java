@@ -51,7 +51,7 @@ public class MenuComponents{
         }
     }
     
-    public MenuComponents add(MenuComponents ... m){
+    public MenuComponents addInerLevel(MenuComponents ... m){
         
         for (int i = 0; i < m.length; i++) {
             MenuComponents concrete = m[i];

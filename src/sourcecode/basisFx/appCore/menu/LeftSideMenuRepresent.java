@@ -9,6 +9,7 @@ import basisFx.domainModel.settings.FontsStore;
 import java.util.ArrayList;
 import java.util.Iterator;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.FlowPane;
 
 /**
  *
@@ -18,12 +19,12 @@ public class LeftSideMenuRepresent extends MenuRepresent{
     
     private AnchorPane rootLeftSide;
     private AnchorPane iconpanel;
-    private AnchorPane namesPanel;
+    public static  FlowPane namesPanel;
     private AnchorPane topIconPanel;
     public enum  namesPanelPalaced{NOT_EXIST, CONTENT_PANEL,LEFT_SIDE};
     private namesPanelPalaced npPalaced;
     private double heightCounterForIcon=0d;
-    public static AnchorPane textPanel;
+    public static  AnchorPane textPanel;
     
     
 
@@ -41,7 +42,7 @@ public class LeftSideMenuRepresent extends MenuRepresent{
         return iconpanel;
     }
 
-    public AnchorPane getNamesPanel() {
+    public FlowPane getNamesPanel() {
         return namesPanel;
     }
     
@@ -108,7 +109,7 @@ public class LeftSideMenuRepresent extends MenuRepresent{
                 .getElement();
                 
 
-      textPanel =(AnchorPane) AppNode.NodeBuilder.create()
+      this.textPanel =(AnchorPane) AppNode.NodeBuilder.create()
                 .setCoordinate(new AnchorCoordinate(10d, 70d, 0d, null))
                 .setId(CSSID.LEFT_SIDE_MENU_ICON_TEXT_PANEL)
                 .setParent(Layers.getTitlePanel())
@@ -121,12 +122,12 @@ public class LeftSideMenuRepresent extends MenuRepresent{
       
         if (this.npPalaced==namesPanelPalaced.CONTENT_PANEL) {
                 
-            this.namesPanel=(AnchorPane) AppNode.NodeBuilder.create()
+            this.namesPanel=(FlowPane) AppNode.NodeBuilder.create()
                 .setParent(Layers.getContentLayer())
                 .setCoordinate(new AnchorCoordinate(0d,0d,null,0d))
                 .setHeight(30d)
                 .setId(CSSID.LEFT_SIDE_MENU_NAMES_PANEL)
-                .createNpAnchor()
+                .createNFlowPane()
                 .getElement();
               
 //   

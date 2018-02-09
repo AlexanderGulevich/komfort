@@ -149,7 +149,7 @@ repositories {
 
 dependencies {
 
-     compile 'org.kordamp.bootstrapfx:bootstrapfx-core:0.2.2'
+//     compile 'org.kordamp.bootstrapfx:bootstrapfx-core:0.2.2'
 
 
     testCompile group: 'junit', name: 'junit', version: '4.12'
@@ -165,7 +165,7 @@ dependencies {
 
     compile group: 'log4j', name: 'log4j', version: '1.2.17'
 
-    compile group: 'com.jfoenix', name: 'jfoenix', version: '1.11.0'
+//    compile group: 'com.jfoenix', name: 'jfoenix', version: '1.11.0'
 
     testCompile group: 'org.hsqldb', name: 'hsqldb', version: '2.4.0'
 
@@ -184,7 +184,7 @@ dependencies {
 
     compile group: 'org.xerial', name: 'sqlite-jdbc', version: '3.21.0'
 
-    compile group: 'org.controlsfx', name: 'controlsfx', version: '9.0.0'
+//    compile group: 'org.controlsfx', name: 'controlsfx', version: '9.0.0'
 
     compile group: 'org.hibernate', name: 'hibernate-core', version: '5.2.12.Final'
 

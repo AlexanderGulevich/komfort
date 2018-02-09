@@ -7,6 +7,7 @@ package basisFx.appCore.elements;
 
 import javafx.scene.Node;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.FlowPane;
 
 /**
  *
@@ -17,15 +18,15 @@ public class NFlowPane <T extends Node> extends AppNode{
 
     public NFlowPane(NodeBuilder builder) {
         
-//          element=new AnchorPane();
-//        AnchorPane element=(AnchorPane) this.element;
-//        
-//        init(builder);
-//        
-//
-//        element.setPrefSize(width, height);
-//        if(dropShadow!=null)element.setEffect(dropShadow);
-//        if(insects!=null)element.setPadding(insects);
+        element=new FlowPane();
+        FlowPane element=(FlowPane) this.element;
+        
+        init(builder);
+        
+
+        element.setPrefSize(width, height);
+        if(dropShadow!=null)element.setEffect(dropShadow);
+        if(insects!=null)element.setPadding(insects);
 
     }
 

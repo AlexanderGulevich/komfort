@@ -45,7 +45,12 @@ public abstract class AppNode <T extends Node> {
     protected Insets insets;
     protected DropShadow dropShadow;
     protected String stringId;
-  
+    protected FlowPane parentFlowPane;
+    protected Double maxHeight;
+    protected Double maxWidth;
+    protected Double minHeight;
+    protected Double minWidth;
+    
 
 //    protected abstract void display();
     
@@ -56,6 +61,7 @@ public abstract class AppNode <T extends Node> {
         this.id=builder.id;
         this.insects=builder.insects;
         this.parentAnchor=builder.parentAnchor;
+        this.parentFlowPane=builder.parentFlowPane;
         this.childAppNode=builder.childNode;
         this.hasBond=builder.hasBond;
         this.font=builder.font;
@@ -64,8 +70,14 @@ public abstract class AppNode <T extends Node> {
         this.text=builder.text;
         this.insets=builder.insects;
         this.dropShadow=builder.dropShadow;
+        this.minHeight=builder.minHeight;
+        this.minWidth=builder.minWidth;
+        this.maxHeight=builder.maxHeight;
+        this.maxWidth=builder.maxWidth;
         if(id!=null)element.setId(id);
         if(this.stringId!=null)element.setId(stringId);
+        
+        
         elocateEvents();
         bond(this);
         
@@ -104,14 +116,28 @@ public abstract class AppNode <T extends Node> {
     
     };
     
-    
+   
+  
     public void bond(AppNode n) {
         
          if(hasBond!=false){
+             
+             if(this.parentAnchor!=null){
+             
+                    this.coordinate.setChildNode(n.getElement());
+                    this.coordinate.setParentAnchorPane(parentAnchor);
+                    this.coordinate.bonding();
+                    
+             }
+             if(this.parentFlowPane!=null){
+                 
+                 
+                    this.parentFlowPane.getChildren().add(n.getElement());
+
+                    
+             }
         
-             this.coordinate.setChildNode(n.getElement());
-             this.coordinate.setParentAnchorPane(parentAnchor);
-             this.coordinate.bonding();
+             
       
         
         }
@@ -160,11 +186,16 @@ public abstract class AppNode <T extends Node> {
         protected String text;
         protected DropShadow dropShadow;
         protected String stringId;
-       
+        protected FlowPane parentFlowPane;
+        protected Double maxHeight;
+        protected Double maxWidth;
+        protected Double minHeight;
+        protected Double minWidth;
         
         public static NodeBuilder create(){
             return new NodeBuilder();
         }
+       
         
        
         public NodeBuilder setDropShadow(DropShadow d) {
@@ -228,6 +259,11 @@ public abstract class AppNode <T extends Node> {
             this.parentAnchor=ap;
             return this;
          }
+        public NodeBuilder setParent(FlowPane fp) {
+            this.hasBond=true;
+            this.parentFlowPane=fp;
+            return this;
+         }
         protected NodeBuilder setNodeToBonding(AppNode appNode) {
            this.childNode=appNode;
            return this;
@@ -286,6 +322,26 @@ public abstract class AppNode <T extends Node> {
             this.text=str;
             return this;
         }
+        
+          public NodeBuilder setMaxHeight(Double maxHeight) {
+            this.maxHeight = maxHeight;
+             return this;
+        }
+
+            public NodeBuilder setMaxWidth(Double maxWidth) {
+                this.maxWidth = maxWidth;
+                return this;
+            }
+
+            public NodeBuilder setMinHeight(Double minHeight) {
+                this.minHeight = minHeight;
+                return this;
+            }
+
+            public NodeBuilder setMinWidth(Double minWidth) {
+                this.minWidth = minWidth;
+                return this;
+            }
 
           
           
