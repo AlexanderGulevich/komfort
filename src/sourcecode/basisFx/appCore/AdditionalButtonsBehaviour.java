@@ -3,14 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package basisFx.appCore.menu;
+package basisFx.appCore;
 
-import basisFx.appCore.elements.AppNode;
+import javafx.scene.control.Button;
 
 /**
  *
  * @author Alek
  */
-public abstract class TargetFM {
-    public abstract AppNode createElement(String id);
+//Functional Interface
+public interface AdditionalButtonsBehaviour {
+    
+    public void execute(Button  but);
+    
 }

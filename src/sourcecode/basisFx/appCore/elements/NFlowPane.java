@@ -15,7 +15,7 @@ import javafx.scene.layout.FlowPane;
  * @param <T>
  */
 public class NFlowPane <T extends Node> extends AppNode{
-
+    
     public NFlowPane(NodeBuilder builder) {
         
         element=new FlowPane();
@@ -37,6 +37,21 @@ public class NFlowPane <T extends Node> extends AppNode{
         if(insects!=null)element.setPadding(insects);
 
     }
+
+    public NFlowPane setVgap(Double vGap) {
+        
+        FlowPane  element=(FlowPane) this.element;
+        element.setVgap(vGap);
+        return this;
+    }
+
+    public NFlowPane setHgap(Double hGap) {
+        FlowPane  element=(FlowPane) this.element;
+        element.setHgap(hGap);
+        return this;
+    }
+    
+    
 
 
     

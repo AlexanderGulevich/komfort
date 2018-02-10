@@ -7,12 +7,11 @@ package basisFx.appCore.events;
 
 import basisFx.appCore.elements.AppNode;
 import basisFx.appCore.menu.LeftSideMenuRepresent;
-import basisFx.appCore.menu.MenuComponents;
+import basisFx.appCore.menu.MenuComponent;
 import basisFx.domainModel.settings.CSSID;
 import basisFx.domainModel.settings.FontsStore;
 import java.util.ArrayList;
 import java.util.Iterator;
-import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.text.Text;
 
@@ -22,25 +21,23 @@ import javafx.scene.text.Text;
  */
 public class leftSideMenuIconClick extends AppEvent{
     protected Button  but;
-    protected MenuComponents component;
+    protected MenuComponent component;
 
-    public leftSideMenuIconClick(MenuComponents component) {
+    public leftSideMenuIconClick(MenuComponent component) {
         this.component = component;
     }
     
-    
-    
-    
     @Override
     public void setElement(AppNode n) {
-         this.appNode=n;
+        this.appNode=n;
         this.but=(Button) n.getElement();
-        
-        
-        
+
         
         but.setOnMouseClicked((event) -> {
             LeftSideMenuRepresent.textPanel.getChildren().clear();
+            LeftSideMenuRepresent.setDefaultStyleVerticalButtons();
+            but.setId(CSSID.LEFT_SIDE_MENU_VERTICAL_BUTTONS_CLICKED.get());
+       
             run();
         });
     }
@@ -50,17 +47,17 @@ public class leftSideMenuIconClick extends AppEvent{
      
       
         
-        setOveralTextName();
+        setCommonTextName();
         setButtons();
        
      
 
              }
 
-    private void setOveralTextName() {
+    private void setCommonTextName() {
          
         Text ntext = (Text) AppNode.NodeBuilder.create()
-                .setId(CSSID.LEFT_SIDE_MENU_ICON_TEXT)
+                .setId(CSSID.LEFT_SIDE_MENU_COMMON_TEXT)
                 .setParent(LeftSideMenuRepresent.textPanel)
                 .setCoordinate(0d, 10d, 0d, 0d)
                 .setText(component.getName())
@@ -69,22 +66,31 @@ public class leftSideMenuIconClick extends AppEvent{
         }
 
     private void setButtons() {
-       LeftSideMenuRepresent.namesPanel.getChildren().clear();
+       LeftSideMenuRepresent.horisontalPanel.getChildren().clear();
         
              if(this.component.isComposit()){
             
-               ArrayList<MenuComponents> inerLevelComponents=  component.getComponents();
+               ArrayList<MenuComponent> inerLevelComponents=  component.getComponents();
 //               
-                for (Iterator<MenuComponents> iterator1 = inerLevelComponents.iterator(); iterator1.hasNext();) {
-                    MenuComponents nextInerLevel = iterator1.next();
+                for (Iterator<MenuComponent> iterator1 = inerLevelComponents.iterator(); iterator1.hasNext();) {
+                    MenuComponent nextInerLevel = iterator1.next();
                   
                     //создание кнопок горизонтальных
                           AppNode.NodeBuilder.create()
                           .setId(CSSID.LEFT_SIDE_MENU_HORIZONTAL_BUTTONS)
                           .setText(nextInerLevel.getName())
-                          .setFont(FontsStore.ROBOTO_LIGHT, 15d)
-                          .setInsects(new Insets(0d, 10d, 0, 10d))
-                          .setParent(LeftSideMenuRepresent.namesPanel)
+                          .setFont(FontsStore.ROBOTO_LIGHT, 17d)
+                          .setEvent(
+                                  AppEvent.createMenuButtonsClick(    
+                                          nextInerLevel,
+                                          (but) -> {
+                                              LeftSideMenuRepresent.setDefaultStyleHorisontalButtons();
+                                              but.setId(CSSID.LEFT_SIDE_MENU_HORIZONTAL_BUTTONS_CLICKED.get());
+                                          
+                                          }
+                                  )
+                          )
+                          .setParent(LeftSideMenuRepresent.horisontalPanel)
                           .createNButton();
 
 //                    

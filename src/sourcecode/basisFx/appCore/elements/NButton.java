@@ -5,7 +5,6 @@
  */
 package basisFx.appCore.elements;
 
-import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.ContentDisplay;
@@ -17,11 +16,13 @@ import javafx.scene.text.Text;
  */
 public class NButton <T extends Node>extends AppNode{
     
-    
+//    private boolean isActive;
  
+    
+    
+    
     public NButton(NodeBuilder builder) {
-        
-        
+       
         element =new Button();
         Button element=(Button) this.element;
         
@@ -90,6 +91,19 @@ public class NButton <T extends Node>extends AppNode{
         
         return this;
     }
+//
+//    public NButton setIsActive(boolean isActive) {
+//        this.isActive = isActive;
+//        return this;
+//    }
+//
+//    public boolean isActive() {
+//        return isActive;
+//    }
+//    
+//    
+//    
+    
 
    
 

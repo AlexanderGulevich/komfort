@@ -1,26 +1,28 @@
 package basisFx.domainModel;
 
 import  basisFx.appCore.menu.MenuSketch;
-import basisFx.appCore.menu.MenuComponents;
-import basisFx.appCore.menu.MenuComponents.composit;
-import static basisFx.appCore.menu.MenuComponents.create;
-import static basisFx.appCore.menu.MenuComponents.create;
+import basisFx.appCore.menu.MenuComponent;
+import basisFx.appCore.menu.MenuComponent.composit;
+import static basisFx.appCore.menu.MenuComponent.create;
+import static basisFx.appCore.menu.MenuComponent.create;
 
 /**
  *
  * @author Alek
  */
 public class MainMenuSketch extends MenuSketch{
+    
+    private TargetFabric fabric=new TargetFabric();
 
     @Override
     public void initSpiritNodes() {
         
-       this.menuHierarchy=MenuComponents.createHeadElement();
+       this.menuHierarchy=MenuComponent.createHeadElement();
        
        menuHierarchy.addInerLevel(//              
                create("Списки", null, composit.COMPOSITE,"")
                        .addInerLevel(
-                               create("Оборудование", null, composit.SIMPLE),
+                               create("Оборудование", fabric.createEquipmentPanel(), composit.SIMPLE),
                                create("Персонал", null, composit.SIMPLE),
                                create("Поставщики", null, composit.SIMPLE),
                                create("Потребители", null, composit.SIMPLE)

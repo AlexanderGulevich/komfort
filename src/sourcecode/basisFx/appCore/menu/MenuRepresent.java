@@ -16,14 +16,14 @@ import javafx.scene.layout.AnchorPane;
 public abstract class MenuRepresent {
     
     protected  CSSID css;
-    protected  MenuComponents menuComponent;
+    protected  MenuComponent menuComponent;
     protected  AnchorPane ap;
     protected  AnchorCoordinate c;
     protected Double width;
     protected Double height;
     
     
-    public abstract <T> void   makeStructuredMenuView(MenuComponents c, T parentMenu );
+    public abstract <T> void   makeStructuredMenuView(MenuComponent c, T parentMenu );
     
     public abstract void make();
     
@@ -33,7 +33,7 @@ public abstract class MenuRepresent {
         this.css = id;
          }
       
-    public void setMenuComponent(MenuComponents menuComponent) {
+    public void setMenuComponent(MenuComponent menuComponent) {
         this.menuComponent = menuComponent;
     }
 

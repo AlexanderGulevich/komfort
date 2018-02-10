@@ -6,9 +6,8 @@
 package basisFx.appCore.events;
 
 import basisFx.appCore.elements.AppNode;
-import basisFx.appCore.menu.MenuComponents;
-import javafx.scene.Node;
-import javafx.scene.control.Button;
+import basisFx.appCore.menu.MenuComponent;
+import basisFx.appCore.AdditionalButtonsBehaviour;
 
 
 /**
@@ -61,9 +60,15 @@ public abstract class AppEvent {
    
    }
    
-   public static  AppEvent createleftSideMenuIconClick(MenuComponents component){
+   public static  AppEvent createleftSideMenuIconClick(MenuComponent component){
    
        return new leftSideMenuIconClick(component);
+       
+   
+   }
+   public static  MenuButtonsClick createMenuButtonsClick(MenuComponent component, AdditionalButtonsBehaviour b){
+   
+       return new MenuButtonsClick(component,b);
        
    
    }

@@ -50,13 +50,13 @@ public class MenuBarRepresent extends MenuRepresent{
     */
     
     @Override
-    public <T> void makeStructuredMenuView(MenuComponents menuHierarchy, T parentMenu) {
+    public <T> void makeStructuredMenuView(MenuComponent menuHierarchy, T parentMenu) {
         
-        ArrayList<MenuComponents> h=menuHierarchy.getComponents();
+        ArrayList<MenuComponent> h=menuHierarchy.getComponents();
         
                         
-        for (Iterator<MenuComponents> iterator = h.iterator(); iterator.hasNext();) {
-            MenuComponents next = iterator.next();
+        for (Iterator<MenuComponent> iterator = h.iterator(); iterator.hasNext();) {
+            MenuComponent next = iterator.next();
 
             if (next.isComposit){
                 

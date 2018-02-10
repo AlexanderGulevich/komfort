@@ -5,17 +5,16 @@
  */
 package basisFx.appCore.menu;
 
+import basisFx.appCore.elements.AppNode;
+
 /**
  *
  * @author Alek
  */
-public abstract class MenuSketch {
-    protected MenuComponent menuHierarchy;
-    public abstract void initSpiritNodes();
-
-    public MenuComponent getMenuHierarchy() {
-        return menuHierarchy;
-    }
+public abstract class Target {
+    public abstract void createElement();
+    
+    
     
     
 }

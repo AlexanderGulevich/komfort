@@ -7,10 +7,10 @@ import javafx.scene.layout.AnchorPane;
  *
  * @author Alek
  */
-public class MenuComponents{ 
+public class MenuComponent{ 
     
-    private  ArrayList<MenuComponents> components=new ArrayList<>();
-    protected TargetFM factory;
+    private  ArrayList<MenuComponent> components=new ArrayList<>();
+    protected Target factory;
     protected String name;
     protected String metaInf;
 
@@ -21,40 +21,40 @@ public class MenuComponents{
     protected AnchorPane parent;
 
  
-    public static MenuComponents create(String n,TargetFM fm,composit c){
+    public static MenuComponent create(String n,Target fm,composit c){
     
-        MenuComponents mh=new MenuComponents(c);
+        MenuComponent mh=new MenuComponent(c);
         mh.setName(n);
         mh.setFactory(fm);
         return mh;
     
     }
-    public static MenuComponents create(String n,TargetFM fm,composit c, String metaInf){
+    public static MenuComponent create(String n,Target fm,composit c, String metaInf){
     
-        MenuComponents mh=new MenuComponents(c);
+        MenuComponent mh=new MenuComponent(c);
         mh.setName(n);
         mh.setFactory(fm);
         mh.setMeta(metaInf);
         return mh;
     
     }
-    public static MenuComponents createHeadElement(){
+    public static MenuComponent createHeadElement(){
        
        
-       return create(null, null, MenuComponents.composit.COMPOSITE);
+       return create(null, null, MenuComponent.composit.COMPOSITE);
     
     }
   
-    private MenuComponents(composit c) {
+    private MenuComponent(composit c) {
         if (c==composit.COMPOSITE) {
             this.isComposit=true;
         }
     }
     
-    public MenuComponents addInerLevel(MenuComponents ... m){
+    public MenuComponent addInerLevel(MenuComponent ... m){
         
         for (int i = 0; i < m.length; i++) {
-            MenuComponents concrete = m[i];
+            MenuComponent concrete = m[i];
             this.components.add(concrete);
             
         } 
@@ -68,7 +68,7 @@ public class MenuComponents{
     }
     
     
-    public MenuComponents setId(String id){
+    public MenuComponent setId(String id){
     
         this.id=id;
         return this;
@@ -78,22 +78,22 @@ public class MenuComponents{
         this.metaInf=metaInf;
     }
     
-    public MenuComponents remove(MenuComponents c ){
+    public MenuComponent remove(MenuComponent c ){
         components.remove(c);
         return this;
     }
     
-    public MenuComponents setFactory(TargetFM factory ){
+    public MenuComponent setFactory(Target factory ){
         this.factory=factory;
         return this;
     }
 
-    public TargetFM getFactory() {
+    public Target getFactory() {
         return factory;
     }
     
         
-    public MenuComponents setName(String n ){
+    public MenuComponent setName(String n ){
         this.name=n;
         return this;
     }
@@ -107,7 +107,7 @@ public class MenuComponents{
     }
     
 
-    public ArrayList<MenuComponents> getComponents() {
+    public ArrayList<MenuComponent> getComponents() {
         return components;
     }
 
