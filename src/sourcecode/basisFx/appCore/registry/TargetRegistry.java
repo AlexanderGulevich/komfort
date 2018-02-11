@@ -3,14 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package basisFx.appCore;
+package basisFx.appCore.registry;
 
-import javafx.beans.property.ReadOnlyDoubleProperty;
+import basisFx.appCore.menu.Target;
+import java.util.ArrayList;
 
 /**
  *
  * @author Alek
  */
-public interface TableCreater {
-  public void  setPrefWidthBindToColums(ReadOnlyDoubleProperty widthProperty);
+public class TargetRegistry {
+    public static ArrayList <Target> targets=new ArrayList<>();
+    
+    
 }

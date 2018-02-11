@@ -1,5 +1,5 @@
-package basisFx.domainModel.old;
-
+//package basisFx.domainModel.old;
+//
 //package hepo.domainModel;
 //
 //import hepo.appCore.AbstractTab;
@@ -38,10 +38,15 @@ package basisFx.domainModel.old;
 //	/* Returns  TableColumn */	
 //    
 //	public  TableColumn<GoodsPojo, Integer> getOrderNumColumn() {
+//            
 //		TableColumn<GoodsPojo, Integer> orderNumCol = new TableColumn<>("№");
+//                
 //		orderNumCol.setCellValueFactory(new PropertyValueFactory<>("leftOrderNum"));
 //        //       priceCategoryCol.setPrefWidth(150);
 //		return orderNumCol;
+//                
+//                
+//                
 //	}
 //	public  TableColumn<GoodsPojo, Integer> getYearColumn() {
 //		TableColumn<GoodsPojo, Integer> yearCol = new TableColumn<>("Год");

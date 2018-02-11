@@ -6,13 +6,16 @@
 package basisFx.appCore.menu;
 
 import basisFx.appCore.elements.AppNode;
+import javafx.scene.Node;
 
 /**
  *
  * @author Alek
  */
-public abstract class Target {
+public abstract class Target<T extends Node> {
+    
     public abstract void createElement();
+    public abstract T getTargetElement();
     
     
     

@@ -3,14 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package basisFx.appCore.elements;
+package basisFx.appCore;
 
 /**
  *
  * @author Alek
  */
-public abstract class NodeTable extends AppNode {
-
-    protected abstract void display();
+public class Pojo {
     
 }

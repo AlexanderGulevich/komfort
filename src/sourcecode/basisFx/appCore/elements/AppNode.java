@@ -12,6 +12,7 @@ import java.util.Iterator;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuBar;
+import javafx.scene.control.TableView;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -366,6 +367,10 @@ public abstract class AppNode <T extends Node> {
     }
      public  NFlowPane createNFlowPane(){
         return new <FlowPane>  NFlowPane(this);
+    }
+
+     public  NTableView createNTableView(){
+        return new <TableView>  NTableView(this);
     }
 
         public static class create {

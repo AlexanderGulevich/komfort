@@ -94,8 +94,8 @@
     -fx-text-fill:#22515B;
     -fx-pref-height: 35;
      -fx-border-width: 0.5  0.5   0    0.5;
-    -fx-border-insets:0.5  0.5   0    0.5;
-    -fx-border-color: derive(#003641,120%) white  derive(#003641,120%) white;
+    /*-fx-border-insets:0.5  0.5   0    0.5;*/
+    -fx-border-color: white white  white white;
     -fx-border-style:solid ;
 
     

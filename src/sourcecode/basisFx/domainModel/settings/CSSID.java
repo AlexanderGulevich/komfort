@@ -1,20 +1,13 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package basisFx.domainModel.settings;
 
-/**
- *
- * @author Alek
- */
 public enum CSSID {
     
     TOP_CONTROL_BUTTON("TOP_CONTROL_BUTTON"),
     MAIN_CONTENT_ANCHOR("MAIN_CONTENT_ANCHOR"),
     VISIBLE_ROOT("VISIBLE_ROOT"),
     MENUS("MENUS"),
+    TABLE("TABLE"),
+    TARGET_PANEL("TARGET_PANEL"),
     MAIN_MENU("MAIN_MENU"),
     TRANSPARENT_ROOT("TRANSPARENT_ROOT"),
     ROOT_TEXT_ICON("ROOT_TEXT_ICON"),
