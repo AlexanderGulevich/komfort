@@ -1,6 +1,5 @@
 package basisFx.appCore.dataSource;
 
-import basisFx.domainModel.settings.Settings;
 import java.sql.*;
 
 
