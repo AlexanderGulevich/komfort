@@ -1,4 +1,4 @@
-package basisFx.appCore.dao;
+package basisFx.appCore.dataSource;
 
 //package hepo.appCore.dao;
 //

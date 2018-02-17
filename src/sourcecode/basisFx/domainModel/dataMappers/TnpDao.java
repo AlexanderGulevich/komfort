@@ -1,4 +1,4 @@
-package basisFx.domainModel.dao;
+package basisFx.domainModel.dataMappers;
 
 //
 //package hepo.domainModel.dao;

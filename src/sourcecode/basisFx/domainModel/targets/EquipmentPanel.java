@@ -1,4 +1,4 @@
-package basisFx.domainModel;
+package basisFx.domainModel.targets;
 
 import basisFx.appCore.AnchorCoordinate;
 import basisFx.appCore.menu.Target;

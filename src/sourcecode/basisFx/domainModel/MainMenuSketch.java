@@ -1,5 +1,6 @@
 package basisFx.domainModel;
 
+import basisFx.domainModel.targets.TargetFabric;
 import  basisFx.appCore.menu.MenuSketch;
 import basisFx.appCore.menu.MenuComponent;
 import basisFx.appCore.menu.MenuComponent.composit;

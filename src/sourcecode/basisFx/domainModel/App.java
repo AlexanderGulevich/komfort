@@ -1,6 +1,8 @@
 package basisFx.domainModel;
 
 import basisFx.appCore.AnchorCoordinate;
+import basisFx.appCore.dataSource.DataSource;
+import basisFx.appCore.dataSource.DbFactory;
 
 import basisFx.domainModel.settings.Settings;
 import javafx.stage.Stage;
@@ -19,6 +21,13 @@ import basisFx.appCore.windows.WindowUndecorated;
 public class App{
 
     public App(Stage primaryStage) throws ClassNotFoundException, SQLException {
+        
+        DbFactory dbFactory=new DbFactory();
+        
+        
+        
+        DataSource.createDataMapperRealization();
+        
         
 
         WindowFx.createUnDecoratedWindow(Settings.WIDTH, Settings.HEIGHT, primaryStage)

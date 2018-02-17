@@ -1,46 +1,47 @@
-package basisFx.appCore.dao;
+package basisFx.appCore.dataSource;
 
-//package hepo.appCore.dao;
-//import java.sql.*;
-//
-//
-//public class DbInit {
-//    
-//    private Statement statement = null;
-//    private Connection connection = null;
-//    private  String DB_URL ="db1.db";
-//    static final String JDBC_DRIVER = "org.sqlite.JDBC";
-//
-//    public Connection getConnection() {
-//        return connection;
-//    }
-//
-//    public DbInit() throws ClassNotFoundException, SQLException {
-//          
-//
-//        
-//        try {
-//                Class.forName(this.JDBC_DRIVER);
-//                this.connection = DriverManager.getConnection("jdbc:sqlite:"+DB_URL);      
-//                statement=this.connection.createStatement();
-//                statement.setQueryTimeout(30);
-//                
-//                System.out.println("Соединение с базой данный осуществлено!");
-//        
-//        } catch (Exception e) {
-//                
-//                System.out.println("Сбой при подключении к БД!");
-//                System.err.println( e.getMessage());
-//               
-//            
-//        }
-//        
-//        init();
-//
-//}
-//    
-//    private void init(){
-//        
+import basisFx.domainModel.settings.Settings;
+import java.sql.*;
+
+
+public class DbEmbeded extends Db{
+    
+    private Statement statement = null;
+    private Connection connection = null;
+    
+
+    public Connection getConnection() {
+        return connection;
+    }
+
+    public DbEmbeded() throws ClassNotFoundException, SQLException {
+          
+
+ 
+        
+        try {
+                Class.forName("org.hsqldb.jdbc.JDBCDriver");
+                this.connection = DriverManager.getConnection(
+                        "jdbc:hsqldb:file:database/db", "SA", "");    
+                statement=this.connection.createStatement();
+                statement.setQueryTimeout(30);
+                
+                System.out.println("Соединение с базой данный осуществлено!");
+        
+        } catch (Exception e) {
+                
+                System.out.println("Сбой при подключении к БД!");
+                System.err.println( e.getMessage());
+               
+            
+        }
+        
+        init();
+
+}
+    
+    private void init(){
+        
 //        
 //        
 //        String orders = "CREATE TABLE IF NOT EXISTS orders ( "
@@ -78,7 +79,7 @@ package basisFx.appCore.dao;
 //                + "          REFERENCES orders(ordersId)"
 //                + ")";
 //          
-//    
+    
 //        try {
 //            statement.execute(orders);
 //
@@ -98,25 +99,25 @@ package basisFx.appCore.dao;
 //            System.out.println("Не создалась таблица   goodsNamesPresentation");
 //        }
 // 
-//   
-//        
-// 
-//    
-//     
-//        
-//        
-//    
-//    }
-//
-//
-//              
-//           
-//
-//
-//    
-//    
-//    
-//    
-//  
-//}
-//
+   
+        
+ 
+    
+     
+        
+        
+    
+    }
+
+
+              
+           
+
+
+    
+    
+    
+    
+  
+}
+
