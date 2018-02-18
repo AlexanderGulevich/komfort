@@ -1,4 +1,71 @@
-#TABLE{
-    
-    
+#TABLE,#TABLE:focused,#TABLE:armed,#TABLE:selected{
+    /*-fx-border-color:red;*/
+    -fx-border-style:none ;
+    /*-fx-border-width: 0.3  0.3   0.3    0.3;*/
+    -fx-background-insets: 0, 0, 0, 0;
+    /*-fx-border-style:solid ;*/
+     /*-fx-border-color: derive(#003641,70%);*/
+
+     -fx-effect: dropshadow(gaussian ,#ACB5A3 , 5, 0, 0.5, 0.5);
+}
+
+#TABLE .column-resize-line{
+
+    -fx-background-color:red;
+
+}
+#TABLE .column-overlay {
+
+    -fx-background-color:yellow;
+
+}
+#TABLE .placeholder {
+
+    /*-fx-background-color:#57b75733;*/
+
+}
+#TABLE .column-header-background {
+
+    -fx-background-color:blue;
+
+}
+#TABLE .nested-column-header {
+
+    -fx-background-color:orange;
+
+}
+#TABLE .column-header {
+
+    -fx-background-color:white;
+
+}
+#TABLE .filler {
+
+    -fx-background-color:#c84164;
+
+}
+#TABLE .show-hide-columns-button {
+
+    -fx-background-color:pink;
+
+}
+#TABLE .show-hide-column-image {
+
+    -fx-background-color:#4258c9;
+
+}
+#TABLE .column-drag-header {
+
+    -fx-background-color:#57b75733;
+
+}
+#TABLE .label {
+
+    -fx-background-color:#f3622d;
+
+}
+#TABLE .table-column {
+
+    -fx-background-color:aquamarine;
+
 }

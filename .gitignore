@@ -15,3 +15,5 @@ gradle-app.setting
 !gradle-wrapper.jar
 db1.db  
 /database
+/.idea/
+/classes/

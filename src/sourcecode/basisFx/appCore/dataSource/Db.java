@@ -5,10 +5,19 @@
  */
 package basisFx.appCore.dataSource;
 
+import java.sql.Connection;
+import java.sql.Statement;
+
 /**
  *
  * @author Alek
  */
 public abstract class Db {
+   
+    protected static Connection connection = null;
     
+
+    public static Connection getConnection() {
+        return connection;
+    }
 }

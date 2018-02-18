@@ -6,6 +6,7 @@
 package basisFx.appCore.elements;
 
 import basisFx.appCore.Pojo;
+import java.util.Iterator;
 import javafx.beans.property.ReadOnlyDoubleProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -33,13 +34,29 @@ public  class NTableView <T extends Pojo> extends AppNode {
     
 
     
-     public NTableView initColums(TableColumn  ...columns){
+     public NTableView setColums(TableColumn  ...columns){
      
          for (TableColumn column : columns) {
             
              table.getColumns().addAll(column);
              
          }
+           
+               
+          return this;
+        
+     }
+     public NTableView setSortableAllCollums(boolean b){
+     
+        
+        ObservableList<TableColumn<T, ?>> columns = table.getColumns();
+        
+         for (Iterator<TableColumn<T, ?>> iterator = columns.iterator(); iterator.hasNext();) {
+             TableColumn<T, ? extends Object> next = iterator.next();
+             next.setSortable(b);
+         }
+             
+        
            
                
           return this;
@@ -56,10 +73,21 @@ public  class NTableView <T extends Pojo> extends AppNode {
 
 
 
-    public void setPrefWidthBindToColums(double val,int colNum,ReadOnlyDoubleProperty widthProperty) {
+    public NTableView<T> setColumsSize(int colNum,double val) {
         table.getColumns().get(colNum).prefWidthProperty()
+                .bind(this.table.widthProperty().multiply(val));
+        
+        return this;
+     
+
+    }
+    
+
+    public NTableView<T> setTablesSize(double val,ReadOnlyDoubleProperty widthProperty) {
+        table.prefWidthProperty()
                 .bind(widthProperty.multiply(val));
      
+        return this;
 
     }
     

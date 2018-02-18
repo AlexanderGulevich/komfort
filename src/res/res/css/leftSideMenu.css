@@ -41,7 +41,7 @@
     -fx-background-radius: 0;
     -fx-color:yellowgreen;
      -fx-pref-width: 60;
-     -fx-pref-height:40;
+     -fx-pref-height:50;
 }
 #LEFT_SIDE_MENU_VERTICAL_BUTTONS:armed,
 #LEFT_SIDE_MENU_VERTICAL_BUTTONS_CLICKED{
@@ -57,7 +57,7 @@
     -fx-background-radius: 0;
     /*-fx-color:yellowgreen;*/
      -fx-pref-width: 60;
-     -fx-pref-height:40;
+     -fx-pref-height:50;
 }
 #LEFT_SIDE_MENU_VERTICAL_BUTTONS:focused{
     
@@ -70,7 +70,7 @@
     -fx-background-radius: 0;
     -fx-color:yellowgreen;
      -fx-pref-width: 60;
-     -fx-pref-height:40;
+     -fx-pref-height:50;
 }
 
 #LEFT_SIDE_MENU_COMMON_TEXT{
@@ -113,7 +113,7 @@
       
     -fx-border-width: 0.5  0.5   0    0.5;
     -fx-border-insets:0.5  0.5   0    0.5;
-    -fx-border-color:derive(#4A7F77,40%);
+    -fx-border-color:derive(#4A7F77,160%);
   
     /*-fx-border-insets:1;*/
       

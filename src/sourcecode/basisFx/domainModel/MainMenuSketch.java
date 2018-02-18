@@ -5,7 +5,6 @@ import  basisFx.appCore.menu.MenuSketch;
 import basisFx.appCore.menu.MenuComponent;
 import basisFx.appCore.menu.MenuComponent.composit;
 import static basisFx.appCore.menu.MenuComponent.create;
-import static basisFx.appCore.menu.MenuComponent.create;
 
 /**
  *
@@ -20,26 +19,39 @@ public class MainMenuSketch extends MenuSketch{
         
        this.menuHierarchy=MenuComponent.createHeadElement();
        
-       menuHierarchy.addInerLevel(//              
+       menuHierarchy.addInerLevel(//     
+               
                create("Списки", null, composit.COMPOSITE,"")
-                       .addInerLevel(
+                        .addInerLevel(
                                create("Оборудование", fabric.createEquipmentPanel(), composit.SIMPLE),
-                               create("Персонал", null, composit.SIMPLE),
-                               create("Поставщики", null, composit.SIMPLE),
+                               create("Сотрудники", null, composit.SIMPLE)
+                       ),
+               
+               
+               create("Графики", null, composit.COMPOSITE,"")
+                        .addInerLevel(
+                               create("Затраты", null, composit.SIMPLE),
+                               create("Курсы", null, composit.SIMPLE),
+                               create("Выход", null, composit.SIMPLE),
+                               create("Рентабельность", null, composit.SIMPLE)
+                       ),
+               
+               
+               create("Движения", null, composit.COMPOSITE,"") .addInerLevel(
+                               create("Дневная выработка", null, composit.SIMPLE),
+                               create("Курсы", null, composit.SIMPLE),
+                               create("Выход", null, composit.SIMPLE),
+                               create("Рентабельность", null, composit.SIMPLE)
+                       ),
+               
+               
+               
+//               create("Задачи", null, composit.COMPOSITE,""),
+               create("Контрагенты", null, composit.COMPOSITE,"") .addInerLevel(
+                               create("Поставщики", fabric.createEquipmentPanel(), composit.SIMPLE),
                                create("Потребители", null, composit.SIMPLE)
-                       ),
-               create("Затраты", null, composit.COMPOSITE,"")
-               .addInerLevel(
-                               create("dfwfwf", null, composit.SIMPLE),
-                               create("hrth", null, composit.SIMPLE),
-                               create("tyty", null, composit.SIMPLE),
-                               create("44tytnje4", null, composit.SIMPLE)
-                       ),
-               create("Отчеты", null, composit.COMPOSITE,""),
-               create("Ресурсы", null, composit.COMPOSITE,""),
-               create("Задачи", null, composit.COMPOSITE,""),
-               create("Объекты", null, composit.COMPOSITE,""),
-               create("Профит", null, composit.COMPOSITE,"")
+                       )
+//               create("Профит", null, composit.COMPOSITE,"")
                                         );
     }
     

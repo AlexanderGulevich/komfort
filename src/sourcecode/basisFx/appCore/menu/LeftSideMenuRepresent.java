@@ -58,7 +58,7 @@ public class LeftSideMenuRepresent extends MenuRepresent{
             MenuComponent topLevel = iterator.next();
             
             
-            this.heightCounterForIcon+=42d;
+            this.heightCounterForIcon+=50d;
             
             //создание кнопок вертикальных
             AppNode.NodeBuilder.create()

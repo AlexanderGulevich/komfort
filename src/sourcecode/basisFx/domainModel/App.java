@@ -1,7 +1,7 @@
 package basisFx.domainModel;
 
 import basisFx.appCore.AnchorCoordinate;
-import basisFx.appCore.dataSource.DataSource;
+import basisFx.appCore.dataSource.Db;
 import basisFx.appCore.dataSource.DbFactory;
 
 import basisFx.domainModel.settings.Settings;
@@ -13,6 +13,7 @@ import basisFx.appCore.registry.Layers;
 import java.sql.SQLException;
 import basisFx.appCore.menu.LeftSideMenuRepresent.namesPanelPalaced;
 import basisFx.appCore.windows.WindowUndecorated;
+import java.sql.Connection;
 
 /**
  *
@@ -22,13 +23,10 @@ public class App{
 
     public App(Stage primaryStage) throws ClassNotFoundException, SQLException {
         
-        DbFactory dbFactory=new DbFactory();
+        new DbFactory().createEmbeded();
         
-        
-        
-        DataSource.createDataMapperRealization();
-        
-        
+        Connection connection = Db.getConnection();
+
 
         WindowFx.createUnDecoratedWindow(Settings.WIDTH, Settings.HEIGHT, primaryStage)
                 .setKindOfTitle(WindowUndecorated.TITLE_VIEW.IMG)

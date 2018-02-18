@@ -1,17 +1,12 @@
 package basisFx.appCore.dataSource;
 
+import basisFx.domainModel.DbSchema;
 import java.sql.*;
 
 
 public class DbEmbeded extends Db{
     
-    private Statement statement = null;
-    private Connection connection = null;
-    
-
-    public Connection getConnection() {
-        return connection;
-    }
+   protected Statement statement = null;
 
     public DbEmbeded() throws ClassNotFoundException, SQLException {
           
@@ -25,7 +20,7 @@ public class DbEmbeded extends Db{
                 statement=this.connection.createStatement();
                 statement.setQueryTimeout(30);
                 
-                System.out.println("Соединение с базой данный осуществлено!");
+                System.out.println("Database connected!");
         
         } catch (Exception e) {
                 
@@ -41,70 +36,7 @@ public class DbEmbeded extends Db{
     
     private void init(){
         
-//        
-//        
-//        String orders = "CREATE TABLE IF NOT EXISTS orders ( "
-//                + "	ordersId integer PRIMARY KEY AUTOINCREMENT NOT NULL,  "
-//                + "	commonName text,"
-//                + "	orderNumberText integer   NOT NULL,  "
-//                + "	orderNumberInt integer   NOT NULL,  "
-//                + "	year integer   NOT NULL,  "
-//                + "     orderedAmount REAL , "
-//                + "     emitted REAL , "
-//                + "     remained REAL , "
-//                + "     price REAL , "
-//                + "     percent REAL , "
-//                + "     ordersCategoryId integer," 
-//                + "     inArchiv integer NOT NULL," 
-//                + "     FOREIGN KEY (ordersCategoryId)"
-//                + "          REFERENCES ordersCategory(ordersCategoryId)"
-//                + ")";
-//        
-//        String ordersCategory = "CREATE TABLE IF NOT EXISTS ordersCategory ( "
-//                + "	ordersCategoryId integer PRIMARY KEY AUTOINCREMENT NOT NULL,  "
-//                + "	leftId  integer  NOT NULL,  "
-//                + "	rightId integer  NOT NULL,  "
-//                + "	levelId integer  NOT NULL,  "
-//                + "	name text NOT NULL  ,"    
-//                + "	isExpanded integer NOT NULL,  "  
-//                + "	shortName TEXT(20)  "     
-//                + ")";
-//        
-//        String goodsNamesPresentation = "CREATE TABLE IF NOT EXISTS goodsName ( "
-//                + "	presentationId integer PRIMARY KEY AUTOINCREMENT NOT NULL,  "
-//                + "	presentationName text,  "
-//                + "	ordersId integer  NOT NULL,  "
-//                + "     FOREIGN KEY (ordersId)"
-//                + "          REFERENCES orders(ordersId)"
-//                + ")";
-//          
-    
-//        try {
-//            statement.execute(orders);
-//
-//        } catch (SQLException e) {
-//            System.out.println("Не создалась таблица   orders");   
-//        }
-//        try {  
-//            statement.execute(ordersCategory);
-//            
-//        } catch (SQLException e) {
-//            System.out.println("Не создалась таблица   ordersCategory");
-//        }
-//        try {  
-//            statement.execute(goodsNamesPresentation);
-//            
-//        } catch (SQLException e) {
-//            System.out.println("Не создалась таблица   goodsNamesPresentation");
-//        }
-// 
-   
-        
- 
-    
-     
-        
-        
+        new DbSchema();
     
     }
 

@@ -3,12 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package basisFx.domainModel.pojo;
+package basisFx.domainModel.mapper;
+
+import basisFx.domainModel.pojo.*;
 
 /**
  *
  * @author Alek
  */
-public class Supplier {
+public class OutputDataMapper {
     
 }

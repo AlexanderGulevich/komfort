@@ -5,10 +5,20 @@
  */
 package basisFx.appCore.dataSource;
 
+import java.sql.SQLException;
+
 /**
  *
  * @author Alek
  */
 public class DbFactory {
+    
+    public DbEmbeded createEmbeded() throws ClassNotFoundException, SQLException{
+    
+        return new DbEmbeded();
+    
+    }
+    
+  
     
 }
