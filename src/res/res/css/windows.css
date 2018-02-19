@@ -1,4 +1,3 @@
-
 #MAIN_CONTENT_ANCHOR{
 
      -fx-background-color: #ECF1F2;
@@ -64,4 +63,19 @@
  
 -fx-pref-width:170;
     
+}
+
+
+#PRELOADER_VISIBLE_ROOT{
+   -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.9), 10, 0, 0.0, 0.0);
+ 
+      -fx-background-color: transparent;
+   -fx-background-image: url("/res/img/preloader.png");
+   
+}
+
+#PRELOADER_TRANSPARENT_ROOT{
+   
+      -fx-background-color: transparent;
+   
 }

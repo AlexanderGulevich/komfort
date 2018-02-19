@@ -5,69 +5,74 @@
  */
 package basisFx.appCore;
 
+import basisFx.appCore.elements.AppNode;
+import basisFx.appCore.windows.WindowFx;
+import basisFx.domainModel.settings.CSSID;
+import basisFx.domainModel.settings.Settings;
 import static basisFx.domainModel.settings.Settings.PRELODER_COUNT_LIMIT;
 import com.sun.javafx.application.LauncherImpl;
 import javafx.application.Platform;
 import javafx.application.Preloader;
-import javafx.geometry.Pos;
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
-import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 public class AppPreloader extends Preloader {
 
-    private static final double WIDTH = 400;
-    private static final double HEIGHT = 400;
 
-    private Stage preloaderStage;
     private Scene scene;
 
-    private Label progress;
+//    private Label progress;
+    private AnchorPane root;
+    private Stage stage;
+    private AnchorPane visibleRoot;
 
+    public double WIDTH_VISIBLE= Settings.Preloader_WIDTH;
+    public double HEIGHT_VISIBLE= Settings.Preloader_HEIGHT ;
+
+    public double WIDTH_TRANSPARENT= Settings.Preloader_WIDTH+5d;
+    public double HEIGHT_TRANSPARENT= Settings.Preloader_HEIGHT+5d;
 
     @Override
     public void init() throws Exception {
       
-        // If preloader has complex UI it's initialization can be done in MyPreloader#init
         Platform.runLater(() -> {
-            Label title = new Label("Showing preloader stage!\nLoading, please wait...");
-            title.setTextAlignment(TextAlignment.CENTER);
-            progress = new Label("0%");
-
-            VBox root = new VBox(title, progress);
-            root.setAlignment(Pos.CENTER);
-
-            scene = new Scene(root, WIDTH, HEIGHT);
             
-            
-         
+        setTransparentRoot();
+        setVisibleRoot();     
+        
+      
+        this.scene= new Scene(root,WIDTH_TRANSPARENT,HEIGHT_TRANSPARENT);
+
+        
+        scene.setFill( Color.TRANSPARENT);
+        
+        scene.getStylesheets().add(getClass().getResource(
+             "/res/css/windows.css"
+      ).toExternalForm());
         });
     }
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-       
-        this.preloaderStage = primaryStage;
 
-        // Set preloader scene and show stage.
-        preloaderStage.setScene(scene);
-        preloaderStage.initStyle(StageStyle.TRANSPARENT);
-        scene.setFill(Color.TRANSPARENT);
-        
-        
-        preloaderStage.show();
-    }
+        this.stage=primaryStage;
+        stage.setScene(scene);
+       
+      stage.initStyle(StageStyle.TRANSPARENT);
+        stage.show();
+  
+          }
 
     @Override
     public void handleApplicationNotification(PreloaderNotification info) {
 
-        if (info instanceof ProgressNotification) {
-            progress.setText(((ProgressNotification) info).getProgress() + "%");
-        }
+//        if (info instanceof ProgressNotification) {
+//            progress.setText(((ProgressNotification) info).getProgress() + "%");
+//        }
     }
 
     @Override
@@ -80,7 +85,7 @@ public class AppPreloader extends Preloader {
             case BEFORE_INIT:
                 break;
             case BEFORE_START:
-                preloaderStage.hide();
+                stage.hide();
                 break;
         }
     }
@@ -97,5 +102,33 @@ public class AppPreloader extends Preloader {
             );
         }
     }
+    
+     protected void setTransparentRoot(){
+                 this.root=(AnchorPane) AppNode.NodeBuilder.create()
+                         .setId(CSSID.PRELOADER_TRANSPARENT_ROOT)
+                         .setInsects(new Insets(5d, 5d, 5d, 5d))
+//                         .setWidth(WIDTH_VISIBLE)
+//                         .setHeight(HEIGHT_VISIBLE)
+                         .createNpAnchor()
+                         .getElement();
+              
+             
+     }
+     
+     protected void setVisibleRoot(){
+                 this.visibleRoot=(AnchorPane) AppNode.NodeBuilder.create()
+                         .setCoordinate(root, 0d, 0d, 0d, 0d)
+                         .setId(CSSID.PRELOADER_VISIBLE_ROOT)
+//                         .setWidth(WIDTH_VISIBLE)
+//                         .setHeight(HEIGHT_VISIBLE)
+                         .createNpAnchor()
+                         .getElement();
+                 
+                 
+                
+                 
+                 
+                
+     }
     
 }
