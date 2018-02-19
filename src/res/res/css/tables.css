@@ -11,32 +11,33 @@
 
 #TABLE .column-resize-line{
 
-    -fx-background-color:red;
+    -fx-background-color:#c5cae9;
+    -fx-pref-width:1;
 
 }
 #TABLE .column-overlay {
 
-    -fx-background-color:yellow;
+    -fx-background-color:#a7ffeb;
 
 }
 #TABLE .placeholder {
 
-    /*-fx-background-color:#57b75733;*/
+    -fx-background-color:white;
 
 }
 #TABLE .column-header-background {
 
-    -fx-background-color:blue;
+    -fx-background-color:black;
 
 }
 #TABLE .nested-column-header {
 
-    -fx-background-color:orange;
+    /*-fx-background-color:orange;*/
 
 }
 #TABLE .column-header {
 
-    -fx-background-color:white;
+    /*-fx-background-color:white;*/
 
 }
 #TABLE .filler {
@@ -44,22 +45,13 @@
     -fx-background-color:#c84164;
 
 }
-#TABLE .show-hide-columns-button {
 
-    -fx-background-color:pink;
-
-}
-#TABLE .show-hide-column-image {
-
-    -fx-background-color:#4258c9;
-
-}
-#TABLE .column-drag-header {
+/*#TABLE .column-drag-header {
 
     -fx-background-color:#57b75733;
 
-}
-#TABLE .label {
+}*/
+/*#TABLE .label {
 
     -fx-background-color:#f3622d;
 
@@ -68,4 +60,4 @@
 
     -fx-background-color:aquamarine;
 
-}
+}*/

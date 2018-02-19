@@ -6,6 +6,7 @@
 package basisFx.appCore.elements;
 
 import basisFx.appCore.Pojo;
+import basisFx.domainModel.pojo.Equipment;
 import java.util.Iterator;
 import javafx.beans.property.ReadOnlyDoubleProperty;
 import javafx.collections.FXCollections;
@@ -103,6 +104,14 @@ public  class NTableView <T extends Pojo> extends AppNode {
     
     return col;
  
+    }
+
+    public NTableView<T> setItems(ObservableList<T> tablesPojo) {
+        
+        this.table.setItems(tablesPojo);
+        
+         return this;
+    
     }
      
      

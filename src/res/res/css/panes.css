@@ -3,3 +3,9 @@
       -fx-background-color: transparent;
     
 }
+#PANELS_BURRON{
+    -fx-pref-width:50;
+    -fx-pref-height:20;
+    
+    
+}
