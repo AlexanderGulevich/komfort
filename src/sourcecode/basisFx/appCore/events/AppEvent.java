@@ -7,7 +7,6 @@ package basisFx.appCore.events;
 
 import basisFx.appCore.elements.AppNode;
 import basisFx.appCore.menu.MenuComponent;
-import basisFx.appCore.AdditionalButtonsBehaviour;
 
 
 /**

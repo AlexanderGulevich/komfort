@@ -20,6 +20,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 
 
 /**
@@ -51,6 +52,7 @@ public abstract class AppNode <T extends Node> {
     protected Double maxWidth;
     protected Double minHeight;
     protected Double minWidth;
+    protected Callback callback;
     
 
 //    protected abstract void display();
@@ -77,6 +79,7 @@ public abstract class AppNode <T extends Node> {
         this.maxWidth=builder.maxWidth;
         if(id!=null)element.setId(id);
         if(this.stringId!=null)element.setId(stringId);
+        this.callback=builder.callback;
         
         
         elocateEvents();
@@ -192,10 +195,12 @@ public abstract class AppNode <T extends Node> {
         protected Double maxWidth;
         protected Double minHeight;
         protected Double minWidth;
-        
+        protected Callback callback;
+          
         public static NodeBuilder create(){
             return new NodeBuilder();
         }
+      
        
         
        
@@ -263,6 +268,10 @@ public abstract class AppNode <T extends Node> {
         public NodeBuilder setParent(FlowPane fp) {
             this.hasBond=true;
             this.parentFlowPane=fp;
+            return this;
+         }
+        public NodeBuilder setCallback(Callback c) {
+            this.callback=c;
             return this;
          }
         protected NodeBuilder setNodeToBonding(AppNode appNode) {

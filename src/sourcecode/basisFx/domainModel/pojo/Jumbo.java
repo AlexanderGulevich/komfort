@@ -9,8 +9,8 @@ package basisFx.domainModel.pojo;
  *
  * @author Alek
  */
-public class Jumbo {
-    //TABLENAME
+public class Jumbo  extends Pojo{
+    
     private final String tableName=null;
 
     public String getTableName() {

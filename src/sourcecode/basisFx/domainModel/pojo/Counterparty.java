@@ -12,17 +12,14 @@ import javafx.beans.property.StringProperty;
  *
  * @author Alek
  */
-public class Counterparty {
+public class Counterparty  extends Pojo{
     
-    //TABLENAME
+  
     private final String tableName=null;
 
     public String getTableName() {
         return tableName;
     }
-    
-    
-    
     
     private StringProperty name =new SimpleStringProperty(this, "name", null);
 

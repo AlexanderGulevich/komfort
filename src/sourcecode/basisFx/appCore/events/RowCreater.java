@@ -3,18 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package basisFx.domainModel.pojo;
+package basisFx.appCore.events;
+
+import javafx.collections.ObservableList;
 
 /**
  *
- * @author Alek
+ * @author 62
  */
-public class Output  extends Pojo{
-    
-    private final String tableName=null;
-
-    public String getTableName() {
-        return tableName;
-    }
+public interface RowCreater {
+     public void createRow(ObservableList list);
     
 }

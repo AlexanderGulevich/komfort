@@ -3,18 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package basisFx.domainModel.pojo;
+package basisFx.appCore;
 
 /**
  *
- * @author Alek
+ * @author 62
  */
-public class Output  extends Pojo{
+public class ValueFactory {
     
-    private final String tableName=null;
-
-    public String getTableName() {
-        return tableName;
-    }
+    
     
 }

@@ -6,6 +6,9 @@
 package basisFx.appCore.events;
 
 import basisFx.appCore.elements.AppNode;
+import javafx.beans.Observable;
+import javafx.collections.ListChangeListener;
+import javafx.collections.ObservableList;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableView;
 
@@ -17,10 +20,33 @@ public class RowAddToTable extends AppEvent{
     
     private TableView table;
     private Button but;
+    private final ObservableList list;
+    protected RowCreater rowCreater;
 
-    public RowAddToTable(TableView table) {
-        this.table = table;
+    public RowAddToTable(TableView t, ObservableList l,RowCreater r) {
+        this.table = t;
+        this.list=l;
+        this.rowCreater=r;
+        
+//        list.addListener(
+//
+//                (e)->{
+//
+//        
+//        });
+//        
+//        
+        
+        
     }
+
+//    public RowAddToTable(TableView<Equipment> table, ObservableList<Equipment> tablesPojo) {
+//       this.table = table;
+//    
+//    }
+    
+    
+    
 
     @Override
     public void setElement(AppNode node) {
@@ -34,6 +60,9 @@ public class RowAddToTable extends AppEvent{
 
     @Override
     public void run() {
+        
+        
+        rowCreater.createRow(list);
 
 
             if  (table.getSelectionModel().isEmpty() )  {//если не выбрано ничего
@@ -79,4 +108,5 @@ public class RowAddToTable extends AppEvent{
     
     }
     
+
 }

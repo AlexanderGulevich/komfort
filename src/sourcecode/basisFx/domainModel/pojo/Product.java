@@ -16,23 +16,15 @@ import javafx.beans.property.StringProperty;
  *
  * @author Alek
  */
-public class Product {
+public class Product  extends Pojo {
     
     private final String tableName="Product";
-    private IntegerProperty id =new SimpleIntegerProperty(this, "id", 0);
     private StringProperty name =new SimpleStringProperty(this, "name", null);
     private DoubleProperty width =new SimpleDoubleProperty(this, "width", 0);
     private DoubleProperty price =new SimpleDoubleProperty(this, "price", 0);
     
-    
     public String getTableName() {
         return tableName;
-    }
-    public int getId() {
-            return id.get();
-        }
-    public void setId(int value) {
-        this.id.set(value);
     }
     public String getName() {
             return name.get();

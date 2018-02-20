@@ -6,7 +6,6 @@
 package basisFx.appCore.elements;
 
 import basisFx.appCore.Pojo;
-import basisFx.domainModel.pojo.Equipment;
 import java.util.Iterator;
 import javafx.beans.property.ReadOnlyDoubleProperty;
 import javafx.collections.FXCollections;
@@ -21,9 +20,17 @@ public  class NTableView <T extends Pojo> extends AppNode {
 
     NTableView(NodeBuilder builder) {
         
-        element=new TableView();
+        
+        if (this.callback!=null) {
+            element=new TableView((ObservableList) this.callback);
+        }else{
+            element=new TableView();
+        }
+       
 
         table=(TableView<T>) this.element;
+        
+        table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
         
         init(builder);
        
@@ -70,8 +77,6 @@ public  class NTableView <T extends Pojo> extends AppNode {
           return this;
         
      }
-     
-
 
 
     public NTableView<T> setColumsSize(int colNum,double val) {
@@ -91,7 +96,6 @@ public  class NTableView <T extends Pojo> extends AppNode {
         return this;
 
     }
-    
     
     
     public void setPojo(T pojo){

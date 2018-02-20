@@ -14,16 +14,13 @@ import javafx.beans.property.StringProperty;
  *
  * @author Alek
  */
-public class Currency {
+public class Currency  extends Pojo{
     
-    
-    private  IntegerProperty id =new SimpleIntegerProperty(this, "id", 0);
     private final String tableName=null;
 
     public String getTableName() {
         return tableName;
     }
-    
     
     private StringProperty name =new SimpleStringProperty(this, "name", null);
 

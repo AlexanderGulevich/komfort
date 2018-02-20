@@ -16,34 +16,38 @@ import javafx.beans.property.StringProperty;
  *
  * @author Alek
  */
-public class Equipment {
+public class Equipment  extends Pojo {
       
     private final String tableName="Equipment";
-    private  IntegerProperty id =new SimpleIntegerProperty(this, "id", 0);
     private StringProperty name =new SimpleStringProperty(this, "name", null);
-    private DoubleProperty rodWidth =new SimpleDoubleProperty(this, "rodWidth", 0);
+    private IntegerProperty rodWidth =new SimpleIntegerProperty(this, "rodWidth", 0);
 
     
     public String getTableName() {
         return tableName;
     }
-    public int getId() {
-            return id.get();
-        }
-    public void setId(int value) {
-        this.id.set(value);
-    }
-    public String getName() {
+     public String getName() {
             return name.get();
         }
     public void setName(String value) {
         this.name.set(value);
     }
-    public Double getRodWidth() {
+    public int getRodWidth() {
             return rodWidth.get();
         }
-    public void setRodWidth(Double value) {
+    public void setRodWidth(int value) {
         this.rodWidth.set(value);
     }
+    
+     public StringProperty nameProperty() {
+            return name;
+        }
+    
+    public IntegerProperty rodWidthProperty() {
+            return rodWidth;
+        }
+    
+    
+    
     
 }
