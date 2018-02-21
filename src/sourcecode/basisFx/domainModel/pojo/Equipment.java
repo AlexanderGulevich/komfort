@@ -22,8 +22,10 @@ public class Equipment  extends Pojo {
     private StringProperty name =new SimpleStringProperty(this, "name", null);
     private IntegerProperty rodWidth =new SimpleIntegerProperty(this, "rodWidth", 0);
 
-    
+  
     public String getTableName() {
+        
+         
         return tableName;
     }
      public String getName() {
@@ -32,10 +34,10 @@ public class Equipment  extends Pojo {
     public void setName(String value) {
         this.name.set(value);
     }
-    public int getRodWidth() {
+    public Integer getRodWidth() {
             return rodWidth.get();
         }
-    public void setRodWidth(int value) {
+    public void setRodWidth(Integer value) {
         this.rodWidth.set(value);
     }
     

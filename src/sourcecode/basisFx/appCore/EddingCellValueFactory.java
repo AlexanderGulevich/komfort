@@ -5,33 +5,49 @@
  */
 package basisFx.appCore;
 
-import javafx.scene.control.TableView;
+import javafx.event.EventHandler;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TreeTableColumn.CellEditEvent;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 
 /**
  *
  * @author 62
  */
-public class EddingCellValueFactory <T extends Pojo> extends ValueFactory{
+public class EddingCellValueFactory <T , E> {
+//
+////    protected TableView<T> table;
+    private TableColumn<T,E> column;
+    private final String name;
 
-    protected TableView<T> table;
+    public EddingCellValueFactory(TableColumn<T, E> column, String name) {
+        this.column = column;
+        this.name=name;
+        setVf();
+    }
 
+    
+    
+    
     public void setVf(){
         
-//            firstNameCol.setCellValueFactory(
-//            new PropertyValueFactory<T, String>("firstName"));
-//        firstNameCol.setCellFactory(TextFieldTableCell.forTableColumn());
-//        firstNameCol.setOnEditCommit(
-//            new EventHandler<CellEditEvent<Person, String>>() {
-//                @Override
-//                public void handle(CellEditEvent<Person, String> t) {
-////                    ((Person) t.getTableView().getItems().get(
-////                            t.getTablePosition().getRow())
-////                            ).setFirstName(t.getNewValue());
-//                }
-//            }
+        column.setCellValueFactory(
+            new PropertyValueFactory<T, E>(name));
+            column.setCellFactory(TextFieldTableCell.forTableColumn());
+//            column.setOnEditCommit(
+////            new EventHandler<CellEditEvent<T, E>() {
+////                
+//////                @Override
+//////                public void handle(CellEditEvent<T, E> t) {
+////////                    ((Person) t.getTableView().getItems().get(
+////////                            t.getTablePosition().getRow())
+////////                            ).setFirstName(t.getNewValue());
+//////                }
+////            }
 //        );
-// 
-//    
+ 
+    
     
         
     }

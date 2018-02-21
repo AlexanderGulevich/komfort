@@ -31,7 +31,7 @@ public  class NTableView <T extends Pojo> extends AppNode {
         table=(TableView<T>) this.element;
         
         table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
-        
+        table.setEditable(true);
         init(builder);
        
      

@@ -10,7 +10,6 @@ import basisFx.appCore.registry.TargetRegistry;
 import basisFx.domainModel.pojo.Equipment;
 import basisFx.domainModel.settings.CSSID;
 import basisFx.domainModel.settings.FontsStore;
-import javafx.beans.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
@@ -19,7 +18,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
-import javafx.util.Callback;
+import basisFx.appCore.EddingCellValueFactory;
 
 /**
  *
@@ -56,16 +55,14 @@ public class EquipmentPanel <T extends Node> extends Target{
 
         table = (TableView<Equipment>) AppNode.NodeBuilder.create()
                  .setId(CSSID.TABLE)
-                 .setCoordinate(0d, null, 0d, 0d)
-                 .setParent((AnchorPane) panel)
+                 .setCoordinate(panel,0d, null, 0d, 0d)
 //                 .setCallback(cb)
                  .createNTableView()
-                 .setEditable(true)
                  .setTablesSize(0.5,panel.widthProperty())
                  .setItems(list)
                  .setColums(
-                         getNameColumn(1),
-                         getRodWidthColumn(true)
+                         getNameColumn(),
+                         getRodWidthColumn()
                  )
                  .setSortableAllCollums(false)
                  .setColumsSize(0, 0.7)
@@ -108,19 +105,26 @@ public class EquipmentPanel <T extends Node> extends Target{
 
     
     
-    public  TableColumn<Equipment, Integer> getRodWidthColumn(Boolean t) {
+    public  TableColumn<Equipment, Integer> getRodWidthColumn() {
             
 		TableColumn<Equipment, Integer> rodWidthCol = new TableColumn<>("Ширина стержня");
 		rodWidthCol.setCellValueFactory(new PropertyValueFactory<>("rodWidth"));
-		return rodWidthCol;
+		
+               
+                new EddingCellValueFactory<Equipment, Integer> (rodWidthCol,"rodWidth");
+                        
+                return rodWidthCol;
 
     
 }
-    public  TableColumn<Equipment, String> getNameColumn(Integer g) {
+    public  TableColumn<Equipment, String> getNameColumn() {
             
 		TableColumn<Equipment, String> nameCol = new TableColumn<>("Наименование");
 		nameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
-		return nameCol;
+		
+                new EddingCellValueFactory<Equipment, String> (nameCol,"name");
+                
+                return nameCol;
 
     
 }

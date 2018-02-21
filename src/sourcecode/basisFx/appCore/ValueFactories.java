@@ -9,7 +9,7 @@ package basisFx.appCore;
  *
  * @author 62
  */
-public class ValueFactory {
+public class ValueFactories {
     
     
     
