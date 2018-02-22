@@ -19,6 +19,9 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import basisFx.appCore.EddingCellValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.util.converter.IntegerStringConverter;
+import javafx.util.converter.NumberStringConverter;
 
 /**
  *
@@ -45,7 +48,7 @@ public class EquipmentPanel <T extends Node> extends Target{
 //                        e.nameProperty(),
 //                        e.rodWidthProperty()
 //                };
-              
+//              
          panel =  (AnchorPane) AppNode.NodeBuilder.create()
                  .setId(CSSID.TARGET_PANEL)
                  .setCoordinate(new AnchorCoordinate(50d, 10d, 10d, 10d))
@@ -62,7 +65,7 @@ public class EquipmentPanel <T extends Node> extends Target{
                  .setItems(list)
                  .setColums(
                          getNameColumn(),
-                         getRodWidthColumn()
+                           new EddingCellValueFactory<Equipment> ("rodWidth").getColumn()
                  )
                  .setSortableAllCollums(false)
                  .setColumsSize(0, 0.7)
@@ -105,24 +108,18 @@ public class EquipmentPanel <T extends Node> extends Target{
 
     
     
-    public  TableColumn<Equipment, Integer> getRodWidthColumn() {
-            
-		TableColumn<Equipment, Integer> rodWidthCol = new TableColumn<>("Ширина стержня");
-		rodWidthCol.setCellValueFactory(new PropertyValueFactory<>("rodWidth"));
-		
-               
-                new EddingCellValueFactory<Equipment, Integer> (rodWidthCol,"rodWidth");
+
                         
-                return rodWidthCol;
+             
 
     
-}
+
     public  TableColumn<Equipment, String> getNameColumn() {
             
 		TableColumn<Equipment, String> nameCol = new TableColumn<>("Наименование");
 		nameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
 		
-                new EddingCellValueFactory<Equipment, String> (nameCol,"name");
+//                new EddingCellValueFactory<Equipment, String> (nameCol,"name");
                 
                 return nameCol;
 

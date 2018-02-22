@@ -7,10 +7,8 @@ package basisFx.appCore;
 
 /**
  *
- * @author 62
+ * @author Alek
  */
-public class ValueFactories {
-    
-    
+public class ColumnManager {
     
 }

@@ -5,36 +5,40 @@
  */
 package basisFx.appCore;
 
-import javafx.event.EventHandler;
+import basisFx.domainModel.pojo.Equipment;
 import javafx.scene.control.TableColumn;
-import javafx.scene.control.TreeTableColumn.CellEditEvent;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.util.converter.IntegerStringConverter;
 
 /**
  *
  * @author 62
  */
-public class EddingCellValueFactory <T , E> {
+public class EddingCellValueFactory <T> {
 //
 ////    protected TableView<T> table;
-    private TableColumn<T,E> column;
-    private final String name;
+    private TableColumn<T,Integer> column;
+    private final String propertyName;
 
-    public EddingCellValueFactory(TableColumn<T, E> column, String name) {
-        this.column = column;
-        this.name=name;
-        setVf();
+    public EddingCellValueFactory( String propertyName) {
+        
+        this.column =  new TableColumn<>("Ширина стержня");;
+        this.propertyName=propertyName;
+        setEddingVF();
     }
 
     
     
     
-    public void setVf(){
+    public EddingCellValueFactory<T>  setEddingVF(){
         
-        column.setCellValueFactory(
-            new PropertyValueFactory<T, E>(name));
-            column.setCellFactory(TextFieldTableCell.forTableColumn());
+        column.setCellValueFactory(new PropertyValueFactory<>(propertyName));
+        column.setCellFactory(
+                        TextFieldTableCell.forTableColumn(
+                                new IntegerStringConverter()));
+               
+        
 //            column.setOnEditCommit(
 ////            new EventHandler<CellEditEvent<T, E>() {
 ////                
@@ -49,7 +53,13 @@ public class EddingCellValueFactory <T , E> {
  
     
     
-        
+        return this;
+    }
+    
+    public TableColumn getColumn(){
+    
+        return this.column;
+    
     }
 
 }
