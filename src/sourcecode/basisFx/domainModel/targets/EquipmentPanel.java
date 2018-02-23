@@ -14,14 +14,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
-import basisFx.appCore.EddingCellValueFactory;
-import javafx.scene.control.cell.TextFieldTableCell;
-import javafx.util.converter.IntegerStringConverter;
-import javafx.util.converter.NumberStringConverter;
 
 /**
  *
@@ -41,15 +35,11 @@ public class EquipmentPanel <T extends Node> extends Target{
         
         TargetRegistry.targets.add(this);
         
-        list.addListener(new TableListener());
         
-//        Callback<Equipment, Observable[]> cb = 
-//                (Equipment e) -> new Observable[] {
-//                        e.nameProperty(),
-//                        e.rodWidthProperty()
-//                };
-//              
-         panel =  (AnchorPane) AppNode.NodeBuilder.create()
+        list.addListener(new TableListener<Equipment>());
+        
+        
+        panel =  (AnchorPane) AppNode.NodeBuilder.create()
                  .setId(CSSID.TARGET_PANEL)
                  .setCoordinate(new AnchorCoordinate(50d, 10d, 10d, 10d))
                  .setParent(Layers.getContentLayer())
@@ -57,25 +47,22 @@ public class EquipmentPanel <T extends Node> extends Target{
 
 
         table = (TableView<Equipment>) AppNode.NodeBuilder.create()
-                 .setId(CSSID.TABLE)
-                 .setCoordinate(panel,0d, null, 0d, 0d)
-//                 .setCallback(cb)
-                 .createNTableView()
-                 .setTablesSize(0.5,panel.widthProperty())
-                 .setItems(list)
+                 .setId(CSSID.TABLE).setCoordinate(panel,0d, null, 0d, 0d)
+                 .<Equipment>createNTableView()
+                 .setList(list)
+                 .setTablesSize(0.7,panel.widthProperty())
                  .setColums(
-                         getNameColumn(),
-                           new EddingCellValueFactory<Equipment> ("rodWidth").getColumn()
+                     colManeger.<Equipment>createTextColumn("Наименование","name"),
+                     colManeger.<Equipment>createIntegerColumn("Ширина стержня","rodWidth")
                  )
-                 .setSortableAllCollums(false)
-                 .setColumsSize(0, 0.7)
-                 .setColumsSize(1, 0.3)
+                 .setColumsSize(0, 0.8)
+                 .setColumsSize(1, 0.2)
                  .getElement();
              //    
 
         but= (Button) AppNode.NodeBuilder.create()
-                 .setId(CSSID.PANELS_BURRON)
-                 .setCoordinate(panel, 290d,150d, null, null)
+                 .setId(CSSID.PANELS_BUTTON)
+                 .setCoordinate(panel, 200d,150d, null, null)
                  .setText("ДОБАВИТЬ")
                  .setFont(FontsStore.ROBOTO_LIGHT, 25)
                  .setEvent(
@@ -89,15 +76,7 @@ public class EquipmentPanel <T extends Node> extends Target{
                  .createNButton()
                  .getElement();
                  
-    
-    
-    
-    
-        
-        
-        
-        
-    
+
     }
 
     @Override
@@ -106,25 +85,5 @@ public class EquipmentPanel <T extends Node> extends Target{
     }
     
 
-    
-    
-
-                        
-             
-
-    
-
-    public  TableColumn<Equipment, String> getNameColumn() {
-            
-		TableColumn<Equipment, String> nameCol = new TableColumn<>("Наименование");
-		nameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
-		
-//                new EddingCellValueFactory<Equipment, String> (nameCol,"name");
-                
-                return nameCol;
-
-    
-}
-    
 
 }

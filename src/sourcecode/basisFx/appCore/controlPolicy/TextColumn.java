@@ -3,40 +3,37 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package basisFx.appCore;
+package basisFx.appCore.controlPolicy;
 
-import basisFx.domainModel.pojo.Equipment;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
-import javafx.util.converter.IntegerStringConverter;
 
 /**
  *
- * @author 62
+ * @author Alek
+ * @param <T>
  */
-public class EddingCellValueFactory <T> {
-//
-////    protected TableView<T> table;
-    private TableColumn<T,Integer> column;
-    private final String propertyName;
-
-    public EddingCellValueFactory( String propertyName) {
+public class TextColumn<T> extends Column<T>{
+    protected TableColumn<T,String> column;
+    protected String propertyName;
+    
+    public TextColumn(String columnName,String propertyName) {
         
-        this.column =  new TableColumn<>("Ширина стержня");;
+        this.column =  new TableColumn<>(columnName);
         this.propertyName=propertyName;
-        setEddingVF();
+        setEddingPoliticy();
     }
 
     
     
-    
-    public EddingCellValueFactory<T>  setEddingVF(){
+ 
+    public TextColumn<T>  setEddingPoliticy(){
         
         column.setCellValueFactory(new PropertyValueFactory<>(propertyName));
-        column.setCellFactory(
-                        TextFieldTableCell.forTableColumn(
-                                new IntegerStringConverter()));
+        column.setCellFactory(TextFieldTableCell.forTableColumn(
+               
+        ));
                
         
 //            column.setOnEditCommit(
@@ -56,10 +53,12 @@ public class EddingCellValueFactory <T> {
         return this;
     }
     
-    public TableColumn getColumn(){
+    
+    
+      public TableColumn getColumn(){
     
         return this.column;
     
     }
-
+    
 }

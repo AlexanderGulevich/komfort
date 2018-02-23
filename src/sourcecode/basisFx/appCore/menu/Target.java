@@ -5,6 +5,7 @@
  */
 package basisFx.appCore.menu;
 
+import basisFx.appCore.controlPolicy.ColumnManager;
 import javafx.scene.Node;
 
 /**
@@ -13,7 +14,7 @@ import javafx.scene.Node;
  */
 public abstract class Target<T extends Node> {
     
-   
+    protected ColumnManager colManeger=new ColumnManager();
     
     public abstract void createElement();
     public abstract T getTargetElement();

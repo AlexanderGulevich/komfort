@@ -378,8 +378,8 @@ public abstract class AppNode <T extends Node> {
         return new <FlowPane>  NFlowPane(this);
     }
 
-     public  NTableView createNTableView(){
-        return new <TableView>  NTableView(this);
+     public   <T> NTableView createNTableView  (){
+        return new  NTableView<>(this);
     }
 
         public static class create {

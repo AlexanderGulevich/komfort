@@ -6,20 +6,24 @@
 package basisFx.appCore.events;
 
 import basisFx.domainModel.pojo.Pojo;
+import java.util.List;
 import javafx.collections.ListChangeListener;
 
 /**
  *
  * @author 62
  */
-public class TableListener implements ListChangeListener <Pojo> {
+public class TableListener <T>implements ListChangeListener  {
 
+    
+    private boolean wasUpdated=false;
+    
     /**
      *
      * @param change
      */
     @Override
-    public void onChanged(ListChangeListener.Change<? extends Pojo> change) {
+    public void onChanged(ListChangeListener.Change change) {
 
 		while (change.next()) {
 			if (change.wasPermutated()) {
@@ -27,7 +31,7 @@ public class TableListener implements ListChangeListener <Pojo> {
  System.out.println("wasPermutated");
 			}
 			else if (change.wasUpdated()) {
-//			    handleUpdated(change);
+			    handleUpdated(change);
 System.out.println("wasUpdated");
 			}
 			else if (change.wasReplaced()) {
@@ -40,7 +44,7 @@ System.out.println("wasReplaced");
 System.out.println("wasRemoved");
                         }
                         else if (change.wasAdded()) {
-//                            handleAdded(change);
+                            handleAdded(change);
 System.out.println("wasAdded");
                         }
 			}
@@ -66,12 +70,12 @@ System.out.println("wasAdded");
 //		}
 //	}
 //
-//	public void handleUpdated(ListChangeListener.Change<? extends Person> change) {
-//		System.out.println("Change Type: Updated");	    
-//		System.out.println("Updated Range : " + getRangeText(change));		
-//		System.out.println("Updated elements are: " + 
-//			change.getList().subList(change.getFrom(), change.getTo()));
-//	}
+	public void handleUpdated(ListChangeListener.Change<T> change) {
+		System.out.println("Change Type: Updated");	    
+		System.out.println("Updated Range : " + getRangeText(change));		
+		System.out.println("Updated elements are: " + 
+			change.getList().subList(change.getFrom(), change.getTo()));
+	}
 //
 //	public void handleReplaced(ListChangeListener.Change<? extends Person> change) {
 //		System.out.println("Change Type: Replaced");
@@ -91,20 +95,20 @@ System.out.println("wasAdded");
 //		System.out.println("Removed Range: " + getRangeText(change));
 //		System.out.println("Removed List: " + subList);    
 //	}	
-//	
-//	public void handleAdded(ListChangeListener.Change<? extends Person> change) {
-//		System.out.println("Change Type: Added");
-//		
-//		int addedSize = change.getAddedSize();
-//		List<? extends Person> subList = change.getAddedSubList();
-//		
-//		System.out.println("Added Size: " + addedSize);
-//		System.out.println("Added Range: " + getRangeText(change));
-//		System.out.println("Added List: " + subList);	
-//	}
-//	
-//	public String getRangeText(ListChangeListener.Change<? extends Person> change) {
-//		return "[" + change.getFrom() + ", " + change.getTo() + "]";
-//	}
+	
+	public void handleAdded(ListChangeListener.Change<T> change) {
+		System.out.println("Change Type: Added");
+		
+		int addedSize = change.getAddedSize();
+		List<? extends T> subList = change.getAddedSubList();
+		
+		System.out.println("Added Size: " + addedSize);
+		System.out.println("Added Range: " + getRangeText(change));
+		System.out.println("Added List: " + subList);	
+	}
+	
+	public String getRangeText(ListChangeListener.Change<T> change) {
+		return "[" + change.getFrom() + ", " + change.getTo() + "]";
+	}
 //    
 }

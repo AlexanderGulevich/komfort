@@ -13,25 +13,22 @@ import javafx.collections.ObservableList;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 
-public  class NTableView <T extends Pojo> extends AppNode {
+public  class NTableView <T> extends AppNode {
 
     private   TableView<T> table=null;
-    private  ObservableList <T>  allPojo=FXCollections.<T> observableArrayList();
+    private  ObservableList <T>  allPojo;
 
     NTableView(NodeBuilder builder) {
         
-        
-        if (this.callback!=null) {
-            element=new TableView((ObservableList) this.callback);
-        }else{
-            element=new TableView();
-        }
+        element=new TableView<T>();
+   
        
 
         table=(TableView<T>) this.element;
         
         table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
         table.setEditable(true);
+        setSortableAllCollums(false);
         init(builder);
        
      
@@ -110,7 +107,7 @@ public  class NTableView <T extends Pojo> extends AppNode {
  
     }
 
-    public NTableView<T> setItems(ObservableList<T> tablesPojo) {
+    public NTableView setList(ObservableList<T> tablesPojo) {
         
         this.table.setItems(tablesPojo);
         

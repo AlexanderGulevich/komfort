@@ -6,8 +6,6 @@
 package basisFx.appCore.events;
 
 import basisFx.appCore.elements.AppNode;
-import javafx.beans.Observable;
-import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableView;

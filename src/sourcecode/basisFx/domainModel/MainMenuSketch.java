@@ -24,6 +24,7 @@ public class MainMenuSketch extends MenuSketch{
                create("Списки", null, composit.COMPOSITE,"")
                         .addInerLevel(
                                create("Оборудование", fabric.createEquipmentPanel(), composit.SIMPLE),
+                               create("Контрагенты", null, composit.SIMPLE),
                                create("Сотрудники", null, composit.SIMPLE)
                        ),
                
