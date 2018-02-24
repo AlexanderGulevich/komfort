@@ -36,7 +36,7 @@ public class EquipmentPanel <T extends Node> extends Target{
         TargetRegistry.targets.add(this);
         
         
-        list.addListener(new TableListener<Equipment>());
+        list.addListener(new TableListener());
         
         
         panel =  (AnchorPane) AppNode.NodeBuilder.create()
@@ -55,8 +55,8 @@ public class EquipmentPanel <T extends Node> extends Target{
                      colManeger.<Equipment>createTextColumn("Наименование","name"),
                      colManeger.<Equipment>createIntegerColumn("Ширина стержня","rodWidth")
                  )
-                 .setColumsSize(0, 0.8)
-                 .setColumsSize(1, 0.2)
+                 .setColumsSize(0, 0.7)
+                 .setColumsSize(1, 0.3)
                  .getElement();
              //    
 
@@ -65,14 +65,7 @@ public class EquipmentPanel <T extends Node> extends Target{
                  .setCoordinate(panel, 200d,150d, null, null)
                  .setText("ДОБАВИТЬ")
                  .setFont(FontsStore.ROBOTO_LIGHT, 25)
-                 .setEvent(
-                         new RowAddToTable(
-                         table,
-                         list,
-                         (l)->{
-                             l.add(new Equipment());
-                                 }
-                 ))
+                 .setEvent(new RowAddToTable(table, list,(l)->{l.add(new Equipment());}))
                  .createNButton()
                  .getElement();
                  

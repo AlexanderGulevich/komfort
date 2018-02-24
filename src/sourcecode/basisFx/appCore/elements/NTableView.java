@@ -21,12 +21,10 @@ public  class NTableView <T> extends AppNode {
     NTableView(NodeBuilder builder) {
         
         element=new TableView<T>();
-   
-       
 
         table=(TableView<T>) this.element;
         
-        table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+//        table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
         table.setEditable(true);
         setSortableAllCollums(false);
         init(builder);
