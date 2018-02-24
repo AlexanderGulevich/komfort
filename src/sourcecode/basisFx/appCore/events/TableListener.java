@@ -13,7 +13,7 @@ import javafx.collections.ListChangeListener;
  *
  * @author 62
  */
-public class TableListener <T>implements ListChangeListener  {
+public class TableListener <T> implements ListChangeListener  {
 
     
     private boolean wasUpdated=false;

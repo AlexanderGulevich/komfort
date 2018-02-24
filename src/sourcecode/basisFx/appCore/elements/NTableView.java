@@ -6,7 +6,10 @@
 package basisFx.appCore.elements;
 
 import basisFx.appCore.Pojo;
+import basisFx.appCore.events.TableListener;
+import basisFx.domainModel.pojo.Equipment;
 import java.util.Iterator;
+import javafx.beans.InvalidationListener;
 import javafx.beans.property.ReadOnlyDoubleProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -16,9 +19,11 @@ import javafx.scene.control.TableView;
 public  class NTableView <T> extends AppNode {
 
     private   TableView<T> table=null;
-    private  ObservableList <T>  allPojo;
+    private ObservableList<T>  list=FXCollections.<T> observableArrayList();
+   
 
     NTableView(NodeBuilder builder) {
+        
         
         element=new TableView<T>();
 
@@ -28,13 +33,9 @@ public  class NTableView <T> extends AppNode {
         table.setEditable(true);
         setSortableAllCollums(false);
         init(builder);
-       
+        list.addListener(  new TableListener <>());
      
     }
-    
-    
-    
-    
 
     
      public NTableView setColums(TableColumn  ...columns){
@@ -94,12 +95,12 @@ public  class NTableView <T> extends AppNode {
     
     
     public void setPojo(T pojo){
-        this.allPojo.add(pojo);
+        this.list.add(pojo);
     };
     
     public ObservableList cloneAllPojo()throws CloneNotSupportedException{
     
-    ObservableList<T>  col=FXCollections.observableArrayList(this.allPojo);
+    ObservableList<T>  col=FXCollections.observableArrayList(this.list);
     
     return col;
  

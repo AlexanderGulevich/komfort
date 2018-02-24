@@ -23,8 +23,6 @@ import javafx.scene.layout.AnchorPane;
  */
 public class EquipmentPanel <T extends Node> extends Target{
     
-    private ObservableList<Equipment>  list=FXCollections.<Equipment> observableArrayList();
-    
     private AnchorPane panel;
     
     private TableView<Equipment> table;
@@ -34,9 +32,6 @@ public class EquipmentPanel <T extends Node> extends Target{
     public void createElement() {
         
         TargetRegistry.targets.add(this);
-        
-        
-        list.addListener(new TableListener());
         
         
         panel =  (AnchorPane) AppNode.NodeBuilder.create()
@@ -49,7 +44,7 @@ public class EquipmentPanel <T extends Node> extends Target{
         table = (TableView<Equipment>) AppNode.NodeBuilder.create()
                  .setId(CSSID.TABLE).setCoordinate(panel,0d, null, 0d, 0d)
                  .<Equipment>createNTableView()
-                 .setList(list)
+//                 .setList(list)
                  .setTablesSize(0.7,panel.widthProperty())
                  .setColums(
                      colManeger.<Equipment>createTextColumn("Наименование","name"),
