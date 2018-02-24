@@ -5,7 +5,7 @@
  */
 package basisFx.appCore.events;
 
-import basisFx.domainModel.pojo.Pojo;
+import basisFx.appCore.dataSource.UnitOfWork;
 import java.util.List;
 import javafx.collections.ListChangeListener;
 
@@ -15,13 +15,13 @@ import javafx.collections.ListChangeListener;
  */
 public class TableListener <T> implements ListChangeListener  {
 
-    
-    private boolean wasUpdated=false;
-    
-    /**
-     *
-     * @param change
-     */
+    private UnitOfWork unitOfWork;
+
+    public UnitOfWork getUnitOfWork() {
+        return unitOfWork;
+    }
+  
+
     @Override
     public void onChanged(ListChangeListener.Change change) {
 
@@ -44,7 +44,7 @@ System.out.println("wasReplaced");
 System.out.println("wasRemoved");
                         }
                         else if (change.wasAdded()) {
-                            handleAdded(change);
+//                            handleAdded(change);
 System.out.println("wasAdded");
                         }
 			}

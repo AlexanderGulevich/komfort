@@ -25,7 +25,7 @@ public class LocalDateColumn <T> extends Column<T>{
         this.column =  new TableColumn<>(columnName);
         this.propertyName=propertyName;
         setEddingPoliticy();
-        edit();
+  
     }
 
     
@@ -66,15 +66,7 @@ public class LocalDateColumn <T> extends Column<T>{
     
     }
 
-      public void edit() {
-        this.column.setOnEditCommit((event) -> {
-            
-            System.err.println("getRowValue    "+  event.getRowValue());
-            System.err.println("getOldValue    "+  event.getOldValue());
-            System.err.println("getNewValue    "+  event.getNewValue());
-            
-        });
-      }
+    
     
   
 }

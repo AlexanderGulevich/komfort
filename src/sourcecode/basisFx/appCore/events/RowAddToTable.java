@@ -21,9 +21,9 @@ public class RowAddToTable extends AppEvent{
     private final ObservableList list;
     protected RowCreater rowCreater;
 
-    public RowAddToTable(TableView t, ObservableList l,RowCreater r) {
+    public RowAddToTable(TableView t, RowCreater r) {
         this.table = t;
-        this.list=l;
+        this.list=t.getItems();
         this.rowCreater=r;
         
 //        list.addListener(

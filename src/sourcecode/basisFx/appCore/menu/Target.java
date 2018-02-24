@@ -7,17 +7,24 @@ package basisFx.appCore.menu;
 
 import basisFx.appCore.controlPolicy.ColumnManager;
 import javafx.scene.Node;
+import javafx.scene.layout.AnchorPane;
 
 /**
  *
  * @author Alek
  */
-public abstract class Target<T extends Node> {
+public abstract class Target {
     
+    protected AnchorPane panel;
+
     protected ColumnManager colManeger=new ColumnManager();
     
     public abstract void createElement();
-    public abstract T getTargetElement();
+  
+    public AnchorPane getTargetElement() {
+       return  this.panel;
+    }
+    
     
     
     

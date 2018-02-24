@@ -23,53 +23,21 @@ public class TextColumn<T> extends Column<T>{
         this.column =  new TableColumn<>(columnName);
         this.propertyName=propertyName;
         setEddingPoliticy();
-        edit();
+        
     }
-
-    
-    
  
     public TextColumn<T>  setEddingPoliticy(){
         
         column.setCellValueFactory(new PropertyValueFactory<>(propertyName));
-        column.setCellFactory(TextFieldTableCell.forTableColumn(
-               
-        ));
-               
-        
-//            column.setOnEditCommit(
-////            new EventHandler<CellEditEvent<T, E>() {
-////                
-//////                @Override
-//////                public void handle(CellEditEvent<T, E> t) {
-////////                    ((Person) t.getTableView().getItems().get(
-////////                            t.getTablePosition().getRow())
-////////                            ).setFirstName(t.getNewValue());
-//////                }
-////            }
-//        );
- 
-    
-    
+        column.setCellFactory(TextFieldTableCell.forTableColumn());
+
         return this;
     }
     
-    
-    
-      public TableColumn getColumn(){
+      public TableColumn<T,String> getColumn(){
     
         return this.column;
     
     }
       
-        public void edit() {
-        this.column.setOnEditCommit((event) -> {
-            
-            System.err.println("getRowValue    "+  event.getRowValue());
-            System.err.println("getOldValue    "+  event.getOldValue());
-            System.err.println("getNewValue    "+  event.getNewValue());
-            
-        });
-        }
-    
 }
