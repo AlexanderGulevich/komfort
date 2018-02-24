@@ -3,6 +3,7 @@ package basisFx.domainModel.targets;
 import basisFx.appCore.AnchorCoordinate;
 import basisFx.appCore.menu.Target;
 import basisFx.appCore.elements.AppNode;
+import basisFx.appCore.elements.NTableView;
 import basisFx.appCore.events.RowAddToTable;
 import basisFx.appCore.registry.Layers;
 import basisFx.appCore.registry.TargetRegistry;
@@ -20,9 +21,11 @@ import javafx.scene.layout.AnchorPane;
 public class EquipmentPanel extends Target{
     
     private TableView<Equipment> table;
+    private NTableView nTableView;
     private Button but;
     
     @Override
+    @SuppressWarnings("unchecked")
     public void createElement() {
         
         TargetRegistry.targets.add(this);
@@ -35,21 +38,25 @@ public class EquipmentPanel extends Target{
                  .createNpAnchor().getElement();
 
 
-        table = (TableView<Equipment>) AppNode.NodeBuilder.create()
+        nTableView = AppNode.NodeBuilder.create()
                  .setId(CSSID.TABLE).setCoordinate(panel,0d, null, 0d, 0d)
-                 .<Equipment>createNTableView().setTablesSize(0.7,panel.widthProperty())
+                 .<Equipment>createNTableView().setTablesSize(0.7, panel.widthProperty())
                  .setColums(
                      colManeger.<Equipment>createTextColumn("Наименование","name"),
                      colManeger.<Equipment>createIntegerColumn("Ширина стержня","rodWidth")
                  )
-                 .setColumsSize(0, 0.7).setColumsSize(1, 0.3)
-                 .getElement();
+                 .setColumsSize(0, 0.7).setColumsSize(1, 0.3);
+       
+        table=(TableView<Equipment>) this.nTableView.getElement();
+                
+        
+        
 
         but= (Button) AppNode.NodeBuilder.create()
                  .setId(CSSID.PANELS_BUTTON)
                  .setCoordinate(panel, 200d,150d, null, null)
                  .setText("ДОБАВИТЬ").setFont(FontsStore.ROBOTO_LIGHT, 25)
-                 .setEvent(new RowAddToTable(table,(l)->{l.add(new Equipment());}))
+                 .setEvent(new RowAddToTable<>(nTableView,(l)->{l.add(new Equipment());}))
                  .createNButton().getElement();
                  
 

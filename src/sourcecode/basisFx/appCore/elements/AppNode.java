@@ -26,10 +26,11 @@ import javafx.util.Callback;
 /**
  *
  * @author Alek
+ * @param <T>
  */
-public abstract class AppNode <T extends Node> {
+public abstract class AppNode <K extends Node> {
     protected String id;
-    protected T element;
+    protected K element;
     protected Double width;
     protected Double height;
     protected AnchorCoordinate coordinate;
@@ -109,12 +110,12 @@ public abstract class AppNode <T extends Node> {
     public void wrapToAnchor() {
         
     }
-    public  T getElement(){
+    public  K getElement(){
     
         return this.element;
     
     };
-    public  void setElement(T el){
+    public  void setElement(K el){
     
         this.element=el;
     
@@ -379,7 +380,7 @@ public abstract class AppNode <T extends Node> {
     }
 
      public   <T> NTableView createNTableView  (){
-        return new  NTableView<>(this);
+        return new  NTableView< >(this);
     }
 
         public static class create {

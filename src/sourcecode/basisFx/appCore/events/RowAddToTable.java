@@ -5,7 +5,9 @@
  */
 package basisFx.appCore.events;
 
+import basisFx.appCore.dataSource.UnitOfWork;
 import basisFx.appCore.elements.AppNode;
+import basisFx.appCore.elements.NTableView;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableView;
@@ -13,35 +15,27 @@ import javafx.scene.control.TableView;
 /**
  *
  * @author Alek
+ * @param <T>
  */
-public class RowAddToTable extends AppEvent{
+public class RowAddToTable <T> extends AppEvent{
     
-    private TableView table;
+    private TableView <T> table;
     private Button but;
     private final ObservableList list;
     protected RowCreater rowCreater;
+    private NTableView nTableView;
+    private   UnitOfWork unitOfWork;
 
-    public RowAddToTable(TableView t, RowCreater r) {
-        this.table = t;
-        this.list=t.getItems();
-        this.rowCreater=r;
-        
-//        list.addListener(
-//
-//                (e)->{
-//
-//        
-//        });
-//        
-//        
-        
-        
+
+
+    @SuppressWarnings("unchecked")
+    public RowAddToTable(NTableView nTableView, RowCreater rowCreater) {
+        this.nTableView = nTableView;
+        this.table= (TableView<T>) this.nTableView.getElement();
+        this.list=this.table.getItems();
+        this.rowCreater=rowCreater;
+        this.unitOfWork = this.nTableView.getUnitOfWork();
     }
-
-//    public RowAddToTable(TableView<Equipment> table, ObservableList<Equipment> tablesPojo) {
-//       this.table = table;
-//    
-//    }
     
     
     
@@ -58,9 +52,10 @@ public class RowAddToTable extends AppEvent{
 
     @Override
     public void run() {
-        
-        
-        rowCreater.createRow(list);
+
+        if(this.unitOfWork.getNewPojoes().isEmpty()){
+                rowCreater.createRow(list);
+        }
 
 
             if  (table.getSelectionModel().isEmpty() )  {//если не выбрано ничего

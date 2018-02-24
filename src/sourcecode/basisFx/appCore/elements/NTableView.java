@@ -5,28 +5,28 @@
  */
 package basisFx.appCore.elements;
 
+import basisFx.appCore.dataSource.UnitOfWork;
 import basisFx.appCore.events.TableListener;
 import java.util.Iterator;
 import javafx.beans.property.ReadOnlyDoubleProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.Node;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.util.Callback;
 
-public  class NTableView <T, K extends Node> extends AppNode {
+public  class NTableView <T> extends AppNode {
 
     private TableView<T> table=null;
     private ObservableList<T>  list=FXCollections.<T> observableArrayList();
-    private TableListener <T> tableListener=new TableListener <>();
+    private UnitOfWork unitOfWork=new UnitOfWork();
+    private TableListener  tableListener=new TableListener (this);
     
+    @SuppressWarnings("unchecked")
     NTableView(NodeBuilder builder) {
-
-        element=new TableView<T>();
-        table=(TableView<T>) this.element;
+        table=new TableView<>(list);
+        setElement(table);
         table.setEditable(true);
-        setSortableAllCollums(false);
         init(builder);
         list.addListener(tableListener);
 
@@ -36,11 +36,12 @@ public  class NTableView <T, K extends Node> extends AppNode {
  * TableView.CONSTRAINED_RESIZE_POLICY,                 
  * TableView.UNCONSTRAINED_RESIZE_POLICY
  */
-    public NTableView setColumnResizePolicy( Callback<TableView.ResizeFeatures,Boolean> policy){
+    public NTableView<T>  setColumnResizePolicy( Callback<TableView.ResizeFeatures,Boolean> policy){
         table.setColumnResizePolicy(policy);
         return this;
     }
-    public NTableView setColums(TableColumn  ...columns){
+    @SuppressWarnings("unchecked")
+    public NTableView<T>  setColums(TableColumn  ...columns){
      
          for (TableColumn column : columns) {
             
@@ -49,11 +50,12 @@ public  class NTableView <T, K extends Node> extends AppNode {
          }
          
          setOnEditCommitForCollums();
+         setSortableAllCollums(false);
     
          return this;
         
      }
-    public NTableView setSortableAllCollums(boolean b){
+    public NTableView<T>  setSortableAllCollums(boolean b){
 
         ObservableList<TableColumn<T, ?>> columns = table.getColumns();
         
@@ -64,7 +66,7 @@ public  class NTableView <T, K extends Node> extends AppNode {
    
           return this;
      }
-    public NTableView setEditable(boolean isEditable){
+    public NTableView<T>  setEditable(boolean isEditable){
          
           this.table.setEditable(isEditable);
           return this;
@@ -125,14 +127,16 @@ public  class NTableView <T, K extends Node> extends AppNode {
              
              
          }
-             
 
-         
-         
-         
        
         }
      
+    
+
+    public UnitOfWork getUnitOfWork() {
+        return unitOfWork;
+    }
+  
      
 
 }
