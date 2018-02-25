@@ -12,7 +12,7 @@ import javafx.beans.property.StringProperty;
  *
  * @author Alek
  */
-public class Counterparty  extends Pojo{
+public class Counterparty  extends DomainObject{
     
   
     private final String tableName=null;
@@ -29,6 +29,11 @@ public class Counterparty  extends Pojo{
         }
     public void setName(String stringPricePerUnit) {
         this.name.set(stringPricePerUnit);
+    }
+
+    @Override
+    public boolean isReadyToTransaction() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
     

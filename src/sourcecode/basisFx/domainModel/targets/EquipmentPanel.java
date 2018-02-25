@@ -1,6 +1,7 @@
 package basisFx.domainModel.targets;
 
 import basisFx.appCore.AnchorCoordinate;
+import basisFx.appCore.controlPolicy.DomainChange;
 import basisFx.appCore.menu.Target;
 import basisFx.appCore.elements.AppNode;
 import basisFx.appCore.elements.NTableView;
@@ -37,13 +38,19 @@ public class EquipmentPanel extends Target{
                  .setParent(Layers.getContentLayer())
                  .createNpAnchor().getElement();
 
-
         nTableView = AppNode.NodeBuilder.create()
                  .setId(CSSID.TABLE).setCoordinate(panel,0d, null, 0d, 0d)
                  .<Equipment>createNTableView().setTablesSize(0.7, panel.widthProperty())
                  .setColums(
-                     colManeger.<Equipment>createTextColumn("Наименование","name"),
-                     colManeger.<Equipment>createIntegerColumn("Ширина стержня","rodWidth")
+                     colManeger.<Equipment,String>createTextColumn(
+                             "Наименование","name",
+                             (obj,val)->{((Equipment)obj).setName((String)val);} 
+                 ),
+                     colManeger.<Equipment>createIntegerColumn(
+                             "Ширина стержня","rodWidth",
+                           (obj,val)->{((Equipment)obj).setRodWidth((Integer)val);}
+                     
+                     )
                  )
                  .setColumsSize(0, 0.7).setColumsSize(1, 0.3);
        

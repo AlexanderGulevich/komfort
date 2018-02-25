@@ -14,7 +14,7 @@ import javafx.beans.property.StringProperty;
  *
  * @author Alek
  */
-public class Currency  extends Pojo{
+public class Currency  extends DomainObject{
     
     private final String tableName=null;
 
@@ -34,6 +34,11 @@ public class Currency  extends Pojo{
     
     
 //    ExchangeRates
+
+    @Override
+    public boolean isReadyToTransaction() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
     
 }

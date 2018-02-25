@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package basisFx.domainModel.targets;
+package basisFx.domainModel;
 
 import basisFx.domainModel.targets.EquipmentPanel;
 
@@ -11,7 +11,7 @@ import basisFx.domainModel.targets.EquipmentPanel;
  *
  * @author Alek
  */
-public class TargetFabric {
+public class TargetFM {
     
     public  EquipmentPanel createEquipmentPanel(){
                  return new EquipmentPanel();

@@ -5,12 +5,18 @@
  */
 package basisFx.domainModel.mapper;
 
+import basisFx.appCore.dataSource.DataMapper;
 import basisFx.domainModel.pojo.*;
 
 /**
  *
  * @author Alek
  */
-public class FormatDataMapper {
+public class FormatDataMapper extends DataMapper {
+
+    @Override
+    public void createDomainObject() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

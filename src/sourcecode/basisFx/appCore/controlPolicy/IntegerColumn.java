@@ -5,6 +5,7 @@
  */
 package basisFx.appCore.controlPolicy;
 
+import basisFx.domainModel.pojo.DomainObject;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
@@ -18,14 +19,23 @@ import javafx.util.converter.IntegerStringConverter;
 public class IntegerColumn <T> extends Column<T>{
     protected TableColumn<T,Integer> column;
     protected String propertyName;
-
+    protected DomainChange embededBehavior;
 
     public IntegerColumn(String columnName,String propertyName) {
         
         this.column =  new TableColumn<>(columnName);
         this.propertyName=propertyName;
         setEddingPoliticy();
+        setOnEditCommit();
  
+    }
+     public IntegerColumn(String columnName,String propertyName,DomainChange embBeh) {
+        
+        this.column =  new TableColumn<>(columnName);
+        this.propertyName=propertyName;
+        this.embededBehavior=embBeh;
+        setEddingPoliticy();
+        
     }
 
     public IntegerColumn<T>  setEddingPoliticy(){
@@ -43,4 +53,23 @@ public class IntegerColumn <T> extends Column<T>{
         return this.column;
     
     }
+        public void setOnEditCommit() {
+            
+            column.setOnEditCommit((event) -> {
+              
+                if (event.getRowValue().equals(unitOfWork.getNewPojoes().get(0))) {
+               
+                    this.embededBehavior.add(
+                            (DomainObject) event.getRowValue(),
+                            event.getNewValue()
+                            );
+         
+                   
+                }
+                
+               
+
+        });
+             
+       }
 }

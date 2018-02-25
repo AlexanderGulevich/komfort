@@ -5,6 +5,7 @@
  */
 package basisFx.appCore.controlPolicy;
 
+import basisFx.domainModel.pojo.DomainObject;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
@@ -17,12 +18,15 @@ import javafx.scene.control.cell.TextFieldTableCell;
 public class TextColumn<T> extends Column<T>{
     protected TableColumn<T,String> column;
     protected String propertyName;
+    protected DomainChange <T,String>embededBehavior;
     
-    public TextColumn(String columnName,String propertyName) {
+    public TextColumn(String columnName,String propertyName,DomainChange embBeh) {
         
         this.column =  new TableColumn<>(columnName);
         this.propertyName=propertyName;
+        this.embededBehavior=embBeh;
         setEddingPoliticy();
+        setOnEditCommit();
         
     }
  
@@ -30,7 +34,8 @@ public class TextColumn<T> extends Column<T>{
         
         column.setCellValueFactory(new PropertyValueFactory<>(propertyName));
         column.setCellFactory(TextFieldTableCell.forTableColumn());
-
+        
+        
         return this;
     }
     
@@ -39,5 +44,34 @@ public class TextColumn<T> extends Column<T>{
         return this.column;
     
     }
+      
+      
+      
+       public void setOnEditCommit() {
+            
+            column.setOnEditCommit((event) -> {
+              
+                if (event.getRowValue().equals(unitOfWork.getNewPojoes().get(0))) {
+               
+                    DomainObject d= (DomainObject) event.getRowValue();
+                    
+                    this.embededBehavior.add(d,event.getNewValue());
+                    
+                    if (d.isReadyToTransaction()) {
+                         unitOfWork.setChangedPojoes(d);
+                         unitOfWork.commitNew();
+                         unitOfWork.clearNewPojoesList();
+                    } 
+                    
+                   
+                }
+                
+               
+
+        });
+             
+       }
+       
+       
       
 }

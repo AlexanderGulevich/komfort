@@ -5,6 +5,7 @@
  */
 package basisFx.appCore.controlPolicy;
 
+import basisFx.appCore.dataSource.UnitOfWork;
 import java.time.LocalDate;
 import javafx.scene.control.TableColumn;
 
@@ -13,8 +14,18 @@ import javafx.scene.control.TableColumn;
  * @author Alek
  */
 public abstract class Column<T> {
+
+    protected UnitOfWork unitOfWork;
     
    
+         public abstract   TableColumn getColumn();
+         public void  setUnitOfWork(UnitOfWork u){
+         
+             this.unitOfWork=u;
+             
+         
+         };
+       
      
     
 }

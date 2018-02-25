@@ -1,6 +1,5 @@
 package basisFx.domainModel;
 
-import basisFx.domainModel.targets.TargetFabric;
 import  basisFx.appCore.menu.MenuSketch;
 import basisFx.appCore.menu.MenuComponent;
 import basisFx.appCore.menu.MenuComponent.composit;
@@ -12,7 +11,7 @@ import static basisFx.appCore.menu.MenuComponent.create;
  */
 public class MainMenuSketch extends MenuSketch{
     
-    private TargetFabric fabric=new TargetFabric();
+    private TargetFM fabric=new TargetFM();
 
     @Override
     public void initSpiritNodes() {

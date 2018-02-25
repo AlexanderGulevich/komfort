@@ -5,6 +5,7 @@
  */
 package basisFx.appCore.elements;
 
+import basisFx.appCore.controlPolicy.Column;
 import basisFx.appCore.dataSource.UnitOfWork;
 import basisFx.appCore.events.TableListener;
 import java.util.Iterator;
@@ -41,15 +42,17 @@ public  class NTableView <T> extends AppNode {
         return this;
     }
     @SuppressWarnings("unchecked")
-    public NTableView<T>  setColums(TableColumn  ...columns){
-     
-         for (TableColumn column : columns) {
+    public NTableView<T>  setColums(Column  ...columns){
+       
+         for (Column column : columns) {
+             
+             column.setUnitOfWork(unitOfWork);
             
-             table.getColumns().addAll(column);
+             table.getColumns().addAll(column.getColumn());
              
          }
          
-         setOnEditCommitForCollums();
+       
          setSortableAllCollums(false);
     
          return this;
@@ -110,27 +113,6 @@ public  class NTableView <T> extends AppNode {
         
         
     }
-    private void setOnEditCommitForCollums() {
-         
-         ObservableList<TableColumn<T, ?>> columns = table.getColumns();
-        
-         for (Iterator<TableColumn<T, ?>> iterator = columns.iterator(); iterator.hasNext();) {
-             TableColumn<T, ? extends Object> next = iterator.next();
-            
-            next.setOnEditCommit((event) -> {
-            
-            System.err.println("getRowValue    "+  event.getRowValue());
-            System.err.println("getOldValue    "+  event.getOldValue());
-            System.err.println("getNewValue    "+  event.getNewValue());
-            
-        });
-             
-             
-         }
-
-       
-        }
-     
     
 
     public UnitOfWork getUnitOfWork() {

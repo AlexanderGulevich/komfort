@@ -5,6 +5,8 @@
  */
 package basisFx.domainModel.pojo;
 
+import basisFx.appCore.dataSource.DataMapper;
+import basisFx.domainModel.MapperFM;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 
@@ -12,7 +14,11 @@ import javafx.beans.property.SimpleIntegerProperty;
  *
  * @author 62
  */
-public class Pojo {
+public abstract class DomainObject {
+    
+    protected DataMapper dataMapper;
+    protected String tableName;
+    protected MapperFM mapperFM=new MapperFM();
     
     private  IntegerProperty id =new SimpleIntegerProperty(this, "id", 0);
 
@@ -22,4 +28,15 @@ public class Pojo {
     public void setId(int value) {
         this.id.set(value);
     }
+
+    public DataMapper getDataMapper() {
+        return dataMapper;
+    }
+     public String getTableName() {
+        
+        return tableName;
+    }
+    public abstract boolean isReadyToTransaction();
+    
+    
 }

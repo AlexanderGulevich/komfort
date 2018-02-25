@@ -11,17 +11,17 @@ import javafx.scene.control.TableColumn;
  *
  * @author Alek
  */
-public class ColumnManager <T> {
+public class ColumnManager <T,K> {
     
     
-    public TableColumn<T,Integer> createIntegerColumn(String columnName,String propertyName){
+    public IntegerColumn<T> createIntegerColumn(String columnName,String propertyName,DomainChange embBeh){
     
-        return new IntegerColumn<T>(columnName, propertyName).getColumn();
+        return new IntegerColumn<T>(columnName, propertyName,embBeh);
     
     }
-    public TableColumn<T,String>  createTextColumn(String columnName,String propertyName){
+    public TextColumn<T>  createTextColumn(String columnName,String propertyName,DomainChange embBeh){
     
-        return new TextColumn<T>(columnName, propertyName).getColumn();
+        return new TextColumn<T>(columnName, propertyName, embBeh);
     
     }
 }

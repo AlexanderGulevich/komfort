@@ -6,9 +6,7 @@
 package basisFx.domainModel.pojo;
 
 import javafx.beans.property.DoubleProperty;
-import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleDoubleProperty;
-import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
@@ -16,7 +14,7 @@ import javafx.beans.property.StringProperty;
  *
  * @author Alek
  */
-public class Product  extends Pojo {
+public class Product  extends DomainObject {
     
     private final String tableName="Product";
     private StringProperty name =new SimpleStringProperty(this, "name", null);
@@ -43,6 +41,11 @@ public class Product  extends Pojo {
         }
     public void setPrice(Double value) {
         this.price.set(value);
+    }
+
+    @Override
+    public boolean isReadyToTransaction() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
     

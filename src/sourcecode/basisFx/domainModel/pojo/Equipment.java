@@ -14,19 +14,19 @@ import javafx.beans.property.StringProperty;
  *
  * @author Alek
  */
-public class Equipment  extends Pojo {
+public class Equipment  extends DomainObject {
       
-    private final String tableName="Equipment";
+    
     private StringProperty name =new SimpleStringProperty(this, "name", null);
     private ObjectProperty<Integer> rodWidth =new SimpleObjectProperty<>(this, "rodWidth", null);
-//    private IntegerProperty rodWidth =new SimpleIntegerProperty(this, "rodWidth", 0);
 
-  
-    public String getTableName() {
-        
-         
-        return tableName;
+    public Equipment() {
+        this.dataMapper=mapperFM.createEquipmentDataMapper(this);
+        this.tableName="Equipment";
     }
+    
+    
+    
      public String getName() {
             return name.get();
         }
@@ -47,11 +47,17 @@ public class Equipment  extends Pojo {
     public ObjectProperty<Integer> rodWidthProperty() {
             return rodWidth;
         }
-//    public IntegerProperty rodWidthProperty() {
-//            return rodWidth;
-//        }
-//    
-    
-    
+
+    @Override
+    public boolean isReadyToTransaction() {
+       if ( getName()!=null && getRodWidth()!=null)
+       {
+           return true;
+       
+       }
+       
+       return false;
+    }
+
     
 }
