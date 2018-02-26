@@ -11,11 +11,9 @@ public class DbEmbeded extends Db{
     public DbEmbeded() throws ClassNotFoundException, SQLException {
           
 
- 
-        
         try {
                 Class.forName("org.hsqldb.jdbc.JDBCDriver");
-                this.connection = DriverManager.getConnection(
+                Db.connection = DriverManager.getConnection(
                         "jdbc:hsqldb:file:database/db", "SA", "");    
                 statement=this.connection.createStatement();
                 statement.setQueryTimeout(30);

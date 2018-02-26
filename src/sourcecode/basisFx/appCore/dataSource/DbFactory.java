@@ -18,6 +18,11 @@ public class DbFactory {
         return new DbEmbeded();
     
     }
+    public DbServer createDbServer() throws ClassNotFoundException, SQLException{
+    
+        return new DbServer();
+    
+    }
     
   
     

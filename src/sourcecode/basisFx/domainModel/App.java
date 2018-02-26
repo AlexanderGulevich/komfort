@@ -23,7 +23,7 @@ public class App{
 
     public App(Stage primaryStage) throws ClassNotFoundException, SQLException {
         
-        new DbFactory().createEmbeded();
+        new DbFactory().createDbServer();
         
         Connection connection = Db.getConnection();
 
