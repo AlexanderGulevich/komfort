@@ -6,10 +6,12 @@
 package basisFx.appCore.dataSource;
 
 import basisFx.domainModel.DbSchema;
-import java.sql.Connection;
+import basisFx.domainModel.settings.Settings;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
+import org.hsqldb.Server;
+import org.hsqldb.persist.HsqlProperties;
 
 /**
  *
@@ -21,11 +23,41 @@ public class DbServer extends Db{
 
     public DbServer() throws ClassNotFoundException, SQLException {
     
+         HsqlProperties props = new HsqlProperties();
+       
+      
+      
+         props.setProperty("server.database.0", "file:" + Settings.DB_SERVER_PATH + "komdb;");
+     
+         props.setProperty("server.dbname.0", "db");
+      
+         Server sonicServer = new org.hsqldb.Server();
+       
+        try {
+            sonicServer.setProperties(props);
+        } catch (Exception e) {
+            return;
+        }
+        
+        try {
+               sonicServer.start();
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
+     
+        
+//           sonicServer.shutdown();
+
+
+        
+        
+        
         try {
 
             Class.forName("org.hsqldb.jdbc.JDBCDriver" );
             Db.connection= DriverManager.getConnection(
-                    "jdbc:hsqldb:hsql://localhost/test", "SA", "");
+//                    "jdbc:hsqldb:hsql://localhost:9001/", "SA", "");
+                    "jdbc:hsqldb:hsql://localhost/db", "SA", "");
             statement=this.connection.createStatement();
             statement.setQueryTimeout(30);
 

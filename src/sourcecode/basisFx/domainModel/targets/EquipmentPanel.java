@@ -1,7 +1,6 @@
 package basisFx.domainModel.targets;
 
 import basisFx.appCore.AnchorCoordinate;
-import basisFx.appCore.controlPolicy.DomainChange;
 import basisFx.appCore.menu.Target;
 import basisFx.appCore.elements.AppNode;
 import basisFx.appCore.elements.NTableView;
