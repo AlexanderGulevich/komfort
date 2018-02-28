@@ -4,7 +4,7 @@ import basisFx.appCore.AnchorCoordinate;
 import basisFx.appCore.menu.Target;
 import basisFx.appCore.elements.AppNode;
 import basisFx.appCore.elements.NTableView;
-import basisFx.appCore.events.RowAddToTable;
+import basisFx.appCore.events.AppEvent;
 import basisFx.appCore.registry.Layers;
 import basisFx.appCore.registry.TargetRegistry;
 import basisFx.domainModel.pojo.Equipment;
@@ -53,6 +53,8 @@ public class EquipmentPanel extends Target{
                  )
                  .setColumsSize(0, 0.7).setColumsSize(1, 0.3);
        
+        
+        
         table=(TableView<Equipment>) this.nTableView.getElement();
                 
         
@@ -62,7 +64,10 @@ public class EquipmentPanel extends Target{
                  .setId(CSSID.PANELS_BUTTON)
                  .setCoordinate(panel, 200d,150d, null, null)
                  .setText("ДОБАВИТЬ").setFont(FontsStore.ROBOTO_LIGHT, 25)
-                 .setEvent(new RowAddToTable<>(nTableView,(l)->{l.add(new Equipment());}))
+                 .setEvent(AppEvent.
+                         createRowAdd(
+                                 nTableView, 
+                                 (l)->{l.add(new Equipment());}))
                  .createNButton().getElement();
                  
 

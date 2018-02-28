@@ -18,13 +18,13 @@ import javafx.scene.control.cell.TextFieldTableCell;
 public class TextColumn<T> extends Column<T>{
     protected TableColumn<T,String> column;
     protected String propertyName;
-    protected DomainChange <T,String>embededBehavior;
+    protected DomainChange <T,String>domainChange;
     
     public TextColumn(String columnName,String propertyName,DomainChange embBeh) {
         
         this.column =  new TableColumn<>(columnName);
         this.propertyName=propertyName;
-        this.embededBehavior=embBeh;
+        this.domainChange=embBeh;
         setEddingPoliticy();
         setOnEditCommit();
         
@@ -50,21 +50,41 @@ public class TextColumn<T> extends Column<T>{
        public void setOnEditCommit() {
             
             column.setOnEditCommit((event) -> {
+                
+                DomainObject domain= (DomainObject) event.getRowValue();
               
-                if (event.getRowValue().equals(unitOfWork.getNewPojoes().get(0))) {
-               
-                    DomainObject d= (DomainObject) event.getRowValue();
+                //проверяет, новый ли это объект
+                if (tableManeger.getUnitOfWork().getNewPojoes().contains(domain)) {
+
+                    //вставить значение в домен
+                    this.domainChange.change(domain,event.getNewValue());
                     
-                    this.embededBehavior.add(d,event.getNewValue());
-                    
-                    if (d.isReadyToTransaction()) {
-                         unitOfWork.setChangedPojoes(d);
-                         unitOfWork.commitNew();
-                         unitOfWork.clearNewPojoesList();
+                    if (domain.isReadyToTransaction()) {
+//                         unitOfWork.setChangedPojoes(domain);
+                         tableManeger.getUnitOfWork().commitNew();
+                         tableManeger.getUnitOfWork().clearNewPojoesList();
+                         
+//                         tableManeger.refresh(event.getTablePosition());
                     } 
                     
                    
                 }
+                else 
+                    if(tableManeger.getUnitOfWork().getChangedPojoes().contains(domain)) {
+                     //вставить значение в домен
+                    this.domainChange.change(domain,event.getNewValue());
+//                    
+                    if (domain.isReadyToTransaction()) {
+                         tableManeger.getUnitOfWork().setChangedPojoes(domain);
+                         tableManeger.getUnitOfWork().commitChanged();
+                         tableManeger.getUnitOfWork().clearChangedPojoesList();
+                    } 
+                    
+                
+                
+                
+                }
+             
                 
                
 

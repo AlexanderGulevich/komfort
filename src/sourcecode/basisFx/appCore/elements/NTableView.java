@@ -46,7 +46,7 @@ public  class NTableView <T> extends AppNode {
        
          for (Column column : columns) {
              
-             column.setUnitOfWork(unitOfWork);
+             column.setTableViewManager(this);
             
              table.getColumns().addAll(column.getColumn());
              
@@ -117,6 +117,14 @@ public  class NTableView <T> extends AppNode {
 
     public UnitOfWork getUnitOfWork() {
         return unitOfWork;
+    }
+    
+    
+    
+    public void refresh(){
+    
+        
+    
     }
   
      

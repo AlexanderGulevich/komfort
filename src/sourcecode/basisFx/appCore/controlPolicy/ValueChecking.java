@@ -5,12 +5,10 @@
  */
 package basisFx.appCore.controlPolicy;
 
-import basisFx.domainModel.pojo.DomainObject;
-
 /**
  *
- * @author Alek
+ * @author 62
  */
-public interface DomainChange<T,K> {
- public <T,K> void change(T d, K val);
+public class ValueChecking {
+    
 }

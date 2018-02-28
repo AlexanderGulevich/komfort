@@ -57,9 +57,9 @@ public class IntegerColumn <T> extends Column<T>{
             
             column.setOnEditCommit((event) -> {
               
-                if (event.getRowValue().equals(unitOfWork.getNewPojoes().get(0))) {
+                if (event.getRowValue().equals(tableManeger.getUnitOfWork().getNewPojoes().get(0))) {
                
-                    this.embededBehavior.add(
+                    this.embededBehavior.change(
                             (DomainObject) event.getRowValue(),
                             event.getNewValue()
                             );

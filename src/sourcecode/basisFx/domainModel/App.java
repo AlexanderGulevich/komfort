@@ -25,7 +25,7 @@ public class App{
         
         new DbFactory().createDbServer();
         
-        Connection connection = Db.getConnection();
+//        Connection connection = Db.getConnection();
 
 
         WindowFx.createUnDecoratedWindow(Settings.WIDTH, Settings.HEIGHT, primaryStage)
