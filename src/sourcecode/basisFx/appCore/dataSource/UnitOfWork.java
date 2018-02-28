@@ -71,7 +71,7 @@ public class UnitOfWork {
     
         for (Iterator<DomainObject> iterator = newPojoes.iterator(); iterator.hasNext();) {
             DomainObject next = iterator.next();
-            next.getDataMapper().createDomainObject();
+            next.getDataMapper().insertDomainObject();
         }
         clearNewPojoesList();
     

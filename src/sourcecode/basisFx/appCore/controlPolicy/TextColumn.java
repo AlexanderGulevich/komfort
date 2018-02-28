@@ -19,12 +19,14 @@ public class TextColumn<T> extends Column<T>{
     protected TableColumn<T,String> column;
     protected String propertyName;
     protected DomainChange <T,String>domainChange;
+    protected ValueChecking valueChecking;
     
-    public TextColumn(String columnName,String propertyName,DomainChange embBeh) {
+    public TextColumn(String columnName,String propertyName, ValueChecking valueChecking,DomainChange embBeh) {
         
         this.column =  new TableColumn<>(columnName);
         this.propertyName=propertyName;
         this.domainChange=embBeh;
+        this.valueChecking=valueChecking;
         setEddingPoliticy();
         setOnEditCommit();
         
@@ -50,7 +52,7 @@ public class TextColumn<T> extends Column<T>{
        public void setOnEditCommit() {
             
             column.setOnEditCommit((event) -> {
-                
+               
                 DomainObject domain= (DomainObject) event.getRowValue();
               
                 //проверяет, новый ли это объект
@@ -62,7 +64,7 @@ public class TextColumn<T> extends Column<T>{
                     if (domain.isReadyToTransaction()) {
 //                         unitOfWork.setChangedPojoes(domain);
                          tableManeger.getUnitOfWork().commitNew();
-                         tableManeger.getUnitOfWork().clearNewPojoesList();
+                        
                          
 //                         tableManeger.refresh(event.getTablePosition());
                     } 
@@ -77,7 +79,7 @@ public class TextColumn<T> extends Column<T>{
                     if (domain.isReadyToTransaction()) {
                          tableManeger.getUnitOfWork().setChangedPojoes(domain);
                          tableManeger.getUnitOfWork().commitChanged();
-                         tableManeger.getUnitOfWork().clearChangedPojoesList();
+                       
                     } 
                     
                 

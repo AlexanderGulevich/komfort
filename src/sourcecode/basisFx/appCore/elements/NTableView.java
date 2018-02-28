@@ -6,6 +6,7 @@
 package basisFx.appCore.elements;
 
 import basisFx.appCore.controlPolicy.Column;
+import basisFx.appCore.dataSource.DataMapper;
 import basisFx.appCore.dataSource.UnitOfWork;
 import basisFx.appCore.events.TableListener;
 import java.util.Iterator;
@@ -22,14 +23,17 @@ public  class NTableView <T> extends AppNode {
     private ObservableList<T>  list=FXCollections.<T> observableArrayList();
     private UnitOfWork unitOfWork=new UnitOfWork();
     private TableListener  tableListener=new TableListener (this);
+    private DataMapper dataMapper;
     
     @SuppressWarnings("unchecked")
-    NTableView(NodeBuilder builder) {
+ public   NTableView(NodeBuilder builder) {
         table=new TableView<>(list);
         setElement(table);
         table.setEditable(true);
         init(builder);
         list.addListener(tableListener);
+        refresh();
+        
 
     }
 /**
@@ -119,10 +123,17 @@ public  class NTableView <T> extends AppNode {
         return unitOfWork;
     }
     
+
+    public void setDataMapper(DataMapper dm) {
+        this.dataMapper=dm;
+    }
+    
     
     
     public void refresh(){
-    
+        
+        this.list.clear();
+        this.dataMapper.getAllDomainObjectList(this.list);
         
     
     }

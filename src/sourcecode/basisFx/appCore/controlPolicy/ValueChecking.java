@@ -9,6 +9,8 @@ package basisFx.appCore.controlPolicy;
  *
  * @author 62
  */
-public class ValueChecking {
+public abstract class ValueChecking<T> {
+    
+    public abstract void check(T value);
     
 }

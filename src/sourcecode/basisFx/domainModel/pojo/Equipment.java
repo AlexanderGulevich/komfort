@@ -43,7 +43,7 @@ public class Equipment  extends DomainObject {
      public StringProperty nameProperty() {
             return name;
         }
-//    
+    
     public ObjectProperty<Integer> rodWidthProperty() {
             return rodWidth;
         }

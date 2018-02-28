@@ -29,7 +29,7 @@ public class IntegerColumn <T> extends Column<T>{
         setOnEditCommit();
  
     }
-     public IntegerColumn(String columnName,String propertyName,DomainChange embBeh) {
+     public IntegerColumn(String columnName,String propertyName, ValueChecking valueChecking,DomainChange embBeh) {
         
         this.column =  new TableColumn<>(columnName);
         this.propertyName=propertyName;

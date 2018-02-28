@@ -11,7 +11,6 @@ import basisFx.domainModel.pojo.Equipment;
 import basisFx.domainModel.settings.CSSID;
 import basisFx.domainModel.settings.FontsStore;
 import javafx.scene.control.Button;
-import javafx.scene.control.TableView;
 import javafx.scene.layout.AnchorPane;
 
 /**
@@ -20,7 +19,6 @@ import javafx.scene.layout.AnchorPane;
  */
 public class EquipmentPanel extends Target{
     
-    private TableView<Equipment> table;
     private NTableView nTableView;
     private Button but;
     
@@ -42,24 +40,19 @@ public class EquipmentPanel extends Target{
                  .<Equipment>createNTableView().setTablesSize(0.7, panel.widthProperty())
                  .setColums(
                      colManeger.<Equipment,String>createTextColumn(
-                             "Наименование","name",
+                             "Наименование","name", 
+                             check.createTextCheck(),
                              (obj,val)->{((Equipment)obj).setName((String)val);} 
                  ),
                      colManeger.<Equipment>createIntegerColumn(
                              "Ширина стержня","rodWidth",
+                             check.createNumCheck(),
                            (obj,val)->{((Equipment)obj).setRodWidth((Integer)val);}
-                     
                      )
                  )
                  .setColumsSize(0, 0.7).setColumsSize(1, 0.3);
        
-        
-        
-        table=(TableView<Equipment>) this.nTableView.getElement();
-                
-        
-        
-
+ 
         but= (Button) AppNode.NodeBuilder.create()
                  .setId(CSSID.PANELS_BUTTON)
                  .setCoordinate(panel, 200d,150d, null, null)

@@ -7,6 +7,7 @@ package basisFx.domainModel.mapper;
 
 import basisFx.appCore.dataSource.DataMapper;
 import basisFx.domainModel.pojo.*;
+import javafx.collections.ObservableList;
 
 /**
  *
@@ -15,7 +16,17 @@ import basisFx.domainModel.pojo.*;
 public class FormatDataMapper extends DataMapper {
 
     @Override
-    public void createDomainObject() {
+    public void insertDomainObject() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void updateDomainObject() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void getAllDomainObjectList(ObservableList list) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

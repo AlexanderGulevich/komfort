@@ -5,6 +5,7 @@
  */
 package basisFx.appCore.menu;
 
+import basisFx.appCore.controlPolicy.CheckingFactory;
 import basisFx.appCore.controlPolicy.ColumnManager;
 import javafx.scene.Node;
 import javafx.scene.layout.AnchorPane;
@@ -16,6 +17,8 @@ import javafx.scene.layout.AnchorPane;
 public abstract class Target {
     
     protected AnchorPane panel;
+
+    protected CheckingFactory check=new CheckingFactory();
 
     protected ColumnManager colManeger=new ColumnManager();
     

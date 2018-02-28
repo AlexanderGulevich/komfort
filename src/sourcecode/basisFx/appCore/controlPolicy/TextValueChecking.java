@@ -7,12 +7,10 @@ package basisFx.appCore.controlPolicy;
 
 /**
  *
- * @author 62
+ * @author Alek
  */
-public class NumericValueChecking <T> extends ValueChecking<T>{
-
-   
-
+public class TextValueChecking <T> extends ValueChecking<T>{
+    
     @Override
     public void check(T value) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

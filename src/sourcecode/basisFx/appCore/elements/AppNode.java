@@ -27,9 +27,9 @@ import javafx.util.Callback;
  * @author Alek
  * @param <T>
  */
-public abstract class AppNode <K extends Node> {
+public abstract class AppNode  {
     protected String id;
-    protected K element;
+    protected Node element;
     protected Double width;
     protected Double height;
     protected AnchorCoordinate coordinate;
@@ -109,12 +109,12 @@ public abstract class AppNode <K extends Node> {
     public void wrapToAnchor() {
         
     }
-    public  K getElement(){
+    public  Node getElement(){
     
         return this.element;
     
     };
-    public  void setElement(K el){
+    public  void setElement(Node el){
     
         this.element=el;
     
