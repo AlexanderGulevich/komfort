@@ -29,7 +29,7 @@ public abstract class DataMapper {
                  pstmt.executeUpdate();
 
     }
-     public abstract void getAllDomainObjectList(ObservableList  list);
+     public abstract ObservableList getAllDomainObjectList(ObservableList  list);
      public abstract void updateDomainObject();
      public abstract void insertDomainObject();
      

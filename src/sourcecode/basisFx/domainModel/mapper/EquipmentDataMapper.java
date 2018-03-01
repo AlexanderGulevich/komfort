@@ -11,7 +11,6 @@ import basisFx.domainModel.pojo.*;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.ObservableList;
@@ -61,7 +60,28 @@ public class EquipmentDataMapper extends DataMapper {
     }
 
     @Override
-    public void getAllDomainObjectList(ObservableList list) {
+    public ObservableList getAllDomainObjectList(ObservableList list) {
+        try {
+            
+            ResultSet rs = readAllDomainObjects();
+            
+            while (rs.next()) { 
+                
+                Equipment pojo=new Equipment();
+                pojo.setId(rs.getInt("id"));
+                pojo.setName(rs.getString("name"));
+                pojo.setRodWidth(rs.getInt("rodWidth"));
+        
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(EquipmentDataMapper.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return list;
+        
+        
+        
         
     }
     

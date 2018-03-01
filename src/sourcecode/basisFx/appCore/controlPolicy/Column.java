@@ -5,9 +5,7 @@
  */
 package basisFx.appCore.controlPolicy;
 
-import basisFx.appCore.dataSource.UnitOfWork;
 import basisFx.appCore.elements.NTableView;
-import java.time.LocalDate;
 import javafx.scene.control.TableColumn;
 
 /**
