@@ -6,7 +6,7 @@
 package basisFx.domainModel.pojo;
 
 import basisFx.appCore.dataSource.DataMapper;
-import basisFx.domainModel.MapperFM;
+import basisFx.domainModel.DataMapperFabric;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 
@@ -18,7 +18,7 @@ public abstract class DomainObject {
     
     protected DataMapper dataMapper;
     protected String tableName;
-    protected MapperFM mapperFM=new MapperFM();
+    protected DataMapperFabric mapperFabric=new DataMapperFabric();
     
     private  IntegerProperty id =new SimpleIntegerProperty(this, "id", 0);
 

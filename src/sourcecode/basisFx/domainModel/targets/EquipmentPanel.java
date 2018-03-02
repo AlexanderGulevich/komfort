@@ -38,7 +38,9 @@ public class EquipmentPanel extends Target{
         nTableView = AppNode.NodeBuilder.create()
                  .setId(CSSID.TABLE).setCoordinate(panel,0d, null, 0d, 0d)
                  .<Equipment>createNTableView().setTablesSize(0.7, panel.widthProperty())
-                 .setColums(
+                .setDataMapper(this.dataMapperFabric.getEquipmentDataMapper())
+                .setTableName("Equipment")
+                .setColums(
                      colManeger.<Equipment,String>createTextColumn(
                              "Наименование","name", 
                              check.createTextCheck(),
@@ -50,7 +52,8 @@ public class EquipmentPanel extends Target{
                            (obj,val)->{((Equipment)obj).setRodWidth((Integer)val);}
                      )
                  )
-                 .setColumsSize(0, 0.7).setColumsSize(1, 0.3);
+                 .setColumsSize(0, 0.7).setColumsSize(1, 0.3)
+                .refresh();
        
  
         but= (Button) AppNode.NodeBuilder.create()

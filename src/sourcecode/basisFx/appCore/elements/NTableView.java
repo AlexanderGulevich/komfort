@@ -23,7 +23,10 @@ public  class NTableView <T> extends AppNode {
     private ObservableList<T>  list=FXCollections.<T> observableArrayList();
     private UnitOfWork unitOfWork=new UnitOfWork();
     private TableListener  tableListener=new TableListener (this);
-    private DataMapper dataMapper;
+    protected DataMapper dataMapper;
+    protected String tableName;
+
+    
     
     @SuppressWarnings("unchecked")
  public   NTableView(NodeBuilder builder) {
@@ -32,7 +35,6 @@ public  class NTableView <T> extends AppNode {
         table.setEditable(true);
         init(builder);
         list.addListener(tableListener);
-        refresh();
         
 
     }
@@ -123,17 +125,22 @@ public  class NTableView <T> extends AppNode {
         return unitOfWork;
     }
     
-
-    public void setDataMapper(DataMapper dm) {
+    public NTableView setDataMapper(DataMapper dm) {
         this.dataMapper=dm;
+        return this;
     }
-    
-    
-    
-    public void refresh(){
+    public NTableView setTableName(String n) {
+        this.tableName=n;
+        return this;
+    }
+   
+    public NTableView refresh(){
         
         this.list.clear();
-        this.dataMapper.getAllDomainObjectList(this.list);
+        this.dataMapper.getAllDomainObjectList(list,tableName);
+        return this;
+        
+       
         
     
     }

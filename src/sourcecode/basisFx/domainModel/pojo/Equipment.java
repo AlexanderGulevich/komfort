@@ -21,7 +21,7 @@ public class Equipment  extends DomainObject {
     private ObjectProperty<Integer> rodWidth =new SimpleObjectProperty<>(this, "rodWidth", null);
 
     public Equipment() {
-        this.dataMapper=mapperFM.createEquipmentDataMapper(this);
+        this.dataMapper=mapperFabric.getEquipmentDataMapper();
         this.tableName="Equipment";
     }
     

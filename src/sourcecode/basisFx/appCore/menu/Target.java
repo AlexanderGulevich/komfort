@@ -7,7 +7,7 @@ package basisFx.appCore.menu;
 
 import basisFx.appCore.controlPolicy.CheckingFactory;
 import basisFx.appCore.controlPolicy.ColumnManager;
-import javafx.scene.Node;
+import basisFx.domainModel.DataMapperFabric;
 import javafx.scene.layout.AnchorPane;
 
 /**
@@ -15,12 +15,14 @@ import javafx.scene.layout.AnchorPane;
  * @author Alek
  */
 public abstract class Target {
-    
+        
     protected AnchorPane panel;
 
     protected CheckingFactory check=new CheckingFactory();
 
     protected ColumnManager colManeger=new ColumnManager();
+    
+    protected DataMapperFabric dataMapperFabric=new DataMapperFabric();
     
     public abstract void createElement();
   

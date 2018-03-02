@@ -5,25 +5,19 @@
  */
 package basisFx.domainModel;
 
-import basisFx.appCore.dataSource.DataMapper;
 import basisFx.domainModel.mapper.EquipmentDataMapper;
-import basisFx.domainModel.pojo.Equipment;
 
 /**
  *
  * @author Alek
  */
-public class MapperFM {
+public class DataMapperFabric {
+    
+    public EquipmentDataMapper getEquipmentDataMapper(){
+      
+        return EquipmentDataMapper.getInstanse();
     
     
-    public EquipmentDataMapper createEquipmentDataMapper(Equipment eq){
-    
-        return new EquipmentDataMapper(eq);
-    
-        
-    } 
-
-    
-    
+    }
     
 }

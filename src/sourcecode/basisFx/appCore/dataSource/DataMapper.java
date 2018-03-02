@@ -18,31 +18,17 @@ import javafx.collections.ObservableList;
  */
 public abstract class DataMapper {
     
-    protected DomainObject domainObject;
-    
- 
-   
-    public void deleteDomainObject() throws SQLException{
+     
+     public abstract ObservableList getAllDomainObjectList(ObservableList  list,String tableName);
+     public abstract void updateDomainObject(DomainObject d);
+     public abstract void insertDomainObject(DomainObject d);
+     public void deleteDomainObject(DomainObject domainObject) throws SQLException{
         String expression="delete from " +domainObject.getTableName()+"where id=? ";
         PreparedStatement pstmt =  Db.getConnection().prepareStatement(expression);
                  pstmt.setInt(1, domainObject.getId());
                  pstmt.executeUpdate();
 
     }
-     public abstract ObservableList getAllDomainObjectList(ObservableList  list);
-     public abstract void updateDomainObject();
-     public abstract void insertDomainObject();
-     
-     public ResultSet readAllDomainObjects() throws SQLException{
-     
-     String expression="SELECT * FROM " +domainObject.getTableName()+" ORDER BY ID";
-        
-        Statement stmt  = Db.getConnection().createStatement();
-        
-        ResultSet rs    = stmt.executeQuery(expression);
-        
-        return rs;
-     }
     
     
 

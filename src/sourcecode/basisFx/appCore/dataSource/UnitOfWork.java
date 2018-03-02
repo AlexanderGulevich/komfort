@@ -71,7 +71,7 @@ public class UnitOfWork {
     
         for (Iterator<DomainObject> iterator = newPojoes.iterator(); iterator.hasNext();) {
             DomainObject next = iterator.next();
-            next.getDataMapper().insertDomainObject();
+            next.getDataMapper().insertDomainObject(next);
         }
         clearNewPojoesList();
     
@@ -80,7 +80,7 @@ public class UnitOfWork {
     
         for (Iterator<DomainObject> iterator = changedPojoes.iterator(); iterator.hasNext();) {
             DomainObject next = iterator.next();
-            next.getDataMapper().updateDomainObject();
+            next.getDataMapper().updateDomainObject(next);
         }
         clearChangedPojoesList();
         
@@ -90,7 +90,7 @@ public class UnitOfWork {
     
         for (Iterator<DomainObject> iterator = removedPojoes.iterator(); iterator.hasNext();) {
             DomainObject next = iterator.next();
-            next.getDataMapper().deleteDomainObject();
+            next.getDataMapper().deleteDomainObject(next);
             
         }
         clearRemovedPojoesList();

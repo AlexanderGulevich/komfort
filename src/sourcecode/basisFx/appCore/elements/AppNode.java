@@ -4,6 +4,7 @@ import basisFx.appCore.AnchorCoordinate;
 import basisFx.appCore.events.AppEvent;
 import basisFx.domainModel.settings.CSSID;
 import basisFx.appCore.FontLogic;
+import basisFx.appCore.dataSource.DataMapper;
 import basisFx.domainModel.settings.WindowsTitlesNames;
 import basisFx.domainModel.settings.FontsStore;
 import javafx.geometry.Insets;
@@ -53,6 +54,7 @@ public abstract class AppNode  {
     protected Double minHeight;
     protected Double minWidth;
     protected Callback callback;
+  
     
 
 //    protected abstract void display();
@@ -80,6 +82,9 @@ public abstract class AppNode  {
         if(id!=null)element.setId(id);
         if(this.stringId!=null)element.setId(stringId);
         this.callback=builder.callback;
+        
+        
+        
         
         
         elocateEvents();
@@ -196,6 +201,7 @@ public abstract class AppNode  {
         protected Double minHeight;
         protected Double minWidth;
         protected Callback callback;
+        
           
         public static NodeBuilder create(){
             return new NodeBuilder();
@@ -321,7 +327,6 @@ public abstract class AppNode  {
           
           
         }
-        
         
         public NodeBuilder setText(WindowsTitlesNames t){
             this.text=t.get();
