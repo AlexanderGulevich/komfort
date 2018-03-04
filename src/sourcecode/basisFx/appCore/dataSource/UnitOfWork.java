@@ -5,23 +5,23 @@
  */
 package basisFx.appCore.dataSource;
 
+import basisFx.appCore.Refreshable;
 import basisFx.domainModel.pojo.DomainObject;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 
 /**
  *
  * @author Alek
  */
 public class UnitOfWork {
-    private ObservableList<DomainObject>  storedPojoes=FXCollections.<DomainObject> observableArrayList();
+    private List<Integer> storedPojoesId=new ArrayList<>();
     private List <DomainObject>newPojoes=new ArrayList<>();
     private List <DomainObject>removedPojoes=new ArrayList<>();
     private List <DomainObject>changedPojoes=new ArrayList<>();
+    private Refreshable refreshable;
     
     public void setNewPojoes(DomainObject p){
     
@@ -50,14 +50,14 @@ public class UnitOfWork {
         return changedPojoes;
     }
 
-    public ObservableList<DomainObject> getStoredPojoes() {
-        return storedPojoes;
+    public List<Integer> getStoredPojoesId() {
+        return storedPojoesId;
     }
 
     
-    public void clearStoredPojoes(){
+    public void clearStoredPojoesId(){
     
-        this.storedPojoes.clear();
+        this.storedPojoesId.clear();
     
     }
     
@@ -88,6 +88,7 @@ public class UnitOfWork {
             next.getDataMapper().insertDomainObject(next);
         }
         clearNewPojoesList();
+        refreshable.refresh();
     
     }
     public void commitChanged(){
@@ -97,6 +98,7 @@ public class UnitOfWork {
             next.getDataMapper().updateDomainObject(next);
         }
         clearChangedPojoesList();
+        refreshable.refresh();
         
     
     }
@@ -110,6 +112,11 @@ public class UnitOfWork {
         clearRemovedPojoesList();
         
     
+    }
+
+    public void setRefreshable(Refreshable r) {
+       this.refreshable=r;
+       
     }
     
     

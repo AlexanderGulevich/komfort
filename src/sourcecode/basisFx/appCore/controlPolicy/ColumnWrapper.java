@@ -35,12 +35,8 @@ public  class ColumnWrapper<T> {
         this.valueChecking=b.valueChecking;
         this.columnSize=b.columnSize;
         this.editPoliticy=b.editPoliticy;
-        
-        
+
     }
-    
-    
-   
     
          public TableColumn getColumn(){return null;};
          

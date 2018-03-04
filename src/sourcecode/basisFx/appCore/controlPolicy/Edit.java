@@ -7,7 +7,6 @@ package basisFx.appCore.controlPolicy;
 
 import basisFx.appCore.dataSource.UnitOfWork;
 import basisFx.appCore.elements.TableViewWrapper;
-import basisFx.domainModel.pojo.Equipment;
 import javafx.scene.control.TableColumn;
 
 /**

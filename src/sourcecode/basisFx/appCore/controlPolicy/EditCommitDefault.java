@@ -21,45 +21,33 @@ public class EditCommitDefault<T,K> extends Edit<T,K>{
                
                 DomainObject domain= (DomainObject) event.getRowValue();
           
-                //проверяет, новый ли это объект
-                if (unitOfWork.getNewPojoes().contains(domain)) {
-
-                    //вставить значение в домен
-                    this.pojoChanging.change(domain,event.getNewValue());
+                //проверяет, есть ли такой id в бд
+                if (unitOfWork.getStoredPojoesId().contains(domain.getId())) {
                     
-                    if (domain.isReadyToTransaction()) {
-
-                         unitOfWork.commitNew();
-
-                    } 
                     
-                   
-                }
-                else 
-                    if(unitOfWork.getChangedPojoes().contains(domain)) {
-                     //вставить значение в домен
-                    this.pojoChanging.change(domain,event.getNewValue());
-//                    
-                    if (domain.isReadyToTransaction()) {
+                      this.pojoChanging.change(domain,event.getNewValue());
+                      if (domain.isReadyToTransaction()) {
                          unitOfWork.setChangedPojoes(domain);
                          unitOfWork.commitChanged();
                        
-                    } 
+                      } 
                     
-                
-                
-                
+                }else{
+                      
+                        //проверяет, новый ли это объект из уже созданных
+                        if (unitOfWork.getNewPojoes().contains(domain)) {
+
+                            //вставить значение в домен
+                            this.pojoChanging.change(domain,event.getNewValue());
+
+                            if (domain.isReadyToTransaction()) {
+                                 unitOfWork.commitNew();
+                            } 
+                        }
                 }
                 
-                
-                
-             
-                
-               
-
         });
-            
-            this.tvw.refresh();
+//       this.tvw.refresh();
              
        }
        

@@ -65,7 +65,28 @@ public class EquipmentDataMapper extends DataMapper {
 
     @Override
     public void updateDomainObject(DomainObject d) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+      try {     
+        domainObject=(Equipment) d;
+        
+           String expression = "UPDATE "+ d.getTableName()+
+                   " SET  name = ?,"
+                   + "rodWidth=? "
+                   + "WHERE id= ?";
+               
+            
+               PreparedStatement pstmt =  Db.getConnection().prepareStatement(expression);
+
+                 pstmt.setString(1, domainObject.getName());
+                 pstmt.setInt(2, domainObject.getRodWidth());
+                 pstmt.setInt(3, domainObject.getId());
+
+
+        
+            pstmt.executeUpdate();
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(EquipmentDataMapper.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override
@@ -86,6 +107,9 @@ public class EquipmentDataMapper extends DataMapper {
                 pojo.setId(rs.getInt("id"));
                 pojo.setName(rs.getString("name"));
                 pojo.setRodWidth(rs.getInt("rodWidth"));
+                
+                //вставляю id в список хранимых в бд
+                this.unitOfWork.getStoredPojoesId().add(rs.getInt("id"));
                 
                 list.add(pojo);
                 

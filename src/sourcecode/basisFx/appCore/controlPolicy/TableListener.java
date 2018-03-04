@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package basisFx.appCore.events;
+package basisFx.appCore.controlPolicy;
 
 import basisFx.appCore.dataSource.UnitOfWork;
 import basisFx.appCore.elements.TableViewWrapper;
@@ -46,16 +46,29 @@ public class TableListener  implements ListChangeListener  {
                         System.out.println("wasReplaced");
 			}
 			else if (change.wasRemoved()) {
-                        System.out.println("wasRemoved");
+                       
+                            System.out.println("wasRemoved");
+                            List removed = change.getRemoved();
+                            
+                        
                         }
                         else if (change.wasAdded()) {
                         
                             @SuppressWarnings("unchecked")
                             List<DomainObject> subList = change.getAddedSubList();
                             DomainObject p = subList.get(0);
-                            this.unitOfWork.setNewPojoes(p);
+                            
+                            if ( !unitOfWork.getStoredPojoesId().contains(p.getId())) {
+                              this.unitOfWork.setNewPojoes(p);
+                              System.out.println("wasAdded");
+                            }else{
+                            
+//                              System.out.println("not was added");
 
-                            System.out.println("wasAdded");
+                            }
+                            
+                           
+                            
                         }
 			}
 		}

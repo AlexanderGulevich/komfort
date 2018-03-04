@@ -93,6 +93,9 @@ public abstract class AppNode  {
         
         
     }
+    
+//    public abstract void lazyLoad();
+    
     public  String getId(){
         return this.id;
     };
