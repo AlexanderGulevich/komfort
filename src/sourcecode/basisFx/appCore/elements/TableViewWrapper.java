@@ -5,7 +5,7 @@
  */
 package basisFx.appCore.elements;
 
-import basisFx.appCore.controlPolicy.Column;
+import basisFx.appCore.controlPolicy.ColumnWrapper;
 import basisFx.appCore.dataSource.DataMapper;
 import basisFx.appCore.dataSource.UnitOfWork;
 import basisFx.appCore.events.TableListener;
@@ -17,7 +17,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.util.Callback;
 
-public  class NTableView <T> extends AppNode {
+public  class TableViewWrapper <T> extends AppNode {
 
     private TableView<T> table=null;
     private ObservableList<T>  list=FXCollections.<T> observableArrayList();
@@ -29,7 +29,7 @@ public  class NTableView <T> extends AppNode {
     
     
     @SuppressWarnings("unchecked")
- public   NTableView(NodeBuilder builder) {
+ public   TableViewWrapper(NodeBuilder builder) {
         table=new TableView<>(list);
         setElement(table);
         table.setEditable(true);
@@ -43,19 +43,23 @@ public  class NTableView <T> extends AppNode {
  * TableView.CONSTRAINED_RESIZE_POLICY,                 
  * TableView.UNCONSTRAINED_RESIZE_POLICY
  */
-    public NTableView<T>  setColumnResizePolicy( Callback<TableView.ResizeFeatures,Boolean> policy){
+    public TableViewWrapper<T>  setColumnResizePolicy( Callback<TableView.ResizeFeatures,Boolean> policy){
         table.setColumnResizePolicy(policy);
         return this;
     }
     @SuppressWarnings("unchecked")
-    public NTableView<T>  setColums(Column  ...columns){
+    public TableViewWrapper<T>  setColums(ColumnWrapper  ...columnWrappers){
        
-         for (Column column : columns) {
+         for (ColumnWrapper cw : columnWrappers) {
              
-             column.setTableViewManager(this);
+             cw.setTableWrapper(this);
+             
+             cw.initEditPoliticy();
             
-             table.getColumns().addAll(column.getColumn());
+             table.getColumns().addAll(cw.getColumn());
              
+             setColumsSize(cw);
+
          }
          
        
@@ -64,7 +68,7 @@ public  class NTableView <T> extends AppNode {
          return this;
         
      }
-    public NTableView<T>  setSortableAllCollums(boolean b){
+    public TableViewWrapper<T>  setSortableAllCollums(boolean b){
 
         ObservableList<TableColumn<T, ?>> columns = table.getColumns();
         
@@ -75,21 +79,25 @@ public  class NTableView <T> extends AppNode {
    
           return this;
      }
-    public NTableView<T>  setEditable(boolean isEditable){
+    public TableViewWrapper<T>  setEditable(boolean isEditable){
          
           this.table.setEditable(isEditable);
           return this;
         
      }
-    public NTableView<T> setColumsSize(int colNum,double val) {
-        table.getColumns().get(colNum).prefWidthProperty()
-                .bind(this.table.widthProperty().multiply(val));
+    private TableViewWrapper<T> setColumsSize(ColumnWrapper columnWrapper) {
+       
+        TableColumn column = columnWrapper.getColumn();
+        column.prefWidthProperty()
+                .bind(this.table.widthProperty().multiply(
+                columnWrapper.getColumnSize()
+                ));
         
         return this;
      
 
     }
-    public NTableView<T> setTablesSize(double val,ReadOnlyDoubleProperty widthProperty) {
+    public TableViewWrapper<T> setTablesSize(double val,ReadOnlyDoubleProperty widthProperty) {
         table.prefWidthProperty()
                 .bind(widthProperty.multiply(val));
      
@@ -106,7 +114,7 @@ public  class NTableView <T> extends AppNode {
     return clon;
  
     }
-    public NTableView setList(ObservableList<T> tablesPojo) {
+    public TableViewWrapper setList(ObservableList<T> tablesPojo) {
         
         this.table.setItems(tablesPojo);
         
@@ -125,16 +133,16 @@ public  class NTableView <T> extends AppNode {
         return unitOfWork;
     }
     
-    public NTableView setDataMapper(DataMapper dm) {
+    public TableViewWrapper setDataMapper(DataMapper dm) {
         this.dataMapper=dm;
         return this;
     }
-    public NTableView setTableName(String n) {
+    public TableViewWrapper setTableName(String n) {
         this.tableName=n;
         return this;
     }
    
-    public NTableView refresh(){
+    public TableViewWrapper refresh(){
         
         this.list.clear();
         this.dataMapper.getAllDomainObjectList(list,tableName);

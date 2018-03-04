@@ -5,12 +5,14 @@
  */
 package basisFx.appCore.controlPolicy;
 
+import basisFx.domainModel.pojo.DomainObject;
+
 /**
  *
- * @author 62
+ * @author Alek
+ * @param <T>
+ * @param <K>
  */
-public abstract class ValueChecking<T> {
-    
-    public abstract void check(T value);
-    
+public interface PojoChanging <T,K>{
+ public <T,K> void change(T d, K val);
 }

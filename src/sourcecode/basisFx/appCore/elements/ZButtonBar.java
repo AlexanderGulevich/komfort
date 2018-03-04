@@ -3,14 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package basisFx.appCore.controlPolicy;
-
-import basisFx.domainModel.pojo.DomainObject;
+package basisFx.appCore.elements;
 
 /**
  *
  * @author Alek
  */
-public interface DomainChangeAction<T,K> {
- public <T,K> void change(T d, K val);
+public abstract class ZButtonBar extends AppNode{
+
+    protected abstract void display();
+    
 }

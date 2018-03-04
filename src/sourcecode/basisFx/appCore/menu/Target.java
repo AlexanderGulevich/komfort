@@ -6,7 +6,8 @@
 package basisFx.appCore.menu;
 
 import basisFx.appCore.controlPolicy.CheckingFactory;
-import basisFx.appCore.controlPolicy.ColumnManager;
+import basisFx.appCore.controlPolicy.ColumnFabric;
+import basisFx.appCore.controlPolicy.EditFabric;
 import basisFx.domainModel.DataMapperFabric;
 import javafx.scene.layout.AnchorPane;
 
@@ -20,9 +21,12 @@ public abstract class Target {
 
     protected CheckingFactory check=new CheckingFactory();
 
-    protected ColumnManager colManeger=new ColumnManager();
+    protected ColumnFabric columnFabric=new ColumnFabric();
     
     protected DataMapperFabric dataMapperFabric=new DataMapperFabric();
+    
+    protected EditFabric editFabric=new EditFabric();
+    
     
     public abstract void createElement();
   

@@ -6,7 +6,7 @@
 package basisFx.appCore.events;
 
 import basisFx.appCore.elements.AppNode;
-import basisFx.appCore.elements.NTableView;
+import basisFx.appCore.elements.TableViewWrapper;
 import basisFx.appCore.menu.MenuComponent;
 
 
@@ -72,7 +72,7 @@ public abstract class AppEvent {
        
    
    }
-   public static  RowAddToTable createRowAdd(NTableView nTableView, RowCreater rowCreater ){
+   public static  RowAddToTable createRowAdd(TableViewWrapper nTableView, RowCreater rowCreater ){
    
        return new RowAddToTable(nTableView, rowCreater);
        

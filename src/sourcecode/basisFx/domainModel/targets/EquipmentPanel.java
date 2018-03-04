@@ -1,10 +1,10 @@
 package basisFx.domainModel.targets;
 
 import basisFx.appCore.AnchorCoordinate;
-import basisFx.appCore.controlPolicy.Column;
+import basisFx.appCore.controlPolicy.ColumnWrapper;
 import basisFx.appCore.menu.Target;
 import basisFx.appCore.elements.AppNode;
-import basisFx.appCore.elements.NTableView;
+import basisFx.appCore.elements.TableViewWrapper;
 import basisFx.appCore.events.AppEvent;
 import basisFx.appCore.registry.Layers;
 import basisFx.appCore.registry.TargetRegistry;
@@ -20,7 +20,7 @@ import javafx.scene.layout.AnchorPane;
  */
 public class EquipmentPanel extends Target{
     
-    private NTableView nTableView;
+    private TableViewWrapper nTableView;
     private Button but;
     
     @Override
@@ -38,29 +38,28 @@ public class EquipmentPanel extends Target{
 
         nTableView = AppNode.NodeBuilder.create()
                 .setId(CSSID.TABLE).setCoordinate(panel,0d, null, 0d, 0d)
-                .<Equipment>createNTableView().setTablesSize(0.7, panel.widthProperty())
+                .<Equipment>createTableViewWrapper().setTablesSize(0.7, panel.widthProperty())
                 .setDataMapper(this.dataMapperFabric.getEquipmentDataMapper())
                 .setTableName("Equipment").refresh()
-                .setColums(
-                     colManeger.<Equipment,String>createTextColumn(
-                                Column.Bulder.create()
+                .setColums(columnFabric.<Equipment,String>createTextColumn(ColumnWrapper.Bulder.create()
                                 .setColumnName("Наименование")
                                 .setPropertyName("name")
                                 .setValueChecking(check.createTextCheck())
-                                .setDomainChangeAction(
+                                .setEditPoliticy(editFabric.<Equipment,String>createEditCommitDefault())
+                                .setColumnSize(0.7)
+                                .setPojoChanging(
                                      (obj,val)->{((Equipment)obj).setName((String)val);}
                  )),
-                     colManeger.<Equipment,Integer>createIntegerColumn(
-                                 Column.Bulder.create()
+                     columnFabric.<Equipment,Integer>createIntegerColumn(ColumnWrapper.Bulder.create()
                                 .setColumnName("Ширина стержня")
                                 .setPropertyName("rodWidth")
                                 .setValueChecking(check.createNumCheck())
-                                .setDomainChangeAction(
+                                .setEditPoliticy(editFabric.<Equipment,Integer>createEditCommitDefault())
+                                .setColumnSize(0.3)
+                                .setPojoChanging(
                                      (obj,val)->{((Equipment)obj).setRodWidth((Integer)val);} 
                  ))
-                )           
-                 .setColumsSize(0, 0.7)
-                 .setColumsSize(1, 0.3);
+                );
        
  
         but= (Button) AppNode.NodeBuilder.create()

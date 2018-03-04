@@ -11,15 +11,15 @@ package basisFx.appCore.controlPolicy;
  */
 public class CheckingFactory <T> {
    
-    public NumericValueChecking  <T> createNumCheck(){
+    public CheckingForNumeric  <T> createNumCheck(){
     
-        return new NumericValueChecking<>();
+        return new CheckingForNumeric<>();
         
     }
 
-    public TextValueChecking  <T> createTextCheck(){
+    public CheckingForText  <T> createTextCheck(){
     
-        return new TextValueChecking<>();
+        return new CheckingForText<>();
         
     }
 }

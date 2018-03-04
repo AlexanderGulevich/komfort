@@ -9,7 +9,7 @@ package basisFx.appCore.elements;
  *
  * @author Alek
  */
-public abstract class NodeTilePane extends AppNode{
+public abstract class ZDatePicker extends AppNode {
 
     protected abstract void display();
     

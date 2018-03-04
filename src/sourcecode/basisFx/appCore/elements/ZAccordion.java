@@ -9,7 +9,7 @@ package basisFx.appCore.elements;
  *
  * @author Alek
  */
-public abstract class NodeAccordion extends AppNode{
+public abstract class ZAccordion extends AppNode{
 
     protected abstract void display();
     

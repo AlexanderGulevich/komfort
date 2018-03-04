@@ -9,7 +9,7 @@ package basisFx.appCore.elements;
  *
  * @author Alek
  */
-public abstract class NodeButtonBar extends AppNode{
+public abstract class ZTreeTable  extends AppNode{
 
     protected abstract void display();
     

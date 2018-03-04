@@ -3,14 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package basisFx.appCore.elements;
+package basisFx.appCore.controlPolicy;
 
 /**
  *
  * @author Alek
+ * @param <T>
+ * @param <K>
  */
-public abstract class NodeLabel extends AppNode{
-
-    protected abstract void display();
+public class EditFabric<T,K> {
+    public  EditCommitDefault<T,K> createEditCommitDefault (){
     
+        return new EditCommitDefault<>();
+    
+    }
 }

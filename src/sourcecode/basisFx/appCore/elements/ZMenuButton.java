@@ -9,7 +9,7 @@ package basisFx.appCore.elements;
  *
  * @author Alek
  */
-public abstract class NodeMenuButton extends AppNode {
+public abstract class ZMenuButton extends AppNode {
 
     protected abstract void display();
     

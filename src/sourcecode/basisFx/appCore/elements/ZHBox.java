@@ -9,7 +9,7 @@ package basisFx.appCore.elements;
  *
  * @author Alek
  */
-public abstract class NodeTextField extends AppNode{
+public abstract class ZHBox extends AppNode{
 
     protected abstract void display();
     

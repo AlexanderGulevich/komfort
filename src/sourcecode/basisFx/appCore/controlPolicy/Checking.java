@@ -3,14 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package basisFx.appCore.elements;
+package basisFx.appCore.controlPolicy;
 
 /**
  *
- * @author Alek
+ * @author 62
  */
-public abstract class NodeDatePicker extends AppNode {
-
-    protected abstract void display();
+public abstract class Checking<T> {
+    
+    public abstract void check(T value);
     
 }

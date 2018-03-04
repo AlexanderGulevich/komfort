@@ -3,20 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package basisFx.appCore.elements;
-
-import javafx.scene.Node;
+package basisFx.appCore.controlPolicy;
 
 /**
  *
- * @author Alek
+ * @author 62
  */
-public class NodeChoiceBox extends AppNode {
+public class CheckingForNumeric <T> extends Checking<T>{
 
- 
+   
 
     @Override
-    public Node getElement() {
+    public void check(T value) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+    
 }

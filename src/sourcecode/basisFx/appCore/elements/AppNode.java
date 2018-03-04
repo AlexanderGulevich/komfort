@@ -383,8 +383,8 @@ public abstract class AppNode  {
         return new <FlowPane>  NFlowPane(this);
     }
 
-     public   <T> NTableView createNTableView  (){
-        return new  NTableView< >(this);
+     public   <T> TableViewWrapper createTableViewWrapper  (){
+        return new  TableViewWrapper< >(this);
     }
 
         public static class create {

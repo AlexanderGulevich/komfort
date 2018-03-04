@@ -9,7 +9,7 @@ package basisFx.appCore.controlPolicy;
  *
  * @author Alek
  */
-public class Bool {
+public class BooleanColumn {
 //    TableColumn<Person, Boolean> babyCol = new TableColumn<>("Baby?");
 //		babyCol.setCellValueFactory(
 //				cellData -> {

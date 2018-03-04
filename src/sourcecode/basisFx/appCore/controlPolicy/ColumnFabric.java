@@ -11,15 +11,15 @@ import javafx.scene.control.TableColumn;
  *
  * @author Alek
  */
-public class ColumnManager <T,K> {
+public class ColumnFabric <T,K> {
     
     
-    public IntegerColumn<T> createIntegerColumn(Column.Bulder builder){
+    public IntegerColumn<T> createIntegerColumn(ColumnWrapper.Bulder builder){
         
         return new IntegerColumn<T>(builder);
     
     }
-    public TextColumn<T>  createTextColumn(Column.Bulder builder){
+    public TextColumn<T>  createTextColumn(ColumnWrapper.Bulder builder){
     
         return new TextColumn<T>(builder);
     

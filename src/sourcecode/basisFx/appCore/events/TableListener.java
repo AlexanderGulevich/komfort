@@ -6,7 +6,7 @@
 package basisFx.appCore.events;
 
 import basisFx.appCore.dataSource.UnitOfWork;
-import basisFx.appCore.elements.NTableView;
+import basisFx.appCore.elements.TableViewWrapper;
 import basisFx.domainModel.pojo.DomainObject;
 import java.util.List;
 import javafx.collections.ListChangeListener;
@@ -17,17 +17,17 @@ import javafx.collections.ListChangeListener;
  */
 public class TableListener  implements ListChangeListener  {
 
-    private  NTableView nTableView;
+    private  TableViewWrapper nTableView;
     private  UnitOfWork unitOfWork;
 
     public TableListener() {}
 
-    public TableListener(NTableView nTableView) {
+    public TableListener(TableViewWrapper nTableView) {
         this.nTableView=nTableView;
         this.unitOfWork=nTableView.getUnitOfWork();
     }
     
-    public void setNTableView(NTableView nTableView){
+    public void setNTableView(TableViewWrapper nTableView){
         this.nTableView=nTableView;
         this.unitOfWork=nTableView.getUnitOfWork();
     }

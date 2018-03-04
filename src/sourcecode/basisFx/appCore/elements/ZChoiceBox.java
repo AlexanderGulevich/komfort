@@ -3,19 +3,20 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package basisFx.appCore.controlPolicy;
+package basisFx.appCore.elements;
+
+import javafx.scene.Node;
 
 /**
  *
- * @author 62
+ * @author Alek
  */
-public class NumericValueChecking <T> extends ValueChecking<T>{
+public class ZChoiceBox extends AppNode {
 
-   
+ 
 
     @Override
-    public void check(T value) {
+    public Node getElement() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
 }

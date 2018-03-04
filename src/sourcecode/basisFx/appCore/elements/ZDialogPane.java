@@ -9,7 +9,7 @@ package basisFx.appCore.elements;
  *
  * @author Alek
  */
-public abstract class NodePVBox extends AppNode{
+public abstract class ZDialogPane extends AppNode{
 
     protected abstract void display();
     

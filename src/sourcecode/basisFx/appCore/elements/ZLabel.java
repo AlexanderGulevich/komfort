@@ -9,7 +9,7 @@ package basisFx.appCore.elements;
  *
  * @author Alek
  */
-public abstract class NodeListView extends AppNode {
+public abstract class ZLabel extends AppNode{
 
     protected abstract void display();
     

@@ -9,7 +9,7 @@ package basisFx.appCore.elements;
  *
  * @author Alek
  */
-public abstract class NodePStackPane extends AppNode{
+public abstract class ZPBorderPane extends AppNode{
 
     protected abstract void display();
     
