@@ -69,7 +69,7 @@ public class EquipmentDataMapper extends DataMapper {
     }
 
     @Override
-    public ObservableList getAllDomainObjectList(ObservableList list,String tableName) {
+    public void getAllDomainObjectList(ObservableList list,String tableName) {
         
       try {
              
@@ -86,17 +86,17 @@ public class EquipmentDataMapper extends DataMapper {
                 pojo.setId(rs.getInt("id"));
                 pojo.setName(rs.getString("name"));
                 pojo.setRodWidth(rs.getInt("rodWidth"));
+                
+                list.add(pojo);
+                
+              
         
             }
             
         } catch (SQLException ex) {
             Logger.getLogger(EquipmentDataMapper.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        return list;
-        
-        
-        
+ 
         
     }
 

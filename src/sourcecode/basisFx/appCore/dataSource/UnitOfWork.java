@@ -10,13 +10,15 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 /**
  *
  * @author Alek
  */
 public class UnitOfWork {
-    
+    private ObservableList<DomainObject>  storedPojoes=FXCollections.<DomainObject> observableArrayList();
     private List <DomainObject>newPojoes=new ArrayList<>();
     private List <DomainObject>removedPojoes=new ArrayList<>();
     private List <DomainObject>changedPojoes=new ArrayList<>();
@@ -47,6 +49,18 @@ public class UnitOfWork {
     public List<DomainObject> getChangedPojoes() {
         return changedPojoes;
     }
+
+    public ObservableList<DomainObject> getStoredPojoes() {
+        return storedPojoes;
+    }
+
+    
+    public void clearStoredPojoes(){
+    
+        this.storedPojoes.clear();
+    
+    }
+    
     public void clearNewPojoesList(){
     
         this.newPojoes.clear();
@@ -68,7 +82,7 @@ public class UnitOfWork {
         commitRemoved();
     }
     public void commitNew(){
-        System.out.println("basisFx.appCore.dataSource.UnitOfWork.commitNew()");
+      
         for (Iterator<DomainObject> iterator = newPojoes.iterator(); iterator.hasNext();) {
             DomainObject next = iterator.next();
             next.getDataMapper().insertDomainObject(next);

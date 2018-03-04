@@ -19,7 +19,7 @@ import javafx.collections.ObservableList;
 public abstract class DataMapper {
     
      
-     public abstract ObservableList getAllDomainObjectList(ObservableList  list,String tableName);
+     public abstract void getAllDomainObjectList(ObservableList  list,String tableName);
      public abstract void updateDomainObject(DomainObject d);
      public abstract void insertDomainObject(DomainObject d);
      public void deleteDomainObject(DomainObject domainObject) throws SQLException{

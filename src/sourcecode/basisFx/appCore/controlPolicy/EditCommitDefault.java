@@ -5,9 +5,7 @@
  */
 package basisFx.appCore.controlPolicy;
 
-import basisFx.appCore.dataSource.UnitOfWork;
 import basisFx.domainModel.pojo.DomainObject;
-import javafx.scene.control.TableColumn;
 
 /**
  *
@@ -17,8 +15,6 @@ import javafx.scene.control.TableColumn;
  */
 public class EditCommitDefault<T,K> extends Edit<T,K>{
 
- 
-    
     public void run() {
             
             column.setOnEditCommit((event) -> {
@@ -34,8 +30,6 @@ public class EditCommitDefault<T,K> extends Edit<T,K>{
                     if (domain.isReadyToTransaction()) {
 
                          unitOfWork.commitNew();
-                        
-                         
 
                     } 
                     
@@ -64,6 +58,8 @@ public class EditCommitDefault<T,K> extends Edit<T,K>{
                
 
         });
+            
+            this.tvw.refresh();
              
        }
        

@@ -20,7 +20,7 @@ import javafx.scene.layout.AnchorPane;
  */
 public class EquipmentPanel extends Target{
     
-    private TableViewWrapper nTableView;
+    private TableViewWrapper tableViewWrapper;
     private Button but;
     
     @Override
@@ -36,28 +36,28 @@ public class EquipmentPanel extends Target{
                  .setParent(Layers.getContentLayer())
                  .createNpAnchor().getElement();
 
-        nTableView = AppNode.NodeBuilder.create()
+        tableViewWrapper = AppNode.NodeBuilder.create()
                 .setId(CSSID.TABLE).setCoordinate(panel,0d, null, 0d, 0d)
                 .<Equipment>createTableViewWrapper().setTablesSize(0.7, panel.widthProperty())
                 .setDataMapper(this.dataMapperFabric.getEquipmentDataMapper())
-                .setTableName("Equipment").refresh()
+                .setDbTableName("Equipment").refresh()
                 .setColums(columnFabric.<Equipment,String>createTextColumn(ColumnWrapper.Bulder.create()
-                                .setColumnName("Наименование")
-                                .setPropertyName("name")
-                                .setValueChecking(check.createTextCheck())
-                                .setEditPoliticy(editFabric.<Equipment,String>createEditCommitDefault())
-                                .setColumnSize(0.7)
-                                .setPojoChanging(
-                                     (obj,val)->{((Equipment)obj).setName((String)val);}
+                    .setColumnName("Наименование")
+                    .setPropertyName("name")
+                    .setValueChecking(check.createTextCheck())
+                    .setEditPoliticy(editFabric.<Equipment,String>createEditCommitDefault())
+                    .setColumnSize(0.7)
+                    .setPojoChanging(
+                         (obj,val)->{((Equipment)obj).setName((String)val);}
                  )),
                      columnFabric.<Equipment,Integer>createIntegerColumn(ColumnWrapper.Bulder.create()
-                                .setColumnName("Ширина стержня")
-                                .setPropertyName("rodWidth")
-                                .setValueChecking(check.createNumCheck())
-                                .setEditPoliticy(editFabric.<Equipment,Integer>createEditCommitDefault())
-                                .setColumnSize(0.3)
-                                .setPojoChanging(
-                                     (obj,val)->{((Equipment)obj).setRodWidth((Integer)val);} 
+                    .setColumnName("Ширина стержня")
+                    .setPropertyName("rodWidth")
+                    .setValueChecking(check.createNumCheck())
+                    .setEditPoliticy(editFabric.<Equipment,Integer>createEditCommitDefault())
+                    .setColumnSize(0.3)
+                    .setPojoChanging(
+                         (obj,val)->{((Equipment)obj).setRodWidth((Integer)val);} 
                  ))
                 );
        
@@ -68,7 +68,7 @@ public class EquipmentPanel extends Target{
                  .setText("ДОБАВИТЬ").setFont(FontsStore.ROBOTO_LIGHT, 25)
                  .setEvent(AppEvent.
                          createRowAdd(
-                                 nTableView, 
+                                 tableViewWrapper, 
                                  (l)->{l.add(new Equipment());}))
                  .createNButton().getElement();
                  

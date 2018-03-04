@@ -19,8 +19,11 @@ public class Edit<T,K> {
     protected TableColumn<T,K> column;
     protected UnitOfWork unitOfWork;
     protected PojoChanging <T,K>pojoChanging;
+    protected TableViewWrapper tvw;
 
-  
+    public void setTvw(TableViewWrapper tvw) {
+        this.tvw = tvw;
+    }
 
     public void setColumn(TableColumn<T, K> column) {
         this.column = column;

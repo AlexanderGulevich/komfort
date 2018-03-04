@@ -24,6 +24,9 @@ public  class ColumnWrapper<T> {
     protected double columnSize;
     protected List <Edit> editPoliticy;
     
+    protected TableColumn column;
+    protected PojoChanging pojoChanging;
+    
 
     public ColumnWrapper(Bulder b) {
         
@@ -37,8 +40,7 @@ public  class ColumnWrapper<T> {
     }
     
     
-    public void initEditPoliticy(){}
-
+   
     
          public TableColumn getColumn(){return null;};
          
@@ -54,8 +56,9 @@ public  class ColumnWrapper<T> {
         return columnSize;
     }
 
-         
-       
+    public void initEditPoliticy() {}
+
+
      public static class Bulder{
          
 

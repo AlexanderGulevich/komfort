@@ -9,7 +9,9 @@ import basisFx.appCore.controlPolicy.ColumnWrapper;
 import basisFx.appCore.dataSource.DataMapper;
 import basisFx.appCore.dataSource.UnitOfWork;
 import basisFx.appCore.events.TableListener;
+import basisFx.domainModel.pojo.DomainObject;
 import java.util.Iterator;
+import java.util.List;
 import javafx.beans.property.ReadOnlyDoubleProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -137,7 +139,7 @@ public  class TableViewWrapper <T> extends AppNode {
         this.dataMapper=dm;
         return this;
     }
-    public TableViewWrapper setTableName(String n) {
+    public TableViewWrapper setDbTableName(String n) {
         this.tableName=n;
         return this;
     }
@@ -145,7 +147,9 @@ public  class TableViewWrapper <T> extends AppNode {
     public TableViewWrapper refresh(){
         
         this.list.clear();
+        this.unitOfWork.clearStoredPojoes();
         this.dataMapper.getAllDomainObjectList(list,tableName);
+
         return this;
         
        
