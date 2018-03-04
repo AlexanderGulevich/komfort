@@ -16,17 +16,18 @@ import javafx.scene.control.cell.TextFieldTableCell;
  * @param <T>
  */
 public class TextColumn<T> extends Column<T>{
-    protected TableColumn<T,String> column;
-    protected String propertyName;
-    protected DomainChange <T,String>domainChange;
-    protected ValueChecking valueChecking;
+    private TableColumn<T,String> column;
+    private DomainChangeAction <T,String>domainChangeAction;
     
-    public TextColumn(String columnName,String propertyName, ValueChecking valueChecking,DomainChange embBeh) {
+    
+    @SuppressWarnings("unchecked")
+    public TextColumn(Column.Bulder builder) {
+        
+        super(builder);
+        this.domainChangeAction=builder.domainChangeAction;
         
         this.column =  new TableColumn<>(columnName);
-        this.propertyName=propertyName;
-        this.domainChange=embBeh;
-        this.valueChecking=valueChecking;
+      
         setEddingPoliticy();
         setOnEditCommit();
         
@@ -59,10 +60,11 @@ public class TextColumn<T> extends Column<T>{
                 if (tableManeger.getUnitOfWork().getNewPojoes().contains(domain)) {
 
                     //вставить значение в домен
-                    this.domainChange.change(domain,event.getNewValue());
+                    this.domainChangeAction.change(domain,event.getNewValue());
                     
                     if (domain.isReadyToTransaction()) {
-//                         unitOfWork.setChangedPojoes(domain);
+//                      
+System.out.println("basisFx.appCore.controlPolicy.TextColumn.setOnEditCommit()");
                          tableManeger.getUnitOfWork().commitNew();
                         
                          
@@ -74,7 +76,7 @@ public class TextColumn<T> extends Column<T>{
                 else 
                     if(tableManeger.getUnitOfWork().getChangedPojoes().contains(domain)) {
                      //вставить значение в домен
-                    this.domainChange.change(domain,event.getNewValue());
+                    this.domainChangeAction.change(domain,event.getNewValue());
 //                    
                     if (domain.isReadyToTransaction()) {
                          tableManeger.getUnitOfWork().setChangedPojoes(domain);
@@ -86,6 +88,9 @@ public class TextColumn<T> extends Column<T>{
                 
                 
                 }
+                
+                
+                
              
                 
                

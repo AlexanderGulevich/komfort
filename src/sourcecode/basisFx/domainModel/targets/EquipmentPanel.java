@@ -1,6 +1,7 @@
 package basisFx.domainModel.targets;
 
 import basisFx.appCore.AnchorCoordinate;
+import basisFx.appCore.controlPolicy.Column;
 import basisFx.appCore.menu.Target;
 import basisFx.appCore.elements.AppNode;
 import basisFx.appCore.elements.NTableView;
@@ -36,24 +37,30 @@ public class EquipmentPanel extends Target{
                  .createNpAnchor().getElement();
 
         nTableView = AppNode.NodeBuilder.create()
-                 .setId(CSSID.TABLE).setCoordinate(panel,0d, null, 0d, 0d)
-                 .<Equipment>createNTableView().setTablesSize(0.7, panel.widthProperty())
+                .setId(CSSID.TABLE).setCoordinate(panel,0d, null, 0d, 0d)
+                .<Equipment>createNTableView().setTablesSize(0.7, panel.widthProperty())
                 .setDataMapper(this.dataMapperFabric.getEquipmentDataMapper())
-                .setTableName("Equipment")
+                .setTableName("Equipment").refresh()
                 .setColums(
                      colManeger.<Equipment,String>createTextColumn(
-                             "Наименование","name", 
-                             check.createTextCheck(),
-                             (obj,val)->{((Equipment)obj).setName((String)val);} 
-                 ),
-                     colManeger.<Equipment>createIntegerColumn(
-                             "Ширина стержня","rodWidth",
-                             check.createNumCheck(),
-                           (obj,val)->{((Equipment)obj).setRodWidth((Integer)val);}
-                     )
-                 )
-                 .setColumsSize(0, 0.7).setColumsSize(1, 0.3)
-                .refresh();
+                                Column.Bulder.create()
+                                .setColumnName("Наименование")
+                                .setPropertyName("name")
+                                .setValueChecking(check.createTextCheck())
+                                .setDomainChangeAction(
+                                     (obj,val)->{((Equipment)obj).setName((String)val);}
+                 )),
+                     colManeger.<Equipment,Integer>createIntegerColumn(
+                                 Column.Bulder.create()
+                                .setColumnName("Ширина стержня")
+                                .setPropertyName("rodWidth")
+                                .setValueChecking(check.createNumCheck())
+                                .setDomainChangeAction(
+                                     (obj,val)->{((Equipment)obj).setRodWidth((Integer)val);} 
+                 ))
+                )           
+                 .setColumsSize(0, 0.7)
+                 .setColumsSize(1, 0.3);
        
  
         but= (Button) AppNode.NodeBuilder.create()

@@ -55,7 +55,7 @@ public class Equipment  extends DomainObject {
            return true;
        
        }
-       
+        System.out.println("basisFx.domainModel.pojo.Equipment.isReadyToTransaction()");
        return false;
     }
 

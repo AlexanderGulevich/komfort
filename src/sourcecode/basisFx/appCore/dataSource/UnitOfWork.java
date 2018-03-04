@@ -68,7 +68,7 @@ public class UnitOfWork {
         commitRemoved();
     }
     public void commitNew(){
-    
+        System.out.println("basisFx.appCore.dataSource.UnitOfWork.commitNew()");
         for (Iterator<DomainObject> iterator = newPojoes.iterator(); iterator.hasNext();) {
             DomainObject next = iterator.next();
             next.getDataMapper().insertDomainObject(next);

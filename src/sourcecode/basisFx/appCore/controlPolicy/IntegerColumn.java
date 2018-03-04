@@ -17,26 +17,20 @@ import javafx.util.converter.IntegerStringConverter;
  * @param <T>
  */
 public class IntegerColumn <T> extends Column<T>{
-    protected TableColumn<T,Integer> column;
-    protected String propertyName;
-    protected DomainChange embededBehavior;
+    private TableColumn<T,Integer> column;
+    private String propertyName;
+    private DomainChangeAction <T,String>domainChangeAction;
 
-    public IntegerColumn(String columnName,String propertyName) {
-        
+    @SuppressWarnings("unchecked")
+    public IntegerColumn(Column.Bulder builder) {
+                
+        super(builder);
+        this.domainChangeAction=builder.domainChangeAction;
         this.column =  new TableColumn<>(columnName);
-        this.propertyName=propertyName;
         setEddingPoliticy();
         setOnEditCommit();
- 
     }
-     public IntegerColumn(String columnName,String propertyName, ValueChecking valueChecking,DomainChange embBeh) {
-        
-        this.column =  new TableColumn<>(columnName);
-        this.propertyName=propertyName;
-        this.embededBehavior=embBeh;
-        setEddingPoliticy();
-        
-    }
+   
 
     public IntegerColumn<T>  setEddingPoliticy(){
         
@@ -56,14 +50,23 @@ public class IntegerColumn <T> extends Column<T>{
         public void setOnEditCommit() {
             
             column.setOnEditCommit((event) -> {
+                 DomainObject domain= (DomainObject) event.getRowValue();
               
-                if (event.getRowValue().equals(tableManeger.getUnitOfWork().getNewPojoes().get(0))) {
-               
-                    this.embededBehavior.change(
-                            (DomainObject) event.getRowValue(),
-                            event.getNewValue()
-                            );
-         
+                  //проверяет, новый ли это объект
+                if (tableManeger.getUnitOfWork().getNewPojoes().contains(domain)) {
+
+                    //вставить значение в домен
+                    this.domainChangeAction.change(domain,event.getNewValue());
+                    
+                    if (domain.isReadyToTransaction()) {
+//                      
+System.out.println("basisFx.appCore.controlPolicy.TextColumn.setOnEditCommit()");
+                         tableManeger.getUnitOfWork().commitNew();
+                        
+                         
+//                         tableManeger.refresh(event.getTablePosition());
+                    } 
+                    
                    
                 }
                 

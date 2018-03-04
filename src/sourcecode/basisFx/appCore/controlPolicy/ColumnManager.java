@@ -14,14 +14,14 @@ import javafx.scene.control.TableColumn;
 public class ColumnManager <T,K> {
     
     
-    public IntegerColumn<T> createIntegerColumn(String columnName,String propertyName, ValueChecking valueChecking,DomainChange embBeh){
-    
-        return new IntegerColumn<T>(columnName, propertyName,valueChecking,embBeh);
+    public IntegerColumn<T> createIntegerColumn(Column.Bulder builder){
+        
+        return new IntegerColumn<T>(builder);
     
     }
-    public TextColumn<T>  createTextColumn(String columnName,String propertyName, ValueChecking valueChecking,DomainChange embBeh){
+    public TextColumn<T>  createTextColumn(Column.Bulder builder){
     
-        return new TextColumn<T>(columnName, propertyName,valueChecking,embBeh);
+        return new TextColumn<T>(builder);
     
     }
 }

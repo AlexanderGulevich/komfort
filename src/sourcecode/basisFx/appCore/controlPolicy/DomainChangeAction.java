@@ -11,6 +11,6 @@ import basisFx.domainModel.pojo.DomainObject;
  *
  * @author Alek
  */
-public interface DomainChange<T,K> {
+public interface DomainChangeAction<T,K> {
  public <T,K> void change(T d, K val);
 }
