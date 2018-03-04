@@ -28,6 +28,7 @@ public class EquipmentPanel extends Target{
     public void createElement() {
         
         TargetRegistry.targets.add(this);
+        Layers.getContentLayer().getChildren().clear();
         
         
         panel =  (AnchorPane) AppNode.NodeBuilder.create()
