@@ -58,6 +58,11 @@ public class WindowDecorated extends WindowFx{
     public WindowFx setContentLayer(double t,double r,double b,double l) {
        return this;
     }
+
+    @Override
+    public WindowFx windowShow() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
     
     
