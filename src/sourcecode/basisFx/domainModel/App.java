@@ -1,25 +1,25 @@
 package basisFx.domainModel;
 
 import basisFx.appCore.AnchorCoordinate;
-import basisFx.appCore.dataSource.Db;
 import basisFx.appCore.dataSource.DbFactory;
 
 import basisFx.domainModel.settings.Settings;
 import javafx.stage.Stage;
-import basisFx.appCore.windows.WindowFx;
 import basisFx.appCore.menu.MenuCreator;
 import basisFx.appCore.menu.MenuRepresent;
 import basisFx.appCore.registry.Layers;
 import java.sql.SQLException;
 import basisFx.appCore.menu.LeftSideMenuRepresent.namesPanelPalaced;
+import basisFx.appCore.windows.WindowFabric;
 import basisFx.appCore.windows.WindowUndecorated;
-import java.sql.Connection;
 
 /**
  *
  * @author Alek
  */
 public class App{
+    
+    private WindowFabric windowFabric=new WindowFabric();
 
     public App(Stage primaryStage) throws ClassNotFoundException, SQLException {
         
@@ -28,7 +28,7 @@ public class App{
 //        Connection connection = Db.getConnection();
 
 
-        WindowFx.createUnDecoratedWindow(Settings.WIDTH, Settings.HEIGHT, primaryStage)
+        windowFabric.createUnDecoratedWindow(Settings.WIDTH, Settings.HEIGHT, primaryStage)
                 .setKindOfTitle(WindowUndecorated.TITLE_VIEW.IMG)
                 .setTitlePanelCoordinate(new AnchorCoordinate(0d,0d,null,0d))
                 .setTitleNameCoordinate(new AnchorCoordinate(5d, null, null, 70d))

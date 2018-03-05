@@ -90,7 +90,6 @@ public class WindowUndecorated extends WindowFx{
         return this;
     }
 
-    @Override
     void initControlTopButton() {
         
         double fontHeight=TopButtons.FONT_HEIGHT;
@@ -145,7 +144,6 @@ public class WindowUndecorated extends WindowFx{
        
     }
 
-    @Override
     void initTitle() {
         
         if (this.titleView==TITLE_VIEW.TEXT) {

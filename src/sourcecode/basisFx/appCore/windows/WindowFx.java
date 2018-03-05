@@ -2,12 +2,10 @@ package basisFx.appCore.windows;
 
 import basisFx.appCore.AnchorCoordinate;
 import basisFx.appCore.StylesLoader;
-import basisFx.appCore.StylesLodingStore;
 import basisFx.appCore.registry.Layers;
 import basisFx.appCore.elements.AppNode;
 import basisFx.appCore.events.AppEvent;
 import basisFx.domainModel.settings.CSSID;
-import basisFx.domainModel.settings.StylesPathes;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
@@ -35,14 +33,10 @@ public abstract class WindowFx {
     protected AnchorPane visibleRoot;
     protected AnchorPane contentLauer;
     protected Boolean iconIneded;
-////    protected String titleName;
     protected AnchorPane titlePanel;
     protected AnchorCoordinate titlePanelCoordinate;
     protected AnchorCoordinate titleNameCoordinate;
  
-    
-    
-//    public abstract WindowFx setTitleName(String str);
     abstract void initIcon();
     abstract void initTitle();
     abstract void initControlTopButton();
@@ -54,7 +48,7 @@ public abstract class WindowFx {
 
       stage.setScene(scene);
 
-      new StylesLodingStore(scene);
+      StylesLoader.loadAll(scene);
       
       scene.setFill( Color.TRANSPARENT);
       stage.initStyle(StageStyle.TRANSPARENT);
@@ -78,9 +72,7 @@ public abstract class WindowFx {
      public void windowClose(){
          stage.close();
      }
-     
-     
-     
+
      protected void setTransparentRoot(){
                  this.root=(AnchorPane) AppNode.NodeBuilder.create()
                          .setId(CSSID.TRANSPARENT_ROOT)
@@ -131,39 +123,5 @@ public abstract class WindowFx {
      
      
      public abstract WindowFx setContentLayer(double t,double r,double b,double l);
-     
-     
-     
-     
-     public static WindowFx createDecoratedWindow(double width, double height){
-     
-         return new WindowDecorated(width, height);
-     
-         
-     }
-     
-     public static WindowFx createDecoratedWindow(double width, double height, Stage stage){
-     
-         return new WindowDecorated(width, height, stage);
-     
-         
-     }
-     
-     
-     public static WindowUndecorated createUnDecoratedWindow(double width, double height){
-     
-         return new WindowUndecorated(width, height);
-     
-         
-     }
-     
-     public static WindowUndecorated createUnDecoratedWindow(double width, double height, Stage stage){
-     
-         return new WindowUndecorated(width, height, stage);
-     
-         
-     }
-     
-
-    
+        
 }
