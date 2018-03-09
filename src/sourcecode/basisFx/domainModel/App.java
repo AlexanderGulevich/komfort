@@ -72,6 +72,8 @@ public class App{
         
         
         menuTrigger.verticalMenuButtonFire(1);
+        
+       
 
     }
     

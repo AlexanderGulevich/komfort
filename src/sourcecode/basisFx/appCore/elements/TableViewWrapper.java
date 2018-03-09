@@ -38,7 +38,9 @@ public  class TableViewWrapper <T> extends AppNode implements Refreshable{
         init(builder);
         list.addListener(tableListener);
         unitOfWork.setRefreshable(this);
+    
         
+      
 
     }
 /**

@@ -33,21 +33,22 @@ public class EquipmentPanel extends Target{
         
         panel =  (AnchorPane) AppNode.NodeBuilder.create()
                  .setId(CSSID.TARGET_PANEL)
-                 .setCoordinate(new AnchorCoordinate(50d, 10d, 10d, 10d))
+                 .setCoordinate(new AnchorCoordinate(0d, 10d, 10d, 10d))
                  .setParent(Layers.getContentLayer())
                  .createNpAnchor().getElement();
 
         tableViewWrapper = AppNode.NodeBuilder.create()
-                .setId(CSSID.TABLE).setCoordinate(panel,0d, null, 0d, 0d)
+                .setId(CSSID.TABLE).setCoordinate(panel,50d, null, 0d, 0d)
                 .<Equipment>createTableViewWrapper().setTablesSize(0.7, panel.widthProperty())
                 .setDataMapper(this.dataMapperFabric.getEquipmentDataMapper())
                 .setDbTableName("Equipment").refresh()
-                .setColums(columnFabric.<Equipment,String>createTextColumn(ColumnWrapper.Bulder.create()
+                .setColums(
+                     columnFabric.<Equipment,String>createTextColumn(ColumnWrapper.Bulder.create()
                     .setColumnName("Наименование")
                     .setPropertyName("name")
                     .setValueChecking(check.createTextCheck())
                     .setEditPoliticy(editFabric.<Equipment,String>createEditCommitDefault())
-                    .setColumnSize(0.7)
+                    .setColumnSize(0.6)
                     .setPojoChanging(
                          (obj,val)->{((Equipment)obj).setName((String)val);}
                  )),
@@ -56,22 +57,34 @@ public class EquipmentPanel extends Target{
                     .setPropertyName("rodWidth")
                     .setValueChecking(check.createNumCheck())
                     .setEditPoliticy(editFabric.<Equipment,Integer>createEditCommitDefault())
-                    .setColumnSize(0.3)
+                    .setColumnSize(0.4)
                     .setPojoChanging(
                          (obj,val)->{((Equipment)obj).setRodWidth((Integer)val);} 
                  ))
                 );
        
  
-        but= (Button) AppNode.NodeBuilder.create()
+        AppNode.NodeBuilder.create()
                  .setId(CSSID.PANELS_BUTTON)
-                 .setCoordinate(panel, 200d,150d, null, null)
-                 .setText("ДОБАВИТЬ").setFont(FontsStore.ROBOTO_LIGHT, 25)
+                 .setCoordinate(panel, 80d,50d, null, null)
+                 .setText("ДОБАВИТЬ").setFont(FontsStore.ROBOTO_LIGHT, 15)
+                 .setWidth(170d).setHeight(20d)
                  .setEvent(AppEvent.
                          createRowAdd(
                                  tableViewWrapper, 
                                  (l)->{l.add(new Equipment());}))
-                 .createNButton().getElement();
+                 .createNButton();
+        
+        AppNode.NodeBuilder.create()
+                 .setId(CSSID.PANELS_BUTTON)
+                 .setCoordinate(panel, 120d,50d, null, null)
+                 .setText("УДАЛИТЬ").setFont(FontsStore.ROBOTO_LIGHT, 15)
+                 .setWidth(170d).setHeight(20d)
+                 .setEvent(AppEvent.
+                         createRowAdd(
+                                 tableViewWrapper, 
+                                 (l)->{l.add(new Equipment());}))
+                 .createNButton();
                  
 
     }

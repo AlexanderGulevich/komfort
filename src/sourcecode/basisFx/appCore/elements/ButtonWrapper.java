@@ -14,17 +14,17 @@ import javafx.scene.text.Text;
  *
  * @author Alek
  */
-public class NButton <T extends Node>extends AppNode{
+public class ButtonWrapper <T extends Node>extends AppNode{
     
 //    private boolean isActive;
  
     
     
     
-    public NButton(NodeBuilder builder) {
+    public ButtonWrapper(NodeBuilder builder) {
        
         element =new Button();
-        Button element=(Button) this.element;
+        Button but=(Button) this.element;
         
         
         
@@ -34,31 +34,37 @@ public class NButton <T extends Node>extends AppNode{
         
        
         if(this.height!=null) {
-            element.setPrefHeight(this.height);
+            but.setPrefHeight(this.height);
         }
         if(this.width!=null) {
-            element.setPrefWidth(this.width);
+            but.setPrefWidth(this.width);
         }
         
 
-        if(insects!=null)element.setPadding(insects);
-        if(font!=null)element.setFont(font);
-        if(this.text!=null)element.setText(this.text);
+        if(insects!=null){
+            but.setPadding(insects);
+        }
+        if(font!=null) {
+            but.setFont(font);
+        }
+        if(this.text!=null) {
+            but.setText(this.text);
+        }
    
         
 //        
-        if(this.maxHeight!=null)element.setMaxHeight(this.maxHeight);
+        if(this.maxHeight!=null)but.setMaxHeight(this.maxHeight);
 //        
-        if(this.maxWidth!=null)element.setMaxWidth(this.maxWidth);
+        if(this.maxWidth!=null)but.setMaxWidth(this.maxWidth);
         
-        if(this.minHeight!=null)element.setMinHeight(this.minHeight);
+        if(this.minHeight!=null)but.setMinHeight(this.minHeight);
 //        
-        if(this.minWidth!=null)element.setMinWidth(this.minWidth);
+        if(this.minWidth!=null)but.setMinWidth(this.minWidth);
    
         
     }
 
-    public NButton setGraphics(Node n, ContentDisplay cd){
+    public ButtonWrapper setGraphics(Node n, ContentDisplay cd){
         
         Button element=(Button) this.element;
     
@@ -70,7 +76,7 @@ public class NButton <T extends Node>extends AppNode{
         
     }
     
-    public NButton setGraphics(NText n, ContentDisplay cd){
+    public ButtonWrapper setGraphics(NText n, ContentDisplay cd){
         
         Button element=(Button) this.element;
     
@@ -80,7 +86,7 @@ public class NButton <T extends Node>extends AppNode{
         return this;
     }
     
-    public NButton setString(String str, ContentDisplay cd){
+    public ButtonWrapper setString(String str, ContentDisplay cd){
         
         
         Button element=(Button) this.element;

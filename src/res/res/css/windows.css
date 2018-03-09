@@ -8,6 +8,10 @@
 #MAIN_CONTENT_ANCHOR{
 
      -fx-background-color: #ECF1F2;
+   
+     /*-fx-background-color: #fcfcfd;*/
+     
+     
      -fx-padding:2 3 3 3;
 
      /*-fx-background-color: #F7F4FB;-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.4), 10, 0.5, 0.0, 0.0);*/

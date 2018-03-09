@@ -6,17 +6,13 @@ import basisFx.appCore.registry.Layers;
 import basisFx.domainModel.settings.CSSID;
 import basisFx.domainModel.settings.FontsStore;
 import basisFx.appCore.elements.AppNode;
-import basisFx.appCore.elements.NAnchor;
-import basisFx.appCore.elements.NButton;
-import basisFx.appCore.elements.NImgView;
-import basisFx.appCore.elements.NText;
+import basisFx.appCore.elements.ButtonWrapper;
 import basisFx.appCore.events.AppEvent;
 import basisFx.domainModel.settings.TopButtons;
 import javafx.geometry.Insets;
 import javafx.scene.control.ContentDisplay;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -26,10 +22,10 @@ import javafx.stage.StageStyle;
  */
 public class WindowUndecorated extends WindowFx{
     
-    private NButton  hideButton;
+    private ButtonWrapper  hideButton;
     private boolean isManeWindow=false;
-    private NButton  maximazeButton;
-    private NButton  closingButton;
+    private ButtonWrapper  maximazeButton;
+    private ButtonWrapper  closingButton;
 
 
     public WindowUndecorated(double w,double h, Stage primaryStage) {

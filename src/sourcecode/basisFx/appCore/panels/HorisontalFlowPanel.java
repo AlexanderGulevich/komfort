@@ -23,7 +23,7 @@ public class HorisontalFlowPanel extends AbstractPanel{
         build(b);
         
         init();
-        register();
+   
 
     }
 
@@ -35,7 +35,7 @@ public class HorisontalFlowPanel extends AbstractPanel{
                 .setCoordinate(panelCoordinate)
                 .setHeight(height)
                 .setWidth(width)
-                .setId(CSSID.LEFT_SIDE_MENU_NAMES_PANEL)
+                .setId(CSSID.HORIZONTAL_FLOW_MENU_PANEL)
                 .createNFlowPane()
                 .getElement();
          
@@ -46,7 +46,7 @@ public class HorisontalFlowPanel extends AbstractPanel{
     @Override
     public void register() {
         Layers.setHorisontalFlowPanel(panel);
-        System.out.println("basisFx.appCore.panels.HorisontalFlowPanel.register()");
+      
     }
     
 }

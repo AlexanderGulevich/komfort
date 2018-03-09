@@ -162,7 +162,11 @@ dependencies {
 
 //    compile group: 'org.hibernate', name: 'hibernate-core', version: '5.2.12.Final'
 //    compile group: 'org.hibernate', name: 'hibernate-jpamodelgen', version: '5.2.12.Final'
+      
+      compile files('lib/scenicView.jar');
+
 }
+
 
 
 jar  {

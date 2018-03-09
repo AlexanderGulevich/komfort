@@ -373,8 +373,8 @@ public abstract class AppNode  {
      public  NAnchor createNpAnchor(){
         return new <AnchorPane> NAnchor(this);
     }
-     public  NButton createNButton(){
-        return new<Button>  NButton(this);
+     public  ButtonWrapper createNButton(){
+        return new<Button>  ButtonWrapper(this);
     }
 
      public  NImgView createNImgView(){

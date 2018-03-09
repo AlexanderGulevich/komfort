@@ -1,84 +1,90 @@
+.root {
+    
+    -fx-header-color: derive(#d7e1e3,40%);
+   
+}
+
+
 #TABLE,#TABLE:focused,#TABLE:armed,#TABLE:selected{
-    /*-fx-border-color:red;*/
-    -fx-border-style:none ;
-    /*-fx-border-width: 0.3  0.3   0.3    0.3;*/
-    -fx-background-insets: 0, 0, 0, 0;
+/*    -fx-border-color:#5E7D8B;
+    -fx-border-style:solid ;
+    -fx-border-width: 0.3  0.3   0.3    0.3;*/
     /*-fx-border-style:solid ;*/
      /*-fx-border-color: derive(#003641,70%);*/
 
-     -fx-effect: dropshadow(gaussian ,#ACB5A3 , 5, 0, 0.5, 0.5);
+     /*-fx-effect: dropshadow(gaussian ,#555555 , 5, 0, 0.5, 0.5);*/
+     -fx-effect: dropshadow(gaussian ,#555555 , 2, 0, 0.5, 0.5);
+     
+    -fx-background-insets: 0;
+    -fx-padding: 0;
 }
 
 #TABLE .column-resize-line{
-
-    -fx-background-color:#c5cae9;
-    -fx-pref-width:1;
-
-}
-#TABLE .column-overlay {
-
-    -fx-background-color:#a7ffeb;
+    -fx-background-color:red;
+    -fx-pref-width:0;
+    
+    -fx-background-insets: 0;
+    -fx-padding: 0;
 
 }
-#TABLE .placeholder {
-
-    -fx-background-color:white;
-
+#TABLE .column-overlay {/*при перетягивании колонки появляется оверлэй*/
+    -fx-background-color:#22515B;
+    
+    -fx-background-insets: 0;
+    -fx-padding: 0;
 }
-#TABLE .column-header-background {
-
-    -fx-background-color:black;
-
-}
-#TABLE .nested-column-header {
-
-    /*-fx-background-color:orange;*/
-
-}
-#TABLE .column-header {
+#TABLE .placeholder {/*не определил*/
 
     /*-fx-background-color:white;*/
+    /*-fx-background-color:red;*/
 
 }
-#TABLE .filler {
+#TABLE .column-header-background {/*ЭТО самая нижняя подложка заголовка*/
 
-    -fx-background-color:#c84164;
-
-}
-
-/*#TABLE .column-drag-header {
-
-    -fx-background-color:#57b75733;
-
-}*/
-/*#TABLE .label {
-
-    -fx-background-color:#f3622d;
-
-}
-#TABLE .table-column {
-
-    -fx-background-color:aquamarine;
-
-}*/
-/*#TABLE  .scroll-bar:horizontal {
+    /*-fx-background-color:-fx-header-color;*/
+    -fx-background-color:transparent;
+    -fx-pref-height:35;
     
-    -fx-background-color: red;
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+
+}
+#TABLE .nested-column-header {/*не определил*/
+    -fx-pref-height:35;
+    
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+
+}
+#TABLE .column-header {/*ЗАГОЛОВОК КОЛОНКИ*/
+
+    -fx-background-color:-fx-header-color;
+    -fx-pref-height:35;
+    -fx-border-radius:0;
+    -fx-border-width: 0 1 1 0; 
+    -fx-border-style: solid;
+    -fx-border-color:#DFDFDF;
     -fx-background-radius: 0;
     -fx-background-insets: 0;
     -fx-padding: 0;
-    
-}*/
+}
 
-/*.list-view > .virtual-flow > .scroll-bar:horizontal,
-.tree-view > .virtual-flow > .scroll-bar:horizontal,
-.table-view > .virtual-flow > .scroll-bar:horizontal,
-.tree-table-view > .virtual-flow > .scroll-bar:horizontal {
-    -fx-background-insets: 0, 0 0 0 0;
-    -fx-padding: 0;
-    -fx-background-radius: 0;
+#TABLE .column-header .table-column{}
+
+#TABLE .filler {/*ЭТО children самой нижней подложки заголовка*/
+    -fx-background-color:-fx-header-color;
+}
+#TABLE .column-drag-header {}
+
+#TABLE .nested-column-header .label {
+    -fx-text-fill:#003641;
+    -fx-font-family: "Roboto Light";
+    -fx-font-size: 17;
     
-}*/
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+
+}
 .table-view *.scroll-bar:horizontal *.increment-button,
 .table-view *.scroll-bar:horizontal *.decrement-button {
     -fx-background-color: null;
