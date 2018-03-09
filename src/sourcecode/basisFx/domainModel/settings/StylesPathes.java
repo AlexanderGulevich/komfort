@@ -13,7 +13,7 @@ public enum StylesPathes {
     
     MAIN("/res/css/styles.css"),
     BUTTONS("/res/css/buttons.css"),
-    PANES("/res/css/panes.css"),
+    PANELS("/res/css/panels.css"),
     TABLES("/res/css/tables.css"),
     MENUS("/res/css/menus.css"),
     MENU_BAR("/res/css/menuBar.css"),

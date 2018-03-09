@@ -1,0 +1,29 @@
+#TARGET_PANEL{
+      -fx-background-color: transparent;
+}
+#PANELS_BUTTON{
+    -fx-pref-width:70;
+    -fx-pref-height:20;
+    
+    
+}
+
+#LEFT_SIDE_MENU_NAMES_PANEL{
+     -fx-padding:0 0 0 0;
+     /*-fx-pref-height: 35;*/
+      -fx-background-color: white;
+     /*-fx-border-color:#57b75733;*/
+     -fx-border-color:derive(#003641,120%);
+     -fx-border-width: 0.5 0.5 0.5 0.5; 
+     
+    
+}
+#LEFT_SIDE_MENU_VERTICAL_PANEL{
+    
+         /*-fx-background-color: #14333D;*/
+         /*-fx-background-color: #3f828a;*/
+         /*-fx-background-color: #53A5B2;*/
+         -fx-background-color: #003641;
+         /*-fx-pref-width: 60;*/
+     
+}

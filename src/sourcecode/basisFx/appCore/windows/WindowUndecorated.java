@@ -1,5 +1,6 @@
 package basisFx.appCore.windows;
 
+import basisFx.appCore.panels.AbstractPanel;
 import basisFx.appCore.AnchorCoordinate;
 import basisFx.appCore.registry.Layers;
 import basisFx.domainModel.settings.CSSID;
@@ -29,12 +30,7 @@ public class WindowUndecorated extends WindowFx{
     private boolean isManeWindow=false;
     private NButton  maximazeButton;
     private NButton  closingButton;
-    private NText title;
-    private Text textIcon;
-    private NImgView  imageViewIcon;
-    private NAnchor  imageViewTitle;
 
-    
 
     public WindowUndecorated(double w,double h, Stage primaryStage) {
         this.stage=primaryStage;
@@ -61,30 +57,30 @@ public class WindowUndecorated extends WindowFx{
         t.init();
         return this;
         
+        
     }
 
-    @Override
-    void initIcon() {
-  
-//             imageViewIcon=AppNode.NodeBuilder.create()
-//                .setCoordinate(titlePanel, 5d, null, null, 5d)
-//                .setSize(15d, 15d)
-//                .setStage(stage)
-//                .createNImgView()
-//                .setImg(IMGpath.ICONTOOP);
-  
+   
+    public WindowUndecorated setIconAnchor(AnchorCoordinate c, AnchorPane p) {
+        AppNode.NodeBuilder.create()
+                .setCoordinate(c)
+                .setParent(p)
+                .setId(CSSID.IMG_ICON)
+                .createNpAnchor()
+                .getElement();
+        return this;
+        
     }
     
-    public WindowUndecorated setTextIcon(AnchorCoordinate c,FontsStore f, Double fHeight,String tIcn){
-        textIcon=(Text) AppNode.NodeBuilder.create()
+    public WindowUndecorated setTextIcon(AnchorPane parent,AnchorCoordinate c,FontsStore f, Double fHeight,String tIcn){
+        AppNode.NodeBuilder.create()
                  .setCoordinate(c)
-                 .setParent(Layers.getTitlePanel())
+                 .setParent(parent)
                  .setFont(f, fHeight)
-                 .setId(CSSID.ROOT_TEXT_ICON)
+                 .setId(CSSID.TEXT_ICON_ANCHOR)
                  .setText(tIcn)
-                 .createNText().getElement();
-        
-    
+                 .createNText();
+
         return this;
     }
 
@@ -137,9 +133,6 @@ public class WindowUndecorated extends WindowFx{
                 setString(maximazeStr, ContentDisplay.CENTER);
     }
 
-    void initTitle() {}
-
-    
       private void setTransparentRoot(){
                  this.root=(AnchorPane) AppNode.NodeBuilder.create()
                          .setId(CSSID.TRANSPARENT_ROOT)
@@ -161,14 +154,12 @@ public class WindowUndecorated extends WindowFx{
                  
                  Layers.setVisibleRoot(visibleRoot);
      }
-      
       public WindowUndecorated setPanel(AbstractPanel p){
           p.setStage(stage);
           p.init();
           if(this.isManeWindow)   {p.register();}   
           return this;
      }
-        
       public WindowFx windowShow(){
             
             windowInit();
@@ -181,6 +172,8 @@ public class WindowUndecorated extends WindowFx{
             return this;
 
      }
+
+  
      
    
      

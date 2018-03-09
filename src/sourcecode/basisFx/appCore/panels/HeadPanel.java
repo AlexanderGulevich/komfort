@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package basisFx.appCore.windows;
+package basisFx.appCore.panels;
 
 import basisFx.appCore.elements.AppNode;
 import basisFx.appCore.events.AppEvent;
@@ -15,12 +15,12 @@ import javafx.scene.layout.AnchorPane;
  *
  * @author Alek
  */
-public class TitlePanel extends AbstractPanel {
-
-    public TitlePanel(AbstractPanel.PanelBuilder b) {
+public class HeadPanel extends AbstractPanel{
+    
+    
+     public HeadPanel(AbstractPanel.PanelBuilder b) {
         
-        this.panelCoordinate=b.panelCoordinate;
-        this.parent=b.parent;
+           build(b);
 
     }
 
@@ -34,7 +34,9 @@ public class TitlePanel extends AbstractPanel {
          panel=(AnchorPane) AppNode.NodeBuilder.create()
                          .setCoordinate(panelCoordinate)
                          .setParent(parent)
-                         .setId(CSSID.TITLE_PANEL)
+                         .setId(CSSID.HEAD_PANEL)
+                         .setHeight(height)
+                         .setWidth(width)
                          .setStage(stage)
                          .setEvent(AppEvent.createStageDragging())
                          .createNpAnchor()
@@ -44,13 +46,8 @@ public class TitlePanel extends AbstractPanel {
 
     @Override
     public void register() {
-         Layers.setTitlePanel(panel);
+         Layers.setHeadPanel(panel);
     }
 
   
-    
-    
-    
-    
-    
 }

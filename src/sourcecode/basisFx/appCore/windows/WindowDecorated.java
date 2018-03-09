@@ -36,8 +36,6 @@ public class WindowDecorated extends WindowFx{
  
     }
     
-
-    @Override
     void initIcon() {
         
           stage.getIcons().add(
@@ -50,7 +48,7 @@ public class WindowDecorated extends WindowFx{
 
     }
     
-    @Override
+   
     void initTitle() {}
 
    

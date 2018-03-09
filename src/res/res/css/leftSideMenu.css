@@ -1,34 +1,14 @@
 #LEFT_SIDE_MENU_ROOT{
          /*-fx-background-color: white;*/
-
-     -fx-pref-width: 60;
-         
-}
-#LEFT_SIDE_MENU_ICON_PANEL{
-    
-         /*-fx-background-color: #14333D;*/
-         /*-fx-background-color: #3f828a;*/
-         /*-fx-background-color: #53A5B2;*/
-         -fx-background-color: #003641;
-         -fx-pref-width: 60;
-     
+     /*-fx-pref-width: 60;*/
+      
 }
 
-#LEFT_SIDE_MENU_ICON_TEXT{
+#LEFT_SIDE_MENU_TEXT{
     
          -fx-background-color: #c84164;
    
 }
-
-#TOP_ICON_PANEL{
-    -fx-pref-height: 40;
-        -fx-background-image: url("/res/img/logo33.png");
-      -fx-background-size:60;
-    
-    
-}
-
-
 
 #LEFT_SIDE_MENU_VERTICAL_BUTTONS{
     
@@ -79,7 +59,7 @@
     -fx-opacity:0.4;
 }
 #LEFT_SIDE_MENU_ICON_TEXT_PANEL{
-    -fx-pref-width: 110;
+    /*-fx-pref-width: 110;*/
      
 }
 
@@ -100,7 +80,6 @@
 
     
 }
-
 #LEFT_SIDE_MENU_HORIZONTAL_BUTTONS:armed,
 #LEFT_SIDE_MENU_HORIZONTAL_BUTTONS_CLICKED{
       /*-fx-background-color:derive(#E9FFFC,50%);*/
@@ -118,15 +97,4 @@
     /*-fx-border-insets:1;*/
       
    
-}
-
-#LEFT_SIDE_MENU_NAMES_PANEL{
-     -fx-padding:0 0 0 0;
-     -fx-pref-height: 35;
-      -fx-background-color: white;
-     /*-fx-border-color:#57b75733;*/
-     -fx-border-color:derive(#003641,120%);
-     -fx-border-width: 0.5 0.5 0.5 0.5; 
-     
-    
 }

@@ -3,10 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package basisFx.appCore.windows;
+package basisFx.appCore.panels;
 
 import basisFx.appCore.elements.AppNode;
-import basisFx.appCore.events.AppEvent;
 import basisFx.appCore.registry.Layers;
 import basisFx.domainModel.settings.CSSID;
 import javafx.scene.layout.AnchorPane;
@@ -16,12 +15,13 @@ import javafx.scene.layout.AnchorPane;
  * @author Alek
  */
 public class ContentPanel extends AbstractPanel{
+
+    
     
     
      public ContentPanel(AbstractPanel.PanelBuilder b) {
         
-        this.panelCoordinate=b.panelCoordinate;
-        this.parent=b.parent;
+         build(b);
 
     }
     
@@ -31,6 +31,8 @@ public class ContentPanel extends AbstractPanel{
            panel=(AnchorPane) AppNode.NodeBuilder.create()
                          .setCoordinate(panelCoordinate)
                          .setParent(parent)
+                         .setHeight(height)
+                         .setWidth(width)
                          .setId(CSSID.MAIN_CONTENT_ANCHOR)
                          .setStage(stage)
                          .createNpAnchor()

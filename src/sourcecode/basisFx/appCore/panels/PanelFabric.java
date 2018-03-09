@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package basisFx.appCore.windows;
+package basisFx.appCore.panels;
 
 /**
  *
@@ -19,6 +19,16 @@ public class PanelFabric {
     public ContentPanel createContentPanel(AbstractPanel.PanelBuilder b){
     
         return new ContentPanel(b);
+    
+    };
+    public VerticalMenuPanel createVerticalMenuPanel(AbstractPanel.PanelBuilder b){
+    
+        return new VerticalMenuPanel(b);
+    
+    };
+    public HorisontalFlowPanel createHorisontalFlowPanel(AbstractPanel.PanelBuilder b){
+    
+        return new HorisontalFlowPanel(b);
     
     };
 }

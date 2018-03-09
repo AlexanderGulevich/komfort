@@ -8,6 +8,7 @@ package basisFx.appCore.events;
 import basisFx.appCore.elements.AppNode;
 import basisFx.appCore.menu.LeftSideMenuRepresent;
 import basisFx.appCore.menu.MenuComponent;
+import basisFx.appCore.registry.Layers;
 import basisFx.domainModel.settings.CSSID;
 import basisFx.domainModel.settings.FontsStore;
 import java.util.ArrayList;
@@ -32,9 +33,9 @@ public class leftSideMenuIconClick extends AppEvent{
         this.appNode=n;
         this.but=(Button) n.getElement();
 
-        
-        but.setOnMouseClicked((event) -> {
-            LeftSideMenuRepresent.textPanel.getChildren().clear();
+
+        but.setOnAction((event) -> {
+            LeftSideMenuRepresent.textAnchor.getChildren().clear();
             LeftSideMenuRepresent.setDefaultStyleVerticalButtons();
             but.setId(CSSID.LEFT_SIDE_MENU_VERTICAL_BUTTONS_CLICKED.get());
        
@@ -58,7 +59,7 @@ public class leftSideMenuIconClick extends AppEvent{
          
         Text ntext = (Text) AppNode.NodeBuilder.create()
                 .setId(CSSID.LEFT_SIDE_MENU_COMMON_TEXT)
-                .setParent(LeftSideMenuRepresent.textPanel)
+                .setParent(LeftSideMenuRepresent.textAnchor)
                 .setCoordinate(0d, 10d, 0d, 0d)
                 .setText(component.getName())
                 .setFont(FontsStore.ROBOTO_BOLD, 20)
@@ -66,7 +67,8 @@ public class leftSideMenuIconClick extends AppEvent{
         }
 
     private void setButtons() {
-       LeftSideMenuRepresent.horisontalPanel.getChildren().clear();
+        System.out.println( Layers.getHorisontalFlowPanel());
+       Layers.getHorisontalFlowPanel().getChildren().clear();
         
              if(this.component.isComposit()){
             
@@ -90,7 +92,7 @@ public class leftSideMenuIconClick extends AppEvent{
                                           }
                                   )
                           )
-                          .setParent(LeftSideMenuRepresent.horisontalPanel)
+                          .setParent(Layers.getHorisontalFlowPanel())
                           .createNButton();
 
 //                    

@@ -4,9 +4,7 @@ import basisFx.appCore.AnchorCoordinate;
 import basisFx.appCore.StylesLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
 
 /**
@@ -30,12 +28,9 @@ public abstract class WindowFx {
     protected Boolean iconIneded;
     protected AnchorCoordinate titlePanelCoordinate;
  
-    abstract void initIcon();
-    abstract void initTitle();
     abstract void initControlTopButton();
     public abstract WindowFx windowShow();
-  
-             
+               
     protected void windowInit(){
         
       this.scene= new Scene(root,width,height);

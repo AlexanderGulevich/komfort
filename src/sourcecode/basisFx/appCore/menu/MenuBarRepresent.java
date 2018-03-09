@@ -5,16 +5,13 @@
  */
 package basisFx.appCore.menu;
 
-import basisFx.appCore.AnchorCoordinate;
 import basisFx.appCore.elements.AppNode;
 import basisFx.appCore.elements.NMenuBar;
-import basisFx.domainModel.settings.CSSID;
 import java.util.ArrayList;
 import java.util.Iterator;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
-import javafx.scene.layout.AnchorPane;
  
 
 /**

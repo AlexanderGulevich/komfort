@@ -6,6 +6,7 @@
 package basisFx.appCore.registry;
 
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.FlowPane;
 
 /**
  *
@@ -17,6 +18,8 @@ public  class Layers {
         private    static  AnchorPane contentLayer;  
         private    static  AnchorPane titlePanel;  
         private    static  AnchorPane headPanel;
+        private    static  AnchorPane verticalMenuPanel;
+        private    static    FlowPane horisontalFlowPanel;
         
         
     public static AnchorPane getVisibleRoot() {
@@ -53,7 +56,22 @@ public  class Layers {
     public static AnchorPane getHeadPanel() {
         return headPanel;
     }
+
+    public static void setVerticalMenuPanel(AnchorPane panel) {
+        Layers.verticalMenuPanel = panel;
+    }
+
+    public static AnchorPane getVerticalMenuPanel() {
+        return verticalMenuPanel;
+    }
+
+    public static void setHorisontalFlowPanel(FlowPane panel) {
+          Layers.horisontalFlowPanel = panel; 
+    }
     
+    public static FlowPane getHorisontalFlowPanel() {
+        return horisontalFlowPanel;
+    }
     
     
 }

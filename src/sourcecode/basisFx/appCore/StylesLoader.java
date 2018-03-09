@@ -46,7 +46,7 @@ public class StylesLoader {
         
       StylesLoader.load(scene, StylesPathes.MAIN);
       StylesLoader.load(scene, StylesPathes.BUTTONS);
-      StylesLoader.load(scene, StylesPathes.PANES);
+      StylesLoader.load(scene, StylesPathes.PANELS);
       StylesLoader.load(scene, StylesPathes.TABLES);
       StylesLoader.load(scene, StylesPathes.MENUS);
       StylesLoader.load(scene, StylesPathes.WINDOWS);
