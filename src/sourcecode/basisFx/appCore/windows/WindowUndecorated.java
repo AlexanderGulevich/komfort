@@ -10,10 +10,7 @@ import basisFx.appCore.elements.NButton;
 import basisFx.appCore.elements.NImgView;
 import basisFx.appCore.elements.NText;
 import basisFx.appCore.events.AppEvent;
-import basisFx.domainModel.settings.IMGpath;
-import basisFx.domainModel.settings.Settings;
 import basisFx.domainModel.settings.TopButtons;
-import basisFx.domainModel.settings.WindowsTitlesNames;
 import javafx.geometry.Insets;
 import javafx.scene.control.ContentDisplay;
 import javafx.scene.layout.AnchorPane;
@@ -29,21 +26,21 @@ import javafx.stage.StageStyle;
 public class WindowUndecorated extends WindowFx{
     
     private NButton  hideButton;
+    private boolean isManeWindow=false;
     private NButton  maximazeButton;
     private NButton  closingButton;
     private NText title;
     private Text textIcon;
     private NImgView  imageViewIcon;
     private NAnchor  imageViewTitle;
-    public static enum TITLE_VIEW{IMG,TEXT};
-    public  TITLE_VIEW titleView=TITLE_VIEW.IMG;
+
     
 
     public WindowUndecorated(double w,double h, Stage primaryStage) {
         this.stage=primaryStage;
         setTransparentRoot();
         setVisibleRoot();
-        
+        this.isManeWindow=true;
           
         this.width=w;
         this.height=h;
@@ -60,9 +57,8 @@ public class WindowUndecorated extends WindowFx{
         
     }
     
-    public WindowUndecorated setKindOfTitle(TITLE_VIEW tw){
-    
-        this.titleView=tw;
+    public WindowUndecorated setTitle(AbstracttTitle t){
+        t.init();
         return this;
         
     }
@@ -82,7 +78,7 @@ public class WindowUndecorated extends WindowFx{
     public WindowUndecorated setTextIcon(AnchorCoordinate c,FontsStore f, Double fHeight,String tIcn){
         textIcon=(Text) AppNode.NodeBuilder.create()
                  .setCoordinate(c)
-                 .setParent(titlePanel)
+                 .setParent(Layers.getTitlePanel())
                  .setFont(f, fHeight)
                  .setId(CSSID.ROOT_TEXT_ICON)
                  .setText(tIcn)
@@ -110,7 +106,7 @@ public class WindowUndecorated extends WindowFx{
                 setSize(width,height).
                 setPadding(padding).
                 setCoordinate(topMatgin, 0d, null, null).
-                setId(CSSID.TOP_CONTROL_BUTTON).setParent(titlePanel).
+                setId(CSSID.TOP_CONTROL_BUTTON).setParent(Layers.getTitlePanel()).
                 setStage(stage).
                 setEvent(AppEvent.createClosingWindowEvent()).
                 createNButton().
@@ -123,7 +119,7 @@ public class WindowUndecorated extends WindowFx{
                  setSize(width,height).
                  setPadding(padding).
                  setCoordinate(topMatgin, width+width, null, null).
-                 setId(CSSID.TOP_CONTROL_BUTTON).setParent(titlePanel).
+                 setId(CSSID.TOP_CONTROL_BUTTON).setParent(Layers.getTitlePanel()).
                  setStage(stage).
                  createNButton().
                  setString(hideStr, ContentDisplay.CENTER);
@@ -135,52 +131,16 @@ public class WindowUndecorated extends WindowFx{
                 setSize(width,height).
                 setPadding(padding).
                 setCoordinate(topMatgin, width, null, null).
-                setId(CSSID.TOP_CONTROL_BUTTON).setParent(titlePanel).
+                setId(CSSID.TOP_CONTROL_BUTTON).setParent(Layers.getTitlePanel()).
                 setStage(stage).
                 createNButton().
                 setString(maximazeStr, ContentDisplay.CENTER);
     }
 
-    void initTitle() {
-        
-        if (this.titleView==TITLE_VIEW.TEXT) {
-            
-            title=AppNode.NodeBuilder.create()
-                    .setParent(titlePanel)
-                    .setCoordinate(titleNameCoordinate)
-                    .setFont(Settings.MAIN_TITLE_FONT, Settings.MAIN_TITLE_HEIGHT)
-                    .setId(CSSID.TITLE_WINDOW_TEXT)
-                    .setText(WindowsTitlesNames.MAIN_WINDOW_NAME)
-                    .createNText();
-        }
-        
-        if (this.titleView==TITLE_VIEW.IMG) {
-        
-            imageViewTitle=AppNode.NodeBuilder.create()
-                    .setParent(titlePanel)
-                    .setCoordinate(titleNameCoordinate)
-                    .setId(CSSID.TITLE_WINDOW_IMG)
-                    .createNpAnchor();
-        }
-          
+    void initTitle() {}
 
-    }
-
-      @Override
-      public WindowUndecorated setContentLayer(double t,double r,double b,double l) {
-      
-        this.contentLauer=(AnchorPane) AppNode.NodeBuilder.create()
-               .setCoordinate(visibleRoot, t, r, b, l)
-               .setId(CSSID.MAIN_CONTENT_ANCHOR)
-               .setStage(stage)
-               .createNpAnchor().getElement();
-        
-        Layers.setContentLayer(contentLauer);
-
-       return this;
-    }
     
-      protected void setTransparentRoot(){
+      private void setTransparentRoot(){
                  this.root=(AnchorPane) AppNode.NodeBuilder.create()
                          .setId(CSSID.TRANSPARENT_ROOT)
                          .setStage(stage)
@@ -190,7 +150,7 @@ public class WindowUndecorated extends WindowFx{
                  
                 Layers.setTransparentRoot(root);
      }
-      protected void setVisibleRoot(){
+      private void setVisibleRoot(){
                  this.visibleRoot=(AnchorPane) AppNode.NodeBuilder.create()
                          .setCoordinate(root, 0d, 0d, 0d, 0d)
                          .setId(CSSID.VISIBLE_ROOT)
@@ -201,47 +161,28 @@ public class WindowUndecorated extends WindowFx{
                  
                  Layers.setVisibleRoot(visibleRoot);
      }
-      protected void setTitlePanel(){
-                 this.titlePanel=(AnchorPane) AppNode.NodeBuilder.create()
-                         .setCoordinate(this.titlePanelCoordinate)
-                         .setParent(visibleRoot)
-                         .setId(CSSID.TITLE_PANEL)
-                         .setStage(stage)
-//                         .setEvent(AppEvent.createMaximazingSwitcher())
-                         .setEvent(AppEvent.createStageDragging())
-                         .createNpAnchor()
-                         .getElement();
-                 
-     Layers.setTitlePanel(titlePanel);
-
+      
+      public WindowUndecorated setPanel(AbstractPanel p){
+          p.setStage(stage);
+          p.init();
+          if(this.isManeWindow)   {p.register();}   
+          return this;
      }
         
-         public WindowFx windowShow(){
-            setTitlePanel();
+      public WindowFx windowShow(){
+            
             windowInit();
-            setTransparentMarkers();
-            initTitle();
+            
+            scene.setFill( Color.TRANSPARENT);
+            stage.initStyle(StageStyle.TRANSPARENT);
+            
             initControlTopButton();
             stage.show();
             return this;
 
      }
-     public WindowUndecorated setTitlePanelCoordinate(AnchorCoordinate c){
-          this.titlePanelCoordinate=c;
-          return this;
-      }
      
-     public WindowUndecorated setTitleNameCoordinate(AnchorCoordinate c){
-          this.titleNameCoordinate=c;
-          return this;
-      }
-      
-     private void setTransparentMarkers(){
-      
-            scene.setFill( Color.TRANSPARENT);
-            stage.initStyle(StageStyle.TRANSPARENT);
-      
-      }
+   
      
 
     

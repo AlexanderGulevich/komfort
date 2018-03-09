@@ -28,15 +28,13 @@ public abstract class WindowFx {
     protected AnchorPane visibleRoot;
     protected AnchorPane contentLauer;
     protected Boolean iconIneded;
-    protected AnchorPane titlePanel;
     protected AnchorCoordinate titlePanelCoordinate;
-    protected AnchorCoordinate titleNameCoordinate;
  
     abstract void initIcon();
     abstract void initTitle();
     abstract void initControlTopButton();
     public abstract WindowFx windowShow();
-    public abstract WindowFx setContentLayer(double t,double r,double b,double l);
+  
              
     protected void windowInit(){
         

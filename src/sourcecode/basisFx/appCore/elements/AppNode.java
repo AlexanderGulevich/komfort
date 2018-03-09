@@ -270,6 +270,7 @@ public abstract class AppNode  {
              return this;
     }
         public NodeBuilder setParent(AnchorPane ap) {
+            if(ap==null)System.out.println("basisFx.appCore.elements.AppNode.NodeBuilder.setParent()");
             this.hasBond=true;
             this.parentAnchor=ap;
             return this;

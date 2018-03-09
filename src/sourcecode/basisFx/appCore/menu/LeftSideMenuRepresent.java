@@ -123,9 +123,6 @@ public class LeftSideMenuRepresent extends MenuRepresent{
          if (this.npPalaced==namesPanelPalaced.NOT_EXIST) {
           
         }
-
-      
-        
         
         makeStructuredMenuView (menuComponent,null);
     

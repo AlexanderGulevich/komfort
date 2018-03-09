@@ -5,8 +5,6 @@
  */
 package basisFx.domainModel.settings;
 
-import basisFx.appCore.windows.WindowUndecorated.TITLE_VIEW;
-
 
 
 /**

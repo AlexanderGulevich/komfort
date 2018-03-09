@@ -28,7 +28,6 @@ public class WindowDecorated extends WindowFx{
 
     public WindowDecorated(double w,double h, Stage primaryStage) {
         this.root=new AnchorPane();
-        this.stage=new Stage();
         this.width=w;
         this.height=h;
         this.stage=primaryStage;
@@ -54,10 +53,7 @@ public class WindowDecorated extends WindowFx{
     @Override
     void initTitle() {}
 
-    @Override
-    public WindowFx setContentLayer(double t,double r,double b,double l) {
-       return this;
-    }
+   
 
     @Override
     public WindowFx windowShow() {
