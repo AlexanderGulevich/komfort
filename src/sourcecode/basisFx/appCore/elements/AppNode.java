@@ -4,7 +4,6 @@ import basisFx.appCore.AnchorCoordinate;
 import basisFx.appCore.events.AppEvent;
 import basisFx.domainModel.settings.CSSID;
 import basisFx.appCore.FontLogic;
-import basisFx.appCore.dataSource.DataMapper;
 import basisFx.domainModel.settings.WindowsTitlesNames;
 import basisFx.domainModel.settings.FontsStore;
 import javafx.geometry.Insets;

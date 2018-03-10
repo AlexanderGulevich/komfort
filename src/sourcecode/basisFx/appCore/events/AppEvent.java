@@ -6,8 +6,6 @@
 package basisFx.appCore.events;
 
 import basisFx.appCore.elements.AppNode;
-import basisFx.appCore.elements.TableViewWrapper;
-import basisFx.appCore.menu.MenuComponent;
 
 
 /**
@@ -17,6 +15,7 @@ import basisFx.appCore.menu.MenuComponent;
 public abstract class AppEvent {
 
     protected AppNode appNode;
+    protected EventFactory eventFactory=EventFactory.getInstance();
     
     public abstract void setElement(AppNode node);
     public AppEvent setElementNonLogic(AppNode node){
@@ -26,60 +25,5 @@ public abstract class AppEvent {
     
     };
     public abstract void run();
-    
-    
-    
-   public static  AppEvent createClosingWindowEvent(){
-   
-       return new CloseWindow();
-       
-   
-   }
-   public static  AppEvent createHidingWindowEvent(){
-   
-       return new HideWindow();
-       
-   
-   }
-   public static  AppEvent createMaximazingSwitcher(){
-   
-       return new MaximazingSwither();
-       
-   
-   }
-   public static  AppEvent createDbClickEvent(AppEvent appEvent){
-   
-       return new DbClick(appEvent);
-       
-   
-   }
-   public static  AppEvent createStageDragging(){
-   
-       return new StageDragging();
-       
-   
-   }
-   
-   public static  AppEvent createleftSideMenuIconClick(MenuComponent component){
-   
-       return new leftSideMenuIconClick(component);
-       
-   
-   }
-   public static  MenuButtonsClick createMenuButtonsClick(MenuComponent component, AdditionalButtonsBehaviour b){
-   
-       return new MenuButtonsClick(component,b);
-       
-   
-   }
-   public static  RowAddToTable createRowAdd(TableViewWrapper nTableView, RowCreater rowCreater ){
-   
-       return new RowAddToTable(nTableView, rowCreater);
-       
-   
-   }
-   
-   
-   
-    
+      
 }

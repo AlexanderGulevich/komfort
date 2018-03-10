@@ -53,7 +53,7 @@ public class MenuButtonsClick extends AppEvent{
     public void run() {
         
                 
-        this.component.getFactory().createElement();
+        this.component.getTarget().init();
     
     }
     

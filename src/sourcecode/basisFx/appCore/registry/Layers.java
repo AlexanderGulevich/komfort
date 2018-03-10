@@ -5,8 +5,10 @@
  */
 package basisFx.appCore.registry;
 
+import basisFx.appCore.panels.TextAnchorPanel;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.text.Text;
 
 /**
  *
@@ -19,7 +21,8 @@ public  class Layers {
         private    static  AnchorPane titlePanel;  
         private    static  AnchorPane headPanel;
         private    static  AnchorPane verticalMenuPanel;
-        private    static    FlowPane horisontalFlowPanel;
+        private    static  FlowPane   horisontalFlowPanel;
+        private    static  AnchorPane textAnchorPanel;
         
         
     public static AnchorPane getVisibleRoot() {
@@ -72,6 +75,15 @@ public  class Layers {
     public static FlowPane getHorisontalFlowPanel() {
         return horisontalFlowPanel;
     }
+
+    public static void setTextAnchorPanel(AnchorPane panel) {
+          Layers.textAnchorPanel = panel; 
+    }
+
+    public static AnchorPane getTextAnchorPanel() {
+        return textAnchorPanel;
+    }
+    
     
     
 }

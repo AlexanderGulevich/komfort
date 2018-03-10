@@ -18,7 +18,6 @@
 #TOP_CONTROL_BUTTON{
     -fx-text-fill:#5f7d8b;
     -fx-background-color:transparent;
-    -fx-background-radius: 0;
     -fx-border-radius:0;
     -fx-background-insets: 0, 0, 0, 0;
     -fx-background-radius: 0;
@@ -26,28 +25,48 @@
 }
 
 #PANELS_BUTTON{
-    
+
     -fx-background-color:white;
     -fx-background-radius: 0;
     -fx-border-radius:0;
     -fx-background-insets: 0, 0, 0, 0;
-    -fx-background-radius: 0;
-    -fx-effect: dropshadow(gaussian ,#555555 , 4, 0, 0.5, 0.5);
+    /*-fx-effect: dropshadow(gaussian ,#555555 , 4, 0, 0.5, 0.5);*/
+
+     -fx-effect: dropshadow(gaussian ,#555555 , 2, 0, 0.5, 0.5);
      -fx-text-fill:#003641;
     /*-fx-font-family: "Roboto Light";*/
     /*-fx-font-size: 17;*/
-    
+
 }
-/*#PANELS_BUTTON{
-    
-    -fx-background-color:white;
+#PANELS_BUTTON:armed{
+     -fx-background-color:#FF8964;
     -fx-background-radius: 0;
     -fx-border-radius:0;
     -fx-background-insets: 0, 0, 0, 0;
     -fx-background-radius: 0;
-    -fx-effect: dropshadow(gaussian ,#555555 , 10, 0, 0.5, 0.5);
-     -fx-text-fill:#003641;
-    -fx-font-family: "Roboto Light";
-    -fx-font-size: 17;
-    
-}*/
+    /*-fx-effect: dropshadow(gaussian ,#555555 , 4, 0, 0.5, 0.5);*/
+      -fx-font-weigh:bold ;
+     -fx-effect: dropshadow(gaussian ,#555555 , 10, 0, 0.5, 0.5);
+     -fx-text-fill:white;
+    /*-fx-font-family: "Roboto Light";*/
+    /*-fx-font-size: 17;*/
+
+
+
+}
+#PANELS_BUTTON:hover{
+     /*-fx-background-color:#ff3d00;*/
+    -fx-background-radius: 0;
+    -fx-border-radius:0;
+    -fx-background-insets: 0, 0, 0, 0;
+    -fx-background-radius: 0;
+    /*-fx-effect: dropshadow(gaussian ,#555555 , 4, 0, 0.5, 0.5);*/
+    -fx-font-weigh:bold ;
+     /* -fx-effect: dropshadow(gaussian ,#555555 , 10, 0, 0.5, 0.5); */
+     /*-fx-text-fill:#003641;*/
+    /*-fx-font-family: "Roboto Light";*/
+    /*-fx-font-size: 17;*/
+
+
+
+}

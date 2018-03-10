@@ -10,7 +10,7 @@ import javafx.scene.layout.AnchorPane;
 public class MenuComponent{ 
     
     private  ArrayList<MenuComponent> components=new ArrayList<>();
-    protected Target factory;
+    protected Target target;
     protected String name;
     protected String metaInf;
 
@@ -83,13 +83,13 @@ public class MenuComponent{
         return this;
     }
     
-    public MenuComponent setFactory(Target factory ){
-        this.factory=factory;
+    public MenuComponent setFactory(Target t ){
+        this.target=t;
         return this;
     }
 
-    public Target getFactory() {
-        return factory;
+    public Target getTarget() {
+        return target;
     }
     
         

@@ -7,6 +7,9 @@ package basisFx.appCore.panels;
 
 import basisFx.appCore.AnchorCoordinate;
 import basisFx.appCore.Initiated;
+import basisFx.appCore.elements.AppNode;
+import basisFx.appCore.events.EventFactory;
+import javafx.geometry.Insets;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
@@ -22,6 +25,8 @@ public abstract class AbstractPanel implements Initiated{
     protected AnchorPane panel;
     protected Double width;
     protected Double height;
+    protected Insets insects;
+    protected EventFactory eventFactory=EventFactory.getInstance();
 
     
     public abstract void init();
@@ -35,6 +40,7 @@ public abstract class AbstractPanel implements Initiated{
        this.width=b.width;
        this.panelCoordinate=b.panelCoordinate;
        this.parent=b.parent;
+       this.insects=b.insects;
     }
     public void setStage(Stage stage) {
         this.stage = stage;
@@ -47,6 +53,7 @@ public abstract class AbstractPanel implements Initiated{
         protected AnchorPane parent;
         protected Double width;
         protected Double height;
+        protected Insets insects;
        
 
         public PanelBuilder setPanelCoordinate(AnchorCoordinate panelCoordinate) {
@@ -69,7 +76,13 @@ public abstract class AbstractPanel implements Initiated{
             return this;
         }
         
-        
+         public PanelBuilder setPadding(Insets i) {
+           
+          this.insects=i;
+          return this;
+          
+          
+        }
 
       
       

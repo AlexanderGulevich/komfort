@@ -6,6 +6,7 @@
 package basisFx.appCore.menu;
 
 import basisFx.appCore.AnchorCoordinate;
+import basisFx.appCore.events.EventFactory;
 import basisFx.domainModel.settings.CSSID;
 import javafx.scene.layout.AnchorPane;
 
@@ -15,13 +16,13 @@ import javafx.scene.layout.AnchorPane;
  */
 public abstract class MenuRepresent {
     
-    protected  CSSID css;
-    protected  MenuComponent menuComponent;
-    protected  AnchorPane ap;
-    protected  AnchorCoordinate c;
+    protected CSSID css;
+    protected MenuComponent menuComponent;
+    protected AnchorPane ap;
+    protected AnchorCoordinate c;
     protected Double width;
     protected Double height;
-    
+    protected EventFactory eventFactory=EventFactory.getInstance();
     
     public abstract <T> void   makeStructuredMenuView(MenuComponent c, T parentMenu );
     
@@ -53,31 +54,6 @@ public abstract class MenuRepresent {
     public void setHeight(Double height) {
         this.height = height;
     }
-    
-    
-    
-
-    
-    
-    
-    
-    //StaticFabricsMethods
-    
-    public static MenuBarRepresent menuNBarFabric(){
-         
-        return new MenuBarRepresent();
-        
-        
-    }
-    
-    public static LeftSideMenuRepresent menuLeftSideFabric(){
-         
-        return new LeftSideMenuRepresent();
-        
-        
-    }
-    
-    
-
+   
     
 }

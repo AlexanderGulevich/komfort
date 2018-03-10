@@ -2,10 +2,11 @@ package basisFx.appCore.windows;
 
 import basisFx.appCore.AnchorCoordinate;
 import basisFx.appCore.StylesLoader;
+import basisFx.appCore.events.EventFactory;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import org.scenicview.ScenicView;
+
 
 
 /**
@@ -28,6 +29,7 @@ public abstract class WindowFx {
     protected AnchorPane contentLauer;
     protected Boolean iconIneded;
     protected AnchorCoordinate titlePanelCoordinate;
+    protected EventFactory eventFactory=EventFactory.getInstance();
  
     abstract void initControlTopButton();
     public abstract WindowFx windowShow();
@@ -40,7 +42,7 @@ public abstract class WindowFx {
 
       StylesLoader.loadAll(scene);
       
-//       ScenicView.show(scene);
+//      ScenicView.show(scene);
 
 
     }

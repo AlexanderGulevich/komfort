@@ -100,14 +100,14 @@ public class WindowUndecorated extends WindowFx{
                 setCoordinate(topMatgin, 0d, null, null).
                 setId(CSSID.TOP_CONTROL_BUTTON).setParent(Layers.getTitlePanel()).
                 setStage(stage).
-                setEvent(AppEvent.createClosingWindowEvent()).
+                setEvent(eventFactory.createClosingWindowEvent()).
                 createNButton().
                 setString(closeStr, ContentDisplay.CENTER);
 
 
          hideButton= AppNode.NodeBuilder.create().
                  setFont(fs, fontHeight).
-                 setEvent(AppEvent.createHidingWindowEvent()).
+                 setEvent(eventFactory.createHidingWindowEvent()).
                  setSize(width,height).
                  setPadding(padding).
                  setCoordinate(topMatgin, width+width, null, null).
@@ -119,7 +119,7 @@ public class WindowUndecorated extends WindowFx{
        
          maximazeButton= AppNode.NodeBuilder.create().
                 setFont(fs, fontHeight).
-                setEvent(AppEvent.createMaximazingSwitcher()).
+                setEvent(eventFactory.createMaximazingSwitcher()).
                 setSize(width,height).
                 setPadding(padding).
                 setCoordinate(topMatgin, width, null, null).

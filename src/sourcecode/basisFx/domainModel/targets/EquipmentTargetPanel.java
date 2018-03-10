@@ -1,42 +1,27 @@
 package basisFx.domainModel.targets;
 
-import basisFx.appCore.AnchorCoordinate;
 import basisFx.appCore.controlPolicy.ColumnWrapper;
 import basisFx.appCore.menu.Target;
 import basisFx.appCore.elements.AppNode;
 import basisFx.appCore.elements.TableViewWrapper;
-import basisFx.appCore.events.AppEvent;
-import basisFx.appCore.registry.Layers;
-import basisFx.appCore.registry.TargetRegistry;
 import basisFx.domainModel.pojo.Equipment;
 import basisFx.domainModel.settings.CSSID;
 import basisFx.domainModel.settings.FontsStore;
-import javafx.scene.control.Button;
-import javafx.scene.layout.AnchorPane;
 
 /**
  *
  * @author Alek
  */
-public class EquipmentPanel extends Target{
+public class EquipmentTargetPanel extends Target{
     
     private TableViewWrapper tableViewWrapper;
-    private Button but;
+
     
     @Override
     @SuppressWarnings("unchecked")
     public void createElement() {
         
-        TargetRegistry.targets.add(this);
-        Layers.getContentLayer().getChildren().clear();
-        
-        
-        panel =  (AnchorPane) AppNode.NodeBuilder.create()
-                 .setId(CSSID.TARGET_PANEL)
-                 .setCoordinate(new AnchorCoordinate(0d, 10d, 10d, 10d))
-                 .setParent(Layers.getContentLayer())
-                 .createNpAnchor().getElement();
-
+      
         tableViewWrapper = AppNode.NodeBuilder.create()
                 .setId(CSSID.TABLE).setCoordinate(panel,50d, null, 0d, 0d)
                 .<Equipment>createTableViewWrapper().setTablesSize(0.7, panel.widthProperty())
@@ -69,7 +54,7 @@ public class EquipmentPanel extends Target{
                  .setCoordinate(panel, 80d,50d, null, null)
                  .setText("ДОБАВИТЬ").setFont(FontsStore.ROBOTO_LIGHT, 15)
                  .setWidth(170d).setHeight(20d)
-                 .setEvent(AppEvent.
+                 .setEvent(eventFactory.
                          createRowAdd(
                                  tableViewWrapper, 
                                  (l)->{l.add(new Equipment());}))
@@ -80,7 +65,7 @@ public class EquipmentPanel extends Target{
                  .setCoordinate(panel, 120d,50d, null, null)
                  .setText("УДАЛИТЬ").setFont(FontsStore.ROBOTO_LIGHT, 15)
                  .setWidth(170d).setHeight(20d)
-                 .setEvent(AppEvent.
+                 .setEvent(eventFactory.
                          createRowAdd(
                                  tableViewWrapper, 
                                  (l)->{l.add(new Equipment());}))

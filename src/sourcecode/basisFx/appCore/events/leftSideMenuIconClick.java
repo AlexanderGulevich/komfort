@@ -35,7 +35,10 @@ public class leftSideMenuIconClick extends AppEvent{
 
 
         but.setOnAction((event) -> {
-            LeftSideMenuRepresent.textAnchor.getChildren().clear();
+           
+            Text t=(Text) Layers.getTextAnchorPanel().getChildren().get(0);
+            t.setText("");
+    
             LeftSideMenuRepresent.setDefaultStyleVerticalButtons();
             but.setId(CSSID.LEFT_SIDE_MENU_VERTICAL_BUTTONS_CLICKED.get());
        
@@ -57,13 +60,9 @@ public class leftSideMenuIconClick extends AppEvent{
 
     private void setCommonTextName() {
          
-        Text ntext = (Text) AppNode.NodeBuilder.create()
-                .setId(CSSID.LEFT_SIDE_MENU_COMMON_TEXT)
-                .setParent(LeftSideMenuRepresent.textAnchor)
-                .setCoordinate(0d, 10d, 0d, 0d)
-                .setText(component.getName())
-                .setFont(FontsStore.ROBOTO_BOLD, 20)
-                .createNText().getElement();
+        Text t=(Text) Layers.getTextAnchorPanel().getChildren().get(0);
+        t.setText(component.getName());
+            
         }
 
     private void setButtons() {
@@ -83,7 +82,7 @@ public class leftSideMenuIconClick extends AppEvent{
                           .setText(nextInerLevel.getName())
                           .setFont(FontsStore.ROBOTO_LIGHT, 17d)
                           .setEvent(
-                                  AppEvent.createMenuButtonsClick(    
+                                  eventFactory.createMenuButtonsClick(    
                                           nextInerLevel,
                                           (button) -> {
                                               LeftSideMenuRepresent.setDefaultStyleHorisontalButtons();

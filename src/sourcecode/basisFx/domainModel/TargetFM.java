@@ -5,7 +5,7 @@
  */
 package basisFx.domainModel;
 
-import basisFx.domainModel.targets.EquipmentPanel;
+import basisFx.domainModel.targets.EquipmentTargetPanel;
 
 /**
  *
@@ -13,7 +13,7 @@ import basisFx.domainModel.targets.EquipmentPanel;
  */
 public class TargetFM {
     
-    public  EquipmentPanel createEquipmentPanel(){
-                 return new EquipmentPanel();
+    public  EquipmentTargetPanel createEquipmentPanel(){
+                 return new EquipmentTargetPanel();
     }
 }

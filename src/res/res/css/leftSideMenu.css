@@ -83,7 +83,11 @@
 #LEFT_SIDE_MENU_HORIZONTAL_BUTTONS:armed,
 #LEFT_SIDE_MENU_HORIZONTAL_BUTTONS_CLICKED{
       /*-fx-background-color:derive(#E9FFFC,50%);*/
-      -fx-background-color:#ECF1F2;
+      /*-fx-background-color:#ECF1F2;*/
+      -fx-background-color:FFC5B3;
+      
+        -fx-text-fill:white;
+      
       -fx-border-style:solid ;
         -fx-padding:3 10 3 10;
         

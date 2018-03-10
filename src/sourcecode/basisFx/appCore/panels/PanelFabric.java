@@ -31,4 +31,14 @@ public class PanelFabric {
         return new HorisontalFlowPanel(b);
     
     };
+    public TextAnchorPanel createTextAnchorPanel(AbstractPanel.PanelBuilder b){
+    
+        return new TextAnchorPanel(b);
+    
+    };
+    public InnerContentPanel createInnerContentPanel(AbstractPanel.PanelBuilder b){
+    
+        return new InnerContentPanel(b);
+    
+    };
 }
