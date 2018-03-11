@@ -10,6 +10,8 @@ import basisFx.appCore.elements.TableViewWrapper;
 import basisFx.domainModel.pojo.DomainObject;
 import java.util.List;
 import javafx.collections.ListChangeListener;
+import javafx.scene.control.TableView;
+
 
 /**
  *
@@ -17,19 +19,20 @@ import javafx.collections.ListChangeListener;
  */
 public class TableListener  implements ListChangeListener  {
 
-    private  TableViewWrapper nTableView;
+    private  TableViewWrapper tableViewWrapper;
     private  UnitOfWork unitOfWork;
+    private TableView<DomainObject> table;
 
     public TableListener() {}
 
-    public TableListener(TableViewWrapper nTableView) {
-        this.nTableView=nTableView;
-        this.unitOfWork=nTableView.getUnitOfWork();
+    public TableListener(TableViewWrapper t) {
+        this.tableViewWrapper=t;
+        this.unitOfWork=tableViewWrapper.getUnitOfWork();
     }
     
-    public void setNTableView(TableViewWrapper nTableView){
-        this.nTableView=nTableView;
-        this.unitOfWork=nTableView.getUnitOfWork();
+    public void setNTableView(TableViewWrapper t){
+        this.tableViewWrapper=t;
+        this.unitOfWork=tableViewWrapper.getUnitOfWork();
     }
     
     @Override
@@ -57,10 +60,24 @@ public class TableListener  implements ListChangeListener  {
                             @SuppressWarnings("unchecked")
                             List<DomainObject> subList = change.getAddedSubList();
                             DomainObject p = subList.get(0);
-                            
+
+
                             if ( !unitOfWork.getStoredPojoesId().contains(p.getId())) {
                               this.unitOfWork.setNewPojoes(p);
                               System.out.println("wasAdded");
+
+                              this.table = (TableView<DomainObject>) this.tableViewWrapper.getElement();
+
+                                int newPojoIndex = table.getItems().indexOf(p);
+
+                                System.out.println("newPojoIndex--------"+ newPojoIndex);
+
+                                table.scrollTo(newPojoIndex);
+                                table.getSelectionModel().select(newPojoIndex);
+//                                table.getSelectionModel().focus(newPojoIndex);
+
+
+
                             }else{
                             
 //                              System.out.println("not was added");

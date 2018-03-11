@@ -64,7 +64,8 @@ public class RowAddToTable <T> extends AppEvent{
 
             } else {//если какая-то строка выбрана
 
-//
+
+
 //                    TreeTableViewSelectionModel<CategoryPojo> sm = treeTable.getSelectionModel();
 //                    int rowIndex = sm.getSelectedIndex();
 //                    TreeItem<CategoryPojo> selectedItem = sm.getModelItem(rowIndex);

@@ -42,15 +42,17 @@ public class MainMenuSketch extends MenuSketch{
                                create("Курсы", null, composit.SIMPLE),
                                create("Выход", null, composit.SIMPLE),
                                create("Рентабельность", null, composit.SIMPLE)
-                       ),
+                       )
+
+//               ,
                
                
                
 //               create("Задачи", null, composit.COMPOSITE,""),
-               create("Контрагенты", null, composit.COMPOSITE,"") .addInerLevel(
-                               create("Поставщики", fabric.createEquipmentPanel(), composit.SIMPLE),
-                               create("Потребители", null, composit.SIMPLE)
-                       )
+//               create("Контрагенты", null, composit.COMPOSITE,"") .addInerLevel(
+//                               create("Поставщики", fabric.createEquipmentPanel(), composit.SIMPLE),
+//                               create("Потребители", null, composit.SIMPLE)
+//                       )
 //               create("Профит", null, composit.COMPOSITE,"")
                                         );
     }
