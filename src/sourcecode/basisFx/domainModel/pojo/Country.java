@@ -1,5 +1,7 @@
 package basisFx.domainModel.pojo;
 
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
@@ -8,14 +10,14 @@ import javafx.beans.property.StringProperty;
  *
  * @autor AlexanderGulevich
  */
-public class Currency extends DomainObject{
+public class Country extends DomainObject{
 
 
     private StringProperty name =new SimpleStringProperty(this, "name", null);
 
-    public Currency() {
-        this.dataMapper=mapperFabric.getCurrencyDataMapper();
-        this.tableName="Currency";
+    public Country() {
+        this.dataMapper=mapperFabric.getCountryDataMapper();
+        this.tableName="Country";
     }
 
 

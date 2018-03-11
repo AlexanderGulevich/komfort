@@ -20,8 +20,13 @@ public class ColumnFabric <T,K> {
     
     }
     public TextColumn<T>  createTextColumn(ColumnWrapper.Bulder builder){
-    
+
         return new TextColumn<T>(builder);
-    
+
+    }
+    public ComboBoxColumn<T>  createComboBoxColumn(ColumnWrapper.Bulder builder){
+
+        return new ComboBoxColumn<T>(builder);
+
     }
 }

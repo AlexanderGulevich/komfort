@@ -1,33 +1,49 @@
-///*
-// * To change this license header, choose License Headers in Project Properties.
-// * To change this template file, choose Tools | Templates
-// * and open the template in the editor.
-// */
-//package basisFx.domainModel.mapper;
-//
-//import basisFx.appCore.dataSource.DataMapper;
-//import basisFx.domainModel.pojo.*;
-//import javafx.collections.ObservableList;
-//
-///**
-// *
-// * @author Alek
-// */
-//public class CounterpartyDataMapper extends DataMapper {
-//
-//    @Override
-//    public void insertDomainObject() {
-//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-//    }
-//
-//    @Override
-//    public void updateDomainObject() {
-//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-//    }
-//
-//    @Override
-//    public void getAllDomainObjectList(ObservableList list) {
-//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-//    }
-//    
-//}
+package basisFx.domainModel.mapper;
+
+import basisFx.appCore.dataSource.DataMapper;
+import basisFx.domainModel.pojo.Counterparty;
+import basisFx.domainModel.pojo.Country;
+import basisFx.domainModel.pojo.Currency;
+import basisFx.domainModel.pojo.DomainObject;
+import javafx.collections.ObservableList;
+
+import java.util.HashMap;
+import java.util.Map;
+
+/**
+ * Created by AlexanderGulevich on 11.03.2018.
+ *
+ * @autor AlexanderGulevich
+ */
+public class CounterpartyDataMapper extends DataMapper {
+
+    private static Map<Integer,Currency> currencyMap= new HashMap<>();
+
+    private Counterparty domainObject;
+
+    private static CounterpartyDataMapper ourInstance = new CounterpartyDataMapper();
+
+    public static CounterpartyDataMapper getInstance() {
+        return ourInstance;
+    }
+
+    private CounterpartyDataMapper() {
+    }
+
+
+
+    @Override
+    public void getAllDomainObjectList(ObservableList list, String tableName) {
+
+    }
+
+    @Override
+    public void updateDomainObject(DomainObject d) {
+
+    }
+
+    @Override
+    public void insertDomainObject(DomainObject d) {
+
+    }
+}

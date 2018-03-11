@@ -28,7 +28,7 @@ public class EquipmentDataMapper extends DataMapper {
    
     private EquipmentDataMapper() {}
     
-    public static EquipmentDataMapper getInstanse(){
+    public static EquipmentDataMapper getInstance(){
      
         if(EquipmentDataMapper.instance!=null){
             return EquipmentDataMapper.instance;

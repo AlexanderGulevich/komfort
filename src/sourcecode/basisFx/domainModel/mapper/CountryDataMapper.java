@@ -2,8 +2,9 @@ package basisFx.domainModel.mapper;
 
 import basisFx.appCore.dataSource.DataMapper;
 import basisFx.appCore.dataSource.Db;
-import basisFx.domainModel.pojo.Currency;
+import basisFx.domainModel.pojo.Country;
 import basisFx.domainModel.pojo.DomainObject;
+import basisFx.domainModel.pojo.Equipment;
 import javafx.collections.ObservableList;
 
 import java.sql.PreparedStatement;
@@ -18,19 +19,18 @@ import java.util.logging.Logger;
  *
  * @autor AlexanderGulevich
  */
-public class CurrencyDataMapper extends DataMapper{
+public class CountryDataMapper  extends DataMapper{
 
-    private Currency domainObject;
+    private Country domainObject;
 
-    private static CurrencyDataMapper ourInstance = new CurrencyDataMapper();
+    private static CountryDataMapper ourInstance = new CountryDataMapper();
 
-    public static CurrencyDataMapper getInstance() {
+    public static CountryDataMapper getInstance() {
         return ourInstance;
     }
 
-    private CurrencyDataMapper() {
+    private CountryDataMapper() {
     }
-
 
     @Override
     public void getAllDomainObjectList(ObservableList list, String tableName) {
@@ -45,7 +45,7 @@ public class CurrencyDataMapper extends DataMapper{
 
             while (rs.next()) {
 
-                Currency pojo=new Currency();
+                Country pojo=new Country();
                 pojo.setId(rs.getInt("id"));
                 pojo.setName(rs.getString("name"));
 
@@ -67,7 +67,7 @@ public class CurrencyDataMapper extends DataMapper{
     @Override
     public void updateDomainObject(DomainObject d) {
         try {
-            domainObject=(Currency) d;
+            domainObject=(Country) d;
 
             String expression = "UPDATE "+ d.getTableName()+
                     " SET  name = ? WHERE id= ?";
@@ -90,7 +90,7 @@ public class CurrencyDataMapper extends DataMapper{
     @Override
     public void insertDomainObject(DomainObject d) {
 
-        domainObject=(Currency) d;
+        domainObject=(Country) d;
 
         try {
             String expression= "INSERT INTO "+ d.getTableName()

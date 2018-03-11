@@ -25,7 +25,7 @@ import javafx.util.Callback;
 /**
  *
  * @author Alek
- * @param <T>
+ *
  */
 public abstract class AppNode  {
     protected String id;
@@ -375,7 +375,6 @@ public abstract class AppNode  {
      public  ButtonWrapper createNButton(){
         return new<Button>  ButtonWrapper(this);
     }
-
      public  NImgView createNImgView(){
         return new <ImageView>  NImgView(this);
     }
@@ -384,17 +383,16 @@ public abstract class AppNode  {
     }
      public  NFlowPane createNFlowPane(){
         return new <FlowPane>  NFlowPane(this);
-    }
-
+     }
      public   <T> TableViewWrapper createTableViewWrapper  (){
-        return new  TableViewWrapper< >(this);
-    }
-
-        public static class create {
-
-            public create() {
-            }
+            return new  TableViewWrapper< >(this);
         }
+     public   <T> ComboBoxWrapper createComboBoxWrapper  (){
+            return new  ComboBoxWrapper<>(this);
+        }
+
+
+    }
 
        
 
@@ -413,7 +411,3 @@ public abstract class AppNode  {
    
     
     
-    
-    
-    
-}

@@ -13,8 +13,13 @@ package basisFx.appCore.controlPolicy;
  */
 public class EditFabric<T,K> {
     public  EditCommitDefault<T,K> createEditCommitDefault (){
-    
+
         return new EditCommitDefault<>();
-    
+
+    }
+    public  EditCommitComboBox<T,K> createEditCommitComboBox(){
+
+        return new EditCommitComboBox<>();
+
     }
 }

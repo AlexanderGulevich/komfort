@@ -21,8 +21,8 @@ public abstract class Settings {
  public static final double Preloader_WIDTH= 600d;
  public static final double Preloader_HEIGHT= 400d ;
  public static final double MAIN_TITLE_HEIGHT= 35d ;
-// public static final double PRELODER_COUNT_LIMIT = 150000;
- public static final double PRELODER_COUNT_LIMIT = 100;
+ public static final double PRELODER_COUNT_LIMIT = 150000;
+// public static final double PRELODER_COUNT_LIMIT = 100;
  public static final FontsStore MAIN_TITLE_FONT = FontsStore.FIRA_BOLD;
  public static String DB_URL ="db";
  public static String DB_SERVER_PATH ="C:/komfdb/";

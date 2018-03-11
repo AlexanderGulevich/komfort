@@ -9,7 +9,7 @@ package basisFx.appCore.controlPolicy;
  *
  * @author 62
  */
-public class CheckingForNumeric <T> extends Checking<T>{
+public class CheckingForNumeric <T> implements Checking<T>{
 
    
 

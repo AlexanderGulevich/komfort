@@ -23,8 +23,9 @@ public class MainMenuSketch extends MenuSketch{
                create("Списки", null, composit.COMPOSITE,"")
                         .addInerLevel(
                                create("Оборудование", fabric.createEquipmentPanel(), composit.SIMPLE),
-                               create("Контрагенты", null, composit.SIMPLE),
-                               create("Сотрудники", null, composit.SIMPLE)
+                               create("Контрагенты", fabric.createCounterpartyPanel(), composit.SIMPLE),
+                                create("Сотрудники", null, composit.SIMPLE),
+                                create("Прочее", null, composit.SIMPLE)
                        ),
                
                
@@ -42,18 +43,14 @@ public class MainMenuSketch extends MenuSketch{
                                create("Курсы", null, composit.SIMPLE),
                                create("Выход", null, composit.SIMPLE),
                                create("Рентабельность", null, composit.SIMPLE)
-                       )
+                       ),
+               create("Архив", null, composit.COMPOSITE,"" )
 
-//               ,
-               
-               
-               
-//               create("Задачи", null, composit.COMPOSITE,""),
 //               create("Контрагенты", null, composit.COMPOSITE,"") .addInerLevel(
 //                               create("Поставщики", fabric.createEquipmentPanel(), composit.SIMPLE),
 //                               create("Потребители", null, composit.SIMPLE)
 //                       )
-//               create("Профит", null, composit.COMPOSITE,"")
+//               create("Профит", null, composit.COMPOSITE,"")
                                         );
     }
     

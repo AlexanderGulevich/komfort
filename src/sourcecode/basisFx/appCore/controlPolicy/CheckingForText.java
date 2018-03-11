@@ -9,7 +9,7 @@ package basisFx.appCore.controlPolicy;
  *
  * @author Alek
  */
-public class CheckingForText <T> extends Checking<T>{
+public class CheckingForText <T> implements Checking<T>{
     
     @Override
     public void check(T value) {

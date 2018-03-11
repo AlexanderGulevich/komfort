@@ -50,11 +50,7 @@ gradle.taskGraph.whenReady {taskGraph ->
 
 
  println "\n КОНФИГУРАЦИИ \n"
-configurations.each{
-
-     it->println it
-
-}
+configurations.each{ it->println it }
 println "\n\n  "
 }
 //info()
@@ -68,8 +64,6 @@ ext {
 task wrapper(type: Wrapper) {
    gradleVersion = '4.3.1'
 }
-
-
 sourceCompatibility = '1.8'
 [compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
 description = 'An app  build'
@@ -163,7 +157,7 @@ dependencies {
 //    compile group: 'org.hibernate', name: 'hibernate-core', version: '5.2.12.Final'
 //    compile group: 'org.hibernate', name: 'hibernate-jpamodelgen', version: '5.2.12.Final'
       
-      compile files('lib/scenicView.jar');
+//      compile files('lib/scenicView.jar');
 
 }
 

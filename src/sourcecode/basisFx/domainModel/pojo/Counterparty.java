@@ -5,30 +5,72 @@
  */
 package basisFx.domainModel.pojo;
 
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  *
  * @author Alek
  */
 public class Counterparty  extends DomainObject{
-    
-  
-    private final String tableName=null;
+
+
+
+    private IntegerProperty countryId =new SimpleIntegerProperty(this, "countryId", 0);
+    private IntegerProperty currencyId =new SimpleIntegerProperty(this, "currencyId", 0);
+    private StringProperty name =new SimpleStringProperty(this, "name", null);
+
+
+    public Counterparty( ) {
+        this.dataMapper=mapperFabric.getCounterpartyDataMapper();
+        this.tableName="Equipment";
+    }
+
+    public int getCountryId() {
+        return countryId.get();
+    }
+
+    public IntegerProperty countryIdProperty() {
+        return countryId;
+    }
+
+    public void setCountryId(int countryId) {
+        this.countryId.set(countryId);
+    }
+
+    public int getCurrencyId() {
+        return currencyId.get();
+    }
+
+    public IntegerProperty currencyIdProperty() {
+        return currencyId;
+    }
+
+    public void setCurrencyId(int currencyId) {
+        this.currencyId.set(currencyId);
+    }
+
+    public String getName() {
+        return name.get();
+    }
+
+    public StringProperty nameProperty() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name.set(name);
+    }
 
     public String getTableName() {
         return tableName;
-    }
-    
-    private StringProperty name =new SimpleStringProperty(this, "name", null);
-
-    
-    public String getName() {
-            return name.get();
-        }
-    public void setName(String stringPricePerUnit) {
-        this.name.set(stringPricePerUnit);
     }
 
     @Override
