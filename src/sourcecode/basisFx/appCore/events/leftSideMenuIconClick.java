@@ -66,7 +66,7 @@ public class leftSideMenuIconClick extends AppEvent{
         }
 
     private void setButtons() {
-        System.out.println( Layers.getHorisontalFlowPanel());
+
        Layers.getHorisontalFlowPanel().getChildren().clear();
         
              if(this.component.isComposit()){

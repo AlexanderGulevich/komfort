@@ -76,9 +76,14 @@ public class EventFactory {
        
    
    }
-   public   RowAddToTable createRowAdd(TableViewWrapper nTableView, RowCreater rowCreater ){
-   
-       return new RowAddToTable(nTableView, rowCreater);
-         
-   }
+    public   RowAddToTable createRowAdd(TableViewWrapper t, RowCreater rowCreater ){
+
+        return new RowAddToTable(t, rowCreater);
+
+    }
+    public   RowDeleteFromTable createRowDeleteFromTable(TableViewWrapper t ){
+
+        return new RowDeleteFromTable(t);
+
+    }
 }

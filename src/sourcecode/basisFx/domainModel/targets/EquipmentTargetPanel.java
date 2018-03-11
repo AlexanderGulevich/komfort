@@ -65,10 +65,7 @@ public class EquipmentTargetPanel extends Target{
                  .setCoordinate(panel, 120d,50d, null, null)
                  .setText("УДАЛИТЬ").setFont(FontsStore.ROBOTO_LIGHT, 15)
                  .setWidth(170d).setHeight(20d)
-                 .setEvent(eventFactory.
-                         createRowAdd(
-                                 tableViewWrapper, 
-                                 (l)->{l.add(new Equipment());}))
+                 .setEvent(eventFactory.createRowDeleteFromTable(tableViewWrapper))
                  .createNButton();
                  
 

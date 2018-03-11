@@ -23,7 +23,7 @@ public abstract class DataMapper {
      public abstract void insertDomainObject(DomainObject d);
      
      public void deleteDomainObject(DomainObject domainObject) throws SQLException{
-        String expression="delete from " +domainObject.getTableName()+"where id=? ";
+        String expression="delete from " +domainObject.getTableName()+" where id=? ";
         PreparedStatement pstmt =  Db.getConnection().prepareStatement(expression);
                  pstmt.setInt(1, domainObject.getId());
                  pstmt.executeUpdate();
