@@ -5,30 +5,38 @@
  */
 package basisFx.appCore.controlPolicy;
 
-import basisFx.domainModel.pojo.DomainObject;
+import basisFx.appCore.domainScetch.DomainObject;
+import basisFx.appCore.domainScetch.NamedDomainObject;
+import javafx.event.Event;
+import javafx.scene.control.TableColumn;
 
 /**
  *
  * @author Alek
- * @param <T>
- * @param <K>
+
  */
-public class EditCommitComboBox<T,K> extends Edit<T,K>{
+public class EditCommitComboBox extends Edit{
 
     public void run() {
 
 
-
-        column.setOnEditCommit(e -> {
-            int row = e.getTablePosition().getRow();
-            T domainObject = e.getRowValue();
-
-            System.out.println("EditCommitComboBox------------------- e.getNewValue()--------------\n"+e.getNewValue());
-
-
-
-
-        });
+//
+//        column.setOnEditCommit(
+//                (TableColumn.CellEditEvent<DomainObject, String> e ) ->{
+//
+////                    int row = e.getTablePosition().getRow();
+////
+////                    DomainObject domainObject1 = e.getTableView().getItems().get(row);
+//
+//
+//                    DomainObject domainObject = e.getRowValue();
+//
+//                     System.out.println("EditCommitComboBox------------------- e.getNewValue()--------------\n"+e.getNewValue());
+//
+//
+//
+//
+//        });
 
 
 

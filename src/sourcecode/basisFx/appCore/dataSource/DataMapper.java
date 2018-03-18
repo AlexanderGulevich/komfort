@@ -5,9 +5,13 @@
  */
 package basisFx.appCore.dataSource;
 
-import basisFx.domainModel.pojo.DomainObject;
+import basisFx.appCore.domainScetch.DomainObject;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+
 import javafx.collections.ObservableList;
 
 /**
@@ -15,12 +19,17 @@ import javafx.collections.ObservableList;
  * @author Alek
  */
 public abstract class DataMapper {
+
+    protected ObservableList<DomainObject> list;
+    private Map<Integer,DomainObject> map= new HashMap<>();
     
      protected UnitOfWork unitOfWork;
-     
-     public abstract void getAllDomainObjectList(ObservableList  list,String tableName);
-     public abstract void updateDomainObject(DomainObject d);
-     public abstract void insertDomainObject(DomainObject d);
+
+    public abstract void getAllDomainObjectList(ObservableList  list,String tableName);
+
+    public abstract void updateDomainObject(DomainObject d);
+    public abstract void insertDomainObject(DomainObject d);
+//    public abstract void getAllDomainObjectHashMap(HashMap m,String tableName);
      
      public void deleteDomainObject(DomainObject domainObject) throws SQLException{
         String expression="delete from " +domainObject.getTableName()+" where id=? ";
@@ -33,10 +42,10 @@ public abstract class DataMapper {
     public void setUnitOfWork(UnitOfWork u) {
         this.unitOfWork=u;
     }
-    
-    
 
-          
+
+
+
 }
  
         

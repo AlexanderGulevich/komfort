@@ -5,7 +5,7 @@
  */
 package basisFx.appCore.registry;
 
-import basisFx.appCore.menu.Target;
+import basisFx.appCore.panels.Target;
 import java.util.ArrayList;
 
 /**

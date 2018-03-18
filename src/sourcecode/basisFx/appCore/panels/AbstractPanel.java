@@ -5,9 +5,8 @@
  */
 package basisFx.appCore.panels;
 
-import basisFx.appCore.AnchorCoordinate;
+import basisFx.appCore.utils.AnchorCoordinate;
 import basisFx.appCore.Initiated;
-import basisFx.appCore.elements.AppNode;
 import basisFx.appCore.events.EventFactory;
 import javafx.geometry.Insets;
 import javafx.scene.layout.AnchorPane;

@@ -5,6 +5,7 @@
  */
 package basisFx.domainModel.mapper;
 
+import basisFx.appCore.domainScetch.DomainObject;
 import basisFx.appCore.dataSource.DataMapper;
 import basisFx.appCore.dataSource.Db;
 import basisFx.domainModel.pojo.*;
@@ -124,6 +125,5 @@ public class EquipmentDataMapper extends DataMapper {
         
     }
 
-   
-    
+
 }

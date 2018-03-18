@@ -1,6 +1,6 @@
 package basisFx.domainModel;
 
-import basisFx.appCore.AnchorCoordinate;
+import basisFx.appCore.utils.AnchorCoordinate;
 import basisFx.appCore.MenuTrigger;
 import basisFx.appCore.dataSource.DbFactory;
 import basisFx.domainModel.settings.Settings;

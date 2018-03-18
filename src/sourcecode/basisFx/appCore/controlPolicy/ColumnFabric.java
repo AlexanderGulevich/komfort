@@ -24,9 +24,11 @@ public class ColumnFabric <T,K> {
         return new TextColumn<T>(builder);
 
     }
-    public ComboBoxColumn<T>  createComboBoxColumn(ColumnWrapper.Bulder builder){
+    public ComboBoxColumn<T,K>  createComboBoxColumn(ColumnWrapper.Bulder builder){
 
-        return new ComboBoxColumn<T>(builder);
+        return new ComboBoxColumn<T,K> (builder);
 
     }
+
+
 }

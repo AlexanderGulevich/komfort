@@ -7,6 +7,7 @@ package basisFx.domainModel;
 
 import basisFx.domainModel.targets.CounterpartyTargetPanel;
 import basisFx.domainModel.targets.EquipmentTargetPanel;
+import basisFx.domainModel.targets.OtherListTargetPanel;
 
 /**
  *
@@ -19,6 +20,9 @@ public class TargetFM {
     }
     public  CounterpartyTargetPanel createCounterpartyPanel(){
         return new CounterpartyTargetPanel();
+    }
+    public OtherListTargetPanel createOtherListTargetPanel(){
+        return new OtherListTargetPanel();
     }
 
 

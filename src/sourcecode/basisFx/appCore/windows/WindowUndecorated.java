@@ -1,13 +1,12 @@
 package basisFx.appCore.windows;
 
 import basisFx.appCore.panels.AbstractPanel;
-import basisFx.appCore.AnchorCoordinate;
+import basisFx.appCore.utils.AnchorCoordinate;
 import basisFx.appCore.registry.Layers;
 import basisFx.domainModel.settings.CSSID;
 import basisFx.domainModel.settings.FontsStore;
 import basisFx.appCore.elements.AppNode;
 import basisFx.appCore.elements.ButtonWrapper;
-import basisFx.appCore.events.AppEvent;
 import basisFx.domainModel.settings.TopButtons;
 import javafx.geometry.Insets;
 import javafx.scene.control.ContentDisplay;

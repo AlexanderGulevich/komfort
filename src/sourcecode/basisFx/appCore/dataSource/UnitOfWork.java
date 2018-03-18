@@ -6,11 +6,10 @@
 package basisFx.appCore.dataSource;
 
 import basisFx.appCore.Refreshable;
-import basisFx.domainModel.pojo.DomainObject;
+import basisFx.appCore.domainScetch.DomainObject;
+
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
 /**
  *
@@ -21,6 +20,7 @@ public class UnitOfWork {
     private List <DomainObject>newPojoes=new ArrayList<>();
     private List <DomainObject>removedPojoes=new ArrayList<>();
     private List <DomainObject>changedPojoes=new ArrayList<>();
+//    private Map<Integer,DomainObject>storedPojoesMap=new HashMap<>();
     private Refreshable refreshable;
     
     public void setNewPojoes(DomainObject p){
@@ -118,8 +118,9 @@ public class UnitOfWork {
        this.refreshable=r;
        
     }
-    
-    
-    
-    
+
+
+//    public Map<Integer, DomainObject> getStoredPojoesMap() {
+//        return  storedPojoesMap;
+//    }
 }

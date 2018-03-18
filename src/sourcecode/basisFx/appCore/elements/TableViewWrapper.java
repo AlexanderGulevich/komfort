@@ -10,7 +10,7 @@ import basisFx.appCore.controlPolicy.ColumnWrapper;
 import basisFx.appCore.dataSource.DataMapper;
 import basisFx.appCore.dataSource.UnitOfWork;
 import basisFx.appCore.controlPolicy.TableListener;
-import basisFx.domainModel.pojo.DomainObject;
+import basisFx.appCore.domainScetch.DomainObject;
 import java.util.Iterator;
 import javafx.beans.property.ReadOnlyDoubleProperty;
 import javafx.collections.FXCollections;
@@ -38,8 +38,8 @@ public  class TableViewWrapper <T> extends AppNode implements Refreshable{
         init(builder);
         list.addListener(tableListener);
         unitOfWork.setRefreshable(this);
-    
-        
+
+
       
 
     }
@@ -135,12 +135,17 @@ public  class TableViewWrapper <T> extends AppNode implements Refreshable{
     public UnitOfWork getUnitOfWork() {
         return unitOfWork;
     }
-    
+
     public TableViewWrapper setDataMapper(DataMapper dm) {
         this.dataMapper=dm;
         this.dataMapper.setUnitOfWork(this.unitOfWork);
         return this;
     }
+
+    public DataMapper getDataMapper() {
+        return dataMapper;
+    }
+
     public TableViewWrapper setDbTableName(String n) {
         this.tableName=n;
         return this;

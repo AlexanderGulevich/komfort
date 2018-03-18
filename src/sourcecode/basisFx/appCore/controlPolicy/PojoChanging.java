@@ -5,8 +5,6 @@
  */
 package basisFx.appCore.controlPolicy;
 
-import basisFx.domainModel.pojo.DomainObject;
-
 /**
  *
  * @author Alek

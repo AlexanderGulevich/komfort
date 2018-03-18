@@ -5,7 +5,7 @@
  */
 package basisFx.appCore;
 
-import basisFx.appCore.menu.Target;
+import basisFx.appCore.panels.Target;
 import basisFx.appCore.registry.Layers;
 import basisFx.appCore.registry.TargetRegistry;
 

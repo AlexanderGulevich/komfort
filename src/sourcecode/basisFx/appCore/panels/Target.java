@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package basisFx.appCore.menu;
+package basisFx.appCore.panels;
 
-import basisFx.appCore.AnchorCoordinate;
+import basisFx.appCore.utils.AnchorCoordinate;
 import basisFx.appCore.TargetStackLogic;
 import basisFx.appCore.controlPolicy.CheckingFactory;
 import basisFx.appCore.controlPolicy.ColumnFabric;

@@ -1,15 +1,9 @@
 package basisFx.appCore.elements;
 
-import basisFx.appCore.controlPolicy.Edit;
-import basisFx.appCore.controlPolicy.PojoChanging;
-import basisFx.appCore.dataSource.DataMapper;
-import basisFx.appCore.dataSource.UnitOfWork;
-import basisFx.domainModel.pojo.DomainObject;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.TableColumn;
 
 
 /**

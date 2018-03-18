@@ -5,35 +5,25 @@
  */
 package basisFx.domainModel.pojo;
 
+import basisFx.appCore.domainScetch.NamedDomainObject;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  *
  * @author Alek
  */
-public class Counterparty  extends DomainObject{
-
-
+public class Counterparty  extends NamedDomainObject {
 
     private IntegerProperty countryId =new SimpleIntegerProperty(this, "countryId", 0);
     private IntegerProperty currencyId =new SimpleIntegerProperty(this, "currencyId", 0);
-    private StringProperty name =new SimpleStringProperty(this, "name", null);
-
 
     public Counterparty( ) {
         this.dataMapper=mapperFabric.getCounterpartyDataMapper();
         this.tableName="Equipment";
     }
 
-    public int getCountryId() {
+    public Integer getCountryId() {
         return countryId.get();
     }
 
@@ -45,7 +35,7 @@ public class Counterparty  extends DomainObject{
         this.countryId.set(countryId);
     }
 
-    public int getCurrencyId() {
+    public Integer getCurrencyId() {
         return currencyId.get();
     }
 
@@ -57,35 +47,31 @@ public class Counterparty  extends DomainObject{
         this.currencyId.set(currencyId);
     }
 
-    public String getName() {
-        return name.get();
-    }
 
-    public StringProperty nameProperty() {
-        return name;
-    }
 
-    public void setName(String name) {
-        this.name.set(name);
-    }
-
-    public String getTableName() {
-        return tableName;
-    }
 
     @Override
     public boolean isReadyToTransaction() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (
+                getName()!=null
+                && getCountryId()!=null
+                && getCurrencyId()!=null
+                && getId()!=null
+                )
+        {
+            return true;
+
+        }
+
+        return false;
     }
-    
-    
-    
-    
-    
-     
-     
-     
-     
-     
-    
+
+
+
+
+
+
+
+
+
 }

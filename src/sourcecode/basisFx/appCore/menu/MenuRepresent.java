@@ -5,7 +5,7 @@
  */
 package basisFx.appCore.menu;
 
-import basisFx.appCore.AnchorCoordinate;
+import basisFx.appCore.utils.AnchorCoordinate;
 import basisFx.appCore.events.EventFactory;
 import basisFx.domainModel.settings.CSSID;
 import javafx.scene.layout.AnchorPane;

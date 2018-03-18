@@ -5,9 +5,7 @@
  */
 package basisFx.appCore.panels;
 
-import basisFx.appCore.AnchorCoordinate;
 import basisFx.appCore.elements.AppNode;
-import basisFx.appCore.menu.LeftSideMenuRepresent;
 import basisFx.appCore.registry.Layers;
 import basisFx.domainModel.settings.CSSID;
 import basisFx.domainModel.settings.FontsStore;

@@ -5,6 +5,7 @@
  */
 package basisFx.domainModel.pojo;
 
+import basisFx.appCore.domainScetch.DomainObject;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;

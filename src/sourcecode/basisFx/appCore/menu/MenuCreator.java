@@ -1,6 +1,6 @@
 package basisFx.appCore.menu;
 
-import basisFx.appCore.AnchorCoordinate;
+import basisFx.appCore.utils.AnchorCoordinate;
 import basisFx.domainModel.settings.CSSID;
 import javafx.scene.layout.AnchorPane;
 

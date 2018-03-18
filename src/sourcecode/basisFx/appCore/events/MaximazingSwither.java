@@ -22,6 +22,7 @@ import javafx.stage.Stage;
  */
 public class MaximazingSwither extends AppEvent{
     protected Node  node;
+    protected boolean  max=false;
      
                
                
@@ -46,11 +47,15 @@ public class MaximazingSwither extends AppEvent{
                 Thread.sleep(100);
                 
                Stage stage =appNode.getStage();
-                 AnchorPane p=(AnchorPane) stage.getScene().getRoot();
-                
-                if (stage.isMaximized()) {
-                    
-                  p.setPadding(new Insets(3d, 3d, 3d, 3d));
+               AnchorPane root=(AnchorPane) stage.getScene().getRoot();
+
+//            if (stage.isMaximized()) {
+//                if (stage.isFullScreen()) {
+            if (max) {
+
+                  max=false;
+
+                  root.setPadding(new Insets(3d, 3d, 3d, 3d));
                     
                     appNode.getStage().setMaximized(false);
                     stage.setWidth(Settings.WIDTH);
@@ -66,9 +71,22 @@ public class MaximazingSwither extends AppEvent{
                     
                 
             } else {
-                 p.setPadding(new Insets(0d, 0d, 0d, 0d));    
-        
-                    appNode.getStage().setMaximized(true);
+
+                 max=true;
+
+                 root.setPadding(new Insets(0d, 0d, 0d, 0d));
+
+//                appNode.getStage().setIconified(true);
+//                appNode.getStage().setMaximized(true);
+//                appNode.getStage().setFullScreen(true);
+
+
+                Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();
+                stage.setX(primaryScreenBounds.getMinX());
+                stage.setY(primaryScreenBounds.getMinY());
+                stage.setWidth(primaryScreenBounds.getWidth());
+                stage.setHeight(primaryScreenBounds.getHeight());
+
             }
                 
                 

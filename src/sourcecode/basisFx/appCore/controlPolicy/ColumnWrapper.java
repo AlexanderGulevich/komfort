@@ -5,7 +5,7 @@
  */
 package basisFx.appCore.controlPolicy;
 
-import basisFx.appCore.controlPolicy.ColumnWrapper.Bulder;
+import basisFx.appCore.domainScetch.ComboBoxCellValueInitLogic;
 import basisFx.appCore.elements.TableViewWrapper;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +23,7 @@ public  class ColumnWrapper<T> {
     protected Checking valueChecking;
     protected double columnSize;
     protected List <Edit> editPoliticy;
-    
+    protected ComboBoxCellValueInitLogic comboBoxCellValueInitLogic;
     protected TableColumn column;
     protected PojoChanging pojoChanging;
     
@@ -35,6 +35,7 @@ public  class ColumnWrapper<T> {
         this.valueChecking=b.valueChecking;
         this.columnSize=b.columnSize;
         this.editPoliticy=b.editPoliticy;
+        this.comboBoxCellValueInitLogic=b.comboBoxCellValueInitLogic;
 
     }
     
@@ -64,6 +65,7 @@ public  class ColumnWrapper<T> {
         protected PojoChanging domainChangeAction;
         protected double columnSize;
         protected List <Edit> editPoliticy=new ArrayList<>();
+        protected ComboBoxCellValueInitLogic comboBoxCellValueInitLogic;
 
         public static Bulder create(){
             return new Bulder();
@@ -84,7 +86,12 @@ public  class ColumnWrapper<T> {
          return this;
          
          }
-      
+
+         public Bulder setComboBoxCellValueInitLogic(ComboBoxCellValueInitLogic comboBoxCellValueInitLogic) {
+             this.comboBoxCellValueInitLogic = comboBoxCellValueInitLogic;
+             return this;
+         }
+
          public  Bulder setColumnSize(double size){
          this.columnSize=size;
          return this;
@@ -100,7 +107,7 @@ public  class ColumnWrapper<T> {
          return this;
          
          }
-         public  Bulder setPojoChanging(PojoChanging domainChangeAction){
+         public  Bulder setDomainObjectChanging(PojoChanging domainChangeAction){
          this.domainChangeAction=domainChangeAction;         
          return this;
          

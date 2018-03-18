@@ -1,7 +1,7 @@
 package basisFx.domainModel.targets;
 
 import basisFx.appCore.controlPolicy.ColumnWrapper;
-import basisFx.appCore.menu.Target;
+import basisFx.appCore.panels.Target;
 import basisFx.appCore.elements.AppNode;
 import basisFx.appCore.elements.TableViewWrapper;
 import basisFx.domainModel.pojo.Equipment;
@@ -34,18 +34,20 @@ public class EquipmentTargetPanel extends Target{
                     .setValueChecking(check.createTextCheck())
                     .setEditPoliticy(editFabric.<Equipment,String>createEditCommitDefault())
                     .setColumnSize(0.6)
-                    .setPojoChanging(
+                    .setDomainObjectChanging(
                          (obj,val)->{((Equipment)obj).setName((String)val);}
-                 )),
+                         )
+                     ),
                      columnFabric.<Equipment,Integer>createIntegerColumn(ColumnWrapper.Bulder.create()
                     .setColumnName("Ширина стержня")
                     .setPropertyName("rodWidth")
                     .setValueChecking(check.createNumCheck())
                     .setEditPoliticy(editFabric.<Equipment,Integer>createEditCommitDefault())
                     .setColumnSize(0.4)
-                    .setPojoChanging(
+                    .setDomainObjectChanging(
                          (obj,val)->{((Equipment)obj).setRodWidth((Integer)val);} 
-                 ))
+                         )
+                     )
                 );
        
  

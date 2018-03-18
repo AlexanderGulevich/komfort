@@ -1,24 +1,19 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package basisFx.appCore.controlPolicy;
 
+import basisFx.appCore.domainScetch.DomainObject;
+import basisFx.appCore.domainScetch.NamedDataMapper;
+import basisFx.appCore.domainScetch.NamedDomainObject;
+import basisFx.domainModel.mapper.CounterpartyDataMapper;
 import basisFx.domainModel.pojo.Country;
-import basisFx.domainModel.pojo.DomainObject;
-import javafx.beans.property.ReadOnlyStringWrapper;
-import javafx.beans.value.ObservableValue;
+import javafx.beans.property.StringProperty;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.cell.ComboBoxTableCell;
-import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.util.Callback;
-import javafx.util.converter.DefaultStringConverter;
-import javafx.util.converter.IntegerStringConverter;
+import javafx.util.StringConverter;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 /**
  *
@@ -26,18 +21,21 @@ import java.util.Map;
  * @param <T>
  */
 public class ComboBoxColumn<T,K> extends ColumnWrapper<T>{
-    protected TableColumn<T,String> column;
+    protected TableColumn<DomainObject, String> column;
 //    protected PojoChanging<T,String> pojoChanging;
 
-    private static Map<Integer,K> countryMap= new HashMap<>();
+
 
     @SuppressWarnings("unchecked")
     public ComboBoxColumn(Bulder builder) {
 
         super(builder);
-        this.pojoChanging=builder.domainChangeAction;
+//        this.pojoChanging=builder.domainChangeAction;
         this.column =  new TableColumn<>(columnName);
 
+        Map<Integer, Country> countryMap = ((CounterpartyDataMapper) tableWrapper.getDataMapper()).getCountryMap();
+        ArrayList <Country> countries=new ArrayList<>();
+        countries.addAll((Collection<? extends Country>) countryMap);
 
         // By default, all cells are have null values
 //        column.setCellValueFactory(
@@ -45,17 +43,43 @@ public class ComboBoxColumn<T,K> extends ColumnWrapper<T>{
 //        );
 
         // By default, all cells are have null values
-        column.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<T, String>, ObservableValue<String>>() {
-            @Override
-            public ObservableValue<String> call(TableColumn.CellDataFeatures<T, String> param) {
-                T pojo=param.getValue();
-                return null;
-            }
+        column.setCellValueFactory((TableColumn.CellDataFeatures<DomainObject, String> param) -> {
+            DomainObject domainObject=  param.getValue();
+
+            StringProperty stringProperty=null;
+
+            comboBoxCellValueInitLogic.init(domainObject,stringProperty);
+
+            return stringProperty;
+
         });
 
         // Set a ComboBoxTableCell, so we can selects a value from a list
         column.setCellFactory(
-                ComboBoxTableCell.<T, String>forTableColumn("Male", "Female"));
+
+//        (TableColumn<DomainObject, String> e) -> {
+//
+//
+//                    ComboBox <NamedDataMapper>combobox =new ComboBox<>();
+//
+////                    combobox.setConverter();
+//
+//            Map<Integer, Country> countryMap = ((CounterpartyDataMapper) tableWrapper.getDataMapper()).getCountryMap();
+//
+//            ComboBoxTableCell<NamedDataMapper, String> comboBoxTableCell = new ComboBoxTableCell<>();
+//
+//
+//
+//
+//            return  comboBoxTableCell;
+//
+//
+//
+//
+//                }
+
+                ComboBoxTableCell.<DomainObject, NamedDomainObject>forTableColumn(new Converter(),  countries )
+ );
 
 
 
@@ -78,13 +102,25 @@ public class ComboBoxColumn<T,K> extends ColumnWrapper<T>{
     }
       
 
-      public TableColumn<T,String>  getColumn(){
+      public TableColumn<DomainObject, String> getColumn(){
     
         return this.column;
     
     }
 
+    class Converter extends StringConverter<NamedDomainObject>{
 
+
+        @Override
+        public String toString(NamedDomainObject object) {
+            return null;
+        }
+
+        @Override
+        public NamedDomainObject fromString(String string) {
+            return null;
+        }
+    }
 
       
 }

@@ -5,11 +5,13 @@
  */
 package basisFx.domainModel.pojo;
 
+import basisFx.appCore.domainScetch.DomainObject;
+
 /**
  *
  * @author Alek
  */
-public class Jumbo  extends DomainObject{
+public class Jumbo  extends DomainObject {
     
     private final String tableName=null;
 
