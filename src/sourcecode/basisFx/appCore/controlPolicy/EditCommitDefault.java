@@ -15,6 +15,7 @@ import basisFx.appCore.domainScetch.DomainObject;
  */
 public class EditCommitDefault<T,K> extends Edit<T,K>{
 
+
     public void run() {
             
             column.setOnEditCommit((event) -> {

@@ -5,6 +5,7 @@
  */
 package basisFx.appCore.controlPolicy;
 
+import basisFx.appCore.dataSource.DataMapper;
 import basisFx.appCore.domainScetch.ComboBoxCellValueInitLogic;
 import basisFx.appCore.elements.TableViewWrapper;
 import java.util.ArrayList;
@@ -26,6 +27,7 @@ public  class ColumnWrapper<T> {
     protected ComboBoxCellValueInitLogic comboBoxCellValueInitLogic;
     protected TableColumn column;
     protected PojoChanging pojoChanging;
+    protected DataMapper dataMapper;
     
 
     public ColumnWrapper(Bulder b) {
@@ -36,18 +38,17 @@ public  class ColumnWrapper<T> {
         this.columnSize=b.columnSize;
         this.editPoliticy=b.editPoliticy;
         this.comboBoxCellValueInitLogic=b.comboBoxCellValueInitLogic;
+        this.dataMapper=b.dataMapper;
+
 
     }
     
-         public TableColumn getColumn(){return null;};
+     public TableColumn getColumn(){return null;};
          
     
-         public void  setTableWrapper(TableViewWrapper t){
-         
-             this.tableWrapper=t;
-             
-         
-         };
+    public void  setTableWrapper(TableViewWrapper t){
+                 this.tableWrapper=t;
+             };
 
     public double getColumnSize() {
         return columnSize;
@@ -65,7 +66,11 @@ public  class ColumnWrapper<T> {
         protected PojoChanging domainChangeAction;
         protected double columnSize;
         protected List <Edit> editPoliticy=new ArrayList<>();
-        protected ComboBoxCellValueInitLogic comboBoxCellValueInitLogic;
+         protected ComboBoxCellValueInitLogic comboBoxCellValueInitLogic;
+         protected DataMapper dataMapper;
+
+
+
 
         public static Bulder create(){
             return new Bulder();
@@ -112,7 +117,13 @@ public  class ColumnWrapper<T> {
          return this;
          
          }
-         
+         public Bulder setDataMapper(DataMapper dm) {
+             this.dataMapper=dm;
+
+             return this;
+         }
+
+
          
          
      

@@ -17,9 +17,10 @@ public class EditFabric<T,K> {
         return new EditCommitDefault<>();
 
     }
-    public  EditCommitComboBox createEditCommitComboBox(){
 
-        return new EditCommitComboBox();
+    public  EditCommitComboBox<T,K> createEditCommitComboBox(){
+
+        return new EditCommitComboBox<>();
 
     }
 }

@@ -26,7 +26,7 @@ public class CounterpartyTargetPanel extends Target{
 
         tableViewWrapper = AppNode.NodeBuilder.create()
                 .setId(CSSID.TABLE).setCoordinate(panel,50d, null, 0d, 0d)
-                .<Counterparty>createTableViewWrapper().setTablesSize(0.8, panel.widthProperty())
+                .<Counterparty>createTableViewWrapper().setTablesSize(0.7, panel.widthProperty())
                 .setDataMapper(this.dataMapperFabric.getCounterpartyDataMapper())
                 .setDbTableName("Counterparty").refresh()
                 .setColums(
@@ -41,17 +41,13 @@ public class CounterpartyTargetPanel extends Target{
                                 )
                         ),
                         columnFabric.createComboBoxColumn(ColumnWrapper.Bulder.create()
-                                .setColumnName("Страна")
-//                                .setPropertyName("name")
-//                                .setValueChecking(check.createTextCheck())
-//                                .setEditPoliticy(editFabric.<Counterparty,String>createEditCommitComboBox())
-                                .setColumnSize(0.4)
-                                .setComboBoxCellValueInitLogic(
-                                        (domainObject,stringProperty)->{
+                                .setColumnName("Страна").setColumnSize(0.4)
+                                .setEditPoliticy(editFabric.<Counterparty,String>createEditCommitComboBox())
+                                .setDataMapper(this.dataMapperFabric.getCounterpartyDataMapper())
+                                .setComboBoxCellValueInitLogic((domainObject,stringProperty)->{
                                             Counterparty counterparty=(Counterparty) domainObject;
-                                            CounterpartyDataMapper mapper=((CounterpartyDataMapper) counterparty.getDataMapper());
-                                            Country countryPojo = mapper.getCountryMap().get(counterparty.getCountryId());
-                                            stringProperty=countryPojo.getNameProperty();
+                                            stringProperty= dataMapperFabric.getCounterpartyDataMapper().
+                                                    getCountryMapById().get(counterparty.getCountryId()).getNameProperty();
                                         }
                                 )
                         )

@@ -15,28 +15,25 @@ import javafx.scene.control.TableColumn;
  * @author Alek
 
  */
-public class EditCommitComboBox extends Edit{
+public class EditCommitComboBox<T,K> extends Edit<T,K>{
 
     public void run() {
 
 
-//
-//        column.setOnEditCommit(
-//                (TableColumn.CellEditEvent<DomainObject, String> e ) ->{
-//
-////                    int row = e.getTablePosition().getRow();
-////
-////                    DomainObject domainObject1 = e.getTableView().getItems().get(row);
-//
-//
-//                    DomainObject domainObject = e.getRowValue();
-//
-//                     System.out.println("EditCommitComboBox------------------- e.getNewValue()--------------\n"+e.getNewValue());
-//
-//
-//
-//
-//        });
+
+        column.setOnEditCommit((event) -> {
+
+
+
+
+
+            System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+            TableColumn t= (TableColumn) event.getTarget();
+            t.getCellData( event.getNewValue());
+            System.out.println(event.getTarget());
+
+
+        });
 
 
 

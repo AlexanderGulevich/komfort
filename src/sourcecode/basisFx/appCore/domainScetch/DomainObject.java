@@ -8,7 +8,9 @@ package basisFx.appCore.domainScetch;
 import basisFx.appCore.dataSource.DataMapper;
 import basisFx.domainModel.DataMapperFabric;
 import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleObjectProperty;
 
 /**
  *
@@ -19,7 +21,9 @@ public abstract class DomainObject {
     protected DataMapper dataMapper;
     protected String tableName;
     protected DataMapperFabric mapperFabric=new DataMapperFabric();
-    private  IntegerProperty id =new SimpleIntegerProperty(this, "id", 0);
+
+    private ObjectProperty<Integer> id =new SimpleObjectProperty<>(this, "id", null);
+//    private  IntegerProperty id =new SimpleIntegerProperty(this, "id", 0);
 
     public abstract boolean isReadyToTransaction();
 
