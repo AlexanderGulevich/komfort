@@ -17,7 +17,6 @@ import javafx.beans.property.StringProperty;
  */
 public class Equipment  extends DomainObject {
       
-    
     private StringProperty name =new SimpleStringProperty(this, "name", null);
     private ObjectProperty<Integer> rodWidth =new SimpleObjectProperty<>(this, "rodWidth", null);
 

@@ -1,7 +1,7 @@
 /*
  * I don't care
  */
-package editabletableview;
+package basisFx.domainModel;
 
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -43,7 +43,7 @@ import javafx.util.Callback;
  *
  * @author Hasan Kara <hasan.kara@fhnw.ch>
  */
-public class Main extends Application {
+public class EditableTable extends Application {
 
     private TableView<Person> table = new TableView<>();
     private final ObservableList<Typ> typData
@@ -114,7 +114,12 @@ public class Main extends Application {
                 });
 
         table.setItems(data);
-        table.getColumns().addAll(firstNameCol, lastNameCol, emailCol);
+        table.getColumns().addAll(
+                firstNameCol, 
+                lastNameCol
+                ,
+                emailCol
+        );
 
         final TextField addFirstName = new TextField();
         addFirstName.setPromptText("First Name");
@@ -199,7 +204,7 @@ public class Main extends Application {
                 if (isEditing()) {
                     if (textField != null) {
                         textField.setText(getString());
-//                        setGraphic(null);
+                        setGraphic(null);
                     }
                     setText(null);
                     setGraphic(textField);
@@ -280,11 +285,11 @@ public class Main extends Application {
                 System.out.println("Committed: " + datePicker.getValue().toString());
                 commitEdit(Date.from(datePicker.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()));
             });
-//            datePicker.focusedProperty().addListener((ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) -> {
-//                if (!newValue) {
-//                    commitEdit(Date.from(datePicker.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()));
-//                }
-//            });
+            datePicker.focusedProperty().addListener((ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) -> {
+                if (!newValue) {
+                    commitEdit(Date.from(datePicker.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()));
+                }
+            });
         }
 
         private LocalDate getDate() {
@@ -347,15 +352,15 @@ public class Main extends Application {
                 System.out.println("Committed: " + comboBox.getSelectionModel().getSelectedItem());
                 commitEdit(comboBox.getSelectionModel().getSelectedItem());
             });
-//            comboBox.focusedProperty().addListener((ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) -> {
-//                if (!newValue) {
-//                    commitEdit(comboBox.getSelectionModel().getSelectedItem());
-//                }
-//            });
+            comboBox.focusedProperty().addListener((ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) -> {
+                if (!newValue) {
+                    commitEdit(comboBox.getSelectionModel().getSelectedItem());
+                }
+            });
         }
 
         private void comboBoxConverter(ComboBox<Typ> comboBox) {
-            // Define rendering of the list of values in ComboBox drop down. 
+//             Define rendering of the list of values in ComboBox drop down. 
             comboBox.setCellFactory((c) -> {
                 return new ListCell<Typ>() {
                     @Override

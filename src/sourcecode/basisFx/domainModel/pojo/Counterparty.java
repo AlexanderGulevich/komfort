@@ -7,7 +7,9 @@ package basisFx.domainModel.pojo;
 
 import basisFx.appCore.domainScetch.NamedDomainObject;
 import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleObjectProperty;
 
 /**
  *
@@ -15,47 +17,45 @@ import javafx.beans.property.SimpleIntegerProperty;
  */
 public class Counterparty  extends NamedDomainObject {
 
-    private IntegerProperty countryId =new SimpleIntegerProperty(this, "countryId", 0);
-    private IntegerProperty currencyId =new SimpleIntegerProperty(this, "currencyId", 0);
+    private ObjectProperty<Country> country =new SimpleObjectProperty<>(this, "country", null);
+    private ObjectProperty<Currency> currency =new SimpleObjectProperty<>(this, "currency", null);
 
     public Counterparty( ) {
         this.dataMapper=mapperFabric.getCounterpartyDataMapper();
         this.tableName="Equipment";
     }
 
-    public Integer getCountryId() {
-        return countryId.get();
+
+    public Country getCountry() {
+        return country.get();
     }
 
-    public IntegerProperty countryIdProperty() {
-        return countryId;
+    public ObjectProperty<Country> countryProperty() {
+        return country;
     }
 
-    public void setCountryId(int countryId) {
-        this.countryId.set(countryId);
+    public void setCountry(Country country) {
+        this.country.set(country);
     }
 
-    public Integer getCurrencyId() {
-        return currencyId.get();
+    public Currency getCurrency() {
+        return currency.get();
     }
 
-    public IntegerProperty currencyIdProperty() {
-        return currencyId;
+    public ObjectProperty<Currency> currencyProperty() {
+        return currency;
     }
 
-    public void setCurrencyId(int currencyId) {
-        this.currencyId.set(currencyId);
+    public void setCurrency(Currency currency) {
+        this.currency.set(currency);
     }
-
-
-
 
     @Override
     public boolean isReadyToTransaction() {
         if (
                 getName()!=null
-                && getCountryId()!=null
-                && getCurrencyId()!=null
+                && getCountry()!=null
+                && getCurrency()!=null
                 && getId()!=null
                 )
         {

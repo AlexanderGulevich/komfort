@@ -6,13 +6,13 @@ import basisFx.domainModel.pojo.Counterparty;
 import basisFx.domainModel.pojo.Country;
 import basisFx.domainModel.pojo.Currency;
 import basisFx.appCore.domainScetch.DomainObject;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -24,17 +24,15 @@ import java.util.logging.Logger;
  */
 public class CounterpartyDataMapper extends DataMapper {
 
-    private static Map<String,Currency> currencyMapByName=null;
-    private static Map<String,Country> countryMapByName=null;
-    private static Map<Integer,Currency> currencyMapById=null;
-    private static Map<Integer,Country> countryMapById=null;
+    private  ObservableList <Currency> currencyList =null;
+    private  ObservableList <Country> countryList =null;
     private Counterparty domainObject;
     private static CounterpartyDataMapper ourInstance = new CounterpartyDataMapper();
+
     public static CounterpartyDataMapper getInstance() {
         return ourInstance;
     }
     private CounterpartyDataMapper() {}
-
     @Override
     public void getAllDomainObjectList(ObservableList list, String tableName) {
 
@@ -70,11 +68,12 @@ public class CounterpartyDataMapper extends DataMapper {
 
 
     }
-    private void getCurrencyMapFromStoreByName() {
+    private void getCurrencyListFromStore() {
 
         String expression="SELECT * FROM " +"Currency"+" ORDER BY ID";
         Statement stmt  = null;
-        currencyMapByName=new HashMap<>();
+        currencyList = FXCollections.<Currency>observableArrayList();
+
         try {
 
             stmt = Db.getConnection().createStatement();
@@ -86,9 +85,7 @@ public class CounterpartyDataMapper extends DataMapper {
                 domainObject.setId(rs.getInt("id"));
                 domainObject.setName(rs.getString("name"));
 
-
-                currencyMapByName.put(rs.getString("name"),  domainObject);
-//                currencyMap.put(rs.getInt("id"),  domainObject);
+                currencyList.add(domainObject);
 
             }
         } catch (SQLException e) {
@@ -96,10 +93,11 @@ public class CounterpartyDataMapper extends DataMapper {
         }
 
     }
-    private void getCountryMapFromStoreById() {
+    private void getCountryListFromStore() {
         String expression="SELECT * FROM " +"Country"+" ORDER BY ID";
         Statement stmt  = null;
-        countryMapById  =new HashMap<>();
+        countryList = FXCollections.<Country>observableArrayList();
+
         try {
 
             stmt = Db.getConnection().createStatement();
@@ -111,9 +109,7 @@ public class CounterpartyDataMapper extends DataMapper {
                 domainObject.setId(rs.getInt("id"));
                 domainObject.setName(rs.getString("name"));
 
-
-                countryMapById.put(rs.getInt("id"),  domainObject);
-
+                countryList.add(domainObject);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -123,119 +119,34 @@ public class CounterpartyDataMapper extends DataMapper {
 
 
     }
-    private void getCurrencyMapFromStoreById() {
+    public  ObservableList <Currency> getCurrencyList() {
 
-        String expression="SELECT * FROM " +"Currency"+" ORDER BY ID";
-        Statement stmt  = null;
-        currencyMapById=new HashMap<>();
-        try {
+        if (currencyList != null) {
 
-            stmt = Db.getConnection().createStatement();
-
-            ResultSet rs    = stmt.executeQuery(expression);
-
-            while (rs.next()) {
-                Currency domainObject = new Currency();
-                domainObject.setId(rs.getInt("id"));
-                domainObject.setName(rs.getString("name"));
-
-
-                currencyMapById.put(rs.getInt("id"),  domainObject);
-
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-    }
-    private void getCountryMapFromStoreByName() {
-        String expression="SELECT * FROM " +"Country"+" ORDER BY ID";
-        Statement stmt  = null;
-        countryMapByName=new HashMap<>();
-        try {
-
-            stmt = Db.getConnection().createStatement();
-
-            ResultSet rs    = stmt.executeQuery(expression);
-
-            while (rs.next()) {
-                Country domainObject = new Country();
-                domainObject.setId(rs.getInt("id"));
-                domainObject.setName(rs.getString("name"));
-
-
-
-                countryMapByName.put(rs.getString("name"),  domainObject);
-
-//                countryMap.put(rs.getInt("id"),  domainObject);
-
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-
-
-
-    }
-    public  Map<String,Currency>  getCurrencyMapByName() {
-
-        if (currencyMapByName != null) {
-
-            return currencyMapByName;
-
+            return currencyList;
         }else {
+            getCurrencyListFromStore();
 
-            getCurrencyMapFromStoreByName();
-            return currencyMapByName;
+            return currencyList;
 
         }
-
     }
-    public  Map<String,Country> getCountryMapByName() {
+    public  ObservableList <Country>  getCountryList() {
 
-        if (countryMapByName != null) {
+        if (countryList != null) {
 
-            return countryMapByName;
+            return countryList;
         }else {
-            getCountryMapFromStoreByName();
+            getCountryListFromStore();
 
-            return countryMapByName;
-
-        }
-    }
-    public  Map<Integer,Currency>  getCurrencyMapById() {
-
-        if (currencyMapById != null) {
-
-            return currencyMapById;
-
-        }else {
-
-            getCurrencyMapFromStoreByName();
-            return currencyMapById;
-
-        }
-
-    }
-    public  Map<Integer,Country>  getCountryMapById() {
-
-        if (countryMapById != null) {
-
-            return countryMapById;
-        }else {
-            getCountryMapFromStoreByName();
-
-            return countryMapById;
+            return countryList;
 
         }
     }
-
     @Override
     public void updateDomainObject(DomainObject d) {
 
     }
-
     @Override
     public void insertDomainObject(DomainObject d) {
         domainObject=(Counterparty) d;
