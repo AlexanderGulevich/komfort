@@ -1,5 +1,6 @@
 package basisFx.appCore.domainScetch;
 
+import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.StringProperty;
 
 /**
@@ -8,5 +9,5 @@ import javafx.beans.property.StringProperty;
  * @autor AlexanderGulevich
  */
 public interface ComboBoxCellValueInitLogic {
-    public void init(DomainObject domainObject,StringProperty stringProperty);
+    public void init(DomainObject domainObject,ObjectProperty objectProperty);
 }

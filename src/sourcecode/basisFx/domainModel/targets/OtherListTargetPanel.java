@@ -27,12 +27,12 @@ public class OtherListTargetPanel extends Target {
                 .setDataMapper(this.dataMapperFabric.getNamedDataMapper())
                 .setDbTableName("Country").refresh()
                 .setColums(
-                        columnFabric.<Equipment,String>createTextColumn(ColumnWrapper.Bulder.create()
-                                .setColumnName("Наименование страны")
+                        columnFabric.<Country,String>createTextColumn(ColumnWrapper.Bulder.create()
+                                .setColumnName("Наименование")
                                 .setPropertyName("name")
                                 .setValueChecking(check.createTextCheck())
-                                .setEditPoliticy(editFabric.<Equipment,String>createEditCommitDefault())
-                                .setColumnSize(0.4)
+                                .setEditPoliticy(editFabric.<Country,String>createEditCommitDefault())
+                                .setColumnSize(1)
                                 .setDomainObjectChanging(
                                         (obj,val)->{((Country)obj).setName((String)val);}
                                 )

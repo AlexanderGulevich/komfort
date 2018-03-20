@@ -19,15 +19,10 @@ public class EditCommitComboBox<T,K> extends Edit<T,K>{
 
     public void run() {
 
-
-
         column.setOnEditCommit((event) -> {
 
 
-
-
-
-            System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+            System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!EditCommitComboBox!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
             TableColumn t= (TableColumn) event.getTarget();
             t.getCellData( event.getNewValue());
             System.out.println(event.getTarget());
@@ -37,7 +32,6 @@ public class EditCommitComboBox<T,K> extends Edit<T,K>{
 
 
 
-//
 //        column.setOnEditCommit((event) -> {
 //
 //                DomainObject domain= (DomainObject) event.getRowValue();

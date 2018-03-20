@@ -24,54 +24,68 @@ public class UnitOfWork {
     private Refreshable refreshable;
     
     public void setNewPojoes(DomainObject p){
-    
+        System.out.println("UnitOfWork.setNewPojoes");
         this.newPojoes.add(p);
         
     }
     public void setRemovedPojoes(DomainObject p){
-    
+
+        System.out.println("UnitOfWork.setRemovedPojoes");
+
         this.removedPojoes.add(p);
         
     } 
     public void setChangedPojoes(DomainObject p){
+
+        System.out.println("UnitOfWork.setChangedPojoes");
     
         this.changedPojoes.add(p);
         
     }
     public List <DomainObject> getNewPojoes(){
-    
+        System.out.println("UnitOfWork.getNewPojoes");
         return newPojoes;
         
     }
     public List<DomainObject> getRemovedPojoes() {
+        System.out.println("UnitOfWork.getRemovedPojoes");
         return removedPojoes;
     }
     public List<DomainObject> getChangedPojoes() {
+        System.out.println("UnitOfWork.getChangedPojoes");
         return changedPojoes;
     }
 
     public List<Integer> getStoredPojoesId() {
+        System.out.println("UnitOfWork.getStoredPojoesId");
         return storedPojoesId;
     }
 
     
     public void clearStoredPojoesId(){
-    
+
+        System.out.println("UnitOfWork.clearStoredPojoesId");
         this.storedPojoesId.clear();
     
     }
     
     public void clearNewPojoesList(){
+
+        System.out.println("UnitOfWork.clearNewPojoesList");
     
         this.newPojoes.clear();
     
     }
     public void clearRemovedPojoesList(){
+
+        System.out.println("UnitOfWork.clearRemovedPojoesList");
     
         this.removedPojoes.clear();
     
     }
     public void clearChangedPojoesList(){
+
+        System.out.println("UnitOfWork.clearChangedPojoesList");
     
         this.changedPojoes.clear();
     
@@ -80,6 +94,8 @@ public class UnitOfWork {
         commitNew();
         commitChanged();
         commitRemoved();
+
+        System.out.println("UnitOfWork.commitAll");
     }
     public void commitNew(){
       
@@ -87,6 +103,10 @@ public class UnitOfWork {
             DomainObject next = iterator.next();
             next.getDataMapper().insertDomainObject(next);
         }
+
+
+        System.out.println("UnitOfWork.commitNew");
+
         clearNewPojoesList();
         refreshable.refresh();
     
@@ -96,6 +116,9 @@ public class UnitOfWork {
         for (Iterator<DomainObject> iterator = changedPojoes.iterator(); iterator.hasNext();) {
             DomainObject next = iterator.next();
             next.getDataMapper().updateDomainObject(next);
+
+
+            System.out.println("UnitOfWork.commitChanged");
         }
         clearChangedPojoesList();
         refreshable.refresh();
@@ -107,6 +130,8 @@ public class UnitOfWork {
         for (Iterator<DomainObject> iterator = removedPojoes.iterator(); iterator.hasNext();) {
             DomainObject next = iterator.next();
             next.getDataMapper().deleteDomainObject(next);
+
+            System.out.println("UnitOfWork.commitRemoved");
             
         }
         clearRemovedPojoesList();
@@ -115,6 +140,9 @@ public class UnitOfWork {
     }
 
     public void setRefreshable(Refreshable r) {
+
+        System.out.println("UnitOfWork.setRefreshable");
+
        this.refreshable=r;
        
     }

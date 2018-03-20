@@ -26,7 +26,7 @@ public class NamedDomainObject extends DomainObject{
 
     @Override
     public boolean isReadyToTransaction() {
-        if ( getName()!=null && getId()!=null  )
+        if ( getName()!=null   )
         {
             return true;
 

@@ -2,6 +2,7 @@ package basisFx.domainModel.mapper;
 
 import basisFx.appCore.dataSource.DataMapper;
 import basisFx.appCore.dataSource.Db;
+import basisFx.appCore.domainScetch.NamedDomainObject;
 import basisFx.domainModel.pojo.Counterparty;
 import basisFx.domainModel.pojo.Country;
 import basisFx.domainModel.pojo.Currency;
@@ -13,6 +14,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -24,8 +26,8 @@ import java.util.logging.Logger;
  */
 public class CounterpartyDataMapper extends DataMapper {
 
-    private  ObservableList <Currency> currencyList =null;
-    private  ObservableList <Country> countryList =null;
+    private  ObservableList <NamedDomainObject> currencyList =null;
+    private  ObservableList <NamedDomainObject> countryList =null;
     private Counterparty domainObject;
     private static CounterpartyDataMapper ourInstance = new CounterpartyDataMapper();
 
@@ -50,8 +52,34 @@ public class CounterpartyDataMapper extends DataMapper {
                 Counterparty pojo=new Counterparty();
                 pojo.setId(rs.getInt("id"));
                 pojo.setName(rs.getString("name"));
-                pojo.setCountryId(rs.getInt("countryId"));
-                pojo.setCurrencyId(rs.getInt("currencyId"));
+
+
+                int сountryId=rs.getInt("countryId");
+                int currencyId=rs.getInt("currencyId");
+
+                Country currentCountry;
+                Currency currentCurrency;
+
+                for (Iterator iterator = countryList.iterator(); iterator.hasNext(); ) {
+                    Country next = (Country) iterator.next();
+
+                    if (сountryId==next.getId()){
+
+                        pojo.setCountry(next);
+
+                    }
+                }
+
+
+                for (Iterator iterator = currencyList.iterator(); iterator.hasNext(); ) {
+                    Currency next = (Currency) iterator.next();
+
+                    if (currencyId==next.getId()){
+
+                        pojo.setCurrency(next);
+
+                    }
+                }
 
                 //вставляю id в список хранимых в бд
                 this.unitOfWork.getStoredPojoesId().add(rs.getInt("id"));
@@ -72,7 +100,7 @@ public class CounterpartyDataMapper extends DataMapper {
 
         String expression="SELECT * FROM " +"Currency"+" ORDER BY ID";
         Statement stmt  = null;
-        currencyList = FXCollections.<Currency>observableArrayList();
+        currencyList = FXCollections.<NamedDomainObject>observableArrayList();
 
         try {
 
@@ -96,7 +124,7 @@ public class CounterpartyDataMapper extends DataMapper {
     private void getCountryListFromStore() {
         String expression="SELECT * FROM " +"Country"+" ORDER BY ID";
         Statement stmt  = null;
-        countryList = FXCollections.<Country>observableArrayList();
+        countryList = FXCollections.<NamedDomainObject>observableArrayList();
 
         try {
 
@@ -119,7 +147,7 @@ public class CounterpartyDataMapper extends DataMapper {
 
 
     }
-    public  ObservableList <Currency> getCurrencyList() {
+    public  ObservableList <NamedDomainObject> getCurrencyList() {
 
         if (currencyList != null) {
 
@@ -131,7 +159,7 @@ public class CounterpartyDataMapper extends DataMapper {
 
         }
     }
-    public  ObservableList <Country>  getCountryList() {
+    public  ObservableList <NamedDomainObject>  getCountryList() {
 
         if (countryList != null) {
 
@@ -161,8 +189,8 @@ public class CounterpartyDataMapper extends DataMapper {
 
             PreparedStatement pstmt =  Db.getConnection().prepareStatement(expression);
             pstmt.setString(1, domainObject.getName());
-            pstmt.setInt(2, domainObject.getCountryId());
-            pstmt.setInt(3, domainObject.getCurrencyId());
+            pstmt.setInt(2, domainObject.getCountry().getId());
+            pstmt.setInt(3, domainObject.getCurrency().getId());
             pstmt.setInt(4, domainObject.getId());
 
             pstmt.executeUpdate();

@@ -29,67 +29,68 @@ public class TableListener  implements ListChangeListener  {
         this.tableViewWrapper=t;
         this.unitOfWork=tableViewWrapper.getUnitOfWork();
     }
-    
+
     public void setNTableView(TableViewWrapper t){
         this.tableViewWrapper=t;
         this.unitOfWork=tableViewWrapper.getUnitOfWork();
     }
-    
+
     @Override
     public void onChanged(ListChangeListener.Change change) {
 
-		while (change.next()) {
-			if (change.wasPermutated()) {
-                        System.out.println("wasPermutated");
-			}
-			else if (change.wasUpdated()) {
-                        System.out.println("wasUpdated");
-			}
-			else if (change.wasReplaced()) {
-                        System.out.println("wasReplaced");
-			}
-			else if (change.wasRemoved()) {
-                       
-                            System.out.println("wasRemoved");
-                            List removed = change.getRemoved();
-                            
-                        
-                        }
-                        else if (change.wasAdded()) {
-                        
-                            @SuppressWarnings("unchecked")
-                            List<DomainObject> subList = change.getAddedSubList();
-                            DomainObject p = subList.get(0);
+        while (change.next()) {
+            if (change.wasPermutated()) {
+                System.out.println("wasPermutated");
+            }
+            else if (change.wasUpdated()) {
+                System.out.println("wasUpdated");
+            }
+            else if (change.wasReplaced()) {
+                System.out.println("wasReplaced");
+            }
+            else if (change.wasRemoved()) {
+
+                System.out.println("wasRemoved");
+                List removed = change.getRemoved();
 
 
-                            if ( !unitOfWork.getStoredPojoesId().contains(p.getId())) {
-                              this.unitOfWork.setNewPojoes(p);
-                              System.out.println("wasAdded");
+            }
+            else if (change.wasAdded()) {
 
-                              this.table = (TableView<DomainObject>) this.tableViewWrapper.getElement();
+                @SuppressWarnings("unchecked")
+                List<DomainObject> subList = change.getAddedSubList();
+                DomainObject p = subList.get(0);
 
-                                int newPojoIndex = table.getItems().indexOf(p);
 
-                                System.out.println("newPojoIndex--------"+ newPojoIndex);
+                if ( !unitOfWork.getStoredPojoesId().contains(p.getId())) {
+                    this.unitOfWork.setNewPojoes(p);
 
-                                table.scrollTo(newPojoIndex);
-                                table.getSelectionModel().select(newPojoIndex);
+                    System.out.println("wasAdded");
+
+                    this.table = (TableView<DomainObject>) this.tableViewWrapper.getElement();
+
+                    int newPojoIndex = table.getItems().indexOf(p);
+
+                    System.out.println("newPojoIndex--------"+ newPojoIndex);
+
+                    table.scrollTo(newPojoIndex);
+                    table.getSelectionModel().select(newPojoIndex);
 //                                table.getSelectionModel().focus(newPojoIndex);
 
 
 
-                            }else{
-                            
+                }else{
+
 //                              System.out.println("not was added");
 
-                            }
-                            
-                           
-                            
-                        }
-			}
-		}
-	}
+                }
+
+
+
+            }
+        }
+    }
+}
 
     
     

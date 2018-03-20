@@ -23,8 +23,6 @@ import java.util.logging.Logger;
 public class NamedDataMapper extends DataMapper {
     private NamedDomainObject domainObject;
 
-    private static Map<Integer,NamedDomainObject> namedDomainObjectMap=new HashMap<>();
-
     private static NamedDataMapper ourInstance = new NamedDataMapper();
 
     public static NamedDataMapper getInstance() {
@@ -51,8 +49,8 @@ public class NamedDataMapper extends DataMapper {
                 pojo.setId(rs.getInt("id"));
                 pojo.setName(rs.getString("name"));
 
-                //вставляю id в список хранимых в бд
-                namedDomainObjectMap.put(rs.getInt("id"),pojo);
+                unitOfWork.getStoredPojoesId().add(rs.getInt("id"));
+
 
                 list.add(pojo);
 

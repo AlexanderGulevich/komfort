@@ -1,6 +1,7 @@
 package basisFx.domainModel.targets;
 
 import basisFx.appCore.controlPolicy.ColumnWrapper;
+import basisFx.appCore.domainScetch.NamedDomainObject;
 import basisFx.appCore.elements.AppNode;
 import basisFx.appCore.elements.TableViewWrapper;
 import basisFx.appCore.panels.Target;
@@ -26,15 +27,15 @@ public class CounterpartyTargetPanel extends Target{
 
         tableViewWrapper = AppNode.NodeBuilder.create()
                 .setId(CSSID.TABLE).setCoordinate(panel,50d, null, 0d, 0d)
-                .<Counterparty>createTableViewWrapper().setTablesSize(0.7, panel.widthProperty())
+                .<Counterparty>createTableViewWrapper().setTablesSize(0.8, panel.widthProperty())
                 .setDataMapper(this.dataMapperFabric.getCounterpartyDataMapper())
                 .setDbTableName("Counterparty").refresh()
                 .setColums(
-                        columnFabric.<Equipment,String>createTextColumn(ColumnWrapper.Bulder.create()
+                        columnFabric.<Counterparty,String>createTextColumn(ColumnWrapper.Bulder.create()
                                 .setColumnName("Наименование контрагента")
                                 .setPropertyName("name")
                                 .setValueChecking(check.createTextCheck())
-                                .setEditPoliticy(editFabric.<Equipment,String>createEditCommitDefault())
+                                .setEditPoliticy(editFabric.<Counterparty,String>createEditCommitDefault())
                                 .setColumnSize(0.6)
                                 .setDomainObjectChanging(
                                         (obj,val)->{((Counterparty)obj).setName((String)val);}
@@ -44,10 +45,10 @@ public class CounterpartyTargetPanel extends Target{
                                 .setColumnName("Страна").setColumnSize(0.4)
                                 .setEditPoliticy(editFabric.<Counterparty,String>createEditCommitComboBox())
                                 .setDataMapper(this.dataMapperFabric.getCounterpartyDataMapper())
-                                .setComboBoxCellValueInitLogic((domainObject,stringProperty)->{
-                                            Counterparty counterparty=(Counterparty) domainObject;
-                                            stringProperty= dataMapperFabric.getCounterpartyDataMapper().
-                                                    getCountryMapById().get(counterparty.getCountryId()).getNameProperty();
+                                .setComboBoxCellValueInitLogic((domainObject,objectProperty)->{
+                                    Counterparty domain=(Counterparty)domainObject;
+                                    objectProperty=domain.countryProperty();
+
                                         }
                                 )
                         )
@@ -62,7 +63,7 @@ public class CounterpartyTargetPanel extends Target{
 
         AppNode.NodeBuilder.create()
                 .setId(CSSID.PANELS_BUTTON)
-                .setCoordinate(panel, 80d,50d, null, null)
+                .setCoordinate(panel, 80d,0d, null, null)
                 .setText("ДОБАВИТЬ").setFont(FontsStore.ROBOTO_LIGHT, 15)
                 .setWidth(170d).setHeight(20d)
                 .setEvent(eventFactory.
@@ -73,7 +74,7 @@ public class CounterpartyTargetPanel extends Target{
 
         AppNode.NodeBuilder.create()
                 .setId(CSSID.PANELS_BUTTON)
-                .setCoordinate(panel, 120d,50d, null, null)
+                .setCoordinate(panel, 120d,0d, null, null)
                 .setText("УДАЛИТЬ").setFont(FontsStore.ROBOTO_LIGHT, 15)
                 .setWidth(170d).setHeight(20d)
                 .setEvent(eventFactory.createRowDeleteFromTable(tableViewWrapper))
