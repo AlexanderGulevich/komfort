@@ -12,9 +12,9 @@ package basisFx.appCore.controlPolicy;
  * @param <K>
  */
 public class EditFabric<T,K> {
-    public  EditCommitDefault<T,K> createEditCommitDefault (){
+    public TextEditCommit<T,K> createTextEditCommit(){
 
-        return new EditCommitDefault<>();
+        return new TextEditCommit<>();
 
     }
 

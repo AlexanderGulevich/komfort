@@ -1,14 +1,10 @@
 package basisFx.domainModel.targets;
 
 import basisFx.appCore.controlPolicy.ColumnWrapper;
-import basisFx.appCore.domainScetch.NamedDomainObject;
 import basisFx.appCore.elements.AppNode;
 import basisFx.appCore.elements.TableViewWrapper;
 import basisFx.appCore.panels.Target;
-import basisFx.domainModel.mapper.CounterpartyDataMapper;
 import basisFx.domainModel.pojo.Counterparty;
-import basisFx.domainModel.pojo.Country;
-import basisFx.domainModel.pojo.Equipment;
 import basisFx.domainModel.settings.CSSID;
 import basisFx.domainModel.settings.FontsStore;
 
@@ -32,23 +28,23 @@ public class CounterpartyTargetPanel extends Target{
                 .setDbTableName("Counterparty").refresh()
                 .setColums(
                         columnFabric.<Counterparty,String>createTextColumn(ColumnWrapper.Bulder.create()
-                                .setColumnName("Наименование контрагента")
-                                .setPropertyName("name")
+                                .setColumnName("Наименование контрагента").setPropertyName("name")
                                 .setValueChecking(check.createTextCheck())
-                                .setEditPoliticy(editFabric.<Counterparty,String>createEditCommitDefault())
+                                .setEditPoliticy(editFabric.<Counterparty,String>createTextEditCommit())
                                 .setColumnSize(0.6)
-                                .setDomainObjectChanging(
+                                .setDomainChangeAction(
                                         (obj,val)->{((Counterparty)obj).setName((String)val);}
                                 )
                         ),
                         columnFabric.createComboBoxColumn(ColumnWrapper.Bulder.create()
                                 .setColumnName("Страна").setColumnSize(0.4)
                                 .setEditPoliticy(editFabric.<Counterparty,String>createEditCommitComboBox())
-                                .setDataMapper(this.dataMapperFabric.getCounterpartyDataMapper())
-                                .setComboBoxCellValueInitLogic((domainObject,objectProperty)->{
-                                    Counterparty domain=(Counterparty)domainObject;
-                                    objectProperty=domain.countryProperty();
-
+//                                .setDataMapper(this.dataMapperFabric.getCounterpartyDataMapper())
+                                .setNamedObjectListGetter(() -> dataMapperFabric.getCounterpartyDataMapper().getCountryList())
+                                .setComboBoxCellValueInitLogic(
+                                        (domainObject,objectProperty)->{
+                                            Counterparty domain=(Counterparty)domainObject;
+                                            objectProperty=domain.countryProperty();
                                         }
                                 )
                         )

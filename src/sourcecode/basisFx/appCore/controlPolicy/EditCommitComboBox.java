@@ -19,16 +19,16 @@ public class EditCommitComboBox<T,K> extends Edit<T,K>{
 
     public void run() {
 
-        column.setOnEditCommit((event) -> {
-
-
-            System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!EditCommitComboBox!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-            TableColumn t= (TableColumn) event.getTarget();
-            t.getCellData( event.getNewValue());
-            System.out.println(event.getTarget());
-
-
-        });
+//        column.setOnEditCommit((event) -> {
+//
+//
+//            System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!EditCommitComboBox!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+//            TableColumn t= (TableColumn) event.getTarget();
+//            t.getCellData( event.getNewValue());
+//            System.out.println(event.getTarget());
+//
+//
+//        });
 
 
 
@@ -40,7 +40,7 @@ public class EditCommitComboBox<T,K> extends Edit<T,K>{
 //                if (unitOfWork.getStoredPojoesId().contains(domain.getId())) {
 //
 //
-//                      this.pojoChanging.change(domain,event.getNewValue());
+//                      this.domainChangeAction.change(domain,event.getNewValue());
 //                      if (domain.isReadyToTransaction()) {
 //                         unitOfWork.setChangedPojoes(domain);
 //                         unitOfWork.commitChanged();
@@ -53,7 +53,7 @@ public class EditCommitComboBox<T,K> extends Edit<T,K>{
 //                        if (unitOfWork.getNewPojoes().contains(domain)) {
 //
 //                            //вставить значение в домен
-//                            this.pojoChanging.change(domain,event.getNewValue());
+//                            this.domainChangeAction.change(domain,event.getNewValue());
 //
 //                            if (domain.isReadyToTransaction()) {
 //                                 unitOfWork.commitNew();

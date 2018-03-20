@@ -13,7 +13,7 @@ import basisFx.appCore.domainScetch.DomainObject;
  * @param <T>
  * @param <K>
  */
-public class EditCommitDefault<T,K> extends Edit<T,K>{
+public class TextEditCommit<T,K> extends Edit<T,K>{
 
 
     public void run() {
@@ -25,9 +25,9 @@ public class EditCommitDefault<T,K> extends Edit<T,K>{
                 //проверяет, есть ли такой id в бд
                 if (unitOfWork.getStoredPojoesId().contains(domain.getId())) {
 
-                    System.out.println("EditCommitDefault------unitOfWork.getStoredPojoesId().contains(domain.getId())) {");
+                    System.out.println("TextEditCommit------unitOfWork.getStoredPojoesId().contains(domain.getId())) {");
 
-                      this.pojoChanging.change(domain,event.getNewValue());
+                      this.domainChangeAction.change(domain,event.getNewValue());
                       if (domain.isReadyToTransaction()) {
                          unitOfWork.setChangedPojoes(domain);
                          unitOfWork.commitChanged();
@@ -39,14 +39,14 @@ public class EditCommitDefault<T,K> extends Edit<T,K>{
                     //проверяет, новый ли это объект из уже созданных
                         if (unitOfWork.getNewPojoes().contains(domain)) {
 
-                            System.out.println("EditCommitDefault------ unitOfWork.getNewPojoes().contains(domain) {");
+                            System.out.println("TextEditCommit------ unitOfWork.getNewPojoes().contains(domain) {");
 
                             //вставить значение в домен
-                            this.pojoChanging.change(domain,event.getNewValue());
+                            this.domainChangeAction.change(domain,event.getNewValue());
 
                             if (domain.isReadyToTransaction()) {
 
-                                System.out.println("EditCommitDefault------ domain.isReadyToTransaction() {");
+                                System.out.println("TextEditCommit------ domain.isReadyToTransaction() {");
 
                                 unitOfWork.commitNew();
                             } 

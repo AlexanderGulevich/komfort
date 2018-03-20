@@ -23,7 +23,7 @@ public class DataMapperFabric {
 
     public CounterpartyDataMapper getCounterpartyDataMapper() {
 
-        return CounterpartyDataMapper.getInstance();
+        return new CounterpartyDataMapper();
     }
 
     public NamedDataMapper getNamedDataMapper() {

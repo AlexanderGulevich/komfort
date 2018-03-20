@@ -11,6 +11,7 @@ package basisFx.appCore.controlPolicy;
  * @param <T>
  * @param <K>
  */
-public interface PojoChanging <T,K>{
+@FunctionalInterface
+public interface DomainChangeAction<T,K>{
  public <T,K> void change(T d, K val);
 }

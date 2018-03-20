@@ -17,7 +17,7 @@ public class Edit<T,K> {
     
     protected TableColumn<T,K> column;
     protected UnitOfWork unitOfWork;
-    protected PojoChanging <T,K>pojoChanging;
+    protected DomainChangeAction<T,K> domainChangeAction;
     protected TableViewWrapper tvw;
 
     public void setTvw(TableViewWrapper tvw) {
@@ -32,8 +32,8 @@ public class Edit<T,K> {
         this.unitOfWork = unitOfWork;
     }
 
-    public void setPojoChanging(PojoChanging<T, K> pojoChanging) {
-        this.pojoChanging = pojoChanging;
+    public void setDomainChangeAction(DomainChangeAction<T, K> domainChangeAction) {
+        this.domainChangeAction = domainChangeAction;
     }
 
     public void run() {}

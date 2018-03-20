@@ -17,20 +17,20 @@ import javafx.util.converter.IntegerStringConverter;
  */
 public class IntegerColumn <T> extends ColumnWrapper<T>{
     protected TableColumn<T,Integer> column;
-    protected PojoChanging<T,String> pojoChanging;
+//    protected DomainChangeAction<T,String> domainChangeAction;
 
     @SuppressWarnings("unchecked")
     public IntegerColumn(ColumnWrapper.Bulder builder) {
                 
         super(builder);
-        this.pojoChanging=builder.domainChangeAction;
+//        this.domainChangeAction =builder.domainChangeAction;
         this.column =  new TableColumn<>(columnName);
    
         column.setCellValueFactory(new PropertyValueFactory<>(propertyName));
         column.setCellFactory(
-                        TextFieldTableCell.forTableColumn(
-               new IntegerStringConverter()
-                        ));
+                TextFieldTableCell.forTableColumn(
+                        new IntegerStringConverter()
+                ));
         
         
     }
@@ -41,7 +41,7 @@ public class IntegerColumn <T> extends ColumnWrapper<T>{
 
         for (Edit edit : editPoliticy) {
             edit.setColumn(this.column);
-            edit.setPojoChanging(this.pojoChanging);
+            edit.setDomainChangeAction(this.domainChangeAction);
             edit.setUnitOfWork(this.tableWrapper.getUnitOfWork());
             edit.setTvw(this.tableWrapper);
             edit.run();

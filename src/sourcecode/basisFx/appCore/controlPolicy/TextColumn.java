@@ -16,7 +16,7 @@ import javafx.scene.control.cell.TextFieldTableCell;
  */
 public class TextColumn<T> extends ColumnWrapper<T>{
     protected TableColumn<T,String> column;
-    protected PojoChanging<T,String> pojoChanging;
+//    protected DomainChangeAction<T,String> domainChangeAction;
    
     
     
@@ -24,7 +24,7 @@ public class TextColumn<T> extends ColumnWrapper<T>{
     public TextColumn(ColumnWrapper.Bulder builder) {
         
         super(builder);
-        this.pojoChanging=builder.domainChangeAction;
+//        this.domainChangeAction =builder.domainChangeAction;
         
         this.column =  new TableColumn<>(columnName);
       
@@ -38,7 +38,7 @@ public class TextColumn<T> extends ColumnWrapper<T>{
 
         for (Edit edit : editPoliticy) {
             edit.setColumn(this.column);
-            edit.setPojoChanging(this.pojoChanging);
+            edit.setDomainChangeAction(this.domainChangeAction);
             edit.setUnitOfWork(this.tableWrapper.getUnitOfWork());
             edit.setTvw(this.tableWrapper);
             edit.run();

@@ -5,7 +5,7 @@
  */
 package basisFx.appCore.controlPolicy;
 
-import basisFx.appCore.dataSource.DataMapper;
+import basisFx.appCore.NamedObjectListGetter;
 import basisFx.appCore.domainScetch.ComboBoxCellValueInitLogic;
 import basisFx.appCore.elements.TableViewWrapper;
 import java.util.ArrayList;
@@ -26,9 +26,11 @@ public  class ColumnWrapper<T> {
     protected List <Edit> editPoliticy;
     protected ComboBoxCellValueInitLogic comboBoxCellValueInitLogic;
     protected TableColumn column;
-    protected PojoChanging pojoChanging;
-    protected DataMapper dataMapper;
-    
+    protected DomainChangeAction domainChangeAction;
+//    protected DataMapper dataMapper;
+    protected NamedObjectListGetter namedObjectListGetter;
+
+
 
     public ColumnWrapper(Bulder b) {
         
@@ -38,8 +40,9 @@ public  class ColumnWrapper<T> {
         this.columnSize=b.columnSize;
         this.editPoliticy=b.editPoliticy;
         this.comboBoxCellValueInitLogic=b.comboBoxCellValueInitLogic;
-        this.dataMapper=b.dataMapper;
-
+//        this.dataMapper=b.dataMapper;
+        this.namedObjectListGetter=b.namedObjectListGetter;
+        this.domainChangeAction =b.domainChangeAction;
 
     }
     
@@ -63,12 +66,12 @@ public  class ColumnWrapper<T> {
         protected String propertyName;
         protected String columnName;
         protected Checking valueChecking;
-        protected PojoChanging domainChangeAction;
+        protected DomainChangeAction domainChangeAction;
         protected double columnSize;
         protected List <Edit> editPoliticy=new ArrayList<>();
          protected ComboBoxCellValueInitLogic comboBoxCellValueInitLogic;
-         protected DataMapper dataMapper;
-
+//         protected DataMapper dataMapper;
+         protected NamedObjectListGetter namedObjectListGetter;
 
 
 
@@ -112,21 +115,21 @@ public  class ColumnWrapper<T> {
          return this;
          
          }
-         public  Bulder setDomainObjectChanging(PojoChanging domainChangeAction){
+         public  Bulder setDomainChangeAction(DomainChangeAction domainChangeAction){
          this.domainChangeAction=domainChangeAction;         
          return this;
          
          }
-         public Bulder setDataMapper(DataMapper dm) {
-             this.dataMapper=dm;
+//         public Bulder setDataMapper(DataMapper dm) {
+//             this.dataMapper=dm;
+//
+//             return this;
+//         }
 
+         public Bulder setNamedObjectListGetter(NamedObjectListGetter namedObjectListGetter) {
+             this.namedObjectListGetter = namedObjectListGetter;
              return this;
          }
-
-
-         
-         
-     
      }
     
 }

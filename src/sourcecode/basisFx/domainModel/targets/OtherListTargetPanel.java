@@ -4,7 +4,6 @@ import basisFx.appCore.controlPolicy.ColumnWrapper;
 import basisFx.appCore.elements.AppNode;
 import basisFx.appCore.elements.TableViewWrapper;
 import basisFx.appCore.panels.Target;
-import basisFx.domainModel.pojo.Counterparty;
 import basisFx.domainModel.pojo.Country;
 import basisFx.domainModel.pojo.Equipment;
 import basisFx.domainModel.settings.CSSID;
@@ -31,9 +30,9 @@ public class OtherListTargetPanel extends Target {
                                 .setColumnName("Наименование")
                                 .setPropertyName("name")
                                 .setValueChecking(check.createTextCheck())
-                                .setEditPoliticy(editFabric.<Country,String>createEditCommitDefault())
+                                .setEditPoliticy(editFabric.<Country,String>createTextEditCommit())
                                 .setColumnSize(1)
-                                .setDomainObjectChanging(
+                                .setDomainChangeAction(
                                         (obj,val)->{((Country)obj).setName((String)val);}
                                 )
                         )

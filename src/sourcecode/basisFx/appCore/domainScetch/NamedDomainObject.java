@@ -35,4 +35,10 @@ public class NamedDomainObject extends DomainObject{
         return false;
     }
 
+    public String toString(){
+
+//        return getName();
+        return null;
+    }
+
 }

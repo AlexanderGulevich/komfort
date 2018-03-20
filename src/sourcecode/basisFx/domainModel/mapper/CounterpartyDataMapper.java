@@ -31,10 +31,6 @@ public class CounterpartyDataMapper extends DataMapper {
     private Counterparty domainObject;
     private static CounterpartyDataMapper ourInstance = new CounterpartyDataMapper();
 
-    public static CounterpartyDataMapper getInstance() {
-        return ourInstance;
-    }
-    private CounterpartyDataMapper() {}
     @Override
     public void getAllDomainObjectList(ObservableList list, String tableName) {
 
