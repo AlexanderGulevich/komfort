@@ -1,0 +1,18 @@
+#COMBOBOX{
+-fx-background-color:#3c635e;
+}
+#COMBOBOX .list-cell{
+-fx-background-color:#2cd774;
+}
+#COMBOBOX .text-input{
+-fx-background-color:#21e7b9;
+}
+#COMBOBOX .combo-box-popup{
+-fx-background-color:rgb(124, 151, 221);
+}
+#COMBOBOX .list-view{
+-fx-background-color:rgb(120, 139, 33);
+}
+#COMBOBOX .list-cell{
+-fx-background-color:rgb(175, 102, 200);
+}

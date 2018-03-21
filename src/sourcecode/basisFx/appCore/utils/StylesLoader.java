@@ -42,18 +42,19 @@ public class StylesLoader {
     }
     
     public static void loadAll(Scene scene) {
-        
-        
-      StylesLoader.load(scene, StylesPathes.MAIN);
-      StylesLoader.load(scene, StylesPathes.BUTTONS);
-      StylesLoader.load(scene, StylesPathes.PANELS);
-      StylesLoader.load(scene, StylesPathes.TABLES);
-      StylesLoader.load(scene, StylesPathes.MENUS);
-      StylesLoader.load(scene, StylesPathes.WINDOWS);
-      StylesLoader.load(scene, StylesPathes.MENU_BAR);
-      StylesLoader.load(scene, StylesPathes.LEFT_SIDE_MENU);
-        
-        
+
+
+        StylesLoader.load(scene, StylesPathes.MAIN);
+        StylesLoader.load(scene, StylesPathes.BUTTONS);
+        StylesLoader.load(scene, StylesPathes.PANELS);
+        StylesLoader.load(scene, StylesPathes.TABLES);
+        StylesLoader.load(scene, StylesPathes.MENUS);
+        StylesLoader.load(scene, StylesPathes.WINDOWS);
+        StylesLoader.load(scene, StylesPathes.MENU_BAR);
+        StylesLoader.load(scene, StylesPathes.COMBOBOX);
+        StylesLoader.load(scene, StylesPathes.LEFT_SIDE_MENU);
+
+
     }
     
     

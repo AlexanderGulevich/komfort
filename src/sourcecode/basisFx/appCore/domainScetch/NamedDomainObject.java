@@ -26,9 +26,13 @@ public class NamedDomainObject extends DomainObject{
 
     @Override
     public boolean isReadyToTransaction() {
-        if ( getName()!=null   )
+        System.out.println("NamedDomainObject.isReadyToTransaction -- getName---- "+getName());
+        if ( getName()!=null     )
         {
-            return true;
+            if (!getName().trim().isEmpty()){
+                return true;
+            }
+
 
         }
 
@@ -37,7 +41,6 @@ public class NamedDomainObject extends DomainObject{
 
     public String toString(){
 
-//        return getName();
         return null;
     }
 

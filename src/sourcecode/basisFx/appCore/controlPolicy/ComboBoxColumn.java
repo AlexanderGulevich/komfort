@@ -3,6 +3,7 @@ package basisFx.appCore.controlPolicy;
 import basisFx.appCore.domainScetch.DomainObject;
 import basisFx.appCore.domainScetch.NamedDomainObject;
 import basisFx.domainModel.DataMapperFabric;
+import basisFx.domainModel.settings.CSSID;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.value.ObservableValue;
@@ -135,6 +136,9 @@ public class ComboBoxColumn<T,K> extends ColumnWrapper<T>{
 
         private void createComboBox() {
             comboBox = new ComboBox<>(namedObjectListGetter.getList());
+            comboBox.setId(CSSID.COMBOBOX.get());
+//            comboBox.setEditable(true);
+            comboBox.setPromptText("fgfg");
             comboBoxConverter(comboBox);
             comboBox.valueProperty().set(getNamedDomainObject());
             comboBox.setMinWidth(this.getWidth() - this.getGraphicTextGap() * 2);

@@ -1,6 +1,7 @@
 package basisFx.domainModel.targets;
 
 import basisFx.appCore.controlPolicy.ColumnWrapper;
+import basisFx.appCore.domainScetch.NamedDomainObject;
 import basisFx.appCore.elements.AppNode;
 import basisFx.appCore.elements.TableViewWrapper;
 import basisFx.appCore.panels.Target;
@@ -33,7 +34,7 @@ public class OtherListTargetPanel extends Target {
                                 .setEditPoliticy(editFabric.<Country,String>createTextEditCommit())
                                 .setColumnSize(1)
                                 .setDomainChangeAction(
-                                        (obj,val)->{((Country)obj).setName((String)val);}
+                                        (obj,val)->{((NamedDomainObject)obj).setName((String)val);}
                                 )
                         )
                 );
