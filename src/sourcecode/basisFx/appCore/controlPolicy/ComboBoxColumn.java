@@ -138,7 +138,7 @@ public class ComboBoxColumn<T,K> extends ColumnWrapper<T>{
             comboBox = new ComboBox<>(namedObjectListGetter.getList());
             comboBox.setId(CSSID.COMBOBOX.get());
 //            comboBox.setEditable(true);
-            comboBox.setPromptText("fgfg");
+//            comboBox.setPromptText("fgfg");
             comboBoxConverter(comboBox);
             comboBox.valueProperty().set(getNamedDomainObject());
             comboBox.setMinWidth(this.getWidth() - this.getGraphicTextGap() * 2);
