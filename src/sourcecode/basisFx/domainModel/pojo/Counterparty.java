@@ -53,10 +53,10 @@ public class Counterparty  extends NamedDomainObject {
     @Override
     public boolean isReadyToTransaction() {
         if (
-                getName()!=null
+                super.isReadyToTransaction()
                 && getCountry()!=null
                 && getCurrency()!=null
-                && getId()!=null
+
                 )
         {
             return true;

@@ -29,6 +29,13 @@ public class ComboBoxColumn<T,K> extends ColumnWrapper<T>{
         setCellValueFactory();
         setCellFactory();
 
+        column.setOnEditCommit(event ->
+                {
+                    String nv = event.getNewValue().getName();
+
+                }
+        );
+
     }
 
     public void setCellValueFactory(){
@@ -42,7 +49,6 @@ public class ComboBoxColumn<T,K> extends ColumnWrapper<T>{
             if (domainObject.getId() != null) {
                 ObjectProperty objectProperty=null;
                 comboBoxCellValueInitLogic.init(domainObject,objectProperty);
-                System.out.println("ComboBoxColumn.ComboBoxColumn---objectProperty="+ objectProperty);
                 return objectProperty;
             }else {
                 return null;
@@ -59,9 +65,7 @@ public class ComboBoxColumn<T,K> extends ColumnWrapper<T>{
         // Set a ComboBoxTableCell, so we can selects a value from a list
         column.setCellFactory(comboBoxCellFactory);
 
-
     }
-
 
     public void initEditPoliticy(){
 //
@@ -75,13 +79,11 @@ public class ComboBoxColumn<T,K> extends ColumnWrapper<T>{
 //        }
     }
 
-
     public TableColumn<DomainObject, NamedDomainObject> getColumn(){
 
         return this.column;
 
     }
-
 
     class ComboBoxCustomCell extends TableCell<DomainObject, NamedDomainObject> {
 
@@ -115,12 +117,9 @@ public class ComboBoxColumn<T,K> extends ColumnWrapper<T>{
                 setText(null);
                 setGraphic(null);
 
-                System.out.println("ComboBoxCustomCell.updateItem----   if (empty) {");
+
             } else {
                 if (isEditing()) {
-
-
-                    System.out.println("ComboBoxCustomCell.updateItem----      if (isEditing()) {");
 
                     if (comboBox != null) {
                         comboBox.setValue(getNamedDomainObject());
@@ -142,10 +141,9 @@ public class ComboBoxColumn<T,K> extends ColumnWrapper<T>{
             comboBoxConverter(comboBox);
             comboBox.valueProperty().set(getNamedDomainObject());
             comboBox.setMinWidth(this.getWidth() - this.getGraphicTextGap() * 2);
-            comboBox.setOnAction((e) -> {
-                System.out.println("Committed: " + comboBox.getSelectionModel().getSelectedItem());
-                commitEdit(comboBox.getSelectionModel().getSelectedItem());
-            });
+//            comboBox.setOnAction((e) -> {
+//                commitEdit(comboBox.getSelectionModel().getSelectedItem());
+//            });
             comboBox.focusedProperty().addListener((ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) -> {
                 if (!newValue) {
                     commitEdit(comboBox.getSelectionModel().getSelectedItem());
@@ -176,17 +174,12 @@ public class ComboBoxColumn<T,K> extends ColumnWrapper<T>{
 
                 NamedDomainObject namedDomainObject=new NamedDomainObject();
                 namedDomainObject.getNameProperty().setValue(null);
-//                System.out.println("ComboBoxCustomCell.getNamedDomainObject---(getItem() == null");
                 return  namedDomainObject;
-//                return  null;
 
             }else {
-//                System.out.println("ComboBoxCustomCell.getNamedDomainObject---(getItem() != null");
-//                System.out.println("omboBoxCustomCell.getNamedDomainObject---getItem();------"+getItem().getName());
-//                System.out.println("omboBoxCustomCell.getNamedDomainObject---getItem();------"+getItem().getNameProperty().toString());
+
                 return  getItem();
 
-//                return  null;
             }
 
 
