@@ -33,7 +33,7 @@ public class ComboBoxColumn<T,K> extends ColumnWrapper<T>{
                 {
                     String nv = event.getNewValue().getName();
 
-                }
+                 }
         );
 
     }
