@@ -31,7 +31,7 @@ public class OtherListTargetPanel extends Target {
                                 .setColumnName("Наименование")
                                 .setPropertyName("name")
                                 .setValueChecking(check.createTextCheck())
-                                .setEditPoliticy(editFabric.<Country,String>createTextEditCommit())
+//                                .setEditPoliticy(editFabric.<Country,String>createDefaultEditCommit())
                                 .setColumnSize(1)
                                 .setDomainChangeAction(
                                         (obj,val)->{((NamedDomainObject)obj).setName((String)val);}

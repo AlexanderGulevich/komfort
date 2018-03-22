@@ -30,7 +30,7 @@ public class CounterpartyTargetPanel extends Target{
                         columnFabric.<Counterparty,String>createTextColumn(ColumnWrapper.Bulder.create()
                                 .setColumnName("Наименование контрагента").setPropertyName("name")
                                 .setValueChecking(check.createTextCheck())
-                                .setEditPoliticy(editFabric.<Counterparty,String>createTextEditCommit())
+//                                .setEditPoliticy(editFabric.<Counterparty,String>createDefaultEditCommit())
                                 .setColumnSize(0.6)
                                 .setDomainChangeAction(
                                         (obj,val)->{((Counterparty)obj).setName((String)val);}
@@ -38,7 +38,7 @@ public class CounterpartyTargetPanel extends Target{
                         ),
                         columnFabric.createComboBoxColumn(ColumnWrapper.Bulder.create()
                                 .setColumnName("Страна").setColumnSize(0.4)
-                                .setEditPoliticy(editFabric.<Counterparty,String>createEditCommitComboBox())
+//                                .setEditPoliticy(editFabric.<Counterparty,String>createEditCommitComboBox())
 //                                .setDataMapper(this.dataMapperFabric.getCounterpartyDataMapper())
                                 .setNamedObjectListGetter(() -> dataMapperFabric.getCounterpartyDataMapper().getCountryList())
                                 .setComboBoxCellValueInitLogic(

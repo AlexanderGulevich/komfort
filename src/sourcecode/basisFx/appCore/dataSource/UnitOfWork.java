@@ -55,38 +55,26 @@ public class UnitOfWork {
         System.out.println("UnitOfWork.getChangedPojoes");
         return changedPojoes;
     }
-
     public List<Integer> getStoredPojoesId() {
         System.out.println("UnitOfWork.getStoredPojoesId");
         return storedPojoesId;
     }
-
-    
     public void clearStoredPojoesId(){
 
         System.out.println("UnitOfWork.clearStoredPojoesId");
         this.storedPojoesId.clear();
     
     }
-    
     public void clearNewPojoesList(){
-
         System.out.println("UnitOfWork.clearNewPojoesList");
-    
         this.newPojoes.clear();
-    
     }
     public void clearRemovedPojoesList(){
-
         System.out.println("UnitOfWork.clearRemovedPojoesList");
-    
         this.removedPojoes.clear();
-    
     }
     public void clearChangedPojoesList(){
-
         System.out.println("UnitOfWork.clearChangedPojoesList");
-    
         this.changedPojoes.clear();
     
     }

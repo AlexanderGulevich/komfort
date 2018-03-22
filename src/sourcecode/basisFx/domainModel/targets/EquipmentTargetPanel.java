@@ -32,7 +32,7 @@ public class EquipmentTargetPanel extends Target{
                     .setColumnName("Наименование")
                     .setPropertyName("name")
                     .setValueChecking(check.createTextCheck())
-                    .setEditPoliticy(editFabric.<Equipment,String>createTextEditCommit())
+//                    .setEditPoliticy(editFabric.<Equipment,String>createDefaultEditCommit())
                     .setColumnSize(0.6)
                     .setDomainChangeAction(
                          (obj,val)->{((Equipment)obj).setName((String)val);}
@@ -42,7 +42,7 @@ public class EquipmentTargetPanel extends Target{
                     .setColumnName("Ширина стержня")
                     .setPropertyName("rodWidth")
                     .setValueChecking(check.createNumCheck())
-                    .setEditPoliticy(editFabric.<Equipment,Integer>createTextEditCommit())
+//                    .setEditPoliticy(editFabric.<Equipment,Integer>createDefaultEditCommit())
                     .setColumnSize(0.4)
                     .setDomainChangeAction(
                          (obj,val)->{((Equipment)obj).setRodWidth((Integer)val);} 

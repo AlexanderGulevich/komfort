@@ -32,22 +32,26 @@ public class TextColumn<T> extends ColumnWrapper<T>{
         column.setCellFactory(TextFieldTableCell.forTableColumn());
         
     }
-    
- 
+
+
+
     public void initEditPoliticy(){
 
-        for (Edit edit : editPoliticy) {
-            edit.setColumn(this.column);
-            edit.setDomainChangeAction(this.domainChangeAction);
-            edit.setUnitOfWork(this.tableWrapper.getUnitOfWork());
-            edit.setTvw(this.tableWrapper);
-            edit.run();
-            
-        }
-          
-          
+//        for (Edit edit : editPoliticy) {
+//            edit.setColumn(this.column);
+//            edit.setDomainChangeAction(this.domainChangeAction);
+//            edit.setUnitOfWork(this.tableWrapper.getUnitOfWork());
+//            edit.setTvw(this.tableWrapper);
+//            edit.run();
+//
+//        }
+
+        editPoliticy.setColumn(this.column);
+        editPoliticy.setDomainChangeAction(this.domainChangeAction);
+        editPoliticy.setUnitOfWork(this.tableWrapper.getUnitOfWork());
+        editPoliticy.setTvw(this.tableWrapper);
+        editPoliticy.run();
     }
- 
       public TableColumn<T,String> getColumn(){
     
         return this.column;

@@ -1,18 +1,23 @@
-#COMBOBOX{
--fx-background-color:#3c635e;
+#COMBOBOX{/* правая панелька */
+-fx-background-color:#f0fafa;
 }
-#COMBOBOX .list-cell{
--fx-background-color:#2cd774;
+
+#COMBOBOX .list-cell{/*подложка выпадающего списка  */
+-fx-background-color:#ffffff;
 }
+
 #COMBOBOX .text-input{
--fx-background-color:#21e7b9;
+-fx-background-color:#ffffff;
 }
+
 #COMBOBOX .combo-box-popup{
--fx-background-color:rgb(124, 151, 221);
+-fx-background-color:#ffffff;
 }
+
 #COMBOBOX .list-view{
--fx-background-color:rgb(120, 139, 33);
+-fx-background-color:#ffffff;
 }
+
 #COMBOBOX .list-cell{
--fx-background-color:rgb(175, 102, 200);
+-fx-background-color:#ffffff;
 }

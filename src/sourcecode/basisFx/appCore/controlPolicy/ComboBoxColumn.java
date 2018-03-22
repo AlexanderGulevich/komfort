@@ -1,5 +1,6 @@
 package basisFx.appCore.controlPolicy;
 
+import basisFx.appCore.dataSource.UnitOfWork;
 import basisFx.appCore.domainScetch.DomainObject;
 import basisFx.appCore.domainScetch.NamedDomainObject;
 import basisFx.domainModel.DataMapperFabric;
@@ -29,12 +30,15 @@ public class ComboBoxColumn<T,K> extends ColumnWrapper<T>{
         setCellValueFactory();
         setCellFactory();
 
-        column.setOnEditCommit(event ->
-                {
-                    String nv = event.getNewValue().getName();
-
-                 }
-        );
+//        column.setOnEditCommit(event ->
+//                {
+//                    NamedDomainObject namedDomainObject= (NamedDomainObject) event.getRowValue();
+//                    UnitOfWork unitOfWork=event.getRowValue().getDataMapper().getUnitOfWork();
+//                    unitOfWork.setNewPojoes(namedDomainObject);
+//                    unitOfWork.commitNew();
+//
+//                 }
+//        );
 
     }
 
@@ -67,8 +71,10 @@ public class ComboBoxColumn<T,K> extends ColumnWrapper<T>{
 
     }
 
+
+
     public void initEditPoliticy(){
-//
+
 //        for (Edit edit : editPoliticy) {
 //            edit.setColumn(this.column);
 //            edit.setDomainChangeAction(this.domainChangeAction);
@@ -77,6 +83,12 @@ public class ComboBoxColumn<T,K> extends ColumnWrapper<T>{
 //            edit.run();
 //
 //        }
+
+        editPoliticy.setColumn(this.column);
+        editPoliticy.setDomainChangeAction(this.domainChangeAction);
+        editPoliticy.setUnitOfWork(this.tableWrapper.getUnitOfWork());
+        editPoliticy.setTvw(this.tableWrapper);
+        editPoliticy.run();
     }
 
     public TableColumn<DomainObject, NamedDomainObject> getColumn(){

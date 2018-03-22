@@ -43,9 +43,9 @@ public abstract class DataMapper {
         this.unitOfWork=u;
     }
 
-
-
-
+    public UnitOfWork getUnitOfWork() {
+        return unitOfWork;
+    }
 }
  
         

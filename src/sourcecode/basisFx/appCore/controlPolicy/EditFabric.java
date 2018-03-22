@@ -12,15 +12,15 @@ package basisFx.appCore.controlPolicy;
  * @param <K>
  */
 public class EditFabric<T,K> {
-    public TextEditCommit<T,K> createTextEditCommit(){
+    public EditDefaultCommitTableCell<T,K> createDefaultEditCommit(){
 
-        return new TextEditCommit<>();
+        return new EditDefaultCommitTableCell<>();
 
     }
 
-    public  EditCommitComboBox<T,K> createEditCommitComboBox(){
+    public EditCommitForComboBoxCell<T,K> createEditCommitComboBox(){
 
-        return new EditCommitComboBox<>();
+        return new EditCommitForComboBoxCell<>();
 
     }
 }

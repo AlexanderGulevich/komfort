@@ -6,7 +6,7 @@ import basisFx.appCore.events.EventFactory;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-
+import org.scenicview.ScenicView;
 
 
 /**
@@ -42,7 +42,7 @@ public abstract class WindowFx {
 
       StylesLoader.loadAll(scene);
       
-//      ScenicView.show(scene);
+      ScenicView.show(scene);
 
 
     }
