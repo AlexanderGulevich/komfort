@@ -18,20 +18,21 @@ import org.hsqldb.persist.HsqlProperties;
  * @author Alek
  */
 public class DbServer extends Db{
-     
-   protected Statement statement = null;
+
+    protected Statement statement = null;
+
+
 
     public DbServer() throws ClassNotFoundException, SQLException {
-    
-         HsqlProperties props = new HsqlProperties();
-       
-      
-      
-         props.setProperty("server.database.0", "file:" + Settings.DB_SERVER_PATH + "komdb;");
-     
-         props.setProperty("server.dbname.0", "db");
-      
-         Server sonicServer = new org.hsqldb.Server();
+
+        HsqlProperties props = new HsqlProperties();
+
+        props.setProperty("server.database.0", "file:" + Settings.DB_SERVER_PATH + "komdb;");
+
+        props.setProperty("server.dbname.0", "db");
+
+
+        sonicServer = new org.hsqldb.Server();
        
         try {
             sonicServer.setProperties(props);
@@ -76,6 +77,9 @@ public class DbServer extends Db{
 
      
     }
+
+
+
 
     private void init(){
         
