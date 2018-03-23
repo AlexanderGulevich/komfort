@@ -21,3 +21,15 @@
 #COMBOBOX .list-cell{
 -fx-background-color:#ffffff;
 }
+#COMBOBOX .combo-box-popup  .popup{
+-fx-background-color:#17dcff;
+}
+#COMBOBOX .combo-box-popup{
+-fx-background-color:#ff5d17;
+}
+#COMBOBOX .combo-box-popup .list-view{
+-fx-background-color:#173cff;
+}
+#COMBOBOX .combo-box-popup .list-cell{
+-fx-background-color:#050505;
+}

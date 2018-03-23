@@ -15,12 +15,13 @@ public enum StylesPathes {
     BUTTONS("/res/css/buttons.css"),
     PANELS("/res/css/panels.css"),
     TABLES("/res/css/tables.css"),
+    SCROLLBAR("/res/css/scrollbar.css"),
     MENUS("/res/css/menus.css"),
     MENU_BAR("/res/css/menuBar.css"),
     LEFT_SIDE_MENU("/res/css/leftSideMenu.css"),
     COMBOBOX("/res/css/combobox.css"),
     WINDOWS("/res/css/windows.css");
-  
+
 
     private final String path;
 
