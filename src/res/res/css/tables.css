@@ -1,5 +1,6 @@
 .root {
--fx-table-cell-border-color: #FFEACF;
+/* -fx-table-cell-border-color: #FFEACF; */
+-fx-table-cell-border-color: red;
 }
 #TABLE,#TABLE:focused,#TABLE:armed,#TABLE:selected{
     -fx-effect: dropshadow(gaussian ,#555555 , 2, 0, 0.5, 0.5);
@@ -15,8 +16,8 @@
     -fx-background-insets: 0;
     -fx-padding: 0;
 }
-#TABLE .placeholder {/*не определил*/
--fx-border-color: red;
+#TABLE .placeholder {/*когда таблица пуста рамка*/
+-fx-border-color: transparent;
 }
 #TABLE .column-header-background {/*ЭТО самая нижняя подложка заголовка*/
     -fx-background-color:transparent;
@@ -49,32 +50,23 @@
     -fx-padding: 0 0 0 20;
     -fx-border-insets:0 0 0 20;
 }
-.table-view *.scroll-bar:horizontal *.increment-button,
-.table-view *.scroll-bar:horizontal *.decrement-button {
-    -fx-background-color: null;
-    -fx-background-radius: 0;
-    -fx-background-insets: 0;
-    -fx-padding: 0;
-}
-.table-view *.scroll-bar:horizontal *.increment-arrow,
-.table-view *.scroll-bar:horizontal *.decrement-arrow {
-    -fx-background-color: null;
-    -fx-background-radius: 0;
-    -fx-background-insets: 0;
-    -fx-padding: 0;
-    -fx-shape: null;
-}
+
 #TABLE .table-row-cell{}
 #TABLE .table-row-cell:selected,.table-row-cell:focused{}
 #TABLE .table-row-cell:odd{/* focused    filled    odd    selected*/}
 #TABLE .cell:focused:selected > .choice-box > .label {}
 #TABLE .text{}
 
-#TABLE .cell{
-    -fx-text-fill:#074f5d;
-    -fx-font-family: "Roboto Light";
-    -fx-font-size: 17;
-}
+  #TABLE .cell{
+      -fx-text-fill:#074f5d;
+      -fx-font-family: "Roboto Light";
+      -fx-font-size: 17;
+  }
+#TABLE .table-view:focused > .virtual-flow > .clipped-container > .sheet > .table-row-cell .table-cell{
+
+          -fx-border-color: red;
+          -fx-border-width: 0 1 0 0;
+  }
 /* Selected rows */
 #TABLE .list-view:focused > .virtual-flow > .clipped-container > .sheet > .list-cell:filled:selected,
 #TABLE .tree-view:focused > .virtual-flow > .clipped-container > .sheet > .tree-cell:filled:selected,
@@ -87,6 +79,7 @@
     -fx-background-insets: 1, 1, 1, 1;
     -fx-border-width: 1;
     -fx-border-insets:0;
+
 }
 
 /* Selected when control is not focused */
@@ -124,6 +117,7 @@
     -fx-border-insets:0;
     -fx-padding: 3 5 3 5;
     -fx-background-color:white;
+
 }
 /*selected  */
 #TABLE .text-field, #TABLE .text,
@@ -142,6 +136,7 @@
     -fx-border-insets:0;
     -fx-padding: 3 5 3 5;
     -fx-background-color:white;
+
 }
 /* Selected rows */
 #TABLE .text-input:filled:selected,
@@ -151,11 +146,10 @@
 #TABLE .tree-table-view:focused > .virtual-flow > .clipped-container > .sheet > .tree-table-row-cell:filled:selected,
 #TABLE .table-view:focused > .virtual-flow > .clipped-container > .sheet > .table-row-cell .table-cell:selected,
 #TABLE .tree-table-view:focused > .virtual-flow > .clipped-container > .sheet > .tree-table-row-cell .tree-table-cell:selected {
-    -fx-table-cell-border-color: #FFEACF;
+
     -fx-background-radius: 0;
     -fx-border-radius:0;
     -fx-background-insets: 1, 1, 1, 1;
-    -fx-border-width: 1;
     -fx-padding: 3 5 3 5;
-    -fx-background-color:yellowgreen;
+
 }
