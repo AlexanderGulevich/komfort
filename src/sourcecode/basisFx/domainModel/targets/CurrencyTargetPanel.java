@@ -26,7 +26,7 @@ public class CurrencyTargetPanel extends Target {
                 .setId(CSSID.TABLE).setCoordinate(panel,50d, null, 0d, 0d)
                 .<Currency>createTableViewWrapper().setTablesWidthProperty(0.7, panel.widthProperty())
                 .setDataMapper(this.dataMapperFabric.getCurrencyDataMapper())
-                .setDbTableName("CurrencyDataMapper").refresh()
+                .setDbTableName("Currency").refresh()
                 .setColums(
                         columnFabric.<NamedDomainObject,String>createTextColumn(ColumnWrapper.Bulder.create()
                                         .setColumnName("Наименование")

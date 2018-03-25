@@ -49,7 +49,7 @@ public class ComboBoxColumn<T,K> extends ColumnWrapper<T>{
                 return   comboBoxCellValueInitLogic.init(domainObject);
 
             }else {
-                System.err.println("В доменный объект не установлен NamedDomainObject");
+                System.err.println("ComboBoxColumn-В доменный объект не установлен NamedDomainObject");
                 return null;
             }
 
@@ -174,8 +174,6 @@ public class ComboBoxColumn<T,K> extends ColumnWrapper<T>{
 
             if(getItem()== null){//if not exist
 
-                System.out.println("НЕ СУЩЕСТВУЮЩИЙ   NamedDomainObject ---  "+getItem());
-
 
                 NamedDomainObject namedDomainObject=new NamedDomainObject();
                 namedDomainObject.setName("НОВ");
@@ -183,10 +181,6 @@ public class ComboBoxColumn<T,K> extends ColumnWrapper<T>{
                 return  namedDomainObject;
 
             }else {
-
-
-                System.out.println("НАЙДЕН  NamedDomainObject ---  "+getItem());
-
 
                 return  getItem();
 
