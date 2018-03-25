@@ -11,8 +11,8 @@ public class Currency extends NamedDomainObject {
 
 
     public Currency() {
-        this.dataMapper=mapperFabric.getNamedDataMapper();
-        this.tableName="Currency";
+        dataMapper=mapperFabric.getCurrencyDataMapper();
+        tableName="Currency";
     }
 
 

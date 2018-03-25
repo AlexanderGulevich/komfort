@@ -12,6 +12,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
+import basisFx.domainModel.DataMapperFabric;
 import javafx.collections.ObservableList;
 
 /**
@@ -21,6 +22,7 @@ import javafx.collections.ObservableList;
 public abstract class DataMapper {
 
     protected ObservableList<DomainObject> list;
+    protected DataMapperFabric dataMapperFabric=new DataMapperFabric();
     private Map<Integer,DomainObject> map= new HashMap<>();
     
      protected UnitOfWork unitOfWork;

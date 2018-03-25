@@ -35,7 +35,7 @@ public class ContentPanel extends AbstractPanel{
                          .setWidth(width)
                          .setId(CSSID.MAIN_CONTENT_ANCHOR)
                          .setStage(stage)
-                         .createNpAnchor()
+                         .createAnchorPanelWrapper()
                          .getElement();
     
 

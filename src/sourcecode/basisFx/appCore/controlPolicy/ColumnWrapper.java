@@ -6,6 +6,7 @@
 package basisFx.appCore.controlPolicy;
 
 import basisFx.appCore.NamedObjectListGetter;
+import basisFx.appCore.dataSource.DataMapper;
 import basisFx.appCore.domainScetch.ComboBoxCellValueInitLogic;
 import basisFx.appCore.elements.TableViewWrapper;
 import javafx.scene.control.TableColumn;
@@ -21,13 +22,11 @@ public  class ColumnWrapper<T> {
     protected String columnName;
     protected Checking valueChecking;
     protected double columnSize;
-//    protected List <Edit> editPoliticy;
     protected EditFabric editFabric=new EditFabric();
     protected Edit editPoliticy=editFabric.createDefaultEditCommit();
     protected ComboBoxCellValueInitLogic comboBoxCellValueInitLogic;
     protected TableColumn column;
     protected DomainChangeAction domainChangeAction;
-//    protected DataMapper dataMapper;
     protected NamedObjectListGetter namedObjectListGetter;
 
 
@@ -38,9 +37,7 @@ public  class ColumnWrapper<T> {
         this.columnName=b.columnName;
         this.valueChecking=b.valueChecking;
         this.columnSize=b.columnSize;
-//        this.editPoliticy=b.editPoliticy;
         this.comboBoxCellValueInitLogic=b.comboBoxCellValueInitLogic;
-//        this.dataMapper=b.dataMapper;
         this.namedObjectListGetter=b.namedObjectListGetter;
         this.domainChangeAction =b.domainChangeAction;
 
@@ -68,9 +65,7 @@ public  class ColumnWrapper<T> {
         protected Checking valueChecking;
         protected DomainChangeAction domainChangeAction;
         protected double columnSize;
-//        protected List <Edit> editPoliticy=new ArrayList<>();
          protected ComboBoxCellValueInitLogic comboBoxCellValueInitLogic;
-//         protected DataMapper dataMapper;
          protected NamedObjectListGetter namedObjectListGetter;
 
 
@@ -84,16 +79,6 @@ public  class ColumnWrapper<T> {
          return this;
          
          }
-//
-//         public  Bulder setEditPoliticy(Edit ...editPoliticy ){
-//             for (Edit edit : editPoliticy) {
-//                  this.editPoliticy.add(edit);
-//             }
-//
-//
-//         return this;
-//
-//         }
 
          public Bulder setComboBoxCellValueInitLogic(ComboBoxCellValueInitLogic comboBoxCellValueInitLogic) {
              this.comboBoxCellValueInitLogic = comboBoxCellValueInitLogic;
@@ -120,11 +105,7 @@ public  class ColumnWrapper<T> {
          return this;
          
          }
-//         public Bulder setDataMapper(DataMapper dm) {
-//             this.dataMapper=dm;
-//
-//             return this;
-//         }
+
 
          public Bulder setNamedObjectListGetter(NamedObjectListGetter namedObjectListGetter) {
              this.namedObjectListGetter = namedObjectListGetter;

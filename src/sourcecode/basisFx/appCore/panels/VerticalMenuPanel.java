@@ -8,7 +8,6 @@ package basisFx.appCore.panels;
 import basisFx.appCore.elements.AppNode;
 import basisFx.appCore.registry.Layers;
 import basisFx.domainModel.settings.CSSID;
-import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 
 /**
@@ -33,7 +32,7 @@ public class VerticalMenuPanel extends AbstractPanel{
                 .setHeight(height)
                 .setWidth(width)
                 .setId(CSSID.LEFT_SIDE_MENU_VERTICAL_PANEL)
-                .createNpAnchor()
+                .createAnchorPanelWrapper()
                 .getElement();
     }
 

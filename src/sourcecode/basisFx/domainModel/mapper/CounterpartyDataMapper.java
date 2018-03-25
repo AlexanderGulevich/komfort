@@ -34,6 +34,9 @@ public class CounterpartyDataMapper extends DataMapper {
     @Override
     public void getAllDomainObjectList(ObservableList list, String tableName) {
 
+        getCountryList();
+        getCurrencyList();
+
         try {
 
             String expression="SELECT * FROM " +tableName+" ORDER BY ID";
@@ -49,17 +52,16 @@ public class CounterpartyDataMapper extends DataMapper {
                 pojo.setId(rs.getInt("id"));
                 pojo.setName(rs.getString("name"));
 
-
                 int сountryId=rs.getInt("countryId");
                 int currencyId=rs.getInt("currencyId");
 
-                Country currentCountry;
-                Currency currentCurrency;
+
 
                 for (Iterator iterator = countryList.iterator(); iterator.hasNext(); ) {
                     Country next = (Country) iterator.next();
 
-                    if (сountryId==next.getId()){
+                    if (сountryId==next.getId().intValue()){
+
 
                         pojo.setCountry(next);
 
@@ -70,9 +72,10 @@ public class CounterpartyDataMapper extends DataMapper {
                 for (Iterator iterator = currencyList.iterator(); iterator.hasNext(); ) {
                     Currency next = (Currency) iterator.next();
 
-                    if (currencyId==next.getId()){
+                    if (currencyId==next.getId().intValue()){
 
                         pojo.setCurrency(next);
+
 
                     }
                 }
@@ -90,8 +93,8 @@ public class CounterpartyDataMapper extends DataMapper {
             Logger.getLogger(EquipmentDataMapper.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-
     }
+
     private void getCurrencyListFromStore() {
 
         String expression="SELECT * FROM " +"Currency"+" ORDER BY ID";
@@ -118,7 +121,7 @@ public class CounterpartyDataMapper extends DataMapper {
 
     }
     private void getCountryListFromStore() {
-        String expression="SELECT * FROM " +"Country"+" ORDER BY ID";
+        String expression="SELECT * FROM Country ORDER BY ID";
         Statement stmt  = null;
         countryList = FXCollections.<NamedDomainObject>observableArrayList();
 
@@ -146,11 +149,9 @@ public class CounterpartyDataMapper extends DataMapper {
     public  ObservableList <NamedDomainObject> getCurrencyList() {
 
         if (currencyList != null) {
-
             return currencyList;
         }else {
             getCurrencyListFromStore();
-
             return currencyList;
 
         }
@@ -158,11 +159,9 @@ public class CounterpartyDataMapper extends DataMapper {
     public  ObservableList <NamedDomainObject>  getCountryList() {
 
         if (countryList != null) {
-
             return countryList;
         }else {
             getCountryListFromStore();
-
             return countryList;
 
         }
@@ -178,16 +177,15 @@ public class CounterpartyDataMapper extends DataMapper {
         try {
             String expression= "INSERT INTO "+ d.getTableName()
                     + "(name ,"
-                    + "countryId"
+                    + "countryId,"
                     + "currencyId"
-                    + "id"
-                    + ") VALUES(?,?,?,?)";
+                    + ") VALUES(?,?,?)";
 
             PreparedStatement pstmt =  Db.getConnection().prepareStatement(expression);
             pstmt.setString(1, domainObject.getName());
             pstmt.setInt(2, domainObject.getCountry().getId());
             pstmt.setInt(3, domainObject.getCurrency().getId());
-            pstmt.setInt(4, domainObject.getId());
+
 
             pstmt.executeUpdate();
 

@@ -5,6 +5,7 @@
  */
 package basisFx.appCore.panels;
 
+import basisFx.appCore.elements.SketchedButtonFactory;
 import basisFx.appCore.utils.AnchorCoordinate;
 import basisFx.appCore.TargetStackLogic;
 import basisFx.appCore.controlPolicy.CheckingFactory;
@@ -30,6 +31,8 @@ public abstract class Target {
     protected EditFabric editFabric=new EditFabric();
     protected EventFactory eventFactory=EventFactory.getInstance();
     protected TargetStackLogic targetStack=TargetStackLogic.getInstance();
+    protected SketchedButtonFactory sketchedButtonFactory=new SketchedButtonFactory();
+
     
     
     protected abstract void createElement();

@@ -33,6 +33,7 @@ public  class TableViewWrapper <T> extends AppNode implements Refreshable{
     @SuppressWarnings("unchecked")
  public   TableViewWrapper(NodeBuilder builder) {
         table=new TableView<>(list);
+
         setElement(table);
         table.setEditable(true);
         init(builder);
@@ -102,10 +103,16 @@ public  class TableViewWrapper <T> extends AppNode implements Refreshable{
      
 
     }
-    public TableViewWrapper<T> setTablesSize(double val,ReadOnlyDoubleProperty widthProperty) {
+    public TableViewWrapper<T> setTablesWidthProperty(double val, ReadOnlyDoubleProperty widthProperty) {
         table.prefWidthProperty()
                 .bind(widthProperty.multiply(val));
-     
+
+        return this;
+
+    }
+    public TableViewWrapper<T> setTablesHeight(double val) {
+        table.setPrefHeight(val);
+
         return this;
 
     }
@@ -139,6 +146,9 @@ public  class TableViewWrapper <T> extends AppNode implements Refreshable{
     public TableViewWrapper setDataMapper(DataMapper dm) {
         this.dataMapper=dm;
         this.dataMapper.setUnitOfWork(this.unitOfWork);
+
+
+
         return this;
     }
 

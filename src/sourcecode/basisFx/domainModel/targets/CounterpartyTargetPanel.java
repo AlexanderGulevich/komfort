@@ -5,6 +5,8 @@ import basisFx.appCore.elements.AppNode;
 import basisFx.appCore.elements.TableViewWrapper;
 import basisFx.appCore.panels.Target;
 import basisFx.domainModel.pojo.Counterparty;
+import basisFx.domainModel.pojo.Country;
+import basisFx.domainModel.pojo.Currency;
 import basisFx.domainModel.settings.CSSID;
 import basisFx.domainModel.settings.FontsStore;
 
@@ -23,32 +25,41 @@ public class CounterpartyTargetPanel extends Target{
 
         tableViewWrapper = AppNode.NodeBuilder.create()
                 .setId(CSSID.TABLE).setCoordinate(panel,50d, null, 0d, 0d)
-                .<Counterparty>createTableViewWrapper().setTablesSize(0.8, panel.widthProperty())
+                .<Counterparty>createTableViewWrapper()
+                .setTablesWidthProperty(0.8, panel.widthProperty())
                 .setDataMapper(this.dataMapperFabric.getCounterpartyDataMapper())
                 .setDbTableName("Counterparty").refresh()
                 .setColums(
+////////////////////////////////
                         columnFabric.<Counterparty,String>createTextColumn(ColumnWrapper.Bulder.create()
                                 .setColumnName("Наименование контрагента").setPropertyName("name")
                                 .setValueChecking(check.createTextCheck())
-//                                .setEditPoliticy(editFabric.<Counterparty,String>createDefaultEditCommit())
-                                .setColumnSize(0.6)
+                                .setColumnSize(0.5)
                                 .setDomainChangeAction(
                                         (obj,val)->{((Counterparty)obj).setName((String)val);}
                                 )
                         ),
+////////////////////////////////
                         columnFabric.createComboBoxColumn(ColumnWrapper.Bulder.create()
-                                .setColumnName("Страна").setColumnSize(0.4)
-//                                .setEditPoliticy(editFabric.<Counterparty,String>createEditCommitComboBox())
-//                                .setDataMapper(this.dataMapperFabric.getCounterpartyDataMapper())
+                                .setColumnName("Страна").setColumnSize(0.3)
                                 .setNamedObjectListGetter(() -> dataMapperFabric.getCounterpartyDataMapper().getCountryList())
-                                .setComboBoxCellValueInitLogic(
-                                        (domainObject,objectProperty)->{
-                                            Counterparty domain=(Counterparty)domainObject;
-                                            objectProperty=domain.countryProperty();
-                                        }
+                                .setComboBoxCellValueInitLogic((domainObject)->{
+                                          return ((Counterparty)domainObject).countryProperty();})
+                                .setDomainChangeAction(
+                                        (obj,val)->{((Counterparty)obj).setCountry((Country) val);}
+                                )
+                        ),
+////////////////////////////////////////////////////////////////
+                        columnFabric.createComboBoxColumn(ColumnWrapper.Bulder.create()
+                                .setColumnName("Валюта").setColumnSize(0.2)
+                                .setNamedObjectListGetter(() -> dataMapperFabric.getCounterpartyDataMapper().getCurrencyList())
+                                .setComboBoxCellValueInitLogic((domainObject)->{
+                                    return ((Counterparty)domainObject).currencyProperty();})
+                                .setDomainChangeAction(
+                                        (obj,val)->{((Counterparty)obj).setCurrency((Currency) val);}
                                 )
                         )
-
+////////////////////////////////
 
 
 

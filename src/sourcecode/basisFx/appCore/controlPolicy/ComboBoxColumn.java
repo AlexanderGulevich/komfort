@@ -4,6 +4,8 @@ import basisFx.appCore.dataSource.UnitOfWork;
 import basisFx.appCore.domainScetch.DomainObject;
 import basisFx.appCore.domainScetch.NamedDomainObject;
 import basisFx.domainModel.DataMapperFabric;
+import basisFx.domainModel.pojo.Counterparty;
+import basisFx.domainModel.pojo.Country;
 import basisFx.domainModel.settings.CSSID;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
@@ -30,17 +32,9 @@ public class ComboBoxColumn<T,K> extends ColumnWrapper<T>{
         setCellValueFactory();
         setCellFactory();
 
-//        column.setOnEditCommit(event ->
-//                {
-//                    NamedDomainObject namedDomainObject= (NamedDomainObject) event.getRowValue();
-//                    UnitOfWork unitOfWork=event.getRowValue().getDataMapper().getUnitOfWork();
-//                    unitOfWork.setNewPojoes(namedDomainObject);
-//                    unitOfWork.commitNew();
-//
-//                 }
-//        );
 
-    }
+
+        }
 
     public void setCellValueFactory(){
 
@@ -51,10 +45,11 @@ public class ComboBoxColumn<T,K> extends ColumnWrapper<T>{
 
             //isn`t new object
             if (domainObject.getId() != null) {
-                ObjectProperty objectProperty=null;
-                comboBoxCellValueInitLogic.init(domainObject,objectProperty);
-                return objectProperty;
+
+                return   comboBoxCellValueInitLogic.init(domainObject);
+
             }else {
+                System.err.println("В доменный объект не установлен NamedDomainObject");
                 return null;
             }
 
@@ -75,15 +70,6 @@ public class ComboBoxColumn<T,K> extends ColumnWrapper<T>{
 
     public void initEditPoliticy(){
 
-//        for (Edit edit : editPoliticy) {
-//            edit.setColumn(this.column);
-//            edit.setDomainChangeAction(this.domainChangeAction);
-//            edit.setUnitOfWork(this.tableWrapper.getUnitOfWork());
-//            edit.setTvw(this.tableWrapper);
-//            edit.run();
-//
-//        }
-
         editPoliticy.setColumn(this.column);
         editPoliticy.setDomainChangeAction(this.domainChangeAction);
         editPoliticy.setUnitOfWork(this.tableWrapper.getUnitOfWork());
@@ -97,7 +83,7 @@ public class ComboBoxColumn<T,K> extends ColumnWrapper<T>{
 
     }
 
-    class ComboBoxCustomCell extends TableCell<DomainObject, NamedDomainObject> {
+    class ComboBoxCustomCell extends TableCell<DomainObject, NamedDomainObject > {
 
         private ComboBox<NamedDomainObject> comboBox;
 
@@ -135,6 +121,9 @@ public class ComboBoxColumn<T,K> extends ColumnWrapper<T>{
 
                     if (comboBox != null) {
                         comboBox.setValue(getNamedDomainObject());
+
+
+
                     }
                     setText(getNamedDomainObject().getName());
                     setGraphic(comboBox);
@@ -148,14 +137,15 @@ public class ComboBoxColumn<T,K> extends ColumnWrapper<T>{
         private void createComboBox() {
             comboBox = new ComboBox<>(namedObjectListGetter.getList());
             comboBox.setId(CSSID.COMBOBOX.get());
-//            comboBox.setEditable(true);
+            comboBox.setEditable(false);
 //            comboBox.setPromptText("fgfg");
             comboBoxConverter(comboBox);
             comboBox.valueProperty().set(getNamedDomainObject());
             comboBox.setMinWidth(this.getWidth() - this.getGraphicTextGap() * 2);
-//            comboBox.setOnAction((e) -> {
-//                commitEdit(comboBox.getSelectionModel().getSelectedItem());
-//            });
+            comboBox.setOnAction((e) -> {
+                System.err.println("Committed: " + comboBox.getSelectionModel().getSelectedItem());
+                commitEdit(comboBox.getSelectionModel().getSelectedItem());
+            });
             comboBox.focusedProperty().addListener((ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) -> {
                 if (!newValue) {
                     commitEdit(comboBox.getSelectionModel().getSelectedItem());
@@ -168,12 +158,12 @@ public class ComboBoxColumn<T,K> extends ColumnWrapper<T>{
             comboBox.setCellFactory((c) -> {
                 return new ListCell<NamedDomainObject>() {
                     @Override
-                    protected void updateItem(NamedDomainObject item, boolean empty) {
-                        super.updateItem(item, empty);
-                        if (item == null || empty) {
+                    protected void updateItem(NamedDomainObject namedDomainObject, boolean empty) {
+                        super.updateItem(namedDomainObject, empty);
+                        if (namedDomainObject == null || empty) {
                             setText(null);
                         } else {
-                            setText(item.getNameProperty().getValue());
+                            setText(namedDomainObject.getName());
                         }
                     }
                 };
@@ -182,13 +172,21 @@ public class ComboBoxColumn<T,K> extends ColumnWrapper<T>{
 
         private NamedDomainObject getNamedDomainObject() {
 
-            if(getItem() == null){
+            if(getItem()== null){//if not exist
+
+                System.out.println("НЕ СУЩЕСТВУЮЩИЙ   NamedDomainObject ---  "+getItem());
+
 
                 NamedDomainObject namedDomainObject=new NamedDomainObject();
-                namedDomainObject.getNameProperty().setValue(null);
+                namedDomainObject.setName("НОВ");
+
                 return  namedDomainObject;
 
             }else {
+
+
+                System.out.println("НАЙДЕН  NamedDomainObject ---  "+getItem());
+
 
                 return  getItem();
 

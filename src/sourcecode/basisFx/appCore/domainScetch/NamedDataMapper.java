@@ -23,44 +23,8 @@ import java.util.logging.Logger;
 public class NamedDataMapper extends DataMapper {
     private NamedDomainObject domainObject;
 
-    private static NamedDataMapper ourInstance = new NamedDataMapper();
-
-    public static NamedDataMapper getInstance() {
-        return ourInstance;
-    }
-
-    private NamedDataMapper() {
-    }
-
     @Override
     public void getAllDomainObjectList(ObservableList list, String tableName) {
-        try {
-
-            String expression="SELECT * FROM " +tableName+" ORDER BY ID";
-
-            Statement stmt  = Db.getConnection().createStatement();
-
-            ResultSet rs    = stmt.executeQuery(expression);
-
-
-            while (rs.next()) {
-
-                NamedDomainObject pojo=new NamedDomainObject();
-                pojo.setId(rs.getInt("id"));
-                pojo.setName(rs.getString("name"));
-
-                unitOfWork.getStoredPojoesId().add(rs.getInt("id"));
-
-
-                list.add(pojo);
-
-
-
-            }
-
-        } catch (SQLException ex) {
-            Logger.getLogger(EquipmentDataMapper.class.getName()).log(Level.SEVERE, null, ex);
-        }
 
     }
 
@@ -68,6 +32,8 @@ public class NamedDataMapper extends DataMapper {
     public void updateDomainObject(DomainObject d) {
         try {
             domainObject=(NamedDomainObject) d;
+
+            System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!NamedDataMapper.updateDomainObject+ d.getTableName()==="+ d.getTableName());
 
             String expression = "UPDATE "+ d.getTableName()+
                     " SET  name = ? WHERE id= ?";

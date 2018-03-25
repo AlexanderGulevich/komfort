@@ -76,7 +76,7 @@ public class ButtonWrapper <T extends Node>extends AppNode{
         
     }
     
-    public ButtonWrapper setGraphics(NText n, ContentDisplay cd){
+    public ButtonWrapper setGraphics(TextWrapper n, ContentDisplay cd){
         
         Button element=(Button) this.element;
     

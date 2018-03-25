@@ -7,8 +7,12 @@ package basisFx.appCore.panels;
 
 import basisFx.appCore.elements.AppNode;
 import basisFx.appCore.registry.Layers;
+import basisFx.appCore.utils.AnchorCoordinate;
 import basisFx.domainModel.settings.CSSID;
+import javafx.scene.Node;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
+
 
 /**
  *
@@ -25,11 +29,27 @@ public class InnerContentPanel extends AbstractPanel{
     
     @Override
     public void init() {
-            panel =  (AnchorPane) AppNode.NodeBuilder.create()
+
+
+
+        panel =  (AnchorPane) AppNode.NodeBuilder.create()
                  .setId(CSSID.TARGET_PANEL)
                  .setCoordinate(panelCoordinate)
                  .setParent(Layers.getContentLayer())
-                 .createNpAnchor().getElement();
+                 .createAnchorPanelWrapper().getElement();
+
+//
+//        ScrollPane scrollPane = (ScrollPane) AppNode.NodeBuilder.create()
+//                .setParent(Layers.getContentLayer())
+//                .setCoordinate(panelCoordinate)
+//                .createScrollPaneWrapper().getElement();
+//
+//
+//        panel =  (AnchorPane) AppNode.NodeBuilder.create()
+//                .setId(CSSID.TARGET_PANEL)
+//                .setParent(scrollPane)
+//                .createAnchorPanelWrapper().getElement();
+
     }
 
     @Override

@@ -1,0 +1,103 @@
+@font-face {
+    src: url("../font/Roboto-Light.ttf");
+}
+@font-face {
+    src: url("../font/Roboto-Bold.ttf");
+}
+
+
+#IMG_ICON{
+    -fx-pref-height: 40;
+        -fx-background-image: url("/res/img/logo33.png");
+      -fx-background-size:60;
+
+}
+#TEXT_ICON_ANCHOR{}
+#MAIN_CONTENT_ANCHOR{
+
+     -fx-background-color: #ECF1F2;
+   
+     /*-fx-background-color: #fcfcfd;*/
+     
+     
+     -fx-padding:2 3 3 3;
+
+     /*-fx-background-color: #F7F4FB;-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.4), 10, 0.5, 0.0, 0.0);*/
+    
+   
+}
+#VISIBLE_ROOT{
+        /*-fx-background-image: url("/res/img/paper04.jpg");*/
+        /*-fx-background-size:  300;*/
+        
+     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.9), 3, 0.05, 0.0, 0.0);
+     /*-fx-effect: dropshadow(three-pass-box, black, 30, 0.5, 0, 0);*/ 
+   -fx-background-color:  white;
+   /*-fx-opacity:0.01;
+/*    -fx-background-image: url("/res/img/webtreatsetc-3.jpg");
+    -fx-background-repeat: repeat-x;   
+    -fx-background-size: 300 300;*/
+    /*-fx-background-position: center center;*/
+   
+   
+    
+}
+#TITLE_WINDOW_TEXT{ 
+    
+    /*-fx-fill:  #7ea2ae;*/
+    -fx-fill:  #9ca8af;
+    /*-fx-opacity:0.4;*/
+    
+    
+    
+}
+
+#ROOT_TEXT_ICON{
+    -fx-fill:  #D9F0F2;
+    -fx-border-radius:100;
+    -fx-border-color:red;
+    -fx-border-style: solid;
+    /*-fx-opacity:0.4;*/
+    
+}
+#TRANSPARENT_ROOT{
+      -fx-background-color: transparent;
+      /*-fx-background-color: red;*/
+ 
+}
+#TITLE_PANEL{
+/*-fx-pref-height:40;*/
+
+
+ 
+ -fx-border-width: 0 0 1 0; 
+ -fx-border-color: darkgoldenrod darkgoldenrod #dce0e1 darkgoldenrod;
+ /*-fx-effect: dropshadow(three-pass-box, #1F4D5C,  3, 0.05, 0.0, 0.0);*/
+    
+}
+
+#TITLE_WINDOW_IMG{
+     
+ -fx-background-image: url("/res/img/logo3.png");
+ 
+-fx-pref-width:170;
+-fx-pref-height:32;
+
+
+    
+}
+
+
+#PRELOADER_VISIBLE_ROOT{
+   -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.9), 10, 0, 0.0, 0.0);
+ 
+      -fx-background-color: transparent;
+   -fx-background-image: url("/res/img/preloader.png");
+   
+}
+
+#PRELOADER_TRANSPARENT_ROOT{
+   
+      -fx-background-color: transparent;
+   
+}

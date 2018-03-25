@@ -12,7 +12,7 @@ public class Country extends NamedDomainObject {
 
 
     public Country() {
-        this.dataMapper=mapperFabric.getNamedDataMapper();
+        this.dataMapper=mapperFabric.getCountryDataMapper();
         this.tableName="Country";
     }
 

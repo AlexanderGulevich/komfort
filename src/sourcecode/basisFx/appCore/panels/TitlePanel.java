@@ -6,7 +6,6 @@
 package basisFx.appCore.panels;
 
 import basisFx.appCore.elements.AppNode;
-import basisFx.appCore.events.AppEvent;
 import basisFx.appCore.registry.Layers;
 import basisFx.domainModel.settings.CSSID;
 import javafx.scene.layout.AnchorPane;
@@ -38,7 +37,7 @@ public class TitlePanel extends AbstractPanel {
                          .setHeight(height)
                          .setWidth(width)
                          .setEvent(eventFactory.createStageDragging())
-                         .createNpAnchor()
+                         .createAnchorPanelWrapper()
                          .getElement();
     
     }

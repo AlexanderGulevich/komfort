@@ -7,11 +7,14 @@ import basisFx.appCore.utils.FontLogic;
 import basisFx.domainModel.settings.WindowsTitlesNames;
 import basisFx.domainModel.settings.FontsStore;
 import javafx.geometry.Insets;
+
+
 import java.util.ArrayList;
 import java.util.Iterator;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuBar;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -53,7 +56,7 @@ public abstract class AppNode  {
     protected Double minHeight;
     protected Double minWidth;
     protected Callback callback;
-  
+    protected ScrollPane scrollPane;
     
 
 //    protected abstract void display();
@@ -81,6 +84,7 @@ public abstract class AppNode  {
         if(id!=null)element.setId(id);
         if(this.stringId!=null)element.setId(stringId);
         this.callback=builder.callback;
+        this.scrollPane= builder.scrollPane;
 
         
         
@@ -142,17 +146,27 @@ public abstract class AppNode  {
                     
              }
              if(this.parentFlowPane!=null){
-                 
-                 
-                    this.parentFlowPane.getChildren().add(n.getElement());
 
-                    
+
+                 this.parentFlowPane.getChildren().add(n.getElement());
+
+
              }
-        
-             
-      
-        
-        }
+
+             if(this.scrollPane!=null){
+
+
+                 this.scrollPane.setPannable(true);
+                 this.scrollPane.setContent(n.getElement());
+
+
+             }
+
+
+
+
+
+         }
     }
     public Stage getStage() {
         
@@ -204,8 +218,9 @@ public abstract class AppNode  {
         protected Double minHeight;
         protected Double minWidth;
         protected Callback callback;
-        
-          
+        protected ScrollPane scrollPane;
+
+
         public static NodeBuilder create(){
             return new NodeBuilder();
         }
@@ -270,7 +285,6 @@ public abstract class AppNode  {
              return this;
     }
         public NodeBuilder setParent(AnchorPane ap) {
-            if(ap==null)System.out.println("basisFx.appCore.elements.AppNode.NodeBuilder.setParent()");
             this.hasBond=true;
             this.parentAnchor=ap;
             return this;
@@ -279,7 +293,14 @@ public abstract class AppNode  {
             this.hasBond=true;
             this.parentFlowPane=fp;
             return this;
-         }
+        }
+
+        public NodeBuilder setParent(ScrollPane scrollPanep) {
+            this.hasBond=true;
+            this.scrollPane=scrollPanep;
+            return this;
+        }
+
         public NodeBuilder setCallback(Callback c) {
             this.callback=c;
             return this;
@@ -362,35 +383,46 @@ public abstract class AppNode  {
                 return this;
             }
 
-          
-          
-          
-        
-    /////////  Fabric Methods  /////////
-     public  NText  createNText(){
-        return new<Text> NText(this);
-    }
-     public  NAnchor createNpAnchor(){
-        return new <AnchorPane> NAnchor(this);
-    }
-     public  ButtonWrapper createNButton(){
-        return new<Button>  ButtonWrapper(this);
-    }
-     public  NImgView createNImgView(){
-        return new <ImageView>  NImgView(this);
-    }
-     public  NMenuBar createNMenuBar(){
-        return new <MenuBar>  NMenuBar(this);
-    }
-     public  NFlowPane createNFlowPane(){
-        return new <FlowPane>  NFlowPane(this);
-     }
-     public   <T> TableViewWrapper createTableViewWrapper  (){
+
+
+
+
+        /////////  Fabric Methods  /////////
+        public TextWrapper createNText(){
+            return new<Text>TextWrapper(this);
+        }
+        public AnchorWrapper createAnchorPanelWrapper(){
+            return new <AnchorPane>AnchorWrapper(this);
+        }
+        public  ButtonWrapper createNButton(){
+            return new<Button>  ButtonWrapper(this);
+        }
+        public ImgViewWrapper createNImgView(){
+            return new <ImageView>ImgViewWrapper(this);
+        }
+        public  NMenuBar createNMenuBar(){
+            return new <MenuBar>  NMenuBar(this);
+        }
+        public  NFlowPane createNFlowPane(){
+            return new <FlowPane>  NFlowPane(this);
+        }
+        public   <T> TableViewWrapper createTableViewWrapper  (){
             return new  TableViewWrapper< >(this);
         }
-     public   <T> ComboBoxWrapper createComboBoxWrapper  (){
+        public   <T> ComboBoxWrapper createComboBoxWrapper  (){
             return new  ComboBoxWrapper<>(this);
         }
+        public   <T> TilePaneWrapper createTilePaneWrapper  (){
+            return new  TilePaneWrapper<>(this);
+        }
+        public   <T> ScrollPaneWrapper createScrollPaneWrapper  (){
+            return new  ScrollPaneWrapper<>(this);
+        }
+
+
+
+
+
 
 
     }

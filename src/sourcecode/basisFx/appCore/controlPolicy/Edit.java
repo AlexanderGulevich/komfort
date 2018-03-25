@@ -6,6 +6,7 @@
 package basisFx.appCore.controlPolicy;
 
 import basisFx.appCore.dataSource.UnitOfWork;
+import basisFx.appCore.domainScetch.DomainObject;
 import basisFx.appCore.elements.TableViewWrapper;
 import javafx.scene.control.TableColumn;
 

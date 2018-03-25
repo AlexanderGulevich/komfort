@@ -58,244 +58,248 @@ public class EditableTable extends Application {
                     new Person("Hans", typData.get(2), new Date()),
                     new Person("Ueli", typData.get(2), new Date()));
 
-    final HBox hb = new HBox();
+//    final HBox hb = new HBox();
 
     @Override
     public void start(Stage stage) {
-        Scene scene = new Scene(new Group());
-        stage.setWidth(550);
-        stage.setHeight(550);
+//        Scene scene = new Scene(new Group());
+//        stage.setWidth(550);
+//        stage.setHeight(550);
 
-        final Label label = new Label("Address Book");
-        label.setFont(new Font("Arial", 20));
+//        final Label label = new Label("Address Book");
+//        label.setFont(new Font("Arial", 20));
 
-        table.setEditable(true);
-        Callback<TableColumn<Person, String>, TableCell<Person, String>> cellFactory
-                = (TableColumn<Person, String> param) -> new EditingCell();
-        Callback<TableColumn<Person, Date>, TableCell<Person, Date>> dateCellFactory
-                = (TableColumn<Person, Date> param) -> new DateEditingCell();
-        Callback<TableColumn<Person, Typ>, TableCell<Person, Typ>> comboBoxCellFactory
-                = (TableColumn<Person, Typ> param) -> new ComboBoxEditingCell();
+//        table.setEditable(true);
+//        Callback<TableColumn<Person, String>, TableCell<Person, String>> cellFactory
+//                = (TableColumn<Person, String> param) -> new EditingCell();
+//        Callback<TableColumn<Person, Date>, TableCell<Person, Date>> dateCellFactory
+//                = (TableColumn<Person, Date> param) -> new DateEditingCell();
+//        Callback<TableColumn<Person, Typ>, TableCell<Person, Typ>> comboBoxCellFactory
+//                = (TableColumn<Person, Typ> param) -> new ComboBoxEditingCell();
 
-        TableColumn<Person, String> firstNameCol = new TableColumn("Vorname");
-        firstNameCol.setMinWidth(100);
-        firstNameCol.setCellValueFactory(cellData -> cellData.getValue().firstNameProperty());
-        firstNameCol.setCellFactory(cellFactory);
-        firstNameCol.setOnEditCommit(
-                (TableColumn.CellEditEvent<Person, String> t) -> {
-                    ((Person) t.getTableView().getItems()
-                    .get(t.getTablePosition().getRow()))
-                    .setFirstName(t.getNewValue());
-
-                });
+//        TableColumn<Person, String> firstNameCol = new TableColumn("Vorname");
+//        firstNameCol.setMinWidth(100);
+//        firstNameCol.setCellValueFactory(cellData -> cellData.getValue().firstNameProperty());
+//        firstNameCol.setCellFactory(cellFactory);
+//        firstNameCol.setOnEditCommit(
+//                (TableColumn.CellEditEvent<Person, String> t) -> {
+//                    ((Person) t.getTableView().getItems()
+//                    .get(t.getTablePosition().getRow()))
+//                    .setFirstName(t.getNewValue());
+//
+//                });
         
-        TableColumn<Person, Typ> lastNameCol = new TableColumn("Lieblings Tier");
-        lastNameCol.setMinWidth(100);
-        lastNameCol.setCellValueFactory(cellData -> cellData.getValue().typObjProperty());
-        lastNameCol.setCellFactory(comboBoxCellFactory);
-        lastNameCol.setOnEditCommit(
-                (TableColumn.CellEditEvent<Person, Typ> t) -> {
-                    ((Person) t.getTableView().getItems()
-                    .get(t.getTablePosition().getRow()))
-                    .setTypObj(t.getNewValue());
+//        TableColumn<Person, Typ> lastNameCol = new TableColumn("Lieblings Tier");
 
-                });
+//        lastNameCol.setMinWidth(100);
 
-        TableColumn<Person, Date> emailCol = new TableColumn("Geburtstag");
-        emailCol.setMinWidth(200);
-        emailCol.setCellValueFactory(cellData -> cellData.getValue().birthdayProperty());
-        emailCol.setCellFactory(dateCellFactory);
-        emailCol.setOnEditCommit(
-                (TableColumn.CellEditEvent<Person, Date> t) -> {
-                    ((Person) t.getTableView().getItems()
-                    .get(t.getTablePosition().getRow()))
-                    .setBirthday(t.getNewValue());
+//        lastNameCol.setCellValueFactory(cellData -> cellData.getValue().typObjProperty());
 
-                });
+//        lastNameCol.setCellFactory(comboBoxCellFactory);
 
-        table.setItems(data);
-        table.getColumns().addAll(
-                firstNameCol, 
-                lastNameCol
-                ,
-                emailCol
-        );
+//        lastNameCol.setOnEditCommit(
+//                (TableColumn.CellEditEvent<Person, Typ> t) -> {
+//                    ((Person) t.getTableView().getItems()
+//                    .get(t.getTablePosition().getRow()))
+//                    .setTypObj(t.getNewValue());
+//
+//                });
+//
+//        TableColumn<Person, Date> emailCol = new TableColumn("Geburtstag");
+//        emailCol.setMinWidth(200);
+//        emailCol.setCellValueFactory(cellData -> cellData.getValue().birthdayProperty());
+//        emailCol.setCellFactory(dateCellFactory);
+//        emailCol.setOnEditCommit(
+//                (TableColumn.CellEditEvent<Person, Date> t) -> {
+//                    ((Person) t.getTableView().getItems()
+//                    .get(t.getTablePosition().getRow()))
+//                    .setBirthday(t.getNewValue());
+//
+//                });
 
-        final TextField addFirstName = new TextField();
-        addFirstName.setPromptText("First Name");
-        addFirstName.setMaxWidth(firstNameCol.getPrefWidth());
+//        table.setItems(data);
+//        table.getColumns().addAll(
+//                firstNameCol,
+//                lastNameCol
+//                ,
+//                emailCol
+//        );
 
-        final TextField addLastName = new TextField();
-        addLastName.setPromptText("Last Name");
-        addLastName.setMaxWidth(lastNameCol.getPrefWidth());
-
-        final TextField addEmail = new TextField();
-        addEmail.setPromptText("email");
-        addEmail.setMaxWidth(emailCol.getPrefWidth());
-
-        final Button addButton = new Button("Add");
-        addButton.setOnAction((ActionEvent e)
-                -> {
-                    data.add(new Person(
-                                    addFirstName.getText(),
-                                    new Typ("Hund"),
-                                    new Date()));
-                    addFirstName.clear();
-                    addLastName.clear();
-                    addEmail.clear();
-                }
-        );
-
-        hb.getChildren().addAll(addFirstName, addLastName, addEmail, addButton);
-        hb.setSpacing(3);
-
-        final VBox vbox = new VBox();
-        vbox.setSpacing(5);
-        vbox.setPadding(new Insets(10, 0, 0, 10));
-        vbox.getChildren().addAll(label, table, hb);
-
-        ((Group) scene.getRoot()).getChildren().addAll(vbox);
-
-        stage.setScene(scene);
-        stage.show();
+//        final TextField addFirstName = new TextField();
+//        addFirstName.setPromptText("First Name");
+//        addFirstName.setMaxWidth(firstNameCol.getPrefWidth());
+//
+//        final TextField addLastName = new TextField();
+//        addLastName.setPromptText("Last Name");
+//        addLastName.setMaxWidth(lastNameCol.getPrefWidth());
+//
+//        final TextField addEmail = new TextField();
+//        addEmail.setPromptText("email");
+//        addEmail.setMaxWidth(emailCol.getPrefWidth());
+//
+//        final Button addButton = new Button("Add");
+//        addButton.setOnAction((ActionEvent e)
+//                -> {
+//                    data.add(new Person(
+//                                    addFirstName.getText(),
+//                                    new Typ("Hund"),
+//                                    new Date()));
+//                    addFirstName.clear();
+//                    addLastName.clear();
+//                    addEmail.clear();
+//                }
+//        );
+//
+//        hb.getChildren().addAll(addFirstName, addLastName, addEmail, addButton);
+//        hb.setSpacing(3);
+//
+//        final VBox vbox = new VBox();
+//        vbox.setSpacing(5);
+//        vbox.setPadding(new Insets(10, 0, 0, 10));
+//        vbox.getChildren().addAll(label, table, hb);
+//
+//        ((Group) scene.getRoot()).getChildren().addAll(vbox);
+//
+//        stage.setScene(scene);
+//        stage.show();
     }
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
-        launch(args);
-    }
+//    public static void main(String[] args) {
+//        launch(args);
+//    }
 
-    class EditingCell extends TableCell<Person, String> {
-
-        private TextField textField;
-
-        private EditingCell() {
-        }
-
-        @Override
-        public void startEdit() {
-            if (!isEmpty()) {
-                super.startEdit();
-                createTextField();
-                setText(null);
-                setGraphic(textField);
-                textField.selectAll();
-            }
-        }
-
-        @Override
-        public void cancelEdit() {
-            super.cancelEdit();
-
-            setText((String) getItem());
-            setGraphic(null);
-        }
-
-        @Override
-        public void updateItem(String item, boolean empty) {
-            super.updateItem(item, empty);
-
-            if (empty) {
-                setText(item);
-                setGraphic(null);
-            } else {
-                if (isEditing()) {
-                    if (textField != null) {
-                        textField.setText(getString());
-                        setGraphic(null);
-                    }
-                    setText(null);
-                    setGraphic(textField);
-                } else {
-                    setText(getString());
-                    setGraphic(null);
-                }
-            }
-        }
-
-        private void createTextField() {
-            textField = new TextField(getString());
-            textField.setMinWidth(this.getWidth() - this.getGraphicTextGap() * 2);
-            textField.setOnAction((e) -> commitEdit(textField.getText()));
-            textField.focusedProperty().addListener((ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) -> {
-                if (!newValue) {
-                    System.out.println("Commiting " + textField.getText());
-                    commitEdit(textField.getText());
-                }
-            });
-        }
-
-        private String getString() {
-            return getItem() == null ? "" : getItem();
-        }
-    }
-
-    class DateEditingCell extends TableCell<Person, Date> {
-
-        private DatePicker datePicker;
-
-        private DateEditingCell() {
-        }
-
-        @Override
-        public void startEdit() {
-            if (!isEmpty()) {
-                super.startEdit();
-                createDatePicker();
-                setText(null);
-                setGraphic(datePicker);
-            }
-        }
-
-        @Override
-        public void cancelEdit() {
-            super.cancelEdit();
-
-            setText(getDate().toString());
-            setGraphic(null);
-        }
-
-        @Override
-        public void updateItem(Date item, boolean empty) {
-            super.updateItem(item, empty);
-
-            if (empty) {
-                setText(null);
-                setGraphic(null);
-            } else {
-                if (isEditing()) {
-                    if (datePicker != null) {
-                        datePicker.setValue(getDate());
-                    }
-                    setText(null);
-                    setGraphic(datePicker);
-                } else {
-                    setText(getDate().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM)));
-                    setGraphic(null);
-                }
-            }
-        }
-
-        private void createDatePicker() {
-            datePicker = new DatePicker(getDate());
-            datePicker.setMinWidth(this.getWidth() - this.getGraphicTextGap() * 2);
-            datePicker.setOnAction((e) -> {
-                System.out.println("Committed: " + datePicker.getValue().toString());
-                commitEdit(Date.from(datePicker.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()));
-            });
-            datePicker.focusedProperty().addListener((ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) -> {
-                if (!newValue) {
-                    commitEdit(Date.from(datePicker.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()));
-                }
-            });
-        }
-
-        private LocalDate getDate() {
-            return getItem() == null ? LocalDate.now() : getItem().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-        }
-    }
+//    class EditingCell extends TableCell<Person, String> {
+//
+//        private TextField textField;
+//
+//        private EditingCell() {
+//        }
+//
+//        @Override
+//        public void startEdit() {
+//            if (!isEmpty()) {
+//                super.startEdit();
+//                createTextField();
+//                setText(null);
+//                setGraphic(textField);
+//                textField.selectAll();
+//            }
+//        }
+//
+//        @Override
+//        public void cancelEdit() {
+//            super.cancelEdit();
+//
+//            setText((String) getItem());
+//            setGraphic(null);
+//        }
+//
+//        @Override
+//        public void updateItem(String item, boolean empty) {
+//            super.updateItem(item, empty);
+//
+//            if (empty) {
+//                setText(item);
+//                setGraphic(null);
+//            } else {
+//                if (isEditing()) {
+//                    if (textField != null) {
+//                        textField.setText(getString());
+//                        setGraphic(null);
+//                    }
+//                    setText(null);
+//                    setGraphic(textField);
+//                } else {
+//                    setText(getString());
+//                    setGraphic(null);
+//                }
+//            }
+//        }
+//
+//        private void createTextField() {
+//            textField = new TextField(getString());
+//            textField.setMinWidth(this.getWidth() - this.getGraphicTextGap() * 2);
+//            textField.setOnAction((e) -> commitEdit(textField.getText()));
+//            textField.focusedProperty().addListener((ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) -> {
+//                if (!newValue) {
+//                    System.out.println("Commiting " + textField.getText());
+//                    commitEdit(textField.getText());
+//                }
+//            });
+//        }
+//
+//        private String getString() {
+//            return getItem() == null ? "" : getItem();
+//        }
+//    }
+//
+//    class DateEditingCell extends TableCell<Person, Date> {
+//
+//        private DatePicker datePicker;
+//
+//        private DateEditingCell() {
+//        }
+//
+//        @Override
+//        public void startEdit() {
+//            if (!isEmpty()) {
+//                super.startEdit();
+//                createDatePicker();
+//                setText(null);
+//                setGraphic(datePicker);
+//            }
+//        }
+//
+//        @Override
+//        public void cancelEdit() {
+//            super.cancelEdit();
+//
+//            setText(getDate().toString());
+//            setGraphic(null);
+//        }
+//
+//        @Override
+//        public void updateItem(Date item, boolean empty) {
+//            super.updateItem(item, empty);
+//
+//            if (empty) {
+//                setText(null);
+//                setGraphic(null);
+//            } else {
+//                if (isEditing()) {
+//                    if (datePicker != null) {
+//                        datePicker.setValue(getDate());
+//                    }
+//                    setText(null);
+//                    setGraphic(datePicker);
+//                } else {
+//                    setText(getDate().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM)));
+//                    setGraphic(null);
+//                }
+//            }
+//        }
+//
+//        private void createDatePicker() {
+//            datePicker = new DatePicker(getDate());
+//            datePicker.setMinWidth(this.getWidth() - this.getGraphicTextGap() * 2);
+//            datePicker.setOnAction((e) -> {
+//                System.out.println("Committed: " + datePicker.getValue().toString());
+//                commitEdit(Date.from(datePicker.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()));
+//            });
+//            datePicker.focusedProperty().addListener((ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) -> {
+//                if (!newValue) {
+//                    commitEdit(Date.from(datePicker.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()));
+//                }
+//            });
+//        }
+//
+//        private LocalDate getDate() {
+//            return getItem() == null ? LocalDate.now() : getItem().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+//        }
+//    }
 
     class ComboBoxEditingCell extends TableCell<Person, Typ> {
 

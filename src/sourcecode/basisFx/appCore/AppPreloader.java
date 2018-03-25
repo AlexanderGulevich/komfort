@@ -6,7 +6,6 @@
 package basisFx.appCore;
 
 import basisFx.appCore.elements.AppNode;
-import basisFx.appCore.windows.WindowFx;
 import basisFx.domainModel.settings.CSSID;
 import basisFx.domainModel.settings.Settings;
 import static basisFx.domainModel.settings.Settings.PRELODER_COUNT_LIMIT;
@@ -109,7 +108,7 @@ public class AppPreloader extends Preloader {
                          .setInsects(new Insets(5d, 5d, 5d, 5d))
 //                         .setWidth(WIDTH_VISIBLE)
 //                         .setHeight(HEIGHT_VISIBLE)
-                         .createNpAnchor()
+                         .createAnchorPanelWrapper()
                          .getElement();
               
              
@@ -121,7 +120,7 @@ public class AppPreloader extends Preloader {
                          .setId(CSSID.PRELOADER_VISIBLE_ROOT)
 //                         .setWidth(WIDTH_VISIBLE)
 //                         .setHeight(HEIGHT_VISIBLE)
-                         .createNpAnchor()
+                         .createAnchorPanelWrapper()
                          .getElement();
                  
                  

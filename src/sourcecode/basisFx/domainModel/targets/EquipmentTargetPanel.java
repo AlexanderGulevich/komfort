@@ -24,7 +24,7 @@ public class EquipmentTargetPanel extends Target{
       
         tableViewWrapper = AppNode.NodeBuilder.create()
                 .setId(CSSID.TABLE).setCoordinate(panel,50d, null, 0d, 0d)
-                .<Equipment>createTableViewWrapper().setTablesSize(0.7, panel.widthProperty())
+                .<Equipment>createTableViewWrapper().setTablesWidthProperty(0.7, panel.widthProperty())
                 .setDataMapper(this.dataMapperFabric.getEquipmentDataMapper())
                 .setDbTableName("Equipment").refresh()
                 .setColums(
@@ -32,7 +32,6 @@ public class EquipmentTargetPanel extends Target{
                     .setColumnName("Наименование")
                     .setPropertyName("name")
                     .setValueChecking(check.createTextCheck())
-//                    .setEditPoliticy(editFabric.<Equipment,String>createDefaultEditCommit())
                     .setColumnSize(0.6)
                     .setDomainChangeAction(
                          (obj,val)->{((Equipment)obj).setName((String)val);}
@@ -42,7 +41,6 @@ public class EquipmentTargetPanel extends Target{
                     .setColumnName("Ширина стержня")
                     .setPropertyName("rodWidth")
                     .setValueChecking(check.createNumCheck())
-//                    .setEditPoliticy(editFabric.<Equipment,Integer>createDefaultEditCommit())
                     .setColumnSize(0.4)
                     .setDomainChangeAction(
                          (obj,val)->{((Equipment)obj).setRodWidth((Integer)val);} 

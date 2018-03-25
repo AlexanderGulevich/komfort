@@ -24,53 +24,51 @@ public class UnitOfWork {
     private Refreshable refreshable;
     
     public void setNewPojoes(DomainObject p){
-        System.out.println("UnitOfWork.setNewPojoes");
+
         this.newPojoes.add(p);
         
     }
     public void setRemovedPojoes(DomainObject p){
-
-        System.out.println("UnitOfWork.setRemovedPojoes");
 
         this.removedPojoes.add(p);
         
     } 
     public void setChangedPojoes(DomainObject p){
 
-        System.out.println("UnitOfWork.setChangedPojoes");
+        System.out.println("UnitOfWork.setChangedPojoes,   getTableName==="+p.getTableName());
     
         this.changedPojoes.add(p);
         
     }
     public List <DomainObject> getNewPojoes(){
-        System.out.println("UnitOfWork.getNewPojoes");
+
         return newPojoes;
         
     }
     public List<DomainObject> getRemovedPojoes() {
-        System.out.println("UnitOfWork.getRemovedPojoes");
+
         return removedPojoes;
     }
     public List<DomainObject> getChangedPojoes() {
-        System.out.println("UnitOfWork.getChangedPojoes");
+
         return changedPojoes;
     }
     public List<Integer> getStoredPojoesId() {
-        System.out.println("UnitOfWork.getStoredPojoesId");
+
         return storedPojoesId;
     }
     public void clearStoredPojoesId(){
 
-        System.out.println("UnitOfWork.clearStoredPojoesId");
+
         this.storedPojoesId.clear();
     
     }
     public void clearNewPojoesList(){
-        System.out.println("UnitOfWork.clearNewPojoesList");
+
         this.newPojoes.clear();
     }
     public void clearRemovedPojoesList(){
-        System.out.println("UnitOfWork.clearRemovedPojoesList");
+
         this.removedPojoes.clear();
     }
     public void clearChangedPojoesList(){
@@ -103,10 +101,10 @@ public class UnitOfWork {
     
         for (Iterator<DomainObject> iterator = changedPojoes.iterator(); iterator.hasNext();) {
             DomainObject next = iterator.next();
+
             next.getDataMapper().updateDomainObject(next);
 
 
-            System.out.println("UnitOfWork.commitChanged");
         }
         clearChangedPojoesList();
         refreshable.refresh();
@@ -129,14 +127,9 @@ public class UnitOfWork {
 
     public void setRefreshable(Refreshable r) {
 
-        System.out.println("UnitOfWork.setRefreshable");
 
        this.refreshable=r;
        
     }
 
-
-//    public Map<Integer, DomainObject> getStoredPojoesMap() {
-//        return  storedPojoesMap;
-//    }
 }

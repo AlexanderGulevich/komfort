@@ -5,6 +5,8 @@
  */
 package basisFx.appCore.controlPolicy;
 
+import basisFx.appCore.domainScetch.DomainObject;
+
 /**
  *
  * @author Alek

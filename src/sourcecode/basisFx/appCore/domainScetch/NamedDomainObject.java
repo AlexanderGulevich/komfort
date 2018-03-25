@@ -10,7 +10,7 @@ import javafx.beans.property.StringProperty;
  */
 public class NamedDomainObject extends DomainObject{
 
-    private StringProperty name =new SimpleStringProperty(this, "name", null);
+    private StringProperty name =new SimpleStringProperty(this, "name", "Тестовое имя");
 
     public String getName() {
         return name.get();
@@ -26,7 +26,7 @@ public class NamedDomainObject extends DomainObject{
 
     @Override
     public boolean isReadyToTransaction() {
-        System.out.println("NamedDomainObject.isReadyToTransaction -- getName---- "+getName());
+
         if ( getName()!=null     )
         {
             if (!getName().trim().isEmpty()){
@@ -41,7 +41,7 @@ public class NamedDomainObject extends DomainObject{
 
     public String toString(){
 
-        return null;
+        return this.name.get();
     }
 
 }

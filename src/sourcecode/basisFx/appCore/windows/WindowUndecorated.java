@@ -61,7 +61,7 @@ public class WindowUndecorated extends WindowFx{
                 .setCoordinate(c)
                 .setParent(p)
                 .setId(CSSID.IMG_ICON)
-                .createNpAnchor()
+                .createAnchorPanelWrapper()
                 .getElement();
         return this;
         
@@ -133,7 +133,7 @@ public class WindowUndecorated extends WindowFx{
                          .setId(CSSID.TRANSPARENT_ROOT)
                          .setStage(stage)
                          .setInsects(new Insets(3d, 3d, 3d, 3d))
-                         .createNpAnchor()
+                         .createAnchorPanelWrapper()
                          .getElement();
                  
                 Layers.setTransparentRoot(root);
@@ -144,7 +144,7 @@ public class WindowUndecorated extends WindowFx{
                          .setId(CSSID.VISIBLE_ROOT)
                          .setStage(stage)
 //                         .setDropShadow(new DropShadow())
-                         .createNpAnchor()
+                         .createAnchorPanelWrapper()
                          .getElement();
                  
                  Layers.setVisibleRoot(visibleRoot);

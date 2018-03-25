@@ -36,7 +36,7 @@ public class TextAnchorPanel extends AbstractPanel{
                 .setWidth(width)
                 .setHeight(height)
                 .setParent(parent)
-                .createNpAnchor()
+                .createAnchorPanelWrapper()
                 .getElement();
         
         text = (Text) AppNode.NodeBuilder.create()

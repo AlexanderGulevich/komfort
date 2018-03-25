@@ -17,20 +17,20 @@ import javafx.beans.property.SimpleObjectProperty;
  */
 public class Counterparty  extends NamedDomainObject {
 
-    private ObjectProperty<Country> country =new SimpleObjectProperty<>(this, "country", null);
-    private ObjectProperty<Currency> currency =new SimpleObjectProperty<>(this, "currency", null);
+    private SimpleObjectProperty<NamedDomainObject> country =new SimpleObjectProperty<>(this, "country", null);
+    private SimpleObjectProperty<NamedDomainObject> currency =new SimpleObjectProperty<>(this, "currency", null);
 
     public Counterparty( ) {
         this.dataMapper=mapperFabric.getCounterpartyDataMapper();
-        this.tableName="Equipment";
+        this.tableName="Counterparty";
     }
 
 
-    public Country getCountry() {
+    public NamedDomainObject getCountry() {
         return country.get();
     }
 
-    public ObjectProperty<Country> countryProperty() {
+    public SimpleObjectProperty<NamedDomainObject> countryProperty() {
         return country;
     }
 
@@ -38,11 +38,11 @@ public class Counterparty  extends NamedDomainObject {
         this.country.set(country);
     }
 
-    public Currency getCurrency() {
+    public NamedDomainObject getCurrency() {
         return currency.get();
     }
 
-    public ObjectProperty<Currency> currencyProperty() {
+    public SimpleObjectProperty<NamedDomainObject> currencyProperty() {
         return currency;
     }
 

@@ -20,7 +20,7 @@ public class ImageTitle extends AbstracttTitle{
                     .setParent(titlePanel)
                     .setCoordinate(titleNameCoordinate)
                     .setId(CSSID.TITLE_WINDOW_IMG)
-                    .createNpAnchor();
+                    .createAnchorPanelWrapper();
     }
 
     @Override
