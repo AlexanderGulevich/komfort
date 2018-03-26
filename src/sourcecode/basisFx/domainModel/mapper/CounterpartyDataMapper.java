@@ -168,6 +168,35 @@ public class CounterpartyDataMapper extends DataMapper {
     }
     @Override
     public void updateDomainObject(DomainObject d) {
+        Counterparty counterparty= (Counterparty) d;
+        String expression = "UPDATE "+ d.getTableName()+ " SET  " +
+                " name = ?," +
+                " countryId = ?," +
+                " currencyId = ?" +
+                " WHERE id= ?" ;
+
+        PreparedStatement pstmt = null;
+        try {
+            pstmt = Db.getConnection().prepareStatement(expression);
+
+
+            pstmt.setString(1, counterparty.getName());
+
+            pstmt.setInt(2, counterparty.getCountry().getId());
+
+            pstmt.setInt(3, counterparty.getCurrency().getId());
+            pstmt.setInt(4, counterparty.getId());
+
+
+            pstmt.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println("ДАТАМАППЕР CounterpartyDataMapper ОБНОВЛЕНИЕ ОБЪЕКТА");
+
+
 
     }
     @Override

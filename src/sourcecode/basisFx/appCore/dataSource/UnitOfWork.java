@@ -102,6 +102,8 @@ public class UnitOfWork {
         for (Iterator<DomainObject> iterator = changedPojoes.iterator(); iterator.hasNext();) {
             DomainObject next = iterator.next();
 
+            System.out.println("UnitOfWork --КОММИТ ИЗМЕНЕННОГО ДОМЕНА");
+            System.out.println("UnitOfWork --ДАТА МАППЕР----"+next.getDataMapper());
             next.getDataMapper().updateDomainObject(next);
 
 

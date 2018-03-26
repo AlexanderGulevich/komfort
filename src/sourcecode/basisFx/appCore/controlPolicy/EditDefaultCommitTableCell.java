@@ -23,42 +23,48 @@ public class EditDefaultCommitTableCell<T,K> extends Edit<T,K>{
             column.setOnEditCommit((event) -> {
 
 
-//                System.out.println("22222222222222222222222222222222");
-
                 DomainObject domain= (DomainObject) event.getRowValue();
                 NamedDomainObject namedDomainObject= (NamedDomainObject) event.getRowValue();
 
                 //проверяет, есть ли такой id в бд
                 if (unitOfWork.getStoredPojoesId().contains(domain.getId())) {
 
-                   System.out.println("EditDefaultCommitTableCell------ ЕСТЬ ТАКОЙ ОБЪЕКТ В БД ---getId--- "+domain.getId());
+                   System.out.println("Доменный объект есть В БД ");
 
                    this.domainChangeAction.change(domain,event.getNewValue());
 
-                    System.out.println(" this.domainChangeAction.change(domain   --"+domain);
 
                       if (domain.isReadyToTransaction()) {
-                         unitOfWork.setChangedPojoes(domain);
+
+                          System.out.println("Доменный объект готов к транзакции ");
+
+                          unitOfWork.setChangedPojoes(domain);
                          unitOfWork.commitChanged();
                        
-                      } 
+                      } else {
+
+                          System.out.println("Доменный объект  НЕ готов к транзакции ");
+                      }
                     
                 }else{
 
                     //проверяет, новый ли это объект из уже созданных но не имеющихся в БД
                         if (unitOfWork.getNewPojoes().contains(domain)) {
 
-                            System.out.println("EditDefaultCommitTableCell------ НОВЫЙ ОБЪЕКТ");
+                            System.out.println("НОВЫЙ ОБЪЕКТ");
 
                             //вставить значение в домен
                             this.domainChangeAction.change(domain,event.getNewValue());
 
                             if (domain.isReadyToTransaction()) {
 
-                                System.out.println("EditDefaultCommitTableCell------ ГОТОВ К ТРАНЗАКЦИИ {");
+                                System.out.println("НОВЫЙ ОБЪЕКТ ГОТОВ К ТРАНЗАКЦИИ {");
 
                                 unitOfWork.commitNew();
-                            } 
+                            } else {
+
+                                System.out.println("НОВЫЙ ОБЪЕКТ не ГОТОВ К ТРАНЗАКЦИИ {");
+                            }
                         }
                 }
                 

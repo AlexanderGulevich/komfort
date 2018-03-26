@@ -10,7 +10,7 @@ import javafx.beans.property.StringProperty;
  */
 public class NamedDomainObject extends DomainObject{
 
-    private StringProperty name =new SimpleStringProperty(this, "name", "Тестовое имя");
+    private StringProperty name =new SimpleStringProperty(this, "name", "");
 
     public String getName() {
         return name.get();
