@@ -5,10 +5,7 @@
  */
 package basisFx.domainModel;
 
-import basisFx.domainModel.targets.CounterpartyTargetPanel;
-import basisFx.domainModel.targets.CountryTargetPanel;
-import basisFx.domainModel.targets.CurrencyTargetPanel;
-import basisFx.domainModel.targets.EquipmentTargetPanel;
+import basisFx.domainModel.targets.*;
 
 
 /**
@@ -17,10 +14,10 @@ import basisFx.domainModel.targets.EquipmentTargetPanel;
  */
 public class TargetFM {
 
-    public  EquipmentTargetPanel createEquipmentPanel(){
+    public EquipmentTargetPanel createEquipmentPanel(){
         return new EquipmentTargetPanel();
     }
-    public  CounterpartyTargetPanel createCounterpartyPanel(){
+    public CounterpartyTargetPanel createCounterpartyPanel(){
         return new CounterpartyTargetPanel();
     }
     public CountryTargetPanel createCountryTargetPanel(){
@@ -28,6 +25,9 @@ public class TargetFM {
     }
     public CurrencyTargetPanel createCurrencyTargetPanel(){
         return new CurrencyTargetPanel();
+    }
+    public EmployeesTargetPanel createEmployeesTargetPanel(){
+        return new EmployeesTargetPanel();
     }
 
 

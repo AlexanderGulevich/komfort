@@ -17,7 +17,6 @@ import javafx.util.converter.IntegerStringConverter;
  */
 public class IntegerColumn <T> extends ColumnWrapper<T>{
     protected TableColumn<T,Integer> column;
-//    protected DomainChangeAction<T,String> domainChangeAction;
 
     @SuppressWarnings("unchecked")
     public IntegerColumn(ColumnWrapper.Bulder builder) {
