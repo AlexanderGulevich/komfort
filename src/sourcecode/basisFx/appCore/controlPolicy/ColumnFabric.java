@@ -5,8 +5,6 @@
  */
 package basisFx.appCore.controlPolicy;
 
-import javafx.scene.control.TableColumn;
-
 /**
  *
  * @author Alek
@@ -14,21 +12,33 @@ import javafx.scene.control.TableColumn;
 public class ColumnFabric <T,K> {
     
     
-    public IntegerColumn<T> createIntegerColumn(ColumnWrapper.Bulder builder){
+    public ColumnInteger<T> createIntegerColumn(ColumnWrapper.Bulder builder){
         
-        return new IntegerColumn<T>(builder);
+        return new ColumnInteger<T>(builder);
     
     }
-    public TextColumn<T>  createTextColumn(ColumnWrapper.Bulder builder){
+    public ColumnString<T> createStringColumn(ColumnWrapper.Bulder builder){
 
-        return new TextColumn<T>(builder);
-
-    }
-    public ComboBoxColumn<T,K>  createComboBoxColumn(ColumnWrapper.Bulder builder){
-
-        return new ComboBoxColumn<T,K> (builder);
+        return new ColumnString<T>(builder);
 
     }
+    public ColumnComboBox<T,K> createComboBoxColumn(ColumnWrapper.Bulder builder){
+
+        return new ColumnComboBox<T,K>(builder);
+
+    }
+    public ColumnLocalDate<T,K> createLocalDateColumn(ColumnWrapper.Bulder builder){
+
+        return new ColumnLocalDate<T,K>(builder);
+
+    }
+
+    public ColumnDouble<T,K> createDoubleColumn(ColumnWrapper.Bulder builder){
+
+        return new ColumnDouble<T,K>(builder);
+
+    }
+
 
 
 }

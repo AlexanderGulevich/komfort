@@ -31,7 +31,7 @@ public class CounterpartyTargetPanel extends Target{
                 .setDbTableName("Counterparty").refresh()
                 .setColums(
 ////////////////////////////////
-                        columnFabric.<Counterparty,String>createTextColumn(ColumnWrapper.Bulder.create()
+                        columnFabric.<Counterparty,String>createStringColumn(ColumnWrapper.Bulder.create()
                                 .setColumnName("Наименование контрагента").setPropertyName("name")
                                 .setValueChecking(check.createTextCheck())
                                 .setColumnSize(0.5)

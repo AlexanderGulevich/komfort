@@ -6,7 +6,6 @@ import basisFx.appCore.elements.AppNode;
 import basisFx.appCore.elements.TableViewWrapper;
 import basisFx.appCore.panels.Target;
 import basisFx.domainModel.pojo.Country;
-import basisFx.domainModel.pojo.Equipment;
 import basisFx.domainModel.settings.CSSID;
 import basisFx.domainModel.settings.FontsStore;
 
@@ -27,7 +26,7 @@ public class CountryTargetPanel extends Target {
                 .setDataMapper(this.dataMapperFabric.getCountryDataMapper())
                 .setDbTableName("Country").refresh()
                 .setColums(
-                        columnFabric.<NamedDomainObject,String>createTextColumn(ColumnWrapper.Bulder.create()
+                        columnFabric.<NamedDomainObject,String>createStringColumn(ColumnWrapper.Bulder.create()
                                         .setColumnName("Наименование")
                                         .setPropertyName("name")
                                         .setValueChecking(check.createTextCheck())

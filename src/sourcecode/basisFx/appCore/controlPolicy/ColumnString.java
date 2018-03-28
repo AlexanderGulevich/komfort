@@ -8,34 +8,33 @@ package basisFx.appCore.controlPolicy;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
-import javafx.util.converter.IntegerStringConverter;
 
 /**
  *
- * @author 62
+ * @author Alek
  * @param <T>
  */
-public class IntegerColumn <T> extends ColumnWrapper<T>{
-    protected TableColumn<T,Integer> column;
-
+public class ColumnString<T> extends ColumnWrapper<T>{
+    protected TableColumn<T,String> column;
+//    protected DomainChangeAction<T,String> domainChangeAction;
+   
+    
+    
     @SuppressWarnings("unchecked")
-    public IntegerColumn(ColumnWrapper.Bulder builder) {
-                
+    public ColumnString(ColumnWrapper.Bulder builder) {
+        
         super(builder);
 //        this.domainChangeAction =builder.domainChangeAction;
-        this.column =  new TableColumn<>(columnName);
-   
-        column.setCellValueFactory(new PropertyValueFactory<>(propertyName));
-        column.setCellFactory(
-                TextFieldTableCell.forTableColumn(
-                        new IntegerStringConverter()
-                ));
         
+        this.column =  new TableColumn<>(columnName);
+      
+        column.setCellValueFactory(new PropertyValueFactory<>(propertyName));
+        column.setCellFactory(TextFieldTableCell.forTableColumn());
         
     }
-    
-    
-    
+
+
+
     public void initEditPoliticy(){
 
 //        for (Edit edit : editPoliticy) {
@@ -53,12 +52,10 @@ public class IntegerColumn <T> extends ColumnWrapper<T>{
         editPoliticy.setTvw(this.tableWrapper);
         editPoliticy.run();
     }
-      
-
-      public TableColumn<T,Integer>  getColumn(){
+      public TableColumn<T,String> getColumn(){
     
         return this.column;
     
     }
-      
+
 }

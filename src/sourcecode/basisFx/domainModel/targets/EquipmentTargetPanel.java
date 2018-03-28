@@ -28,7 +28,7 @@ public class EquipmentTargetPanel extends Target{
                 .setDataMapper(this.dataMapperFabric.getEquipmentDataMapper())
                 .setDbTableName("Equipment").refresh()
                 .setColums(
-                     columnFabric.<Equipment,String>createTextColumn(ColumnWrapper.Bulder.create()
+                     columnFabric.<Equipment,String>createStringColumn(ColumnWrapper.Bulder.create()
                     .setColumnName("Наименование")
                     .setPropertyName("name")
                     .setValueChecking(check.createTextCheck())

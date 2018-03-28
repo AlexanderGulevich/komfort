@@ -21,11 +21,11 @@ import javafx.util.Callback;
  * @author 62
  * @param <T>
  */
-public class ComboBoxColumn<T,K> extends ColumnWrapper<T>{
+public class ColumnComboBox<T,K> extends ColumnWrapper<T>{
     protected TableColumn<DomainObject, NamedDomainObject> column;
 
     @SuppressWarnings("unchecked")
-    public ComboBoxColumn(Bulder builder) {
+    public ColumnComboBox(Bulder builder) {
 
         super(builder);
         this.column =  new TableColumn<>(columnName);
@@ -46,13 +46,13 @@ public class ComboBoxColumn<T,K> extends ColumnWrapper<T>{
             //isn`t new object
             if (domainObject.getId() != null) {
 
-                System.err.println("ComboBoxColumn-В доменный объект  установлен NamedDomainObject");
+                System.err.println("ColumnComboBox-В доменный объект  установлен NamedDomainObject");
                 return   comboBoxCellValueInitLogic.init(domainObject);
 
 
 
             }else {
-                System.err.println("ComboBoxColumn-В доменный объект не установлен NamedDomainObject");
+                System.err.println("ColumnComboBox-В доменный объект не установлен NamedDomainObject");
                 return null;
             }
 

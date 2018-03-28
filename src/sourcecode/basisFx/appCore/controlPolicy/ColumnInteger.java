@@ -1,38 +1,42 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package basisFx.appCore.controlPolicy;
 
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
-import javafx.util.converter.DoubleStringConverter;
 import javafx.util.converter.IntegerStringConverter;
 
-public class DoubleColumn <T> extends ColumnWrapper<T> {
-
-    protected TableColumn<T, Double> column;
-
-//    todo
-
+/**
+ *
+ * @author 62
+ * @param <T>
+ */
+public class ColumnInteger<T> extends ColumnWrapper<T>{
+    protected TableColumn<T,Integer> column;
 
     @SuppressWarnings("unchecked")
-    public DoubleColumn(ColumnWrapper.Bulder builder) {
-
+    public ColumnInteger(ColumnWrapper.Bulder builder) {
+                
         super(builder);
 //        this.domainChangeAction =builder.domainChangeAction;
-        this.column = new TableColumn<>(columnName);
-
+        this.column =  new TableColumn<>(columnName);
+   
         column.setCellValueFactory(new PropertyValueFactory<>(propertyName));
-
         column.setCellFactory(
                 TextFieldTableCell.forTableColumn(
-                        new DoubleStringConverter()
+                        new IntegerStringConverter()
                 ));
-
-
+        
+        
     }
-
-
-    public void initEditPoliticy() {
-
+    
+    
+    
+    public void initEditPoliticy(){
 
         editPoliticy.setColumn(this.column);
         editPoliticy.setDomainChangeAction(this.domainChangeAction);
@@ -40,11 +44,12 @@ public class DoubleColumn <T> extends ColumnWrapper<T> {
         editPoliticy.setTvw(this.tableWrapper);
         editPoliticy.run();
     }
+      
 
-
-    public TableColumn<T, Double> getColumn() {
-
+      public TableColumn<T,Integer>  getColumn(){
+    
         return this.column;
-
+    
     }
+      
 }

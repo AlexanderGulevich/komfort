@@ -20,7 +20,7 @@ public class EmployeesTargetPanel extends Target{
                 .setDataMapper(this.dataMapperFabric.getCountryDataMapper())
                 .setDbTableName("Country").refresh()
                 .setColums(
-                        columnFabric.<NamedDomainObject,String>createTextColumn(ColumnWrapper.Bulder.create()
+                        columnFabric.<NamedDomainObject,String>createStringColumn(ColumnWrapper.Bulder.create()
                                 .setColumnName("Наименование")
                                 .setPropertyName("name")
                                 .setValueChecking(check.createTextCheck())
