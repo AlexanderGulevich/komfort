@@ -20,13 +20,13 @@ public class TargetFM {
     public CounterpartyTargetPanel createCounterpartyPanel(){
         return new CounterpartyTargetPanel();
     }
-    public CountryTargetPanel createCountryTargetPanel(){
+    public CountryTargetPanel createCountryPanel(){
         return new CountryTargetPanel();
     }
-    public CurrencyTargetPanel createCurrencyTargetPanel(){
+    public CurrencyTargetPanel createCurrencyPanel(){
         return new CurrencyTargetPanel();
     }
-    public EmployeesTargetPanel createEmployeesTargetPanel(){
+    public EmployeesTargetPanel createEmployeesPanel(){
         return new EmployeesTargetPanel();
     }
 

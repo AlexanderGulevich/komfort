@@ -1,5 +1,5 @@
 // DatePickerTableCell.java
-package com.jdojo.control;
+package basisFx.domainModel;
 
 import javafx.beans.value.ObservableValue;
 import javafx.scene.control.DatePicker;
