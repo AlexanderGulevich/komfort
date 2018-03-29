@@ -29,6 +29,9 @@ public class TargetFM {
     public EmployeesTargetPanel createEmployeesPanel(){
         return new EmployeesTargetPanel();
     }
+    public RatePerHourTargetPanel createRatePerHourPanel(){
+        return new RatePerHourTargetPanel();
+    }
 
 
 

@@ -27,7 +27,6 @@ public class ColumnDouble<T,K> extends ColumnWrapper<T> {
                         new DoubleStringConverter()
                 ));
 
-
     }
 
 

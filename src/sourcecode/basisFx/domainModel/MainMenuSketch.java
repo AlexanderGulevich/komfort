@@ -25,6 +25,7 @@ public class MainMenuSketch extends MenuSketch{
                                create("Оборудование", fabric.createEquipmentPanel(), composit.SIMPLE),
                                create("Контрагенты", fabric.createCounterpartyPanel(), composit.SIMPLE),
                                create("Сотрудники", fabric.createEmployeesPanel(), composit.SIMPLE),
+                               create("Тарифные ставки", fabric.createRatePerHourPanel(), composit.SIMPLE),
                                create("Страны", fabric.createCountryPanel(), composit.SIMPLE),
                                create("Валюты", fabric.createCurrencyPanel(), composit.SIMPLE)
                        ),
