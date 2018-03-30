@@ -16,6 +16,32 @@ public class EmployeesTargetPanel extends Target{
 //todo
 
 
+        tableViewWrapper = AppNode.NodeBuilder.create()
+                .setId(CSSID.TABLE).setCoordinate(panel,50d, null, 0d, 0d)
+                .<Equipment>createTableViewWrapper().setTablesWidthProperty(0.7, panel.widthProperty())
+                .setDataMapper(this.dataMapperFabric.getEquipmentDataMapper())
+                .setDbTableName("Equipment").refresh()
+                .setColums(
+                        columnFabric.<Equipment,String>createStringColumn(ColumnWrapper.Bulder.create()
+                                .setColumnName("Наименование")
+                                .setPropertyName("name")
+                                .setValueChecking(check.createTextCheck())
+                                .setColumnSize(0.6)
+                                .setDomainChangeAction(
+                                        (obj,val)->{((Equipment)obj).setName((String)val);}
+                                )
+                        ),
+                        columnFabric.<Equipment,Integer>createIntegerColumn(ColumnWrapper.Bulder.create()
+                                .setColumnName("Ширина стержня")
+                                .setPropertyName("rodWidth")
+                                .setValueChecking(check.createNumCheck())
+                                .setColumnSize(0.4)
+                                .setDomainChangeAction(
+                                        (obj,val)->{((Equipment)obj).setRodWidth((Integer)val);}
+                                )
+                        )
+                );
+
 
 
 

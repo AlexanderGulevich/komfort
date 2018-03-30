@@ -6,10 +6,8 @@
 package basisFx.domainModel;
 
 import basisFx.appCore.domainScetch.NamedDataMapper;
-import basisFx.domainModel.mapper.CounterpartyDataMapper;
-import basisFx.domainModel.mapper.CountryDataMapper;
-import basisFx.domainModel.mapper.CurrencyDataMapper;
-import basisFx.domainModel.mapper.EquipmentDataMapper;
+import basisFx.domainModel.mapper.*;
+import basisFx.domainModel.pojo.Employees;
 
 /**
  *
@@ -20,15 +18,11 @@ public class DataMapperFabric {
     public EquipmentDataMapper getEquipmentDataMapper(){
 
         return EquipmentDataMapper.getInstance();
-
     }
-
     public CounterpartyDataMapper getCounterpartyDataMapper() {
 
         return new CounterpartyDataMapper();
     }
-
-
     public CountryDataMapper getCountryDataMapper() {
 
         return CountryDataMapper.getInstance();
@@ -37,4 +31,13 @@ public class DataMapperFabric {
 
         return CurrencyDataMapper.getInstance();
     }
+    public EmployeesDataMapper getEmployeesDataMapper() {
+
+        return  EmployeesDataMapper.getInstance();
+    }
+
+
+
+
+
 }
