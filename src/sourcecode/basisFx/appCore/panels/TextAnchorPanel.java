@@ -42,9 +42,9 @@ public class TextAnchorPanel extends AbstractPanel{
         text = (Text) AppNode.NodeBuilder.create()
                 .setId(CSSID.LEFT_SIDE_MENU_COMMON_TEXT)
                 .setParent(panel)
-                .setCoordinate(0d, 10d, 0d, 0d)
+                .setCoordinate(0d, 0d, 0d, 0d)
 //                .setText(component.getName())
-                .setFont(FontsStore.ROBOTO_BOLD, 20)
+                .setFont(font, fontSize)
                 .createNText().getElement();
     }
 

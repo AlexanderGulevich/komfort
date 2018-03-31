@@ -33,7 +33,7 @@ public class MainMenuSketch extends MenuSketch{
                        ),
 
 
-               createVertical("Графики", null, composit.COMPOSITE,"", FontsStore.MATERIAL_ICONS,25)
+               createVertical("Статистика", null, composit.COMPOSITE,"\uF080", FontsStore.FAWESOME5SOLID,25)
                         .addInerLevel(
                                create("Затраты", null, composit.SIMPLE),
                                create("Курсы", null, composit.SIMPLE),
@@ -42,27 +42,22 @@ public class MainMenuSketch extends MenuSketch{
                        ),
 
 
-               createVertical("Движения", null, composit.COMPOSITE,"", FontsStore.MATERIAL_ICONS,25)
+               createVertical("Результаты дня", null, composit.COMPOSITE,"\uF0A1", FontsStore.WEBHOSTINGHUB,25)
                        .addInerLevel(
                                create("Дневная выработка", null, composit.SIMPLE),
                                create("Курсы", null, composit.SIMPLE),
                                create("Выход", null, composit.SIMPLE),
                                create("Рентабельность", null, composit.SIMPLE)
                        ),
-               createVertical("Архив", null, composit.COMPOSITE,"" , FontsStore.MATERIAL_ICONS,25),
-
-               createVertical("Контрагенты", null, composit.COMPOSITE,"", FontsStore.MATERIAL_ICONS,25)
-                       .addInerLevel(
-                               create("Поставщики", fabric.createEquipmentPanel(), composit.SIMPLE),
-                               create("Потребители", null, composit.SIMPLE)
-                       ),
 
 
-               createVertical("F", null, composit.COMPOSITE,"", FontsStore.MATERIAL_ICONS,25),
-               createVertical("W", null, composit.COMPOSITE,"\uF007", FontsStore.MATERIAL_ICONS,25),
-               createVertical("er", null, composit.COMPOSITE,"\uF007", FontsStore.MATERIAL_ICONS,25),
-               createVertical("qd", null, composit.COMPOSITE,"", FontsStore.MATERIAL_ICONS,25)
+
+
+               createVertical("Контрагенты", null, composit.COMPOSITE,"\uF2B5", FontsStore.FAWESOME5SOLID,20),
+
+
+               createVertical("Управление сотрудниками", null, composit.COMPOSITE,"\uF137", FontsStore.WEBHOSTINGHUB,25)
                                         );
     }
-    
+
 }

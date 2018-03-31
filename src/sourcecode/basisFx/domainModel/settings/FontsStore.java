@@ -10,12 +10,18 @@ package basisFx.domainModel.settings;
  * @author Alek
  */
 public enum FontsStore {
-    
-    FAWESOME5REGULAR("/res/font/FontAwesome5Free-Regular-400.otf"),
-    FAWESOME5SOLID("/res/font/FontAwesome5Free-Solid-900.otf"),
+
+
+    FAWESOME5REGULAR("/res/font/Font-Awesome-5-Free-Regular-400.ttf"),
+    FAWESOME5SOLID("/res/font/Font-Awesome-5-Free-Solid-900.ttf"),
     WEBHOSTINGHUB("/res/font/webhostinghub-glyphs.ttf"),
-    MARGOT("/res/font/Margot.ttf"),
+    FOUNDATION("/res/font/foundation-icons.ttf"),
+    IONICONS("/res/font/ionicons.ttf"),
+    THEMIFY("/res/font/themify.ttf"),
+    BATCH("/res/font/batch-icons-webfont.ttf"),
     MATERIAL_ICONS("/res/font/MaterialIcons-Regular.ttf"),
+
+    MARGOT("/res/font/Margot.ttf"),
     ROBOTO_BOLD("/res/font/Roboto-Bold.ttf"),
     ROBOTO_LIGHT("/res/font/Roboto-Light.ttf"),
     FIRA_BOLD("/res/font/FiraSans-Bold.ttf");

@@ -45,11 +45,11 @@ public class CloseWindow extends AppEvent{
         try {
 
 //Todo Db.getSonicServer().shutdown();
-//                Db.getSonicServer().shutdown();
+                Db.getSonicServer().shutdown();
                 Db.getConnection().close();
                 Thread.sleep(500);
                 appNode.getStage().close();
-//                System.exit(0);
+                System.exit(0);
 
 
             } catch (InterruptedException ex) {

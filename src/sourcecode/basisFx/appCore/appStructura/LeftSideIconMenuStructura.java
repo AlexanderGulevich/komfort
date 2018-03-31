@@ -5,6 +5,7 @@ import basisFx.appCore.panels.AbstractPanel;
 import basisFx.appCore.registry.Layers;
 import basisFx.appCore.utils.AnchorCoordinate;
 import basisFx.domainModel.MainMenuSketch;
+import basisFx.domainModel.settings.FontsStore;
 import basisFx.domainModel.settings.Settings;
 import javafx.stage.Stage;
 
@@ -18,8 +19,13 @@ public class LeftSideIconMenuStructura extends AppMainStructura {
                                 .setPanelCoordinate(new AnchorCoordinate(50d,0d,0d,60d))
                                 .setParent(Layers.getVisibleRoot())
                 ))
+//                .setPanel(panelFabric.createTitlePanel(//ПАНЕЛЬ С ЗАГЛАВИЕМ
+//                        new AbstractPanel.PanelBuilder().setHeight(50d)
+//                                .setPanelCoordinate(new AnchorCoordinate(0d,0d,null,0d))
+//                                .setParent(Layers.getVisibleRoot())
+//                ))
                 .setPanel(panelFabric.createTitlePanel(//ПАНЕЛЬ С ЗАГЛАВИЕМ
-                        new AbstractPanel.PanelBuilder().setHeight(50d)
+                        new AbstractPanel.PanelBuilder().setHeight(70d)
                                 .setPanelCoordinate(new AnchorCoordinate(0d,0d,null,0d))
                                 .setParent(Layers.getVisibleRoot())
                 ))
@@ -33,9 +39,10 @@ public class LeftSideIconMenuStructura extends AppMainStructura {
                                 .setPanelCoordinate( new AnchorCoordinate(49d,0d,null,60d))
                                 .setParent(Layers.getVisibleRoot())
                 ))
-                .setPanel(panelFabric.createTextAnchorPanel(//Текстовая панель вывода
+                .setPanel(panelFabric.createTextAnchorPanel(//Текстовая панель вывода названия категории меню
                         new AbstractPanel.PanelBuilder().setHeight(35d)
-                                .setPanelCoordinate( new AnchorCoordinate(20d, 70d, 0d, null))
+                                .setFont(FontsStore.ROBOTO_BOLD, 20)
+                                .setPanelCoordinate( new AnchorCoordinate(15d, 120d, 0d, null))
                                 .setParent(Layers.getTitlePanel())
                 ))
                 .setTitle(titleFabric.createImageTitle()//КАРТИНКА С ЗАГЛАВИЕМ

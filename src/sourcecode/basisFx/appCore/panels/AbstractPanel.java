@@ -8,6 +8,7 @@ package basisFx.appCore.panels;
 import basisFx.appCore.utils.AnchorCoordinate;
 import basisFx.appCore.Initiated;
 import basisFx.appCore.events.EventFactory;
+import basisFx.domainModel.settings.FontsStore;
 import javafx.geometry.Insets;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -26,8 +27,9 @@ public abstract class AbstractPanel implements Initiated{
     protected Double height;
     protected Insets insects;
     protected EventFactory eventFactory=EventFactory.getInstance();
+    protected FontsStore font;
+    protected double fontSize;
 
-    
     public abstract void init();
     public abstract void register();
     
@@ -40,6 +42,8 @@ public abstract class AbstractPanel implements Initiated{
        this.panelCoordinate=b.panelCoordinate;
        this.parent=b.parent;
        this.insects=b.insects;
+       this.font=b.font;
+       this.fontSize=b.fontSize;
     }
     public void setStage(Stage stage) {
         this.stage = stage;
@@ -53,7 +57,15 @@ public abstract class AbstractPanel implements Initiated{
         protected Double width;
         protected Double height;
         protected Insets insects;
-       
+        protected FontsStore font;
+        protected double fontSize;
+
+
+        public PanelBuilder setFont(FontsStore font,double size) {
+            this.font = font;
+            this.fontSize=size;
+            return this;
+        }
 
         public PanelBuilder setPanelCoordinate(AnchorCoordinate panelCoordinate) {
             this.panelCoordinate = panelCoordinate;
