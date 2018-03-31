@@ -3,6 +3,7 @@ package basisFx.appCore.menu;
 import java.util.ArrayList;
 
 import basisFx.appCore.panels.Target;
+import basisFx.domainModel.settings.FontsStore;
 import javafx.scene.layout.AnchorPane;
 
 /**
@@ -15,6 +16,8 @@ public class MenuComponent{
     protected Target target;
     protected String name;
     protected String metaInf;
+    protected FontsStore fontsStore;
+    protected double size;
 
     
     public enum composit{COMPOSITE, SIMPLE}
@@ -22,23 +25,50 @@ public class MenuComponent{
     protected boolean isComposit=false;
     protected AnchorPane parent;
 
- 
-    public static MenuComponent create(String n,Target fm,composit c){
+
+    public double getSize() {
+        return size;
+    }
+
+    public void setSize(double size) {
+        this.size = size;
+    }
+
+    public void setFontsStore(FontsStore fontsStore) {
+        this.fontsStore = fontsStore;
+    }
+
+    public FontsStore getFontsStore() {
+        return fontsStore;
+    }
+
+    public static MenuComponent create(String name, Target fm, composit composit){
     
-        MenuComponent mh=new MenuComponent(c);
-        mh.setName(n);
+        MenuComponent mh=new MenuComponent(composit);
+        mh.setName(name);
         mh.setFactory(fm);
         return mh;
     
     }
-    public static MenuComponent create(String n,Target fm,composit c, String metaInf){
-    
+    public static MenuComponent createVertical(String name,Target fm, composit c, String iconFontName){
+
         MenuComponent mh=new MenuComponent(c);
-        mh.setName(n);
+        mh.setName(name);
         mh.setFactory(fm);
-        mh.setMeta(metaInf);
+        mh.setMeta(iconFontName);
         return mh;
-    
+
+    }
+    public static MenuComponent createVertical(String name,Target fm, composit c, String iconFontName,FontsStore fontsStore,double size){
+
+        MenuComponent mh=new MenuComponent(c);
+        mh.setName(name);
+        mh.setFactory(fm);
+        mh.setMeta(iconFontName);
+        mh.setFontsStore(fontsStore);
+        mh.setSize(size);
+        return mh;
+
     }
     public static MenuComponent createHeadElement(){
        

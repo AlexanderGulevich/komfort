@@ -3,7 +3,10 @@ package basisFx.domainModel;
 import  basisFx.appCore.menu.MenuSketch;
 import basisFx.appCore.menu.MenuComponent;
 import basisFx.appCore.menu.MenuComponent.composit;
+import basisFx.domainModel.settings.FontsStore;
+
 import static basisFx.appCore.menu.MenuComponent.create;
+import static basisFx.appCore.menu.MenuComponent.createVertical;
 
 /**
  *
@@ -18,9 +21,8 @@ public class MainMenuSketch extends MenuSketch{
         
        this.menuHierarchy=MenuComponent.createHeadElement();
        
-       menuHierarchy.addInerLevel(//     
-               
-               create("Списки", null, composit.COMPOSITE,"")
+       menuHierarchy.addInerLevel(//
+               createVertical("Списки", null, composit.COMPOSITE,"", FontsStore.MATERIAL_ICONS,25)
                        .addInerLevel(
                                create("Оборудование", fabric.createEquipmentPanel(), composit.SIMPLE),
                                create("Контрагенты", fabric.createCounterpartyPanel(), composit.SIMPLE),
@@ -31,28 +33,35 @@ public class MainMenuSketch extends MenuSketch{
                        ),
 
 
-               create("Графики", null, composit.COMPOSITE,"")
+               createVertical("Графики", null, composit.COMPOSITE,"", FontsStore.MATERIAL_ICONS,25)
                         .addInerLevel(
                                create("Затраты", null, composit.SIMPLE),
                                create("Курсы", null, composit.SIMPLE),
                                create("Выход", null, composit.SIMPLE),
                                create("Рентабельность", null, composit.SIMPLE)
                        ),
-               
-               
-               create("Движения", null, composit.COMPOSITE,"") .addInerLevel(
+
+
+               createVertical("Движения", null, composit.COMPOSITE,"", FontsStore.MATERIAL_ICONS,25)
+                       .addInerLevel(
                                create("Дневная выработка", null, composit.SIMPLE),
                                create("Курсы", null, composit.SIMPLE),
                                create("Выход", null, composit.SIMPLE),
                                create("Рентабельность", null, composit.SIMPLE)
                        ),
-               create("Архив", null, composit.COMPOSITE,"" )
+               createVertical("Архив", null, composit.COMPOSITE,"" , FontsStore.MATERIAL_ICONS,25),
 
-//               create("Контрагенты", null, composit.COMPOSITE,"") .addInerLevel(
-//                               create("Поставщики", fabric.createEquipmentPanel(), composit.SIMPLE),
-//                               create("Потребители", null, composit.SIMPLE)
-//                       )
-//               create("Профит", null, composit.COMPOSITE,"")
+               createVertical("Контрагенты", null, composit.COMPOSITE,"", FontsStore.MATERIAL_ICONS,25)
+                       .addInerLevel(
+                               create("Поставщики", fabric.createEquipmentPanel(), composit.SIMPLE),
+                               create("Потребители", null, composit.SIMPLE)
+                       ),
+
+
+               createVertical("F", null, composit.COMPOSITE,"", FontsStore.MATERIAL_ICONS,25),
+               createVertical("W", null, composit.COMPOSITE,"\uF007", FontsStore.MATERIAL_ICONS,25),
+               createVertical("er", null, composit.COMPOSITE,"\uF007", FontsStore.MATERIAL_ICONS,25),
+               createVertical("qd", null, composit.COMPOSITE,"", FontsStore.MATERIAL_ICONS,25)
                                         );
     }
     
