@@ -10,5 +10,5 @@ import javafx.beans.property.StringProperty;
  * @autor AlexanderGulevich
  */
 public interface ComboBoxCellValueInitLogic<T> {
-    public   SimpleObjectProperty<NamedDomainObject>  init(T domainObject);
+    public   SimpleObjectProperty<DomainObject>  init(T domainObject);
 }

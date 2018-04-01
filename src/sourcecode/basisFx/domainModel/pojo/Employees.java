@@ -13,20 +13,52 @@ import java.time.LocalDate;
  */
 public class Employees  extends NamedDomainObject {
 
-    private SimpleObjectProperty<Integer> ratePerHourId =new SimpleObjectProperty<>(this, "ratePerHourId", null);
-    private SimpleObjectProperty<Integer> ratePerHourHistoryId =new SimpleObjectProperty<>(this, "currency", null);
-    private SimpleObjectProperty<LocalDate> hireDay =new SimpleObjectProperty<>(this, "currency", null);
-    private SimpleObjectProperty<NamedDomainObject> fireDay =new SimpleObjectProperty<>(this, "currency", null);
-    private SimpleObjectProperty<NamedDomainObject> isFired =new SimpleObjectProperty<>(this, "currency", null);
-    private SimpleObjectProperty<NamedDomainObject> RatePerHourStory =new SimpleObjectProperty<>(this, "currency", null);
-    private SimpleObjectProperty<NamedDomainObject> currency =new SimpleObjectProperty<>(this, "currency", null);
+    private SimpleObjectProperty<LocalDate> startingRateDate =new SimpleObjectProperty<>(this, "startingDate", null);
+    private SimpleObjectProperty<Boolean> isFired =new SimpleObjectProperty<>(this, "isFired", null);
+    private SimpleObjectProperty<DomainObject> ratePerHour =new SimpleObjectProperty<>(this, "ratePerHour", null);
+
+
 
     public Employees( ) {
-        this.dataMapper=mapperFabric.getCounterpartyDataMapper();
+        this.dataMapper=mapperFabric.getEmployeesDataMapper();
         this.tableName="Employees";
     }
 
+    public DomainObject getRatePerHour() {
+        return ratePerHour.get();
+    }
 
+    public SimpleObjectProperty<DomainObject> ratePerHourProperty() {
+        return ratePerHour;
+    }
+
+    public void setRatePerHour(RatePerHour ratePerHour) {
+        this.ratePerHour.set(ratePerHour);
+    }
+
+    public LocalDate getStartingRateDate() {
+        return startingRateDate.get();
+    }
+
+    public SimpleObjectProperty<LocalDate> startingRateDateProperty() {
+        return startingRateDate;
+    }
+
+    public void setStartingRateDate(LocalDate startingRateDate) {
+        this.startingRateDate.set(startingRateDate);
+    }
+
+    public Boolean getIsFired() {
+        return isFired.get();
+    }
+
+    public SimpleObjectProperty<Boolean> isFiredProperty() {
+        return isFired;
+    }
+
+    public void setIsFired(Boolean isFired) {
+        this.isFired.set(isFired);
+    }
 
     @Override
     public boolean isReadyToTransaction() {

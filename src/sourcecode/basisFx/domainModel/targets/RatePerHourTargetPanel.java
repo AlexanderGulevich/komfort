@@ -28,15 +28,10 @@ public class RatePerHourTargetPanel  extends Target {
                 .setDbTableName("RatePerHour").refresh()
                 .setColums(
                         columnFabric.<RatePerHour,Double>createDoubleColumn(ColumnWrapper.Bulder.create()
-                                        .setColumnName("Тариф ( бел. руб/час. )").setPropertyName("ratePerHour").setColumnSize(0.5)
+                                        .setColumnName("Тариф ( бел. руб/час. )").setPropertyName("ratePerHour").setColumnSize(1)
                                         .setDomainChangeAction((obj,val)->{((RatePerHour)obj).setRatePerHour((Double)val); } )
-                        ),
-                        columnFabric.<RatePerHour,Double>createLocalDateColumn(ColumnWrapper.Bulder.create()
-                                        .setColumnName("Дата начала действия") .setPropertyName("startingDate").setColumnSize(0.5)
-                                        .setDateCellValueInitLogic((domainObject)->{
-                                            return ((RatePerHour)domainObject).startingDateProperty();})
-                                        .setDomainChangeAction((obj,val)->{((RatePerHour)obj).setStartingDate((LocalDate) val); } )
                         )
+
                 );
 
 

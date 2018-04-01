@@ -31,7 +31,6 @@ public abstract class DataMapper {
 
     public abstract void updateDomainObject(DomainObject d);
     public abstract void insertDomainObject(DomainObject d);
-//    public abstract void getAllDomainObjectHashMap(HashMap m,String tableName);
      
      public void deleteDomainObject(DomainObject domainObject) throws SQLException{
         String expression="delete from " +domainObject.getTableName()+" where id=? ";

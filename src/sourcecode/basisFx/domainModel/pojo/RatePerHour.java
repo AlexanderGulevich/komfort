@@ -9,7 +9,6 @@ public class RatePerHour extends DomainObject {
 
 
     private SimpleObjectProperty<Double> ratePerHour =new SimpleObjectProperty<>(this, "ratePerHour", null);
-    private SimpleObjectProperty<LocalDate> startingDate =new SimpleObjectProperty<>(this, "startingDate", null);
 
     public RatePerHour() {
 
@@ -29,17 +28,6 @@ public class RatePerHour extends DomainObject {
         this.ratePerHour.set(ratePerHour);
     }
 
-    public LocalDate getStartingDate() {
-        return startingDate.get();
-    }
-
-    public SimpleObjectProperty<LocalDate> startingDateProperty() {
-        return startingDate;
-    }
-
-    public void setStartingDate(LocalDate startingDate) {
-        this.startingDate.set(startingDate);
-    }
 
     @Override
     public boolean isReadyToTransaction() {

@@ -85,7 +85,7 @@ public class ColumnLocalDate <T,K>extends ColumnWrapper<T> {
         public void updateItem(LocalDate item, boolean empty) {
             super.updateItem(item, empty);
 
-            if (empty) {
+            if (empty||item==null) {
                 setText(null);
                 setGraphic(null);
             } else {
@@ -106,9 +106,10 @@ public class ColumnLocalDate <T,K>extends ColumnWrapper<T> {
             datePicker = new DatePicker(getDate());
             datePicker.setMinWidth(this.getWidth() - this.getGraphicTextGap() * 2);
             datePicker.setConverter(new CustomStringConverter());
-            datePicker.setPromptText("dd-MM-yyyy");
+            datePicker.setPromptText("выберите дату");
             datePicker.setOnAction((e) -> {
                 System.out.println("Committed: " + datePicker.getValue().toString());
+//                commitEdit(LocalDate.from(datePicker.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()));
                 commitEdit(LocalDate.from(datePicker.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()));
             });
             datePicker.focusedProperty().addListener((ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) -> {
@@ -119,16 +120,15 @@ public class ColumnLocalDate <T,K>extends ColumnWrapper<T> {
         }
 
         private LocalDate getDate() {
-            return getItem() == null ? LocalDate.now() : getItem();
+            return getItem() == null ? null : getItem();
 //                    toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         }
     }
 
 
     class CustomStringConverter extends StringConverter<LocalDate> {
-        DateTimeFormatter dateFormatter =
-                DateTimeFormatter.ofPattern("dd-MM-yyyy");
-
+        DateTimeFormatter dateFormatter =//DateTimeFormatter.ofPattern("dd-MM-yyyy");
+                                DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL);
         @Override
         public String toString(LocalDate date) {
             if (date != null) {

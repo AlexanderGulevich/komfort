@@ -59,6 +59,7 @@ public class MainMenuSketch extends MenuSketch{
                createVertical("Вспомогательная информация", null, composit.COMPOSITE,"", FontsStore.MATERIAL_ICONS,25)
                        .addInerLevel(
                                create("Оборудование", fabric.createEquipmentPanel(), composit.SIMPLE),
+                               create("Продукция", fabric.createEquipmentPanel(), composit.SIMPLE),
                                create("Контрагенты", fabric.createCounterpartyPanel(), composit.SIMPLE),
                                create("Страны", fabric.createCountryPanel(), composit.SIMPLE),
                                create("Валюты", fabric.createCurrencyPanel(), composit.SIMPLE)
