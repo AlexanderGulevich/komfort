@@ -24,7 +24,7 @@ public class EditDefaultCommitTableCell<T,K> extends Edit<T,K>{
 
 
                 DomainObject domain= (DomainObject) event.getRowValue();
-                NamedDomainObject namedDomainObject= (NamedDomainObject) event.getRowValue();
+//                NamedDomainObject namedDomainObject= (NamedDomainObject) event.getRowValue();
 
                 //проверяет, есть ли такой id в бд
                 if (unitOfWork.getStoredPojoesId().contains(domain.getId())) {

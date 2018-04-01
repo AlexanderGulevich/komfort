@@ -36,6 +36,11 @@ public class DataMapperFabric {
         return  EmployeesDataMapper.getInstance();
     }
 
+    public RatePerHourDataMapper getRatePerHourDataMapper() {
+
+        return  RatePerHourDataMapper.getInstance();
+    }
+
 
 
 

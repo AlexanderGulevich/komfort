@@ -3,6 +3,7 @@ package basisFx.appCore.controlPolicy;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.util.StringConverter;
 import javafx.util.converter.DoubleStringConverter;
 import javafx.util.converter.IntegerStringConverter;
 
@@ -24,8 +25,12 @@ public class ColumnDouble<T,K> extends ColumnWrapper<T> {
 
         column.setCellFactory(
                 TextFieldTableCell.forTableColumn(
-                        new DoubleStringConverter()
+//                        new DoubleStringConverter()
+                        new CustomStringConverter()
                 ));
+
+
+
 
     }
 
@@ -46,4 +51,46 @@ public class ColumnDouble<T,K> extends ColumnWrapper<T> {
         return this.column;
 
     }
+
+
+    class CustomStringConverter extends StringConverter<Double> {
+
+        @Override
+        public String toString(Double object) {
+            if (object == null) {
+                return "";
+            }
+
+            return Double.toString(object.doubleValue());
+        }
+
+        @Override
+        public Double fromString(String string) {
+
+            string = string.trim();
+
+            if(string.contains(",")){
+                string=string.replace(',','.');
+            }
+
+            if (string == null) {
+                return null;
+            }
+
+            if (string.length() < 1) {
+                return null;
+            }
+
+            return Double.valueOf(string);
+
+        }
+
+
+
+
+    }
+
+
+
+
 }

@@ -19,11 +19,6 @@ public class LeftSideIconMenuStructura extends AppMainStructura {
                                 .setPanelCoordinate(new AnchorCoordinate(50d,0d,0d,60d))
                                 .setParent(Layers.getVisibleRoot())
                 ))
-//                .setPanel(panelFabric.createTitlePanel(//ПАНЕЛЬ С ЗАГЛАВИЕМ
-//                        new AbstractPanel.PanelBuilder().setHeight(50d)
-//                                .setPanelCoordinate(new AnchorCoordinate(0d,0d,null,0d))
-//                                .setParent(Layers.getVisibleRoot())
-//                ))
                 .setPanel(panelFabric.createTitlePanel(//ПАНЕЛЬ С ЗАГЛАВИЕМ
                         new AbstractPanel.PanelBuilder().setHeight(70d)
                                 .setPanelCoordinate(new AnchorCoordinate(0d,0d,null,0d))
