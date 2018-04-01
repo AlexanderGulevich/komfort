@@ -179,11 +179,8 @@ public class CounterpartyDataMapper extends DataMapper {
         try {
             pstmt = Db.getConnection().prepareStatement(expression);
 
-
             pstmt.setString(1, counterparty.getName());
-
             pstmt.setInt(2, counterparty.getCountry().getId());
-
             pstmt.setInt(3, counterparty.getCurrency().getId());
             pstmt.setInt(4, counterparty.getId());
 

@@ -20,6 +20,7 @@ public enum StylesPathes {
     MENU_BAR("/res/css/menuBar.css"),
     LEFT_SIDE_MENU("/res/css/leftSideMenu.css"),
     COMBOBOX("/res/css/combobox.css"),
+    DATAPICKER("/res/css/dataPicker.css"),
     WINDOWS("/res/css/windows.css");
 
 

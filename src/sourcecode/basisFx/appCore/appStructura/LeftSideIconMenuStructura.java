@@ -36,7 +36,7 @@ public class LeftSideIconMenuStructura extends AppMainStructura {
                 ))
                 .setPanel(panelFabric.createTextAnchorPanel(//Текстовая панель вывода названия категории меню
                         new AbstractPanel.PanelBuilder().setHeight(35d)
-                                .setFont(FontsStore.ROBOTO_BOLD, 20)
+                                .setFont(FontsStore.ROBOTO_LIGHT, 20)
                                 .setPanelCoordinate( new AnchorCoordinate(15d, 120d, 0d, null))
                                 .setParent(Layers.getTitlePanel())
                 ))

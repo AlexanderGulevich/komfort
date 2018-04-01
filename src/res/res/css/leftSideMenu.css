@@ -1,17 +1,17 @@
 #LEFT_SIDE_MENU_ROOT{
          /*-fx-background-color: white;*/
      /*-fx-pref-width: 60;*/
-      
+
 }
 
 #LEFT_SIDE_MENU_TEXT{
-    
+
          -fx-background-color: #c84164;
-   
+
 }
 
 #LEFT_SIDE_MENU_VERTICAL_BUTTONS{
-    
+
      /*-fx-text-fill:#5f7d8b;*/
      -fx-text-fill:white;
     -fx-background-color:#003641;
@@ -25,10 +25,10 @@
 }
 #LEFT_SIDE_MENU_VERTICAL_BUTTONS:armed,
 #LEFT_SIDE_MENU_VERTICAL_BUTTONS_CLICKED{
-    
+
      /*-fx-text-fill:#5f7d8b;*/
      -fx-text-fill:white;
-    /*-fx-background-color:#14e715;*/    
+    /*-fx-background-color:#14e715;*/
     -fx-background-color:#ff3d00;
     /*-fx-background-color:red;*/
     -fx-background-radius: 0;
@@ -40,7 +40,7 @@
      -fx-pref-height:50;
 }
 #LEFT_SIDE_MENU_VERTICAL_BUTTONS:focused{
-    
+
      /*-fx-text-fill:#5f7d8b;*/
      -fx-text-fill:white;
     /*-fx-background-color:transparent;*/
@@ -54,13 +54,13 @@
 }
 
 #LEFT_SIDE_MENU_COMMON_TEXT{
-    
+
     -fx-fill:#22515B;
-    -fx-opacity:0.4;
+    -fx-opacity:0.6;
 }
 #LEFT_SIDE_MENU_ICON_TEXT_PANEL{
     /*-fx-pref-width: 110;*/
-     
+
 }
 
 #LEFT_SIDE_MENU_HORIZONTAL_BUTTONS{
@@ -78,27 +78,27 @@
     -fx-border-color: white white  white white;
     -fx-border-style:solid ;
 
-    
+
 }
 #LEFT_SIDE_MENU_HORIZONTAL_BUTTONS:armed,
 #LEFT_SIDE_MENU_HORIZONTAL_BUTTONS_CLICKED{
       /*-fx-background-color:derive(#E9FFFC,50%);*/
       /*-fx-background-color:#ECF1F2;*/
       -fx-background-color:FFC5B3;
-      
+
         -fx-text-fill:white;
-      
+
       -fx-border-style:solid ;
         -fx-padding:3 10 3 10;
-        
+
      -fx-pref-height: 35;
       /*-fx-background-insets:-0.5 -0.5 -0.5  -0.5;*/
-      
+
     -fx-border-width: 0.5  0.5   0    0.5;
     -fx-border-insets:0.5  0.5   0    0.5;
     -fx-border-color:derive(#4A7F77,160%);
-  
+
     /*-fx-border-insets:1;*/
-      
-   
+
+
 }

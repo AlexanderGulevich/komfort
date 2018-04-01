@@ -25,7 +25,6 @@ public class ColumnDouble<T,K> extends ColumnWrapper<T> {
 
         column.setCellFactory(
                 TextFieldTableCell.forTableColumn(
-//                        new DoubleStringConverter()
                         new CustomStringConverter()
                 ));
 

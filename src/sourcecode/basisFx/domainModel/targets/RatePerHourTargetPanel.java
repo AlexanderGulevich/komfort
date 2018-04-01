@@ -25,13 +25,20 @@ public class RatePerHourTargetPanel  extends Target {
                 .setDataMapper(this.dataMapperFabric.getRatePerHourDataMapper())
                 .setDbTableName("RatePerHour").refresh()
                 .setColums(
-
                         columnFabric.<RatePerHour,Double>createDoubleColumn(ColumnWrapper.Bulder.create()
-                                .setColumnName("Тариф ( бел. руб/час. )")
-                                .setPropertyName("ratePerHour")
+                                        .setColumnName("Тариф ( бел. руб/час. )")
+                                        .setPropertyName("ratePerHour")
 //                                .setValueChecking(check.createNumCheck())
-                                .setColumnSize(1)
-                                .setDomainChangeAction((obj,val)->{((RatePerHour)obj).setRatePerHour((Double)val); } )
+                                        .setColumnSize(0.5)
+                                        .setDomainChangeAction((obj,val)->{((RatePerHour)obj).setRatePerHour((Double)val); } )
+                        )
+                        ,
+                        columnFabric.<RatePerHour,Double>createLocalDateColumn(ColumnWrapper.Bulder.create()
+                                        .setColumnName("Дата начала действия")
+                                        .setPropertyName("ratePerHour")
+//                                .setValueChecking(check.createNumCheck())
+                                        .setColumnSize(0.5)
+                                        .setDomainChangeAction((obj,val)->{((RatePerHour)obj).setRatePerHour((Double)val); } )
                         )
                 );
 
