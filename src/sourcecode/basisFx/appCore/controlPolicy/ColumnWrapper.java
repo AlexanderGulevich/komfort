@@ -5,6 +5,7 @@
  */
 package basisFx.appCore.controlPolicy;
 
+import basisFx.appCore.DateCellValueInitLogic;
 import basisFx.appCore.NamedObjectListGetter;
 import basisFx.appCore.dataSource.DataMapper;
 import basisFx.appCore.domainScetch.ComboBoxCellValueInitLogic;
@@ -28,6 +29,7 @@ public  class ColumnWrapper<T> {
     protected TableColumn column;
     protected DomainChangeAction domainChangeAction;
     protected NamedObjectListGetter namedObjectListGetter;
+    protected DateCellValueInitLogic dateCellValueInitLogic;
 
 
 
@@ -40,6 +42,7 @@ public  class ColumnWrapper<T> {
         this.comboBoxCellValueInitLogic=b.comboBoxCellValueInitLogic;
         this.namedObjectListGetter=b.namedObjectListGetter;
         this.domainChangeAction =b.domainChangeAction;
+        this.dateCellValueInitLogic=b.dateCellValueInitLogic;
 
     }
     
@@ -58,19 +61,19 @@ public  class ColumnWrapper<T> {
 
 
      public static class Bulder{
-         
 
-        protected String propertyName;
-        protected String columnName;
-        protected Checking valueChecking;
-        protected DomainChangeAction domainChangeAction;
-        protected double columnSize;
+
+         protected String propertyName;
+         protected String columnName;
+         protected Checking valueChecking;
+         protected DomainChangeAction domainChangeAction;
+         protected double columnSize;
          protected ComboBoxCellValueInitLogic comboBoxCellValueInitLogic;
          protected NamedObjectListGetter namedObjectListGetter;
+         protected DateCellValueInitLogic dateCellValueInitLogic;
 
 
-
-        public static Bulder create(){
+         public static Bulder create(){
             return new Bulder();
         }
       
@@ -82,6 +85,11 @@ public  class ColumnWrapper<T> {
 
          public Bulder setComboBoxCellValueInitLogic(ComboBoxCellValueInitLogic comboBoxCellValueInitLogic) {
              this.comboBoxCellValueInitLogic = comboBoxCellValueInitLogic;
+             return this;
+         }
+
+         public Bulder setDateCellValueInitLogic(DateCellValueInitLogic dateCellValueInitLogic) {
+             this.dateCellValueInitLogic = dateCellValueInitLogic;
              return this;
          }
 

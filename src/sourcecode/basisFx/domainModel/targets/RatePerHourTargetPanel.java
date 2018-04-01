@@ -8,6 +8,8 @@ import basisFx.domainModel.pojo.RatePerHour;
 import basisFx.domainModel.settings.CSSID;
 import basisFx.domainModel.settings.FontsStore;
 
+import java.time.LocalDate;
+
 public class RatePerHourTargetPanel  extends Target {
 
     private TableViewWrapper tableViewWrapper;
@@ -26,19 +28,14 @@ public class RatePerHourTargetPanel  extends Target {
                 .setDbTableName("RatePerHour").refresh()
                 .setColums(
                         columnFabric.<RatePerHour,Double>createDoubleColumn(ColumnWrapper.Bulder.create()
-                                        .setColumnName("Тариф ( бел. руб/час. )")
-                                        .setPropertyName("ratePerHour")
-//                                .setValueChecking(check.createNumCheck())
-                                        .setColumnSize(0.5)
+                                        .setColumnName("Тариф ( бел. руб/час. )").setPropertyName("ratePerHour").setColumnSize(0.5)
                                         .setDomainChangeAction((obj,val)->{((RatePerHour)obj).setRatePerHour((Double)val); } )
-                        )
-                        ,
+                        ),
                         columnFabric.<RatePerHour,Double>createLocalDateColumn(ColumnWrapper.Bulder.create()
-                                        .setColumnName("Дата начала действия")
-                                        .setPropertyName("ratePerHour")
-//                                .setValueChecking(check.createNumCheck())
-                                        .setColumnSize(0.5)
-                                        .setDomainChangeAction((obj,val)->{((RatePerHour)obj).setRatePerHour((Double)val); } )
+                                        .setColumnName("Дата начала действия") .setPropertyName("startingDate").setColumnSize(0.5)
+                                        .setDateCellValueInitLogic((domainObject)->{
+                                            return ((RatePerHour)domainObject).startingDateProperty();})
+                                        .setDomainChangeAction((obj,val)->{((RatePerHour)obj).setStartingDate((LocalDate) val); } )
                         )
                 );
 

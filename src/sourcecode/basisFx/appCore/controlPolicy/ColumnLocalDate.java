@@ -6,6 +6,7 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.util.Callback;
+import javafx.util.StringConverter;
 
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -13,34 +14,32 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 import java.util.Date;
 
-public class ColumnLocalDate <T,K>extends ColumnWrapper<T>{
+public class ColumnLocalDate <T,K>extends ColumnWrapper<T> {
 
 
-    protected TableColumn<DomainObject,LocalDate> column;
+    protected TableColumn<DomainObject, LocalDate> column;
 
     @SuppressWarnings("unchecked")
     public ColumnLocalDate(ColumnWrapper.Bulder builder) {
         super(builder);
-        this.column =  new TableColumn<>(columnName);
+        this.column = new TableColumn<>(columnName);
 
         Callback<TableColumn<DomainObject, LocalDate>, TableCell<DomainObject, LocalDate>> dateCellFactory
                 = (TableColumn<DomainObject, LocalDate> param) -> new DateEditingCell();
 
-//        emailCol.setCellValueFactory(
-//                cellData -> cellData.getValue().
-//        );
+        column.setCellValueFactory(
+                cellData -> this.dateCellValueInitLogic.init(cellData.getValue())
+        );
         column.setCellFactory(dateCellFactory);
         column.setOnEditCommit(
                 (TableColumn.CellEditEvent<DomainObject, LocalDate> t) -> {
-
-//                    ((DomainObject) t.getTableView().getItems()
-//                    .get(t.getTablePosition().getRow()))
-//                    .setBirthday(t.getNewValue());
-
+                        this.domainChangeAction.change(
+                                t.getTableView().getItems().get(t.getTablePosition().getRow()),
+                                t.getNewValue());
                 });
     }
 
-    public void initEditPoliticy(){
+    public void initEditPoliticy() {
 
         editPoliticy.setColumn(this.column);
         editPoliticy.setDomainChangeAction(this.domainChangeAction);
@@ -50,7 +49,7 @@ public class ColumnLocalDate <T,K>extends ColumnWrapper<T>{
     }
 
 
-    public TableColumn<DomainObject,LocalDate>  getColumn(){
+    public TableColumn<DomainObject, LocalDate> getColumn() {
 
         return this.column;
 
@@ -77,7 +76,8 @@ public class ColumnLocalDate <T,K>extends ColumnWrapper<T>{
         public void cancelEdit() {
             super.cancelEdit();
 
-            setText(getDate().toString());
+//            setText(getDate().toString());
+            setText(getDate().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL)));
             setGraphic(null);
         }
 
@@ -96,7 +96,7 @@ public class ColumnLocalDate <T,K>extends ColumnWrapper<T>{
                     setText(null);
                     setGraphic(datePicker);
                 } else {
-                    setText(getDate().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM)));
+                    setText(getDate().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL)));
                     setGraphic(null);
                 }
             }
@@ -105,13 +105,15 @@ public class ColumnLocalDate <T,K>extends ColumnWrapper<T>{
         private void createDatePicker() {
             datePicker = new DatePicker(getDate());
             datePicker.setMinWidth(this.getWidth() - this.getGraphicTextGap() * 2);
+            datePicker.setConverter(new CustomStringConverter());
+            datePicker.setPromptText("dd-MM-yyyy");
             datePicker.setOnAction((e) -> {
                 System.out.println("Committed: " + datePicker.getValue().toString());
-//                commitEdit(Date.from(datePicker.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()));
+                commitEdit(LocalDate.from(datePicker.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()));
             });
             datePicker.focusedProperty().addListener((ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) -> {
                 if (!newValue) {
-//                    commitEdit(Date.from(datePicker.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()));
+                    commitEdit(LocalDate.from(datePicker.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()));
                 }
             });
         }
@@ -123,7 +125,28 @@ public class ColumnLocalDate <T,K>extends ColumnWrapper<T>{
     }
 
 
+    class CustomStringConverter extends StringConverter<LocalDate> {
+        DateTimeFormatter dateFormatter =
+                DateTimeFormatter.ofPattern("dd-MM-yyyy");
 
+        @Override
+        public String toString(LocalDate date) {
+            if (date != null) {
+                return dateFormatter.format(date);
+            } else {
+                return "";
+            }
+        }
+
+        @Override
+        public LocalDate fromString(String string) {
+            if (string != null && !string.isEmpty()) {
+                return LocalDate.parse(string, dateFormatter);
+            } else {
+                return null;
+            }
+        }
+    }
 
 
 }
