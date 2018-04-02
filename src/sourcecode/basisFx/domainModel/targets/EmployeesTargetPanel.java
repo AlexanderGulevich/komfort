@@ -29,9 +29,9 @@ public class EmployeesTargetPanel extends Target{
                                     (obj,val)->{((Country)obj).setName((String)val);}
                             )
                     ),
-                    columnFabric.createComboBoxColumn(ColumnWrapper.Bulder.create()
+                    columnFabric.createColumnNumericComboBox(ColumnWrapper.Bulder.create()
                             .setColumnName("Тариф").setColumnSize(0.2)
-                            .setNamedObjectListGetter(() -> dataMapperFabric.getCounterpartyDataMapper().getCountryList())
+                            .setDomainObjectListGetter(() -> dataMapperFabric.getEmployeesDataMapper().getRateList())
                             .setComboBoxCellValueInitLogic((domainObject)->{
                                 return ((Employees)domainObject).ratePerHourProperty();})
                             .setDomainChangeAction(

@@ -3,8 +3,10 @@ package basisFx.domainModel.mapper;
 import basisFx.appCore.dataSource.DataMapper;
 import basisFx.appCore.dataSource.Db;
 import basisFx.appCore.domainScetch.DomainObject;
+import basisFx.appCore.domainScetch.NamedDomainObject;
 import basisFx.domainModel.pojo.Employees;
-import basisFx.domainModel.pojo.Equipment;
+import basisFx.domainModel.pojo.RatePerHour;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.sql.ResultSet;
@@ -14,6 +16,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class EmployeesDataMapper extends DataMapper {
+
+    private  ObservableList <RatePerHour> ratePerHoursList =null;
     private static EmployeesDataMapper ourInstance = new EmployeesDataMapper();
 
     public static EmployeesDataMapper getInstance() {
@@ -41,7 +45,8 @@ public class EmployeesDataMapper extends DataMapper {
                 pojo.setId(rs.getInt("id"));
                 pojo.setName(rs.getString("name"));
                 pojo.setIsFired(rs.getBoolean("isFired"));
-                pojo.setRatePerHour(5d);
+                pojo.setRatePerHour(getActualRatePerHoursFromStore(rs.getInt("id")));
+//                pojo.setStartingRateDate();
 
 
                 //вставляю id в список хранимых в бд
@@ -59,7 +64,7 @@ public class EmployeesDataMapper extends DataMapper {
 
 
     }
-    }
+
 
     @Override
     public void updateDomainObject(DomainObject d) {
@@ -70,4 +75,84 @@ public class EmployeesDataMapper extends DataMapper {
     public void insertDomainObject(DomainObject d) {
 
     }
+
+    public void getRateList(DomainObject d) {
+
+    }
+
+
+    public  ObservableList <RatePerHour> getRateList() {
+
+        if (ratePerHoursList != null) {
+            return ratePerHoursList;
+        }else {
+            getRatePerHoursListFromStore();
+            return ratePerHoursList;
+
+        }
+    }
+
+    private void getRatePerHoursListFromStore() {
+
+        String expression="SELECT * FROM " +"RatePerHour"+" ORDER BY ID";
+        Statement stmt  = null;
+        ratePerHoursList = FXCollections.<RatePerHour>observableArrayList();
+
+        try {
+
+            stmt = Db.getConnection().createStatement();
+
+            ResultSet rs    = stmt.executeQuery(expression);
+
+            while (rs.next()) {
+                RatePerHour domainObject = new RatePerHour();
+                domainObject.setId(rs.getInt("id"));
+                domainObject.setValue(rs.getDouble("ratePerHour"));
+
+                ratePerHoursList.add(domainObject);
+
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+
+    private RatePerHour getActualRatePerHoursFromStore(int id) {
+
+        String expression="SELECT * FROM " +"RatePerHourStory"+" ORDER BY ID";
+        Statement stmt  = null;
+        ratePerHoursList = FXCollections.<RatePerHour>observableArrayList();
+
+        try {
+
+            stmt = Db.getConnection().createStatement();
+
+            ResultSet rs    = stmt.executeQuery(expression);
+
+            while (rs.next()) {
+                RatePerHour domainObject = new RatePerHour();
+                domainObject.setId(rs.getInt("id"));
+                domainObject.setValue(rs.getDouble("ratePerHour"));
+
+                ratePerHoursList.add(domainObject);
+
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+
+    }
+
+
+
+
+
+
+
+
+
 }

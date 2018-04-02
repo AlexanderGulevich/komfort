@@ -1,14 +1,14 @@
 package basisFx.domainModel.pojo;
 
 import basisFx.appCore.domainScetch.DomainObject;
+import basisFx.appCore.domainScetch.DoubleDomainObject;
 import javafx.beans.property.SimpleObjectProperty;
 
 import java.time.LocalDate;
 
-public class RatePerHour extends DomainObject {
+public class RatePerHour extends DoubleDomainObject {
 
-
-    private SimpleObjectProperty<Double> ratePerHour =new SimpleObjectProperty<>(this, "ratePerHour", null);
+    private SimpleObjectProperty<LocalDate> startingRateDate =new SimpleObjectProperty<>(this, "startingDate", null);
 
     public RatePerHour() {
 
@@ -16,27 +16,15 @@ public class RatePerHour extends DomainObject {
             this.tableName="RatePerHour";
     }
 
-    public Double getRatePerHour() {
-        return ratePerHour.get();
+    public LocalDate getStartingRateDate() {
+        return startingRateDate.get();
     }
 
-    public SimpleObjectProperty<Double> ratePerHourProperty() {
-        return ratePerHour;
+    public SimpleObjectProperty<LocalDate> startingRateDateProperty() {
+        return startingRateDate;
     }
 
-    public void setRatePerHour(Double ratePerHour) {
-        this.ratePerHour.set(ratePerHour);
-    }
-
-
-    @Override
-    public boolean isReadyToTransaction() {
-        if(getRatePerHour()!=null){
-            return true;
-
-        }else {
-
-            return false;
-        }
+    public void setStartingRateDate(LocalDate startingRateDate) {
+        this.startingRateDate.set(startingRateDate);
     }
 }

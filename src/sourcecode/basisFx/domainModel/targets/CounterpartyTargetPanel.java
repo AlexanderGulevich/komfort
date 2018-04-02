@@ -40,9 +40,9 @@ public class CounterpartyTargetPanel extends Target{
                                 )
                         ),
 ////////////////////////////////
-                        columnFabric.createComboBoxColumn(ColumnWrapper.Bulder.create()
+                        columnFabric.createColumnNamedComboBox(ColumnWrapper.Bulder.create()
                                 .setColumnName("Страна").setColumnSize(0.3)
-                                .setNamedObjectListGetter(() -> dataMapperFabric.getCounterpartyDataMapper().getCountryList())
+                                .setDomainObjectListGetter(() -> dataMapperFabric.getCounterpartyDataMapper().getCountryList())
                                 .setComboBoxCellValueInitLogic((domainObject)->{
                                           return ((Counterparty)domainObject).countryProperty();})
                                 .setDomainChangeAction(
@@ -50,9 +50,9 @@ public class CounterpartyTargetPanel extends Target{
                                 )
                         ),
 ////////////////////////////////////////////////////////////////
-                        columnFabric.createComboBoxColumn(ColumnWrapper.Bulder.create()
+                        columnFabric.createColumnNamedComboBox(ColumnWrapper.Bulder.create()
                                 .setColumnName("Валюта").setColumnSize(0.2)
-                                .setNamedObjectListGetter(() -> dataMapperFabric.getCounterpartyDataMapper().getCurrencyList())
+                                .setDomainObjectListGetter(() -> dataMapperFabric.getCounterpartyDataMapper().getCurrencyList())
                                 .setComboBoxCellValueInitLogic((domainObject)->{
                                     return ((Counterparty)domainObject).currencyProperty();})
                                 .setDomainChangeAction(

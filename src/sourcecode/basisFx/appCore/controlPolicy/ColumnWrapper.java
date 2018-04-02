@@ -6,8 +6,7 @@
 package basisFx.appCore.controlPolicy;
 
 import basisFx.appCore.DateCellValueInitLogic;
-import basisFx.appCore.NamedObjectListGetter;
-import basisFx.appCore.dataSource.DataMapper;
+import basisFx.appCore.DomainObjectListGetter;
 import basisFx.appCore.domainScetch.ComboBoxCellValueInitLogic;
 import basisFx.appCore.elements.TableViewWrapper;
 import javafx.scene.control.TableColumn;
@@ -28,7 +27,7 @@ public  class ColumnWrapper<T> {
     protected ComboBoxCellValueInitLogic comboBoxCellValueInitLogic;
     protected TableColumn column;
     protected DomainChangeAction domainChangeAction;
-    protected NamedObjectListGetter namedObjectListGetter;
+    protected DomainObjectListGetter domainObjectsListGetter;
     protected DateCellValueInitLogic dateCellValueInitLogic;
 
 
@@ -40,7 +39,7 @@ public  class ColumnWrapper<T> {
         this.valueChecking=b.valueChecking;
         this.columnSize=b.columnSize;
         this.comboBoxCellValueInitLogic=b.comboBoxCellValueInitLogic;
-        this.namedObjectListGetter=b.namedObjectListGetter;
+        this.domainObjectsListGetter =b.domainObjectListGetter;
         this.domainChangeAction =b.domainChangeAction;
         this.dateCellValueInitLogic=b.dateCellValueInitLogic;
 
@@ -69,7 +68,7 @@ public  class ColumnWrapper<T> {
          protected DomainChangeAction domainChangeAction;
          protected double columnSize;
          protected ComboBoxCellValueInitLogic comboBoxCellValueInitLogic;
-         protected NamedObjectListGetter namedObjectListGetter;
+         protected DomainObjectListGetter domainObjectListGetter;
          protected DateCellValueInitLogic dateCellValueInitLogic;
 
 
@@ -115,8 +114,8 @@ public  class ColumnWrapper<T> {
          }
 
 
-         public Bulder setNamedObjectListGetter(NamedObjectListGetter namedObjectListGetter) {
-             this.namedObjectListGetter = namedObjectListGetter;
+         public Bulder setDomainObjectListGetter(DomainObjectListGetter domainObjectListGetter) {
+             this.domainObjectListGetter = domainObjectListGetter;
              return this;
          }
      }

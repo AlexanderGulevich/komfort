@@ -22,9 +22,14 @@ public class ColumnFabric <T,K> {
         return new ColumnString<T>(builder);
 
     }
-    public ColumnComboBox<T,K> createComboBoxColumn(ColumnWrapper.Bulder builder){
+    public ColumnNamedComboBox<T,K> createColumnNamedComboBox(ColumnWrapper.Bulder builder){
 
-        return new ColumnComboBox<T,K>(builder);
+        return new ColumnNamedComboBox<T,K>(builder);
+
+    }
+    public ColumnDoubleComboBox<T,K> createColumnNumericComboBox(ColumnWrapper.Bulder builder){
+
+        return new ColumnDoubleComboBox<T,K>(builder);
 
     }
     public ColumnLocalDate<T,K> createLocalDateColumn(ColumnWrapper.Bulder builder){

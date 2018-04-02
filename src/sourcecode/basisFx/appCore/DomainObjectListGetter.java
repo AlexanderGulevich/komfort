@@ -9,6 +9,6 @@ import javafx.collections.ObservableList;
  * @autor AlexanderGulevich
  */
 @FunctionalInterface
-public interface NamedObjectListGetter {
-    public ObservableList<NamedDomainObject> getList();
+public interface DomainObjectListGetter {
+    public ObservableList getList();
 }

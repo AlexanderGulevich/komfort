@@ -1,14 +1,8 @@
 package basisFx.appCore.controlPolicy;
 
-import basisFx.appCore.dataSource.UnitOfWork;
 import basisFx.appCore.domainScetch.DomainObject;
 import basisFx.appCore.domainScetch.NamedDomainObject;
-import basisFx.domainModel.DataMapperFabric;
-import basisFx.domainModel.pojo.Counterparty;
-import basisFx.domainModel.pojo.Country;
 import basisFx.domainModel.settings.CSSID;
-import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListCell;
@@ -21,11 +15,11 @@ import javafx.util.Callback;
  * @author 62
  * @param <T>
  */
-public class ColumnComboBox<T,K> extends ColumnWrapper<T>{
+public class ColumnNamedComboBox<T,K> extends ColumnWrapper<T>{
     protected TableColumn<DomainObject, NamedDomainObject> column;
 
     @SuppressWarnings("unchecked")
-    public ColumnComboBox(Bulder builder) {
+    public ColumnNamedComboBox(Bulder builder) {
 
         super(builder);
         this.column =  new TableColumn<>(columnName);
@@ -46,13 +40,13 @@ public class ColumnComboBox<T,K> extends ColumnWrapper<T>{
             //isn`t new object
             if (domainObject.getId() != null) {
 
-                System.err.println("ColumnComboBox-В доменный объект  установлен NamedDomainObject");
+                System.err.println("ColumnNamedComboBox-В доменный объект  установлен NamedDomainObject");
                 return   comboBoxCellValueInitLogic.init(domainObject);
 
 
 
             }else {
-                System.err.println("ColumnComboBox-В доменный объект не установлен NamedDomainObject");
+                System.err.println("ColumnNamedComboBox-В доменный объект не установлен NamedDomainObject");
                 return null;
             }
 
@@ -138,7 +132,7 @@ public class ColumnComboBox<T,K> extends ColumnWrapper<T>{
         }
 
         private void createComboBox() {
-            comboBox = new ComboBox<>(namedObjectListGetter.getList());
+            comboBox = new ComboBox<>(domainObjectsListGetter.getList());
             comboBox.setId(CSSID.COMBOBOX.get());
             comboBox.setEditable(false);
 //            comboBox.setPromptText("fgfg");
