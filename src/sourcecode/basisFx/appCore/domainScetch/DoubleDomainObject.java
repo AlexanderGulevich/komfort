@@ -4,7 +4,7 @@ import javafx.beans.property.SimpleObjectProperty;
 
 public class DoubleDomainObject extends DomainObject {
 
-    private SimpleObjectProperty<Double> value =new SimpleObjectProperty<>(this, "value", null);
+    private SimpleObjectProperty<Double> value =new SimpleObjectProperty(this, "value", 0d);
 
 
     public Double getValue() {

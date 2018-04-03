@@ -37,16 +37,14 @@ public class ColumnDoubleComboBox<T,K> extends ColumnWrapper<T>{
 
             DomainObject domainObject=  param.getValue();
 
+//todo почему домен не эмплоер а кфеу
             //isn`t new object
             if (domainObject.getId() != null) {
-
-                System.err.println("ColumnNamedComboBox-В доменный объект  установлен NamedDomainObject");
+                System.err.println("ColumnNamedComboBox-доменный объект из БД ");
                 return   comboBoxCellValueInitLogic.init(domainObject);
 
-
-
             }else {
-                System.err.println("ColumnNamedComboBox-В доменный объект не установлен NamedDomainObject");
+                System.err.println("ColumnNamedComboBox- новый доменный объект");
                 return null;
             }
 
@@ -125,7 +123,8 @@ public class ColumnDoubleComboBox<T,K> extends ColumnWrapper<T>{
                     setText(getDoubleDomainObject().getValue().toString());
                     setGraphic(comboBox);
                 } else {
-                    setText(getDoubleDomainObject().getValue().toString());
+                    setText(null);
+//                    setText(getDoubleDomainObject().getValue().toString());
                     setGraphic(null);
                 }
             }
@@ -170,7 +169,7 @@ public class ColumnDoubleComboBox<T,K> extends ColumnWrapper<T>{
         private DoubleDomainObject getDoubleDomainObject() {
 
             if(getItem()== null){//if not exist
-
+                System.out.println("getItem()== null-----ComboBoxCustomCell.getDoubleDomainObject");
 
                 DoubleDomainObject doubleDomainObject=new DoubleDomainObject();
 //                doubleDomainObject.setName("");
@@ -178,7 +177,7 @@ public class ColumnDoubleComboBox<T,K> extends ColumnWrapper<T>{
                 return  doubleDomainObject;
 
             }else {
-
+                System.out.println("getItem()!!== null-----ComboBoxCustomCell.getDoubleDomainObject");
                 return  getItem();
 
             }

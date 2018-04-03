@@ -1,6 +1,7 @@
 package basisFx.domainModel.pojo;
 
 import basisFx.appCore.domainScetch.DomainObject;
+import basisFx.appCore.domainScetch.DoubleDomainObject;
 import basisFx.appCore.domainScetch.NamedDomainObject;
 import javafx.beans.property.SimpleObjectProperty;
 
@@ -15,7 +16,7 @@ public class Employees  extends NamedDomainObject {
 
     private SimpleObjectProperty<LocalDate> startingRateDate =new SimpleObjectProperty<>(this, "startingDate", null);
     private SimpleObjectProperty<Boolean> isFired =new SimpleObjectProperty<>(this, "isFired", null);
-    private SimpleObjectProperty<DomainObject> ratePerHour =new SimpleObjectProperty<>(this, "ratePerHour", null);
+    private SimpleObjectProperty<DoubleDomainObject> ratePerHour =new SimpleObjectProperty<>(this, "ratePerHour", null);
 
     public Employees( ) {
         this.dataMapper=mapperFabric.getEmployeesDataMapper();
@@ -26,7 +27,7 @@ public class Employees  extends NamedDomainObject {
         return ratePerHour.get();
     }
 
-    public SimpleObjectProperty<DomainObject> ratePerHourProperty() {
+    public SimpleObjectProperty<DoubleDomainObject> ratePerHourProperty() {
         return ratePerHour;
     }
 

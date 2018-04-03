@@ -45,14 +45,17 @@ public class EmployeesDataMapper extends DataMapper {
                 pojo.setId(rs.getInt("id"));
                 pojo.setName(rs.getString("name"));
                 pojo.setIsFired(rs.getBoolean("isFired"));
-                pojo.setRatePerHour(getActualRatePerHoursFromStore(rs.getInt("id")));
-//                pojo.setStartingRateDate();
 
+                RatePerHour ratePerHour=getActualRatePerHoursFromStore(rs.getInt("id"));
+
+                pojo.setRatePerHour(ratePerHour);
+                pojo.setStartingRateDate(ratePerHour.getStartingRateDate());
 
                 //вставляю id в список хранимых в бд
                 this.unitOfWork.getStoredPojoesId().add(rs.getInt("id"));
 
-                list.add(pojo);
+//                list.add(pojo);
+                list.add(null);
 
 
 
@@ -84,8 +87,10 @@ public class EmployeesDataMapper extends DataMapper {
     public  ObservableList <RatePerHour> getRateList() {
 
         if (ratePerHoursList != null) {
+            System.out.println("EmployeesDataMapper.getRateList -----ratePerHoursList = null");
             return ratePerHoursList;
         }else {
+            System.out.println("EmployeesDataMapper.getRateList---ratePerHoursList = null");
             getRatePerHoursListFromStore();
             return ratePerHoursList;
 
@@ -119,7 +124,7 @@ public class EmployeesDataMapper extends DataMapper {
     }
 
 
-    private RatePerHour getActualRatePerHoursFromStore(int id) {
+    private RatePerHour getActualRatePerHoursFromStore(int emploeerId) {
 
         String expression="SELECT * FROM " +"RatePerHourStory"+" ORDER BY ID";
         Statement stmt  = null;

@@ -40,13 +40,13 @@ public class ColumnNamedComboBox<T,K> extends ColumnWrapper<T>{
             //isn`t new object
             if (domainObject.getId() != null) {
 
-                System.err.println("ColumnNamedComboBox-В доменный объект  установлен NamedDomainObject");
+                System.err.println("ColumnNamedComboBox-доменный объект из БД ");
                 return   comboBoxCellValueInitLogic.init(domainObject);
 
 
 
             }else {
-                System.err.println("ColumnNamedComboBox-В доменный объект не установлен NamedDomainObject");
+                System.err.println("ColumnNamedComboBox- новый доменный объект");
                 return null;
             }
 

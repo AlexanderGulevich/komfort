@@ -1,6 +1,7 @@
 package basisFx.domainModel.targets;
 
 import basisFx.appCore.controlPolicy.ColumnWrapper;
+import basisFx.appCore.domainScetch.DoubleDomainObject;
 import basisFx.appCore.domainScetch.NamedDomainObject;
 import basisFx.appCore.elements.AppNode;
 import basisFx.appCore.elements.TableViewWrapper;
@@ -29,10 +30,11 @@ public class EmployeesTargetPanel extends Target{
                                     (obj,val)->{((Country)obj).setName((String)val);}
                             )
                     ),
-                    columnFabric.createColumnNumericComboBox(ColumnWrapper.Bulder.create()
+                    columnFabric.<DoubleDomainObject,String>createColumnNumericComboBox(ColumnWrapper.Bulder.create()
                             .setColumnName("Тариф").setColumnSize(0.2)
                             .setDomainObjectListGetter(() -> dataMapperFabric.getEmployeesDataMapper().getRateList())
                             .setComboBoxCellValueInitLogic((domainObject)->{
+                                System.out.println("domane---"+domainObject);
                                 return ((Employees)domainObject).ratePerHourProperty();})
                             .setDomainChangeAction(
                                     (obj,val)->{((Employees)obj).setRatePerHour((RatePerHour) val);}
