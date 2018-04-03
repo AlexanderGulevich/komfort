@@ -37,7 +37,7 @@ public class RatePerHourDataMapper extends DataMapper {
 
                 RatePerHour pojo=new RatePerHour();
                 pojo.setId(rs.getInt("id"));
-                pojo.setValue(rs.getDouble("ratePerHour"));
+                pojo.setValue(rs.getDouble("rate"));
 
                 //вставляю id в список хранимых в бд
                 this.unitOfWork.getStoredPojoesId().add(rs.getInt("id"));
@@ -59,7 +59,7 @@ public class RatePerHourDataMapper extends DataMapper {
         RatePerHour ratePerHour= (RatePerHour) d;
         String expression = "UPDATE "+ d.getTableName()+ " SET  " +
                 " id = ?," +
-                " ratePerHour = ?" ;
+                " rate = ?" ;
 
         PreparedStatement pstmt = null;
         try {
@@ -82,7 +82,7 @@ public class RatePerHourDataMapper extends DataMapper {
         RatePerHour ratePerHour= (RatePerHour) d;
         try {
             String expression= "INSERT INTO "+ d.getTableName()
-                    + "(ratePerHour "
+                    + "(rate "
                     + ") VALUES(?)";
 
             PreparedStatement pstmt =  Db.getConnection().prepareStatement(expression);

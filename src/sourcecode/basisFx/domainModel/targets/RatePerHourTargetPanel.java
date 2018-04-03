@@ -28,7 +28,7 @@ public class RatePerHourTargetPanel  extends Target {
                 .setDbTableName("RatePerHour").refresh()
                 .setColums(
                         columnFabric.<RatePerHour,Double>createDoubleColumn(ColumnWrapper.Bulder.create()
-                                        .setColumnName("Тариф ( бел. руб/час. )").setPropertyName("ratePerHour").setColumnSize(1)
+                                        .setColumnName("Тариф ( бел. руб/час. )").setPropertyName("value").setColumnSize(1)
                                         .setDomainChangeAction((obj,val)->{((RatePerHour)obj).setValue((Double)val); } )
                         )
 

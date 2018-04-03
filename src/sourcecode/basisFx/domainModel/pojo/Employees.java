@@ -17,8 +17,6 @@ public class Employees  extends NamedDomainObject {
     private SimpleObjectProperty<Boolean> isFired =new SimpleObjectProperty<>(this, "isFired", null);
     private SimpleObjectProperty<DomainObject> ratePerHour =new SimpleObjectProperty<>(this, "ratePerHour", null);
 
-
-
     public Employees( ) {
         this.dataMapper=mapperFabric.getEmployeesDataMapper();
         this.tableName="Employees";
