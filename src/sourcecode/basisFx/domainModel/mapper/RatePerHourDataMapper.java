@@ -26,7 +26,7 @@ public class RatePerHourDataMapper extends DataMapper {
     public void getAllDomainObjectList(ObservableList list, String tableName) {
         try {
 
-            String expression="SELECT * FROM " +tableName+" ORDER BY ID";
+            String expression="SELECT * FROM " +"RateExamples"+" ORDER BY ID";
 
             Statement stmt  = Db.getConnection().createStatement();
 
@@ -81,7 +81,7 @@ public class RatePerHourDataMapper extends DataMapper {
     public void insertDomainObject(DomainObject d) {
         RatePerHour ratePerHour= (RatePerHour) d;
         try {
-            String expression= "INSERT INTO "+ d.getTableName()
+            String expression= "INSERT INTO "+ "RateExamples "
                     + "(rate "
                     + ") VALUES(?)";
 

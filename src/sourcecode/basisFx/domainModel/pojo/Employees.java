@@ -31,7 +31,7 @@ public class Employees  extends NamedDomainObject {
         return ratePerHour;
     }
 
-    public void setRatePerHour(RatePerHour ratePerHour) {
+    public void setRatePerHour(DoubleDomainObject ratePerHour) {
         this.ratePerHour.set(ratePerHour);
     }
 
@@ -61,16 +61,17 @@ public class Employees  extends NamedDomainObject {
 
     @Override
     public boolean isReadyToTransaction() {
-//        if (
-//                super.isReadyToTransaction()
-//                        && getCountry()!=null
-//                        && getCurrency()!=null
-//
-//                )
-//        {
-//            return true;
-//
-//        }
+        if (
+                super.isReadyToTransaction()
+                        && getIsFired()!=null
+                        && getRatePerHour()!=null
+                        && getStartingRateDate()!=null
+
+                )
+        {
+            return true;
+
+        }
 
         return false;
     }

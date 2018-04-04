@@ -28,7 +28,7 @@ public class EmployeesTargetPanel extends Target{
                     columnFabric.<Employees,String>createStringColumn(ColumnWrapper.Bulder.create()
                             .setColumnName("ФИО").setPropertyName("name").setColumnSize(0.4d)
                             .setDomainChangeAction(
-                                    (obj,val)->{((Country)obj).setName((String)val);}
+                                    (obj,val)->{((Employees)obj).setName((String)val);}
                             )
                     ),
                     columnFabric.createColumnNumericComboBox(ColumnWrapper.Bulder.create()
@@ -38,7 +38,7 @@ public class EmployeesTargetPanel extends Target{
                                 System.out.println("domane  getTableName---"+((DomainObject)domainObject).getTableName());
                                 return ((Employees)domainObject).ratePerHourProperty();})
                             .setDomainChangeAction(
-                                    (obj,val)->{((Employees)obj).setRatePerHour((RatePerHour) val);}
+                                    (obj,val)->{((Employees)obj).setRatePerHour((DoubleDomainObject) val);}
                             )
                     ),
                     columnFabric.<Employees,LocalDate>createLocalDateColumn(ColumnWrapper.Bulder.create()

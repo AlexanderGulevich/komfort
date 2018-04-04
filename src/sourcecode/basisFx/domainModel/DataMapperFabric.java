@@ -33,7 +33,7 @@ public class DataMapperFabric {
     }
     public EmployeesDataMapper getEmployeesDataMapper() {
 
-        return  EmployeesDataMapper.getInstance();
+        return new  EmployeesDataMapper();
     }
 
     public RatePerHourDataMapper getRatePerHourDataMapper() {

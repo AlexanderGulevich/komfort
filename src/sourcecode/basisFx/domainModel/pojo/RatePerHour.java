@@ -13,7 +13,7 @@ public class RatePerHour extends DoubleDomainObject {
     public RatePerHour() {
 
             this.dataMapper=mapperFabric.getRatePerHourDataMapper();
-            this.tableName="RatePerHour";
+            this.tableName="RateExamples";
     }
 
     public LocalDate getStartingRateDate() {
