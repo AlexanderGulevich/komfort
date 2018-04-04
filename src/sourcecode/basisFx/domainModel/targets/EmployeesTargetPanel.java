@@ -1,6 +1,7 @@
 package basisFx.domainModel.targets;
 
 import basisFx.appCore.controlPolicy.ColumnWrapper;
+import basisFx.appCore.domainScetch.DomainObject;
 import basisFx.appCore.domainScetch.DoubleDomainObject;
 import basisFx.appCore.domainScetch.NamedDomainObject;
 import basisFx.appCore.elements.AppNode;
@@ -21,20 +22,20 @@ public class EmployeesTargetPanel extends Target{
     protected void createElement() {    tableViewWrapper = AppNode.NodeBuilder.create()
             .setId(CSSID.TABLE).setCoordinate(panel,50d, null, 0d, 0d)
             .<Employees>createTableViewWrapper().setTablesWidthProperty(0.8, panel.widthProperty())
-            .setDataMapper(this.dataMapperFabric.getRatePerHourDataMapper())
-            .setDbTableName("RatePerHour").refresh()
+            .setDataMapper(this.dataMapperFabric.getEmployeesDataMapper())
+            .setDbTableName("Employees").refresh()
             .setColums(
-                    columnFabric.<NamedDomainObject,String>createStringColumn(ColumnWrapper.Bulder.create()
+                    columnFabric.<Employees,String>createStringColumn(ColumnWrapper.Bulder.create()
                             .setColumnName("ФИО").setPropertyName("name").setColumnSize(0.4d)
                             .setDomainChangeAction(
                                     (obj,val)->{((Country)obj).setName((String)val);}
                             )
                     ),
-                    columnFabric.<DoubleDomainObject,String>createColumnNumericComboBox(ColumnWrapper.Bulder.create()
+                    columnFabric.createColumnNumericComboBox(ColumnWrapper.Bulder.create()
                             .setColumnName("Тариф").setColumnSize(0.2)
                             .setDomainObjectListGetter(() -> dataMapperFabric.getEmployeesDataMapper().getRateList())
                             .setComboBoxCellValueInitLogic((domainObject)->{
-                                System.out.println("domane---"+domainObject);
+                                System.out.println("domane  getTableName---"+((DomainObject)domainObject).getTableName());
                                 return ((Employees)domainObject).ratePerHourProperty();})
                             .setDomainChangeAction(
                                     (obj,val)->{((Employees)obj).setRatePerHour((RatePerHour) val);}

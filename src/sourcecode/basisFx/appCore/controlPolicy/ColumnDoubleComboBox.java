@@ -40,11 +40,11 @@ public class ColumnDoubleComboBox<T,K> extends ColumnWrapper<T>{
 //todo почему домен не эмплоер а кфеу
             //isn`t new object
             if (domainObject.getId() != null) {
-                System.err.println("ColumnNamedComboBox-доменный объект из БД ");
+                System.err.println("ColumnDoubleComboBox-доменный объект из БД ");
                 return   comboBoxCellValueInitLogic.init(domainObject);
 
             }else {
-                System.err.println("ColumnNamedComboBox- новый доменный объект");
+                System.err.println("ColumnDoubleComboBox- новый доменный объект");
                 return null;
             }
 
