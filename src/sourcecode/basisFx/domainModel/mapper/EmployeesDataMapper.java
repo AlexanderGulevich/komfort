@@ -79,15 +79,14 @@ public class EmployeesDataMapper extends DataMapper {
             String expression= "INSERT INTO "+ "CurrentEmployeesState "
                     + "(name , "
                     +"rate , "
-                    +"startDate , "
-                    + "isFired "
-                    + ") VALUES(?,?,?,?)";
+                    +"startDate  "
+                    + ") VALUES(?,?,?)";
 
             PreparedStatement pstmt =  Db.getConnection().prepareStatement(expression);
             pstmt.setString(1, domainObject.getName());
-            pstmt.setDouble(2,((RatePerHour)domainObject.getRatePerHour()).getValue());
-            pstmt.setDate(3, (Date) Date.from(  Instant.from(domainObject.getStartingRateDate())  ));
-            pstmt.setBoolean(4,domainObject.getIsFired());
+            pstmt.setDouble(2,((DoubleDomainObject)domainObject.getRatePerHour()).getValue());
+            pstmt.setDate(3,  java.sql.Date.from(  Instant.from(domainObject.getStartingRateDate())  ));
+//            pstmt.setBoolean(4,domainObject.getIsFired());
 
 
 

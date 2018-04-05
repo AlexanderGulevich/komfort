@@ -8,6 +8,7 @@ import javafx.scene.control.TableColumn;
 import javafx.util.Callback;
 import javafx.util.StringConverter;
 
+import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
@@ -110,11 +111,12 @@ public class ColumnLocalDate <T,K>extends ColumnWrapper<T> {
             datePicker.setOnAction((e) -> {
                 System.out.println("Committed: " + datePicker.getValue().toString());
 //                commitEdit(LocalDate.from(datePicker.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()));
-                commitEdit(LocalDate.from(datePicker.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()));
+                commitEdit(datePicker.getValue());
             });
             datePicker.focusedProperty().addListener((ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) -> {
                 if (!newValue) {
-                    commitEdit(LocalDate.from(datePicker.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()));
+//                    commitEdit(LocalDate.from(datePicker.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()));
+                    commitEdit(datePicker.getValue());
                 }
             });
         }

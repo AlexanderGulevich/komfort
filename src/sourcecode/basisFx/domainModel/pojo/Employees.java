@@ -63,7 +63,7 @@ public class Employees  extends NamedDomainObject {
     public boolean isReadyToTransaction() {
         if (
                 super.isReadyToTransaction()
-                        && getIsFired()!=null
+//                        && getIsFired()!=null
                         && getRatePerHour()!=null
                         && getStartingRateDate()!=null
 
