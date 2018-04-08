@@ -4,39 +4,45 @@ import javafx.beans.property.SimpleObjectProperty;
 
 public class DoubleDomainObject extends DomainObject {
 
-//    private SimpleObjectProperty<Double> value =new SimpleObjectProperty(this, "value", 0d);
-    private SimpleObjectProperty<Double> value =new SimpleObjectProperty(this, "value", null);
+    private SimpleObjectProperty<Double> doubleValue =new SimpleObjectProperty(this, "doubleValue", null);
 
-    public Double getValue() {
-        return value.get();
+
+    public Double getDoubleValue() {
+        return doubleValue.get();
     }
 
-    public SimpleObjectProperty<Double> valueProperty() {
-        return value;
+    public SimpleObjectProperty<Double> doubleValueProperty() {
+        return doubleValue;
     }
 
-    public void setValue(Double value) {
-        this.value.set(value);
+    public void setDoubleValue(Double value) {
+        this.doubleValue.set(value);
     }
+
 
     @Override
     public boolean isReadyToTransaction() {
 
-        if ( getValue()!=null     ) {
+        if ( getDoubleValue()!=null     ) {
 
                 return true;
         }
 
         return false;
+
+
     }
 
     public String toString(){
-
-        if (value.get() == null) {
+//
+        if (doubleValue.get() == null) {
+            System.out.println();
             return "";
         }
 
-        return this.value.get().toString();
+        return Double.toString(doubleValue.get());
+
+
 
     }
 

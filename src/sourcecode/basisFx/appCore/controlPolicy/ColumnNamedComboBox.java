@@ -8,6 +8,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.util.Callback;
 
 /**
@@ -32,25 +33,7 @@ public class ColumnNamedComboBox<T,K> extends ColumnWrapper<T>{
 
     public void setCellValueFactory(){
 
-        // By default, all cells are have null values
-        column.setCellValueFactory((TableColumn.CellDataFeatures<DomainObject, NamedDomainObject> param) -> {
-
-            DomainObject domainObject=  param.getValue();
-
-            //isn`t new object
-            if (domainObject.getId() != null) {
-
-                System.err.println("ColumnNamedComboBox-доменный объект из БД ");
-                return   comboBoxCellValueInitLogic.init(domainObject);
-
-
-
-            }else {
-                System.err.println("ColumnNamedComboBox- новый доменный объект");
-                return null;
-            }
-
-        });
+        column.setCellValueFactory(new PropertyValueFactory<>(propertyName));
 
     }
 

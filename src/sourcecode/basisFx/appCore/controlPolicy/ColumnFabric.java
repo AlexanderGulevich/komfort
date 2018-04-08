@@ -27,7 +27,7 @@ public class ColumnFabric <T,K> {
         return new ColumnNamedComboBox<T,K>(builder);
 
     }
-    public ColumnDoubleComboBox<T,K> createColumnNumericComboBox(ColumnWrapper.Bulder builder){
+    public ColumnDoubleComboBox<T,K> createColumnDoubleComboBox(ColumnWrapper.Bulder builder){
 
         return new ColumnDoubleComboBox<T,K>(builder);
 

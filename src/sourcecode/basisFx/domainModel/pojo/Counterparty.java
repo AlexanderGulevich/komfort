@@ -22,7 +22,6 @@ public class Counterparty  extends NamedDomainObject {
         this.tableName="Counterparty";
     }
 
-
     public NamedDomainObject getCountry() {
         return country.get();
     }

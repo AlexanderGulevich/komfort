@@ -1,13 +1,9 @@
 package basisFx.domainModel.targets;
 
 import basisFx.appCore.controlPolicy.ColumnWrapper;
-import basisFx.appCore.domainScetch.DomainObject;
-import basisFx.appCore.domainScetch.DoubleDomainObject;
-import basisFx.appCore.domainScetch.NamedDomainObject;
 import basisFx.appCore.elements.AppNode;
 import basisFx.appCore.elements.TableViewWrapper;
 import basisFx.appCore.panels.Target;
-import basisFx.domainModel.pojo.Country;
 import basisFx.domainModel.pojo.Employees;
 import basisFx.domainModel.pojo.RatePerHour;
 import basisFx.domainModel.settings.CSSID;
@@ -25,27 +21,24 @@ public class EmployeesTargetPanel extends Target{
             .setDataMapper(this.dataMapperFabric.getEmployeesDataMapper())
             .setDbTableName("Employees").refresh()
             .setColums(
-                    columnFabric.<Employees,String>createStringColumn(ColumnWrapper.Bulder.create()
+                    columnFabric.createStringColumn(ColumnWrapper.Bulder.create()
                             .setColumnName("ФИО").setPropertyName("name").setColumnSize(0.4d)
                             .setDomainChangeAction(
                                     (obj,val)->{((Employees)obj).setName((String)val);}
                             )
                     ),
-                    columnFabric.createColumnNumericComboBox(ColumnWrapper.Bulder.create()
-                            .setColumnName("Тариф").setColumnSize(0.2)
-                            .setDomainObjectListGetter(() -> dataMapperFabric.getEmployeesDataMapper().getRateList())
-                            .setComboBoxCellValueInitLogic((domainObject)->{
-                                System.out.println("domane  getTableName---"+((DomainObject)domainObject).getTableName());
-                                return ((Employees)domainObject).ratePerHourProperty();})
+                    columnFabric.createColumnDoubleComboBox(ColumnWrapper.Bulder.create()
+                            .setColumnName("Тариф").setColumnSize(0.2).setPropertyName("rate")
+                            .setDomainObjectListGetter(() -> dataMapperFabric.getEmployeesDataMapper().getRateTemplateList())
                             .setDomainChangeAction(
-                                    (obj,val)->{((Employees)obj).setRatePerHour((DoubleDomainObject) val);}
+                                    (obj,val)->{((Employees)obj).setRate((RatePerHour) val);}
                             )
                     ),
-                    columnFabric.<Employees,LocalDate>createLocalDateColumn(ColumnWrapper.Bulder.create()
-                            .setColumnName("Дата начала действия тарифа") .setPropertyName("startingDate").setColumnSize(0.4d)
-                            .setDateCellValueInitLogic((domainObject)->{
-                                return ((Employees)domainObject).startingRateDateProperty();})
-                            .setDomainChangeAction((obj,val)->{((Employees)obj).setStartingRateDate((LocalDate) val); } )
+                    columnFabric.createLocalDateColumn(ColumnWrapper.Bulder.create()
+                            .setColumnName("Дата начала действия тарифа") .setPropertyName("startingRateDate").setColumnSize(0.4d)
+//                            .setDateCellValueInitLogic((domainObject)->{
+//                                return ((Employees)domainObject).startingRateDateProperty();})
+                            .sgit etDomainChangeAction((obj,val)->{((Employees)obj).setStartingRateDate((LocalDate) val); } )
                     )
             );
 

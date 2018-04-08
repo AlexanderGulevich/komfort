@@ -1,6 +1,5 @@
 package basisFx.domainModel.pojo;
 
-import basisFx.appCore.domainScetch.DomainObject;
 import basisFx.appCore.domainScetch.DoubleDomainObject;
 import basisFx.appCore.domainScetch.NamedDomainObject;
 import javafx.beans.property.SimpleObjectProperty;
@@ -14,25 +13,25 @@ import java.time.LocalDate;
  */
 public class Employees  extends NamedDomainObject {
 
-    private SimpleObjectProperty<LocalDate> startingRateDate =new SimpleObjectProperty<>(this, "startingDate", null);
-    private SimpleObjectProperty<Boolean> isFired =new SimpleObjectProperty<>(this, "isFired", null);
-    private SimpleObjectProperty<DoubleDomainObject> ratePerHour =new SimpleObjectProperty<>(this, "ratePerHour", null);
+    private SimpleObjectProperty<LocalDate> startingRateDate =new SimpleObjectProperty<>(this, "startingRateDate", null);
+    private SimpleObjectProperty<Boolean> isFired =new SimpleObjectProperty<>(this, "isFired", false);
+    private SimpleObjectProperty<DoubleDomainObject> rate =new SimpleObjectProperty<>(this, "rate", null);
 
     public Employees( ) {
         this.dataMapper=mapperFabric.getEmployeesDataMapper();
         this.tableName="Employees";
     }
 
-    public DomainObject getRatePerHour() {
-        return ratePerHour.get();
+    public DoubleDomainObject getRate() {
+        return rate.get();
     }
 
-    public SimpleObjectProperty<DoubleDomainObject> ratePerHourProperty() {
-        return ratePerHour;
+    public SimpleObjectProperty<DoubleDomainObject> rateProperty() {
+        return rate;
     }
 
-    public void setRatePerHour(DoubleDomainObject ratePerHour) {
-        this.ratePerHour.set(ratePerHour);
+    public void setRate(RatePerHour rate) {
+        this.rate.set(rate);
     }
 
     public LocalDate getStartingRateDate() {
@@ -63,12 +62,14 @@ public class Employees  extends NamedDomainObject {
     public boolean isReadyToTransaction() {
         if (
                 super.isReadyToTransaction()
-//                        && getIsFired()!=null
-                        && getRatePerHour()!=null
+                        && getRate()!=null
                         && getStartingRateDate()!=null
+
 
                 )
         {
+
+            System.err.println("isReadyToTransaction".toUpperCase());
             return true;
 
         }

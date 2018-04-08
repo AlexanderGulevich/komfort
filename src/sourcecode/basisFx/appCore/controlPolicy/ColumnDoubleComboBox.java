@@ -8,6 +8,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.util.Callback;
 
 /**
@@ -32,23 +33,34 @@ public class ColumnDoubleComboBox<T,K> extends ColumnWrapper<T>{
 
     public void setCellValueFactory(){
 
-        // By default, all cells are have null values
-        column.setCellValueFactory((TableColumn.CellDataFeatures<DomainObject, DoubleDomainObject> param) -> {
+//        // By default, all cells are have null values
+//        column.setCellValueFactory((TableColumn.CellDataFeatures<DomainObject, DoubleDomainObject> param) -> {
+//
+//            DomainObject domainObject=  param.getValue();
+//
+//            //isn`t new object
+//            if (domainObject.getId() != null) {
+//                System.err.println("ColumnDoubleComboBox-доменный объект из БД ");
+//                return   comboBoxCellValueInitLogic.init(domainObject);
+//
+//            }else {
+//                System.err.println("ColumnDoubleComboBox- новый доменный объект");
+//                return null;
+//            }
+//
+//        });
 
-            DomainObject domainObject=  param.getValue();
 
-//todo почему домен не эмплоер а кфеу
-            //isn`t new object
-            if (domainObject.getId() != null) {
-                System.err.println("ColumnDoubleComboBox-доменный объект из БД ");
-                return   comboBoxCellValueInitLogic.init(domainObject);
+        column.setCellValueFactory(new PropertyValueFactory<>(propertyName));
 
-            }else {
-                System.err.println("ColumnDoubleComboBox- новый доменный объект");
-                return null;
-            }
 
-        });
+
+
+
+
+
+
+
 
     }
 
@@ -98,7 +110,7 @@ public class ColumnDoubleComboBox<T,K> extends ColumnWrapper<T>{
         @Override
         public void cancelEdit() {
             super.cancelEdit();
-            setText(getDoubleDomainObject().getValue().toString());
+            setText(getDoubleDomainObject().getDoubleValue().toString());
             setGraphic(null);
         }
 
@@ -120,11 +132,11 @@ public class ColumnDoubleComboBox<T,K> extends ColumnWrapper<T>{
 
 
                     }
-                    setText(getDoubleDomainObject().getValue().toString());
+                    setText(getDoubleDomainObject().getDoubleValue().toString());
                     setGraphic(comboBox);
                 } else {
                     setText(null);
-//                    setText(getDoubleDomainObject().getValue().toString());
+//                    setText(getDoubleDomainObject().getRate().toString());
                     setGraphic(null);
                 }
             }
@@ -159,7 +171,7 @@ public class ColumnDoubleComboBox<T,K> extends ColumnWrapper<T>{
                         if (doubleDomainObject == null || empty) {
                             setText(null);
                         } else {
-                            setText(doubleDomainObject.getValue().toString());
+                            setText(doubleDomainObject.getDoubleValue().toString());
                         }
                     }
                 };
@@ -172,7 +184,7 @@ public class ColumnDoubleComboBox<T,K> extends ColumnWrapper<T>{
                 System.out.println("getItem()== null-----ComboBoxCustomCell.getDoubleDomainObject");
 
                 DoubleDomainObject doubleDomainObject=new DoubleDomainObject();
-//                doubleDomainObject.setName("");
+//                doubleDomainObject.setRate("");
 
                 return  doubleDomainObject;
 

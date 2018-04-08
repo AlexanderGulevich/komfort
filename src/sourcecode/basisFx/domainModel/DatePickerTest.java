@@ -25,7 +25,7 @@
 //
 //		// Print the new date on standard output
 //		birthDate.setOnAction(e ->
-//			System.out.println("New Date:" + birthDate.getValue()));
+//			System.out.println("New Date:" + birthDate.getRate()));
 //
 //		String pattern = "MM/dd/yyyy";
 //		birthDate.setConverter(new LocalDateStringConverter(pattern));

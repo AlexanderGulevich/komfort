@@ -31,7 +31,7 @@ public class CounterpartyTargetPanel extends Target{
                 .setDbTableName("Counterparty").refresh()
                 .setColums(
 ////////////////////////////////
-                        columnFabric.<Counterparty,String>createStringColumn(ColumnWrapper.Bulder.create()
+                        columnFabric.createStringColumn(ColumnWrapper.Bulder.create()
                                 .setColumnName("Наименование контрагента").setPropertyName("name")
                                 .setValueChecking(check.createTextCheck())
                                 .setColumnSize(0.5)
@@ -41,20 +41,16 @@ public class CounterpartyTargetPanel extends Target{
                         ),
 ////////////////////////////////
                         columnFabric.createColumnNamedComboBox(ColumnWrapper.Bulder.create()
-                                .setColumnName("Страна").setColumnSize(0.3)
+                                .setColumnName("Страна").setColumnSize(0.3).setPropertyName("country")
                                 .setDomainObjectListGetter(() -> dataMapperFabric.getCounterpartyDataMapper().getCountryList())
-                                .setComboBoxCellValueInitLogic((domainObject)->{
-                                          return ((Counterparty)domainObject).countryProperty();})
                                 .setDomainChangeAction(
                                         (obj,val)->{((Counterparty)obj).setCountry((Country) val);}
                                 )
                         ),
 ////////////////////////////////////////////////////////////////
                         columnFabric.createColumnNamedComboBox(ColumnWrapper.Bulder.create()
-                                .setColumnName("Валюта").setColumnSize(0.2)
+                                .setColumnName("Валюта").setColumnSize(0.2).setPropertyName("currency")
                                 .setDomainObjectListGetter(() -> dataMapperFabric.getCounterpartyDataMapper().getCurrencyList())
-                                .setComboBoxCellValueInitLogic((domainObject)->{
-                                    return ((Counterparty)domainObject).currencyProperty();})
                                 .setDomainChangeAction(
                                         (obj,val)->{((Counterparty)obj).setCurrency((Currency) val);}
                                 )

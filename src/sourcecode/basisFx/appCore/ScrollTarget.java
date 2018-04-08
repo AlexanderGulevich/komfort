@@ -63,7 +63,7 @@
 //                                        .setValueChecking(check.createTextCheck())
 //                                        .setColumnSize(1)
 //                                        .setDomainChangeAction(
-//                                                (obj,val)->{((NamedDomainObject)obj).setName((String)val);}
+//                                                (obj,val)->{((NamedDomainObject)obj).setRate((String)val);}
 //                                        )
 //                        )
 //                );

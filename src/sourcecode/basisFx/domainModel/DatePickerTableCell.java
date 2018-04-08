@@ -73,7 +73,7 @@
 //		else {
 //			if (this.isEditing()) {
 //				if (datePicker != null) {
-//					datePicker.setValue((java.time.LocalDate)item);
+//					datePicker.setRate((java.time.LocalDate)item);
 //				}
 //				this.setText(null);
 //				this.setGraphic(datePicker);
@@ -90,14 +90,14 @@
 //		datePicker.setConverter(converter);
 //
 //		// Set the current value in the cell to the DatePicker
-//		datePicker.setValue((java.time.LocalDate)this.getItem());
+//		datePicker.setRate((java.time.LocalDate)this.getItem());
 //
 //		// Configure the DatePicker properties
 //		datePicker.setPrefWidth(this.getWidth() - this.getGraphicTextGap() * 2);
 //		datePicker.setEditable(this.datePickerEditable);
 //
 //		// Commit the new value when the user selects or enters a date
-//		datePicker.valueProperty().addListener(new ChangeListener() {
+//		datePicker.rateProperty().addListener(new ChangeListener() {
 //			@Override
 //			public void changed(ObservableValue prop,
 //								Object oldValue,

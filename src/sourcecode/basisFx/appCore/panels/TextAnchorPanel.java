@@ -43,7 +43,7 @@ public class TextAnchorPanel extends AbstractPanel{
                 .setId(CSSID.LEFT_SIDE_MENU_COMMON_TEXT)
                 .setParent(panel)
                 .setCoordinate(0d, 0d, 0d, 0d)
-//                .setText(component.getName())
+//                .setText(component.getRate())
                 .setFont(font, fontSize)
                 .createNText().getElement();
     }

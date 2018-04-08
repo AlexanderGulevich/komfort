@@ -5,6 +5,7 @@ import javafx.beans.value.ObservableValue;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.util.Callback;
 import javafx.util.StringConverter;
 
@@ -28,9 +29,13 @@ public class ColumnLocalDate <T,K>extends ColumnWrapper<T> {
         Callback<TableColumn<DomainObject, LocalDate>, TableCell<DomainObject, LocalDate>> dateCellFactory
                 = (TableColumn<DomainObject, LocalDate> param) -> new DateEditingCell();
 
-        column.setCellValueFactory(
-                cellData -> this.dateCellValueInitLogic.init(cellData.getValue())
-        );
+//        column.setCellValueFactory(
+//                cellData -> this.dateCellValueInitLogic.init(cellData.getValue())
+//        );
+
+
+        column.setCellValueFactory(new PropertyValueFactory<>(propertyName));
+
         column.setCellFactory(dateCellFactory);
         column.setOnEditCommit(
                 (TableColumn.CellEditEvent<DomainObject, LocalDate> t) -> {
@@ -78,7 +83,8 @@ public class ColumnLocalDate <T,K>extends ColumnWrapper<T> {
             super.cancelEdit();
 
 //            setText(getDate().toString());
-            setText(getDate().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL)));
+//            setText(getDate().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL)));
+            setText(null);
             setGraphic(null);
         }
 
@@ -110,12 +116,12 @@ public class ColumnLocalDate <T,K>extends ColumnWrapper<T> {
             datePicker.setPromptText("");
             datePicker.setOnAction((e) -> {
                 System.out.println("Committed: " + datePicker.getValue().toString());
-//                commitEdit(LocalDate.from(datePicker.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()));
+//                commitEdit(LocalDate.from(datePicker.getRate().atStartOfDay(ZoneId.systemDefault()).toInstant()));
                 commitEdit(datePicker.getValue());
             });
             datePicker.focusedProperty().addListener((ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) -> {
                 if (!newValue) {
-//                    commitEdit(LocalDate.from(datePicker.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()));
+//                    commitEdit(LocalDate.from(datePicker.getRate().atStartOfDay(ZoneId.systemDefault()).toInstant()));
                     commitEdit(datePicker.getValue());
                 }
             });

@@ -72,7 +72,7 @@ public class RowAddToTable <T> extends AppEvent{
 //
 //                    CategoryPojo pojo=new CategoryPojo("");
 //
-//                    Integer selectedItemLevel=selectedItem.getValue().getLevelId();
+//                    Integer selectedItemLevel=selectedItem.getRate().getLevelId();
 //                    pojo.setLevelId(selectedItemLevel+1);
 //
 //                    item = new TreeItem<>(pojo);

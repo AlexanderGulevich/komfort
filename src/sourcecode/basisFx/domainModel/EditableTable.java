@@ -79,7 +79,7 @@
 //
 ////        TableColumn<Person, String> firstNameCol = new TableColumn("Vorname");
 ////        firstNameCol.setMinWidth(100);
-////        firstNameCol.setCellValueFactory(cellData -> cellData.getValue().firstNameProperty());
+////        firstNameCol.setCellValueFactory(cellData -> cellData.getRate().firstNameProperty());
 ////        firstNameCol.setCellFactory(cellFactory);
 ////        firstNameCol.setOnEditCommit(
 ////                (TableColumn.CellEditEvent<Person, String> t) -> {
@@ -93,7 +93,7 @@
 //
 ////        lastNameCol.setMinWidth(100);
 //
-////        lastNameCol.setCellValueFactory(cellData -> cellData.getValue().typObjProperty());
+////        lastNameCol.setCellValueFactory(cellData -> cellData.getRate().typObjProperty());
 //
 ////        lastNameCol.setCellFactory(comboBoxCellFactory);
 //
@@ -107,7 +107,7 @@
 ////
 ////        TableColumn<Person, Date> emailCol = new TableColumn("Geburtstag");
 ////        emailCol.setMinWidth(200);
-////        emailCol.setCellValueFactory(cellData -> cellData.getValue().birthdayProperty());
+////        emailCol.setCellValueFactory(cellData -> cellData.getRate().birthdayProperty());
 ////        emailCol.setCellFactory(dateCellFactory);
 ////        emailCol.setOnEditCommit(
 ////                (TableColumn.CellEditEvent<Person, Date> t) -> {
@@ -271,7 +271,7 @@
 ////            } else {
 ////                if (isEditing()) {
 ////                    if (datePicker != null) {
-////                        datePicker.setValue(getDate());
+////                        datePicker.setRate(getDate());
 ////                    }
 ////                    setText(null);
 ////                    setGraphic(datePicker);
@@ -286,12 +286,12 @@
 ////            datePicker = new DatePicker(getDate());
 ////            datePicker.setMinWidth(this.getWidth() - this.getGraphicTextGap() * 2);
 ////            datePicker.setOnAction((e) -> {
-////                System.out.println("Committed: " + datePicker.getValue().toString());
-////                commitEdit(Date.from(datePicker.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()));
+////                System.out.println("Committed: " + datePicker.getRate().toString());
+////                commitEdit(Date.from(datePicker.getRate().atStartOfDay(ZoneId.systemDefault()).toInstant()));
 ////            });
 ////            datePicker.focusedProperty().addListener((ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) -> {
 ////                if (!newValue) {
-////                    commitEdit(Date.from(datePicker.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()));
+////                    commitEdit(Date.from(datePicker.getRate().atStartOfDay(ZoneId.systemDefault()).toInstant()));
 ////                }
 ////            });
 ////        }
@@ -336,7 +336,7 @@
 //            } else {
 //                if (isEditing()) {
 //                    if (comboBox != null) {
-//                        comboBox.setValue(getTyp());
+//                        comboBox.setRate(getTyp());
 //                    }
 //                    setText(getTyp().getTyp());
 //                    setGraphic(comboBox);
@@ -350,7 +350,7 @@
 //        private void createComboBox() {
 //            comboBox = new ComboBox<>(typData);
 //            comboBoxConverter(comboBox);
-//            comboBox.valueProperty().set(getTyp());
+//            comboBox.rateProperty().set(getTyp());
 //            comboBox.setMinWidth(this.getWidth() - this.getGraphicTextGap() * 2);
 //            comboBox.setOnAction((e) -> {
 //                System.out.println("Committed: " + comboBox.getSelectionModel().getSelectedItem());
@@ -424,15 +424,15 @@
 //            this.persons.setAll(persons);
 //        }
 //
-//        public String getName() {
+//        public String getRate() {
 //            return name.get();
 //        }
 //
-//        public StringProperty nameProperty() {
+//        public StringProperty rateProperty() {
 //            return this.name;
 //        }
 //
-//        public void setName(String name) {
+//        public void setRate(String name) {
 //            this.name.set(name);
 //        }
 //

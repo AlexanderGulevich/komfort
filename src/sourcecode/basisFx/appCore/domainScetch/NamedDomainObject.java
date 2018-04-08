@@ -1,5 +1,6 @@
 package basisFx.appCore.domainScetch;
 
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
@@ -10,13 +11,13 @@ import javafx.beans.property.StringProperty;
  */
 public class NamedDomainObject extends DomainObject{
 
-    private StringProperty name =new SimpleStringProperty(this, "name", "");
+    private SimpleObjectProperty<String> name =new SimpleObjectProperty(this, "name", "");
 
     public String getName() {
         return name.get();
     }
 
-    public StringProperty getNameProperty() {
+    public SimpleObjectProperty getNameProperty() {
         return name;
     }
 
@@ -42,6 +43,7 @@ public class NamedDomainObject extends DomainObject{
     public String toString(){
 
         return this.name.get();
+
     }
 
 }

@@ -8,8 +8,6 @@ import basisFx.domainModel.pojo.RatePerHour;
 import basisFx.domainModel.settings.CSSID;
 import basisFx.domainModel.settings.FontsStore;
 
-import java.time.LocalDate;
-
 public class RatePerHourTargetPanel  extends Target {
 
     private TableViewWrapper tableViewWrapper;
@@ -28,8 +26,8 @@ public class RatePerHourTargetPanel  extends Target {
                 .setDbTableName("RatePerHour").refresh()
                 .setColums(
                         columnFabric.<RatePerHour,Double>createDoubleColumn(ColumnWrapper.Bulder.create()
-                                        .setColumnName("Тариф ( бел. руб/час. )").setPropertyName("value").setColumnSize(1)
-                                        .setDomainChangeAction((obj,val)->{((RatePerHour)obj).setValue((Double)val); } )
+                                        .setColumnName("Тариф ( бел. руб/час. )").setPropertyName("doubleValue").setColumnSize(1)
+                                        .setDomainChangeAction((obj,val)->{((RatePerHour)obj).setDoubleValue((Double)val); } )
                         )
 
                 );

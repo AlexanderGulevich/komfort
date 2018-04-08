@@ -64,7 +64,7 @@ package basisFx.appCore;
 //            return this.descendants;
 //        
 //        }
-//        public CategoryPojo getValue( ){
+//        public CategoryPojo getRate( ){
 //        
 //            return this.elem;
 //        

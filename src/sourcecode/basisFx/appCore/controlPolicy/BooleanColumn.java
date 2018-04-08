@@ -13,7 +13,7 @@ public class BooleanColumn {
 //    TableColumn<Person, Boolean> babyCol = new TableColumn<>("Baby?");
 //		babyCol.setCellValueFactory(
 //				cellData -> {
-//					Person p = cellData.getValue();
+//					Person p = cellData.getRate();
 //					Boolean v = (p.getAgeCategory() == Person.AgeCategory.BABY);
 //					return new ReadOnlyBooleanWrapper(v);
 //				});

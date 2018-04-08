@@ -10,22 +10,28 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.sql.*;
-import java.time.Instant;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class EmployeesDataMapper extends DataMapper {
 
-    private  ObservableList <DoubleDomainObject> ratePerHoursList =null;
-
+    private  ObservableList <DoubleDomainObject> rateTamlateList =null;
+    private  ObservableList <RatePerHour> ratesStoredList =null;
     private  ObservableList <Employees> currentEmployees =null;
+    private  HashMap<Integer,ArrayList<RatePerHour>> ratesMapById =new HashMap<>();
 
 
     @Override
     public void getAllDomainObjectList(ObservableList list, String tableName) {
+
+        getRateListFromeStore();
+        convertStoredRatesToHashMap();
+
         try {
 
-            String expression="SELECT * FROM " +"CurrentEmployeesState"+" ORDER BY ID";
+            String expression="SELECT * FROM " +"Employees"+" ORDER BY ID";
 
             Statement stmt  = Db.getConnection().createStatement();
 
@@ -39,21 +45,16 @@ public class EmployeesDataMapper extends DataMapper {
                 pojo.setName(rs.getString("name"));
                 pojo.setIsFired(rs.getBoolean("isFired"));
 
-//                RatePerHour ratePerHour=getActualRatePerHoursFromStore(rs.getInt("id"));
-//
-//                pojo.setRatePerHour(ratePerHour);
-//                pojo.setStartingRateDate(ratePerHour.getStartingRateDate());
+                RatePerHour rate=getNewest(rs.getInt("id"));
+
+                pojo.setStartingRateDate(rate.getStartingRateDate());
+
+                pojo.setRate(rate);
 
                 //вставляю id в список хранимых в бд
-
-
                 this.unitOfWork.getStoredPojoesId().add(rs.getInt("id"));
 
-
-
-//                list.add(pojo);
-                list.add(null);
-
+                list.add(pojo);
             }
 
         } catch (SQLException ex) {
@@ -65,6 +66,51 @@ public class EmployeesDataMapper extends DataMapper {
 
     }
 
+    private RatePerHour getNewest(Integer id){
+
+        RatePerHour newestRate=null;
+
+        ArrayList<RatePerHour> ratePerHoursList = ratesMapById.get(id);
+
+        for (RatePerHour rate:ratePerHoursList) {
+
+            if (newestRate == null) {
+
+                newestRate=rate;
+
+            }
+
+            if (rate.getStartingRateDate().isAfter(newestRate.getStartingRateDate())){
+                newestRate=rate;
+            }
+        }
+
+        return newestRate;
+
+
+    }
+
+    private void convertStoredRatesToHashMap() {
+
+        for (RatePerHour rate: ratesStoredList) {
+
+            Integer id=rate.getId();
+
+            if(ratesMapById.containsKey(id)){
+
+                ratesMapById.get(id).add(rate);
+
+            }else {
+
+                ArrayList<RatePerHour> ratePerHoursList=new ArrayList<>();
+                ratePerHoursList.add(rate);
+
+                ratesMapById.put(id,ratePerHoursList);
+
+            }
+        }
+
+    }
 
     @Override
     public void updateDomainObject(DomainObject d) {
@@ -75,22 +121,37 @@ public class EmployeesDataMapper extends DataMapper {
     public void insertDomainObject(DomainObject d) {
         Employees domainObject=(Employees) d;
 
+        int maxId=getMaxEmployersId();
+
         try {
-            String expression= "INSERT INTO "+ "CurrentEmployeesState "
-                    + "(name , "
-                    +"rate , "
-                    +"startDate  "
+            String expression= "INSERT INTO "+ "Employees "
+                    + "("
+                    +" name ,  "
+                    +" isFired,  "
+                    +" id        "
                     + ") VALUES(?,?,?)";
 
             PreparedStatement pstmt =  Db.getConnection().prepareStatement(expression);
             pstmt.setString(1, domainObject.getName());
-            pstmt.setDouble(2,((DoubleDomainObject)domainObject.getRatePerHour()).getValue());
-            pstmt.setDate(3,  java.sql.Date.from(  Instant.from(domainObject.getStartingRateDate())  ));
-//            pstmt.setBoolean(4,domainObject.getIsFired());
-
-
+            pstmt.setBoolean(2,domainObject.getIsFired());
+            pstmt.setInt(3,maxId+1);
 
             pstmt.executeUpdate();
+
+
+            String expression2= "INSERT INTO "+ " RateStore "
+                    + "("
+                    +" employerId ,  "
+                    +" rate,  "
+                    +" startDate        "
+                    + ") VALUES(?,?,?)";
+
+            PreparedStatement pstmt2 =  Db.getConnection().prepareStatement(expression2);
+            pstmt2.setInt(1, maxId+1);
+            pstmt2.setDouble(2,((DoubleDomainObject)domainObject.getRate()).getDoubleValue());
+            pstmt2.setDate(3,Date.valueOf(  domainObject.getStartingRateDate()));
+
+            pstmt2.executeUpdate();
 
 
         } catch (SQLException ex) {
@@ -100,17 +161,17 @@ public class EmployeesDataMapper extends DataMapper {
 
     }
 
-    public  ObservableList <DoubleDomainObject> getRateList() {
+    public  ObservableList <DoubleDomainObject> getRateTemplateList() {
 
-        if (ratePerHoursList != null) {
-            System.out.println("EmployeesDataMapper.getRateList -----ratePerHoursList = null");
-            return ratePerHoursList;
+        if (rateTamlateList != null) {
+            System.out.println("EmployeesDataMapper.getRateTemplateList -----rateTamlateList != null");
+            return rateTamlateList;
         }else {
-            System.out.println("EmployeesDataMapper.getRateList---ratePerHoursList = null");
+            System.out.println("EmployeesDataMapper.getRateTemplateList---rateTamlateList = null");
 
-            String expression="SELECT * FROM " +"RateExamples"+" ORDER BY ID";
+            String expression="SELECT * FROM " +"RateTemplates"+" ORDER BY ID";
             Statement stmt  = null;
-            ratePerHoursList = FXCollections.<DoubleDomainObject>observableArrayList();
+            rateTamlateList = FXCollections.<DoubleDomainObject>observableArrayList();
 
             try {
 
@@ -121,22 +182,74 @@ public class EmployeesDataMapper extends DataMapper {
                 while (rs.next()) {
                     DoubleDomainObject domainObject = new DoubleDomainObject();
                     domainObject.setId(rs.getInt("id"));
-                    domainObject.setValue(rs.getDouble("rate"));
+                    domainObject.setDoubleValue(rs.getDouble("rate"));
 
-                    ratePerHoursList.add(domainObject);
+                    rateTamlateList.add(domainObject);
 
                 }
             } catch (SQLException e) {
                 e.printStackTrace();
             }
 
-            return ratePerHoursList;
+            return rateTamlateList;
 
         }
     }
 
+    private void getRateListFromeStore(){
+
+        String expression="SELECT * FROM " +"RateStore"+" ORDER BY ID";
+        Statement stmt  = null;
+        ratesStoredList = FXCollections.<RatePerHour>observableArrayList();
+
+        try {
+
+            stmt = Db.getConnection().createStatement();
+
+            ResultSet rs    = stmt.executeQuery(expression);
+
+            while (rs.next()) {
+                RatePerHour domainObject = new RatePerHour();
+                domainObject.setId(rs.getInt("id"));
+                domainObject.setDoubleValue(rs.getDouble("rate"));
+                domainObject.setStartingRateDate(rs.getDate("startDate").toLocalDate());
+                domainObject.setEmployerId(rs.getInt("employerId"));
 
 
+                ratesStoredList.add(domainObject);
+
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    private Integer getMaxEmployersId(){
+        try {
+
+            String expression="SELECT id FROM " +"Employees"+" where id=(SELECT MAX(id) FROM Employees)";
+
+            Statement stmt  = Db.getConnection().createStatement();
+
+            ResultSet rs    = stmt.executeQuery(expression);
+
+
+            while (rs.next()) {
+
+                int id=rs.getInt("id");
+
+                return id;
+
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(EquipmentDataMapper.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return 0;
+
+    }
 
 
 
