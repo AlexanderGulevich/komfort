@@ -5,28 +5,28 @@
  */
 package basisFx.domainModel.pojo;
 
-import basisFx.appCore.domainScetch.NamedDomainObject;
+import basisFx.appCore.domainScetch.StringValueDomainObject;
 import javafx.beans.property.SimpleObjectProperty;
 
 /**
  *
  * @author Alek
  */
-public class Counterparty  extends NamedDomainObject {
+public class Counterparty  extends StringValueDomainObject {
 
-    private SimpleObjectProperty<NamedDomainObject> country =new SimpleObjectProperty<>(this, "country", null);
-    private SimpleObjectProperty<NamedDomainObject> currency =new SimpleObjectProperty<>(this, "currency", null);
+    private SimpleObjectProperty<StringValueDomainObject> country =new SimpleObjectProperty<>(this, "country", null);
+    private SimpleObjectProperty<StringValueDomainObject> currency =new SimpleObjectProperty<>(this, "currency", null);
 
     public Counterparty( ) {
         this.dataMapper=mapperFabric.getCounterpartyDataMapper();
         this.tableName="Counterparty";
     }
 
-    public NamedDomainObject getCountry() {
+    public StringValueDomainObject getCountry() {
         return country.get();
     }
 
-    public SimpleObjectProperty<NamedDomainObject> countryProperty() {
+    public SimpleObjectProperty<StringValueDomainObject> countryProperty() {
         return country;
     }
 
@@ -34,11 +34,11 @@ public class Counterparty  extends NamedDomainObject {
         this.country.set(country);
     }
 
-    public NamedDomainObject getCurrency() {
+    public StringValueDomainObject getCurrency() {
         return currency.get();
     }
 
-    public SimpleObjectProperty<NamedDomainObject> currencyProperty() {
+    public SimpleObjectProperty<StringValueDomainObject> currencyProperty() {
         return currency;
     }
 

@@ -3,9 +3,8 @@ package basisFx.domainModel.mapper;
 import basisFx.appCore.dataSource.DataMapper;
 import basisFx.appCore.dataSource.Db;
 import basisFx.appCore.domainScetch.DomainObject;
-import basisFx.appCore.domainScetch.DoubleDomainObject;
-import basisFx.appCore.domainScetch.NamedDomainObject;
-import basisFx.domainModel.pojo.Employees;
+import basisFx.appCore.domainScetch.StringValueDomainObject;
+import basisFx.domainModel.pojo.Employer;
 import basisFx.domainModel.pojo.RatePerHour;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -18,21 +17,21 @@ import java.util.logging.Logger;
 
 public class EmployeesDataMapper extends DataMapper {
 
-    private  ObservableList <NamedDomainObject> rateTamlateList =null;
+    private  ObservableList <StringValueDomainObject> rateTamlateList =null;
     private  ObservableList <RatePerHour> ratesStoredList =null;
-    private  ObservableList <Employees> currentEmployees =null;
+    private  ObservableList <Employer> currentEmployees =null;
     private  HashMap<Integer,ArrayList<RatePerHour>> ratesMapById =new HashMap<>();
 
 
     @Override
     public void getAllDomainObjectList(ObservableList list, String tableName) {
 
-        getRateListFromeStore();
-        convertStoredRatesToHashMap();
+        System.out.println("EmployeesDataMapper.getAllDomainObjectList");
+
 
         try {
 
-            String expression="SELECT * FROM " +"Employees"+" ORDER BY ID";
+            String expression="SELECT * FROM " +"Employer"+" ORDER BY ID";
 
             Statement stmt  = Db.getConnection().createStatement();
 
@@ -41,9 +40,15 @@ public class EmployeesDataMapper extends DataMapper {
 
             while (rs.next()) {
 
-                Employees pojo=new Employees();
+
+                getRateListFromeStore();
+                convertStoredRatesToHashMap();
+
+
+
+                Employer pojo=new Employer();
                 pojo.setId(rs.getInt("id"));
-                pojo.setName(rs.getString("name"));
+                pojo.setStringValue(rs.getString("name"));
                 pojo.setIsFired(rs.getBoolean("isFired"));
 
                 RatePerHour rate=getNewest(rs.getInt("id"));
@@ -63,6 +68,8 @@ public class EmployeesDataMapper extends DataMapper {
         }
 
         currentEmployees=list;
+
+        System.out.println(currentEmployees);
 
 
     }
@@ -115,17 +122,55 @@ public class EmployeesDataMapper extends DataMapper {
 
     @Override
     public void updateDomainObject(DomainObject d) {
+//        Employer employer= (Employer) d;
+//        String expression = "UPDATE "+ d.getTableName()+ " SET  " +
+//                " name = ?," +
+//                " WHERE id= ?" ;
+//
+//        PreparedStatement pstmt = null;
+//
+//
+//        String expression2 = "UPDATE "+ d.getTableName()+ " SET  " +
+//                " name = ?," +
+//                " WHERE id= ?" ;
+//
+//        PreparedStatement pstmt2 = null;
+//
+//
+//
+//
+//        try {
+//            pstmt = Db.getConnection().prepareStatement(expression);
+//            pstmt.setString(1, employer.getStringValue());
+//            pstmt.executeUpdate();
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
 
     }
 
     @Override
     public void insertDomainObject(DomainObject d) {
-        Employees domainObject=(Employees) d;
+        Employer domainObject=(Employer) d;
 
         int maxId=getMaxEmployersId();
 
         try {
-            String expression= "INSERT INTO "+ "Employees "
+            String expression= "INSERT INTO "+ "Employer "
                     + "("
                     +" name ,  "
                     +" isFired,  "
@@ -133,7 +178,7 @@ public class EmployeesDataMapper extends DataMapper {
                     + ") VALUES(?,?,?)";
 
             PreparedStatement pstmt =  Db.getConnection().prepareStatement(expression);
-            pstmt.setString(1, domainObject.getName());
+            pstmt.setString(1, domainObject.getStringValue());
             pstmt.setBoolean(2,domainObject.getIsFired());
             pstmt.setInt(3,maxId+1);
 
@@ -150,7 +195,7 @@ public class EmployeesDataMapper extends DataMapper {
             PreparedStatement pstmt2 =  Db.getConnection().prepareStatement(expression2);
             pstmt2.setInt(1, maxId+1);
 //            pstmt2.setDouble(2,((DoubleDomainObject)domainObject.getRate()).getDoubleValue());
-            pstmt2.setDouble(2,   Double.valueOf( ((NamedDomainObject)domainObject.getRate()).getName())   );
+            pstmt2.setDouble(2,   Double.valueOf( ((StringValueDomainObject)domainObject.getRate()).getStringValue())   );
             pstmt2.setDate(3,Date.valueOf(  domainObject.getStartingRateDate()));
 
             pstmt2.executeUpdate();
@@ -163,7 +208,7 @@ public class EmployeesDataMapper extends DataMapper {
 
     }
 
-    public  ObservableList <NamedDomainObject> getRateTemplateList() {
+    public  ObservableList <StringValueDomainObject> getRateTemplateList() {
 
         if (rateTamlateList != null) {
             System.out.println("EmployeesDataMapper.getRateTemplateList -----rateTamlateList != null");
@@ -173,7 +218,7 @@ public class EmployeesDataMapper extends DataMapper {
 
             String expression="SELECT * FROM " +"RateTemplates"+" ORDER BY ID";
             Statement stmt  = null;
-            rateTamlateList = FXCollections.<NamedDomainObject>observableArrayList();
+            rateTamlateList = FXCollections.<StringValueDomainObject>observableArrayList();
 
             try {
 
@@ -182,9 +227,9 @@ public class EmployeesDataMapper extends DataMapper {
                 ResultSet rs    = stmt.executeQuery(expression);
 
                 while (rs.next()) {
-                    NamedDomainObject domainObject = new NamedDomainObject();
+                    StringValueDomainObject domainObject = new StringValueDomainObject();
                     domainObject.setId(rs.getInt("id"));
-                    domainObject.setName(String.valueOf(rs.getDouble("rate")));
+                    domainObject.setStringValue(String.valueOf(rs.getDouble("rate")));
 
                     rateTamlateList.add(domainObject);
 
@@ -213,7 +258,7 @@ public class EmployeesDataMapper extends DataMapper {
             while (rs.next()) {
                 RatePerHour domainObject = new RatePerHour();
                 domainObject.setId(rs.getInt("id"));
-                domainObject.setName(String.valueOf(rs.getDouble("rate")));
+                domainObject.setStringValue(String.valueOf(rs.getDouble("rate")));
                 domainObject.setStartingRateDate(rs.getDate("startDate").toLocalDate());
                 domainObject.setEmployerId(rs.getInt("employerId"));
 
@@ -230,7 +275,7 @@ public class EmployeesDataMapper extends DataMapper {
     private Integer getMaxEmployersId(){
         try {
 
-            String expression="SELECT id FROM " +"Employees"+" where id=(SELECT MAX(id) FROM Employees)";
+            String expression="SELECT id FROM " +"Employer"+" where id=(SELECT MAX(id) FROM Employer)";
 
             Statement stmt  = Db.getConnection().createStatement();
 

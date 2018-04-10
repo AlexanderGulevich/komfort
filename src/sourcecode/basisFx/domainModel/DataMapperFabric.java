@@ -5,9 +5,7 @@
  */
 package basisFx.domainModel;
 
-import basisFx.appCore.domainScetch.NamedDataMapper;
 import basisFx.domainModel.mapper.*;
-import basisFx.domainModel.pojo.Employees;
 
 /**
  *

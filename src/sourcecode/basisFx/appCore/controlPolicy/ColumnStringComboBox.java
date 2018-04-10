@@ -1,7 +1,7 @@
 package basisFx.appCore.controlPolicy;
 
 import basisFx.appCore.domainScetch.DomainObject;
-import basisFx.appCore.domainScetch.NamedDomainObject;
+import basisFx.appCore.domainScetch.StringValueDomainObject;
 import basisFx.domainModel.settings.CSSID;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.control.ComboBox;
@@ -16,11 +16,11 @@ import javafx.util.Callback;
  * @author 62
  * @param <T>
  */
-public class ColumnNamedComboBox<T,K> extends ColumnWrapper<T>{
-    protected TableColumn<DomainObject, NamedDomainObject> column;
+public class ColumnStringComboBox<T,K> extends ColumnWrapper<T>{
+    protected TableColumn<DomainObject, StringValueDomainObject> column;
 
     @SuppressWarnings("unchecked")
-    public ColumnNamedComboBox(Bulder builder) {
+    public ColumnStringComboBox(Bulder builder) {
 
         super(builder);
         this.column =  new TableColumn<>(columnName);
@@ -38,8 +38,8 @@ public class ColumnNamedComboBox<T,K> extends ColumnWrapper<T>{
     }
 
     public void setCellFactory(){
-        Callback<TableColumn<DomainObject, NamedDomainObject>, TableCell<DomainObject, NamedDomainObject>> comboBoxCellFactory
-                = (TableColumn<DomainObject, NamedDomainObject> param) -> new ComboBoxCustomCell();
+        Callback<TableColumn<DomainObject, StringValueDomainObject>, TableCell<DomainObject, StringValueDomainObject>> comboBoxCellFactory
+                = (TableColumn<DomainObject, StringValueDomainObject> param) -> new ComboBoxCustomCell();
 
         // Set a ComboBoxTableCell, so we can selects a value from a list
         column.setCellFactory(comboBoxCellFactory);
@@ -57,15 +57,15 @@ public class ColumnNamedComboBox<T,K> extends ColumnWrapper<T>{
         editPoliticy.run();
     }
 
-    public TableColumn<DomainObject, NamedDomainObject> getColumn(){
+    public TableColumn<DomainObject, StringValueDomainObject> getColumn(){
 
         return this.column;
 
     }
 
-    class ComboBoxCustomCell extends TableCell<DomainObject, NamedDomainObject > {
+    class ComboBoxCustomCell extends TableCell<DomainObject, StringValueDomainObject> {
 
-        private ComboBox<NamedDomainObject> comboBox;
+        private ComboBox<StringValueDomainObject> comboBox;
 
         private ComboBoxCustomCell() {
         }
@@ -83,12 +83,12 @@ public class ColumnNamedComboBox<T,K> extends ColumnWrapper<T>{
         @Override
         public void cancelEdit() {
             super.cancelEdit();
-            setText(getNamedDomainObject().getName());
+            setText(getNamedDomainObject().getStringValue());
             setGraphic(null);
         }
 
         @Override
-        public void updateItem(NamedDomainObject item, boolean empty) {
+        public void updateItem(StringValueDomainObject item, boolean empty) {
             super.updateItem(item, empty);
 
             if (empty) {
@@ -105,10 +105,10 @@ public class ColumnNamedComboBox<T,K> extends ColumnWrapper<T>{
 
 
                     }
-                    setText(getNamedDomainObject().getName());
+                    setText(getNamedDomainObject().getStringValue());
                     setGraphic(comboBox);
                 } else {
-                    setText(getNamedDomainObject().getName());
+                    setText(getNamedDomainObject().getStringValue());
                     setGraphic(null);
                 }
             }
@@ -133,32 +133,32 @@ public class ColumnNamedComboBox<T,K> extends ColumnWrapper<T>{
             });
         }
 
-        private void comboBoxConverter(ComboBox<NamedDomainObject> comboBox) {
+        private void comboBoxConverter(ComboBox<StringValueDomainObject> comboBox) {
 //             Define rendering of the list of values in ComboBox drop down.
             comboBox.setCellFactory((c) -> {
-                return new ListCell<NamedDomainObject>() {
+                return new ListCell<StringValueDomainObject>() {
                     @Override
-                    protected void updateItem(NamedDomainObject namedDomainObject, boolean empty) {
-                        super.updateItem(namedDomainObject, empty);
-                        if (namedDomainObject == null || empty) {
+                    protected void updateItem(StringValueDomainObject stringValueDomainObject, boolean empty) {
+                        super.updateItem(stringValueDomainObject, empty);
+                        if (stringValueDomainObject == null || empty) {
                             setText(null);
                         } else {
-                            setText(namedDomainObject.getName());
+                            setText(stringValueDomainObject.getStringValue());
                         }
                     }
                 };
             });
         }
 
-        private NamedDomainObject getNamedDomainObject() {
+        private StringValueDomainObject getNamedDomainObject() {
 
             if(getItem()== null){//if not exist
 
 
-                NamedDomainObject namedDomainObject=new NamedDomainObject();
-                namedDomainObject.setName("");
+                StringValueDomainObject stringValueDomainObject =new StringValueDomainObject();
+                stringValueDomainObject.setStringValue("");
 
-                return  namedDomainObject;
+                return stringValueDomainObject;
 
             }else {
 

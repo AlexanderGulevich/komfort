@@ -22,9 +22,9 @@ public class ColumnFabric <T,K> {
         return new ColumnString<T>(builder);
 
     }
-    public ColumnNamedComboBox<T,K> createColumnNamedComboBox(ColumnWrapper.Bulder builder){
+    public ColumnStringComboBox<T,K> createColumnStringComboBox(ColumnWrapper.Bulder builder){
 
-        return new ColumnNamedComboBox<T,K>(builder);
+        return new ColumnStringComboBox<T,K>(builder);
 
     }
     public ColumnDoubleComboBox<T,K> createColumnDoubleComboBox(ColumnWrapper.Bulder builder){

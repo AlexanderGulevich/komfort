@@ -53,7 +53,7 @@ public class EquipmentDataMapper extends DataMapper {
 
             PreparedStatement pstmt =  Db.getConnection().prepareStatement(expression);
             pstmt.setInt(1, domainObject.getRodWidth());
-            pstmt.setString(2, domainObject.getName());     
+            pstmt.setString(2, domainObject.getStringValue());
 
             pstmt.executeUpdate();
 
@@ -77,7 +77,7 @@ public class EquipmentDataMapper extends DataMapper {
             
                PreparedStatement pstmt =  Db.getConnection().prepareStatement(expression);
 
-                 pstmt.setString(1, domainObject.getName());
+                 pstmt.setString(1, domainObject.getStringValue());
                  pstmt.setInt(2, domainObject.getRodWidth());
                  pstmt.setInt(3, domainObject.getId());
 
@@ -106,7 +106,7 @@ public class EquipmentDataMapper extends DataMapper {
                 
                 Equipment pojo=new Equipment();
                 pojo.setId(rs.getInt("id"));
-                pojo.setName(rs.getString("name"));
+                pojo.setStringValue(rs.getString("name"));
                 pojo.setRodWidth(rs.getInt("rodWidth"));
                 
                 //вставляю id в список хранимых в бд

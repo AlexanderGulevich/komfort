@@ -1,6 +1,5 @@
 package basisFx.appCore;
 
-import basisFx.appCore.domainScetch.NamedDomainObject;
 import javafx.collections.ObservableList;
 
 /**

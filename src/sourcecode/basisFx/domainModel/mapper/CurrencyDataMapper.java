@@ -2,7 +2,6 @@ package basisFx.domainModel.mapper;
 
 import basisFx.appCore.dataSource.Db;
 import basisFx.appCore.domainScetch.NamedDataMapper;
-import basisFx.appCore.domainScetch.NamedDomainObject;
 import basisFx.domainModel.pojo.Currency;
 import javafx.collections.ObservableList;
 
@@ -42,7 +41,7 @@ public class CurrencyDataMapper extends NamedDataMapper {
 
                 Currency pojo=new Currency();
                 pojo.setId(rs.getInt("id"));
-                pojo.setName(rs.getString("name"));
+                pojo.setStringValue(rs.getString("name"));
                 pojo.setTableName(tableName);
 
                 unitOfWork.getStoredPojoesId().add(rs.getInt("id"));

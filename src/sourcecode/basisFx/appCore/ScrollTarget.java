@@ -1,7 +1,7 @@
 //package basisFx.domainModel.targets;
 //
 //import basisFx.appCore.controlPolicy.ColumnWrapper;
-//import basisFx.appCore.domainScetch.NamedDomainObject;
+//import basisFx.appCore.domainScetch.StringValueDomainObject;
 //import basisFx.appCore.elements.AppNode;
 //import basisFx.appCore.elements.TableViewWrapper;
 //import basisFx.appCore.panels.Target;
@@ -63,7 +63,7 @@
 //                                        .setValueChecking(check.createTextCheck())
 //                                        .setColumnSize(1)
 //                                        .setDomainChangeAction(
-//                                                (obj,val)->{((NamedDomainObject)obj).setRate((String)val);}
+//                                                (obj,val)->{((StringValueDomainObject)obj).setRate((String)val);}
 //                                        )
 //                        )
 //                );

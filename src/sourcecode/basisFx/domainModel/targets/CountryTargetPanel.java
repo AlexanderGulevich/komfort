@@ -1,7 +1,7 @@
 package basisFx.domainModel.targets;
 
 import basisFx.appCore.controlPolicy.ColumnWrapper;
-import basisFx.appCore.domainScetch.NamedDomainObject;
+import basisFx.appCore.domainScetch.StringValueDomainObject;
 import basisFx.appCore.elements.AppNode;
 import basisFx.appCore.elements.TableViewWrapper;
 import basisFx.appCore.panels.Target;
@@ -26,13 +26,13 @@ public class CountryTargetPanel extends Target {
                 .setDataMapper(this.dataMapperFabric.getCountryDataMapper())
                 .setDbTableName("Country").refresh()
                 .setColums(
-                        columnFabric.<NamedDomainObject,String>createStringColumn(ColumnWrapper.Bulder.create()
+                        columnFabric.<StringValueDomainObject,String>createStringColumn(ColumnWrapper.Bulder.create()
                                         .setColumnName("Наименование")
-                                        .setPropertyName("name")
+                                        .setPropertyName("stringValue")
                                         .setValueChecking(check.createTextCheck())
                                         .setColumnSize(1)
                                         .setDomainChangeAction(
-                                                (obj,val)->{((Country)obj).setName((String)val);}
+                                                (obj,val)->{((Country)obj).setStringValue((String)val);}
                                         )
                         )
                 );

@@ -32,15 +32,15 @@ public class CounterpartyTargetPanel extends Target{
                 .setColums(
 ////////////////////////////////
                         columnFabric.createStringColumn(ColumnWrapper.Bulder.create()
-                                .setColumnName("Наименование контрагента").setPropertyName("name")
+                                .setColumnName("Наименование контрагента").setPropertyName("stringValue")
                                 .setValueChecking(check.createTextCheck())
                                 .setColumnSize(0.5)
                                 .setDomainChangeAction(
-                                        (obj,val)->{((Counterparty)obj).setName((String)val);}
+                                        (obj,val)->{((Counterparty)obj).setStringValue((String)val);}
                                 )
                         ),
 ////////////////////////////////
-                        columnFabric.createColumnNamedComboBox(ColumnWrapper.Bulder.create()
+                        columnFabric.createColumnStringComboBox(ColumnWrapper.Bulder.create()
                                 .setColumnName("Страна").setColumnSize(0.3).setPropertyName("country")
                                 .setDomainObjectListGetter(() -> dataMapperFabric.getCounterpartyDataMapper().getCountryList())
                                 .setDomainChangeAction(
@@ -48,7 +48,7 @@ public class CounterpartyTargetPanel extends Target{
                                 )
                         ),
 ////////////////////////////////////////////////////////////////
-                        columnFabric.createColumnNamedComboBox(ColumnWrapper.Bulder.create()
+                        columnFabric.createColumnStringComboBox(ColumnWrapper.Bulder.create()
                                 .setColumnName("Валюта").setColumnSize(0.2).setPropertyName("currency")
                                 .setDomainObjectListGetter(() -> dataMapperFabric.getCounterpartyDataMapper().getCurrencyList())
                                 .setDomainChangeAction(

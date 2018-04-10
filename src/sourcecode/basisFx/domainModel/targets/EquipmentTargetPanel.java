@@ -30,11 +30,11 @@ public class EquipmentTargetPanel extends Target{
                 .setColums(
                      columnFabric.<Equipment,String>createStringColumn(ColumnWrapper.Bulder.create()
                     .setColumnName("Наименование")
-                    .setPropertyName("name")
+                    .setPropertyName("stringValue")
                     .setValueChecking(check.createTextCheck())
                     .setColumnSize(0.6)
                     .setDomainChangeAction(
-                         (obj,val)->{((Equipment)obj).setName((String)val);}
+                         (obj,val)->{((Equipment)obj).setStringValue((String)val);}
                          )
                      ),
                      columnFabric.<Equipment,Integer>createIntegerColumn(ColumnWrapper.Bulder.create()

@@ -1,7 +1,6 @@
 package basisFx.domainModel.pojo;
 
-import basisFx.appCore.domainScetch.DoubleDomainObject;
-import basisFx.appCore.domainScetch.NamedDomainObject;
+import basisFx.appCore.domainScetch.StringValueDomainObject;
 import javafx.beans.property.SimpleObjectProperty;
 
 import java.time.LocalDate;
@@ -11,26 +10,26 @@ import java.time.LocalDate;
  * Created by AlexanderGulevich on 11.03.2018.
  *
  */
-public class Employees  extends NamedDomainObject {
+public class Employer extends StringValueDomainObject {
 
     private SimpleObjectProperty<LocalDate> startingRateDate =new SimpleObjectProperty<>(this, "startingRateDate", null);
     private SimpleObjectProperty<Boolean> isFired =new SimpleObjectProperty<>(this, "isFired", false);
-    private SimpleObjectProperty<NamedDomainObject> rate =new SimpleObjectProperty<>(this, "rate", null);
+    private SimpleObjectProperty<StringValueDomainObject> rate =new SimpleObjectProperty<>(this, "rate", null);
 
-    public Employees( ) {
+    public Employer( ) {
         this.dataMapper=mapperFabric.getEmployeesDataMapper();
-        this.tableName="Employees";
+        this.tableName="Employer";
     }
 
-    public NamedDomainObject getRate() {
+    public StringValueDomainObject getRate() {
         return rate.get();
     }
 
-    public SimpleObjectProperty<NamedDomainObject> rateProperty() {
+    public SimpleObjectProperty<StringValueDomainObject> rateProperty() {
         return rate;
     }
 
-    public void setRate(NamedDomainObject rate) {
+    public void setRate(StringValueDomainObject rate) {
         this.rate.set(rate);
     }
 
@@ -73,7 +72,7 @@ public class Employees  extends NamedDomainObject {
             return true;
 
         }
-
+        System.err.println("NOT isReadyToTransaction".toUpperCase());
         return false;
     }
 

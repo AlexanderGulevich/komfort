@@ -6,8 +6,6 @@
 package basisFx.appCore.controlPolicy;
 
 import basisFx.appCore.domainScetch.DomainObject;
-import basisFx.appCore.domainScetch.NamedDomainObject;
-import basisFx.domainModel.pojo.Currency;
 
 /**
  *
@@ -24,7 +22,7 @@ public class EditDefaultCommitTableCell<T,K> extends Edit<T,K>{
 
 
                 DomainObject domain= (DomainObject) event.getRowValue();
-//                NamedDomainObject namedDomainObject= (NamedDomainObject) event.getRowValue();
+//                StringValueDomainObject namedDomainObject= (StringValueDomainObject) event.getRowValue();
 
                 //проверяет, есть ли такой id в бд
                 if (unitOfWork.getStoredPojoesId().contains(domain.getId())) {
