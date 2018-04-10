@@ -94,7 +94,7 @@ public class EmployeesDataMapper extends DataMapper {
 
         for (RatePerHour rate: ratesStoredList) {
 
-            Integer id=rate.getId();
+            Integer id=rate.getEmployerId();
 
             if(ratesMapById.containsKey(id)){
 

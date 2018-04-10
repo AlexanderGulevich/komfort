@@ -1,6 +1,7 @@
 package basisFx.domainModel.targets;
 
 import basisFx.appCore.controlPolicy.ColumnWrapper;
+import basisFx.appCore.domainScetch.DoubleDomainObject;
 import basisFx.appCore.elements.AppNode;
 import basisFx.appCore.elements.TableViewWrapper;
 import basisFx.appCore.panels.Target;
@@ -31,14 +32,12 @@ public class EmployeesTargetPanel extends Target{
                             .setColumnName("Тариф").setColumnSize(0.2).setPropertyName("rate")
                             .setDomainObjectListGetter(() -> dataMapperFabric.getEmployeesDataMapper().getRateTemplateList())
                             .setDomainChangeAction(
-                                    (obj,val)->{((Employees)obj).setRate((RatePerHour) val);}
+                                    (obj,val)->{((Employees)obj).setRate((DoubleDomainObject) val);}
                             )
                     ),
                     columnFabric.createLocalDateColumn(ColumnWrapper.Bulder.create()
                             .setColumnName("Дата начала действия тарифа") .setPropertyName("startingRateDate").setColumnSize(0.4d)
-//                            .setDateCellValueInitLogic((domainObject)->{
-//                                return ((Employees)domainObject).startingRateDateProperty();})
-                            .sgit etDomainChangeAction((obj,val)->{((Employees)obj).setStartingRateDate((LocalDate) val); } )
+                            .setDomainChangeAction((obj,val)->{((Employees)obj).setStartingRateDate((LocalDate) val); } )
                     )
             );
 

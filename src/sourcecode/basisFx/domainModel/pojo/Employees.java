@@ -30,7 +30,7 @@ public class Employees  extends NamedDomainObject {
         return rate;
     }
 
-    public void setRate(RatePerHour rate) {
+    public void setRate(DoubleDomainObject rate) {
         this.rate.set(rate);
     }
 

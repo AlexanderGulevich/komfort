@@ -170,8 +170,6 @@ public  class TableViewWrapper <T> extends AppNode implements Refreshable{
         
         
         this.dataMapper.getAllDomainObjectList(list,tableName);
-        
-        
 
         return this;
         
