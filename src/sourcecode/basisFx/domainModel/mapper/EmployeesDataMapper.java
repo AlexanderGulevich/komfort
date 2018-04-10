@@ -4,6 +4,7 @@ import basisFx.appCore.dataSource.DataMapper;
 import basisFx.appCore.dataSource.Db;
 import basisFx.appCore.domainScetch.DomainObject;
 import basisFx.appCore.domainScetch.DoubleDomainObject;
+import basisFx.appCore.domainScetch.NamedDomainObject;
 import basisFx.domainModel.pojo.Employees;
 import basisFx.domainModel.pojo.RatePerHour;
 import javafx.collections.FXCollections;
@@ -17,7 +18,7 @@ import java.util.logging.Logger;
 
 public class EmployeesDataMapper extends DataMapper {
 
-    private  ObservableList <DoubleDomainObject> rateTamlateList =null;
+    private  ObservableList <NamedDomainObject> rateTamlateList =null;
     private  ObservableList <RatePerHour> ratesStoredList =null;
     private  ObservableList <Employees> currentEmployees =null;
     private  HashMap<Integer,ArrayList<RatePerHour>> ratesMapById =new HashMap<>();
@@ -148,7 +149,8 @@ public class EmployeesDataMapper extends DataMapper {
 
             PreparedStatement pstmt2 =  Db.getConnection().prepareStatement(expression2);
             pstmt2.setInt(1, maxId+1);
-            pstmt2.setDouble(2,((DoubleDomainObject)domainObject.getRate()).getDoubleValue());
+//            pstmt2.setDouble(2,((DoubleDomainObject)domainObject.getRate()).getDoubleValue());
+            pstmt2.setDouble(2,   Double.valueOf( ((NamedDomainObject)domainObject.getRate()).getName())   );
             pstmt2.setDate(3,Date.valueOf(  domainObject.getStartingRateDate()));
 
             pstmt2.executeUpdate();
@@ -161,7 +163,7 @@ public class EmployeesDataMapper extends DataMapper {
 
     }
 
-    public  ObservableList <DoubleDomainObject> getRateTemplateList() {
+    public  ObservableList <NamedDomainObject> getRateTemplateList() {
 
         if (rateTamlateList != null) {
             System.out.println("EmployeesDataMapper.getRateTemplateList -----rateTamlateList != null");
@@ -171,7 +173,7 @@ public class EmployeesDataMapper extends DataMapper {
 
             String expression="SELECT * FROM " +"RateTemplates"+" ORDER BY ID";
             Statement stmt  = null;
-            rateTamlateList = FXCollections.<DoubleDomainObject>observableArrayList();
+            rateTamlateList = FXCollections.<NamedDomainObject>observableArrayList();
 
             try {
 
@@ -180,9 +182,9 @@ public class EmployeesDataMapper extends DataMapper {
                 ResultSet rs    = stmt.executeQuery(expression);
 
                 while (rs.next()) {
-                    DoubleDomainObject domainObject = new DoubleDomainObject();
+                    NamedDomainObject domainObject = new NamedDomainObject();
                     domainObject.setId(rs.getInt("id"));
-                    domainObject.setDoubleValue(rs.getDouble("rate"));
+                    domainObject.setName(String.valueOf(rs.getDouble("rate")));
 
                     rateTamlateList.add(domainObject);
 
@@ -211,7 +213,7 @@ public class EmployeesDataMapper extends DataMapper {
             while (rs.next()) {
                 RatePerHour domainObject = new RatePerHour();
                 domainObject.setId(rs.getInt("id"));
-                domainObject.setDoubleValue(rs.getDouble("rate"));
+                domainObject.setName(String.valueOf(rs.getDouble("rate")));
                 domainObject.setStartingRateDate(rs.getDate("startDate").toLocalDate());
                 domainObject.setEmployerId(rs.getInt("employerId"));
 

@@ -15,22 +15,22 @@ public class Employees  extends NamedDomainObject {
 
     private SimpleObjectProperty<LocalDate> startingRateDate =new SimpleObjectProperty<>(this, "startingRateDate", null);
     private SimpleObjectProperty<Boolean> isFired =new SimpleObjectProperty<>(this, "isFired", false);
-    private SimpleObjectProperty<DoubleDomainObject> rate =new SimpleObjectProperty<>(this, "rate", null);
+    private SimpleObjectProperty<NamedDomainObject> rate =new SimpleObjectProperty<>(this, "rate", null);
 
     public Employees( ) {
         this.dataMapper=mapperFabric.getEmployeesDataMapper();
         this.tableName="Employees";
     }
 
-    public DoubleDomainObject getRate() {
+    public NamedDomainObject getRate() {
         return rate.get();
     }
 
-    public SimpleObjectProperty<DoubleDomainObject> rateProperty() {
+    public SimpleObjectProperty<NamedDomainObject> rateProperty() {
         return rate;
     }
 
-    public void setRate(DoubleDomainObject rate) {
+    public void setRate(NamedDomainObject rate) {
         this.rate.set(rate);
     }
 

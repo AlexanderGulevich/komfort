@@ -2,11 +2,12 @@ package basisFx.domainModel.pojo;
 
 import basisFx.appCore.domainScetch.DomainObject;
 import basisFx.appCore.domainScetch.DoubleDomainObject;
+import basisFx.appCore.domainScetch.NamedDomainObject;
 import javafx.beans.property.SimpleObjectProperty;
 
 import java.time.LocalDate;
 
-public class RatePerHour extends DoubleDomainObject {
+public class RatePerHour extends NamedDomainObject {
 
     private SimpleObjectProperty<LocalDate> startingRateDate =new SimpleObjectProperty<>(this, "startingDate", null);
     private SimpleObjectProperty<Integer> employerId =new SimpleObjectProperty<>(this, "employerId", null);

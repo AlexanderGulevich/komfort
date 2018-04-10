@@ -2,6 +2,7 @@ package basisFx.domainModel.targets;
 
 import basisFx.appCore.controlPolicy.ColumnWrapper;
 import basisFx.appCore.domainScetch.DoubleDomainObject;
+import basisFx.appCore.domainScetch.NamedDomainObject;
 import basisFx.appCore.elements.AppNode;
 import basisFx.appCore.elements.TableViewWrapper;
 import basisFx.appCore.panels.Target;
@@ -28,11 +29,11 @@ public class EmployeesTargetPanel extends Target{
                                     (obj,val)->{((Employees)obj).setName((String)val);}
                             )
                     ),
-                    columnFabric.createColumnDoubleComboBox(ColumnWrapper.Bulder.create()
+                    columnFabric.createColumnNamedComboBox(ColumnWrapper.Bulder.create()
                             .setColumnName("Тариф").setColumnSize(0.2).setPropertyName("rate")
                             .setDomainObjectListGetter(() -> dataMapperFabric.getEmployeesDataMapper().getRateTemplateList())
                             .setDomainChangeAction(
-                                    (obj,val)->{((Employees)obj).setRate((DoubleDomainObject) val);}
+                                    (obj,val)->{((Employees)obj).setRate((NamedDomainObject) val);}
                             )
                     ),
                     columnFabric.createLocalDateColumn(ColumnWrapper.Bulder.create()
