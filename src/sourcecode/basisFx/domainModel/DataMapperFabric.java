@@ -29,9 +29,9 @@ public class DataMapperFabric {
 
         return CurrencyDataMapper.getInstance();
     }
-    public EmployeesDataMapper getEmployeesDataMapper() {
+    public EmployeesActualRateDataMapper getEmployeesActualRateDataMapper() {
 
-        return new  EmployeesDataMapper();
+        return new EmployeesActualRateDataMapper();
     }
 
     public RatePerHourDataMapper getRatePerHourDataMapper() {

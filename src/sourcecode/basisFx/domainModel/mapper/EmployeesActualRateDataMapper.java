@@ -15,7 +15,7 @@ import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class EmployeesDataMapper extends DataMapper {
+public class EmployeesActualRateDataMapper extends DataMapper {
 
     private  ObservableList <StringValueDomainObject> rateTamlateList =null;
     private  ObservableList <RatePerHour> ratesStoredList =null;
@@ -26,7 +26,7 @@ public class EmployeesDataMapper extends DataMapper {
     @Override
     public void getAllDomainObjectList(ObservableList list, String tableName) {
 
-        System.out.println("EmployeesDataMapper.getAllDomainObjectList");
+        System.out.println("EmployeesActualRateDataMapper.getAllDomainObjectList");
 
 
         try {
@@ -211,10 +211,10 @@ public class EmployeesDataMapper extends DataMapper {
     public  ObservableList <StringValueDomainObject> getRateTemplateList() {
 
         if (rateTamlateList != null) {
-            System.out.println("EmployeesDataMapper.getRateTemplateList -----rateTamlateList != null");
+            System.out.println("EmployeesActualRateDataMapper.getRateTemplateList -----rateTamlateList != null");
             return rateTamlateList;
         }else {
-            System.out.println("EmployeesDataMapper.getRateTemplateList---rateTamlateList = null");
+            System.out.println("EmployeesActualRateDataMapper.getRateTemplateList---rateTamlateList = null");
 
             String expression="SELECT * FROM " +"RateTemplates"+" ORDER BY ID";
             Statement stmt  = null;

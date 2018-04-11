@@ -11,7 +11,7 @@ import basisFx.domainModel.settings.FontsStore;
 
 import java.time.LocalDate;
 
-public class EmployeesTargetPanel extends Target{
+public class EmployeesActualRatePanel extends Target{
 
     private TableViewWrapper tableViewWrapper;
     @Override
@@ -20,8 +20,8 @@ public class EmployeesTargetPanel extends Target{
         tableViewWrapper = AppNode.NodeBuilder.create()
             .setId(CSSID.TABLE).setCoordinate(panel,50d, null, 0d, 0d)
             .createTableViewWrapper().setTablesWidthProperty(0.8, panel.widthProperty())
-                .setEditable(false)
-            .setDataMapper(this.dataMapperFabric.getEmployeesDataMapper()).refresh()
+            .setEditable(false)
+            .setDataMapper(this.dataMapperFabric.getEmployeesActualRateDataMapper()).refresh()
             .setColums(
                     columnFabric.createStringColumn(ColumnWrapper.Bulder.
                             create("ФИО","stringValue",0.4d)
@@ -31,7 +31,7 @@ public class EmployeesTargetPanel extends Target{
                     ),
                     columnFabric.createColumnStringComboBox(ColumnWrapper.Bulder.create()
                             .setColumnName("Тариф").setColumnSize(0.2).setPropertyName("rate")
-                            .setDomainObjectListGetter(() -> dataMapperFabric.getEmployeesDataMapper().getRateTemplateList())
+                            .setDomainObjectListGetter(() -> dataMapperFabric.getEmployeesActualRateDataMapper().getRateTemplateList())
                             .setDomainChangeAction(
                                     (obj,val)->{((Employer)obj).setRate((StringValueDomainObject) val);}
                             )

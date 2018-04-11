@@ -19,7 +19,7 @@ public class Counterparty  extends StringValueDomainObject {
 
     public Counterparty( ) {
         this.dataMapper=mapperFabric.getCounterpartyDataMapper();
-        this.tableName="Counterparty";
+        this.tableName="CounterpartyPanel";
     }
 
     public StringValueDomainObject getCountry() {

@@ -14,7 +14,7 @@ import basisFx.domainModel.settings.FontsStore;
  *
  * @author Alek
  */
-public class CounterpartyTargetPanel extends Target{
+public class CounterpartyPanel extends Target{
     
     private TableViewWrapper tableViewWrapper;
 
@@ -25,10 +25,10 @@ public class CounterpartyTargetPanel extends Target{
 
         tableViewWrapper = AppNode.NodeBuilder.create()
                 .setId(CSSID.TABLE).setCoordinate(panel,50d, null, 0d, 0d)
-                .<Counterparty>createTableViewWrapper()
+                .<basisFx.domainModel.pojo.Counterparty>createTableViewWrapper()
                 .setTablesWidthProperty(0.8, panel.widthProperty())
                 .setDataMapper(this.dataMapperFabric.getCounterpartyDataMapper())
-                .setDbTableName("Counterparty").refresh()
+                .setDbTableName("CounterpartyPanel").refresh()
                 .setColums(
 ////////////////////////////////
                         columnFabric.createStringColumn(ColumnWrapper.Bulder.create()
@@ -36,7 +36,7 @@ public class CounterpartyTargetPanel extends Target{
                                 .setValueChecking(check.createTextCheck())
                                 .setColumnSize(0.5)
                                 .setDomainChangeAction(
-                                        (obj,val)->{((Counterparty)obj).setStringValue((String)val);}
+                                        (obj,val)->{((basisFx.domainModel.pojo.Counterparty)obj).setStringValue((String)val);}
                                 )
                         ),
 ////////////////////////////////
@@ -44,7 +44,7 @@ public class CounterpartyTargetPanel extends Target{
                                 .setColumnName("Страна").setColumnSize(0.3).setPropertyName("country")
                                 .setDomainObjectListGetter(() -> dataMapperFabric.getCounterpartyDataMapper().getCountryList())
                                 .setDomainChangeAction(
-                                        (obj,val)->{((Counterparty)obj).setCountry((Country) val);}
+                                        (obj,val)->{((basisFx.domainModel.pojo.Counterparty)obj).setCountry((Country) val);}
                                 )
                         ),
 ////////////////////////////////////////////////////////////////
@@ -52,7 +52,7 @@ public class CounterpartyTargetPanel extends Target{
                                 .setColumnName("Валюта").setColumnSize(0.2).setPropertyName("currency")
                                 .setDomainObjectListGetter(() -> dataMapperFabric.getCounterpartyDataMapper().getCurrencyList())
                                 .setDomainChangeAction(
-                                        (obj,val)->{((Counterparty)obj).setCurrency((Currency) val);}
+                                        (obj,val)->{((basisFx.domainModel.pojo.Counterparty)obj).setCurrency((Currency) val);}
                                 )
                         )
 ////////////////////////////////
@@ -72,7 +72,7 @@ public class CounterpartyTargetPanel extends Target{
                 .setEvent(eventFactory.
                         createRowAdd(
                                 tableViewWrapper,
-                                (l)->{l.add(new Counterparty());}))
+                                (l)->{l.add(new basisFx.domainModel.pojo.Counterparty());}))
                 .createNButton();
 
         AppNode.NodeBuilder.create()

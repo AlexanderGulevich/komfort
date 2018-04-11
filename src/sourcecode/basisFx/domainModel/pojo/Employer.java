@@ -17,7 +17,7 @@ public class Employer extends StringValueDomainObject {
     private SimpleObjectProperty<StringValueDomainObject> rate =new SimpleObjectProperty<>(this, "rate", null);
 
     public Employer( ) {
-        this.dataMapper=mapperFabric.getEmployeesDataMapper();
+        this.dataMapper=mapperFabric.getEmployeesActualRateDataMapper();
         this.tableName="Employer";
     }
 

@@ -14,7 +14,7 @@ import basisFx.domainModel.settings.FontsStore;
  *
  * @autor AlexanderGulevich
  */
-public class CurrencyTargetPanel extends Target {
+public class CurrencyPanel extends Target {
 
 
     private TableViewWrapper tableViewWrapper;

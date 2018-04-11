@@ -48,11 +48,10 @@ public class MainMenuSketch extends MenuSketch{
 
                createVertical("Управление сотрудниками", null, composit.COMPOSITE,"\uF007", FontsStore.FAWESOME5REGULAR,25)
                        .addInerLevel(
-                               create("Сотрудики", fabric.createEmployeesPanel(), composit.SIMPLE),
-                               create("Актуальные тарифы", fabric.createEmployeesPanel(), composit.SIMPLE),
-                               create("Управление тарифами", fabric.createRatePerHourPanel(), composit.SIMPLE),
+                               create("Сотрудики", fabric.createEmployeesManagerPanel(), composit.SIMPLE),
+                               create("Актуальные тарифы", fabric.createEmployeesActualRate(), composit.SIMPLE),
                                create("Шаблоны тарифов", fabric.createRatePerHourPanel(), composit.SIMPLE),
-                               create("Уволенные", fabric.createEmployeesPanel(), composit.SIMPLE)
+                               create("Уволенные", fabric.createEmployeesActualRate(), composit.SIMPLE)
 
                ),
 

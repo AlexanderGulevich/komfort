@@ -27,22 +27,22 @@ public class ColumnFabric <T,K> {
         return new ColumnStringComboBox<T,K>(builder);
 
     }
-    public ColumnDoubleComboBox<T,K> createColumnDoubleComboBox(ColumnWrapper.Bulder builder){
-
-        return new ColumnDoubleComboBox<T,K>(builder);
-
-    }
+//    public ColumnDoubleComboBox<T,K> createColumnDoubleComboBox(ColumnWrapper.Bulder builder){
+//
+//        return new ColumnDoubleComboBox<T,K>(builder);
+//
+//    }
     public ColumnLocalDate<T,K> createLocalDateColumn(ColumnWrapper.Bulder builder){
 
         return new ColumnLocalDate<T,K>(builder);
 
     }
-
-    public ColumnDouble<T,K> createDoubleColumn(ColumnWrapper.Bulder builder){
-
-        return new ColumnDouble<T,K>(builder);
-
-    }
+//
+//    public ColumnDouble<T,K> createDoubleColumn(ColumnWrapper.Bulder builder){
+//
+//        return new ColumnDouble<T,K>(builder);
+//
+//    }
 
 
 

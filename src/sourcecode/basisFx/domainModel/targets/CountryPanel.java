@@ -14,7 +14,7 @@ import basisFx.domainModel.settings.FontsStore;
  *
  * @autor AlexanderGulevich
  */
-public class CountryTargetPanel extends Target {
+public class CountryPanel extends Target {
 
     private TableViewWrapper tableViewWrapper;
     @Override

@@ -12,7 +12,7 @@ import basisFx.domainModel.settings.FontsStore;
  *
  * @author Alek
  */
-public class EquipmentTargetPanel extends Target{
+public class EquipmentPanel extends Target{
     
     private TableViewWrapper tableViewWrapper;
 
