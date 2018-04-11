@@ -24,22 +24,20 @@ public class EquipmentTargetPanel extends Target{
       
         tableViewWrapper = AppNode.NodeBuilder.create()
                 .setId(CSSID.TABLE).setCoordinate(panel,50d, null, 0d, 0d)
-                .<Equipment>createTableViewWrapper().setTablesWidthProperty(0.7, panel.widthProperty())
+                .createTableViewWrapper().setTablesWidthProperty(0.7, panel.widthProperty())
                 .setDataMapper(this.dataMapperFabric.getEquipmentDataMapper())
                 .setDbTableName("Equipment").refresh()
                 .setColums(
-                     columnFabric.<Equipment,String>createStringColumn(ColumnWrapper.Bulder.create()
-                    .setColumnName("Наименование")
-                    .setPropertyName("stringValue")
+                     columnFabric.createStringColumn(ColumnWrapper.Bulder.create()
+                    .setColumnName("Наименование") .setPropertyName("stringValue")
                     .setValueChecking(check.createTextCheck())
                     .setColumnSize(0.6)
                     .setDomainChangeAction(
                          (obj,val)->{((Equipment)obj).setStringValue((String)val);}
                          )
                      ),
-                     columnFabric.<Equipment,Integer>createIntegerColumn(ColumnWrapper.Bulder.create()
-                    .setColumnName("Ширина стержня")
-                    .setPropertyName("rodWidth")
+                     columnFabric.createIntegerColumn(ColumnWrapper.Bulder.create()
+                    .setColumnName("Ширина стержня").setPropertyName("rodWidth")
                     .setValueChecking(check.createNumCheck())
                     .setColumnSize(0.4)
                     .setDomainChangeAction(

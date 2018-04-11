@@ -72,9 +72,21 @@ public  class ColumnWrapper<T> {
          protected DateCellValueInitLogic dateCellValueInitLogic;
 
 
+         public Bulder() {
+         }
+
+         public Bulder(String columnName, String propertyName, Double columnSize ) {
+             setColumnName(columnName);
+             setColumnSize(columnSize);
+             setPropertyName(propertyName);
+         }
+
          public static Bulder create(){
-            return new Bulder();
-        }
+             return new Bulder();
+         }
+         public static Bulder create(String columnName, String propertyName, Double columnSize ){
+             return new Bulder( columnName,  propertyName,  columnSize);
+         }
       
          public  Bulder setColumnName(String columnName){
          this.columnName=columnName;

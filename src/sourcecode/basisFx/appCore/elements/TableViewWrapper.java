@@ -44,11 +44,7 @@ public  class TableViewWrapper <T> extends AppNode implements Refreshable{
       
 
     }
-/**
- * @param policy  
- * TableView.CONSTRAINED_RESIZE_POLICY,                 
- * TableView.UNCONSTRAINED_RESIZE_POLICY
- */
+
     public TableViewWrapper<T>  setColumnResizePolicy( Callback<TableView.ResizeFeatures,Boolean> policy){
         table.setColumnResizePolicy(policy);
         return this;

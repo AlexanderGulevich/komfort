@@ -15,14 +15,16 @@ public class EmployeesTargetPanel extends Target{
 
     private TableViewWrapper tableViewWrapper;
     @Override
-    protected void createElement() {    tableViewWrapper = AppNode.NodeBuilder.create()
+    protected void createElement() {
+
+        tableViewWrapper = AppNode.NodeBuilder.create()
             .setId(CSSID.TABLE).setCoordinate(panel,50d, null, 0d, 0d)
-            .<Employer>createTableViewWrapper().setTablesWidthProperty(0.8, panel.widthProperty())
-            .setDataMapper(this.dataMapperFabric.getEmployeesDataMapper())
-            .setDbTableName("Employer").refresh()
+            .createTableViewWrapper().setTablesWidthProperty(0.8, panel.widthProperty())
+                .setEditable(false)
+            .setDataMapper(this.dataMapperFabric.getEmployeesDataMapper()).refresh()
             .setColums(
-                    columnFabric.createStringColumn(ColumnWrapper.Bulder.create()
-                            .setColumnName("ФИО").setPropertyName("stringValue").setColumnSize(0.4d)
+                    columnFabric.createStringColumn(ColumnWrapper.Bulder.
+                            create("ФИО","stringValue",0.4d)
                             .setDomainChangeAction(
                                     (obj,val)->{((Employer)obj).setStringValue((String)val);}
                             )
