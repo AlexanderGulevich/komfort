@@ -19,7 +19,12 @@ public class NamedDataMapper extends DataMapper {
     private StringValueDomainObject domainObject;
 
     @Override
-    public void getAllDomainObjectList(ObservableList list, String tableName) {
+    public void getAllDomainObjectList(ObservableList list) {
+
+    }
+
+    @Override
+    public void getAllDomainObjectList(ObservableList list, DomainObject selectedDomainObject) {
 
     }
 

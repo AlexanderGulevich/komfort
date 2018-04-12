@@ -22,19 +22,11 @@ public class CountryPanel extends Target {
 
         tableViewWrapper = AppNode.NodeBuilder.create()
                 .setId(CSSID.TABLE).setCoordinate(panel,50d, null, 0d, 0d)
-                .<Country>createTableViewWrapper().setTablesWidthProperty(0.7, panel.widthProperty())
-                .setDataMapper(this.dataMapperFabric.getCountryDataMapper())
-                .setDbTableName("Country").refresh()
+                .createTableViewWrapper().setTablesWidthProperty(0.7, panel.widthProperty())
+                .setDataMapper(this.dataMapperFabric.getCountryDataMapper()).refresh()
                 .setColums(
-                        columnFabric.<StringValueDomainObject,String>createStringColumn(ColumnWrapper.Bulder.create()
-                                        .setColumnName("Наименование")
-                                        .setPropertyName("stringValue")
-                                        .setValueChecking(check.createTextCheck())
-                                        .setColumnSize(1)
-                                        .setDomainChangeAction(
-                                                (obj,val)->{((Country)obj).setStringValue((String)val);}
-                                        )
-                        )
+                        columnFabric.createStringColumn("Наименование","stringValue",1d,
+                                                (obj,val)->((Country)obj).setStringValue((String)val))
                 );
 
 

@@ -1,7 +1,7 @@
 package basisFx.appCore.windows;
 
 import basisFx.appCore.panels.AbstractPanel;
-import basisFx.appCore.utils.AnchorCoordinate;
+import basisFx.appCore.utils.Coordinate;
 import basisFx.appCore.registry.Layers;
 import basisFx.domainModel.settings.CSSID;
 import basisFx.domainModel.settings.FontsStore;
@@ -56,7 +56,7 @@ public class WindowUndecorated extends WindowFx{
     }
 
    
-    public WindowUndecorated setIconAnchor(AnchorCoordinate c, AnchorPane p) {
+    public WindowUndecorated setIconAnchor(Coordinate c, AnchorPane p) {
         AppNode.NodeBuilder.create()
                 .setCoordinate(c)
                 .setParent(p)
@@ -67,7 +67,7 @@ public class WindowUndecorated extends WindowFx{
         
     }
     
-    public WindowUndecorated setTextIcon(AnchorPane parent,AnchorCoordinate c,FontsStore f, Double fHeight,String tIcn){
+    public WindowUndecorated setTextIcon(AnchorPane parent, Coordinate c, FontsStore f, Double fHeight, String tIcn){
         AppNode.NodeBuilder.create()
                  .setCoordinate(c)
                  .setParent(parent)

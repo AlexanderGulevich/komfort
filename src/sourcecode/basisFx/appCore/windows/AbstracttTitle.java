@@ -5,7 +5,7 @@
  */
 package basisFx.appCore.windows;
 
-import basisFx.appCore.utils.AnchorCoordinate;
+import basisFx.appCore.utils.Coordinate;
 import basisFx.appCore.Initiated;
 import javafx.scene.layout.AnchorPane;
 
@@ -18,12 +18,12 @@ public abstract class AbstracttTitle implements Initiated{
     
     protected AnchorPane titlePanel;
 
-    protected AnchorCoordinate titleNameCoordinate;
+    protected Coordinate titleNameCoordinate;
     
     public abstract void init();
     public abstract AbstracttTitle getInstance();
     
-    public AbstracttTitle setTitleCoordinate(AnchorCoordinate c){
+    public AbstracttTitle setTitleCoordinate(Coordinate c){
           this.titleNameCoordinate=c;
           return this;
       }

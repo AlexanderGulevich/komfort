@@ -5,15 +5,15 @@
  */
 package basisFx.appCore.panels;
 
-import basisFx.appCore.elements.SketchedButtonFactory;
-import basisFx.appCore.utils.AnchorCoordinate;
+import basisFx.appCore.ButtonFactory;
+import basisFx.appCore.InnerPanelsFabric;
+import basisFx.appCore.TableFabric;
+import basisFx.appCore.utils.Coordinate;
 import basisFx.appCore.TargetStackLogic;
 import basisFx.appCore.controlPolicy.CheckingFactory;
 import basisFx.appCore.controlPolicy.ColumnFabric;
 import basisFx.appCore.controlPolicy.EditFabric;
 import basisFx.appCore.events.EventFactory;
-import basisFx.appCore.panels.AbstractPanel;
-import basisFx.appCore.panels.PanelFabric;
 import basisFx.domainModel.DataMapperFabric;
 import javafx.scene.layout.AnchorPane;
 
@@ -31,9 +31,12 @@ public abstract class Target {
     protected EditFabric editFabric=new EditFabric();
     protected EventFactory eventFactory=EventFactory.getInstance();
     protected TargetStackLogic targetStack=TargetStackLogic.getInstance();
-    protected SketchedButtonFactory sketchedButtonFactory=new SketchedButtonFactory();
+    protected ButtonFactory buttonFactory =new ButtonFactory();
+    protected TableFabric tableFabric=new TableFabric();
+    protected InnerPanelsFabric innerPanelsFabric=new InnerPanelsFabric();
 
-    
+
+
     
     protected abstract void createElement();
   
@@ -60,7 +63,7 @@ public abstract class Target {
     protected void createPanel(){
          panel=panelFabric.createInnerContentPanel(
             new AbstractPanel.PanelBuilder()
-                    .setPanelCoordinate(new AnchorCoordinate(10d, 10d, 10d, 10d)))
+                    .setPanelCoordinate(new Coordinate(10d, 10d, 10d, 10d)))
                 .getPanel();
     }
     

@@ -1,6 +1,6 @@
 package basisFx.appCore.menu;
 
-import basisFx.appCore.utils.AnchorCoordinate;
+import basisFx.appCore.utils.Coordinate;
 import basisFx.domainModel.settings.CSSID;
 import javafx.scene.layout.AnchorPane;
 
@@ -13,7 +13,7 @@ public final class MenuCreator {
     private MenuSketch nodes;
     private CSSID css;
     private AnchorPane anchorPane;
-    private AnchorCoordinate coordinate;
+    private Coordinate coordinate;
     private MenuRepresent represent;
     private Double width;
     private Double height;
@@ -59,7 +59,7 @@ public final class MenuCreator {
         return this;
     }
 
-    public MenuCreator setCoordinate(AnchorCoordinate coordinate) {
+    public MenuCreator setCoordinate(Coordinate coordinate) {
         this.coordinate = coordinate;
         return this;
     }

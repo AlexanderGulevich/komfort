@@ -7,10 +7,7 @@ package basisFx.appCore.panels;
 
 import basisFx.appCore.elements.AppNode;
 import basisFx.appCore.registry.Layers;
-import basisFx.appCore.utils.AnchorCoordinate;
 import basisFx.domainModel.settings.CSSID;
-import javafx.scene.Node;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
 
 

@@ -27,10 +27,10 @@ public class CountryDataMapper extends NamedDataMapper {
 
 
     @Override
-    public void getAllDomainObjectList(ObservableList list, String tableName) {
+    public void getAllDomainObjectList(ObservableList list) {
         try {
 
-            String expression="SELECT * FROM " +tableName+" ORDER BY ID";
+            String expression="SELECT * FROM " +"Country"+" ORDER BY ID";
 
             Statement stmt  = Db.getConnection().createStatement();
 
@@ -42,7 +42,7 @@ public class CountryDataMapper extends NamedDataMapper {
                 Country pojo=new Country();
                 pojo.setId(rs.getInt("id"));
                 pojo.setStringValue(rs.getString("name"));
-                pojo.setTableName(tableName);
+//                pojo.setTableName(tableName);
 
 
                 unitOfWork.getStoredPojoesId().add(rs.getInt("id"));

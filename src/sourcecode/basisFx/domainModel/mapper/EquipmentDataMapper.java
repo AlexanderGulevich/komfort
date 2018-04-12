@@ -91,11 +91,11 @@ public class EquipmentDataMapper extends DataMapper {
     }
 
     @Override
-    public void getAllDomainObjectList(ObservableList list,String tableName) {
+    public void getAllDomainObjectList(ObservableList list) {
         
       try {
              
-        String expression="SELECT * FROM " +tableName+" ORDER BY ID";
+        String expression="SELECT * FROM " +"Equipment"+" ORDER BY ID";
         
         Statement stmt  = Db.getConnection().createStatement();
         
@@ -123,6 +123,11 @@ public class EquipmentDataMapper extends DataMapper {
         }
  
         
+    }
+
+    @Override
+    public void getAllDomainObjectList(ObservableList list, DomainObject selectedDomainObject) {
+
     }
 
 

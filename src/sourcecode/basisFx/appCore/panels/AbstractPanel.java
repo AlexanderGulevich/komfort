@@ -5,7 +5,7 @@
  */
 package basisFx.appCore.panels;
 
-import basisFx.appCore.utils.AnchorCoordinate;
+import basisFx.appCore.utils.Coordinate;
 import basisFx.appCore.Initiated;
 import basisFx.appCore.events.EventFactory;
 import basisFx.domainModel.settings.FontsStore;
@@ -19,7 +19,7 @@ import javafx.stage.Stage;
  */
 public abstract class AbstractPanel implements Initiated{
     
-    protected AnchorCoordinate panelCoordinate;
+    protected Coordinate panelCoordinate;
     protected AnchorPane parent;
     protected Stage stage;
     protected AnchorPane panel;
@@ -52,7 +52,7 @@ public abstract class AbstractPanel implements Initiated{
     
     public static class  PanelBuilder {
         
-        protected AnchorCoordinate panelCoordinate;
+        protected Coordinate panelCoordinate;
         protected AnchorPane parent;
         protected Double width;
         protected Double height;
@@ -67,7 +67,7 @@ public abstract class AbstractPanel implements Initiated{
             return this;
         }
 
-        public PanelBuilder setPanelCoordinate(AnchorCoordinate panelCoordinate) {
+        public PanelBuilder setPanelCoordinate(Coordinate panelCoordinate) {
             this.panelCoordinate = panelCoordinate;
             return this;
         }

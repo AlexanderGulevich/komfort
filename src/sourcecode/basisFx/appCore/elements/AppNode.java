@@ -1,6 +1,6 @@
 package basisFx.appCore.elements;
 
-import basisFx.appCore.utils.AnchorCoordinate;
+import basisFx.appCore.utils.Coordinate;
 import basisFx.appCore.events.AppEvent;
 import basisFx.domainModel.settings.CSSID;
 import basisFx.appCore.utils.FontLogic;
@@ -35,7 +35,7 @@ public abstract class AppNode  {
     protected Node element;
     protected Double width;
     protected Double height;
-    protected AnchorCoordinate coordinate;
+    protected Coordinate coordinate;
     protected AppNode parentAppNode;
     protected AppNode childAppNode;
     protected ArrayList <AppNode> children=new ArrayList<>();
@@ -199,7 +199,7 @@ public abstract class AppNode  {
         protected String id;
         protected Double width;
         protected Double height;
-        protected AnchorCoordinate coordinate;
+        protected Coordinate coordinate;
         protected AppNode parent;
         protected ArrayList <AppNode> children=new ArrayList<>();
         protected ArrayList <AppEvent> events=new ArrayList<>();
@@ -235,7 +235,7 @@ public abstract class AppNode  {
 
        
         public NodeBuilder setCoordinate(Double top,Double right,Double bottom,Double left) {
-            this.coordinate=new AnchorCoordinate();
+            this.coordinate=new Coordinate();
             this.coordinate.setTop(top);
             this.coordinate.setBottom(bottom);
             this.coordinate.setLeft(left);
@@ -243,7 +243,7 @@ public abstract class AppNode  {
             return this;
     }
        
-        public NodeBuilder setCoordinate(AnchorCoordinate c) {
+        public NodeBuilder setCoordinate(Coordinate c) {
             this.coordinate=c;
 
             return this;
@@ -252,7 +252,7 @@ public abstract class AppNode  {
        
         public NodeBuilder setCoordinate(AnchorPane ap,Double top,Double right,Double bottom,Double left) {
             setParent(ap);
-            this.coordinate=new AnchorCoordinate();
+            this.coordinate=new Coordinate();
             this.coordinate.setTop(top);
             this.coordinate.setBottom(bottom);
             this.coordinate.setLeft(left);

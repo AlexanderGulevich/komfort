@@ -31,14 +31,10 @@ public class CounterpartyPanel extends Target{
                 .setDbTableName("CounterpartyPanel").refresh()
                 .setColums(
 ////////////////////////////////
-                        columnFabric.createStringColumn(ColumnWrapper.Bulder.create()
-                                .setColumnName("Наименование контрагента").setPropertyName("stringValue")
-                                .setValueChecking(check.createTextCheck())
-                                .setColumnSize(0.5)
-                                .setDomainChangeAction(
-                                        (obj,val)->{((basisFx.domainModel.pojo.Counterparty)obj).setStringValue((String)val);}
-                                )
-                        ),
+                        columnFabric.createStringColumn(
+                                "Наименование контрагента","stringValue",0.5,
+                                (obj,val)->((basisFx.domainModel.pojo.Counterparty)obj).setStringValue((String)val)),
+
 ////////////////////////////////
                         columnFabric.createColumnStringComboBox(ColumnWrapper.Bulder.create()
                                 .setColumnName("Страна").setColumnSize(0.3).setPropertyName("country")

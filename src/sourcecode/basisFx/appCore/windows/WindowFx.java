@@ -1,6 +1,6 @@
 package basisFx.appCore.windows;
 
-import basisFx.appCore.utils.AnchorCoordinate;
+import basisFx.appCore.utils.Coordinate;
 import basisFx.appCore.utils.StylesLoader;
 import basisFx.appCore.events.EventFactory;
 import javafx.scene.Scene;
@@ -28,7 +28,7 @@ public abstract class WindowFx {
     protected AnchorPane visibleRoot;
     protected AnchorPane contentLauer;
     protected Boolean iconIneded;
-    protected AnchorCoordinate titlePanelCoordinate;
+    protected Coordinate titlePanelCoordinate;
     protected EventFactory eventFactory=EventFactory.getInstance();
  
     abstract void initControlTopButton();

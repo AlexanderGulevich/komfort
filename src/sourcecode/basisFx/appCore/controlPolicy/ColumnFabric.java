@@ -17,11 +17,16 @@ public class ColumnFabric <T,K> {
         return new ColumnInteger<T>(builder);
     
     }
-    public ColumnString<T> createStringColumn(ColumnWrapper.Bulder builder){
+    public ColumnString<T> createStringColumn(String columnName, String propertyName, Double columnSize,DomainChangeAction domainChangeAction) {
 
-        return new ColumnString<T>(builder);
-
+        return new ColumnString<T>(
+                ColumnWrapper.Bulder.create(columnName, propertyName, columnSize).setDomainChangeAction(domainChangeAction)
+        );
     }
+
+
+
+
     public ColumnStringComboBox<T,K> createColumnStringComboBox(ColumnWrapper.Bulder builder){
 
         return new ColumnStringComboBox<T,K>(builder);

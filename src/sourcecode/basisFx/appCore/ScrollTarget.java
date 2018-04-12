@@ -68,9 +68,9 @@
 //                        )
 //                );
 //
-//        sketchedButtonFactory
+//        buttonFactory
 //                .createLittleTableAddButton(countryTableWrapper,pane,Country.class,35d,5d,null,null);
-//        sketchedButtonFactory
+//        buttonFactory
 //                .createLittleTableDeleteButton(countryTableWrapper,pane,70d,5d,null,null);
 //
 //

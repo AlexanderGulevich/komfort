@@ -5,7 +5,7 @@
  */
 package basisFx.appCore.menu;
 
-import basisFx.appCore.utils.AnchorCoordinate;
+import basisFx.appCore.utils.Coordinate;
 import basisFx.appCore.events.EventFactory;
 import basisFx.domainModel.settings.CSSID;
 import javafx.scene.layout.AnchorPane;
@@ -19,7 +19,7 @@ public abstract class MenuRepresent {
     protected CSSID css;
     protected MenuComponent menuComponent;
     protected AnchorPane ap;
-    protected AnchorCoordinate c;
+    protected Coordinate c;
     protected Double width;
     protected Double height;
     protected EventFactory eventFactory=EventFactory.getInstance();
@@ -43,7 +43,7 @@ public abstract class MenuRepresent {
         this.ap = ap;
     }
 
-    public void setCoordinate(AnchorCoordinate c) {
+    public void setCoordinate(Coordinate c) {
         this.c = c;
     }
 

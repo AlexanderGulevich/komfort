@@ -31,14 +31,14 @@ public class CounterpartyDataMapper extends DataMapper {
     private static CounterpartyDataMapper ourInstance = new CounterpartyDataMapper();
 
     @Override
-    public void getAllDomainObjectList(ObservableList list, String tableName) {
+    public void getAllDomainObjectList(ObservableList list) {
 
         getCountryList();
         getCurrencyList();
 
         try {
 
-            String expression="SELECT * FROM " +tableName+" ORDER BY ID";
+            String expression="SELECT * FROM " +"Counterparty"+" ORDER BY ID";
 
             Statement stmt  = Db.getConnection().createStatement();
 
@@ -91,6 +91,11 @@ public class CounterpartyDataMapper extends DataMapper {
         } catch (SQLException ex) {
             Logger.getLogger(EquipmentDataMapper.class.getName()).log(Level.SEVERE, null, ex);
         }
+
+    }
+
+    @Override
+    public void getAllDomainObjectList(ObservableList list, DomainObject selectedDomainObject) {
 
     }
 

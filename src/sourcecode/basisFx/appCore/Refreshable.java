@@ -5,6 +5,8 @@
  */
 package basisFx.appCore;
 
+import basisFx.appCore.domainScetch.DomainObject;
+
 /**
  *
  * @author Alek
@@ -12,4 +14,5 @@ package basisFx.appCore;
  */
 public  interface Refreshable  <T > {
     public T refresh();
+    public T refresh(DomainObject selectedDomainObject);
 }

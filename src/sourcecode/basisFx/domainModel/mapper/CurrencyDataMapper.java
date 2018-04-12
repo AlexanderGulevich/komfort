@@ -27,10 +27,10 @@ public class CurrencyDataMapper extends NamedDataMapper {
 
 
     @Override
-    public void getAllDomainObjectList(ObservableList list, String tableName) {
+    public void getAllDomainObjectList(ObservableList list) {
         try {
 
-            String expression="SELECT * FROM " +tableName+" ORDER BY ID";
+            String expression="SELECT * FROM " +"Currency"+" ORDER BY ID";
 
             Statement stmt  = Db.getConnection().createStatement();
 
@@ -42,7 +42,7 @@ public class CurrencyDataMapper extends NamedDataMapper {
                 Currency pojo=new Currency();
                 pojo.setId(rs.getInt("id"));
                 pojo.setStringValue(rs.getString("name"));
-                pojo.setTableName(tableName);
+//                pojo.setTableName(tableName);
 
                 unitOfWork.getStoredPojoesId().add(rs.getInt("id"));
 

@@ -12,20 +12,20 @@ import javafx.scene.layout.AnchorPane;
  *
  * @author Alek
  */
-public class AnchorCoordinate {
+public class Coordinate {
     
     private AnchorPane parentAnchorPane;
     
     private Node node;
 
-    public AnchorCoordinate(Double top, Double right, Double bottom, Double left) {
+    public Coordinate(Double top, Double right, Double bottom, Double left) {
         this.top = top;
         this.right = right;
         this.bottom = bottom;
         this.left = left;
     }
 
-    public AnchorCoordinate(AnchorPane parentAnchorPane, Double top, Double right, Double bottom, Double left) {
+    public Coordinate(AnchorPane parentAnchorPane, Double top, Double right, Double bottom, Double left) {
         this.parentAnchorPane = parentAnchorPane;
         this.top = top;
         this.right = right;
@@ -33,7 +33,7 @@ public class AnchorCoordinate {
         this.left = left;
     }
 
-    public AnchorCoordinate(AnchorPane parentAnchorPane, Node node, Double top, Double right, Double bottom, Double left) {
+    public Coordinate(AnchorPane parentAnchorPane, Node node, Double top, Double right, Double bottom, Double left) {
         this.parentAnchorPane = parentAnchorPane;
         this.node = node;
         this.top = top;
@@ -42,7 +42,7 @@ public class AnchorCoordinate {
         this.left = left;
     }
 
-    public AnchorCoordinate() {
+    public Coordinate() {
     }
     
     
@@ -52,7 +52,7 @@ public class AnchorCoordinate {
         return node;
     }
 
-    public AnchorCoordinate setChildNode(Node node) {
+    public Coordinate setChildNode(Node node) {
         this.node = node;
         return this;
     }
@@ -69,7 +69,7 @@ public class AnchorCoordinate {
         return left;
     }
 
-    public AnchorCoordinate setLeft(Double left) {
+    public Coordinate setLeft(Double left) {
         this.left = left;
         return this;
     }
@@ -78,7 +78,7 @@ public class AnchorCoordinate {
         return bottom;
     }
 
-    public AnchorCoordinate setBottom(Double bottom) {
+    public Coordinate setBottom(Double bottom) {
         this.bottom = bottom;
         return this;
     }
@@ -87,7 +87,7 @@ public class AnchorCoordinate {
         return right;
     }
 
-    public AnchorCoordinate setRight(Double right) {
+    public Coordinate setRight(Double right) {
         this.right = right;
         return this;
     }
@@ -96,7 +96,7 @@ public class AnchorCoordinate {
         return top;
     }
 
-    public AnchorCoordinate setTop(Double top) {
+    public Coordinate setTop(Double top) {
         this.top = top;
         return this;
     }
@@ -105,7 +105,7 @@ public class AnchorCoordinate {
         return parentAnchorPane;
     }
 
-    public AnchorCoordinate setParentAnchorPane(AnchorPane parentAnchorPane) {
+    public Coordinate setParentAnchorPane(AnchorPane parentAnchorPane) {
         this.parentAnchorPane = parentAnchorPane;
         return this;
     }

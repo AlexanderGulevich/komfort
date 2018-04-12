@@ -26,15 +26,8 @@ public class CurrencyPanel extends Target {
                 .setDataMapper(this.dataMapperFabric.getCurrencyDataMapper())
                 .setDbTableName("Currency").refresh()
                 .setColums(
-                        columnFabric.<StringValueDomainObject,String>createStringColumn(ColumnWrapper.Bulder.create()
-                                        .setColumnName("Наименование")
-                                        .setPropertyName("stringValue")
-                                        .setValueChecking(check.createTextCheck())
-                                        .setColumnSize(1)
-                                        .setDomainChangeAction(
-                                                (obj,val)->{((Currency)obj).setStringValue((String)val);}
-                                        )
-                        )
+                        columnFabric.createStringColumn("Наименование","stringValue",1d,
+                                (obj,val)->((Currency)obj).setStringValue((String)val))
                 );
 
 

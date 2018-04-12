@@ -21,14 +21,14 @@ public class RatePerHourPanel extends Target {
 
         tableViewWrapper = AppNode.NodeBuilder.create()
                 .setId(CSSID.TABLE).setCoordinate(panel,50d, null, 0d, 0d)
-                .<RatePerHour>createTableViewWrapper().setTablesWidthProperty(0.7, panel.widthProperty())
-                .setDataMapper(this.dataMapperFabric.getRatePerHourDataMapper())
-                .setDbTableName("RatePerHour").refresh()
+                .createTableViewWrapper().setTablesWidthProperty(0.7, panel.widthProperty())
+                .setDataMapper(this.dataMapperFabric.getRatePerHourDataMapper()).refresh()
                 .setColums(
-                        columnFabric.<RatePerHour,Double>createStringColumn(ColumnWrapper.Bulder.create()
-                                        .setColumnName("Тариф ( бел. руб/час. )").setPropertyName("stringValue").setColumnSize(1)
-                                        .setDomainChangeAction((obj,val)->{((RatePerHour)obj).setStringValue((String) val); } )
+                        columnFabric.createStringColumn(
+                                "\"Тариф ( бел. руб/час. )\"","stringValue",1d,
+                                 (obj,val)->((RatePerHour)obj).setStringValue((String) val)
                         )
+
 
                 );
 

@@ -22,7 +22,7 @@ public class RatePerHourDataMapper extends DataMapper {
     }
 
     @Override
-    public void getAllDomainObjectList(ObservableList list, String tableName) {
+    public void getAllDomainObjectList(ObservableList list) {
         try {
 
             String expression="SELECT * FROM " +"RateTemplates"+" ORDER BY ID";
@@ -50,6 +50,11 @@ public class RatePerHourDataMapper extends DataMapper {
         } catch (SQLException ex) {
             Logger.getLogger(EquipmentDataMapper.class.getName()).log(Level.SEVERE, null, ex);
         }
+
+    }
+
+    @Override
+    public void getAllDomainObjectList(ObservableList list, DomainObject selectedDomainObject) {
 
     }
 

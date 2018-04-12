@@ -28,14 +28,9 @@ public class EquipmentPanel extends Target{
                 .setDataMapper(this.dataMapperFabric.getEquipmentDataMapper())
                 .setDbTableName("Equipment").refresh()
                 .setColums(
-                     columnFabric.createStringColumn(ColumnWrapper.Bulder.create()
-                    .setColumnName("Наименование") .setPropertyName("stringValue")
-                    .setValueChecking(check.createTextCheck())
-                    .setColumnSize(0.6)
-                    .setDomainChangeAction(
-                         (obj,val)->{((Equipment)obj).setStringValue((String)val);}
-                         )
-                     ),
+                     columnFabric.createStringColumn("Наименование","stringValue",0.6,
+                         (obj,val)->((Equipment)obj).setStringValue((String)val)),
+
                      columnFabric.createIntegerColumn(ColumnWrapper.Bulder.create()
                     .setColumnName("Ширина стержня").setPropertyName("rodWidth")
                     .setValueChecking(check.createNumCheck())

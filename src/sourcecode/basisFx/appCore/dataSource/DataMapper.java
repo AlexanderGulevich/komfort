@@ -27,7 +27,9 @@ public abstract class DataMapper {
     
      protected UnitOfWork unitOfWork;
 
-    public abstract void getAllDomainObjectList(ObservableList  list,String tableName);
+    public abstract void getAllDomainObjectList(ObservableList  list);
+    public abstract void getAllDomainObjectList(ObservableList  list,DomainObject selectedDomainObject);
+
 
     public abstract void updateDomainObject(DomainObject d);
     public abstract void insertDomainObject(DomainObject d);

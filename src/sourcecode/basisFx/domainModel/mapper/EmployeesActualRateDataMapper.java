@@ -24,7 +24,7 @@ public class EmployeesActualRateDataMapper extends DataMapper {
 
 
     @Override
-    public void getAllDomainObjectList(ObservableList list, String tableName) {
+    public void getAllDomainObjectList(ObservableList list) {
 
         System.out.println("EmployeesActualRateDataMapper.getAllDomainObjectList");
 
@@ -71,6 +71,11 @@ public class EmployeesActualRateDataMapper extends DataMapper {
 
         System.out.println(currentEmployees);
 
+
+    }
+
+    @Override
+    public void getAllDomainObjectList(ObservableList list, DomainObject selectedDomainObject) {
 
     }
 

@@ -11,12 +11,16 @@ import basisFx.appCore.dataSource.DataMapper;
 import basisFx.appCore.dataSource.UnitOfWork;
 import basisFx.appCore.controlPolicy.TableListener;
 import basisFx.appCore.domainScetch.DomainObject;
+
+import java.util.ArrayList;
 import java.util.Iterator;
 import javafx.beans.property.ReadOnlyDoubleProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
+import javafx.scene.input.MouseButton;
 import javafx.util.Callback;
 
 public  class TableViewWrapper <T> extends AppNode implements Refreshable{
@@ -27,21 +31,18 @@ public  class TableViewWrapper <T> extends AppNode implements Refreshable{
     private TableListener  tableListener=new TableListener (this);
     protected DataMapper dataMapper;
     protected String tableName;
+    private ArrayList <TableViewWrapper> observers=new ArrayList();
 
-    
     
     @SuppressWarnings("unchecked")
  public   TableViewWrapper(NodeBuilder builder) {
         table=new TableView<>(list);
-
+        setClickedRowDetection();
         setElement(table);
         table.setEditable(true);
         init(builder);
         list.addListener(tableListener);
         unitOfWork.setRefreshable(this);
-
-
-      
 
     }
 
@@ -165,13 +166,57 @@ public  class TableViewWrapper <T> extends AppNode implements Refreshable{
         this.unitOfWork.clearStoredPojoesId();
         
         
-        this.dataMapper.getAllDomainObjectList(list,tableName);
+        this.dataMapper.getAllDomainObjectList(list);
 
         return this;
-        
-       
-        
+
     
+    }
+
+    @Override
+    public TableViewWrapper refresh(DomainObject selectedDomainObject) {
+
+        this.table.getItems().clear();
+        this.list.clear();
+        this.unitOfWork.clearStoredPojoesId();
+        this.dataMapper.getAllDomainObjectList(list,selectedDomainObject);
+
+        
+        return this;
+    }
+
+
+    private void setClickedRowDetection(){
+
+        table.setRowFactory(tv -> {
+            TableRow<DomainObject> row = new TableRow<>();
+            row.setOnMouseClicked(event -> {
+                if (! row.isEmpty() && event.getButton()== MouseButton.PRIMARY
+                        && event.getClickCount() == 2) {
+
+                    DomainObject clickedDomainObject = row.getItem();
+
+                    if (!observers.isEmpty()){
+
+
+                        for (TableViewWrapper observer : observers) {
+                            observer.refresh(clickedDomainObject);
+                        }
+
+                    }
+
+                }
+            });
+            return row ;
+        });
+
+
+    }
+
+    public  TableViewWrapper setBoundTable(TableViewWrapper tableViewWrapper){
+            observers.add(tableViewWrapper);
+
+        return this;
     }
   
      
