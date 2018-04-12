@@ -26,7 +26,7 @@ public class TextTitle extends AbstracttTitle{
                     .setFont(Settings.MAIN_TITLE_FONT, Settings.MAIN_TITLE_HEIGHT)
                     .setId(CSSID.TITLE_WINDOW_TEXT)
                     .setText(WindowsTitlesNames.MAIN_WINDOW_NAME)
-                    .createNText();
+                    .createText();
     
     }
     

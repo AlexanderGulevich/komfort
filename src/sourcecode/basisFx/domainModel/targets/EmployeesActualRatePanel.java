@@ -42,17 +42,6 @@ public class EmployeesActualRatePanel extends Target{
 
 
 
-
-//        buttonFactory.createStandartAddButton(
-//                panel,new Coordinate(80d,0d, null, null),tableViewWrapper,Employer.class);
-//        buttonFactory.createStandartDeleteButton(
-//                panel,new Coordinate(120d,0d, null, null),tableViewWrapper);
-
-
-
-
-
-
     }
 
 }

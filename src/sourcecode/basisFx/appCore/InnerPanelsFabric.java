@@ -1,24 +1,23 @@
 package basisFx.appCore;
 
+import basisFx.appCore.elements.AppNode;
+import basisFx.appCore.utils.Coordinate;
+import basisFx.domainModel.settings.CSSID;
 import javafx.scene.layout.AnchorPane;
-
+//
 public class InnerPanelsFabric
 {
 
-    public AnchorPane create
+    public AnchorPane createInnerPanels(AnchorPane panel, double widthPerCent, Coordinate coordinate) {
 
+        return (AnchorPane) AppNode.NodeBuilder.create()
+                .setCoordinate(coordinate)
+                .setParent(panel)
+                .setWidthPerCent(widthPerCent)
+                .createAnchorPanelWrapper()
+                .getElement();
 
-    panel=(AnchorPane) AppNode.NodeBuilder.create()
-        .setCoordinate(panelCoordinate)
-                         .setParent(parent)
-                         .setHeight(height)
-                         .setWidth(width)
-                         .setId(CSSID.MAIN_CONTENT_ANCHOR)
-                         .setStage(stage)
-                         .createAnchorPanelWrapper()
-                         .getElement();
-
-
+    }
 
 
 

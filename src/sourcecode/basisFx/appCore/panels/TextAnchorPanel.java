@@ -8,7 +8,6 @@ package basisFx.appCore.panels;
 import basisFx.appCore.elements.AppNode;
 import basisFx.appCore.registry.Layers;
 import basisFx.domainModel.settings.CSSID;
-import basisFx.domainModel.settings.FontsStore;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 
@@ -45,7 +44,7 @@ public class TextAnchorPanel extends AbstractPanel{
                 .setCoordinate(0d, 0d, 0d, 0d)
 //                .setText(component.getRate())
                 .setFont(font, fontSize)
-                .createNText().getElement();
+                .createText().getElement();
     }
 
     @Override

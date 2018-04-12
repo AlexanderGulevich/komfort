@@ -5,11 +5,8 @@
  */
 package basisFx.appCore.panels;
 
-import basisFx.appCore.ButtonFactory;
-import basisFx.appCore.InnerPanelsFabric;
-import basisFx.appCore.TableFabric;
+import basisFx.appCore.*;
 import basisFx.appCore.utils.Coordinate;
-import basisFx.appCore.TargetStackLogic;
 import basisFx.appCore.controlPolicy.CheckingFactory;
 import basisFx.appCore.controlPolicy.ColumnFabric;
 import basisFx.appCore.controlPolicy.EditFabric;
@@ -34,6 +31,8 @@ public abstract class Target {
     protected ButtonFactory buttonFactory =new ButtonFactory();
     protected TableFabric tableFabric=new TableFabric();
     protected InnerPanelsFabric innerPanelsFabric=new InnerPanelsFabric();
+    protected TextFabric textFabric=new TextFabric();
+
 
 
 

@@ -57,6 +57,7 @@ public abstract class AppNode  {
     protected Double minWidth;
     protected Callback callback;
     protected ScrollPane scrollPane;
+    protected Double widthPerCent;
     
 
 //    protected abstract void display();
@@ -85,6 +86,7 @@ public abstract class AppNode  {
         if(this.stringId!=null)element.setId(stringId);
         this.callback=builder.callback;
         this.scrollPane= builder.scrollPane;
+        this.widthPerCent= builder.widthPerCent;
 
         
         
@@ -219,6 +221,7 @@ public abstract class AppNode  {
         protected Double minWidth;
         protected Callback callback;
         protected ScrollPane scrollPane;
+        protected double widthPerCent;
 
 
         public static NodeBuilder create(){
@@ -233,8 +236,12 @@ public abstract class AppNode  {
             return this;
     }
 
-       
-        public NodeBuilder setCoordinate(Double top,Double right,Double bottom,Double left) {
+        public NodeBuilder setWidthPerCent(double widthPerCent) {
+            this.widthPerCent = widthPerCent;
+            return this;
+        }
+
+        public NodeBuilder setCoordinate(Double top, Double right, Double bottom, Double left) {
             this.coordinate=new Coordinate();
             this.coordinate.setTop(top);
             this.coordinate.setBottom(bottom);
@@ -388,7 +395,7 @@ public abstract class AppNode  {
 
 
         /////////  Fabric Methods  /////////
-        public TextWrapper createNText(){
+        public TextWrapper createText(){
             return new<Text>TextWrapper(this);
         }
         public AnchorWrapper createAnchorPanelWrapper(){

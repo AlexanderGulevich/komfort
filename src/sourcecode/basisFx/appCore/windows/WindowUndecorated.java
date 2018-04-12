@@ -74,7 +74,7 @@ public class WindowUndecorated extends WindowFx{
                  .setFont(f, fHeight)
                  .setId(CSSID.TEXT_ICON_ANCHOR)
                  .setText(tIcn)
-                 .createNText();
+                 .createText();
 
         return this;
     }

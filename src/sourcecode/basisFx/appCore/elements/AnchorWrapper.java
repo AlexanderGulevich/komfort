@@ -21,16 +21,22 @@ public class AnchorWrapper<T extends Node> extends AppNode{
         AnchorPane element=(AnchorPane) this.element;
         
         init(builder);
-        
 
-       
-        if(this.height!=null) {
-            element.setPrefHeight(this.height);
+
+        if (parentAnchor!=null && widthPerCent!=null) {
+
+            element.prefWidthProperty()
+                    .bind(parentAnchor.widthProperty().multiply(widthPerCent));
+
+        }else {
+
+            if (this.height != null) {
+                element.setPrefHeight(this.height);
+            }
+            if (this.width != null) {
+                element.setPrefWidth(this.width);
+            }
         }
-        if(this.width!=null) {
-            element.setPrefWidth(this.width);
-        }
-        
         
         if(dropShadow!=null)element.setEffect(dropShadow);
         if(insects!=null)element.setPadding(insects);
