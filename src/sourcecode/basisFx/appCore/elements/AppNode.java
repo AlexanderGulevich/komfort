@@ -57,7 +57,7 @@ public abstract class AppNode  {
     protected Double minWidth;
     protected Callback callback;
     protected ScrollPane scrollPane;
-    protected Double widthPerCent;
+    protected Double widthPerCent=null;
     
 
 //    protected abstract void display();
@@ -221,7 +221,7 @@ public abstract class AppNode  {
         protected Double minWidth;
         protected Callback callback;
         protected ScrollPane scrollPane;
-        protected double widthPerCent;
+        protected Double widthPerCent=null;
 
 
         public static NodeBuilder create(){
