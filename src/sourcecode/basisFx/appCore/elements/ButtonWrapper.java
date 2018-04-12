@@ -47,8 +47,8 @@ public class ButtonWrapper <T extends Node>extends AppNode{
         if(font!=null) {
             but.setFont(font);
         }
-        if(this.text!=null) {
-            but.setText(this.text);
+        if(this.string !=null) {
+            but.setText(this.string);
         }
    
         

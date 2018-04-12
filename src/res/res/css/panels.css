@@ -2,27 +2,37 @@
       -fx-background-color: transparent;
 }
 
+
+#LABEL_TEXT{
+      /* -fx-text-fill: #003641;
+      -fx-color: #003641; */
+
+              /* -fx-fill:#22515B; */
+                      -fx-fill:#6e969e;
+
+}
+
 #HORIZONTAL_FLOW_MENU_PANEL{
      -fx-padding:0 0 0 0;
      /*-fx-pref-height: 35;*/
       -fx-background-color: white;
      /*-fx-border-color:#57b75733;*/
      /*-fx-border-color:derive(#003641,120%);*/
-     /*-fx-border-width: 0.5 0.5 0.5 0.5;*/ 
+     /*-fx-border-width: 0.5 0.5 0.5 0.5;*/
      -fx-effect: dropshadow(gaussian ,#555555 , 2, 0, 0.5, 0.5);
-     
-    
+
+
 }
 #LEFT_SIDE_MENU_VERTICAL_PANEL{
-    
+
          /*-fx-background-color: #14333D;*/
          /*-fx-background-color: #3f828a;*/
          /*-fx-background-color: #53A5B2;*/
          -fx-background-color: #003641;
          /*-fx-pref-width: 60;*/
-         
-     
-     
+
+
+
 }
 #TILE_PANE_ANCHOR{
     -fx-background-color:white;

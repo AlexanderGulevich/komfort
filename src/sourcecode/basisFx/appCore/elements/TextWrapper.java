@@ -18,12 +18,14 @@ public class TextWrapper<T extends Node> extends AppNode{
         
         this.element=new Text();
         
-        Text element=(Text) this.element;
+        Text text=(Text) this.element;
+
         
         init(builder);
-        
-        element.setFont(font);
-        element.setText(text);
+
+        text.setFont(font);
+        text.setText(string);
+        text.setId(id);
 
      
        }

@@ -46,7 +46,7 @@ public abstract class AppNode  {
     protected Font font;  
     protected boolean hasBond;
     protected Stage stage;
-    protected String text;
+protected String string;
     protected Insets insets;
     protected DropShadow dropShadow;
     protected String stringId;
@@ -75,7 +75,7 @@ public abstract class AppNode  {
         this.font=builder.font;
         this.events=builder.events;
         this.stage=builder.stage;
-        this.text=builder.text;
+        this.string =builder.text;
         this.insets=builder.insects;
         this.dropShadow=builder.dropShadow;
         this.minHeight=builder.minHeight;

@@ -29,7 +29,16 @@ public class ColumnFabric <T,K> {
 
     public ColumnStringComboBox<T,K> createColumnStringComboBox(ColumnWrapper.Bulder builder){
 
-        return new ColumnStringComboBox<T,K>(builder);
+        return new ColumnStringComboBox<T,K>(
+                ColumnWrapper.Bulder.create()
+                        .setColumnName("Тариф").setColumnSize(0.1).setPropertyName("rate")
+                        .setDomainObjectListGetter(() -> dataMapperFabric.getEmployeesActualRateDataMapper().getRateTemplateList())
+                        .setDomainChangeAction(
+                                (obj,val)->{((Employer)obj).setRate((StringValueDomainObject) val);}
+                        )
+
+
+        );
 
     }
 //    public ColumnDoubleComboBox<T,K> createColumnDoubleComboBox(ColumnWrapper.Bulder builder){
