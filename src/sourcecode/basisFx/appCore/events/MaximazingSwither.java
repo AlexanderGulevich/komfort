@@ -5,8 +5,11 @@
  */
 package basisFx.appCore.events;
 
+import basisFx.appCore.MaximazingManager;
 import basisFx.appCore.elements.AppNode;
 import basisFx.domainModel.settings.Settings;
+
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.geometry.Insets;
@@ -23,8 +26,7 @@ import javafx.stage.Stage;
 public class MaximazingSwither extends AppEvent{
     protected Node  node;
     protected boolean  max=false;
-     
-               
+
                
     @Override
     public void setElement(AppNode appNode) {
@@ -44,10 +46,12 @@ public class MaximazingSwither extends AppEvent{
     @Override
     public void run() {
         try {
-                Thread.sleep(100);
-                
-               Stage stage =appNode.getStage();
-               AnchorPane root=(AnchorPane) stage.getScene().getRoot();
+
+
+            Thread.sleep(100);
+
+            Stage stage =appNode.getStage();
+            AnchorPane root=(AnchorPane) stage.getScene().getRoot();
 
 //            if (stage.isMaximized()) {
 //                if (stage.isFullScreen()) {
@@ -66,10 +70,12 @@ public class MaximazingSwither extends AppEvent{
                             (primScreenBounds.getWidth() - stage.getWidth()) / 2);
                     stage.setY(
                             (primScreenBounds.getHeight() - stage.getHeight()) / 2);
-                    
-                    
-                    
-                
+
+
+                MaximazingManager.notifyObjects();
+
+
+
             } else {
 
                  max=true;
@@ -86,6 +92,9 @@ public class MaximazingSwither extends AppEvent{
                 stage.setY(primaryScreenBounds.getMinY());
                 stage.setWidth(primaryScreenBounds.getWidth());
                 stage.setHeight(primaryScreenBounds.getHeight());
+
+
+                MaximazingManager.notifyObjects();
 
             }
                 

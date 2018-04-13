@@ -14,6 +14,7 @@ public class InnerPanelsFabric
                 .setCoordinate(coordinate)
                 .setParent(panel)
                 .setWidthPerCent(widthPerCent)
+                .setId(CSSID.INNER_PANE)
                 .createAnchorPanelWrapper()
                 .getElement();
 

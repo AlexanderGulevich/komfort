@@ -1,7 +1,11 @@
 #TARGET_PANEL{
       -fx-background-color: transparent;
+         -fx-padding:0 0 0 0;
 }
+#INNER_PANE{
+  -fx-background-color: red;
 
+}
 
 #LABEL_TEXT{
       /* -fx-text-fill: #003641;

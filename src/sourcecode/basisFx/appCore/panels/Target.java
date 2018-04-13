@@ -35,8 +35,6 @@ public abstract class Target {
 
 
 
-
-    
     protected abstract void createElement();
   
     public AnchorPane getTargetElement() {

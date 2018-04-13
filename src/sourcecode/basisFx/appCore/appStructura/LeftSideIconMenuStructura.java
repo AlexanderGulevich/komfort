@@ -16,7 +16,7 @@ public class LeftSideIconMenuStructura extends AppMainStructura {
         windowFabric.createUnDecoratedWindow(Settings.WIDTH, Settings.HEIGHT, primaryStage)
                 .setPanel(panelFabric.createContentPanel(//ПАНЕЛЬ ДИНАМИЧЕСКОГО КОНТНЕНТА
                         new AbstractPanel.PanelBuilder()
-                                .setPanelCoordinate(new Coordinate(50d,0d,0d,60d))
+                                .setPanelCoordinate(new Coordinate(80d,0d,0d,60d))
                                 .setParent(Layers.getVisibleRoot())
                 ))
                 .setPanel(panelFabric.createTitlePanel(//ПАНЕЛЬ С ЗАГЛАВИЕМ
