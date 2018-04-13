@@ -25,7 +25,7 @@ public class CounterpartyPanel extends Target{
 
         tableViewWrapper = AppNode.NodeBuilder.create()
                 .setId(CSSID.TABLE).setCoordinate(panel,50d, null, 0d, 0d)
-                .<basisFx.domainModel.pojo.Counterparty>createTableViewWrapper()
+                .createTableViewWrapper()
                 .setTablesWidthProperty(0.8, panel.widthProperty())
                 .setDataMapper(this.dataMapperFabric.getCounterpartyDataMapper())
                 .setDbTableName("CounterpartyPanel").refresh()
@@ -36,27 +36,24 @@ public class CounterpartyPanel extends Target{
                                 (obj,val)->((basisFx.domainModel.pojo.Counterparty)obj).setStringValue((String)val)),
 
 ////////////////////////////////
-                        columnFabric.createColumnStringComboBox(ColumnWrapper.Bulder.create()
-                                .setColumnName("Страна").setColumnSize(0.3).setPropertyName("country")
-                                .setDomainObjectListGetter(() -> dataMapperFabric.getCounterpartyDataMapper().getCountryList())
-                                .setDomainChangeAction(
-                                        (obj,val)->{((basisFx.domainModel.pojo.Counterparty)obj).setCountry((Country) val);}
-                                )
+                        columnFabric.createColumnStringComboBox(
+                                "Страна","country",0.3,
+                                (obj,val)->{((basisFx.domainModel.pojo.Counterparty)obj).setCountry((Country) val);},
+                                () -> dataMapperFabric.getCounterpartyDataMapper().getCountryList()
                         ),
 ////////////////////////////////////////////////////////////////
-                        columnFabric.createColumnStringComboBox(ColumnWrapper.Bulder.create()
-                                .setColumnName("Валюта").setColumnSize(0.2).setPropertyName("currency")
-                                .setDomainObjectListGetter(() -> dataMapperFabric.getCounterpartyDataMapper().getCurrencyList())
-                                .setDomainChangeAction(
-                                        (obj,val)->{((basisFx.domainModel.pojo.Counterparty)obj).setCurrency((Currency) val);}
-                                )
+                        columnFabric.createColumnStringComboBox(
+                                "Валюта","currency",0.2,
+                                (obj,val)->{((basisFx.domainModel.pojo.Counterparty)obj).setCurrency((Currency) val);},
+                                () -> dataMapperFabric.getCounterpartyDataMapper().getCurrencyList()
                         )
+                );
 ////////////////////////////////
 
 
 
 
-                );
+
 
 
 

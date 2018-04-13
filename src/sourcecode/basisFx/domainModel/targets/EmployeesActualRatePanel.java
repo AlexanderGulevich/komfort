@@ -27,12 +27,9 @@ public class EmployeesActualRatePanel extends Target{
                     columnFabric.createStringColumn("ФИО","stringValue",0.6d,
                             (obj,val)->((Employer)obj).setStringValue((String)val))
 ,
-                    columnFabric.createColumnStringComboBox(ColumnWrapper.Bulder.create()
-                            .setColumnName("Тариф").setColumnSize(0.1).setPropertyName("rate")
-                            .setDomainObjectListGetter(() -> dataMapperFabric.getEmployeesActualRateDataMapper().getRateTemplateList())
-                            .setDomainChangeAction(
-                                    (obj,val)->{((Employer)obj).setRate((StringValueDomainObject) val);}
-                            )
+                    columnFabric.createColumnStringComboBox("Тариф","rate",0.1,
+                            (obj,val)->{((Employer)obj).setRate((StringValueDomainObject) val);},
+                            () -> dataMapperFabric.getEmployeesActualRateDataMapper().getRateTemplateList()
                     ),
                     columnFabric.createLocalDateColumn(ColumnWrapper.Bulder.create()
                             .setColumnName("Дата начала действия тарифа") .setPropertyName("startingRateDate").setColumnSize(0.3d)

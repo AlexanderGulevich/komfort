@@ -5,6 +5,8 @@
  */
 package basisFx.appCore.controlPolicy;
 
+import basisFx.appCore.DomainObjectListGetter;
+
 /**
  *
  * @author Alek
@@ -24,20 +26,15 @@ public class ColumnFabric <T,K> {
         );
     }
 
-
-
-
-    public ColumnStringComboBox<T,K> createColumnStringComboBox(ColumnWrapper.Bulder builder){
+    public ColumnStringComboBox<T,K> createColumnStringComboBox(String columnName, String propertyName, Double columnSize,DomainChangeAction domainChangeAction,DomainObjectListGetter domainObjectListGetter){
 
         return new ColumnStringComboBox<T,K>(
                 ColumnWrapper.Bulder.create()
-                        .setColumnName("Тариф").setColumnSize(0.1).setPropertyName("rate")
-                        .setDomainObjectListGetter(() -> dataMapperFabric.getEmployeesActualRateDataMapper().getRateTemplateList())
-                        .setDomainChangeAction(
-                                (obj,val)->{((Employer)obj).setRate((StringValueDomainObject) val);}
-                        )
-
-
+                        .setColumnName(columnName)
+                        .setPropertyName(propertyName)
+                        .setColumnSize(columnSize)
+                        .setDomainObjectListGetter(domainObjectListGetter)
+                        .setDomainChangeAction(domainChangeAction)
         );
 
     }
