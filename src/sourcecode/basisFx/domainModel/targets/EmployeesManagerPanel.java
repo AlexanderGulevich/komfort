@@ -27,7 +27,7 @@ public class EmployeesManagerPanel extends Target {
 
         employerSide=innerPanelsFabric.createInnerPanels(panel,0.54d,new Coordinate(0d,null,0d,0d));
 
-        textFabric.createLabel("Сотрудники", FontsStore.ROBOTO_LIGHT,  Pos.BASELINE_CENTER,25d,
+        textFabric.createLabel("Текущий список сотрудников", FontsStore.ROBOTO_LIGHT,  Pos.BASELINE_CENTER,25d,
                 employerSide, new Coordinate(10d,0d,null,0d));
 
 
