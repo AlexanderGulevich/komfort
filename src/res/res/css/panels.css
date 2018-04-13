@@ -3,16 +3,22 @@
          -fx-padding:0 0 0 0;
 }
 #INNER_PANE{
-  -fx-background-color: red;
+  /* -fx-background-color: red; */
 
 }
 
 #LABEL_TEXT{
       /* -fx-text-fill: #003641;
-      -fx-color: #003641; */
+      -fx-color: #003641;
+      -fx-fill:#22515B;
+      -fx-fill:#6e969e;
+      -fx-text-fill:#6e969e; */
+            -fx-text-fill: #22515B;
+            -fx-color: #22515B;
+            -fx-fill:#22515B;
+            -fx-fill:#22515B;
+            -fx-text-fill:#22515B;
 
-              /* -fx-fill:#22515B; */
-                      -fx-fill:#6e969e;
 
 }
 

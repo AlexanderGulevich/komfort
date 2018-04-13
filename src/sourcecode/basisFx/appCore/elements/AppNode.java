@@ -11,8 +11,11 @@ import javafx.geometry.Insets;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.effect.DropShadow;
@@ -58,6 +61,7 @@ protected String string;
     protected Callback callback;
     protected ScrollPane scrollPane;
     protected Double widthPerCent=null;
+    protected Pos pos=null;
     
 
 //    protected abstract void display();
@@ -87,6 +91,7 @@ protected String string;
         this.callback=builder.callback;
         this.scrollPane= builder.scrollPane;
         this.widthPerCent= builder.widthPerCent;
+        this.pos=builder.pos;
 
         
         
@@ -222,6 +227,7 @@ protected String string;
         protected Callback callback;
         protected ScrollPane scrollPane;
         protected Double widthPerCent=null;
+        protected Pos pos=null;
 
 
         public static NodeBuilder create(){
@@ -295,6 +301,11 @@ protected String string;
             this.hasBond=true;
             this.parentAnchor=ap;
             return this;
+         }
+         public NodeBuilder setPosToLabel(Pos pos){
+            this.pos=pos;
+
+             return this;
          }
         public NodeBuilder setParent(FlowPane fp) {
             this.hasBond=true;
@@ -397,6 +408,9 @@ protected String string;
         /////////  Fabric Methods  /////////
         public TextWrapper createText(){
             return new<Text>TextWrapper(this);
+        }
+        public LabelWrapper createLabel(){
+            return new<Label>LabelWrapper(this);
         }
         public AnchorWrapper createAnchorPanelWrapper(){
             return new <AnchorPane>AnchorWrapper(this);

@@ -10,6 +10,7 @@ import basisFx.domainModel.pojo.Employer;
 import basisFx.domainModel.pojo.RatePerHour;
 import basisFx.domainModel.settings.CSSID;
 import basisFx.domainModel.settings.FontsStore;
+import javafx.geometry.Pos;
 import javafx.scene.layout.AnchorPane;
 
 import java.time.LocalDate;
@@ -24,35 +25,36 @@ public class EmployeesManagerPanel extends Target {
     protected void createElement() {
 
 
-        employerSide=innerPanelsFabric.createInnerPanels(panel,0.65d,new Coordinate(0d,null,0d,0d));
+        employerSide=innerPanelsFabric.createInnerPanels(panel,0.54d,new Coordinate(0d,null,0d,0d));
 
-        textFabric.createText("Сотрудники",
-                FontsStore.ROBOTO_LIGHT,20d, employerSide,new Coordinate(40d,0d,null,30d));
+        textFabric.createLabel("Сотрудники", FontsStore.ROBOTO_LIGHT,  Pos.BASELINE_CENTER,25d,
+                employerSide, new Coordinate(10d,0d,null,0d));
+
 
         employerTable =tableFabric.createStandartTable(
-                employerSide,1d,new Coordinate(80d, null, 70d, 0d),
+                panel,0.54d,new Coordinate(50d, null, 70d, 0d),
                 dataMapperFabric.getEmployeesActualRateDataMapper(),
                 columnFabric.createStringColumn("ФИО","stringValue",1d,
                         (obj,val)->{((Employer)obj).setStringValue((String)val);})
         );
-//
+
         buttonFactory.createStandartAddButton(
-                panel,new Coordinate(null,0d, 10d, null), employerTable,Employer.class);
+                employerSide,new Coordinate(null,0d, 10d, null), employerTable,Employer.class);
         buttonFactory.createStandartDeleteButton(
-                panel,new Coordinate(null,null, 10d, 0d), employerTable);
+                employerSide,new Coordinate(null,180d, 10d, null), employerTable);
 
 
 ///////////////////////////////////////////////////
 
-        rateSide=innerPanelsFabric.createInnerPanels(panel,0.3,new Coordinate(0d,0d,0d,null));
+        rateSide=innerPanelsFabric.createInnerPanels(panel,0.45,new Coordinate(0d,0d,0d,null));
 
-        textFabric.createText("Реестр тарифных ставок ",
-                FontsStore.ROBOTO_LIGHT,20d, rateSide,new Coordinate(40d,0d,null,0d));
 
+        textFabric.createLabel("Реестр тарифных ставок ", FontsStore.ROBOTO_LIGHT,  Pos.BASELINE_CENTER,25d,
+                rateSide, new Coordinate(10d,0d,null,0d));
 
 
         rateTable =tableFabric.createStandartTable(
-                rateSide,1d,new Coordinate(80d, 0d, 70d, null),
+                panel,0.45d,new Coordinate(50d, 0d, 70d, null),
                 dataMapperFabric.getEmployeesActualRateDataMapper(),
 
                 columnFabric.createColumnStringComboBox("Тариф","rate",0.3d,
@@ -71,7 +73,7 @@ public class EmployeesManagerPanel extends Target {
         buttonFactory.createStandartAddButton(
                 rateSide,new Coordinate(null,0d, 10d, null), rateTable,RatePerHour.class);
         buttonFactory.createStandartDeleteButton(
-                rateSide,new Coordinate(null,null, 10d, 0d), rateTable);
+                rateSide,new Coordinate(null,180d, 10d, null), rateTable);
 
 
 
