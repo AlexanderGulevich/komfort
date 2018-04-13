@@ -24,13 +24,13 @@ public class EmployeesManagerPanel extends Target {
     protected void createElement() {
 
 
-        employerSide=innerPanelsFabric.createInnerPanels(panel,0.5d,new Coordinate(0d,null,0d,0d));
+        employerSide=innerPanelsFabric.createInnerPanels(panel,0.65d,new Coordinate(0d,null,0d,0d));
 
         textFabric.createText("Сотрудники",
                 FontsStore.ROBOTO_LIGHT,20d, employerSide,new Coordinate(40d,0d,null,30d));
 
         employerTable =tableFabric.createStandartTable(
-                employerSide,0.5d,new Coordinate(80d, null, 70d, 0d),
+                employerSide,1d,new Coordinate(80d, null, 70d, 0d),
                 dataMapperFabric.getEmployeesActualRateDataMapper(),
                 columnFabric.createStringColumn("ФИО","stringValue",1d,
                         (obj,val)->{((Employer)obj).setStringValue((String)val);})
@@ -52,7 +52,7 @@ public class EmployeesManagerPanel extends Target {
 
 
         rateTable =tableFabric.createStandartTable(
-                rateSide,0.4,new Coordinate(80d, 0d, 70d, null),
+                rateSide,1d,new Coordinate(80d, 0d, 70d, null),
                 dataMapperFabric.getEmployeesActualRateDataMapper(),
 
                 columnFabric.createColumnStringComboBox("Тариф","rate",0.3d,

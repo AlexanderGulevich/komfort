@@ -32,8 +32,11 @@ public class AnchorWrapper<T extends Node> extends AppNode implements Maximazing
 
         if (parentAnchor!=null && widthPerCent!=null) {
 
-            element.prefWidthProperty()
-                    .bind(parentAnchor.widthProperty().multiply(widthPerCent));
+
+            pervormMaximazingEventNotifier();
+//
+//            element.prefWidthProperty()
+//                    .bind(parentAnchor.widthProperty().multiply(widthPerCent));
 
 
 
@@ -60,9 +63,17 @@ public class AnchorWrapper<T extends Node> extends AppNode implements Maximazing
             System.err.println("AnchorWrapper.pervormMaximazingEventNotifier".toUpperCase());
             AnchorPane element=(AnchorPane) this.element;
 
-            BigDecimal parentWidth=BigDecimal.valueOf(parentAnchor.getPrefWidth());
-            BigDecimal divisor=BigDecimal.valueOf(widthPerCent);
-            element.prefWidth( parentWidth.divide(divisor,3).doubleValue());
+//            BigDecimal parentWidth=BigDecimal.valueOf(parentAnchor.getPrefWidth());
+//            BigDecimal divisor=BigDecimal.valueOf(widthPerCent);
+//            element.prefWidth( parentWidth.divide(divisor,3).doubleValue());
+
+            BigDecimal parentWidth=BigDecimal.valueOf(parentAnchor.widthProperty().doubleValue());
+            System.out.println("parentAnchor---"+parentAnchor+"--widthPerCent---"+widthPerCent);
+            BigDecimal percent=BigDecimal.valueOf(widthPerCent);
+//            element.setPrefWidth( parentWidth.divide(divisor,3).doubleValue());
+            element.setPrefWidth( parentWidth.multiply(percent).doubleValue());
+            System.out.println("parentPrefWidth----"+parentWidth.doubleValue());
+            System.out.println("getPrefWidth----"+element.getPrefWidth());
 
 
 //            element.prefWidthProperty()
