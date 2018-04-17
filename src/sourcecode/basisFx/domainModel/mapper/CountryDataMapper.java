@@ -1,8 +1,8 @@
 package basisFx.domainModel.mapper;
 
 import basisFx.appCore.dataSource.Db;
-import basisFx.appCore.domainScetch.NamedDataMapper;
-import basisFx.domainModel.pojo.Country;
+import basisFx.appCore.domainScetch.SingleStringValueDataMapper;
+import basisFx.domainModel.domaine.Country;
 import javafx.collections.ObservableList;
 
 import java.sql.ResultSet;
@@ -16,7 +16,7 @@ import java.util.logging.Logger;
  *
  * @autor AlexanderGulevich
  */
-public class CountryDataMapper extends NamedDataMapper {
+public class CountryDataMapper extends SingleStringValueDataMapper {
 
     private static CountryDataMapper ourInstance = new CountryDataMapper();
 
@@ -42,7 +42,7 @@ public class CountryDataMapper extends NamedDataMapper {
                 Country pojo=new Country();
                 pojo.setId(rs.getInt("id"));
                 pojo.setStringValue(rs.getString("name"));
-//                pojo.setTableName(tableName);
+//                domaine.setTableName(tableName);
 
 
                 unitOfWork.getStoredPojoesId().add(rs.getInt("id"));

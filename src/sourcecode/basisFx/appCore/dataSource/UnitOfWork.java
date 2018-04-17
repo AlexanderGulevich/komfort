@@ -87,11 +87,23 @@ public class UnitOfWork {
       
         for (Iterator<DomainObject> iterator = newPojoes.iterator(); iterator.hasNext();) {
             DomainObject next = iterator.next();
-            next.getDataMapper().insertDomainObject(next);
+
+            if (next.getDataMapper().isReadyToTransaction(next)) {
+
+
+                System.out.println("UnitOfWork --КОММИТ НОВОГО ДОМЕНА");
+                System.out.println("UnitOfWork --ДАТА МАППЕР----" + next.getDataMapper());
+
+                next.getDataMapper().insertDomainObject(next);
+
+                System.out.println("UnitOfWork.commitNew");
+
+
+
+
+            }
+
         }
-
-
-        System.out.println("UnitOfWork.commitNew");
 
         clearNewPojoesList();
         refreshable.refresh();
@@ -102,15 +114,21 @@ public class UnitOfWork {
         for (Iterator<DomainObject> iterator = changedPojoes.iterator(); iterator.hasNext();) {
             DomainObject next = iterator.next();
 
-            System.out.println("UnitOfWork --КОММИТ ИЗМЕНЕННОГО ДОМЕНА");
-            System.out.println("UnitOfWork --ДАТА МАППЕР----"+next.getDataMapper());
-            next.getDataMapper().updateDomainObject(next);
+            if (next.getDataMapper().isReadyToTransaction(next)) {
+
+                System.out.println("UnitOfWork --КОММИТ ИЗМЕНЕННОГО ДОМЕНА");
+                System.out.println("UnitOfWork --ДАТА МАППЕР----" + next.getDataMapper());
+                next.getDataMapper().updateDomainObject(next);
+
+
+
+            }
 
 
         }
+
         clearChangedPojoesList();
         refreshable.refresh();
-        
     
     }
     public void commitRemoved() throws SQLException{

@@ -1,8 +1,8 @@
 package basisFx.domainModel.mapper;
 
 import basisFx.appCore.dataSource.Db;
-import basisFx.appCore.domainScetch.NamedDataMapper;
-import basisFx.domainModel.pojo.Currency;
+import basisFx.appCore.domainScetch.SingleStringValueDataMapper;
+import basisFx.domainModel.domaine.Currency;
 import javafx.collections.ObservableList;
 
 import java.sql.ResultSet;
@@ -16,7 +16,7 @@ import java.util.logging.Logger;
  *
  * @autor AlexanderGulevich
  */
-public class CurrencyDataMapper extends NamedDataMapper {
+public class CurrencyDataMapper extends SingleStringValueDataMapper {
 
 
     private static CurrencyDataMapper ourInstance = new CurrencyDataMapper();
@@ -42,7 +42,7 @@ public class CurrencyDataMapper extends NamedDataMapper {
                 Currency pojo=new Currency();
                 pojo.setId(rs.getInt("id"));
                 pojo.setStringValue(rs.getString("name"));
-//                pojo.setTableName(tableName);
+//                domaine.setTableName(tableName);
 
                 unitOfWork.getStoredPojoesId().add(rs.getInt("id"));
 

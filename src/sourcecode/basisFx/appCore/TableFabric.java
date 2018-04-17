@@ -15,14 +15,32 @@ public class TableFabric {
                                                 DataMapper dataMapper,
                                                 ColumnWrapper...columnWrappers){
 
-           return AppNode.NodeBuilder.create()
-                    .setId(CSSID.TABLE)
-                    .setParent(panel).setCoordinate(coordinate)
-                    .createTableViewWrapper().setTablesWidthProperty(width, panel.widthProperty())
-                    .setDataMapper(dataMapper)
-                    .setEditable(true)
-                    .setColums(columnWrappers)
-                    .refresh();
+        return AppNode.NodeBuilder.create()
+                .setId(CSSID.TABLE)
+                .setParent(panel).setCoordinate(coordinate)
+                .createTableViewWrapper().setTablesWidthProperty(width, panel.widthProperty())
+                .setDataMapper(dataMapper)
+                .setEditable(true)
+                .setColums(columnWrappers)
+                .refresh();
+
+
+    }
+
+
+    public TableViewWrapper createBoundTable(TableViewWrapper observer,AnchorPane panel, double width, Coordinate coordinate,
+                                                DataMapper dataMapper,
+                                                ColumnWrapper...columnWrappers){
+
+        return AppNode.NodeBuilder.create()
+                .setId(CSSID.TABLE)
+                .setParent(panel).setCoordinate(coordinate)
+                .createTableViewWrapper().setTablesWidthProperty(width, panel.widthProperty())
+                .setDataMapper(dataMapper)
+                .setEditable(true)
+                .setColums(columnWrappers)
+                .setBoundTable(observer)
+                .refresh();
 
 
     }

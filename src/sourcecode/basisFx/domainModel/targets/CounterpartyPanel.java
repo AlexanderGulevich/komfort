@@ -1,12 +1,10 @@
 package basisFx.domainModel.targets;
 
-import basisFx.appCore.controlPolicy.ColumnWrapper;
 import basisFx.appCore.elements.AppNode;
 import basisFx.appCore.elements.TableViewWrapper;
 import basisFx.appCore.panels.Target;
-import basisFx.domainModel.pojo.Counterparty;
-import basisFx.domainModel.pojo.Country;
-import basisFx.domainModel.pojo.Currency;
+import basisFx.domainModel.domaine.Country;
+import basisFx.domainModel.domaine.Currency;
 import basisFx.domainModel.settings.CSSID;
 import basisFx.domainModel.settings.FontsStore;
 
@@ -33,18 +31,18 @@ public class CounterpartyPanel extends Target{
 ////////////////////////////////
                         columnFabric.createStringColumn(
                                 "Наименование контрагента","stringValue",0.5,
-                                (obj,val)->((basisFx.domainModel.pojo.Counterparty)obj).setStringValue((String)val)),
+                                (obj,val)->((basisFx.domainModel.domaine.Counterparty)obj).setStringValue((String)val)),
 
 ////////////////////////////////
                         columnFabric.createColumnStringComboBox(
                                 "Страна","country",0.3,
-                                (obj,val)->{((basisFx.domainModel.pojo.Counterparty)obj).setCountry((Country) val);},
+                                (obj,val)->{((basisFx.domainModel.domaine.Counterparty)obj).setCountry((Country) val);},
                                 () -> dataMapperFabric.getCounterpartyDataMapper().getCountryList()
                         ),
 ////////////////////////////////////////////////////////////////
                         columnFabric.createColumnStringComboBox(
                                 "Валюта","currency",0.2,
-                                (obj,val)->{((basisFx.domainModel.pojo.Counterparty)obj).setCurrency((Currency) val);},
+                                (obj,val)->{((basisFx.domainModel.domaine.Counterparty)obj).setCurrency((Currency) val);},
                                 () -> dataMapperFabric.getCounterpartyDataMapper().getCurrencyList()
                         )
                 );
@@ -65,7 +63,7 @@ public class CounterpartyPanel extends Target{
                 .setEvent(eventFactory.
                         createRowAdd(
                                 tableViewWrapper,
-                                (l)->{l.add(new basisFx.domainModel.pojo.Counterparty());}))
+                                (l)->{l.add(new basisFx.domainModel.domaine.Counterparty());}))
                 .createNButton();
 
         AppNode.NodeBuilder.create()

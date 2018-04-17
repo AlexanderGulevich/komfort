@@ -1,4 +1,4 @@
-package basisFx.domainModel.pojo;
+package basisFx.domainModel.domaine;
 
 import basisFx.appCore.domainScetch.StringValueDomainObject;
 
@@ -8,12 +8,6 @@ import basisFx.appCore.domainScetch.StringValueDomainObject;
  * @autor AlexanderGulevich
  */
 public class Currency extends StringValueDomainObject {
-
-
-    public Currency() {
-        dataMapper=mapperFabric.getCurrencyDataMapper();
-        tableName="Currency";
-    }
 
 
 

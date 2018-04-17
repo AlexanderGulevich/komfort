@@ -61,7 +61,7 @@ public class DbSchema {
                 + ")";
 
 
-//todo
+
         create(
                 equipment,
                 counterparty,

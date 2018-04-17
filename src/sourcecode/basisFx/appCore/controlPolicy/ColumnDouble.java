@@ -11,7 +11,7 @@ public class ColumnDouble<T,K> extends ColumnWrapper<T> {
 
     protected TableColumn<T, Double> column;
 
-//    todo
+
 
 
     @SuppressWarnings("unchecked")

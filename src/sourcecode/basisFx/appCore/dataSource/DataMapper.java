@@ -24,9 +24,11 @@ public abstract class DataMapper {
     protected ObservableList<DomainObject> list;
     protected DataMapperFabric dataMapperFabric=new DataMapperFabric();
     private Map<Integer,DomainObject> map= new HashMap<>();
+    private int observableDomaineId;
     
      protected UnitOfWork unitOfWork;
 
+    public abstract boolean isReadyToTransaction(DomainObject d);
     public abstract void getAllDomainObjectList(ObservableList  list);
     public abstract void getAllDomainObjectList(ObservableList  list,DomainObject selectedDomainObject);
 
@@ -48,6 +50,14 @@ public abstract class DataMapper {
 
     public UnitOfWork getUnitOfWork() {
         return unitOfWork;
+    }
+
+    public void setObservableDomaineId(int observableDomaineId) {
+        this.observableDomaineId = observableDomaineId;
+    }
+
+    public int getObservableDomaineId() {
+        return observableDomaineId;
     }
 }
  

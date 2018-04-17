@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package basisFx.domainModel.pojo;
+package basisFx.domainModel.domaine;
 
 import basisFx.appCore.domainScetch.StringValueDomainObject;
 import javafx.beans.property.SimpleObjectProperty;
@@ -16,11 +16,6 @@ public class Counterparty  extends StringValueDomainObject {
 
     private SimpleObjectProperty<StringValueDomainObject> country =new SimpleObjectProperty<>(this, "country", null);
     private SimpleObjectProperty<StringValueDomainObject> currency =new SimpleObjectProperty<>(this, "currency", null);
-
-    public Counterparty( ) {
-        this.dataMapper=mapperFabric.getCounterpartyDataMapper();
-        this.tableName="CounterpartyPanel";
-    }
 
     public StringValueDomainObject getCountry() {
         return country.get();
@@ -46,21 +41,6 @@ public class Counterparty  extends StringValueDomainObject {
         this.currency.set(currency);
     }
 
-    @Override
-    public boolean isReadyToTransaction() {
-        if (
-                super.isReadyToTransaction()
-                && getCountry()!=null
-                && getCurrency()!=null
-
-                )
-        {
-            return true;
-
-        }
-
-        return false;
-    }
 
 
 

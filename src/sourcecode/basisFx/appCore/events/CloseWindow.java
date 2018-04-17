@@ -35,9 +35,7 @@ public class CloseWindow extends AppEvent{
         ) ;
         
         
-    
-    
-    
+
     }
 
     @Override

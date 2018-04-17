@@ -1,4 +1,4 @@
-package basisFx.domainModel.pojo;
+package basisFx.domainModel.domaine;
 
 import basisFx.appCore.domainScetch.StringValueDomainObject;
 import javafx.beans.property.SimpleObjectProperty;
@@ -16,10 +16,7 @@ public class Employer extends StringValueDomainObject {
     private SimpleObjectProperty<Boolean> isFired =new SimpleObjectProperty<>(this, "isFired", false);
     private SimpleObjectProperty<StringValueDomainObject> rate =new SimpleObjectProperty<>(this, "rate", null);
 
-    public Employer( ) {
-        this.dataMapper=mapperFabric.getEmployeesActualRateDataMapper();
-        this.tableName="Employer";
-    }
+
 
     public StringValueDomainObject getRate() {
         return rate.get();
@@ -56,41 +53,6 @@ public class Employer extends StringValueDomainObject {
     public void setIsFired(Boolean isFired) {
         this.isFired.set(isFired);
     }
-
-    @Override
-    public boolean isReadyToTransaction() {
-        if (
-                super.isReadyToTransaction()
-                        && getRate()!=null
-                        && getStartingRateDate()!=null
-
-
-                )
-        {
-
-            System.err.println("isReadyToTransaction".toUpperCase());
-            return true;
-
-        }
-        System.err.println("NOT isReadyToTransaction".toUpperCase());
-        return false;
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

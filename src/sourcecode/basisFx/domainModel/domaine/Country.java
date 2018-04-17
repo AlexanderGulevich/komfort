@@ -1,4 +1,4 @@
-package basisFx.domainModel.pojo;
+package basisFx.domainModel.domaine;
 
 
 import basisFx.appCore.domainScetch.StringValueDomainObject;
@@ -9,15 +9,6 @@ import basisFx.appCore.domainScetch.StringValueDomainObject;
  * @autor AlexanderGulevich
  */
 public class Country extends StringValueDomainObject {
-
-
-    public Country() {
-        this.dataMapper=mapperFabric.getCountryDataMapper();
-        this.tableName="Country";
-    }
-
-
-
 
 
 }

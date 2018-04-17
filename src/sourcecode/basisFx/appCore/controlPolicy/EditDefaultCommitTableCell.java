@@ -32,18 +32,18 @@ public class EditDefaultCommitTableCell<T,K> extends Edit<T,K>{
                    this.domainChangeAction.change(domain,event.getNewValue());
 
 
-                      if (domain.isReadyToTransaction()) {
+//                      if (domain.isReadyToTransaction()) {
 
                           System.out.println("Доменный объект готов к транзакции ");
 
                           unitOfWork.setChangedPojoes(domain);
-                         unitOfWork.commitChanged();
+                          unitOfWork.commitChanged();
                        
-                      } else {
-
-                          System.out.println("Доменный объект  НЕ готов к транзакции ");
-                      }
-                    
+//                      } else {
+//
+//                          System.out.println("Доменный объект  НЕ готов к транзакции ");
+//                      }
+//
                 }else{
 
                     //проверяет, новый ли это объект из уже созданных но не имеющихся в БД
@@ -54,15 +54,15 @@ public class EditDefaultCommitTableCell<T,K> extends Edit<T,K>{
                             //вставить значение в домен
                             this.domainChangeAction.change(domain,event.getNewValue());
 
-                            if (domain.isReadyToTransaction()) {
+//                            if (domain.isReadyToTransaction()) {
 
-                                System.out.println("НОВЫЙ ОБЪЕКТ ГОТОВ К ТРАНЗАКЦИИ {");
+                                System.out.println("НОВЫЙ отправляется на ТРАНЗАКЦИЮ{");
 
                                 unitOfWork.commitNew();
-                            } else {
-
-                                System.out.println("НОВЫЙ ОБЪЕКТ не ГОТОВ К ТРАНЗАКЦИИ {");
-                            }
+//                            } else {
+//
+//                                System.out.println("НОВЫЙ ОБЪЕКТ не ГОТОВ К ТРАНЗАКЦИИ {");
+//                            }
                         }
                 }
                 

@@ -3,14 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package basisFx.domainModel.pojo;
+package basisFx.domainModel.domaine;
 
-import basisFx.appCore.domainScetch.DomainObject;
 import basisFx.appCore.domainScetch.StringValueDomainObject;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
 
 /**
  *
@@ -19,11 +16,6 @@ import javafx.beans.property.StringProperty;
 public class Equipment  extends StringValueDomainObject {
     private ObjectProperty<Integer> rodWidth =new SimpleObjectProperty<>(this, "rodWidth", null);
 
-    public Equipment() {
-        this.dataMapper=mapperFabric.getEquipmentDataMapper();
-        this.tableName="Equipment";
-    }
-    
     
 
     public Integer getRodWidth() {
@@ -36,16 +28,6 @@ public class Equipment  extends StringValueDomainObject {
             return rodWidth;
         }
 
-    @Override
-    public boolean isReadyToTransaction() {
-       if ( getStringValue()!=null && getRodWidth()!=null)
-       {
-           return true;
-       
-       }
-       
-       return false;
-    }
 
     
 }

@@ -104,16 +104,16 @@ package basisFx.appCore.dataSource;
 //        
 //         while (rs.next()) {
 //             
-//             CategoryPojo pojo=new CategoryPojo("");
-//             pojo.setId(rs.getInt("ordersCategoryId"));
-//             pojo.setLeftId(rs.getInt("leftId") );
-//             pojo.setLevelId(rs.getInt("levelId"));
-//             pojo.setRightId(rs.getInt("rightId"));
-//             pojo.setCategoryNameOfTnp(rs.getString("name") );
-//             pojo.setIsExpanded(rs.getInt("isExpanded"));
-//             pojo.setShortName(rs.getString("shortName"));
+//             CategoryPojo domaine=new CategoryPojo("");
+//             domaine.setId(rs.getInt("ordersCategoryId"));
+//             domaine.setLeftId(rs.getInt("leftId") );
+//             domaine.setLevelId(rs.getInt("levelId"));
+//             domaine.setRightId(rs.getInt("rightId"));
+//             domaine.setCategoryNameOfTnp(rs.getString("name") );
+//             domaine.setIsExpanded(rs.getInt("isExpanded"));
+//             domaine.setShortName(rs.getString("shortName"));
 //             
-//             ctc.setPojo(pojo);
+//             ctc.setPojo(domaine);
 //                 
 //                
 //            }
@@ -202,7 +202,7 @@ package basisFx.appCore.dataSource;
 //       
 //            pstmt.executeUpdate();
 //    }
-//    public Integer getParentId(CategoryPojo pojo) throws SQLException {
+//    public Integer getParentId(CategoryPojo domaine) throws SQLException {
 //                
 //       String sql = "SELECT ordersCategoryId From ordersCategory "
 //               + " WHERE leftId <=  ? "
@@ -212,9 +212,9 @@ package basisFx.appCore.dataSource;
 //               
 //           PreparedStatement pstmt = connecttion.prepareStatement(sql);
 //   
-//           pstmt.setInt(1, pojo.getLeftId());
-//           pstmt.setInt(2, pojo.getRightId());
-//           pstmt.setInt(3, pojo.getLevelId());
+//           pstmt.setInt(1, domaine.getLeftId());
+//           pstmt.setInt(2, domaine.getRightId());
+//           pstmt.setInt(3, domaine.getLevelId());
 //  
 //           ResultSet rs  = pstmt.executeQuery();
 //            
@@ -370,18 +370,18 @@ package basisFx.appCore.dataSource;
 //  
 //           ResultSet rs    = pstmt.executeQuery();
 //           
-//           CategoryPojo pojo=new CategoryPojo();
+//           CategoryPojo domaine=new CategoryPojo();
 //            
 //            while (rs.next()) {
-//                 pojo.setId(rs.getInt("ordersCategoryId")); 
-//                 pojo.setLeftId(rs.getInt("leftId"));
-//                 pojo.setLevelId(rs.getInt("levelId"));
-//                 pojo.setRightId(rs.getInt("rightId"));
-//                 pojo.setShortName(rs.getString("shortName"));
-//                 pojo.setCategoryNameOfTnp(rs.getString("name"));    
+//                 domaine.setId(rs.getInt("ordersCategoryId"));
+//                 domaine.setLeftId(rs.getInt("leftId"));
+//                 domaine.setLevelId(rs.getInt("levelId"));
+//                 domaine.setRightId(rs.getInt("rightId"));
+//                 domaine.setShortName(rs.getString("shortName"));
+//                 domaine.setCategoryNameOfTnp(rs.getString("name"));
 //                                 
 //            }
-//        return pojo;
+//        return domaine;
 //      
 //
 //

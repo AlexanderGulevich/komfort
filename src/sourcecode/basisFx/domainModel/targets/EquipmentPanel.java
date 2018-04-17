@@ -4,7 +4,7 @@ import basisFx.appCore.controlPolicy.ColumnWrapper;
 import basisFx.appCore.panels.Target;
 import basisFx.appCore.elements.AppNode;
 import basisFx.appCore.elements.TableViewWrapper;
-import basisFx.domainModel.pojo.Equipment;
+import basisFx.domainModel.domaine.Equipment;
 import basisFx.domainModel.settings.CSSID;
 import basisFx.domainModel.settings.FontsStore;
 

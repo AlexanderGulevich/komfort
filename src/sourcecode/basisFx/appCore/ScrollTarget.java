@@ -5,8 +5,8 @@
 //import basisFx.appCore.elements.AppNode;
 //import basisFx.appCore.elements.TableViewWrapper;
 //import basisFx.appCore.panels.Target;
-//import basisFx.domainModel.pojo.Country;
-//import basisFx.domainModel.pojo.Equipment;
+//import basisFx.domainModel.domaine.Country;
+//import basisFx.domainModel.domaine.Equipment;
 //import basisFx.domainModel.settings.CSSID;
 //import javafx.scene.layout.AnchorPane;
 //

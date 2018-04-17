@@ -9,13 +9,13 @@ import javafx.beans.property.SimpleObjectProperty;
  */
 public class StringValueDomainObject extends DomainObject{
 
-    private SimpleObjectProperty<String> stringValue =new SimpleObjectProperty(this, "stringValue", "");
+    private SimpleObjectProperty<String> stringValue =new SimpleObjectProperty(this, "stringValue", null);
 
     public String getStringValue() {
         return stringValue.get();
     }
 
-    public SimpleObjectProperty getNameProperty() {
+    public SimpleObjectProperty getStringValueProperty() {
         return stringValue;
     }
 
@@ -23,20 +23,7 @@ public class StringValueDomainObject extends DomainObject{
         this.stringValue.set(stringValue);
     }
 
-    @Override
-    public boolean isReadyToTransaction() {
 
-        if ( getStringValue()!=null     )
-        {
-            if (!getStringValue().trim().isEmpty()){
-                return true;
-            }
-
-
-        }
-
-        return false;
-    }
 
     public String toString(){
 

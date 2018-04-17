@@ -32,6 +32,8 @@ public  class TableViewWrapper <T> extends AppNode implements Refreshable{
     protected DataMapper dataMapper;
     protected String tableName;
     private ArrayList <TableViewWrapper> observers=new ArrayList();
+    private boolean isObserver=false;
+
 
     
     @SuppressWarnings("unchecked")
@@ -44,6 +46,14 @@ public  class TableViewWrapper <T> extends AppNode implements Refreshable{
         list.addListener(tableListener);
         unitOfWork.setRefreshable(this);
 
+    }
+
+    public void markAsObserver(boolean isObserver) {
+        this.isObserver = isObserver;
+    }
+
+    public void setDataMapperToObject(DomainObject d){
+        d.setDataMapper(dataMapper);
     }
 
     public TableViewWrapper<T>  setColumnResizePolicy( Callback<TableView.ResizeFeatures,Boolean> policy){
@@ -157,6 +167,14 @@ public  class TableViewWrapper <T> extends AppNode implements Refreshable{
         this.tableName=n;
         return this;
     }
+
+
+    public void setDataMapperToList( ObservableList<DomainObject>  list){
+        for (DomainObject domainObject : list) {
+            domainObject.setDataMapper(dataMapper);
+        }
+
+    }
    
     @Override
     public TableViewWrapper refresh(){
@@ -164,12 +182,11 @@ public  class TableViewWrapper <T> extends AppNode implements Refreshable{
         this.table.getItems().clear();
         this.list.clear();
         this.unitOfWork.clearStoredPojoesId();
-        
-        
+
         this.dataMapper.getAllDomainObjectList(list);
+        setDataMapperToList(list);
 
         return this;
-
     
     }
 
@@ -179,9 +196,10 @@ public  class TableViewWrapper <T> extends AppNode implements Refreshable{
         this.table.getItems().clear();
         this.list.clear();
         this.unitOfWork.clearStoredPojoesId();
+
+        setDataMapperToList(list);
         this.dataMapper.getAllDomainObjectList(list,selectedDomainObject);
 
-        
         return this;
     }
 
@@ -192,18 +210,35 @@ public  class TableViewWrapper <T> extends AppNode implements Refreshable{
             TableRow<DomainObject> row = new TableRow<>();
             row.setOnMouseClicked(event -> {
                 if (! row.isEmpty() && event.getButton()== MouseButton.PRIMARY
-                        && event.getClickCount() == 2) {
+                        && event.getClickCount() == 1) {
 
                     DomainObject clickedDomainObject = row.getItem();
 
-                    if (!observers.isEmpty()){
+
+                    for (TableViewWrapper observer : observers) {
+
+                        if (clickedDomainObject.getId() !=null) {
+                            observer.dataMapper.setObservableDomaineId(clickedDomainObject.getId());
 
 
-                        for (TableViewWrapper observer : observers) {
-                            observer.refresh(clickedDomainObject);
+
+                            if (!observers.isEmpty()){
+
+
+                                for (TableViewWrapper concreteObserver : observers) {
+                                    concreteObserver.refresh(clickedDomainObject);
+                                }
+
+                            }
+
+
                         }
 
+
                     }
+
+
+
 
                 }
             });
@@ -213,8 +248,9 @@ public  class TableViewWrapper <T> extends AppNode implements Refreshable{
 
     }
 
-    public  TableViewWrapper setBoundTable(TableViewWrapper tableViewWrapper){
-            observers.add(tableViewWrapper);
+    public  TableViewWrapper setBoundTable(TableViewWrapper observer){
+            observer.markAsObserver(true);
+            observers.add(observer);
 
         return this;
     }

@@ -1,4 +1,4 @@
-package basisFx.domainModel.pojo;
+package basisFx.domainModel.domaine;
 
 import basisFx.appCore.domainScetch.StringValueDomainObject;
 import javafx.beans.property.SimpleObjectProperty;
@@ -9,13 +9,7 @@ public class RatePerHour extends StringValueDomainObject {
 
     private SimpleObjectProperty<LocalDate> startingRateDate =new SimpleObjectProperty<>(this, "startingDate", null);
     private SimpleObjectProperty<Integer> employerId =new SimpleObjectProperty<>(this, "employerId", null);
-
-
-    public RatePerHour() {
-
-            this.dataMapper=mapperFabric.getRatePerHourDataMapper();
-            this.tableName="RateTemplates";
-    }
+    private SimpleObjectProperty<StringValueDomainObject> rate =new SimpleObjectProperty<>(this, "rate", null);
 
 
     public LocalDate getStartingRateDate() {
@@ -40,5 +34,18 @@ public class RatePerHour extends StringValueDomainObject {
 
     public void setEmployerId(Integer employerId) {
         this.employerId.set(employerId);
+    }
+
+
+    public StringValueDomainObject getRate() {
+        return rate.get();
+    }
+
+    public SimpleObjectProperty<StringValueDomainObject> rateProperty() {
+        return rate;
+    }
+
+    public void setRate(StringValueDomainObject rate) {
+        this.rate.set(rate);
     }
 }

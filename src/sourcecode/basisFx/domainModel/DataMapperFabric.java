@@ -14,29 +14,26 @@ import basisFx.domainModel.mapper.*;
 public class DataMapperFabric {
 
     public EquipmentDataMapper getEquipmentDataMapper(){
-
         return EquipmentDataMapper.getInstance();
     }
     public CounterpartyDataMapper getCounterpartyDataMapper() {
-
         return new CounterpartyDataMapper();
     }
     public CountryDataMapper getCountryDataMapper() {
-
         return CountryDataMapper.getInstance();
     }
     public CurrencyDataMapper getCurrencyDataMapper() {
-
         return CurrencyDataMapper.getInstance();
     }
-    public EmployeesActualRateDataMapper getEmployeesActualRateDataMapper() {
-
-        return new EmployeesActualRateDataMapper();
+    public EmployerDataMapper getEmployerDataMapper() {
+        return new EmployerDataMapper();
+    }
+    public RatePerHourTemplatesDataMapper getRatePerHourTemplatesDataMapper() {
+        return  RatePerHourTemplatesDataMapper.getInstance();
     }
 
     public RatePerHourDataMapper getRatePerHourDataMapper() {
-
-        return  RatePerHourDataMapper.getInstance();
+        return  new RatePerHourDataMapper();
     }
 
 

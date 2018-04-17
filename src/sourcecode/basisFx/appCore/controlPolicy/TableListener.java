@@ -50,7 +50,7 @@ public class TableListener  implements ListChangeListener  {
             }
             else if (change.wasRemoved()) {
 
-                System.out.println("wasRemoved");
+                System.out.println("TableListener---wasRemoved");
                 List removed = change.getRemoved();
 
 
@@ -59,17 +59,18 @@ public class TableListener  implements ListChangeListener  {
 
                 @SuppressWarnings("unchecked")
                 List<DomainObject> subList = change.getAddedSubList();
-                DomainObject p = subList.get(0);
+                DomainObject domainObject = subList.get(0);
 
+                this.tableViewWrapper.setDataMapperToObject(domainObject);
 
-                if ( !unitOfWork.getStoredPojoesId().contains(p.getId())) {
-                    this.unitOfWork.setNewPojoes(p);
+                if ( !unitOfWork.getStoredPojoesId().contains(domainObject.getId())) {
+                    this.unitOfWork.setNewPojoes(domainObject);
 
                     System.out.println("wasAdded");
 
                     this.table = (TableView<DomainObject>) this.tableViewWrapper.getElement();
 
-                    int newPojoIndex = table.getItems().indexOf(p);
+                    int newPojoIndex = table.getItems().indexOf(domainObject);
 
                     System.out.println("newPojoIndex--------"+ newPojoIndex);
 

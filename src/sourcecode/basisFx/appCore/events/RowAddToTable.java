@@ -70,12 +70,12 @@ public class RowAddToTable <T> extends AppEvent{
 //                    int rowIndex = sm.getSelectedIndex();
 //                    TreeItem<CategoryPojo> selectedItem = sm.getModelItem(rowIndex);
 //
-//                    CategoryPojo pojo=new CategoryPojo("");
+//                    CategoryPojo domaine=new CategoryPojo("");
 //
 //                    Integer selectedItemLevel=selectedItem.getRate().getLevelId();
-//                    pojo.setLevelId(selectedItemLevel+1);
+//                    domaine.setLevelId(selectedItemLevel+1);
 //
-//                    item = new TreeItem<>(pojo);
+//                    item = new TreeItem<>(domaine);
 //
 //                    selectedItem.getChildren().add(item);
 //                    selectedItem.setExpanded(true);

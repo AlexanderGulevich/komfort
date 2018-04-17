@@ -20,13 +20,11 @@ public abstract class DomainObject {
     
     protected DataMapper dataMapper;
     protected String tableName;
-    protected DataMapperFabric mapperFabric=new DataMapperFabric();
+
+
 
     private ObjectProperty<Integer> id =new SimpleObjectProperty<>(this, "id", null);
-//    private  IntegerProperty id =new SimpleIntegerProperty(this, "id", 0);
-
-    public abstract boolean isReadyToTransaction();
-
+    
     public Integer getId() {
             return id.get();
         }
@@ -43,4 +41,11 @@ public abstract class DomainObject {
     public void setTableName(String tableName) {
         this.tableName = tableName;
     }
+
+
+    public void setDataMapper(DataMapper dataMapper) {
+        this.dataMapper = dataMapper;
+    }
+
+
 }

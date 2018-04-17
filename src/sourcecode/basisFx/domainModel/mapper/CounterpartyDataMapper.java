@@ -3,9 +3,9 @@ package basisFx.domainModel.mapper;
 import basisFx.appCore.dataSource.DataMapper;
 import basisFx.appCore.dataSource.Db;
 import basisFx.appCore.domainScetch.StringValueDomainObject;
-import basisFx.domainModel.pojo.Counterparty;
-import basisFx.domainModel.pojo.Country;
-import basisFx.domainModel.pojo.Currency;
+import basisFx.domainModel.domaine.Counterparty;
+import basisFx.domainModel.domaine.Country;
+import basisFx.domainModel.domaine.Currency;
 import basisFx.appCore.domainScetch.DomainObject;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -29,6 +29,21 @@ public class CounterpartyDataMapper extends DataMapper {
     private  ObservableList <StringValueDomainObject> countryList =null;
     private Counterparty domainObject;
     private static CounterpartyDataMapper ourInstance = new CounterpartyDataMapper();
+
+    @Override
+    public boolean isReadyToTransaction(DomainObject d) {
+        Counterparty counterparty= (Counterparty) d;
+        if (counterparty.getCountry()!= null
+                &&counterparty.getCurrency()!=null
+                &&counterparty.getStringValue()!=null) {
+            System.out.println("!!!!!!!!!!!!!!CounterpartyDataMapper --- объект готов к транзакции");
+            return true;
+        }
+
+        System.out.println("!!!!!!!!!!!!!!CounterpartyDataMapper --- объект НЕ готов к транзакции");
+
+        return false;
+    }
 
     @Override
     public void getAllDomainObjectList(ObservableList list) {
@@ -172,56 +187,66 @@ public class CounterpartyDataMapper extends DataMapper {
     }
     @Override
     public void updateDomainObject(DomainObject d) {
+
+
         Counterparty counterparty= (Counterparty) d;
-        String expression = "UPDATE "+ d.getTableName()+ " SET  " +
-                " name = ?," +
-                " countryId = ?," +
-                " currencyId = ?" +
-                " WHERE id= ?" ;
 
-        PreparedStatement pstmt = null;
-        try {
-            pstmt = Db.getConnection().prepareStatement(expression);
-
-            pstmt.setString(1, counterparty.getStringValue());
-            pstmt.setInt(2, counterparty.getCountry().getId());
-            pstmt.setInt(3, counterparty.getCurrency().getId());
-            pstmt.setInt(4, counterparty.getId());
+        if(isReadyToTransaction(counterparty)) {
 
 
-            pstmt.executeUpdate();
+            String expression = "UPDATE " + "Counterparty" + " SET  " +
+                    " name = ?," +
+                    " countryId = ?," +
+                    " currencyId = ?" +
+                    " WHERE id= ?";
 
-        } catch (SQLException e) {
-            e.printStackTrace();
+            PreparedStatement pstmt = null;
+            try {
+                pstmt = Db.getConnection().prepareStatement(expression);
+
+                pstmt.setString(1, counterparty.getStringValue());
+                pstmt.setInt(2, counterparty.getCountry().getId());
+                pstmt.setInt(3, counterparty.getCurrency().getId());
+                pstmt.setInt(4, counterparty.getId());
+
+
+                pstmt.executeUpdate();
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
+            System.out.println("ДАТАМАППЕР CounterpartyDataMapper ОБНОВЛЕНИЕ ОБЪЕКТА");
+
         }
-
-        System.out.println("ДАТАМАППЕР CounterpartyDataMapper ОБНОВЛЕНИЕ ОБЪЕКТА");
-
-
 
     }
     @Override
     public void insertDomainObject(DomainObject d) {
-        domainObject=(Counterparty) d;
 
-        try {
-            String expression= "INSERT INTO "+ d.getTableName()
-                    + "(name ,"
-                    + "countryId,"
-                    + "currencyId"
-                    + ") VALUES(?,?,?)";
+        if(isReadyToTransaction(d)) {
 
-            PreparedStatement pstmt =  Db.getConnection().prepareStatement(expression);
-            pstmt.setString(1, domainObject.getStringValue());
-            pstmt.setInt(2, domainObject.getCountry().getId());
-            pstmt.setInt(3, domainObject.getCurrency().getId());
+            domainObject = (Counterparty) d;
+
+            try {
+                String expression = "INSERT INTO " + "Counterparty"
+                        + "(name ,"
+                        + "countryId,"
+                        + "currencyId"
+                        + ") VALUES(?,?,?)";
+
+                PreparedStatement pstmt = Db.getConnection().prepareStatement(expression);
+                pstmt.setString(1, domainObject.getStringValue());
+                pstmt.setInt(2, domainObject.getCountry().getId());
+                pstmt.setInt(3, domainObject.getCurrency().getId());
 
 
-            pstmt.executeUpdate();
+                pstmt.executeUpdate();
 
 
-        } catch (SQLException ex) {
-            Logger.getLogger(EquipmentDataMapper.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
+                Logger.getLogger(EquipmentDataMapper.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
 
     }

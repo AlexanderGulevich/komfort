@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package basisFx.domainModel.pojo;
+package basisFx.domainModel.domaine;
 
 import basisFx.appCore.domainScetch.DomainObject;
 
@@ -11,7 +11,7 @@ import basisFx.appCore.domainScetch.DomainObject;
  *
  * @author Alek
  */
-public class Jumbo  extends DomainObject {
+public class Output  extends DomainObject {
     
     private final String tableName=null;
 
@@ -19,9 +19,6 @@ public class Jumbo  extends DomainObject {
         return tableName;
     }
 
-    @Override
-    public boolean isReadyToTransaction() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+
     
 }

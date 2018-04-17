@@ -60,7 +60,7 @@ public class AnchorWrapper<T extends Node> extends AppNode implements Maximazing
     @Override
     public void pervormMaximazingEventNotifier() {
         if (parentAnchor!=null && widthPerCent!=null) {
-            System.err.println("AnchorWrapper.pervormMaximazingEventNotifier".toUpperCase());
+//            System.err.println("AnchorWrapper.pervormMaximazingEventNotifier".toUpperCase());
             AnchorPane element=(AnchorPane) this.element;
 
 
@@ -82,20 +82,20 @@ public class AnchorWrapper<T extends Node> extends AppNode implements Maximazing
 //            element.setPrefWidth( parentWidth.multiply(percent).doubleValue());
 
 
-            System.out.println("//////////////////////////////////////////// \n" +"//////////////////////////////////////////// \n" +
-                            "parentAnchor---"+parentAnchor+"--widthPerCent---"+widthPerCent+ "\n"+
-                    "parentAnchor.getWidth()----"+parentAnchor.getWidth()  + "\n"+
-                    "parentAnchor.widthProperty().get()------"+parentAnchor.widthProperty().get() + "\n"+
-                    "parentAnchor.getPrefWidth()------"+parentAnchor.getPrefWidth()
-                    + "\n"+ "\n"+
-                    "element.getWidth()-------- "+element.getWidth()       + "\n"+
-                    "element.widthProperty().get()-------- "+element.widthProperty().get()    + "\n"+
-                    "element.getPrefWidth()-------- "+element.getPrefWidth()      + "\n"+
-                    "//////////////////////////////////////////// \n"+"//////////////////////////////////////////// \n"
-
-
-
-            );
+//            System.out.println("//////////////////////////////////////////// \n" +"//////////////////////////////////////////// \n" +
+//                            "parentAnchor---"+parentAnchor+"--widthPerCent---"+widthPerCent+ "\n"+
+//                    "parentAnchor.getWidth()----"+parentAnchor.getWidth()  + "\n"+
+//                    "parentAnchor.widthProperty().get()------"+parentAnchor.widthProperty().get() + "\n"+
+//                    "parentAnchor.getPrefWidth()------"+parentAnchor.getPrefWidth()
+//                    + "\n"+ "\n"+
+//                    "element.getWidth()-------- "+element.getWidth()       + "\n"+
+//                    "element.widthProperty().get()-------- "+element.widthProperty().get()    + "\n"+
+//                    "element.getPrefWidth()-------- "+element.getPrefWidth()      + "\n"+
+//                    "//////////////////////////////////////////// \n"+"//////////////////////////////////////////// \n"
+//
+//
+//
+//            );
 
 //            System.out.println("getPrefWidth----"+element.getPrefWidth());
 

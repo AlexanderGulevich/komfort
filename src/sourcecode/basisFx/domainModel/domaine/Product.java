@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package basisFx.domainModel.pojo;
+package basisFx.domainModel.domaine;
 
 import basisFx.appCore.domainScetch.DomainObject;
 import javafx.beans.property.DoubleProperty;
@@ -44,10 +44,7 @@ public class Product  extends DomainObject {
         this.price.set(value);
     }
 
-    @Override
-    public boolean isReadyToTransaction() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+
     
     
 }
