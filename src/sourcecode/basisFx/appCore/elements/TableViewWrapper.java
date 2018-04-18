@@ -37,8 +37,6 @@ public  class TableViewWrapper <T> extends AppNode implements Refreshable{
     private boolean isObserver=false;
     private  DomainObject clickedDomain;
 
-
-    
     @SuppressWarnings("unchecked")
  public   TableViewWrapper(NodeBuilder builder) {
         table=new TableView<>(list);
@@ -158,8 +156,6 @@ public  class TableViewWrapper <T> extends AppNode implements Refreshable{
         this.dataMapper=dm;
         this.dataMapper.setUnitOfWork(this.unitOfWork);
 
-
-
         return this;
     }
 
@@ -202,7 +198,6 @@ public  class TableViewWrapper <T> extends AppNode implements Refreshable{
             this.dataMapper.getAllDomainObjectList(list);
             setDataMapperToList(list);
 
-
         }
         return this;
     }
@@ -222,9 +217,7 @@ public  class TableViewWrapper <T> extends AppNode implements Refreshable{
         return this;
     }
 
-
     private void setClickedUpDownRowDetection(){
-
 
         table.setOnKeyPressed(event -> {
 
@@ -235,22 +228,14 @@ public  class TableViewWrapper <T> extends AppNode implements Refreshable{
                         int size = table.getItems().size();
                         int selectedIndex = table.getSelectionModel().getSelectedIndex();
 
-
                         int nextIndex=0;
 
                         if(event.getCode() == KeyCode.UP ) nextIndex=selectedIndex-1;
                         if(event.getCode() == KeyCode.DOWN)nextIndex=selectedIndex+1;
 
-
-
-
-
-//                        DomainObject selectedItem = table.getSelectionModel().getSelectedItem();
                         DomainObject selectedItem = table.getItems().get(nextIndex);
 
-//
                         System.out.println("table.setOnKeyPressed(event -> ");
-
 
                         for (TableViewWrapper observer : observers) {
 
@@ -345,8 +330,6 @@ public  class TableViewWrapper <T> extends AppNode implements Refreshable{
 
 
     }
-
-
 
     public  TableViewWrapper setBoundTable(TableViewWrapper observer){
             observer.markAsObserver(true);

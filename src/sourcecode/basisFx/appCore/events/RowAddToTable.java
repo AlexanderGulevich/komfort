@@ -54,13 +54,15 @@ public class RowAddToTable <T> extends AppEvent{
     public void run() {
 
         if(this.unitOfWork.getNewPojoes().isEmpty()){
+            System.out.println("unitOfWork.getNewPojoes().isEmpty()");
                 rowCreater.createRow(list);
         }
 
 
             if  (table.getSelectionModel().isEmpty() )  {//если не выбрано ничего
-
+                System.out.println("table.getSelectionModel().isEmpty()");
                table.getSelectionModel().getSelectedItem();
+                rowCreater.createRow(list);
 
             } else {//если какая-то строка выбрана
 
