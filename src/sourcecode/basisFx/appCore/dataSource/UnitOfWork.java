@@ -84,6 +84,9 @@ public class UnitOfWork {
         System.out.println("UnitOfWork.commitAll");
     }
     public void commitNew(){
+
+
+        boolean isReady=true;
       
         for (Iterator<DomainObject> iterator = newPojoes.iterator(); iterator.hasNext();) {
             DomainObject next = iterator.next();
@@ -101,15 +104,25 @@ public class UnitOfWork {
 
 
 
+            }else {
+                isReady=false;
             }
+
 
         }
 
-        clearNewPojoesList();
-        refreshable.refresh();
+
+        if (isReady){
+
+            clearChangedPojoesList();
+            refreshable.refresh();
+
+        }
     
     }
     public void commitChanged(){
+
+        boolean isReady=true;
     
         for (Iterator<DomainObject> iterator = changedPojoes.iterator(); iterator.hasNext();) {
             DomainObject next = iterator.next();
@@ -122,13 +135,22 @@ public class UnitOfWork {
 
 
 
+            }else {
+                isReady=false;
             }
 
 
         }
 
-        clearChangedPojoesList();
-        refreshable.refresh();
+
+        if (isReady){
+
+            clearChangedPojoesList();
+            refreshable.refresh();
+
+        }
+
+
     
     }
     public void commitRemoved() throws SQLException{

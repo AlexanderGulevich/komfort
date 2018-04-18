@@ -20,7 +20,9 @@ import javafx.collections.ObservableList;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
 import javafx.util.Callback;
 
 public  class TableViewWrapper <T> extends AppNode implements Refreshable{
@@ -33,16 +35,18 @@ public  class TableViewWrapper <T> extends AppNode implements Refreshable{
     protected String tableName;
     private ArrayList <TableViewWrapper> observers=new ArrayList();
     private boolean isObserver=false;
+    private  DomainObject clickedDomain;
 
 
     
     @SuppressWarnings("unchecked")
  public   TableViewWrapper(NodeBuilder builder) {
         table=new TableView<>(list);
-        setClickedRowDetection();
         setElement(table);
         table.setEditable(true);
         init(builder);
+        setClickedRowDetection();
+        setClickedUpDownRowDetection();
         list.addListener(tableListener);
         unitOfWork.setRefreshable(this);
 
@@ -175,23 +179,38 @@ public  class TableViewWrapper <T> extends AppNode implements Refreshable{
         }
 
     }
-   
+
+    public void setClickedDomain(DomainObject clickedDomain) {
+        System.out.println("setClickedDomain(DomainObject clickedDomain)");
+        this.clickedDomain = clickedDomain;
+    }
+
     @Override
     public TableViewWrapper refresh(){
-      
-        this.table.getItems().clear();
-        this.list.clear();
-        this.unitOfWork.clearStoredPojoesId();
+        System.out.println("TableViewWrapper.refresh");
 
-        this.dataMapper.getAllDomainObjectList(list);
-        setDataMapperToList(list);
+        if (isObserver){
+            System.out.println("TableViewWrapper refresh()---isObserver TRUE    clickedDomain---"+clickedDomain.getId());
+            refresh(clickedDomain);
 
+        }else {
+
+            this.table.getItems().clear();
+            this.list.clear();
+            this.unitOfWork.clearStoredPojoesId();
+
+            this.dataMapper.getAllDomainObjectList(list);
+            setDataMapperToList(list);
+
+
+        }
         return this;
-    
     }
 
     @Override
     public TableViewWrapper refresh(DomainObject selectedDomainObject) {
+
+        System.out.println("TableViewWrapper.refresh(DomainObject selectedDomainObject)");
 
         this.table.getItems().clear();
         this.list.clear();
@@ -204,21 +223,92 @@ public  class TableViewWrapper <T> extends AppNode implements Refreshable{
     }
 
 
+    private void setClickedUpDownRowDetection(){
+
+
+        table.setOnKeyPressed(event -> {
+
+                    if (event.getCode() == KeyCode.UP || event.getCode() == KeyCode.DOWN) {
+
+                        DomainObject itemFromEvent = table.getSelectionModel().getSelectedItem();
+
+                        int size = table.getItems().size();
+                        int selectedIndex = table.getSelectionModel().getSelectedIndex();
+
+
+                        int nextIndex=0;
+
+                        if(event.getCode() == KeyCode.UP ) nextIndex=selectedIndex-1;
+                        if(event.getCode() == KeyCode.DOWN)nextIndex=selectedIndex+1;
+
+
+
+
+
+//                        DomainObject selectedItem = table.getSelectionModel().getSelectedItem();
+                        DomainObject selectedItem = table.getItems().get(nextIndex);
+
+//
+                        System.out.println("table.setOnKeyPressed(event -> ");
+
+
+                        for (TableViewWrapper observer : observers) {
+
+                            if (selectedItem.getId() != null) {
+
+                                System.out.println("TableViewWrapper.setClickedRowDetection()   ---   for (TableViewWrapper observer : observers) {");
+
+                                observer.setClickedDomain(selectedItem);
+                                observer.dataMapper.setObservableDomaineId(selectedItem.getId());
+
+
+                                if (!observers.isEmpty()) {
+
+
+                                    for (TableViewWrapper concreteObserver : observers) {
+                                        concreteObserver.refresh(selectedItem);
+                                    }
+
+                                }
+
+
+                            }
+
+
+                        }
+
+
+
+                    }
+                }
+
+        );
+
+
+
+    }
+
     private void setClickedRowDetection(){
 
         table.setRowFactory(tv -> {
             TableRow<DomainObject> row = new TableRow<>();
+
             row.setOnMouseClicked(event -> {
+
                 if (! row.isEmpty() && event.getButton()== MouseButton.PRIMARY
                         && event.getClickCount() == 1) {
 
-                    DomainObject clickedDomainObject = row.getItem();
+                   DomainObject domainObject=row.getItem();
 
 
                     for (TableViewWrapper observer : observers) {
 
-                        if (clickedDomainObject.getId() !=null) {
-                            observer.dataMapper.setObservableDomaineId(clickedDomainObject.getId());
+                        if (domainObject.getId() !=null) {
+
+                            System.out.println("TableViewWrapper.setClickedRowDetection()   ---   for (TableViewWrapper observer : observers) {");
+
+                            observer.setClickedDomain(domainObject);
+                            observer.dataMapper.setObservableDomaineId(domainObject.getId());
 
 
 
@@ -226,7 +316,7 @@ public  class TableViewWrapper <T> extends AppNode implements Refreshable{
 
 
                                 for (TableViewWrapper concreteObserver : observers) {
-                                    concreteObserver.refresh(clickedDomainObject);
+                                    concreteObserver.refresh(domainObject);
                                 }
 
                             }
@@ -241,12 +331,22 @@ public  class TableViewWrapper <T> extends AppNode implements Refreshable{
 
 
                 }
-            });
+            }
+
+            );
+
+
+
+
+
+
             return row ;
         });
 
 
     }
+
+
 
     public  TableViewWrapper setBoundTable(TableViewWrapper observer){
             observer.markAsObserver(true);
