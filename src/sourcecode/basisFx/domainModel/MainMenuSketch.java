@@ -28,7 +28,7 @@ public class MainMenuSketch extends MenuSketch{
                createVertical("Результаты дня", null, composit.COMPOSITE,"\uF0A1", FontsStore.WEBHOSTINGHUB,25)
                        .addInerLevel(
                                create("Дневная выработка", null, composit.SIMPLE),
-                               create("Курсы", null, composit.SIMPLE),
+                               create("Курсы", fabric.createExchangeRatesPanel(), composit.SIMPLE),
                                create("Выход", null, composit.SIMPLE),
                                create("Рентабельность", null, composit.SIMPLE)
                        ),

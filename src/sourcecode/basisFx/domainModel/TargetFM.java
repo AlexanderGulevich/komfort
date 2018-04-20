@@ -35,6 +35,9 @@ public class TargetFM {
     public EmployeesManagerPanel createEmployeesManagerPanel(){
         return new EmployeesManagerPanel();
     }
+    public ExchangeRatesPanel createExchangeRatesPanel(){
+        return new ExchangeRatesPanel();
+    }
 
 
 
