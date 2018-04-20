@@ -114,7 +114,7 @@ public class UnitOfWork {
 
         if (isReady){
 
-            clearChangedPojoesList();
+            clearNewPojoesList();
             refreshable.refresh();
 
         }
