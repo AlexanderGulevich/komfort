@@ -1,6 +1,7 @@
 package basisFx.appCore.controlPolicy;
 
 import basisFx.appCore.domainScetch.DomainObject;
+import basisFx.domainModel.settings.CSSID;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableCell;
@@ -111,7 +112,9 @@ public class ColumnLocalDate <T,K>extends ColumnWrapper<T> {
 
         private void createDatePicker() {
             datePicker = new DatePicker(getDate());
-            datePicker.setMinWidth(this.getWidth() - this.getGraphicTextGap() * 2);
+            datePicker.setId(CSSID.DATEPICKER_IN_COLUMN.get());
+            datePicker.setMinWidth(this.getWidth() - this.getGraphicTextGap() * 7);
+//            datePicker.setMinWidth(this.getWidth() - this.getGraphicTextGap() * 2);
             datePicker.setConverter(new CustomStringConverter());
             datePicker.setPromptText("");
             datePicker.setOnAction((e) -> {

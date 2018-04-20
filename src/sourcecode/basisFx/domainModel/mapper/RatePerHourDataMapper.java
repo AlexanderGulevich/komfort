@@ -87,24 +87,24 @@ public class RatePerHourDataMapper extends DataMapper{
     @Override
     public void updateDomainObject(DomainObject d) {
         if(isReadyToTransaction(d)) {
-
+            System.out.println("RatePerHourDataMapper.updateDomainObject".toUpperCase());
 
             RatePerHour ratePerHour= (RatePerHour) d;
             String expression = "UPDATE "+    "RateStore"+ " SET  " +
                     " rate = ?," +
                     " startDate = ?," +
-                    " employerId = ? ";
+                    " employerId = ? " +
+                    " where id =?";
 
             PreparedStatement pstmt = null;
 
             try {
                 pstmt = Db.getConnection().prepareStatement(expression);
-                pstmt.setDouble(1, Double.valueOf(ratePerHour.getStringValue()));
+                pstmt.setDouble(1, Double.valueOf(ratePerHour.getRate().getStringValue()));
                 pstmt.setDate(2, Date.valueOf(ratePerHour.getStartingRateDate()));
                 pstmt.setInt(3, ratePerHour.getEmployerId());
+                pstmt.setInt(4, ratePerHour.getId());
                 pstmt.executeUpdate();
-
-
             } catch (SQLException e) {
                 e.printStackTrace();
             }
