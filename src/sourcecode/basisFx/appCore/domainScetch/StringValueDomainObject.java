@@ -23,7 +23,12 @@ public class StringValueDomainObject extends DomainObject{
         this.stringValue.set(stringValue);
     }
 
+    public StringValueDomainObject() {
 
+    }
+    public StringValueDomainObject(String str) {
+        stringValue.set(str);
+    }
 
     public String toString(){
 

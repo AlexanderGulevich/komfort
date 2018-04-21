@@ -15,7 +15,7 @@ public class ExchangeRates extends DomainObject{
 
     private SimpleObjectProperty<LocalDate> startingDate =new SimpleObjectProperty<>(this, "startingDate", null);
     private SimpleObjectProperty<Integer> currencyId =new SimpleObjectProperty<>(this, "currencyId", null);
-    private SimpleObjectProperty<StringValueDomainObject> exchangeRate =new SimpleObjectProperty<>(this, "exchangeRate", null);
+    private SimpleObjectProperty<String> exchangeRate =new SimpleObjectProperty<>(this, "exchangeRate", null);
 
     public LocalDate getStartingDate() {
         return startingDate.get();
@@ -41,15 +41,15 @@ public class ExchangeRates extends DomainObject{
         this.currencyId.set(currencyId);
     }
 
-    public StringValueDomainObject getExchangeRate() {
+    public String getExchangeRate() {
         return exchangeRate.get();
     }
 
-    public SimpleObjectProperty<StringValueDomainObject> exchangeRateProperty() {
+    public SimpleObjectProperty<String> exchangeRateProperty() {
         return exchangeRate;
     }
 
-    public void setExchangeRate(StringValueDomainObject exchangeRate) {
+    public void setExchangeRate(String exchangeRate) {
         this.exchangeRate.set(exchangeRate);
     }
 }

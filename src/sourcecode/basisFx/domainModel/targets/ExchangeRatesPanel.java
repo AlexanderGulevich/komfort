@@ -16,7 +16,6 @@ import java.time.LocalDate;
 
 public class ExchangeRatesPanel extends Target{
 
-
     private TableViewWrapper currencyTable;
     private TableViewWrapper rateTable;
     private AnchorPane currencySide;
@@ -25,19 +24,16 @@ public class ExchangeRatesPanel extends Target{
     @Override
     protected void createElement() {
 
-
-        rateSide=innerPanelsFabric.createInnerPanels(panel,0.45,new Coordinate(0d,0d,0d,null));
-
+        rateSide=innerPanelsFabric.createInnerPanels(panel,0.53,new Coordinate(0d,0d,0d,null));
 
         textFabric.createLabel("Курсы валют", FontsStore.ROBOTO_LIGHT,  Pos.BASELINE_CENTER,25d,
                 rateSide, new Coordinate(10d,0d,null,0d));
 
-
         rateTable =tableFabric.createStandartTable(
-                panel,0.45d,new Coordinate(50d, 0d, 70d, null),
+                panel,0.53d,new Coordinate(50d, 0d, 70d, null),
                 dataMapperFabric.getExchangeRatesDataMapper(),
                 columnFabric.createStringColumn("Курсы","exchangeRate",0.3d,
-                        (obj,val)->{((RatePerHour)obj).setRate((StringValueDomainObject) val);}
+                        (obj,val)->{((ExchangeRates)obj).setExchangeRate( (String ) val);}
                 ),
                 columnFabric.createLocalDateColumn(ColumnWrapper.Bulder.create()
                         .setColumnName("Дата начала действия ") .setPropertyName("startingDate").setColumnSize(0.7d)
@@ -45,16 +41,10 @@ public class ExchangeRatesPanel extends Target{
                 )
         );
 
-
-
-
         buttonFactory.createStandartAddButton(
-                rateSide,new Coordinate(null,0d, 10d, null), currencyTable,ExchangeRates.class);
+                rateSide,new Coordinate(null,0d, 10d, null), rateTable,ExchangeRates.class);
         buttonFactory.createStandartDeleteButton(
-                rateSide,new Coordinate(null,180d, 10d, null), currencyTable);
-
-
-
+                rateSide,new Coordinate(null,180d, 10d, null), rateTable);
 
 ////////////////////////////////////////////////////////
 
