@@ -19,14 +19,19 @@ public class ColumnFabric <T,K> {
         return new ColumnInteger<T>(builder);
     
     }
-    public ColumnString<T> createStringColumn(String columnName, String propertyName, Double columnSize,DomainChangeAction domainChangeAction) {
+    public ColumnString<T> createStringColumn(String columnName,
+                                              String propertyName,
+                                              Double columnSize,
+                                              DomainChangeAction domainChangeAction) {
 
         return new ColumnString<T>(
                 ColumnWrapper.Bulder.create(columnName, propertyName, columnSize).setDomainChangeAction(domainChangeAction)
         );
     }
 
-    public ColumnStringComboBox<T,K> createColumnStringComboBox(String columnName, String propertyName, Double columnSize,DomainChangeAction domainChangeAction,DomainObjectListGetter domainObjectListGetter){
+    public ColumnStringComboBox<T,K> createColumnStringComboBox(String columnName, String propertyName,
+                                                                Double columnSize,DomainChangeAction domainChangeAction,
+                                                                DomainObjectListGetter domainObjectListGetter){
 
         return new ColumnStringComboBox<T,K>(
                 ColumnWrapper.Bulder.create()

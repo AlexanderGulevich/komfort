@@ -31,11 +31,10 @@ public class DataMapperFabric {
     public RatePerHourTemplatesDataMapper getRatePerHourTemplatesDataMapper() {
         return  RatePerHourTemplatesDataMapper.getInstance();
     }
-
     public RatePerHourDataMapper getRatePerHourDataMapper() {
         return  new RatePerHourDataMapper();
     }
-
+    public ExchangeRatesDataMapper getExchangeRatesDataMapper(){return new ExchangeRatesDataMapper();}
 
 
 

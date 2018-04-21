@@ -36,7 +36,6 @@ public class RatePerHour extends StringValueDomainObject {
         this.employerId.set(employerId);
     }
 
-
     public StringValueDomainObject getRate() {
         return rate.get();
     }
