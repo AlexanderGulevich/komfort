@@ -46,24 +46,24 @@ public class MenuComponent{
     
         MenuComponent mh=new MenuComponent(composit);
         mh.setName(name);
-        mh.setFactory(fm);
+        mh.setTarget(fm);
         return mh;
     
     }
-    public static MenuComponent createVertical(String name,Target fm, composit c, String iconFontName){
+    public static MenuComponent createVertical(String name,Target target, composit c, String iconFontName){
 
         MenuComponent mh=new MenuComponent(c);
         mh.setName(name);
-        mh.setFactory(fm);
+        mh.setTarget(target);
         mh.setMeta(iconFontName);
         return mh;
 
     }
-    public static MenuComponent createVertical(String name,Target fm, composit c, String iconFontName,FontsStore fontsStore,double size){
+    public static MenuComponent createVertical(String name,Target target, composit c, String iconFontName,FontsStore fontsStore,double size){
 
         MenuComponent mh=new MenuComponent(c);
         mh.setName(name);
-        mh.setFactory(fm);
+        mh.setTarget(target);
         mh.setMeta(iconFontName);
         mh.setFontsStore(fontsStore);
         mh.setSize(size);
@@ -115,7 +115,7 @@ public class MenuComponent{
         return this;
     }
     
-    public MenuComponent setFactory(Target t ){
+    public MenuComponent setTarget(Target t ){
         this.target=t;
         return this;
     }

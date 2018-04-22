@@ -25,7 +25,7 @@ public class EquipmentPanel extends Target{
         tableViewWrapper = AppNode.NodeBuilder.create()
                 .setId(CSSID.TABLE).setCoordinate(panel,50d, null, 0d, 0d)
                 .createTableViewWrapper().setTablesWidthProperty(0.7, panel.widthProperty())
-                .setDataMapper(this.dataMapperFabric.getEquipmentDataMapper())
+                .setDataMapper(this.dataMapper.equipmentDataMapper())
                 .setDbTableName("Equipment").refresh()
                 .setColums(
                      columnFabric.createStringColumn("Наименование","stringValue",0.6,

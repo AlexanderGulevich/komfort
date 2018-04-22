@@ -24,7 +24,7 @@ public abstract class Target {
     protected AnchorPane panel;
     protected CheckingFactory check=new CheckingFactory();
     protected ColumnFabric columnFabric=new ColumnFabric();
-    protected DataMapperFabric dataMapperFabric=new DataMapperFabric();
+    protected DataMapperFabric dataMapper =new DataMapperFabric();
     protected EditFabric editFabric=new EditFabric();
     protected EventFactory eventFactory=EventFactory.getInstance();
     protected TargetStackLogic targetStack=TargetStackLogic.getInstance();

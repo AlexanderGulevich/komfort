@@ -21,7 +21,7 @@ public class CountryPanel extends Target {
         tableViewWrapper = AppNode.NodeBuilder.create()
                 .setId(CSSID.TABLE).setCoordinate(panel,50d, null, 0d, 0d)
                 .createTableViewWrapper().setTablesWidthProperty(0.7, panel.widthProperty())
-                .setDataMapper(this.dataMapperFabric.getCountryDataMapper()).refresh()
+                .setDataMapper(this.dataMapper.countryDataMapper()).refresh()
                 .setColums(
                         columnFabric.createStringColumn("Наименование","stringValue",1d,
                                                 (obj,val)->((Country)obj).setStringValue((String)val))

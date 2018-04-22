@@ -1,13 +1,11 @@
 package basisFx.domainModel.targets;
 
 import basisFx.appCore.controlPolicy.ColumnWrapper;
-import basisFx.appCore.domainScetch.StringValueDomainObject;
 import basisFx.appCore.elements.TableViewWrapper;
 import basisFx.appCore.panels.Target;
 import basisFx.appCore.utils.Coordinate;
 import basisFx.domainModel.domaine.Currency;
 import basisFx.domainModel.domaine.ExchangeRates;
-import basisFx.domainModel.domaine.RatePerHour;
 import basisFx.domainModel.settings.FontsStore;
 import javafx.geometry.Pos;
 import javafx.scene.layout.AnchorPane;
@@ -31,7 +29,7 @@ public class ExchangeRatesPanel extends Target{
 
         rateTable =tableFabric.createStandartTable(
                 panel,0.53d,new Coordinate(50d, 0d, 70d, null),
-                dataMapperFabric.getExchangeRatesDataMapper(),
+                dataMapper.exchangeRatesDataMapper(),
                 columnFabric.createStringColumn("Курсы","exchangeRate",0.3d,
                         (obj,val)->{((ExchangeRates)obj).setExchangeRate( (String ) val);}
                 ),
@@ -57,7 +55,7 @@ public class ExchangeRatesPanel extends Target{
         currencyTable =tableFabric.createBoundTable(
                 rateTable, panel,
                 0.45d, new Coordinate(50d, null, 70d, 0d),
-                dataMapperFabric.getCurrencyDataMapper(),
+                dataMapper.currencyDataMapper(),
 
                 columnFabric.createStringColumn("Наименование","stringValue",1d,
                         (obj,val)->((Currency)obj).setStringValue((String)val))

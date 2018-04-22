@@ -14,7 +14,7 @@ import static basisFx.appCore.menu.MenuComponent.createVertical;
  */
 public class MainMenuSketch extends MenuSketch{
     
-    private TargetFM fabric=new TargetFM();
+    private TargetFM fm =new TargetFM();
 
     @Override
     public void initSpiritNodes() {
@@ -27,10 +27,11 @@ public class MainMenuSketch extends MenuSketch{
 
                createVertical("Результаты дня", null, composit.COMPOSITE,"\uF0A1", FontsStore.WEBHOSTINGHUB,25)
                        .addInerLevel(
-                               create("Дневная выработка", null, composit.SIMPLE),
-                               create("Курсы", fabric.createExchangeRatesPanel(), composit.SIMPLE),
-                               create("Выход", null, composit.SIMPLE),
-                               create("Рентабельность", null, composit.SIMPLE)
+                               create("Сотрудники (учет времени)", fm.timeRecordingPanel(), composit.SIMPLE),
+                               create("Стержни", fm.countingRodsPanel(), composit.SIMPLE),
+                               create("Учет сырья", fm.rawMateriaAccountingPanel(), composit.SIMPLE),
+                               create("Курсы", fm.exchangeRatesPanel(), composit.SIMPLE),
+                               create("Дневная выработка", fm.dailyOutputPanel(), composit.SIMPLE)
                        ),
 
 
@@ -48,10 +49,10 @@ public class MainMenuSketch extends MenuSketch{
 
                createVertical("Управление сотрудниками", null, composit.COMPOSITE,"\uF007", FontsStore.FAWESOME5REGULAR,25)
                        .addInerLevel(
-                               create("Сотрудики", fabric.createEmployeesManagerPanel(), composit.SIMPLE),
-                               create("Актуальные тарифы", fabric.createEmployeesActualRate(), composit.SIMPLE),
-                               create("Шаблоны тарифов", fabric.createRatePerHourPanel(), composit.SIMPLE),
-                               create("Уволенные", fabric.createEmployeesActualRate(), composit.SIMPLE)
+                               create("Сотрудики", fm.employeesManagerPanel(), composit.SIMPLE),
+                               create("Актуальные тарифы", fm.employeesActualRate(), composit.SIMPLE),
+                               create("Шаблоны тарифов", fm.ratePerHourPanel(), composit.SIMPLE),
+                               create("Уволенные", fm.employeesActualRate(), composit.SIMPLE)
 
                ),
 
@@ -59,11 +60,11 @@ public class MainMenuSketch extends MenuSketch{
 
                createVertical("Вспомогательная информация", null, composit.COMPOSITE,"", FontsStore.MATERIAL_ICONS,25)
                        .addInerLevel(
-                               create("Оборудование", fabric.createEquipmentPanel(), composit.SIMPLE),
-                               create("Продукция", fabric.createEquipmentPanel(), composit.SIMPLE),
-                               create("Контрагенты", fabric.createCounterpartyPanel(), composit.SIMPLE),
-                               create("Страны", fabric.createCountryPanel(), composit.SIMPLE),
-                               create("Валюты", fabric.createCurrencyPanel(), composit.SIMPLE)
+                               create("Оборудование", fm.equipmentPanel(), composit.SIMPLE),
+                               create("Продукция", fm.productPanel(), composit.SIMPLE),
+                               create("Контрагенты", fm.counterpartyPanel(), composit.SIMPLE),
+                               create("Страны", fm.countryPanel(), composit.SIMPLE),
+                               create("Валюты", fm.currencyPanel(), composit.SIMPLE)
                        )
 
 

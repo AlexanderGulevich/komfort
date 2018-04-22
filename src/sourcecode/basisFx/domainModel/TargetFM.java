@@ -14,29 +14,44 @@ import basisFx.domainModel.targets.*;
  */
 public class TargetFM {
 
-    public EquipmentPanel createEquipmentPanel(){
+    public EquipmentPanel equipmentPanel(){
         return new EquipmentPanel();
     }
-    public CounterpartyPanel createCounterpartyPanel(){
+    public CounterpartyPanel counterpartyPanel(){
         return new CounterpartyPanel();
     }
-    public CountryPanel createCountryPanel(){
+    public CountryPanel countryPanel(){
         return new CountryPanel();
     }
-    public CurrencyPanel createCurrencyPanel(){
+    public CurrencyPanel currencyPanel(){
         return new CurrencyPanel();
     }
-    public EmployeesActualRatePanel createEmployeesActualRate(){
+    public EmployeesActualRatePanel employeesActualRate(){
         return new EmployeesActualRatePanel();
     }
-    public RatePerHourPanel createRatePerHourPanel(){
+    public RatePerHourPanel ratePerHourPanel(){
         return new RatePerHourPanel();
     }
-    public EmployeesManagerPanel createEmployeesManagerPanel(){
+    public EmployeesManagerPanel employeesManagerPanel(){
         return new EmployeesManagerPanel();
     }
-    public ExchangeRatesPanel createExchangeRatesPanel(){
+    public ExchangeRatesPanel exchangeRatesPanel(){
         return new ExchangeRatesPanel();
+    }
+    public TimeRecordingPanel timeRecordingPanel(){
+        return new TimeRecordingPanel();
+    }
+    public CountingRodsPanel countingRodsPanel(){
+        return new CountingRodsPanel();
+    }
+    public RawMateriaAccountingPanel rawMateriaAccountingPanel(){
+        return new RawMateriaAccountingPanel();
+    }
+    public DailyOutputPanel dailyOutputPanel(){
+        return new DailyOutputPanel();
+    }
+    public ProductPanel productPanel(){
+        return new ProductPanel();
     }
 
 

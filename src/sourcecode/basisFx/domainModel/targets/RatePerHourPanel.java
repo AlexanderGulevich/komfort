@@ -21,7 +21,7 @@ public class RatePerHourPanel extends Target {
         tableViewWrapper = AppNode.NodeBuilder.create()
                 .setId(CSSID.TABLE).setCoordinate(panel,50d, null, 0d, 0d)
                 .createTableViewWrapper().setTablesWidthProperty(0.7, panel.widthProperty())
-                .setDataMapper(this.dataMapperFabric.getRatePerHourTemplatesDataMapper()).refresh()
+                .setDataMapper(this.dataMapper.ratePerHourTemplatesDataMapper()).refresh()
                 .setColums(
                         columnFabric.createStringColumn(
                                 "\"Тариф ( бел. руб/час. )\"","stringValue",1d,

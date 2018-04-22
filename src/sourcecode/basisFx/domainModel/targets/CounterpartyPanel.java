@@ -25,7 +25,7 @@ public class CounterpartyPanel extends Target{
                 .setId(CSSID.TABLE).setCoordinate(panel,50d, null, 0d, 0d)
                 .createTableViewWrapper()
                 .setTablesWidthProperty(0.8, panel.widthProperty())
-                .setDataMapper(this.dataMapperFabric.getCounterpartyDataMapper())
+                .setDataMapper(this.dataMapper.counterpartyDataMapper())
                 .setDbTableName("CounterpartyPanel").refresh()
                 .setColums(
 ////////////////////////////////
@@ -37,13 +37,13 @@ public class CounterpartyPanel extends Target{
                         columnFabric.createColumnStringComboBox(
                                 "Страна","country",0.3,
                                 (obj,val)->{((basisFx.domainModel.domaine.Counterparty)obj).setCountry((Country) val);},
-                                () -> dataMapperFabric.getCounterpartyDataMapper().getCountryList()
+                                () -> dataMapper.counterpartyDataMapper().getCountryList()
                         ),
 ////////////////////////////////////////////////////////////////
                         columnFabric.createColumnStringComboBox(
                                 "Валюта","currency",0.2,
                                 (obj,val)->{((basisFx.domainModel.domaine.Counterparty)obj).setCurrency((Currency) val);},
-                                () -> dataMapperFabric.getCounterpartyDataMapper().getCurrencyList()
+                                () -> dataMapper.counterpartyDataMapper().getCurrencyList()
                         )
                 );
 ////////////////////////////////

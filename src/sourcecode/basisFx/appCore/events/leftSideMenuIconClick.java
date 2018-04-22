@@ -70,6 +70,8 @@ public class leftSideMenuIconClick extends AppEvent{
        Layers.getHorisontalFlowPanel().getChildren().clear();
         
              if(this.component.isComposit()){
+
+               Layers.getContentLayer().getChildren().clear();
             
                ArrayList<MenuComponent> inerLevelComponents=  component.getComponents();
 //               

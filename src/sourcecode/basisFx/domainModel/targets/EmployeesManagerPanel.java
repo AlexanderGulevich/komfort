@@ -34,11 +34,11 @@ public class EmployeesManagerPanel extends Target {
 
         rateTable =tableFabric.createStandartTable(
                 panel,0.45d,new Coordinate(50d, 0d, 70d, null),
-                dataMapperFabric.getRatePerHourDataMapper(),
+                dataMapper.ratePerHourDataMapper(),
 
                 columnFabric.createColumnStringComboBox("Тариф","rate",0.3d,
                         (obj,val)->{((RatePerHour)obj).setRate((StringValueDomainObject) val);},
-                        () -> dataMapperFabric.getEmployerDataMapper().getRateTemplateList()
+                        () -> dataMapper.employerDataMapper().getRateTemplateList()
                 ),
                 columnFabric.createLocalDateColumn(ColumnWrapper.Bulder.create()
                         .setColumnName("Дата начала действия тарифа") .setPropertyName("startingRateDate").setColumnSize(0.7d)
@@ -77,7 +77,7 @@ public class EmployeesManagerPanel extends Target {
         employerTable =tableFabric.createBoundTable(
                 rateTable,
                 panel,0.54d,new Coordinate(50d, null, 70d, 0d),
-                dataMapperFabric.getEmployerDataMapper(),
+                dataMapper.employerDataMapper(),
                 columnFabric.createStringColumn("ФИО","stringValue",1d,
                         (obj,val)->{((Employer)obj).setStringValue((String)val);})
         );

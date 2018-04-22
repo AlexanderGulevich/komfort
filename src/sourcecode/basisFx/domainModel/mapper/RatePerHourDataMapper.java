@@ -47,7 +47,7 @@ public class RatePerHourDataMapper extends DataMapper{
         try {
 
 
-        String expression="SELECT * FROM " +"RateStore "+" where employerId= " +id+" ORDER BY startDate";
+        String expression="SELECT * FROM " +"RateStore "+" where employerId= " +id+" ORDER BY startDate desc";
 
         Statement stmt  = Db.getConnection().createStatement();
 
