@@ -29,6 +29,7 @@ public  class ColumnWrapper<T> {
     protected DomainChangeAction domainChangeAction;
     protected DomainObjectListGetter domainObjectsListGetter;
     protected DateCellValueInitLogic dateCellValueInitLogic;
+    protected Boolean isEditeble;
 
 
 
@@ -42,6 +43,7 @@ public  class ColumnWrapper<T> {
         this.domainObjectsListGetter =b.domainObjectListGetter;
         this.domainChangeAction =b.domainChangeAction;
         this.dateCellValueInitLogic=b.dateCellValueInitLogic;
+        this.isEditeble=b.isEditeble;
 
     }
     
@@ -70,6 +72,7 @@ public  class ColumnWrapper<T> {
          protected ComboBoxCellValueInitLogic comboBoxCellValueInitLogic;
          protected DomainObjectListGetter domainObjectListGetter;
          protected DateCellValueInitLogic dateCellValueInitLogic;
+         protected Boolean isEditeble;
 
 
          public Bulder() {
@@ -87,7 +90,12 @@ public  class ColumnWrapper<T> {
          public static Bulder create(String columnName, String propertyName, Double columnSize ){
              return new Bulder( columnName,  propertyName,  columnSize);
          }
-      
+
+         public Bulder setEditeble(Boolean editeble) {
+             isEditeble = editeble;
+             return this;
+         }
+
          public  Bulder setColumnName(String columnName){
          this.columnName=columnName;
          return this;

@@ -24,9 +24,12 @@ public class ColumnString<T> extends ColumnWrapper<T>{
     public ColumnString(ColumnWrapper.Bulder builder) {
         
         super(builder);
-//        this.domainChangeAction =builder.domainChangeAction;
+
+
         
         this.column =  new TableColumn<>(columnName);
+
+        column.setEditable(isEditeble);
       
         column.setCellValueFactory(new PropertyValueFactory<>(propertyName));
         column.setCellFactory(TextFieldTableCell.forTableColumn());

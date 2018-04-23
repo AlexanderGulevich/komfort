@@ -23,7 +23,8 @@ public class DatePickerWrapper  extends AppNode implements ObservableVidget {
         init(builder);
 
            datePicker.setId(CSSID.DATEPICKER_IN_COLUMN.get());
-           datePicker.setMinWidth(this.getWidth());
+
+            datePicker.setPrefWidth(width);
            datePicker.setConverter(new CustomStringConverter());
            datePicker.setPromptText("");
 

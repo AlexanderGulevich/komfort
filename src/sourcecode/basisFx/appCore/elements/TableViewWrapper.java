@@ -7,6 +7,7 @@ package basisFx.appCore.elements;
 
 import basisFx.appCore.Refreshable;
 import basisFx.appCore.SubmittingDomains;
+import basisFx.appCore.TextFabric;
 import basisFx.appCore.controlPolicy.ColumnWrapper;
 import basisFx.appCore.dataSource.DataMapper;
 import basisFx.appCore.dataSource.UnitOfWork;
@@ -15,6 +16,8 @@ import basisFx.appCore.domainScetch.DomainObject;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+
+import basisFx.domainModel.settings.FontsStore;
 import javafx.beans.property.ReadOnlyDoubleProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -24,6 +27,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.text.Text;
 import javafx.util.Callback;
 
 public  class TableViewWrapper <T> extends AppNode implements Refreshable, SubmittingDomains {
@@ -48,6 +52,11 @@ public  class TableViewWrapper <T> extends AppNode implements Refreshable, Submi
         setClickedUpDownRowDetection();
         list.addListener(tableListener);
         unitOfWork.setRefreshable(this);
+
+        table.setPlaceholder(new Text(""));
+        TextFabric textFabric=new TextFabric();
+        TextWrapper text = textFabric.createText("f", FontsStore.FAWESOME5SOLID, 75d, null, null);
+        text.element
 
     }
 

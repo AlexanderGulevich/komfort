@@ -15,23 +15,14 @@ public class ColumnFabric <T,K> {
     
     
     public ColumnInteger<T> createIntegerColumn(ColumnWrapper.Bulder builder){
-        
         return new ColumnInteger<T>(builder);
-    
     }
-    public ColumnString<T> createStringColumn(String columnName,
-                                              String propertyName,
-                                              Double columnSize,
-                                              DomainChangeAction domainChangeAction) {
-
+    public ColumnString<T> createStringColumn(String columnName,String propertyName, Double columnSize,DomainChangeAction domainChangeAction) {
         return new ColumnString<T>(
-                ColumnWrapper.Bulder.create(columnName, propertyName, columnSize).setDomainChangeAction(domainChangeAction)
+                ColumnWrapper.Bulder.create(columnName, propertyName, columnSize).setDomainChangeAction(domainChangeAction).setEditeble(true)
         );
     }
-
-    public ColumnStringComboBox<T,K> createColumnStringComboBox(String columnName, String propertyName,
-                                                                Double columnSize,DomainChangeAction domainChangeAction,
-                                                                DomainObjectListGetter domainObjectListGetter){
+    public ColumnStringComboBox<T,K> createColumnStringComboBox(String columnName, String propertyName,Double columnSize,DomainChangeAction domainChangeAction,DomainObjectListGetter domainObjectListGetter){
 
         return new ColumnStringComboBox<T,K>(
                 ColumnWrapper.Bulder.create()
@@ -43,22 +34,16 @@ public class ColumnFabric <T,K> {
         );
 
     }
-//    public ColumnDoubleComboBox<T,K> createColumnDoubleComboBox(ColumnWrapper.Bulder builder){
-//
-//        return new ColumnDoubleComboBox<T,K>(builder);
-//
-//    }
     public ColumnLocalDate<T,K> createLocalDateColumn(ColumnWrapper.Bulder builder){
-
         return new ColumnLocalDate<T,K>(builder);
 
     }
-//
-//    public ColumnDouble<T,K> createDoubleColumn(ColumnWrapper.Bulder builder){
-//
-//        return new ColumnDouble<T,K>(builder);
-//
-//    }
+    public ColumnString<T> createNotEditableStringColumn(String columnName,String propertyName, Double columnSize,DomainChangeAction domainChangeAction) {
+        return new ColumnString<T>(
+                ColumnWrapper.Bulder.create(columnName, propertyName, columnSize).setDomainChangeAction(domainChangeAction).setEditeble(false)
+        );
+    }
+
 
 
 
