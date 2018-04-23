@@ -22,9 +22,6 @@ public class EmployeesManagerPanel extends Target {
     @Override
     protected void createElement() {
 
-
-
-
         rateSide=innerPanelsFabric.createInnerPanels(panel,0.45,new Coordinate(0d,0d,0d,null));
 
 
@@ -58,16 +55,6 @@ public class EmployeesManagerPanel extends Target {
 
 
 
-
-
-
-
-
-
-
-
-
-
         employerSide=innerPanelsFabric.createInnerPanels(panel,0.54d,new Coordinate(0d,null,0d,0d));
 
         textFabric.createLabel("Текущий список сотрудников", FontsStore.ROBOTO_LIGHT,  Pos.BASELINE_CENTER,25d,
@@ -83,9 +70,9 @@ public class EmployeesManagerPanel extends Target {
         );
 
         buttonFactory.createStandartAddButton(
-                employerSide,new Coordinate(null,0d, 10d, null), employerTable,Employer.class);
+                panel,new Coordinate(null,0d, 10d, null), employerTable,Employer.class);
         buttonFactory.createStandartDeleteButton(
-                employerSide,new Coordinate(null,180d, 10d, null), employerTable);
+                panel,new Coordinate(null,180d, 10d, null), employerTable);
 
 
 ///////////////////////////////////////////////////

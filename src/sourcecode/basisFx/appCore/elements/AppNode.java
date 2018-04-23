@@ -1,5 +1,7 @@
 package basisFx.appCore.elements;
 
+
+import basisFx.appCore.ValueAddToDomain;
 import basisFx.appCore.utils.Coordinate;
 import basisFx.appCore.events.AppEvent;
 import basisFx.domainModel.settings.CSSID;
@@ -49,7 +51,7 @@ public abstract class AppNode  {
     protected Font font;  
     protected boolean hasBond;
     protected Stage stage;
-protected String string;
+    protected String string;
     protected Insets insets;
     protected DropShadow dropShadow;
     protected String stringId;
@@ -62,9 +64,8 @@ protected String string;
     protected ScrollPane scrollPane;
     protected Double widthPerCent=null;
     protected Pos pos=null;
-    
+    protected ValueAddToDomain valueAddToObservers;
 
-//    protected abstract void display();
     
     public void init (NodeBuilder builder){
         this.coordinate=builder.coordinate;
@@ -92,20 +93,17 @@ protected String string;
         this.scrollPane= builder.scrollPane;
         this.widthPerCent= builder.widthPerCent;
         this.pos=builder.pos;
+        this.valueAddToObservers =builder.valueAddToDomain;
 
-        
-        
-        
-        
-        
+
+
         elocateEvents();
         bond(this);
         
         
         
     }
-    
-//    public abstract void lazyLoad();
+
     
     public  String getId(){
         return this.id;
@@ -166,12 +164,7 @@ protected String string;
                  this.scrollPane.setPannable(true);
                  this.scrollPane.setContent(n.getElement());
 
-
              }
-
-
-
-
 
          }
     }
@@ -228,15 +221,18 @@ protected String string;
         protected ScrollPane scrollPane;
         protected Double widthPerCent=null;
         protected Pos pos=null;
+        protected ValueAddToDomain valueAddToDomain;
 
 
         public static NodeBuilder create(){
             return new NodeBuilder();
         }
-      
-       
-        
-       
+
+
+        public void setValueAddToDomain(ValueAddToDomain valueAddToDomain) {
+            this.valueAddToDomain = valueAddToDomain;
+        }
+
         public NodeBuilder setDropShadow(DropShadow d) {
             this.dropShadow=d;
             return this;
@@ -261,7 +257,6 @@ protected String string;
 
             return this;
     }
-
        
         public NodeBuilder setCoordinate(AnchorPane ap,Double top,Double right,Double bottom,Double left) {
             setParent(ap);
@@ -401,10 +396,6 @@ protected String string;
                 return this;
             }
 
-
-
-
-
         /////////  Fabric Methods  /////////
         public TextWrapper createText(){
             return new<Text>TextWrapper(this);
@@ -439,11 +430,9 @@ protected String string;
         public   <T> ScrollPaneWrapper createScrollPaneWrapper  (){
             return new  ScrollPaneWrapper<>(this);
         }
-
-
-
-
-
+        public    DatePickerWrapper createDatePickerWrapper  (){
+            return new  DatePickerWrapper(this);
+        }
 
 
     }

@@ -32,6 +32,7 @@ public abstract class Target {
     protected TableFabric tableFabric=new TableFabric();
     protected InnerPanelsFabric innerPanelsFabric=new InnerPanelsFabric();
     protected TextFabric textFabric=new TextFabric();
+    protected VidgetFactory vidgetFactory=new VidgetFactory();
 
 
 

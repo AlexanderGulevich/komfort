@@ -28,6 +28,7 @@ public class TableFabric {
     }
 
 
+
     public TableViewWrapper createBoundTable(TableViewWrapper observer,AnchorPane panel, double width, Coordinate coordinate,
                                                 DataMapper dataMapper,
                                                 ColumnWrapper...columnWrappers){

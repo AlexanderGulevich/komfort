@@ -6,6 +6,7 @@
 package basisFx.appCore.elements;
 
 import basisFx.appCore.Refreshable;
+import basisFx.appCore.SubmittingDomains;
 import basisFx.appCore.controlPolicy.ColumnWrapper;
 import basisFx.appCore.dataSource.DataMapper;
 import basisFx.appCore.dataSource.UnitOfWork;
@@ -25,7 +26,7 @@ import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.util.Callback;
 
-public  class TableViewWrapper <T> extends AppNode implements Refreshable{
+public  class TableViewWrapper <T> extends AppNode implements Refreshable, SubmittingDomains {
 
     private TableView<DomainObject> table=null;
     private ObservableList<DomainObject>  list=FXCollections.<DomainObject> observableArrayList();
@@ -337,7 +338,10 @@ public  class TableViewWrapper <T> extends AppNode implements Refreshable{
 
         return this;
     }
-  
-     
 
+
+    @Override
+    public ObservableList<DomainObject> submitList() {
+        return this.list;
+    }
 }
