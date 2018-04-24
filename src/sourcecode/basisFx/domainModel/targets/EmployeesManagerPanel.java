@@ -6,7 +6,7 @@ import basisFx.appCore.panels.Target;
 import basisFx.appCore.utils.Coordinate;
 import basisFx.domainModel.domaine.Employer;
 import basisFx.domainModel.domaine.RatePerHour;
-import basisFx.domainModel.settings.FontsStore;
+import basisFx.appCore.settings.FontsStore;
 import javafx.geometry.Pos;
 import javafx.scene.layout.AnchorPane;
 
@@ -63,8 +63,8 @@ public class EmployeesManagerPanel extends Target {
                 rateTable,
                 panel,0.54d,new Coordinate(50d, null, 70d, 0d),
                 dataMapper.employerDataMapper(),
-                columnFabric.createColumn("ФИО","stringValue",1d,true,
-                        (obj,val)->{((Employer)obj).setStringValue((String)val);})
+                columnFabric.createColumn("ФИО","name",1d,true,
+                        (obj,val)->{((Employer)obj).setName((String)val);})
         );
 
         buttonFactory.addRowButton(

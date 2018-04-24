@@ -6,7 +6,7 @@
 package basisFx.appCore.elements;
 
 import basisFx.appCore.MaximazingManager;
-import basisFx.appCore.MaximazingObserver;
+import basisFx.appCore.functional.MaximazingObserver;
 import javafx.scene.Node;
 import javafx.scene.layout.AnchorPane;
 

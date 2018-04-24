@@ -26,7 +26,7 @@ public class EmployerDataMapper extends DataMapper {
     @Override
     public boolean isReadyToTransaction(DomainObject d) {
         Employer employer= (Employer) d;
-        if (employer.getStringValue()!= null
+        if (employer.getName()!= null
              && employer.getIsFired()!= null
                 ) {
             return true;
@@ -59,7 +59,7 @@ public class EmployerDataMapper extends DataMapper {
 
                 Employer pojo=new Employer();
                 pojo.setId(rs.getInt("id"));
-                pojo.setStringValue(rs.getString("name"));
+                pojo.setName(rs.getString("name"));
                 pojo.setIsFired(rs.getBoolean("isFired"));
 
                 RatePerHour rate=getNewest(rs.getInt("id"));
@@ -162,7 +162,7 @@ public class EmployerDataMapper extends DataMapper {
 
             try {
                 pstmt = Db.getConnection().prepareStatement(expression);
-                pstmt.setString(1, employer.getStringValue());
+                pstmt.setString(1, employer.getName());
                 pstmt.setBoolean(2, employer.getIsFired());
                 pstmt.setInt(3, employer.getId());
                 pstmt.executeUpdate();
@@ -193,7 +193,7 @@ public class EmployerDataMapper extends DataMapper {
                         + ") VALUES(?,?,?)";
 
                 PreparedStatement pstmt = Db.getConnection().prepareStatement(expression);
-                pstmt.setString(1, domainObject.getStringValue());
+                pstmt.setString(1, domainObject.getName());
                 pstmt.setBoolean(2, domainObject.getIsFired());
                 pstmt.setInt(3, maxId + 1);
 
@@ -257,7 +257,7 @@ public class EmployerDataMapper extends DataMapper {
             while (rs.next()) {
                 RatePerHour domainObject = new RatePerHour();
                 domainObject.setId(rs.getInt("id"));
-                domainObject.setStringValue(String.valueOf(rs.getDouble("rate")));
+                domainObject.setName(String.valueOf(rs.getDouble("rate")));
                 domainObject.setStartingRateDate(rs.getDate("startDate").toLocalDate());
                 domainObject.setEmployerId(rs.getInt("employerId"));
 

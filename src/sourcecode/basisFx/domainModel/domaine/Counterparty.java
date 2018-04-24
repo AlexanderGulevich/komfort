@@ -5,6 +5,7 @@
  */
 package basisFx.domainModel.domaine;
 
+import basisFx.appCore.domainScetch.DomainObject;
 import basisFx.appCore.domainScetch.StringValueDomainObject;
 import javafx.beans.property.SimpleObjectProperty;
 
@@ -12,16 +13,17 @@ import javafx.beans.property.SimpleObjectProperty;
  *
  * @author Alek
  */
-public class Counterparty  extends StringValueDomainObject {
+public class Counterparty  extends DomainObject {
 
-    private SimpleObjectProperty<StringValueDomainObject> country =new SimpleObjectProperty<>(this, "country", null);
-    private SimpleObjectProperty<StringValueDomainObject> currency =new SimpleObjectProperty<>(this, "currency", null);
+    private SimpleObjectProperty<String> name =new SimpleObjectProperty(this, "name", null);
+    private SimpleObjectProperty<DomainObject> country =new SimpleObjectProperty<>(this, "country", null);
+    private SimpleObjectProperty<DomainObject> currency =new SimpleObjectProperty<>(this, "currency", null);
 
-    public StringValueDomainObject getCountry() {
+    public DomainObject getCountry() {
         return country.get();
     }
 
-    public SimpleObjectProperty<StringValueDomainObject> countryProperty() {
+    public SimpleObjectProperty<DomainObject> countryProperty() {
         return country;
     }
 
@@ -29,11 +31,11 @@ public class Counterparty  extends StringValueDomainObject {
         this.country.set(country);
     }
 
-    public StringValueDomainObject getCurrency() {
+    public DomainObject getCurrency() {
         return currency.get();
     }
 
-    public SimpleObjectProperty<StringValueDomainObject> currencyProperty() {
+    public SimpleObjectProperty<DomainObject> currencyProperty() {
         return currency;
     }
 
@@ -41,13 +43,15 @@ public class Counterparty  extends StringValueDomainObject {
         this.currency.set(currency);
     }
 
+    public String getName() {
+        return name.get();
+    }
 
+    public SimpleObjectProperty<String> nameProperty() {
+        return name;
+    }
 
-
-
-
-
-
-
-
+    public void setName(String name) {
+        this.name.set(name);
+    }
 }

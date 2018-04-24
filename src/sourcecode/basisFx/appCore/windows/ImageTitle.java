@@ -6,7 +6,7 @@
 package basisFx.appCore.windows;
 
 import basisFx.appCore.elements.AppNode;
-import basisFx.domainModel.settings.CSSID;
+import basisFx.appCore.settings.CSSID;
 
 /**
  *

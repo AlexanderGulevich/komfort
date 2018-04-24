@@ -6,9 +6,9 @@
 package basisFx.appCore;
 
 import basisFx.appCore.elements.AppNode;
-import basisFx.domainModel.settings.CSSID;
-import basisFx.domainModel.settings.Settings;
-import static basisFx.domainModel.settings.Settings.PRELODER_COUNT_LIMIT;
+import basisFx.appCore.settings.CSSID;
+import basisFx.appCore.settings.Settings;
+import static basisFx.appCore.settings.Settings.PRELODER_COUNT_LIMIT;
 import com.sun.javafx.application.LauncherImpl;
 import javafx.application.Platform;
 import javafx.application.Preloader;

@@ -5,7 +5,7 @@
  */
 package basisFx.appCore.dataSource;
 
-import basisFx.appCore.Refreshable;
+import basisFx.appCore.functional.Refreshable;
 import basisFx.appCore.domainScetch.DomainObject;
 
 import java.sql.SQLException;

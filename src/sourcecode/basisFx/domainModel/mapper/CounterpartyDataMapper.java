@@ -25,8 +25,8 @@ import java.util.logging.Logger;
  */
 public class CounterpartyDataMapper extends DataMapper {
 
-    private  ObservableList <StringValueDomainObject> currencyList =null;
-    private  ObservableList <StringValueDomainObject> countryList =null;
+    private  ObservableList <DomainObject> currencyList =null;
+    private  ObservableList <DomainObject> countryList =null;
     private Counterparty domainObject;
     private static CounterpartyDataMapper ourInstance = new CounterpartyDataMapper();
 
@@ -35,7 +35,7 @@ public class CounterpartyDataMapper extends DataMapper {
         Counterparty counterparty= (Counterparty) d;
         if (counterparty.getCountry()!= null
                 &&counterparty.getCurrency()!=null
-                &&counterparty.getStringValue()!=null) {
+                &&counterparty.getName()!=null) {
             System.out.println("!!!!!!!!!!!!!!CounterpartyDataMapper --- объект готов к транзакции");
             return true;
         }
@@ -64,7 +64,7 @@ public class CounterpartyDataMapper extends DataMapper {
 
                 Counterparty pojo=new Counterparty();
                 pojo.setId(rs.getInt("id"));
-                pojo.setStringValue(rs.getString("name"));
+                pojo.setName(rs.getString("name"));
 
                 int сountryId=rs.getInt("countryId");
                 int currencyId=rs.getInt("currencyId");
@@ -118,7 +118,7 @@ public class CounterpartyDataMapper extends DataMapper {
 
         String expression="SELECT * FROM " +"Currency"+" ORDER BY ID";
         Statement stmt  = null;
-        currencyList = FXCollections.<StringValueDomainObject>observableArrayList();
+        currencyList = FXCollections.<DomainObject>observableArrayList();
 
         try {
 
@@ -129,7 +129,7 @@ public class CounterpartyDataMapper extends DataMapper {
             while (rs.next()) {
                 Currency domainObject = new Currency();
                 domainObject.setId(rs.getInt("id"));
-                domainObject.setStringValue(rs.getString("name"));
+                domainObject.setName(rs.getString("name"));
 
                 currencyList.add(domainObject);
 
@@ -142,7 +142,7 @@ public class CounterpartyDataMapper extends DataMapper {
     private void getCountryListFromStore() {
         String expression="SELECT * FROM Country ORDER BY ID";
         Statement stmt  = null;
-        countryList = FXCollections.<StringValueDomainObject>observableArrayList();
+        countryList = FXCollections.<DomainObject>observableArrayList();
 
         try {
 
@@ -153,7 +153,7 @@ public class CounterpartyDataMapper extends DataMapper {
             while (rs.next()) {
                 Country domainObject = new Country();
                 domainObject.setId(rs.getInt("id"));
-                domainObject.setStringValue(rs.getString("name"));
+                domainObject.setName(rs.getString("name"));
 
                 countryList.add(domainObject);
             }
@@ -165,7 +165,7 @@ public class CounterpartyDataMapper extends DataMapper {
 
 
     }
-    public  ObservableList <StringValueDomainObject> getCurrencyList() {
+    public  ObservableList <DomainObject> getCurrencyList() {
 
         if (currencyList != null) {
             return currencyList;
@@ -175,7 +175,7 @@ public class CounterpartyDataMapper extends DataMapper {
 
         }
     }
-    public  ObservableList <StringValueDomainObject>  getCountryList() {
+    public  ObservableList <DomainObject>  getCountryList() {
 
         if (countryList != null) {
             return countryList;
@@ -204,7 +204,7 @@ public class CounterpartyDataMapper extends DataMapper {
             try {
                 pstmt = Db.getConnection().prepareStatement(expression);
 
-                pstmt.setString(1, counterparty.getStringValue());
+                pstmt.setString(1, counterparty.getName());
                 pstmt.setInt(2, counterparty.getCountry().getId());
                 pstmt.setInt(3, counterparty.getCurrency().getId());
                 pstmt.setInt(4, counterparty.getId());
@@ -236,7 +236,7 @@ public class CounterpartyDataMapper extends DataMapper {
                         + ") VALUES(?,?,?)";
 
                 PreparedStatement pstmt = Db.getConnection().prepareStatement(expression);
-                pstmt.setString(1, domainObject.getStringValue());
+                pstmt.setString(1, domainObject.getName());
                 pstmt.setInt(2, domainObject.getCountry().getId());
                 pstmt.setInt(3, domainObject.getCurrency().getId());
 

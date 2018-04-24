@@ -6,9 +6,9 @@
 package basisFx.appCore.windows;
 
 import basisFx.appCore.elements.AppNode;
-import basisFx.domainModel.settings.CSSID;
-import basisFx.domainModel.settings.Settings;
-import basisFx.domainModel.settings.WindowsTitlesNames;
+import basisFx.appCore.settings.CSSID;
+import basisFx.appCore.settings.Settings;
+import basisFx.appCore.settings.WindowsTitlesNames;
 
 /**
  *

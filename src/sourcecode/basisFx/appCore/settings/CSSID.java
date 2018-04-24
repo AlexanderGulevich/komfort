@@ -1,4 +1,4 @@
-package basisFx.domainModel.settings;
+package basisFx.appCore.settings;
 
 public enum CSSID {
     

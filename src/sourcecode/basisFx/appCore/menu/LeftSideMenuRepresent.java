@@ -2,8 +2,8 @@ package basisFx.appCore.menu;
 
 import basisFx.appCore.elements.AppNode;
 import basisFx.appCore.registry.Layers;
-import basisFx.domainModel.settings.CSSID;
-import basisFx.domainModel.settings.FontsStore;
+import basisFx.appCore.settings.CSSID;
+import basisFx.appCore.settings.FontsStore;
 import java.util.ArrayList;
 import java.util.Iterator;
 import javafx.collections.ObservableList;

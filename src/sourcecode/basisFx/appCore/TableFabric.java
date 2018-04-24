@@ -6,7 +6,7 @@ import basisFx.appCore.dataSource.DataMapper;
 import basisFx.appCore.elements.AppNode;
 import basisFx.appCore.elements.TableViewWrapper;
 import basisFx.appCore.utils.Coordinate;
-import basisFx.domainModel.settings.CSSID;
+import basisFx.appCore.settings.CSSID;
 import javafx.scene.layout.AnchorPane;
 
 public class TableFabric {
@@ -19,7 +19,8 @@ public class TableFabric {
 
         return AppNode.NodeBuilder.create()
                 .setId(CSSID.TABLE)
-                .setEditPoliticy(editFabric.createDefaultEditCommit())
+//                .setEditPoliticy(editFabric.createDefaultEditCommit())
+                .setEditCreater(()-> {return editFabric.createDefaultEditCommit();})
                 .setParent(panel).setCoordinate(coordinate)
                 .createTableViewWrapper().setTablesWidthProperty(width, panel.widthProperty())
                 .setDataMapper(dataMapper)
@@ -38,7 +39,8 @@ public class TableFabric {
 
         return AppNode.NodeBuilder.create()
                 .setId(CSSID.TABLE)
-                .setEditPoliticy(editFabric.createMultipleSubmitEditCommit())
+//                .setEditPoliticy(editFabric.createMultipleSubmitEditCommit())
+                .setEditCreater(()-> {return editFabric.createMultipleSubmitEditCommit();})
                 .setParent(panel).setCoordinate(coordinate)
                 .createTableViewWrapper().setTablesWidthProperty(width, panel.widthProperty())
                 .setDataMapper(dataMapper)
@@ -57,7 +59,8 @@ public class TableFabric {
 
         return AppNode.NodeBuilder.create()
                 .setId(CSSID.TABLE)
-                .setEditPoliticy(editFabric.createDefaultEditCommit())
+//                .setEditPoliticy(editFabric.createDefaultEditCommit())
+                .setEditCreater(()-> {return editFabric.createDefaultEditCommit();})
                 .setParent(panel).setCoordinate(coordinate)
                 .createTableViewWrapper().setTablesWidthProperty(width, panel.widthProperty())
                 .setDataMapper(dataMapper)

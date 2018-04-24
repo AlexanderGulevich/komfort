@@ -3,9 +3,11 @@ package basisFx.domainModel.targets;
 import basisFx.appCore.elements.AppNode;
 import basisFx.appCore.elements.TableViewWrapper;
 import basisFx.appCore.panels.Target;
+import basisFx.appCore.utils.Coordinate;
 import basisFx.domainModel.domaine.Currency;
-import basisFx.domainModel.settings.CSSID;
-import basisFx.domainModel.settings.FontsStore;
+import basisFx.appCore.settings.CSSID;
+import basisFx.appCore.settings.FontsStore;
+import javafx.geometry.Pos;
 
 /**
  * Created by AlexanderGulevich on 24.03.2018.
@@ -18,14 +20,17 @@ public class CurrencyPanel extends Target {
     private TableViewWrapper tableViewWrapper;
     @Override
     protected void createElement() {
-        tableViewWrapper = AppNode.NodeBuilder.create()
-                .setId(CSSID.TABLE).setCoordinate(panel,50d, null, 0d, 0d)
-                .<Currency>createTableViewWrapper().setTablesWidthProperty(0.7, panel.widthProperty())
-                .setDataMapper(this.dataMapper.currencyDataMapper())
-                .setDbTableName("Currency").refresh()
-                .setColums(
-                        columnFabric.createColumn("Наименование","stringValue",1d,true,
-                                (obj,val)->((Currency)obj).setStringValue((String)val))
+
+
+        textFabric.createLabel("Список валют", FontsStore.ROBOTO_LIGHT,  Pos.BASELINE_LEFT,25d,
+                panel, new Coordinate(10d,0d,null,0d));
+
+
+        tableViewWrapper = tableFabric.createStandartTable(
+                panel,0.7d,new Coordinate(50d, null, 0d, 0d),
+                dataMapper.currencyDataMapper(),
+                columnFabric.createColumn("Наименование","name",1d,true,
+                                (obj,val)->((Currency)obj).setName((String)val))
                 );
 
 

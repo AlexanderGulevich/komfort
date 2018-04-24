@@ -3,16 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package basisFx.appCore;
-
-import basisFx.appCore.domainScetch.DomainObject;
+package basisFx.appCore.functional;
 
 /**
  *
  * @author Alek
- * @param <T>
  */
-public  interface Refreshable  <T > {
-    public T refresh();
-    public T refresh(DomainObject selectedDomainObject);
+public interface Initiated {
+    public void init();
 }

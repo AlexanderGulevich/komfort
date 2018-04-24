@@ -7,7 +7,7 @@
 //import basisFx.appCore.panels.Target;
 //import basisFx.domainModel.domaine.Country;
 //import basisFx.domainModel.domaine.Equipment;
-//import basisFx.domainModel.settings.CSSID;
+//import basisFx.appCore.settings.CSSID;
 //import javafx.scene.layout.AnchorPane;
 //
 ///**

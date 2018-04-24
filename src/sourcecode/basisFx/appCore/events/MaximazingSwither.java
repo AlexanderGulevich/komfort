@@ -7,9 +7,8 @@ package basisFx.appCore.events;
 
 import basisFx.appCore.MaximazingManager;
 import basisFx.appCore.elements.AppNode;
-import basisFx.domainModel.settings.Settings;
+import basisFx.appCore.settings.Settings;
 
-import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.geometry.Insets;

@@ -1,16 +1,30 @@
 package basisFx.domainModel.domaine;
 
+import basisFx.appCore.domainScetch.DomainObject;
 import basisFx.appCore.domainScetch.StringValueDomainObject;
 import javafx.beans.property.SimpleObjectProperty;
 
 import java.time.LocalDate;
 
-public class RatePerHour extends StringValueDomainObject {
+public class RatePerHour extends DomainObject {
 
     private SimpleObjectProperty<LocalDate> startingRateDate =new SimpleObjectProperty<>(this, "startingDate", null);
     private SimpleObjectProperty<Integer> employerId =new SimpleObjectProperty<>(this, "employerId", null);
     private SimpleObjectProperty<StringValueDomainObject> rate =new SimpleObjectProperty<>(this, "rate", null);
 
+    private SimpleObjectProperty<String> name =new SimpleObjectProperty<>(this, "name", null);
+
+    public String getName() {
+        return name.get();
+    }
+
+    public SimpleObjectProperty<String> nameProperty() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name.set(name);
+    }
 
     public LocalDate getStartingRateDate() {
         return startingRateDate.get();

@@ -5,7 +5,7 @@
  */
 package basisFx.appCore.utils;
 
-import basisFx.domainModel.settings.FontsStore;
+import basisFx.appCore.settings.FontsStore;
 import java.io.InputStream;
 import javafx.scene.text.Font;
 

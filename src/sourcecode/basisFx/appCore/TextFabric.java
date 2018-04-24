@@ -4,8 +4,8 @@ import basisFx.appCore.elements.AppNode;
 import basisFx.appCore.elements.LabelWrapper;
 import basisFx.appCore.elements.TextWrapper;
 import basisFx.appCore.utils.Coordinate;
-import basisFx.domainModel.settings.CSSID;
-import basisFx.domainModel.settings.FontsStore;
+import basisFx.appCore.settings.CSSID;
+import basisFx.appCore.settings.FontsStore;
 import javafx.geometry.Pos;
 import javafx.scene.layout.AnchorPane;
 

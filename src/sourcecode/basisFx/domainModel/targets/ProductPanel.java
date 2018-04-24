@@ -6,7 +6,7 @@ import basisFx.appCore.panels.Target;
 import basisFx.appCore.utils.Coordinate;
 import basisFx.domainModel.domaine.Price;
 import basisFx.domainModel.domaine.Product;
-import basisFx.domainModel.settings.FontsStore;
+import basisFx.appCore.settings.FontsStore;
 import javafx.geometry.Pos;
 import javafx.scene.layout.AnchorPane;
 

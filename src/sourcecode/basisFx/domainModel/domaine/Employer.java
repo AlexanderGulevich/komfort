@@ -1,5 +1,6 @@
 package basisFx.domainModel.domaine;
 
+import basisFx.appCore.domainScetch.DomainObject;
 import basisFx.appCore.domainScetch.StringValueDomainObject;
 import javafx.beans.property.SimpleObjectProperty;
 
@@ -10,23 +11,34 @@ import java.time.LocalDate;
  * Created by AlexanderGulevich on 11.03.2018.
  *
  */
-public class Employer extends StringValueDomainObject {
+public class Employer extends DomainObject {
 
+    private SimpleObjectProperty<String> name =new SimpleObjectProperty<>(this, "name", null);
     private SimpleObjectProperty<LocalDate> startingRateDate =new SimpleObjectProperty<>(this, "startingRateDate", null);
     private SimpleObjectProperty<Boolean> isFired =new SimpleObjectProperty<>(this, "isFired", false);
-    private SimpleObjectProperty<StringValueDomainObject> rate =new SimpleObjectProperty<>(this, "rate", null);
+    private SimpleObjectProperty<DomainObject> rate =new SimpleObjectProperty<>(this, "rate", null);
 
 
+    public String getName() {
+        return name.get();
+    }
 
-    public StringValueDomainObject getRate() {
+    public SimpleObjectProperty<String> nameProperty() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name.set(name);
+    }
+    public DomainObject getRate() {
         return rate.get();
     }
 
-    public SimpleObjectProperty<StringValueDomainObject> rateProperty() {
+    public SimpleObjectProperty<DomainObject> rateProperty() {
         return rate;
     }
 
-    public void setRate(StringValueDomainObject rate) {
+    public void setRate(DomainObject rate) {
         this.rate.set(rate);
     }
 

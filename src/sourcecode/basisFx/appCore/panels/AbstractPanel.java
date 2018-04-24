@@ -6,9 +6,9 @@
 package basisFx.appCore.panels;
 
 import basisFx.appCore.utils.Coordinate;
-import basisFx.appCore.Initiated;
+import basisFx.appCore.functional.Initiated;
 import basisFx.appCore.events.EventFactory;
-import basisFx.domainModel.settings.FontsStore;
+import basisFx.appCore.settings.FontsStore;
 import javafx.geometry.Insets;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;

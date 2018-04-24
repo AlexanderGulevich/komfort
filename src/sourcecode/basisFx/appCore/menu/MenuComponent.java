@@ -3,7 +3,7 @@ package basisFx.appCore.menu;
 import java.util.ArrayList;
 
 import basisFx.appCore.panels.Target;
-import basisFx.domainModel.settings.FontsStore;
+import basisFx.appCore.settings.FontsStore;
 import javafx.scene.layout.AnchorPane;
 
 /**

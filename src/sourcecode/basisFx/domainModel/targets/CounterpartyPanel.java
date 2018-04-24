@@ -3,10 +3,11 @@ package basisFx.domainModel.targets;
 import basisFx.appCore.elements.AppNode;
 import basisFx.appCore.elements.TableViewWrapper;
 import basisFx.appCore.panels.Target;
+import basisFx.appCore.utils.Coordinate;
 import basisFx.domainModel.domaine.Country;
 import basisFx.domainModel.domaine.Currency;
-import basisFx.domainModel.settings.CSSID;
-import basisFx.domainModel.settings.FontsStore;
+import basisFx.appCore.settings.CSSID;
+import basisFx.appCore.settings.FontsStore;
 
 /**
  *
@@ -21,37 +22,22 @@ public class CounterpartyPanel extends Target{
     @SuppressWarnings("unchecked")
     public void createElement() {
 
-        tableViewWrapper = AppNode.NodeBuilder.create()
-                .setId(CSSID.TABLE).setCoordinate(panel,50d, null, 0d, 0d)
-                .createTableViewWrapper()
-                .setTablesWidthProperty(0.8, panel.widthProperty())
-                .setDataMapper(this.dataMapper.counterpartyDataMapper())
-                .setDbTableName("CounterpartyPanel").refresh()
-                .setColums(
-////////////////////////////////
+        tableViewWrapper = tableFabric.createStandartTable(panel,0.8d,new Coordinate(50d, null, 0d, 0d),
+                dataMapper.counterpartyDataMapper(),
                         columnFabric.createColumn(
-                                "Наименование контрагента","stringValue",0.5,true,
-                                (obj,val)->((basisFx.domainModel.domaine.Counterparty)obj).setStringValue((String)val)),
-
-////////////////////////////////
+                                "Наименование контрагента","name",0.5,true,
+                                (obj,val)->((basisFx.domainModel.domaine.Counterparty)obj).setName((String)val)),
                         columnFabric.createColumnComboBox(
                                 "Страна","country",0.3,true,
                                 (obj,val)->{((basisFx.domainModel.domaine.Counterparty)obj).setCountry((Country) val);},
                                 () -> dataMapper.counterpartyDataMapper().getCountryList()
                         ),
-////////////////////////////////////////////////////////////////
                         columnFabric.createColumnComboBox(
                                 "Валюта","currency",0.2,true,
                                 (obj,val)->{((basisFx.domainModel.domaine.Counterparty)obj).setCurrency((Currency) val);},
                                 () -> dataMapper.counterpartyDataMapper().getCurrencyList()
                         )
                 );
-////////////////////////////////
-
-
-
-
-
 
 
 

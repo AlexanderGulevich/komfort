@@ -1,5 +1,7 @@
 package basisFx.appCore;
 
+import basisFx.appCore.functional.MaximazingObserver;
+
 import java.util.ArrayList;
 
 public class MaximazingManager {

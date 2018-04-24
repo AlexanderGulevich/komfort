@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package basisFx.domainModel.settings;
+package basisFx.appCore.settings;
 
 import javafx.geometry.Insets;
 

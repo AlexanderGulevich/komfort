@@ -1,14 +1,15 @@
 package basisFx.appCore.elements;
 
 
-import basisFx.appCore.ValueAddToDomain;
+import basisFx.appCore.functional.ValueAddToDomain;
 import basisFx.appCore.controlPolicy.Edit;
+import basisFx.appCore.controlPolicy.EditCreater;
 import basisFx.appCore.utils.Coordinate;
 import basisFx.appCore.events.AppEvent;
-import basisFx.domainModel.settings.CSSID;
+import basisFx.appCore.settings.CSSID;
 import basisFx.appCore.utils.FontLogic;
-import basisFx.domainModel.settings.WindowsTitlesNames;
-import basisFx.domainModel.settings.FontsStore;
+import basisFx.appCore.settings.WindowsTitlesNames;
+import basisFx.appCore.settings.FontsStore;
 import javafx.geometry.Insets;
 
 
@@ -67,6 +68,7 @@ public abstract class AppNode  {
     protected Pos pos=null;
     protected ValueAddToDomain valueAddToObservers;
     protected Edit editPoliticy;
+    protected EditCreater editCreater;
     
     public void init (NodeBuilder builder){
         this.coordinate=builder.coordinate;
@@ -96,6 +98,7 @@ public abstract class AppNode  {
         this.pos=builder.pos;
         this.valueAddToObservers =builder.valueAddToDomain;
         this.editPoliticy=builder.editPoliticy;
+        this.editCreater=builder.editCreater;
 
 
 
@@ -225,11 +228,16 @@ public abstract class AppNode  {
         protected Pos pos=null;
         protected ValueAddToDomain valueAddToDomain;
         protected Edit editPoliticy;
+        protected EditCreater editCreater;
 
         public static NodeBuilder create(){
             return new NodeBuilder();
         }
 
+        public NodeBuilder setEditCreater(EditCreater editCreater) {
+            this.editCreater = editCreater;
+            return this;
+        }
 
         public void setValueAddToDomain(ValueAddToDomain valueAddToDomain) {
             this.valueAddToDomain = valueAddToDomain;

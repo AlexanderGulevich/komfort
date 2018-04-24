@@ -20,36 +20,6 @@ public class EmployeesManagerMapper extends DataMapper{
 
     @Override
     public void getAllDomainObjectList(ObservableList list) {
-
-//        try {
-//
-//            String expression="SELECT * FROM " +"Employer"+" ORDER BY ID";
-//
-//            Statement stmt  = Db.getConnection().createStatement();
-//
-//            ResultSet rs    = stmt.executeQuery(expression);
-//
-//
-//            while (rs.next()) {
-//
-//
-//                Employer pojo=new Employer();
-//                pojo.setId(rs.getInt("id"));
-//                pojo.setStringValue(rs.getString("name"));
-//                pojo.setIsFired(rs.getBoolean("isFired"));
-//
-//
-//                //вставляю id в список хранимых в бд
-//                this.unitOfWork.getStoredPojoesId().add(rs.getInt("id"));
-//
-//                list.add(pojo);
-//            }
-//
-//        } catch (SQLException ex) {
-//            Logger.getLogger(EquipmentDataMapper.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-
-
     }
 
     @Override

@@ -5,8 +5,8 @@
  */
 package basisFx.appCore.elements;
 
-import basisFx.appCore.Refreshable;
-import basisFx.appCore.SubmittingDomains;
+import basisFx.appCore.functional.Refreshable;
+import basisFx.appCore.functional.SubmittingDomains;
 import basisFx.appCore.TextFabric;
 import basisFx.appCore.controlPolicy.ColumnWrapper;
 import basisFx.appCore.dataSource.DataMapper;
@@ -17,7 +17,7 @@ import basisFx.appCore.domainScetch.DomainObject;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-import basisFx.domainModel.settings.FontsStore;
+import basisFx.appCore.settings.FontsStore;
 import javafx.beans.property.ReadOnlyDoubleProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -36,7 +36,6 @@ public  class TableViewWrapper <T> extends AppNode implements Refreshable, Submi
     private UnitOfWork unitOfWork=new UnitOfWork();
     private TableListener  tableListener=new TableListener (this);
     protected DataMapper dataMapper;
-    protected String tableName;
     private ArrayList <TableViewWrapper> observers=new ArrayList();
     private boolean isObserver=false;
     private  DomainObject clickedDomain;
@@ -80,7 +79,8 @@ public  class TableViewWrapper <T> extends AppNode implements Refreshable, Submi
              
              cw.setTableWrapper(this);
              
-             cw.setEditPoliticy(editPoliticy);
+//             cw.setEditPoliticy(editPoliticy);
+             cw.setEditPoliticy(editCreater.editCreate());
 
              cw.initEditPoliticy();
             
@@ -175,12 +175,6 @@ public  class TableViewWrapper <T> extends AppNode implements Refreshable, Submi
     public DataMapper getDataMapper() {
         return dataMapper;
     }
-
-    public TableViewWrapper setDbTableName(String n) {
-        this.tableName=n;
-        return this;
-    }
-
 
     public void setDataMapperToList( ObservableList<DomainObject>  list){
         for (DomainObject domainObject : list) {

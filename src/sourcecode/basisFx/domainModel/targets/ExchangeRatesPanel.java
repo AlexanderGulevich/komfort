@@ -5,7 +5,7 @@ import basisFx.appCore.panels.Target;
 import basisFx.appCore.utils.Coordinate;
 import basisFx.domainModel.domaine.Currency;
 import basisFx.domainModel.domaine.ExchangeRates;
-import basisFx.domainModel.settings.FontsStore;
+import basisFx.appCore.settings.FontsStore;
 import javafx.geometry.Pos;
 import javafx.scene.layout.AnchorPane;
 
@@ -55,8 +55,8 @@ public class ExchangeRatesPanel extends Target{
                 0.45d, new Coordinate(50d, null, 70d, 0d),
                 dataMapper.currencyDataMapper(),
 
-                columnFabric.createColumn("Наименование","stringValue",1d,true,
-                        (obj,val)->((Currency)obj).setStringValue((String)val))
+                columnFabric.createColumn("Наименование","name",1d,true,
+                        (obj,val)->((Currency)obj).setName((String)val))
         );
 
         buttonFactory.addRowButton(

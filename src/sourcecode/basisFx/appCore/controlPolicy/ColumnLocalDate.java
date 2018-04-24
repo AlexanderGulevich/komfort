@@ -1,7 +1,7 @@
 package basisFx.appCore.controlPolicy;
 
 import basisFx.appCore.domainScetch.DomainObject;
-import basisFx.domainModel.settings.CSSID;
+import basisFx.appCore.settings.CSSID;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableCell;

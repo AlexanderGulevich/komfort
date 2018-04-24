@@ -5,7 +5,7 @@
  */
 package basisFx.appCore.controlPolicy;
 
-import basisFx.appCore.DomainsListGetter;
+import basisFx.appCore.functional.DomainsListGetter;
 
 /**
  *

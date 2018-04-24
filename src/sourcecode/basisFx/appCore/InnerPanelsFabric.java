@@ -2,7 +2,7 @@ package basisFx.appCore;
 
 import basisFx.appCore.elements.AppNode;
 import basisFx.appCore.utils.Coordinate;
-import basisFx.domainModel.settings.CSSID;
+import basisFx.appCore.settings.CSSID;
 import javafx.scene.layout.AnchorPane;
 //
 public class InnerPanelsFabric

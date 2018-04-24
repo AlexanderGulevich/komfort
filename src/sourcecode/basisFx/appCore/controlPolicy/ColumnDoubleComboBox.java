@@ -2,7 +2,7 @@
 //
 //import basisFx.appCore.domainScetch.DomainObject;
 //import basisFx.appCore.domainScetch.DoubleDomainObject;
-//import basisFx.domainModel.settings.CSSID;
+//import basisFx.appCore.settings.CSSID;
 //import javafx.beans.value.ObservableValue;
 //import javafx.scene.control.ComboBox;
 //import javafx.scene.control.ListCell;

@@ -5,8 +5,8 @@
  */
 package basisFx.appCore.windows;
 
-import basisFx.domainModel.settings.Settings;
-import basisFx.domainModel.settings.WindowsTitlesNames;
+import basisFx.appCore.settings.Settings;
+import basisFx.appCore.settings.WindowsTitlesNames;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;

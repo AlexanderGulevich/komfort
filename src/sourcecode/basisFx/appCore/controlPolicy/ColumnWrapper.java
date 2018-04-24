@@ -5,8 +5,8 @@
  */
 package basisFx.appCore.controlPolicy;
 
-import basisFx.appCore.DateCellValueInitLogic;
-import basisFx.appCore.DomainsListGetter;
+import basisFx.appCore.functional.DateCellValueInitLogic;
+import basisFx.appCore.functional.DomainsListGetter;
 import basisFx.appCore.domainScetch.ComboBoxCellValueInitLogic;
 import basisFx.appCore.elements.TableViewWrapper;
 import javafx.scene.control.TableColumn;

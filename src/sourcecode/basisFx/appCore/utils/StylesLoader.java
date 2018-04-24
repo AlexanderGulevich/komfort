@@ -6,12 +6,8 @@
 package basisFx.appCore.utils;
 
 
-import basisFx.domainModel.settings.StylesPathes;
+import basisFx.appCore.settings.StylesPathes;
 import javafx.scene.Scene;
-
-import java.util.ArrayList;
-import java.util.EnumSet;
-import java.util.List;
 
 /**
  *

@@ -4,7 +4,7 @@ import basisFx.appCore.elements.TableViewWrapper;
 import basisFx.appCore.panels.Target;
 import basisFx.appCore.utils.Coordinate;
 import basisFx.domainModel.domaine.Employer;
-import basisFx.domainModel.settings.FontsStore;
+import basisFx.appCore.settings.FontsStore;
 import javafx.geometry.Pos;
 import javafx.scene.layout.AnchorPane;
 
@@ -27,8 +27,8 @@ public class TimeRecordingPanel extends Target {
                 employerSide,1.0d,new Coordinate(50d, 0d, 20d, 0d),
                 dataMapper.employerDataMapper(),
 
-                columnFabric.createColumn("ФИО","stringValue",0.3d,true,
-                        (obj,val)->{((Employer)obj).setStringValue((String)val);})
+                columnFabric.createColumn("ФИО","name",0.3d,true,
+                        (obj,val)->{((Employer)obj).setName((String)val);})
         );
 
 

@@ -3,9 +3,10 @@ package basisFx.domainModel.targets;
 import basisFx.appCore.elements.AppNode;
 import basisFx.appCore.elements.TableViewWrapper;
 import basisFx.appCore.panels.Target;
+import basisFx.appCore.utils.Coordinate;
 import basisFx.domainModel.domaine.RatePerHour;
-import basisFx.domainModel.settings.CSSID;
-import basisFx.domainModel.settings.FontsStore;
+import basisFx.appCore.settings.CSSID;
+import basisFx.appCore.settings.FontsStore;
 
 public class RatePerHourPanel extends Target {
 
@@ -18,14 +19,12 @@ public class RatePerHourPanel extends Target {
     public void createElement() {
 
 
-        tableViewWrapper = AppNode.NodeBuilder.create()
-                .setId(CSSID.TABLE).setCoordinate(panel,50d, null, 0d, 0d)
-                .createTableViewWrapper().setTablesWidthProperty(0.7, panel.widthProperty())
-                .setDataMapper(this.dataMapper.ratePerHourTemplatesDataMapper()).refresh()
-                .setColums(
+        tableViewWrapper = tableFabric.createStandartTable(
+                panel,0.7d,new Coordinate(50d, null, 0d, 0d),
+                dataMapper.ratePerHourTemplatesDataMapper(),
                         columnFabric.createColumn(
-                                "\"Тариф ( бел. руб/час. )\"","stringValue",1d,true,
-                                 (obj,val)->((RatePerHour)obj).setStringValue((String) val)
+                                "\"Тариф ( бел. руб/час. )\"","name",1d,true,
+                                 (obj,val)->((RatePerHour)obj).setName((String) val)
                         )
 
 

@@ -57,7 +57,7 @@ public class EquipmentDataMapper extends DataMapper {
 
                 PreparedStatement pstmt = Db.getConnection().prepareStatement(expression);
                 pstmt.setInt(1, Integer.valueOf(domainObject.getRodWidth()));
-                pstmt.setString(2, domainObject.getStringValue());
+                pstmt.setString(2, domainObject.getName());
 
                 pstmt.executeUpdate();
 
@@ -83,7 +83,7 @@ public class EquipmentDataMapper extends DataMapper {
 
                 PreparedStatement pstmt = Db.getConnection().prepareStatement(expression);
 
-                pstmt.setString(1, domainObject.getStringValue());
+                pstmt.setString(1, domainObject.getName());
                 pstmt.setInt(2, Integer.valueOf(domainObject.getRodWidth()));
                 pstmt.setInt(3, domainObject.getId());
 
@@ -100,7 +100,7 @@ public class EquipmentDataMapper extends DataMapper {
     public boolean isReadyToTransaction(DomainObject d) {
         Equipment equipment= (Equipment) d;
         if (equipment.getRodWidth()!= null
-                &&equipment.getStringValue()!=null
+                &&equipment.getName()!=null
                 ) {
             System.out.println("!!!!!!!!!!!!!!EquipmentDataMapper --- объект готов к транзакции");
 
@@ -127,7 +127,7 @@ public class EquipmentDataMapper extends DataMapper {
                 
                 Equipment pojo=new Equipment();
                 pojo.setId(rs.getInt("id"));
-                pojo.setStringValue(rs.getString("name"));
+                pojo.setName(rs.getString("name"));
                 pojo.setRodWidth(String.valueOf(rs.getInt("rodWidth")));
                 
                 //вставляю id в список хранимых в бд

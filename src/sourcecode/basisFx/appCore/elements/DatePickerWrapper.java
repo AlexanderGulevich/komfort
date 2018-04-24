@@ -1,8 +1,8 @@
 package basisFx.appCore.elements;
 
-import basisFx.appCore.ObservableVidget;
+import basisFx.appCore.functional.ObservableVidget;
 import basisFx.appCore.domainScetch.DomainObject;
-import basisFx.domainModel.settings.CSSID;
+import basisFx.appCore.settings.CSSID;
 import javafx.collections.ObservableList;
 import javafx.scene.control.DatePicker;
 import javafx.util.StringConverter;

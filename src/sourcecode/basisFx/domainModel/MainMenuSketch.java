@@ -3,7 +3,7 @@ package basisFx.domainModel;
 import basisFx.appCore.menu.MenuSketch;
 import basisFx.appCore.menu.MenuComponent;
 import basisFx.appCore.menu.MenuComponent.composit;
-import basisFx.domainModel.settings.FontsStore;
+import basisFx.appCore.settings.FontsStore;
 
 import static basisFx.appCore.menu.MenuComponent.create;
 import static basisFx.appCore.menu.MenuComponent.createVertical;

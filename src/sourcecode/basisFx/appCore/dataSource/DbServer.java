@@ -6,11 +6,11 @@
 package basisFx.appCore.dataSource;
 
 import basisFx.domainModel.DbSchema;
-import basisFx.domainModel.settings.Settings;
+import basisFx.appCore.settings.Settings;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
-import org.hsqldb.Server;
+
 import org.hsqldb.persist.HsqlProperties;
 
 /**

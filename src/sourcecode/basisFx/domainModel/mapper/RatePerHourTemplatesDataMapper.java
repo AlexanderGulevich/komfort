@@ -26,7 +26,7 @@ public class RatePerHourTemplatesDataMapper extends DataMapper {
         RatePerHour ratePerHour = (RatePerHour) d;
         if (
 
-                 ratePerHour.getStringValue()!=null
+                 ratePerHour.getName()!=null
 
                 ) {
             System.out.println("!!!!!!!!!!!!!!RatePerHourTemplatesDataMapper --- объект готов к транзакции");
@@ -53,7 +53,7 @@ public class RatePerHourTemplatesDataMapper extends DataMapper {
 
                 RatePerHour pojo=new RatePerHour();
                 pojo.setId(rs.getInt("id"));
-                pojo.setStringValue(String.valueOf(rs.getDouble("rate")));
+                pojo.setName(String.valueOf(rs.getDouble("rate")));
 
                 //вставляю id в список хранимых в бд
                 this.unitOfWork.getStoredPojoesId().add(rs.getInt("id"));
@@ -89,7 +89,7 @@ public class RatePerHourTemplatesDataMapper extends DataMapper {
                 pstmt = Db.getConnection().prepareStatement(expression);
 
                 pstmt.setInt(1, ratePerHour.getId());
-                pstmt.setDouble(2, Double.valueOf(ratePerHour.getStringValue()));
+                pstmt.setDouble(2, Double.valueOf(ratePerHour.getName()));
 
                 pstmt.executeUpdate();
 
@@ -109,7 +109,7 @@ public class RatePerHourTemplatesDataMapper extends DataMapper {
                     + ") VALUES(?)";
 
             PreparedStatement pstmt =  Db.getConnection().prepareStatement(expression);
-            pstmt.setDouble(1, Double.valueOf(ratePerHour.getStringValue()));
+            pstmt.setDouble(1, Double.valueOf(ratePerHour.getName()));
 
 
             pstmt.executeUpdate();
