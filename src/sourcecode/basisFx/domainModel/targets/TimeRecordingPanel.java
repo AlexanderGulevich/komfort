@@ -1,17 +1,12 @@
 package basisFx.domainModel.targets;
 
-import basisFx.appCore.controlPolicy.ColumnWrapper;
-import basisFx.appCore.domainScetch.StringValueDomainObject;
 import basisFx.appCore.elements.TableViewWrapper;
 import basisFx.appCore.panels.Target;
 import basisFx.appCore.utils.Coordinate;
 import basisFx.domainModel.domaine.Employer;
-import basisFx.domainModel.domaine.RatePerHour;
 import basisFx.domainModel.settings.FontsStore;
 import javafx.geometry.Pos;
 import javafx.scene.layout.AnchorPane;
-
-import java.time.LocalDate;
 
 public class TimeRecordingPanel extends Target {
 
@@ -33,9 +28,8 @@ public class TimeRecordingPanel extends Target {
         employerTable =tableFabric.createStandartTable(
                 employerSide,1.0d,new Coordinate(50d, 0d, 20d, 0d),
                 dataMapper.employerDataMapper(),
-                columnFabric.createNotEditableStringColumn("ФИО","stringValue",0.7d,
-                        (obj,val)->{((Employer)obj).setStringValue((String)val);}),
-                columnFabric.createStringColumn("ФИО","stringValue",0.3d,
+
+                columnFabric.createColumn("ФИО","stringValue",0.3d,true,
                         (obj,val)->{((Employer)obj).setStringValue((String)val);})
         );
 

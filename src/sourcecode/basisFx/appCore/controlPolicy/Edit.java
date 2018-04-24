@@ -6,7 +6,6 @@
 package basisFx.appCore.controlPolicy;
 
 import basisFx.appCore.dataSource.UnitOfWork;
-import basisFx.appCore.domainScetch.DomainObject;
 import basisFx.appCore.elements.TableViewWrapper;
 import javafx.scene.control.TableColumn;
 
@@ -18,7 +17,7 @@ public class Edit<T,K> {
     
     protected TableColumn<T,K> column;
     protected UnitOfWork unitOfWork;
-    protected DomainChangeAction<T,K> domainChangeAction;
+    protected DomainChanging<T,K> domainChanging;
     protected TableViewWrapper tvw;
 
     public void setTvw(TableViewWrapper tvw) {
@@ -33,8 +32,8 @@ public class Edit<T,K> {
         this.unitOfWork = unitOfWork;
     }
 
-    public void setDomainChangeAction(DomainChangeAction<T, K> domainChangeAction) {
-        this.domainChangeAction = domainChangeAction;
+    public void setDomainChanging(DomainChanging<T, K> domainChanging) {
+        this.domainChanging = domainChanging;
     }
 
     public void run() {}

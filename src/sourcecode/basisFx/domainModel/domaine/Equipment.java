@@ -14,17 +14,17 @@ import javafx.beans.property.SimpleObjectProperty;
  * @author Alek
  */
 public class Equipment  extends StringValueDomainObject {
-    private ObjectProperty<Integer> rodWidth =new SimpleObjectProperty<>(this, "rodWidth", null);
+    private ObjectProperty<String> rodWidth =new SimpleObjectProperty<>(this, "rodWidth", null);
 
     
 
-    public Integer getRodWidth() {
+    public String getRodWidth() {
             return rodWidth.get();
         }
-    public void setRodWidth(Integer value) {
+    public void setRodWidth(String value) {
         this.rodWidth.set(value);
     }
-    public ObjectProperty<Integer> rodWidthProperty() {
+    public ObjectProperty<String> rodWidthProperty() {
             return rodWidth;
         }
 

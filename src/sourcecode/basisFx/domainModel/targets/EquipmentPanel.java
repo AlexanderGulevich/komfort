@@ -28,16 +28,11 @@ public class EquipmentPanel extends Target{
                 .setDataMapper(this.dataMapper.equipmentDataMapper())
                 .setDbTableName("Equipment").refresh()
                 .setColums(
-                     columnFabric.createStringColumn("Наименование","stringValue",0.6,
+                     columnFabric.createColumn("Наименование","stringValue",0.6,true,
                          (obj,val)->((Equipment)obj).setStringValue((String)val)),
 
-                     columnFabric.createIntegerColumn(ColumnWrapper.Bulder.create()
-                    .setColumnName("Ширина стержня").setPropertyName("rodWidth")
-                    .setValueChecking(check.createNumCheck())
-                    .setColumnSize(0.4)
-                    .setDomainChangeAction(
-                         (obj,val)->{((Equipment)obj).setRodWidth((Integer)val);} 
-                         )
+                     columnFabric.createColumn("Ширина стержня","rodWidth",0.4,true,
+                         (obj,val)->{((Equipment)obj).setRodWidth((String)val);}
                      )
                 );
        

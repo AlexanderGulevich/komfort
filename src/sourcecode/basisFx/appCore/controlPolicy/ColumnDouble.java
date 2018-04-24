@@ -4,8 +4,6 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.util.StringConverter;
-import javafx.util.converter.DoubleStringConverter;
-import javafx.util.converter.IntegerStringConverter;
 
 public class ColumnDouble<T,K> extends ColumnWrapper<T> {
 
@@ -18,7 +16,7 @@ public class ColumnDouble<T,K> extends ColumnWrapper<T> {
     public ColumnDouble(ColumnWrapper.Bulder builder) {
 
         super(builder);
-//        this.domainChangeAction =builder.domainChangeAction;
+//        this.domainChanging =builder.domainChanging;
         this.column = new TableColumn<>(columnName);
 
         column.setCellValueFactory(new PropertyValueFactory<>(propertyName));
@@ -38,7 +36,7 @@ public class ColumnDouble<T,K> extends ColumnWrapper<T> {
 
 
         editPoliticy.setColumn(this.column);
-        editPoliticy.setDomainChangeAction(this.domainChangeAction);
+        editPoliticy.setDomainChanging(this.domainChanging);
         editPoliticy.setUnitOfWork(this.tableWrapper.getUnitOfWork());
         editPoliticy.setTvw(this.tableWrapper);
         editPoliticy.run();

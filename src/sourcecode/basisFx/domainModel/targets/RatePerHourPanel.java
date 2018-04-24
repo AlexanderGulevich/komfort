@@ -23,8 +23,8 @@ public class RatePerHourPanel extends Target {
                 .createTableViewWrapper().setTablesWidthProperty(0.7, panel.widthProperty())
                 .setDataMapper(this.dataMapper.ratePerHourTemplatesDataMapper()).refresh()
                 .setColums(
-                        columnFabric.createStringColumn(
-                                "\"Тариф ( бел. руб/час. )\"","stringValue",1d,
+                        columnFabric.createColumn(
+                                "\"Тариф ( бел. руб/час. )\"","stringValue",1d,true,
                                  (obj,val)->((RatePerHour)obj).setStringValue((String) val)
                         )
 

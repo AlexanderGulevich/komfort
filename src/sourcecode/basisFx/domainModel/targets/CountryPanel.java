@@ -23,7 +23,7 @@ public class CountryPanel extends Target {
                 .createTableViewWrapper().setTablesWidthProperty(0.7, panel.widthProperty())
                 .setDataMapper(this.dataMapper.countryDataMapper()).refresh()
                 .setColums(
-                        columnFabric.createStringColumn("Наименование","stringValue",1d,
+                        columnFabric.createColumn("Наименование","stringValue",1d,true,
                                                 (obj,val)->((Country)obj).setStringValue((String)val))
                 );
 

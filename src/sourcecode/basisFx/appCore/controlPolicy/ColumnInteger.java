@@ -22,7 +22,7 @@ public class ColumnInteger<T> extends ColumnWrapper<T>{
     public ColumnInteger(ColumnWrapper.Bulder builder) {
                 
         super(builder);
-//        this.domainChangeAction =builder.domainChangeAction;
+//        this.domainChanging =builder.domainChanging;
         this.column =  new TableColumn<>(columnName);
    
         column.setCellValueFactory(new PropertyValueFactory<>(propertyName));
@@ -39,7 +39,7 @@ public class ColumnInteger<T> extends ColumnWrapper<T>{
     public void initEditPoliticy(){
 
         editPoliticy.setColumn(this.column);
-        editPoliticy.setDomainChangeAction(this.domainChangeAction);
+        editPoliticy.setDomainChanging(this.domainChanging);
         editPoliticy.setUnitOfWork(this.tableWrapper.getUnitOfWork());
         editPoliticy.setTvw(this.tableWrapper);
         editPoliticy.run();

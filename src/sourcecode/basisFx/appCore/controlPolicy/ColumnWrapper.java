@@ -6,7 +6,7 @@
 package basisFx.appCore.controlPolicy;
 
 import basisFx.appCore.DateCellValueInitLogic;
-import basisFx.appCore.DomainObjectListGetter;
+import basisFx.appCore.DomainsListGetter;
 import basisFx.appCore.domainScetch.ComboBoxCellValueInitLogic;
 import basisFx.appCore.elements.TableViewWrapper;
 import javafx.scene.control.TableColumn;
@@ -26,8 +26,8 @@ public  class ColumnWrapper<T> {
     protected Edit editPoliticy=editFabric.createDefaultEditCommit();
     protected ComboBoxCellValueInitLogic comboBoxCellValueInitLogic;
     protected TableColumn column;
-    protected DomainChangeAction domainChangeAction;
-    protected DomainObjectListGetter domainObjectsListGetter;
+    protected DomainChanging domainChanging;
+    protected DomainsListGetter domainObjectsListGetter;
     protected DateCellValueInitLogic dateCellValueInitLogic;
     protected Boolean isEditeble;
 
@@ -40,8 +40,8 @@ public  class ColumnWrapper<T> {
         this.valueChecking=b.valueChecking;
         this.columnSize=b.columnSize;
         this.comboBoxCellValueInitLogic=b.comboBoxCellValueInitLogic;
-        this.domainObjectsListGetter =b.domainObjectListGetter;
-        this.domainChangeAction =b.domainChangeAction;
+        this.domainObjectsListGetter =b.domainsListGetter;
+        this.domainChanging =b.domainChanging;
         this.dateCellValueInitLogic=b.dateCellValueInitLogic;
         this.isEditeble=b.isEditeble;
 
@@ -67,10 +67,10 @@ public  class ColumnWrapper<T> {
          protected String propertyName;
          protected String columnName;
          protected Checking valueChecking;
-         protected DomainChangeAction domainChangeAction;
+         protected DomainChanging domainChanging;
          protected double columnSize;
          protected ComboBoxCellValueInitLogic comboBoxCellValueInitLogic;
-         protected DomainObjectListGetter domainObjectListGetter;
+         protected DomainsListGetter domainsListGetter;
          protected DateCellValueInitLogic dateCellValueInitLogic;
          protected Boolean isEditeble;
 
@@ -127,15 +127,15 @@ public  class ColumnWrapper<T> {
          return this;
          
          }
-         public  Bulder setDomainChangeAction(DomainChangeAction domainChangeAction){
-         this.domainChangeAction=domainChangeAction;         
+         public  Bulder setDomainChanging(DomainChanging domainChanging){
+         this.domainChanging = domainChanging;
          return this;
          
          }
 
 
-         public Bulder setDomainObjectListGetter(DomainObjectListGetter domainObjectListGetter) {
-             this.domainObjectListGetter = domainObjectListGetter;
+         public Bulder setDomainsListGetter(DomainsListGetter domainsListGetter) {
+             this.domainsListGetter = domainsListGetter;
              return this;
          }
      }

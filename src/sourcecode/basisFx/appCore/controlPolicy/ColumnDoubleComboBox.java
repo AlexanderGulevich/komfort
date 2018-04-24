@@ -78,7 +78,7 @@
 //    public void initEditPoliticy(){
 //
 //        editPoliticy.setColumn(this.column);
-//        editPoliticy.setDomainChangeAction(this.domainChangeAction);
+//        editPoliticy.setDomainChanging(this.domainChanging);
 //        editPoliticy.setUnitOfWork(this.tableWrapper.getUnitOfWork());
 //        editPoliticy.setTvw(this.tableWrapper);
 //        editPoliticy.run();

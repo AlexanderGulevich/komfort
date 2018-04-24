@@ -10,12 +10,9 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.util.Callback;
 import javafx.util.StringConverter;
 
-import java.time.Instant;
 import java.time.LocalDate;
-import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
-import java.util.Date;
 
 public class ColumnLocalDate <T,K>extends ColumnWrapper<T> {
 
@@ -40,7 +37,7 @@ public class ColumnLocalDate <T,K>extends ColumnWrapper<T> {
         column.setCellFactory(dateCellFactory);
         column.setOnEditCommit(
                 (TableColumn.CellEditEvent<DomainObject, LocalDate> t) -> {
-                        this.domainChangeAction.change(
+                        this.domainChanging.change(
                                 t.getTableView().getItems().get(t.getTablePosition().getRow()),
                                 t.getNewValue());
                 });
@@ -49,7 +46,7 @@ public class ColumnLocalDate <T,K>extends ColumnWrapper<T> {
     public void initEditPoliticy() {
 
         editPoliticy.setColumn(this.column);
-        editPoliticy.setDomainChangeAction(this.domainChangeAction);
+        editPoliticy.setDomainChanging(this.domainChanging);
         editPoliticy.setUnitOfWork(this.tableWrapper.getUnitOfWork());
         editPoliticy.setTvw(this.tableWrapper);
         editPoliticy.run();

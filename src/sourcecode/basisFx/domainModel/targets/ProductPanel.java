@@ -25,23 +25,19 @@ public class ProductPanel  extends Target{
         priceSide =innerPanelsFabric.createInnerPanels(panel,0.38,new Coordinate(0d,0d,0d,null));
 
 
-
         textFabric.createLabel("Архив цен", FontsStore.ROBOTO_LIGHT,  Pos.BASELINE_CENTER,25d,
                 priceSide, new Coordinate(10d,0d,null,0d));
-
-
 
 
         priceTable =tableFabric.createStandartTable(
                 panel,0.38d,new Coordinate(50d, 0d, 70d, null),
                 dataMapper.priceDataMapper(),
 
-                        columnFabric.createStringColumn("Цена","price",0.3d,
+                        columnFabric.createColumn("Цена","price",0.3d,true,
                         (obj,val)->{((Price)obj).setPrice( (String ) val);}),
 
-                        columnFabric.createLocalDateColumn(ColumnWrapper.Bulder.create()
-                                .setColumnName("Дата начала действия ").setPropertyName("startingDate").setColumnSize(0.7d)
-                                .setDomainChangeAction((obj,val)->{((Price)obj).setStartingDate((LocalDate) val); } )
+                        columnFabric.createDateColumn("Дата начала действия ","startingDate",0.7d,true,
+                                (obj, val)->{((Price)obj).setStartingDate((LocalDate) val); }
                         )
                 );
 
@@ -67,14 +63,14 @@ public class ProductPanel  extends Target{
                 0.6d, new Coordinate(50d, null, 70d, 0d),
                 dataMapper.productDataMapper(),
 
-                columnFabric.createStringColumn("Наименование","name",0.4d,
+                columnFabric.createColumn("Наименование","name",0.4d,true,
                         (obj,val)->((Product)obj).setName((String)val)),
-                columnFabric.createColumnStringComboBox(
-                        "Ширина стержня","rod",0.3d,
+                columnFabric.createColumnComboBox(
+                        "Ширина стержня","rod",0.3d,true,
                         (obj,val)->{((Product)obj).setRod((StringValueDomainObject) val);},
                         () -> dataMapper.productDataMapper().getRodWidthList()
                 ),
-                columnFabric.createStringColumn("C 1 стержня, шт","numberFromRods",0.3d,
+                columnFabric.createColumn("C 1 стержня, шт","numberFromRods",0.3d,true,
                         (obj,val)->((Product)obj).setNumberFromRods((String)val))
 
         );

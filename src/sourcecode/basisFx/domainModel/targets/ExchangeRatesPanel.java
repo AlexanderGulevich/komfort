@@ -30,12 +30,11 @@ public class ExchangeRatesPanel extends Target{
         rateTable =tableFabric.createStandartTable(
                 panel,0.53d,new Coordinate(50d, 0d, 70d, null),
                 dataMapper.exchangeRatesDataMapper(),
-                columnFabric.createStringColumn("Курсы","exchangeRate",0.3d,
+                columnFabric.createColumn("Курсы","exchangeRate",0.3d,true,
                         (obj,val)->{((ExchangeRates)obj).setExchangeRate( (String ) val);}
                 ),
-                columnFabric.createLocalDateColumn(ColumnWrapper.Bulder.create()
-                        .setColumnName("Дата начала действия ") .setPropertyName("startingDate").setColumnSize(0.7d)
-                        .setDomainChangeAction((obj,val)->{((ExchangeRates)obj).setStartingDate((LocalDate) val); } )
+                columnFabric.createDateColumn("Дата начала действия ","startingDate",0.7d,true,
+                        (obj, val)->{((ExchangeRates)obj).setStartingDate((LocalDate) val); }
                 )
         );
 
@@ -57,7 +56,7 @@ public class ExchangeRatesPanel extends Target{
                 0.45d, new Coordinate(50d, null, 70d, 0d),
                 dataMapper.currencyDataMapper(),
 
-                columnFabric.createStringColumn("Наименование","stringValue",1d,
+                columnFabric.createColumn("Наименование","stringValue",1d,true,
                         (obj,val)->((Currency)obj).setStringValue((String)val))
         );
 

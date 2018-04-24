@@ -24,7 +24,7 @@ public class CurrencyPanel extends Target {
                 .setDataMapper(this.dataMapper.currencyDataMapper())
                 .setDbTableName("Currency").refresh()
                 .setColums(
-                        columnFabric.createStringColumn("Наименование","stringValue",1d,
+                        columnFabric.createColumn("Наименование","stringValue",1d,true,
                                 (obj,val)->((Currency)obj).setStringValue((String)val))
                 );
 

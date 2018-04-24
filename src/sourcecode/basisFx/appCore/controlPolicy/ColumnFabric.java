@@ -5,43 +5,39 @@
  */
 package basisFx.appCore.controlPolicy;
 
-import basisFx.appCore.DomainObjectListGetter;
+import basisFx.appCore.DomainsListGetter;
 
 /**
  *
  * @author Alek
  */
 public class ColumnFabric <T,K> {
-    
-    
-    public ColumnInteger<T> createIntegerColumn(ColumnWrapper.Bulder builder){
-        return new ColumnInteger<T>(builder);
-    }
-    public ColumnString<T> createStringColumn(String columnName,String propertyName, Double columnSize,DomainChangeAction domainChangeAction) {
-        return new ColumnString<T>(
-                ColumnWrapper.Bulder.create(columnName, propertyName, columnSize).setDomainChangeAction(domainChangeAction).setEditeble(true)
-        );
-    }
-    public ColumnStringComboBox<T,K> createColumnStringComboBox(String columnName, String propertyName,Double columnSize,DomainChangeAction domainChangeAction,DomainObjectListGetter domainObjectListGetter){
 
-        return new ColumnStringComboBox<T,K>(
-                ColumnWrapper.Bulder.create()
-                        .setColumnName(columnName)
-                        .setPropertyName(propertyName)
-                        .setColumnSize(columnSize)
-                        .setDomainObjectListGetter(domainObjectListGetter)
-                        .setDomainChangeAction(domainChangeAction)
-        );
+    public ColumnString<T> createColumn(String name, String property, Double size,Boolean isEditable, DomainChanging domainChanging) {
+            ColumnWrapper.Bulder bulder =
+                    ColumnWrapper.Bulder.create(name, property, size)
+                    .setDomainChanging(domainChanging).setEditeble(isEditable);
+
+            return new ColumnString<T>(bulder);
+    }
+    public ColumnStringComboBox<T,K> createColumnComboBox(String name, String property, Double size, Boolean isEditable,DomainChanging domainChanging, DomainsListGetter domainsListGetter){
+
+            ColumnWrapper.Bulder bulder =
+                    ColumnWrapper.Bulder.create(name, property, size)
+                            .setEditeble(isEditable)
+                            .setDomainsListGetter(domainsListGetter)
+                            .setDomainChanging(domainChanging);
+
+            return new ColumnStringComboBox<T,K>(bulder);
 
     }
-    public ColumnLocalDate<T,K> createLocalDateColumn(ColumnWrapper.Bulder builder){
-        return new ColumnLocalDate<T,K>(builder);
+    public ColumnLocalDate<T,K> createDateColumn(String name, String property, Double size,Boolean isEditable, DomainChanging domainChanging){
 
-    }
-    public ColumnString<T> createNotEditableStringColumn(String columnName,String propertyName, Double columnSize,DomainChangeAction domainChangeAction) {
-        return new ColumnString<T>(
-                ColumnWrapper.Bulder.create(columnName, propertyName, columnSize).setDomainChangeAction(domainChangeAction).setEditeble(false)
-        );
+                ColumnWrapper.Bulder builder =
+                        ColumnWrapper.Bulder.create(name, property, size)
+                                .setDomainChanging(domainChanging).setEditeble(isEditable);
+
+                return new ColumnLocalDate<T,K>(builder);
     }
 
 

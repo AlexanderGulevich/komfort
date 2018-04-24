@@ -29,19 +29,19 @@ public class CounterpartyPanel extends Target{
                 .setDbTableName("CounterpartyPanel").refresh()
                 .setColums(
 ////////////////////////////////
-                        columnFabric.createStringColumn(
-                                "Наименование контрагента","stringValue",0.5,
+                        columnFabric.createColumn(
+                                "Наименование контрагента","stringValue",0.5,true,
                                 (obj,val)->((basisFx.domainModel.domaine.Counterparty)obj).setStringValue((String)val)),
 
 ////////////////////////////////
-                        columnFabric.createColumnStringComboBox(
-                                "Страна","country",0.3,
+                        columnFabric.createColumnComboBox(
+                                "Страна","country",0.3,true,
                                 (obj,val)->{((basisFx.domainModel.domaine.Counterparty)obj).setCountry((Country) val);},
                                 () -> dataMapper.counterpartyDataMapper().getCountryList()
                         ),
 ////////////////////////////////////////////////////////////////
-                        columnFabric.createColumnStringComboBox(
-                                "Валюта","currency",0.2,
+                        columnFabric.createColumnComboBox(
+                                "Валюта","currency",0.2,true,
                                 (obj,val)->{((basisFx.domainModel.domaine.Counterparty)obj).setCurrency((Currency) val);},
                                 () -> dataMapper.counterpartyDataMapper().getCurrencyList()
                         )

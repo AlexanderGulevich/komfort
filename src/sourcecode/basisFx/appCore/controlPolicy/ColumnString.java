@@ -16,7 +16,7 @@ import javafx.scene.control.cell.TextFieldTableCell;
  */
 public class ColumnString<T> extends ColumnWrapper<T>{
     protected TableColumn<T,String> column;
-//    protected DomainChangeAction<T,String> domainChangeAction;
+//    protected DomainChanging<T,String> domainChanging;
    
     
     
@@ -42,7 +42,7 @@ public class ColumnString<T> extends ColumnWrapper<T>{
 
 //        for (Edit edit : editPoliticy) {
 //            edit.setColumn(this.column);
-//            edit.setDomainChangeAction(this.domainChangeAction);
+//            edit.setDomainChanging(this.domainChanging);
 //            edit.setUnitOfWork(this.tableWrapper.getUnitOfWork());
 //            edit.setTvw(this.tableWrapper);
 //            edit.run();
@@ -50,7 +50,7 @@ public class ColumnString<T> extends ColumnWrapper<T>{
 //        }
 
         editPoliticy.setColumn(this.column);
-        editPoliticy.setDomainChangeAction(this.domainChangeAction);
+        editPoliticy.setDomainChanging(this.domainChanging);
         editPoliticy.setUnitOfWork(this.tableWrapper.getUnitOfWork());
         editPoliticy.setTvw(this.tableWrapper);
         editPoliticy.run();

@@ -21,6 +21,7 @@ import basisFx.domainModel.settings.FontsStore;
 import javafx.beans.property.ReadOnlyDoubleProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.Node;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
@@ -53,10 +54,11 @@ public  class TableViewWrapper <T> extends AppNode implements Refreshable, Submi
         list.addListener(tableListener);
         unitOfWork.setRefreshable(this);
 
-        table.setPlaceholder(new Text(""));
+//todo вставить значение
         TextFabric textFabric=new TextFabric();
-        TextWrapper text = textFabric.createText("f", FontsStore.FAWESOME5SOLID, 75d, null, null);
-        text.element
+        TextWrapper text = textFabric.createText("Контент отсутствует", FontsStore.ROBOTO_LIGHT, 25d, null, null);
+        Text elem = (Text) text.getElement();
+        table.setPlaceholder(elem);
 
     }
 

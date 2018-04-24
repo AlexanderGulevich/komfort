@@ -57,12 +57,12 @@
 //                .setDataMapper(this.dataMapper.getNamedDataMapper())
 //                .setDbTableName("Country").refresh()
 //                .setColums(
-//                        columnFabric.<Country,String>createStringColumn(ColumnWrapper.Bulder.create()
+//                        columnFabric.<Country,String>createColumn(ColumnWrapper.Bulder.create()
 //                                        .setColumnName("Наименование")
 //                                        .setPropertyName("name")
 //                                        .setValueChecking(check.createTextCheck())
 //                                        .setColumnSize(1)
-//                                        .setDomainChangeAction(
+//                                        .setDomainChanging(
 //                                                (obj,val)->{((StringValueDomainObject)obj).setRate((String)val);}
 //                                        )
 //                        )

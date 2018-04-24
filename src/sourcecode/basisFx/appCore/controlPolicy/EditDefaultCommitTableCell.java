@@ -29,7 +29,7 @@ public class EditDefaultCommitTableCell<T,K> extends Edit<T,K>{
 
                    System.out.println("Доменный объект есть В БД ");
 
-                   this.domainChangeAction.change(domain,event.getNewValue());
+                   this.domainChanging.change(domain,event.getNewValue());
 
 
 //                      if (domain.isReadyToTransaction()) {
@@ -52,7 +52,7 @@ public class EditDefaultCommitTableCell<T,K> extends Edit<T,K>{
                             System.out.println("НОВЫЙ ОБЪЕКТ");
 
                             //вставить значение в домен
-                            this.domainChangeAction.change(domain,event.getNewValue());
+                            this.domainChanging.change(domain,event.getNewValue());
 
 //                            if (domain.isReadyToTransaction()) {
 

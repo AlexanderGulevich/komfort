@@ -8,6 +8,6 @@ import javafx.collections.ObservableList;
  * @autor AlexanderGulevich
  */
 @FunctionalInterface
-public interface DomainObjectListGetter {
+public interface DomainsListGetter {
     public ObservableList getList();
 }

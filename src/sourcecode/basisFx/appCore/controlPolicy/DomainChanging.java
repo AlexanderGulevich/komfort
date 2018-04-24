@@ -12,6 +12,6 @@ package basisFx.appCore.controlPolicy;
  * @param <K>
  */
 @FunctionalInterface
-public interface DomainChangeAction<T,K>{
+public interface DomainChanging<T,K>{
  public <T,K> void change(T d, K val);
 }
