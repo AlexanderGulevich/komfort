@@ -21,13 +21,11 @@ import basisFx.domainModel.settings.FontsStore;
 import javafx.beans.property.ReadOnlyDoubleProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.Node;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseButton;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.util.Callback;
 
@@ -42,6 +40,7 @@ public  class TableViewWrapper <T> extends AppNode implements Refreshable, Submi
     private ArrayList <TableViewWrapper> observers=new ArrayList();
     private boolean isObserver=false;
     private  DomainObject clickedDomain;
+
 
     @SuppressWarnings("unchecked")
  public   TableViewWrapper(NodeBuilder builder) {
@@ -81,6 +80,8 @@ public  class TableViewWrapper <T> extends AppNode implements Refreshable, Submi
              
              cw.setTableWrapper(this);
              
+             cw.setEditPoliticy(editPoliticy);
+
              cw.initEditPoliticy();
             
              table.getColumns().addAll(cw.getColumn());

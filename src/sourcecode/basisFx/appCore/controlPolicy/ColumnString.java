@@ -16,17 +16,12 @@ import javafx.scene.control.cell.TextFieldTableCell;
  */
 public class ColumnString<T> extends ColumnWrapper<T>{
     protected TableColumn<T,String> column;
-//    protected DomainChanging<T,String> domainChanging;
-   
-    
-    
+
     @SuppressWarnings("unchecked")
     public ColumnString(ColumnWrapper.Bulder builder) {
         
         super(builder);
 
-
-        
         this.column =  new TableColumn<>(columnName);
 
         column.setEditable(isEditeble);
@@ -36,18 +31,7 @@ public class ColumnString<T> extends ColumnWrapper<T>{
         
     }
 
-
-
     public void initEditPoliticy(){
-
-//        for (Edit edit : editPoliticy) {
-//            edit.setColumn(this.column);
-//            edit.setDomainChanging(this.domainChanging);
-//            edit.setUnitOfWork(this.tableWrapper.getUnitOfWork());
-//            edit.setTvw(this.tableWrapper);
-//            edit.run();
-//
-//        }
 
         editPoliticy.setColumn(this.column);
         editPoliticy.setDomainChanging(this.domainChanging);

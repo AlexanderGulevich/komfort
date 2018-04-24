@@ -1,6 +1,5 @@
 package basisFx.domainModel.targets;
 
-import basisFx.appCore.controlPolicy.ColumnWrapper;
 import basisFx.appCore.domainScetch.StringValueDomainObject;
 import basisFx.appCore.elements.TableViewWrapper;
 import basisFx.appCore.panels.Target;
@@ -42,9 +41,9 @@ public class ProductPanel  extends Target{
                 );
 
 
-        buttonFactory.createStandartAddButton(
+        buttonFactory.addRowButton(
                 priceSide,new Coordinate(null,0d, 10d, null), priceTable,Price.class);
-        buttonFactory.createStandartDeleteButton(
+        buttonFactory.deleteRowButton(
                 priceSide,new Coordinate(null,180d, 10d, null), priceTable);
 
 ////////////////////////////////////////////////////////
@@ -79,9 +78,9 @@ public class ProductPanel  extends Target{
 
 
 
-        buttonFactory.createStandartAddButton(
+        buttonFactory.addRowButton(
                 productSide,new Coordinate(null,0d, 10d, null), productTable,Product.class);
-        buttonFactory.createStandartDeleteButton(
+        buttonFactory.deleteRowButton(
                 productSide,new Coordinate(null,180d, 10d, null), productTable);
 
 

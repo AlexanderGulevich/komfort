@@ -22,8 +22,7 @@ public  class ColumnWrapper<T> {
     protected String columnName;
     protected Checking valueChecking;
     protected double columnSize;
-    protected EditFabric editFabric=new EditFabric();
-    protected Edit editPoliticy=editFabric.createDefaultEditCommit();
+    protected Edit editPoliticy;
     protected ComboBoxCellValueInitLogic comboBoxCellValueInitLogic;
     protected TableColumn column;
     protected DomainChanging domainChanging;
@@ -46,6 +45,9 @@ public  class ColumnWrapper<T> {
         this.isEditeble=b.isEditeble;
 
     }
+
+
+    public void initEditPoliticy(){}
     
      public TableColumn getColumn(){return null;};
          
@@ -58,11 +60,11 @@ public  class ColumnWrapper<T> {
         return columnSize;
     }
 
-    public void initEditPoliticy() {}
+    public void setEditPoliticy(Edit editPoliticy) {
+        this.editPoliticy = editPoliticy;
+    }
 
-
-     public static class Bulder{
-
+    public static class Bulder{
 
          protected String propertyName;
          protected String columnName;

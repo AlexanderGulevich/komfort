@@ -19,7 +19,7 @@ public class ButtonFactory {
 
     protected EventFactory eventFactory=EventFactory.getInstance();
 
-    public void createLittleTableAddButton(TableViewWrapper tableViewWrapper, AnchorPane panel, Class c, Double top, Double right, Double bottom, Double left ){
+    public void littleRowAddButton(TableViewWrapper tableViewWrapper, AnchorPane panel, Class c, Double top, Double right, Double bottom, Double left ){
 
         AppNode.NodeBuilder.create()
                 .setId(CSSID.PANELS_BUTTON)
@@ -41,7 +41,7 @@ public class ButtonFactory {
                 .createNButton();
 
     }
-    public void createLittleTableDeleteButton(TableViewWrapper tableViewWrapper,AnchorPane panel,Double top, Double right, Double bottom, Double left ){
+    public void littleRowDeleteButton(TableViewWrapper tableViewWrapper, AnchorPane panel, Double top, Double right, Double bottom, Double left ){
 
         AppNode.NodeBuilder.create()
                 .setId(CSSID.PANELS_BUTTON)
@@ -54,7 +54,7 @@ public class ButtonFactory {
 
 
     }
-    public void createStandartAddButton(AnchorPane panel, Coordinate coordinate, TableViewWrapper tableViewWrapper, Class cl){
+    public void addRowButton(AnchorPane panel, Coordinate coordinate, TableViewWrapper tableViewWrapper, Class cl){
 
         AppNode.NodeBuilder.create()
                 .setId(CSSID.PANELS_BUTTON)
@@ -79,7 +79,7 @@ public class ButtonFactory {
 
 
     }
-    public void createStandartDeleteButton(AnchorPane panel, Coordinate coordinate, TableViewWrapper tableViewWrapper){
+    public void deleteRowButton(AnchorPane panel, Coordinate coordinate, TableViewWrapper tableViewWrapper){
         AppNode.NodeBuilder.create()
                 .setId(CSSID.PANELS_BUTTON)
                 .setParent(panel)
@@ -92,7 +92,7 @@ public class ButtonFactory {
 
 
     }
-    public void createSubmitButton(AnchorPane panel, Coordinate coordinate, TableViewWrapper tableViewWrapper){
+    public void submitButton(AnchorPane panel, Coordinate coordinate, TableViewWrapper tableViewWrapper){
 
         AppNode.NodeBuilder.create()
                 .setId(CSSID.PANELS_BUTTON)

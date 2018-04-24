@@ -15,14 +15,11 @@ import basisFx.appCore.domainScetch.DomainObject;
  */
 public class EditDefaultCommitTableCell<T,K> extends Edit<T,K>{
 
-
     public void run() {
             
             column.setOnEditCommit((event) -> {
-
-
+                System.err.println("EditDefaultCommitTableCell.run");
                 DomainObject domain= (DomainObject) event.getRowValue();
-//                StringValueDomainObject namedDomainObject= (StringValueDomainObject) event.getRowValue();
 
                 //проверяет, есть ли такой id в бд
                 if (unitOfWork.getStoredPojoesId().contains(domain.getId())) {
@@ -32,17 +29,11 @@ public class EditDefaultCommitTableCell<T,K> extends Edit<T,K>{
                    this.domainChanging.change(domain,event.getNewValue());
 
 
-//                      if (domain.isReadyToTransaction()) {
-
                           System.out.println("Доменный объект готов к транзакции ");
 
                           unitOfWork.setChangedPojoes(domain);
                           unitOfWork.commitChanged();
                        
-//                      } else {
-//
-//                          System.out.println("Доменный объект  НЕ готов к транзакции ");
-//                      }
 //
                 }else{
 
@@ -54,20 +45,15 @@ public class EditDefaultCommitTableCell<T,K> extends Edit<T,K>{
                             //вставить значение в домен
                             this.domainChanging.change(domain,event.getNewValue());
 
-//                            if (domain.isReadyToTransaction()) {
 
                                 System.out.println("НОВЫЙ отправляется на ТРАНЗАКЦИЮ{");
 
                                 unitOfWork.commitNew();
-//                            } else {
-//
-//                                System.out.println("НОВЫЙ ОБЪЕКТ не ГОТОВ К ТРАНЗАКЦИИ {");
-//                            }
+
                         }
                 }
                 
         });
-//       this.tvw.refresh();
              
        }
        

@@ -69,9 +69,9 @@
 //                );
 //
 //        buttonFactory
-//                .createLittleTableAddButton(countryTableWrapper,pane,Country.class,35d,5d,null,null);
+//                .littleRowAddButton(countryTableWrapper,pane,Country.class,35d,5d,null,null);
 //        buttonFactory
-//                .createLittleTableDeleteButton(countryTableWrapper,pane,70d,5d,null,null);
+//                .littleRowDeleteButton(countryTableWrapper,pane,70d,5d,null,null);
 //
 //
 //

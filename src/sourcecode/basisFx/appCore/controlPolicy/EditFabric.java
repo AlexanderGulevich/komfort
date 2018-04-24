@@ -14,15 +14,18 @@ import basisFx.appCore.domainScetch.DomainObject;
  * @param <K>
  */
 public class EditFabric<T,K> {
+
     public EditDefaultCommitTableCell<T,K> createDefaultEditCommit(){
 
         return new EditDefaultCommitTableCell<>();
 
     }
 
-//    public EditCommitForComboBoxCell<T,K> createEditCommitComboBox(){
-//
-//        return new EditCommitForComboBoxCell<>();
-//
-//    }
+
+    public MultipleSubmitEditCommit createMultipleSubmitEditCommit(){
+
+        return new MultipleSubmitEditCommit();
+
+    }
+
 }

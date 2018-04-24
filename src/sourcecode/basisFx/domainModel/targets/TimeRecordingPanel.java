@@ -20,12 +20,10 @@ public class TimeRecordingPanel extends Target {
         employerSide=innerPanelsFabric.createInnerPanels(panel,0.78d,new Coordinate(0d,null,0d,0d));
         controlSide=innerPanelsFabric.createInnerPanels(panel,0.2d,new Coordinate(0d,0d,0d,null));
 
-
-
         textFabric.createLabel("Список сотрудников", FontsStore.ROBOTO_LIGHT,  Pos.BASELINE_LEFT,25d,
                 employerSide, new Coordinate(10d,0d,null,0d));
 
-        employerTable =tableFabric.createStandartTable(
+        employerTable =tableFabric.createSubmitTable(
                 employerSide,1.0d,new Coordinate(50d, 0d, 20d, 0d),
                 dataMapper.employerDataMapper(),
 
@@ -35,8 +33,11 @@ public class TimeRecordingPanel extends Target {
 
 
 
-        buttonFactory.createSubmitButton(
+        buttonFactory.submitButton(
                 controlSide,new Coordinate(80d,10d, null, null), employerTable);
+
+        buttonFactory.addRowButton(
+                controlSide,new Coordinate(null,0d, 10d, null), employerTable,Employer.class);
 
         vidgetFactory.datePickerWrapper(controlSide,170d, new Coordinate(10d,10d, null, null),employerTable.getList());
 

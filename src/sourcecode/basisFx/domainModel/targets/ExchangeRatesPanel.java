@@ -1,6 +1,5 @@
 package basisFx.domainModel.targets;
 
-import basisFx.appCore.controlPolicy.ColumnWrapper;
 import basisFx.appCore.elements.TableViewWrapper;
 import basisFx.appCore.panels.Target;
 import basisFx.appCore.utils.Coordinate;
@@ -38,9 +37,9 @@ public class ExchangeRatesPanel extends Target{
                 )
         );
 
-        buttonFactory.createStandartAddButton(
+        buttonFactory.addRowButton(
                 rateSide,new Coordinate(null,0d, 10d, null), rateTable,ExchangeRates.class);
-        buttonFactory.createStandartDeleteButton(
+        buttonFactory.deleteRowButton(
                 rateSide,new Coordinate(null,180d, 10d, null), rateTable);
 
 ////////////////////////////////////////////////////////
@@ -60,9 +59,9 @@ public class ExchangeRatesPanel extends Target{
                         (obj,val)->((Currency)obj).setStringValue((String)val))
         );
 
-        buttonFactory.createStandartAddButton(
+        buttonFactory.addRowButton(
                 currencySide,new Coordinate(null,0d, 10d, null), currencyTable,Currency.class);
-        buttonFactory.createStandartDeleteButton(
+        buttonFactory.deleteRowButton(
                 currencySide,new Coordinate(null,180d, 10d, null), currencyTable);
 
 

@@ -2,6 +2,7 @@ package basisFx.appCore.elements;
 
 
 import basisFx.appCore.ValueAddToDomain;
+import basisFx.appCore.controlPolicy.Edit;
 import basisFx.appCore.utils.Coordinate;
 import basisFx.appCore.events.AppEvent;
 import basisFx.domainModel.settings.CSSID;
@@ -65,7 +66,7 @@ public abstract class AppNode  {
     protected Double widthPerCent=null;
     protected Pos pos=null;
     protected ValueAddToDomain valueAddToObservers;
-
+    protected Edit editPoliticy;
     
     public void init (NodeBuilder builder){
         this.coordinate=builder.coordinate;
@@ -94,6 +95,7 @@ public abstract class AppNode  {
         this.widthPerCent= builder.widthPerCent;
         this.pos=builder.pos;
         this.valueAddToObservers =builder.valueAddToDomain;
+        this.editPoliticy=builder.editPoliticy;
 
 
 
@@ -222,7 +224,7 @@ public abstract class AppNode  {
         protected Double widthPerCent=null;
         protected Pos pos=null;
         protected ValueAddToDomain valueAddToDomain;
-
+        protected Edit editPoliticy;
 
         public static NodeBuilder create(){
             return new NodeBuilder();
@@ -240,6 +242,11 @@ public abstract class AppNode  {
 
         public NodeBuilder setWidthPerCent(double widthPerCent) {
             this.widthPerCent = widthPerCent;
+            return this;
+        }
+
+        public NodeBuilder setEditPoliticy(Edit editPoliticy) {
+            this.editPoliticy = editPoliticy;
             return this;
         }
 

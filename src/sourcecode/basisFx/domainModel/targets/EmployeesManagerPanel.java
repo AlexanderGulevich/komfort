@@ -1,6 +1,5 @@
 package basisFx.domainModel.targets;
 
-import basisFx.appCore.controlPolicy.ColumnWrapper;
 import basisFx.appCore.domainScetch.StringValueDomainObject;
 import basisFx.appCore.elements.TableViewWrapper;
 import basisFx.appCore.panels.Target;
@@ -45,9 +44,9 @@ public class EmployeesManagerPanel extends Target {
 //////////////////////////////////////////////////////////////////
 
 
-        buttonFactory.createStandartAddButton(
+        buttonFactory.addRowButton(
                 rateSide,new Coordinate(null,0d, 10d, null), rateTable,RatePerHour.class);
-        buttonFactory.createStandartDeleteButton(
+        buttonFactory.deleteRowButton(
                 rateSide,new Coordinate(null,180d, 10d, null), rateTable);
 
 
@@ -68,9 +67,9 @@ public class EmployeesManagerPanel extends Target {
                         (obj,val)->{((Employer)obj).setStringValue((String)val);})
         );
 
-        buttonFactory.createStandartAddButton(
+        buttonFactory.addRowButton(
                 panel,new Coordinate(null,0d, 10d, null), employerTable,Employer.class);
-        buttonFactory.createStandartDeleteButton(
+        buttonFactory.deleteRowButton(
                 panel,new Coordinate(null,180d, 10d, null), employerTable);
 
 
