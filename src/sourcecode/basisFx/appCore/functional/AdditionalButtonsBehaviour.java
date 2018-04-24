@@ -3,15 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package basisFx.appCore.controlPolicy;
+package basisFx.appCore.functional;
+
+import javafx.scene.control.Button;
 
 /**
  *
  * @author Alek
- * @param <T>
- * @param <K>
  */
-@FunctionalInterface
-public interface DomainChanging<T,K>{
- public <T,K> void change(T d, K val);
+//Functional Interface
+public interface AdditionalButtonsBehaviour {
+    
+    public void execute(Button  but);
+    
 }

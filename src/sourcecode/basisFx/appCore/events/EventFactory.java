@@ -6,6 +6,8 @@
 package basisFx.appCore.events;
 
 import basisFx.appCore.elements.TableViewWrapper;
+import basisFx.appCore.functional.AdditionalButtonsBehaviour;
+import basisFx.appCore.functional.RowCreater;
 import basisFx.appCore.menu.MenuComponent;
 
 /**

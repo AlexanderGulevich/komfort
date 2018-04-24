@@ -6,6 +6,7 @@
 package basisFx.appCore.events;
 
 import basisFx.appCore.elements.AppNode;
+import basisFx.appCore.functional.AdditionalButtonsBehaviour;
 import basisFx.appCore.menu.MenuComponent;
 import javafx.scene.control.Button;
 

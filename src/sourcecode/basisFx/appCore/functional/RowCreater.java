@@ -3,14 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package basisFx.appCore.controlPolicy;
+package basisFx.appCore.functional;
+
+import javafx.collections.ObservableList;
 
 /**
  *
  * @author 62
  */
-public interface  Checking<T> {
-    
-    public  void check(T value);
+public interface RowCreater {
+     public void createRow(ObservableList list);
     
 }

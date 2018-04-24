@@ -5,11 +5,13 @@
  */
 package basisFx.appCore.controlPolicy;
 
+import basisFx.appCore.functional.Checking;
+
 /**
  *
  * @author 62
  */
-public class CheckingForNumeric <T> implements Checking<T>{
+public class CheckingForNumeric <T> implements Checking<T> {
 
    
 
