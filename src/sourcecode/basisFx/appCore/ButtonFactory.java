@@ -92,7 +92,7 @@ public class ButtonFactory {
 
 
     }
-    public void submitButton(SubmitElement mark,AnchorPane panel, Coordinate coordinate, TableViewWrapper tableViewWrapper){
+    public void submitButton(SubmitElement mark,AnchorPane panel, Coordinate coordinate, Submitted ...submitted){
 
         AppNode.NodeBuilder.create()
                 .setId(CSSID.PANELS_BUTTON)
@@ -101,7 +101,7 @@ public class ButtonFactory {
                 .setCoordinate(coordinate)
                 .setText("ОТПРАВИТЬ").setFont(FontsStore.ROBOTO_LIGHT, 15)
                 .setWidth(170d).setHeight(20d)
-                .setEvent(eventFactory.createRowDeleteFromTable(tableViewWrapper))
+
                 .createNButton();
 
 

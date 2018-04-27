@@ -1,6 +1,7 @@
 package basisFx.domainModel.targets;
 
 import basisFx.appCore.SubmitElement;
+import basisFx.appCore.elements.DatePickerWrapper;
 import basisFx.appCore.elements.TableViewWrapper;
 import basisFx.appCore.panels.Target;
 import basisFx.appCore.utils.Coordinate;
@@ -14,6 +15,7 @@ public class TimeRecordingPanel extends Target {
     private TableViewWrapper employerTable;
     private AnchorPane employerSide;
     private AnchorPane controlSide;
+    private DatePickerWrapper datePickerWrapper;
 
     @Override
     protected void createElement() {
@@ -33,11 +35,12 @@ public class TimeRecordingPanel extends Target {
         );
 
 
+        datePickerWrapper=vidgetFactory.datePickerWrapper(
+                controlSide,170d, new Coordinate(10d,10d, null, null),employerTable.getList());
+
 
         buttonFactory.submitButton(SubmitElement.SubmitDatePicker,
-                controlSide,new Coordinate(80d,10d, null, null), employerTable);
-
-        vidgetFactory.datePickerWrapper(controlSide,170d, new Coordinate(10d,10d, null, null),employerTable.getList());
+                controlSide,new Coordinate(80d,10d, null, null), employerTable,datePickerWrapper);
 
 
 
