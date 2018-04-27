@@ -1,5 +1,8 @@
 package basisFx.appCore.elements;
 
+import basisFx.appCore.DataTransferSubmitObject;
+import basisFx.appCore.SubmitElement;
+import basisFx.appCore.Submitted;
 import basisFx.appCore.functional.ObservableVidget;
 import basisFx.appCore.domainScetch.DomainObject;
 import basisFx.appCore.settings.CSSID;
@@ -11,10 +14,11 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 
-public class DatePickerWrapper  extends AppNode implements ObservableVidget {
+public class DatePickerWrapper  extends AppNode implements ObservableVidget, Submitted{
 
     private DatePicker datePicker;
     private ObservableList<DomainObject> list;
+    private LocalDate localDate;
 
 
     public DatePickerWrapper(NodeBuilder builder) {
@@ -34,7 +38,10 @@ public class DatePickerWrapper  extends AppNode implements ObservableVidget {
                    for (DomainObject domainObject : list) {
 
                        System.out.println("DatePickerWrapper------valueAddToObservers  !=NULL");
-                       valueAddToObservers.add(domainObject, LocalDate.from(datePicker.getValue()));
+//                       valueAddToObservers.add(domainObject, LocalDate.from(datePicker.getValue()));
+
+                      localDate= LocalDate.from(datePicker.getValue());
+
 
                    }
                }else {
@@ -63,6 +70,16 @@ public class DatePickerWrapper  extends AppNode implements ObservableVidget {
 
     }
 
+    @Override
+    public DataTransferSubmitObject extractData() {
+        return new DataTransferSubmitObject(this);
+    }
+
+    @Override
+    public SubmitElement getMark() {
+        return mark;
+    }
+
 
     class CustomStringConverter extends StringConverter<LocalDate> {
     DateTimeFormatter dateFormatter =//DateTimeFormatter.ofPattern("dd-MM-yyyy");
@@ -86,5 +103,7 @@ public class DatePickerWrapper  extends AppNode implements ObservableVidget {
     }
 }
 
-
+    public LocalDate getLocalDate() {
+        return localDate;
+    }
 }

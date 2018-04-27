@@ -33,12 +33,12 @@ public class TableFabric {
 
 
 
-    public TableViewWrapper createSubmitTable(AnchorPane panel, double width, Coordinate coordinate,
+    public TableViewWrapper createSubmitTable(SubmitElement mark,AnchorPane panel, double width, Coordinate coordinate,
                                                 DataMapper dataMapper,
                                                 ColumnWrapper...columnWrappers){
 
         return AppNode.NodeBuilder.create()
-                .setId(CSSID.TABLE)
+                .setId(CSSID.TABLE).setMark(mark)
 //                .setEditPoliticy(editFabric.createMultipleSubmitEditCommit())
                 .setEditCreater(()-> {return editFabric.createMultipleSubmitEditCommit();})
                 .setParent(panel).setCoordinate(coordinate)

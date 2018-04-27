@@ -5,6 +5,9 @@
  */
 package basisFx.appCore.elements;
 
+import basisFx.appCore.DataTransferSubmitObject;
+import basisFx.appCore.SubmitElement;
+import basisFx.appCore.Submitted;
 import basisFx.appCore.functional.Refreshable;
 import basisFx.appCore.functional.SubmittingDomains;
 import basisFx.appCore.TextFabric;
@@ -29,7 +32,7 @@ import javafx.scene.input.MouseButton;
 import javafx.scene.text.Text;
 import javafx.util.Callback;
 
-public  class TableViewWrapper <T> extends AppNode implements Refreshable, SubmittingDomains {
+public  class TableViewWrapper <T> extends AppNode implements Refreshable, SubmittingDomains,Submitted {
 
     private TableView<DomainObject> table=null;
     private ObservableList<DomainObject>  list=FXCollections.<DomainObject> observableArrayList();
@@ -58,6 +61,11 @@ public  class TableViewWrapper <T> extends AppNode implements Refreshable, Submi
         Text elem = (Text) text.getElement();
         table.setPlaceholder(elem);
 
+    }
+
+
+    public SubmitElement getMark (){
+        return  this.mark;
     }
 
     public void markAsObserver(boolean isObserver) {
@@ -349,5 +357,10 @@ public  class TableViewWrapper <T> extends AppNode implements Refreshable, Submi
     @Override
     public ObservableList<DomainObject> submitList() {
         return this.list;
+    }
+
+    @Override
+    public DataTransferSubmitObject extractData() {
+        return new DataTransferSubmitObject(this);
     }
 }

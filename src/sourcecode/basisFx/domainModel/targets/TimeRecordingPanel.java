@@ -1,5 +1,6 @@
 package basisFx.domainModel.targets;
 
+import basisFx.appCore.SubmitElement;
 import basisFx.appCore.elements.TableViewWrapper;
 import basisFx.appCore.panels.Target;
 import basisFx.appCore.utils.Coordinate;
@@ -23,7 +24,7 @@ public class TimeRecordingPanel extends Target {
         textFabric.createLabel("Список сотрудников", FontsStore.ROBOTO_LIGHT,  Pos.BASELINE_LEFT,25d,
                 employerSide, new Coordinate(10d,0d,null,0d));
 
-        employerTable =tableFabric.createSubmitTable(
+        employerTable =tableFabric.createSubmitTable(SubmitElement.SubmitTable,
                 employerSide,1.0d,new Coordinate(50d, 0d, 20d, 0d),
                 dataMapper.employerDataMapper(),
 
@@ -33,11 +34,8 @@ public class TimeRecordingPanel extends Target {
 
 
 
-        buttonFactory.submitButton(
+        buttonFactory.submitButton(SubmitElement.SubmitDatePicker,
                 controlSide,new Coordinate(80d,10d, null, null), employerTable);
-
-        buttonFactory.addRowButton(
-                controlSide,new Coordinate(null,0d, 10d, null), employerTable,Employer.class);
 
         vidgetFactory.datePickerWrapper(controlSide,170d, new Coordinate(10d,10d, null, null),employerTable.getList());
 
