@@ -1,7 +1,7 @@
 package basisFx.domainModel;
 
-import basisFx.appCore.appStructura.AppStructuraFabric;
-import basisFx.appCore.dataSource.DbFactory;
+import basisFx.appCore.fabrics.AppStructuraFabric;
+import basisFx.appCore.fabrics.DbFactory;
 import javafx.stage.Stage;
 
 import java.sql.SQLException;

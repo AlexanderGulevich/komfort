@@ -1,5 +1,6 @@
 package basisFx.domainModel.targets;
 
+import basisFx.appCore.controlPolicy.KindOfColumn;
 import basisFx.appCore.elements.AppNode;
 import basisFx.appCore.elements.TableViewWrapper;
 import basisFx.appCore.panels.Target;
@@ -22,7 +23,7 @@ public class RatePerHourPanel extends Target {
         tableViewWrapper = tableFabric.createStandartTable(
                 panel,0.7d,new Coordinate(50d, null, 0d, 0d),
                 dataMapper.ratePerHourTemplatesDataMapper(),
-                        columnFabric.createColumn(
+                        columnFabric.createColumn(KindOfColumn.STRING,
                                 "\"Тариф ( бел. руб/час. )\"","name",1d,true,
                                  (obj,val)->((RatePerHour)obj).setName((String) val)
                         )

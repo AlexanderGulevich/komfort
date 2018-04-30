@@ -28,9 +28,17 @@ public class MainMenuSketch extends MenuSketch{
                createVertical("Результаты дня", null, composit.COMPOSITE,"\uF0A1", FontsStore.WEBHOSTINGHUB,25)
                        .addInerLevel(
                                create("Сотрудники (учет времени)", fm.timeRecordingPanel(), composit.SIMPLE),
-                               create("Стержни", fm.countingRodsPanel(), composit.SIMPLE),
+                               create("Продукция", fm.countingRodsPanel(), composit.SIMPLE),
                                create("Учет сырья", fm.rawMateriaAccountingPanel(), composit.SIMPLE),
-                               create("Курсы", fm.exchangeRatesPanel(), composit.SIMPLE),
+                               create("Курсы", fm.exchangeRatesPanel(), composit.SIMPLE)
+                       ),
+
+
+/////////////////////////////////////////////////
+
+               createVertical("Проводки", null, composit.COMPOSITE,"\uF058", FontsStore.FAWESOME5SOLID,25)
+                       .addInerLevel(
+
                                create("Дневная выработка", fm.dailyOutputPanel(), composit.SIMPLE)
                        ),
 
@@ -60,11 +68,13 @@ public class MainMenuSketch extends MenuSketch{
 
                createVertical("Вспомогательная информация", null, composit.COMPOSITE,"", FontsStore.MATERIAL_ICONS,25)
                        .addInerLevel(
-                               create("Оборудование", fm.equipmentPanel(), composit.SIMPLE),
+                               create("Станки", fm.equipmentPanel(), composit.SIMPLE),
                                create("Продукция", fm.productPanel(), composit.SIMPLE),
+                               create("Пакеты", fm.productPanel(), composit.SIMPLE),
+                               create("Этикетка", fm.productPanel(), composit.SIMPLE),
                                create("Контрагенты", fm.counterpartyPanel(), composit.SIMPLE),
-                               create("Страны", fm.countryPanel(), composit.SIMPLE),
-                               create("Валюты", fm.currencyPanel(), composit.SIMPLE)
+                               create("Сырье", fm.counterpartyPanel(), composit.SIMPLE)
+
                        )
 
 

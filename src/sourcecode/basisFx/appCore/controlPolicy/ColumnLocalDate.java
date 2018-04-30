@@ -49,6 +49,7 @@ public class ColumnLocalDate <T,K>extends ColumnWrapper<T> {
         editPoliticy.setDomainChanging(this.domainChanging);
         editPoliticy.setUnitOfWork(this.tableWrapper.getUnitOfWork());
         editPoliticy.setTvw(this.tableWrapper);
+        editPoliticy.setKindOfColumn(kindOfColumn);
         editPoliticy.run();
     }
 

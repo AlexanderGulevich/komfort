@@ -1,6 +1,6 @@
 package basisFx.appCore.elements;
 
-import basisFx.appCore.functional.ObservableVidget;
+import basisFx.appCore.interfaces.ObservableVidget;
 import basisFx.appCore.domainScetch.DomainObject;
 import basisFx.appCore.settings.CSSID;
 import javafx.collections.ObservableList;

@@ -1,5 +1,6 @@
 package basisFx.domainModel.targets;
 
+import basisFx.appCore.controlPolicy.KindOfColumn;
 import basisFx.appCore.elements.TableViewWrapper;
 import basisFx.appCore.panels.Target;
 import basisFx.appCore.utils.Coordinate;
@@ -27,7 +28,7 @@ public class TimeRecordingPanel extends Target {
                 employerSide,1.0d,new Coordinate(50d, 0d, 20d, 0d),
                 dataMapper.employerDataMapper(),
 
-                columnFabric.createColumn("ФИО","name",0.3d,true,
+                columnFabric.createColumn(KindOfColumn.STRING,"ФИО","name",0.3d,true,
                         (obj,val)->{((Employer)obj).setName((String)val);})
         );
 

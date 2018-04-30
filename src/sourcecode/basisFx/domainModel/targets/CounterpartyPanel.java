@@ -1,10 +1,10 @@
 package basisFx.domainModel.targets;
 
+import basisFx.appCore.controlPolicy.KindOfColumn;
 import basisFx.appCore.elements.AppNode;
 import basisFx.appCore.elements.TableViewWrapper;
 import basisFx.appCore.panels.Target;
 import basisFx.appCore.utils.Coordinate;
-import basisFx.domainModel.domaine.Country;
 import basisFx.domainModel.domaine.Currency;
 import basisFx.appCore.settings.CSSID;
 import basisFx.appCore.settings.FontsStore;
@@ -24,15 +24,10 @@ public class CounterpartyPanel extends Target{
 
         tableViewWrapper = tableFabric.createStandartTable(panel,0.8d,new Coordinate(50d, null, 0d, 0d),
                 dataMapper.counterpartyDataMapper(),
-                        columnFabric.createColumn(
+                        columnFabric.createColumn(KindOfColumn.STRING,
                                 "Наименование контрагента","name",0.5,true,
                                 (obj,val)->((basisFx.domainModel.domaine.Counterparty)obj).setName((String)val)),
-                        columnFabric.createColumnComboBox(
-                                "Страна","country",0.3,true,
-                                (obj,val)->{((basisFx.domainModel.domaine.Counterparty)obj).setCountry((Country) val);},
-                                () -> dataMapper.counterpartyDataMapper().getCountryList()
-                        ),
-                        columnFabric.createColumnComboBox(
+                        columnFabric.createColumnComboBox(KindOfColumn.COMBOBOX,
                                 "Валюта","currency",0.2,true,
                                 (obj,val)->{((basisFx.domainModel.domaine.Counterparty)obj).setCurrency((Currency) val);},
                                 () -> dataMapper.counterpartyDataMapper().getCurrencyList()

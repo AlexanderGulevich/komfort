@@ -2,7 +2,7 @@ package basisFx.appCore.windows;
 
 import basisFx.appCore.utils.Coordinate;
 import basisFx.appCore.utils.StylesLoader;
-import basisFx.appCore.events.EventFactory;
+import basisFx.appCore.fabrics.EventFactory;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;

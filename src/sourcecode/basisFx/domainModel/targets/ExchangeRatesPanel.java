@@ -1,5 +1,6 @@
 package basisFx.domainModel.targets;
 
+import basisFx.appCore.controlPolicy.KindOfColumn;
 import basisFx.appCore.elements.TableViewWrapper;
 import basisFx.appCore.panels.Target;
 import basisFx.appCore.utils.Coordinate;
@@ -29,10 +30,10 @@ public class ExchangeRatesPanel extends Target{
         rateTable =tableFabric.createStandartTable(
                 panel,0.53d,new Coordinate(50d, 0d, 70d, null),
                 dataMapper.exchangeRatesDataMapper(),
-                columnFabric.createColumn("Курсы","exchangeRate",0.3d,true,
+                columnFabric.createColumn(KindOfColumn.REAL,"Курсы","exchangeRate",0.3d,true,
                         (obj,val)->{((ExchangeRates)obj).setExchangeRate( (String ) val);}
                 ),
-                columnFabric.createDateColumn("Дата начала действия ","startingDate",0.7d,true,
+                columnFabric.createDateColumn(KindOfColumn.DATE,"Дата начала действия ","startingDate",0.7d,true,
                         (obj, val)->{((ExchangeRates)obj).setStartingDate((LocalDate) val); }
                 )
         );
@@ -55,7 +56,7 @@ public class ExchangeRatesPanel extends Target{
                 0.45d, new Coordinate(50d, null, 70d, 0d),
                 dataMapper.currencyDataMapper(),
 
-                columnFabric.createColumn("Наименование","name",1d,true,
+                columnFabric.createColumn(KindOfColumn.STRING,"Наименование","name",1d,true,
                         (obj,val)->((Currency)obj).setName((String)val))
         );
 

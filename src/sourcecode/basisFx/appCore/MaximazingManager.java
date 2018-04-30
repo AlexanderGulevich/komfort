@@ -1,6 +1,6 @@
 package basisFx.appCore;
 
-import basisFx.appCore.functional.MaximazingObserver;
+import basisFx.appCore.interfaces.MaximazingObserver;
 
 import java.util.ArrayList;
 
