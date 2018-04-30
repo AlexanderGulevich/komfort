@@ -16,20 +16,8 @@ import javafx.beans.property.SimpleObjectProperty;
 public class Counterparty  extends DomainObject {
 
     private SimpleObjectProperty<String> name =new SimpleObjectProperty(this, "name", null);
-    private SimpleObjectProperty<DomainObject> country =new SimpleObjectProperty<>(this, "country", null);
     private SimpleObjectProperty<DomainObject> currency =new SimpleObjectProperty<>(this, "currency", null);
 
-    public DomainObject getCountry() {
-        return country.get();
-    }
-
-    public SimpleObjectProperty<DomainObject> countryProperty() {
-        return country;
-    }
-
-    public void setCountry(Country country) {
-        this.country.set(country);
-    }
 
     public DomainObject getCurrency() {
         return currency.get();

@@ -1,5 +1,6 @@
 package basisFx.domainModel.targets;
 
+import basisFx.appCore.controlPolicy.KindOfColumn;
 import basisFx.appCore.elements.AppNode;
 import basisFx.appCore.elements.TableViewWrapper;
 import basisFx.appCore.panels.Target;
@@ -29,7 +30,7 @@ public class CurrencyPanel extends Target {
         tableViewWrapper = tableFabric.createStandartTable(
                 panel,0.7d,new Coordinate(50d, null, 0d, 0d),
                 dataMapper.currencyDataMapper(),
-                columnFabric.createColumn("Наименование","name",1d,true,
+                columnFabric.createColumn(KindOfColumn.STRING,"Наименование","name",1d,true,
                                 (obj,val)->((Currency)obj).setName((String)val))
                 );
 

@@ -5,7 +5,7 @@
  */
 package basisFx.appCore.elements;
 
-import basisFx.appCore.functional.ParentAnchorFetching;
+import basisFx.appCore.interfaces.ParentAnchorFetching;
 import basisFx.appCore.settings.CSSID;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.TilePane;

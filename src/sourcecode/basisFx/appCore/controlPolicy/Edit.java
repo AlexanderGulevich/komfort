@@ -7,7 +7,7 @@ package basisFx.appCore.controlPolicy;
 
 import basisFx.appCore.dataSource.UnitOfWork;
 import basisFx.appCore.elements.TableViewWrapper;
-import basisFx.appCore.functional.DomainChanging;
+import basisFx.appCore.interfaces.DomainChanging;
 import javafx.scene.control.TableColumn;
 
 /**
@@ -20,6 +20,7 @@ public class Edit<T,K> {
     protected UnitOfWork unitOfWork;
     protected DomainChanging<T,K> domainChanging;
     protected TableViewWrapper tvw;
+    protected KindOfColumn kindOfColumn;
 
     public void setTvw(TableViewWrapper tvw) {
         this.tvw = tvw;
@@ -38,6 +39,8 @@ public class Edit<T,K> {
     }
 
     public void run() {}
-    
-    
+
+    public void setKindOfColumn(KindOfColumn kindOfColumn) {
+        this.kindOfColumn = kindOfColumn;
+    }
 }

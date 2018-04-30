@@ -1,5 +1,6 @@
 package basisFx.domainModel.targets;
 
+import basisFx.appCore.controlPolicy.KindOfColumn;
 import basisFx.appCore.panels.Target;
 import basisFx.appCore.elements.AppNode;
 import basisFx.appCore.elements.TableViewWrapper;
@@ -25,10 +26,10 @@ public class EquipmentPanel extends Target{
         tableViewWrapper =
                 tableFabric.createStandartTable(panel,0.7d, new Coordinate(50d, null, 0d, 0d),
                         dataMapper.equipmentDataMapper(),
-                        columnFabric.createColumn("Наименование","name",0.6,true,
+                        columnFabric.createColumn(KindOfColumn.STRING,"Наименование","name",0.6,true,
                                 (obj,val)->((Equipment)obj).setName((String)val)),
 
-                        columnFabric.createColumn("Ширина стержня","rodWidth",0.4,true,
+                        columnFabric.createColumn(KindOfColumn.INT,"Ширина стержня","rodWidth",0.4,true,
                                 (obj,val)->{((Equipment)obj).setRodWidth((String)val);}
                         )
                 );

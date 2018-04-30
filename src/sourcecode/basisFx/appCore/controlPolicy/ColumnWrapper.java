@@ -5,7 +5,7 @@
  */
 package basisFx.appCore.controlPolicy;
 
-import basisFx.appCore.functional.*;
+import basisFx.appCore.interfaces.*;
 import basisFx.appCore.elements.TableViewWrapper;
 import javafx.scene.control.TableColumn;
 
@@ -27,6 +27,7 @@ public  class ColumnWrapper<T> {
     protected DomainsListGetter domainObjectsListGetter;
     protected DateCellValueInitLogic dateCellValueInitLogic;
     protected Boolean isEditeble;
+    protected KindOfColumn kindOfColumn;
 
 
 
@@ -41,6 +42,7 @@ public  class ColumnWrapper<T> {
         this.domainChanging =b.domainChanging;
         this.dateCellValueInitLogic=b.dateCellValueInitLogic;
         this.isEditeble=b.isEditeble;
+        this.kindOfColumn=b.kindOfColumn;
 
     }
 
@@ -73,9 +75,10 @@ public  class ColumnWrapper<T> {
          protected DomainsListGetter domainsListGetter;
          protected DateCellValueInitLogic dateCellValueInitLogic;
          protected Boolean isEditeble;
+        protected KindOfColumn kindOfColumn;
 
 
-         public Bulder() {
+        public Bulder() {
          }
 
          public Bulder(String columnName, String propertyName, Double columnSize ) {
@@ -138,6 +141,11 @@ public  class ColumnWrapper<T> {
              this.domainsListGetter = domainsListGetter;
              return this;
          }
-     }
+
+        public Bulder setKindOfColumn(KindOfColumn kindOfColumn) {
+            this.kindOfColumn=kindOfColumn;
+            return this;
+        }
+    }
     
 }

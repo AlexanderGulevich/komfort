@@ -1,5 +1,6 @@
 package basisFx.domainModel.targets;
 
+import basisFx.appCore.controlPolicy.KindOfColumn;
 import basisFx.appCore.domainScetch.StringValueDomainObject;
 import basisFx.appCore.elements.TableViewWrapper;
 import basisFx.appCore.panels.Target;
@@ -26,14 +27,14 @@ public class EmployeesActualRatePanel extends Target{
         tableViewWrapper = tableFabric.createStandartTable(
             panel,1d,new Coordinate(50d, null, 0d, 0d),
             dataMapper.employerDataMapper(),
-            columnFabric.createColumn("ФИО","name",0.6d,true,
+                    columnFabric.createColumn(KindOfColumn.STRING,"ФИО","name",0.6d,true,
                             (obj,val)->((Employer)obj).setName((String)val))
 ,
-                    columnFabric.createColumnComboBox("Тариф","rate",0.1,true,
+                    columnFabric.createColumnComboBox(KindOfColumn.COMBOBOX,"Тариф","rate",0.1,true,
                             (obj,val)->{((Employer)obj).setRate((StringValueDomainObject) val);},
                             () -> dataMapper.employerDataMapper().getRateTemplateList()
                     ),
-                    columnFabric.createDateColumn("Дата начала действия тарифа","startingRateDate",0.3d,true,
+                    columnFabric.createDateColumn(KindOfColumn.DATE,"Дата начала действия тарифа","startingRateDate",0.3d,true,
                             (obj, val)->{((Employer)obj).setStartingRateDate((LocalDate) val); }
                     )
             );

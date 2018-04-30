@@ -5,12 +5,13 @@
  */
 package basisFx.appCore.elements;
 
+
 import basisFx.appCore.DataTransferSubmitObject;
 import basisFx.appCore.SubmitElement;
 import basisFx.appCore.Submitted;
-import basisFx.appCore.functional.Refreshable;
-import basisFx.appCore.functional.SubmittingDomains;
-import basisFx.appCore.TextFabric;
+import basisFx.appCore.interfaces.Refreshable;
+import basisFx.appCore.interfaces.SubmittingDomains;
+import basisFx.appCore.fabrics.TextFabric;
 import basisFx.appCore.controlPolicy.ColumnWrapper;
 import basisFx.appCore.dataSource.DataMapper;
 import basisFx.appCore.dataSource.UnitOfWork;

@@ -19,9 +19,7 @@ public class DataMapperFabric {
     public CounterpartyDataMapper counterpartyDataMapper() {
         return new CounterpartyDataMapper();
     }
-    public CountryDataMapper countryDataMapper() {
-        return CountryDataMapper.getInstance();
-    }
+
     public CurrencyDataMapper currencyDataMapper() {
         return CurrencyDataMapper.getInstance();
     }

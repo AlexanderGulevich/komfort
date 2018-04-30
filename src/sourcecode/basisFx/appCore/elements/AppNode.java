@@ -2,9 +2,9 @@ package basisFx.appCore.elements;
 
 
 import basisFx.appCore.SubmitElement;
-import basisFx.appCore.functional.ValueAddToDomain;
+import basisFx.appCore.interfaces.ValueAddToDomain;
 import basisFx.appCore.controlPolicy.Edit;
-import basisFx.appCore.functional.EditCreater;
+import basisFx.appCore.interfaces.EditCreater;
 import basisFx.appCore.utils.Coordinate;
 import basisFx.appCore.events.AppEvent;
 import basisFx.appCore.settings.CSSID;

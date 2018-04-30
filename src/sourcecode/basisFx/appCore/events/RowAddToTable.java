@@ -8,7 +8,7 @@ package basisFx.appCore.events;
 import basisFx.appCore.dataSource.UnitOfWork;
 import basisFx.appCore.elements.AppNode;
 import basisFx.appCore.elements.TableViewWrapper;
-import basisFx.appCore.functional.RowCreater;
+import basisFx.appCore.interfaces.RowCreater;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableView;

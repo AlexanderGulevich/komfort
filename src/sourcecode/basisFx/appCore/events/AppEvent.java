@@ -6,6 +6,7 @@
 package basisFx.appCore.events;
 
 import basisFx.appCore.elements.AppNode;
+import basisFx.appCore.fabrics.EventFactory;
 
 import java.sql.SQLException;
 

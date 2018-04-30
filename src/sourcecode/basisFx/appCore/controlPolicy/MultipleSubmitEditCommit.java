@@ -1,12 +1,19 @@
 package basisFx.appCore.controlPolicy;
 
-public class MultipleSubmitEditCommit extends Edit {
+public class MultipleSubmitEditCommit <T,K> extends Edit<T,K> {
 
 
     public void run() {
 
         column.setOnEditCommit((event) -> {
             System.err.println("MultipleSubmitEditCommit.run");
+
+            if (Checking.check(kindOfColumn, event)) {
+
+
+
+
+            }
         });
 
     }
