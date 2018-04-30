@@ -2,7 +2,7 @@ package basisFx.domainModel.targets;
 
 import basisFx.appCore.controlPolicy.KindOfColumn;
 import basisFx.appCore.domainScetch.StringValueDomainObject;
-import basisFx.appCore.elements.TableViewWrapper;
+import basisFx.appCore.elements.TableWrapper;
 import basisFx.appCore.panels.Target;
 import basisFx.appCore.utils.Coordinate;
 import basisFx.domainModel.domaine.Employer;
@@ -14,8 +14,8 @@ import javafx.scene.layout.AnchorPane;
 import java.time.LocalDate;
 
 public class EmployeesManagerPanel extends Target {
-    private TableViewWrapper employerTable;
-    private TableViewWrapper rateTable;
+    private TableWrapper employerTable;
+    private TableWrapper rateTable;
     private AnchorPane employerSide;
     private AnchorPane rateSide;
 
@@ -29,7 +29,7 @@ public class EmployeesManagerPanel extends Target {
                 rateSide, new Coordinate(10d,0d,null,0d));
 
 
-        rateTable =tableFabric.createStandartTable(
+        rateTable =tableFabric.table(
                 panel,0.45d,new Coordinate(50d, 0d, 70d, null),
                 dataMapper.ratePerHourDataMapper(),
 
@@ -60,7 +60,7 @@ public class EmployeesManagerPanel extends Target {
                 employerSide, new Coordinate(10d,0d,null,0d));
 
 
-        employerTable =tableFabric.createBoundTable(
+        employerTable =tableFabric.boundTable(
                 rateTable,
                 panel,0.54d,new Coordinate(50d, null, 70d, 0d),
                 dataMapper.employerDataMapper(),

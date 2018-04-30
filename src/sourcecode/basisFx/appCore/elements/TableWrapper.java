@@ -33,20 +33,20 @@ import javafx.scene.input.MouseButton;
 import javafx.scene.text.Text;
 import javafx.util.Callback;
 
-public  class TableViewWrapper <T> extends AppNode implements Refreshable, SubmittingDomains,Submitted {
+public  class TableWrapper<T> extends AppNode implements Refreshable, SubmittingDomains,Submitted {
 
     private TableView<DomainObject> table=null;
     private ObservableList<DomainObject>  list=FXCollections.<DomainObject> observableArrayList();
     private UnitOfWork unitOfWork=new UnitOfWork();
     private TableListener  tableListener=new TableListener (this);
     protected DataMapper dataMapper;
-    private ArrayList <TableViewWrapper> observers=new ArrayList();
+    private ArrayList <TableWrapper> observers=new ArrayList();
     private boolean isObserver=false;
     private  DomainObject clickedDomain;
 
 
     @SuppressWarnings("unchecked")
- public   TableViewWrapper(NodeBuilder builder) {
+ public TableWrapper(NodeBuilder builder) {
         table=new TableView<>(list);
         setElement(table);
         table.setEditable(true);
@@ -77,12 +77,12 @@ public  class TableViewWrapper <T> extends AppNode implements Refreshable, Submi
         d.setDataMapper(dataMapper);
     }
 
-    public TableViewWrapper<T>  setColumnResizePolicy( Callback<TableView.ResizeFeatures,Boolean> policy){
+    public TableWrapper<T> setColumnResizePolicy(Callback<TableView.ResizeFeatures,Boolean> policy){
         table.setColumnResizePolicy(policy);
         return this;
     }
     @SuppressWarnings("unchecked")
-    public TableViewWrapper<T>  setColums(ColumnWrapper  ...columnWrappers){
+    public TableWrapper<T> setColums(ColumnWrapper  ...columnWrappers){
        
          for (ColumnWrapper cw : columnWrappers) {
              
@@ -105,7 +105,7 @@ public  class TableViewWrapper <T> extends AppNode implements Refreshable, Submi
          return this;
         
      }
-    public TableViewWrapper<T>  setSortableAllCollums(boolean b){
+    public TableWrapper<T> setSortableAllCollums(boolean b){
 
         ObservableList<TableColumn<DomainObject, ?>> columns = table.getColumns();
         
@@ -116,13 +116,13 @@ public  class TableViewWrapper <T> extends AppNode implements Refreshable, Submi
    
           return this;
      }
-    public TableViewWrapper<T>  setEditable(boolean isEditable){
+    public TableWrapper<T> setEditable(boolean isEditable){
          
           this.table.setEditable(isEditable);
           return this;
         
      }
-    private TableViewWrapper<T> setColumsSize(ColumnWrapper columnWrapper) {
+    private TableWrapper<T> setColumsSize(ColumnWrapper columnWrapper) {
        
         TableColumn column = columnWrapper.getColumn();
         column.prefWidthProperty()
@@ -134,14 +134,14 @@ public  class TableViewWrapper <T> extends AppNode implements Refreshable, Submi
      
 
     }
-    public TableViewWrapper<T> setTablesWidthProperty(double val, ReadOnlyDoubleProperty widthProperty) {
+    public TableWrapper<T> setTablesWidthProperty(double val, ReadOnlyDoubleProperty widthProperty) {
         table.prefWidthProperty()
                 .bind(widthProperty.multiply(val));
 
         return this;
 
     }
-    public TableViewWrapper<T> setTablesHeight(double val) {
+    public TableWrapper<T> setTablesHeight(double val) {
         table.setPrefHeight(val);
 
         return this;
@@ -157,7 +157,7 @@ public  class TableViewWrapper <T> extends AppNode implements Refreshable, Submi
     return clon;
  
     }
-    public TableViewWrapper setList(ObservableList<DomainObject> tablesPojo) {
+    public TableWrapper setList(ObservableList<DomainObject> tablesPojo) {
         
         this.table.setItems(tablesPojo);
         
@@ -174,7 +174,7 @@ public  class TableViewWrapper <T> extends AppNode implements Refreshable, Submi
         return unitOfWork;
     }
 
-    public TableViewWrapper setDataMapper(DataMapper dm) {
+    public TableWrapper setDataMapper(DataMapper dm) {
         this.dataMapper=dm;
         this.dataMapper.setUnitOfWork(this.unitOfWork);
 
@@ -198,11 +198,11 @@ public  class TableViewWrapper <T> extends AppNode implements Refreshable, Submi
     }
 
     @Override
-    public TableViewWrapper refresh(){
-        System.out.println("TableViewWrapper.refresh");
+    public TableWrapper refresh(){
+        System.out.println("TableWrapper.refresh");
 
         if (isObserver){
-            System.out.println("TableViewWrapper refresh()---isObserver TRUE    clickedDomain---"+clickedDomain.getId());
+            System.out.println("TableWrapper refresh()---isObserver TRUE    clickedDomain---"+clickedDomain.getId());
             refresh(clickedDomain);
 
         }else {
@@ -219,9 +219,9 @@ public  class TableViewWrapper <T> extends AppNode implements Refreshable, Submi
     }
 
     @Override
-    public TableViewWrapper refresh(DomainObject selectedDomainObject) {
+    public TableWrapper refresh(DomainObject selectedDomainObject) {
 
-        System.out.println("TableViewWrapper.refresh(DomainObject selectedDomainObject)");
+        System.out.println("TableWrapper.refresh(DomainObject selectedDomainObject)");
 
         this.table.getItems().clear();
         this.list.clear();
@@ -253,11 +253,11 @@ public  class TableViewWrapper <T> extends AppNode implements Refreshable, Submi
 
                         System.out.println("table.setOnKeyPressed(event -> ");
 
-                        for (TableViewWrapper observer : observers) {
+                        for (TableWrapper observer : observers) {
 
                             if (selectedItem.getId() != null) {
 
-                                System.out.println("TableViewWrapper.setClickedRowDetection()   ---   for (TableViewWrapper observer : observers) {");
+                                System.out.println("TableWrapper.setClickedRowDetection()   ---   for (TableWrapper observer : observers) {");
 
                                 observer.setClickedDomain(selectedItem);
                                 observer.dataMapper.setObservableDomaineId(selectedItem.getId());
@@ -266,7 +266,7 @@ public  class TableViewWrapper <T> extends AppNode implements Refreshable, Submi
                                 if (!observers.isEmpty()) {
 
 
-                                    for (TableViewWrapper concreteObserver : observers) {
+                                    for (TableWrapper concreteObserver : observers) {
                                         concreteObserver.refresh(selectedItem);
                                     }
 
@@ -302,11 +302,11 @@ public  class TableViewWrapper <T> extends AppNode implements Refreshable, Submi
                    DomainObject domainObject=row.getItem();
 
 
-                    for (TableViewWrapper observer : observers) {
+                    for (TableWrapper observer : observers) {
 
                         if (domainObject.getId() !=null) {
 
-                            System.out.println("TableViewWrapper.setClickedRowDetection()   ---   for (TableViewWrapper observer : observers) {");
+                            System.out.println("TableWrapper.setClickedRowDetection()   ---   for (TableWrapper observer : observers) {");
 
                             observer.setClickedDomain(domainObject);
                             observer.dataMapper.setObservableDomaineId(domainObject.getId());
@@ -316,7 +316,7 @@ public  class TableViewWrapper <T> extends AppNode implements Refreshable, Submi
                             if (!observers.isEmpty()){
 
 
-                                for (TableViewWrapper concreteObserver : observers) {
+                                for (TableWrapper concreteObserver : observers) {
                                     concreteObserver.refresh(domainObject);
                                 }
 
@@ -347,7 +347,7 @@ public  class TableViewWrapper <T> extends AppNode implements Refreshable, Submi
 
     }
 
-    public  TableViewWrapper setBoundTable(TableViewWrapper observer){
+    public TableWrapper setBoundTable(TableWrapper observer){
             observer.markAsObserver(true);
             observers.add(observer);
 

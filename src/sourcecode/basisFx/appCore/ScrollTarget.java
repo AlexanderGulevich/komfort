@@ -3,7 +3,7 @@
 //import basisFx.appCore.controlPolicy.ColumnWrapper;
 //import basisFx.appCore.domainScetch.StringValueDomainObject;
 //import basisFx.appCore.elements.AppNode;
-//import basisFx.appCore.elements.TableViewWrapper;
+//import basisFx.appCore.elements.TableWrapper;
 //import basisFx.appCore.panels.Target;
 //import basisFx.domainModel.domaine.Country;
 //import basisFx.domainModel.domaine.Equipment;
@@ -51,7 +51,7 @@
 //
 //    private void setCountryTable(AnchorPane pane){
 //
-//        TableViewWrapper countryTableWrapper = AppNode.NodeBuilder.create()
+//        TableWrapper countryTableWrapper = AppNode.NodeBuilder.create()
 //                .setId(CSSID.TABLE).setCoordinate(pane,50d, 40d, 10d, 10d)
 //                .<Equipment>createTableViewWrapper().setTablesWidthProperty(0.4, pane.widthProperty()).setTablesHeight(200d)
 //                .setDataMapper(this.dataMapper.getNamedDataMapper())

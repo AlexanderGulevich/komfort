@@ -7,7 +7,7 @@ package basisFx.appCore.events;
 
 import basisFx.appCore.dataSource.UnitOfWork;
 import basisFx.appCore.elements.AppNode;
-import basisFx.appCore.elements.TableViewWrapper;
+import basisFx.appCore.elements.TableWrapper;
 import basisFx.appCore.interfaces.RowCreater;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Button;
@@ -24,13 +24,13 @@ public class RowAddToTable <T> extends AppEvent{
     private Button but;
     private final ObservableList list;
     protected RowCreater rowCreater;
-    private TableViewWrapper nTableView;
+    private TableWrapper nTableView;
     private   UnitOfWork unitOfWork;
 
 
 
     @SuppressWarnings("unchecked")
-    public RowAddToTable(TableViewWrapper nTableView, RowCreater rowCreater) {
+    public RowAddToTable(TableWrapper nTableView, RowCreater rowCreater) {
         this.nTableView = nTableView;
         this.table= (TableView<T>) this.nTableView.getElement();
         this.list=this.table.getItems();

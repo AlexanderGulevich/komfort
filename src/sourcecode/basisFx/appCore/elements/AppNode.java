@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 import javafx.geometry.Pos;
+import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -51,6 +52,7 @@ public abstract class AppNode  {
     protected AppEvent event;
     protected Insets insects;
     protected AnchorPane parentAnchor;
+    protected Group parentGroup;
     protected Font font;  
     protected boolean hasBond;
     protected Stage stage;
@@ -171,6 +173,14 @@ public abstract class AppNode  {
 
                  this.scrollPane.setPannable(true);
                  this.scrollPane.setContent(n.getElement());
+
+             }
+
+             if(this.parentGroup!=null){
+
+
+                 this.parentGroup.getChildren().addAll(n.getElement());
+
 
              }
 
@@ -444,8 +454,8 @@ public abstract class AppNode  {
         public  NFlowPane createNFlowPane(){
             return new <FlowPane>  NFlowPane(this);
         }
-        public   <T> TableViewWrapper createTableViewWrapper  (){
-            return new  TableViewWrapper< >(this);
+        public   <T> TableWrapper createTableViewWrapper  (){
+            return new TableWrapper< >(this);
         }
         public   <T> ComboBoxWrapper createComboBoxWrapper  (){
             return new  ComboBoxWrapper<>(this);
@@ -458,6 +468,9 @@ public abstract class AppNode  {
         }
         public    DatePickerWrapper createDatePickerWrapper  (){
             return new  DatePickerWrapper(this);
+        }
+        public    GroupWrapper createGroupWrapper  (){
+            return new  GroupWrapper(this);
         }
 
 

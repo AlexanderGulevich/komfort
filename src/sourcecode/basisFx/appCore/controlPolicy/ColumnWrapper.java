@@ -6,7 +6,7 @@
 package basisFx.appCore.controlPolicy;
 
 import basisFx.appCore.interfaces.*;
-import basisFx.appCore.elements.TableViewWrapper;
+import basisFx.appCore.elements.TableWrapper;
 import javafx.scene.control.TableColumn;
 
 /**
@@ -15,7 +15,7 @@ import javafx.scene.control.TableColumn;
  */
 public  class ColumnWrapper<T> {
 
-    protected TableViewWrapper tableWrapper;
+    protected TableWrapper tableWrapper;
     protected String propertyName;
     protected String columnName;
     protected Checking valueChecking;
@@ -52,7 +52,7 @@ public  class ColumnWrapper<T> {
      public TableColumn getColumn(){return null;};
          
     
-    public void  setTableWrapper(TableViewWrapper t){
+    public void  setTableWrapper(TableWrapper t){
                  this.tableWrapper=t;
              };
 

@@ -6,9 +6,10 @@
 package basisFx.appCore.controlPolicy;
 
 import basisFx.appCore.dataSource.UnitOfWork;
-import basisFx.appCore.elements.TableViewWrapper;
+import basisFx.appCore.elements.TableWrapper;
 import basisFx.appCore.domainScetch.DomainObject;
 import java.util.List;
+
 import javafx.collections.ListChangeListener;
 import javafx.scene.control.TableView;
 
@@ -19,20 +20,20 @@ import javafx.scene.control.TableView;
  */
 public class TableListener  implements ListChangeListener  {
 
-    private  TableViewWrapper tableViewWrapper;
+    private TableWrapper tableWrapper;
     private  UnitOfWork unitOfWork;
     private TableView<DomainObject> table;
 
     public TableListener() {}
 
-    public TableListener(TableViewWrapper t) {
-        this.tableViewWrapper=t;
-        this.unitOfWork=tableViewWrapper.getUnitOfWork();
+    public TableListener(TableWrapper t) {
+        this.tableWrapper =t;
+        this.unitOfWork= tableWrapper.getUnitOfWork();
     }
 
-    public void setNTableView(TableViewWrapper t){
-        this.tableViewWrapper=t;
-        this.unitOfWork=tableViewWrapper.getUnitOfWork();
+    public void setNTableView(TableWrapper t){
+        this.tableWrapper =t;
+        this.unitOfWork= tableWrapper.getUnitOfWork();
     }
 
     @Override
@@ -61,14 +62,14 @@ public class TableListener  implements ListChangeListener  {
                 List<DomainObject> subList = change.getAddedSubList();
                 DomainObject domainObject = subList.get(0);
 
-                this.tableViewWrapper.setDataMapperToObject(domainObject);
+                this.tableWrapper.setDataMapperToObject(domainObject);
 
                 if ( !unitOfWork.getStoredPojoesId().contains(domainObject.getId())) {
                     this.unitOfWork.setNewPojoes(domainObject);
 
                     System.out.println("wasAdded");
 
-                    this.table = (TableView<DomainObject>) this.tableViewWrapper.getElement();
+                    this.table = (TableView<DomainObject>) this.tableWrapper.getElement();
 
                     int newPojoIndex = table.getItems().indexOf(domainObject);
 

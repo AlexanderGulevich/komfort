@@ -7,7 +7,7 @@ package basisFx.appCore.events;
 
 import basisFx.appCore.dataSource.UnitOfWork;
 import basisFx.appCore.elements.AppNode;
-import basisFx.appCore.elements.TableViewWrapper;
+import basisFx.appCore.elements.TableWrapper;
 import basisFx.appCore.domainScetch.DomainObject;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Button;
@@ -24,17 +24,17 @@ public class RowDeleteFromTable extends AppEvent{
     private TableView <DomainObject>  table;
     private Button but;
     private final ObservableList list;
-    private TableViewWrapper tableViewWrapper;
+    private TableWrapper tableWrapper;
     private   UnitOfWork unitOfWork;
 
 
 
     @SuppressWarnings("unchecked")
-    public RowDeleteFromTable(TableViewWrapper t) {
-        this.tableViewWrapper = t;
-        this.table= (TableView<DomainObject>) this.tableViewWrapper.getElement();
+    public RowDeleteFromTable(TableWrapper t) {
+        this.tableWrapper = t;
+        this.table= (TableView<DomainObject>) this.tableWrapper.getElement();
         this.list=this.table.getItems();
-        this.unitOfWork = this.tableViewWrapper.getUnitOfWork();
+        this.unitOfWork = this.tableWrapper.getUnitOfWork();
     }
     
     

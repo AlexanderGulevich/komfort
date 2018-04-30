@@ -3,7 +3,7 @@ package basisFx.domainModel.targets;
 import basisFx.appCore.controlPolicy.KindOfColumn;
 import basisFx.appCore.panels.Target;
 import basisFx.appCore.elements.AppNode;
-import basisFx.appCore.elements.TableViewWrapper;
+import basisFx.appCore.elements.TableWrapper;
 import basisFx.appCore.utils.Coordinate;
 import basisFx.domainModel.domaine.Equipment;
 import basisFx.appCore.settings.CSSID;
@@ -15,7 +15,7 @@ import basisFx.appCore.settings.FontsStore;
  */
 public class EquipmentPanel extends Target{
     
-    private TableViewWrapper tableViewWrapper;
+    private TableWrapper tableWrapper;
 
     
     @Override
@@ -23,8 +23,8 @@ public class EquipmentPanel extends Target{
     public void createElement() {
         
 
-        tableViewWrapper =
-                tableFabric.createStandartTable(panel,0.7d, new Coordinate(50d, null, 0d, 0d),
+        tableWrapper =
+                tableFabric.table(panel,0.7d, new Coordinate(50d, null, 0d, 0d),
                         dataMapper.equipmentDataMapper(),
                         columnFabric.createColumn(KindOfColumn.STRING,"Наименование","name",0.6,true,
                                 (obj,val)->((Equipment)obj).setName((String)val)),
@@ -44,7 +44,7 @@ public class EquipmentPanel extends Target{
                  .setWidth(170d).setHeight(20d)
                  .setEvent(eventFactory.
                          rowAdd(
-                                 tableViewWrapper, 
+                                 tableWrapper,
                                  (l)->{l.add(new Equipment());}))
                  .createNButton();
         
@@ -53,7 +53,7 @@ public class EquipmentPanel extends Target{
                  .setCoordinate(panel, 120d,50d, null, null)
                  .setText("УДАЛИТЬ").setFont(FontsStore.ROBOTO_LIGHT, 15)
                  .setWidth(170d).setHeight(20d)
-                 .setEvent(eventFactory.rowDeleteFromTable(tableViewWrapper))
+                 .setEvent(eventFactory.rowDeleteFromTable(tableWrapper))
                  .createNButton();
                  
 

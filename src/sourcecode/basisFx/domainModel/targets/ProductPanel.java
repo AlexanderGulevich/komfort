@@ -2,7 +2,7 @@ package basisFx.domainModel.targets;
 
 import basisFx.appCore.controlPolicy.KindOfColumn;
 import basisFx.appCore.domainScetch.StringValueDomainObject;
-import basisFx.appCore.elements.TableViewWrapper;
+import basisFx.appCore.elements.TableWrapper;
 import basisFx.appCore.panels.Target;
 import basisFx.appCore.utils.Coordinate;
 import basisFx.domainModel.domaine.Price;
@@ -14,8 +14,8 @@ import javafx.scene.layout.AnchorPane;
 import java.time.LocalDate;
 
 public class ProductPanel  extends Target{
-    private TableViewWrapper productTable;
-    private TableViewWrapper priceTable;
+    private TableWrapper productTable;
+    private TableWrapper priceTable;
     private AnchorPane productSide;
     private AnchorPane priceSide;
 
@@ -29,7 +29,7 @@ public class ProductPanel  extends Target{
                 priceSide, new Coordinate(10d,0d,null,0d));
 
 
-        priceTable =tableFabric.createStandartTable(
+        priceTable =tableFabric.table(
                 panel,0.38d,new Coordinate(50d, 0d, 70d, null),
                 dataMapper.priceDataMapper(),
 
@@ -58,7 +58,7 @@ public class ProductPanel  extends Target{
 
 
 
-        productTable =tableFabric.createBoundTable(
+        productTable =tableFabric.boundTable(
                 priceTable, panel,
                 0.6d, new Coordinate(50d, null, 70d, 0d),
                 dataMapper.productDataMapper(),

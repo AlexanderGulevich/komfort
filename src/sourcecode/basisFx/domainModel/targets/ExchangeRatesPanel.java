@@ -1,7 +1,7 @@
 package basisFx.domainModel.targets;
 
 import basisFx.appCore.controlPolicy.KindOfColumn;
-import basisFx.appCore.elements.TableViewWrapper;
+import basisFx.appCore.elements.TableWrapper;
 import basisFx.appCore.panels.Target;
 import basisFx.appCore.utils.Coordinate;
 import basisFx.domainModel.domaine.Currency;
@@ -14,8 +14,8 @@ import java.time.LocalDate;
 
 public class ExchangeRatesPanel extends Target{
 
-    private TableViewWrapper currencyTable;
-    private TableViewWrapper rateTable;
+    private TableWrapper currencyTable;
+    private TableWrapper rateTable;
     private AnchorPane currencySide;
     private AnchorPane rateSide;
 
@@ -27,7 +27,7 @@ public class ExchangeRatesPanel extends Target{
         textFabric.createLabel("Курсы валют", FontsStore.ROBOTO_LIGHT,  Pos.BASELINE_CENTER,25d,
                 rateSide, new Coordinate(10d,0d,null,0d));
 
-        rateTable =tableFabric.createStandartTable(
+        rateTable =tableFabric.table(
                 panel,0.53d,new Coordinate(50d, 0d, 70d, null),
                 dataMapper.exchangeRatesDataMapper(),
                 columnFabric.createColumn(KindOfColumn.DOUBLE,"Курсы","exchangeRate",0.3d,true,
@@ -51,7 +51,7 @@ public class ExchangeRatesPanel extends Target{
                 currencySide, new Coordinate(10d,0d,null,0d));
 
 
-        currencyTable =tableFabric.createBoundTable(
+        currencyTable =tableFabric.boundTable(
                 rateTable, panel,
                 0.45d, new Coordinate(50d, null, 70d, 0d),
                 dataMapper.currencyDataMapper(),

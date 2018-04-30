@@ -3,7 +3,7 @@ package basisFx.domainModel.targets;
 import basisFx.appCore.SubmitElement;
 import basisFx.appCore.elements.DatePickerWrapper;
 import basisFx.appCore.controlPolicy.KindOfColumn;
-import basisFx.appCore.elements.TableViewWrapper;
+import basisFx.appCore.elements.TableWrapper;
 import basisFx.appCore.panels.Target;
 import basisFx.appCore.utils.Coordinate;
 import basisFx.domainModel.domaine.Employer;
@@ -13,7 +13,7 @@ import javafx.scene.layout.AnchorPane;
 
 public class TimeRecordingPanel extends Target {
 
-    private TableViewWrapper employerTable;
+    private TableWrapper employerTable;
     private AnchorPane employerSide;
     private AnchorPane controlSide;
     private DatePickerWrapper datePickerWrapper;
@@ -27,7 +27,7 @@ public class TimeRecordingPanel extends Target {
         textFabric.createLabel("Список сотрудников", FontsStore.ROBOTO_LIGHT,  Pos.BASELINE_LEFT,25d,
                 employerSide, new Coordinate(10d,0d,null,0d));
 
-        employerTable =tableFabric.createSubmitTable(SubmitElement.SubmitTable,
+        employerTable =tableFabric.submitTable(SubmitElement.SubmitTable,
                 employerSide,1.0d,new Coordinate(50d, 0d, 20d, 0d),
                 dataMapper.employerDataMapper(),
 

@@ -3,7 +3,7 @@ package basisFx.appCore.fabrics;
 import basisFx.appCore.SubmitElement;
 import basisFx.appCore.Submitted;
 import basisFx.appCore.elements.AppNode;
-import basisFx.appCore.elements.TableViewWrapper;
+import basisFx.appCore.elements.TableWrapper;
 import basisFx.appCore.utils.Coordinate;
 import basisFx.appCore.settings.CSSID;
 import basisFx.appCore.settings.FontsStore;
@@ -21,16 +21,17 @@ public class ButtonFactory {
 
     protected EventFactory eventFactory=EventFactory.getInstance();
 
-    public void littleRowAddButton(TableViewWrapper tableViewWrapper, AnchorPane panel, Class c, Double top, Double right, Double bottom, Double left ){
+    public void littleRowAddButton(TableWrapper tableWrapper, AnchorPane panel, Class c, Coordinate coordinate ){
 
         AppNode.NodeBuilder.create()
                 .setId(CSSID.PANELS_BUTTON)
-                .setCoordinate(panel, top,right, bottom, left)
+                .setCoordinate(coordinate)
+                .setParent(panel)
                 .setText("+").setFont(FontsStore.ROBOTO_LIGHT, 15)
                 .setWidth(30d).setHeight(20d)
                 .setEvent(eventFactory.
                         rowAdd(
-                                tableViewWrapper,
+                                tableWrapper,
                                 (l)->{
                                     try {
                                         l.add( c.newInstance());
@@ -43,20 +44,21 @@ public class ButtonFactory {
                 .createNButton();
 
     }
-    public void littleRowDeleteButton(TableViewWrapper tableViewWrapper, AnchorPane panel, Double top, Double right, Double bottom, Double left ){
+    public void littleRowDeleteButton(TableWrapper tableWrapper, AnchorPane panel,  Coordinate coordinate ){
 
         AppNode.NodeBuilder.create()
                 .setId(CSSID.PANELS_BUTTON)
-                .setCoordinate(panel, top,right, bottom, left)
+                .setCoordinate(coordinate)
+                .setParent(panel)
                 .setText("-").setFont(FontsStore.ROBOTO_LIGHT, 15)
                 .setWidth(30d).setHeight(20d)
-                .setEvent(eventFactory.rowDeleteFromTable(tableViewWrapper))
+                .setEvent(eventFactory.rowDeleteFromTable(tableWrapper))
                 .createNButton();
 
 
 
     }
-    public void addRowButton(AnchorPane panel, Coordinate coordinate, TableViewWrapper tableViewWrapper, Class cl){
+    public void addRowButton(AnchorPane panel, Coordinate coordinate, TableWrapper tableWrapper, Class cl){
 
         AppNode.NodeBuilder.create()
                 .setId(CSSID.PANELS_BUTTON)
@@ -66,7 +68,7 @@ public class ButtonFactory {
                 .setWidth(170d).setHeight(20d)
                 .setEvent(eventFactory.
                         rowAdd(
-                                tableViewWrapper,
+                                tableWrapper,
                                 (l)->{
                                     try {
                                         l.add(cl.newInstance());
@@ -81,14 +83,14 @@ public class ButtonFactory {
 
 
     }
-    public void deleteRowButton(AnchorPane panel, Coordinate coordinate, TableViewWrapper tableViewWrapper){
+    public void deleteRowButton(AnchorPane panel, Coordinate coordinate, TableWrapper tableWrapper){
         AppNode.NodeBuilder.create()
                 .setId(CSSID.PANELS_BUTTON)
                 .setParent(panel)
                 .setCoordinate(coordinate)
                 .setText("УДАЛИТЬ").setFont(FontsStore.ROBOTO_LIGHT, 15)
                 .setWidth(170d).setHeight(20d)
-                .setEvent(eventFactory.rowDeleteFromTable(tableViewWrapper))
+                .setEvent(eventFactory.rowDeleteFromTable(tableWrapper))
                 .createNButton();
 
 

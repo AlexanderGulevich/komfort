@@ -2,7 +2,7 @@ package basisFx.domainModel.targets;
 
 import basisFx.appCore.controlPolicy.KindOfColumn;
 import basisFx.appCore.domainScetch.StringValueDomainObject;
-import basisFx.appCore.elements.TableViewWrapper;
+import basisFx.appCore.elements.TableWrapper;
 import basisFx.appCore.panels.Target;
 import basisFx.appCore.utils.Coordinate;
 import basisFx.domainModel.domaine.Employer;
@@ -13,7 +13,7 @@ import java.time.LocalDate;
 
 public class EmployeesActualRatePanel extends Target{
 
-    private TableViewWrapper tableViewWrapper;
+    private TableWrapper tableWrapper;
     @Override
     protected void createElement() {
 
@@ -24,7 +24,7 @@ public class EmployeesActualRatePanel extends Target{
 
 
 
-        tableViewWrapper = tableFabric.createStandartTable(
+        tableWrapper = tableFabric.table(
             panel,1d,new Coordinate(50d, null, 0d, 0d),
             dataMapper.employerDataMapper(),
                     columnFabric.createColumn(KindOfColumn.STRING,"ФИО","name",0.6d,true,

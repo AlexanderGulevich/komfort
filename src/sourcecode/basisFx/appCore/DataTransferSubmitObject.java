@@ -2,9 +2,8 @@ package basisFx.appCore;
 
 import basisFx.appCore.domainScetch.DomainObject;
 import basisFx.appCore.elements.DatePickerWrapper;
-import basisFx.appCore.elements.TableViewWrapper;
+import basisFx.appCore.elements.TableWrapper;
 import javafx.collections.ObservableList;
-import javafx.scene.control.DatePicker;
 
 import java.time.LocalDate;
 
@@ -22,7 +21,7 @@ public class DataTransferSubmitObject {
         switch (mark){
 
             case SubmitTable:
-                list=((TableViewWrapper) submitted).getList();
+                list=((TableWrapper) submitted).getList();
                 break;
 
             case SubmitRealField:

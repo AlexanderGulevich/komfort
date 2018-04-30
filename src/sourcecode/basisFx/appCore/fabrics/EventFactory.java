@@ -5,7 +5,7 @@
  */
 package basisFx.appCore.fabrics;
 
-import basisFx.appCore.elements.TableViewWrapper;
+import basisFx.appCore.elements.TableWrapper;
 import basisFx.appCore.events.*;
 import basisFx.appCore.interfaces.AdditionalButtonsBehaviour;
 import basisFx.appCore.interfaces.RowCreater;
@@ -85,12 +85,12 @@ public class EventFactory {
        
    
    }
-    public   RowAddToTable rowAdd(TableViewWrapper t, RowCreater rowCreater ){
+    public   RowAddToTable rowAdd(TableWrapper t, RowCreater rowCreater ){
 
         return new RowAddToTable(t, rowCreater);
 
     }
-    public   RowDeleteFromTable rowDeleteFromTable(TableViewWrapper t ){
+    public   RowDeleteFromTable rowDeleteFromTable(TableWrapper t ){
 
         return new RowDeleteFromTable(t);
 

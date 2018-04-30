@@ -2,7 +2,7 @@ package basisFx.domainModel.targets;
 
 import basisFx.appCore.controlPolicy.KindOfColumn;
 import basisFx.appCore.elements.AppNode;
-import basisFx.appCore.elements.TableViewWrapper;
+import basisFx.appCore.elements.TableWrapper;
 import basisFx.appCore.panels.Target;
 import basisFx.appCore.utils.Coordinate;
 import basisFx.domainModel.domaine.Currency;
@@ -18,7 +18,7 @@ import javafx.geometry.Pos;
 public class CurrencyPanel extends Target {
 
 
-    private TableViewWrapper tableViewWrapper;
+    private TableWrapper tableWrapper;
     @Override
     protected void createElement() {
 
@@ -27,7 +27,7 @@ public class CurrencyPanel extends Target {
                 panel, new Coordinate(10d,0d,null,0d));
 
 
-        tableViewWrapper = tableFabric.createStandartTable(
+        tableWrapper = tableFabric.table(
                 panel,0.7d,new Coordinate(50d, null, 0d, 0d),
                 dataMapper.currencyDataMapper(),
                 columnFabric.createColumn(KindOfColumn.STRING,"Наименование","name",1d,true,
@@ -42,7 +42,7 @@ public class CurrencyPanel extends Target {
                 .setWidth(170d).setHeight(20d)
                 .setEvent(eventFactory.
                         rowAdd(
-                                tableViewWrapper,
+                                tableWrapper,
                                 (l)->{l.add(new Currency());}))
                 .createNButton();
 
@@ -51,7 +51,7 @@ public class CurrencyPanel extends Target {
                 .setCoordinate(panel, 120d,50d, null, null)
                 .setText("УДАЛИТЬ").setFont(FontsStore.ROBOTO_LIGHT, 15)
                 .setWidth(170d).setHeight(20d)
-                .setEvent(eventFactory.rowDeleteFromTable(tableViewWrapper))
+                .setEvent(eventFactory.rowDeleteFromTable(tableWrapper))
                 .createNButton();
 
 
