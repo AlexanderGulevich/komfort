@@ -1,5 +1,7 @@
 package basisFx.appCore.fabrics;
 
+import basisFx.appCore.SubmitElement;
+import basisFx.appCore.Submitted;
 import basisFx.appCore.elements.AppNode;
 import basisFx.appCore.elements.TableViewWrapper;
 import basisFx.appCore.utils.Coordinate;
@@ -91,7 +93,7 @@ public class ButtonFactory {
 
 
     }
-    public void submitButton(SubmitElement mark,AnchorPane panel, Coordinate coordinate, Submitted ...submitted){
+    public void submitButton(SubmitElement mark, AnchorPane panel, Coordinate coordinate, Submitted...submitted){
 
         AppNode.NodeBuilder.create()
                 .setId(CSSID.PANELS_BUTTON)

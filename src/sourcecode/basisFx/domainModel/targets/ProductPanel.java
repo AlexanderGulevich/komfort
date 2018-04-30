@@ -33,7 +33,7 @@ public class ProductPanel  extends Target{
                 panel,0.38d,new Coordinate(50d, 0d, 70d, null),
                 dataMapper.priceDataMapper(),
 
-                        columnFabric.createColumn(KindOfColumn.REAL,"Цена","price",0.3d,true,
+                        columnFabric.createColumn(KindOfColumn.DOUBLE,"Цена","price",0.3d,true,
                         (obj,val)->{((Price)obj).setPrice( (String ) val);}),
 
                         columnFabric.createDateColumn(KindOfColumn.DATE,"Дата начала действия ","startingDate",0.7d,true,

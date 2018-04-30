@@ -3,8 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package basisFx.appCore.windows;
+package basisFx.appCore.fabrics;
 
+import basisFx.appCore.windows.WindowDecorated;
+import basisFx.appCore.windows.WindowFx;
+import basisFx.appCore.windows.WindowUndecorated;
 import javafx.stage.Stage;
 
 /**
@@ -14,7 +17,7 @@ import javafx.stage.Stage;
 public class WindowFabric {
     
      
-     public  WindowFx createPopapDecoratedWindow(double width, double height){
+     public WindowFx createPopapDecoratedWindow(double width, double height){
      
          return new WindowDecorated(width, height);
 
@@ -26,9 +29,9 @@ public class WindowFabric {
 
      }
 
-     public  WindowUndecorated createPopapUnDecoratedWindow(double width, double height){
+     public WindowUndecorated createPopapUnDecoratedWindow(double width, double height){
      
-         return new WindowUndecorated(width, height);
+         return new WindowUndecorated(width, height,new Stage());
 
      }
      

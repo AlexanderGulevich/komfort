@@ -30,7 +30,7 @@ public class ExchangeRatesPanel extends Target{
         rateTable =tableFabric.createStandartTable(
                 panel,0.53d,new Coordinate(50d, 0d, 70d, null),
                 dataMapper.exchangeRatesDataMapper(),
-                columnFabric.createColumn(KindOfColumn.REAL,"Курсы","exchangeRate",0.3d,true,
+                columnFabric.createColumn(KindOfColumn.DOUBLE,"Курсы","exchangeRate",0.3d,true,
                         (obj,val)->{((ExchangeRates)obj).setExchangeRate( (String ) val);}
                 ),
                 columnFabric.createDateColumn(KindOfColumn.DATE,"Дата начала действия ","startingDate",0.7d,true,

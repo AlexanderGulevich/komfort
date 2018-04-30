@@ -1,8 +1,11 @@
 package basisFx.appCore.controlPolicy;
 
+import basisFx.appCore.fabrics.WindowFabric;
 import javafx.scene.control.TableColumn;
 
+import java.time.DateTimeException;
 import java.time.LocalDate;
+import java.util.zip.DataFormatException;
 
 public class Checking {
 
@@ -24,7 +27,7 @@ public class Checking {
                 try {
                     LocalDate newValue = (LocalDate) event.getNewValue();
                     return true;
-                }catch (CastException  e){
+                }catch (DateTimeException e){
                     System.err.println("Checking.check   DATE - NOT CAST"   );
                     return false;
                 }
@@ -35,12 +38,12 @@ public class Checking {
                     Integer newValue = Integer.valueOf((String) event.getNewValue());
                     return true;
 
-                }catch (CastException  e){
+                }catch (NumberFormatException  e){
                     System.err.println("Checking.check   Integer - NOT CAST"   );
                     return false;
                 }
 
-            case REAL:
+            case DOUBLE:
                 try {
 
                     String string=(String) event.getNewValue();
@@ -49,24 +52,20 @@ public class Checking {
                         string=string.replace(',','.');
                     }
 
-                    Double newValue = Double.valueOf(string);
+                    Double newValue = Double.parseDouble(string);
 
                     return true;
 
-                }catch (CastException  e){
+                }catch (NumberFormatException   e){
+
+               new WindowFabric().createPopapUnDecoratedWindow(70d,80d).windowShow();
                     System.err.println("Checking.check   Double - NOT CAST"   );
                     return false;
                 }
 
 
             case STRING:
-                try {
-                    String newValue = (String) event.getNewValue();
                     return true;
-                }catch (CastException  e){
-                    System.err.println("Checking.check   String - NOT CAST"   );
-                    return false;
-                }
 
 
             default:
@@ -79,7 +78,7 @@ public class Checking {
 
     }
 
-    private class CastException extends ClassCastException{
+    private class CastException extends Exception{
 
 
 

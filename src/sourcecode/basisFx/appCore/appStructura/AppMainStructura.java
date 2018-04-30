@@ -4,7 +4,7 @@ import basisFx.appCore.MenuTrigger;
 import basisFx.appCore.menu.MenuFabric;
 import basisFx.appCore.panels.PanelFabric;
 import basisFx.appCore.windows.TitleFabric;
-import basisFx.appCore.windows.WindowFabric;
+import basisFx.appCore.fabrics.WindowFabric;
 
 public abstract class AppMainStructura {
 

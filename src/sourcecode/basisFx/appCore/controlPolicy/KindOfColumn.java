@@ -6,7 +6,7 @@ public enum KindOfColumn {
     STRING("STRING"),
     INT("INT"),
     BOOL("BOOL"),
-    REAL("REAL"),
+    DOUBLE("DOUBLE"),
     DATE("STRING"),
     COMBOBOX("COMBOBOX");
 
