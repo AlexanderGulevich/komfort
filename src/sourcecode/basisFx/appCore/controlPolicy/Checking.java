@@ -1,13 +1,22 @@
 package basisFx.appCore.controlPolicy;
 
 import basisFx.appCore.fabrics.WindowFabric;
+import basisFx.appCore.windows.KindOfPopup;
+import basisFx.appCore.windows.PopupUndecorated;
 import javafx.scene.control.TableColumn;
 
 import java.time.DateTimeException;
 import java.time.LocalDate;
-import java.util.zip.DataFormatException;
 
 public class Checking {
+
+    protected static PopupUndecorated popupUndecorated;
+    protected static WindowFabric windowFabric= new WindowFabric();
+    protected static String message=   "\n"+
+            "   Произошла ошибка. В поле\n" +
+            "   было  введено   неправильное\n" +
+            "   значение.";
+
 
     public  static <T, K> boolean check(KindOfColumn kindOfColumn,TableColumn.CellEditEvent<T, K> event){
 
@@ -28,7 +37,8 @@ public class Checking {
                     LocalDate newValue = (LocalDate) event.getNewValue();
                     return true;
                 }catch (DateTimeException e){
-                    System.err.println("Checking.check   DATE - NOT CAST"   );
+                    popupUndecorated =windowFabric.popupUndecorated(KindOfPopup.ERROR);
+                    popupUndecorated.setMessage(message);
                     return false;
                 }
 
@@ -39,7 +49,8 @@ public class Checking {
                     return true;
 
                 }catch (NumberFormatException  e){
-                    System.err.println("Checking.check   Integer - NOT CAST"   );
+                    popupUndecorated =windowFabric.popupUndecorated(KindOfPopup.ERROR);
+                    popupUndecorated.setMessage(message);
                     return false;
                 }
 
@@ -58,8 +69,9 @@ public class Checking {
 
                 }catch (NumberFormatException   e){
 
-               new WindowFabric().createPopapUnDecoratedWindow(70d,80d).windowShow();
-                    System.err.println("Checking.check   Double - NOT CAST"   );
+                    popupUndecorated =windowFabric.popupUndecorated(KindOfPopup.ERROR);
+                    popupUndecorated.setMessage(message);
+
                     return false;
                 }
 

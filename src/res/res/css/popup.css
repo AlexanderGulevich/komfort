@@ -1,0 +1,40 @@
+#popupContentPanel{
+  -fx-border-width: 0 0 0.2 0 ;
+    -fx-border-color: #a79090;
+        -fx-background-color: #ffffff;
+}
+#popupTitlePanel{
+
+    -fx-background-color: transparent;
+      -fx-border-width: 0 0 0.2 0;
+        -fx-border-color: #a79090;
+
+
+}
+#PopupTitleText{
+  -fx-color: #62929d;
+  -fx-fill:#62929d;
+  -fx-text-fill: #62929d;
+
+}
+
+
+#ALERT_ICON{
+  -fx-text-fill: #f0d7d1;
+  -fx-color: #f0d7d1;
+  -fx-fill:#f0d7d1;
+
+}
+
+#popupMessageTextPanel{
+
+
+}
+
+
+#PopupMessageText{
+
+
+
+  
+}

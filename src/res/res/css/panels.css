@@ -6,6 +6,14 @@
   /* -fx-background-color: red; */
 
 }
+#WindowButtonsPanel{
+
+  -fx-background-color: transparent;
+    -fx-border-width: 0 0 0.2 0;
+      -fx-border-color: #a79090;
+
+
+}
 
 #LABEL_TEXT{
       /* -fx-text-fill: #003641;
@@ -21,6 +29,7 @@
 
 
 }
+
 
 #HORIZONTAL_FLOW_MENU_PANEL{
      -fx-padding:0 0 0 0;

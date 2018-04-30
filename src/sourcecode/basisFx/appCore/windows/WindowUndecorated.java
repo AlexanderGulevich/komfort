@@ -1,6 +1,7 @@
 package basisFx.appCore.windows;
 
 import basisFx.appCore.panels.AbstractPanel;
+import basisFx.appCore.events.AppEvent;
 import basisFx.appCore.utils.Coordinate;
 import basisFx.appCore.registry.Layers;
 import basisFx.appCore.settings.CSSID;
@@ -27,15 +28,33 @@ public class WindowUndecorated extends WindowFx{
     private ButtonWrapper  closingButton;
 
 
-    public WindowUndecorated(double w,double h, Stage primaryStage) {
-        this.stage=primaryStage;
+
+    public WindowUndecorated(double w,double h, Stage stage) {
+        this.stage=stage;
         setTransparentRoot();
         setVisibleRoot();
         this.isManeWindow=true;
-          
+
         this.width=w;
         this.height=h;
         this.stage.initStyle(StageStyle.UNDECORATED);
+    }
+
+    public WindowUndecorated(double w,double h, WindowType windowType) {
+        if (windowType==WindowType.POPUP) {
+
+            setIsPopup(true);
+            this.stage = new Stage();
+            setTransparentRoot();
+            setVisibleRoot();
+//            this.isManeWindow = true;
+
+            this.width = w;
+            this.height = h;
+            this.stage.initStyle(StageStyle.UNDECORATED);
+        }
+
+
     }
 
     public WindowUndecorated(double w,double h) {
@@ -90,6 +109,21 @@ public class WindowUndecorated extends WindowFx{
         String closeStr=TopButtons.CLOSE_String;
         String hideStr=TopButtons.HIDE_String;
         String maximazeStr=TopButtons.MAXIMAZE_String;
+
+
+
+        AppEvent closeEvent;
+        AnchorPane buttonsPanelParent;
+
+
+        if (isPopup) {
+            closeEvent= eventFactory.closingPopup();
+            buttonsPanelParent=Layers.getPopupTitlePunel();
+        }else {
+            closeEvent=eventFactory.closingWindow();
+            buttonsPanelParent=Layers.getWindowButtonsPanel();
+        }
+
         
          //крестик
          closingButton= AppNode.NodeBuilder.create().
@@ -97,35 +131,39 @@ public class WindowUndecorated extends WindowFx{
                 setSize(width,height).
                 setPadding(padding).
                 setCoordinate(topMatgin, 0d, null, null).
-                setId(CSSID.TOP_CONTROL_BUTTON).setParent(Layers.getTitlePanel()).
+                setId(CSSID.TOP_CONTROL_BUTTON).setParent(buttonsPanelParent).
                 setStage(stage).
-                setEvent(eventFactory.createClosingWindowEvent()).
+                setEvent(closeEvent).
                 createNButton().
                 setString(closeStr, ContentDisplay.CENTER);
 
 
-         hideButton= AppNode.NodeBuilder.create().
-                 setFont(fs, fontHeight).
-                 setEvent(eventFactory.createHidingWindowEvent()).
-                 setSize(width,height).
-                 setPadding(padding).
-                 setCoordinate(topMatgin, width+width, null, null).
-                 setId(CSSID.TOP_CONTROL_BUTTON).setParent(Layers.getTitlePanel()).
-                 setStage(stage).
-                 createNButton().
-                 setString(hideStr, ContentDisplay.CENTER);
-         
-       
-         maximazeButton= AppNode.NodeBuilder.create().
-                setFont(fs, fontHeight).
-                setEvent(eventFactory.createMaximazingSwitcher()).
-                setSize(width,height).
-                setPadding(padding).
-                setCoordinate(topMatgin, width, null, null).
-                setId(CSSID.TOP_CONTROL_BUTTON).setParent(Layers.getTitlePanel()).
-                setStage(stage).
-                createNButton().
-                setString(maximazeStr, ContentDisplay.CENTER);
+
+         if (!isPopup) {
+
+             hideButton = AppNode.NodeBuilder.create().
+                     setFont(fs, fontHeight).
+                     setEvent(eventFactory.hidingWindow()).
+                     setSize(width, height).
+                     setPadding(padding).
+                     setCoordinate(topMatgin, width + width, null, null).
+                     setId(CSSID.TOP_CONTROL_BUTTON).setParent(buttonsPanelParent).
+                     setStage(stage).
+                     createNButton().
+                     setString(hideStr, ContentDisplay.CENTER);
+
+
+             maximazeButton = AppNode.NodeBuilder.create().
+                     setFont(fs, fontHeight).
+                     setEvent(eventFactory.maximazingSwitcher()).
+                     setSize(width, height).
+                     setPadding(padding).
+                     setCoordinate(topMatgin, width, null, null).
+                     setId(CSSID.TOP_CONTROL_BUTTON).setParent(buttonsPanelParent).
+                     setStage(stage).
+                     createNButton().
+                     setString(maximazeStr, ContentDisplay.CENTER);
+         }
     }
 
       private void setTransparentRoot(){
@@ -136,7 +174,12 @@ public class WindowUndecorated extends WindowFx{
                          .createAnchorPanelWrapper()
                          .getElement();
                  
-                Layers.setTransparentRoot(root);
+
+                if (isPopup){
+                    Layers.setPopupTransparentRoot(root);
+                }else{
+                    Layers.setTransparentRoot(root);
+                }
      }
       private void setVisibleRoot(){
                  this.visibleRoot=(AnchorPane) AppNode.NodeBuilder.create()
@@ -147,12 +190,22 @@ public class WindowUndecorated extends WindowFx{
                          .createAnchorPanelWrapper()
                          .getElement();
                  
-                 Layers.setVisibleRoot(visibleRoot);
+
+
+          if (isPopup){
+              System.out.println("WindowUndecorated.setVisibleRoot isPopup    --- "+isPopup);
+              Layers.setPopupVisibleRoot(visibleRoot);
+          }else{
+
+              System.out.println("WindowUndecorated.setVisibleRoot isPopup    --- "+isPopup);
+              Layers.setVisibleRoot(visibleRoot);
+          }
      }
       public WindowUndecorated setPanel(AbstractPanel p){
           p.setStage(stage);
           p.init();
-          if(this.isManeWindow)   {p.register();}   
+//          if(this.isManeWindow)   {p.register();}
+          p.register();
           return this;
      }
       public WindowFx windowShow(){

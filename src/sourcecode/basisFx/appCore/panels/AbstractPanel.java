@@ -30,6 +30,7 @@ public abstract class AbstractPanel implements Initiated{
     protected FontsStore font;
     protected double fontSize;
 
+
     public abstract void init();
     public abstract void register();
     
@@ -44,6 +45,7 @@ public abstract class AbstractPanel implements Initiated{
        this.insects=b.insects;
        this.font=b.font;
        this.fontSize=b.fontSize;
+       this.stage=b.stage;
     }
     public void setStage(Stage stage) {
         this.stage = stage;
@@ -59,9 +61,14 @@ public abstract class AbstractPanel implements Initiated{
         protected Insets insects;
         protected FontsStore font;
         protected double fontSize;
+        protected Stage stage;
 
+        public PanelBuilder setStage(Stage stage) {
+            this.stage = stage;
+            return this;
+        }
 
-        public PanelBuilder setFont(FontsStore font,double size) {
+        public PanelBuilder setFont(FontsStore font, double size) {
             this.font = font;
             this.fontSize=size;
             return this;

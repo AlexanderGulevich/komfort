@@ -5,10 +5,8 @@
  */
 package basisFx.appCore.registry;
 
-import basisFx.appCore.panels.TextAnchorPanel;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
-import javafx.scene.text.Text;
 
 /**
  *
@@ -23,8 +21,14 @@ public  class Layers {
         private    static  AnchorPane verticalMenuPanel;
         private    static  FlowPane   horisontalFlowPanel;
         private    static  AnchorPane textAnchorPanel;
-        
-        
+        private    static  AnchorPane windowButtonsPanel;
+        private    static  AnchorPane popupTitlePunel;
+        private    static  AnchorPane popupTransparentRoot;
+        private    static  AnchorPane popupVisibleRoot;
+        private    static  AnchorPane popupButtonPanel;
+        private    static  AnchorPane popupContentPanel;
+
+
     public static AnchorPane getVisibleRoot() {
         return visibleRoot;
     }
@@ -83,7 +87,57 @@ public  class Layers {
     public static AnchorPane getTextAnchorPanel() {
         return textAnchorPanel;
     }
-    
-    
-    
+
+
+    public static void setWindowButtonsPanel(AnchorPane windowButtonsPanel) {
+        Layers.windowButtonsPanel = windowButtonsPanel;
+    }
+
+    public static AnchorPane getWindowButtonsPanel() {
+        return windowButtonsPanel;
+    }
+
+    public static void setPopupTitlePunel(AnchorPane popupTitlePunel) {
+        Layers.popupTitlePunel = popupTitlePunel;
+    }
+
+    public static AnchorPane getPopupTitlePunel() {
+        return popupTitlePunel;
+    }
+
+    public static void setPopupTransparentRoot(AnchorPane popupTransparentRoot) {
+        Layers.popupTransparentRoot = popupTransparentRoot;
+
+        System.out.println("Layers.setPopupVisibleRoot -- popupTransparentRoot === "+popupTransparentRoot);
+    }
+
+    public static AnchorPane getPopupTransparentRoot() {
+        return popupTransparentRoot;
+    }
+
+    public static void setPopupVisibleRoot(AnchorPane popupVisibleRoot) {
+        Layers.popupVisibleRoot = popupVisibleRoot;
+
+        System.out.println("Layers.setPopupVisibleRoot -- popupVisibleRoot === "+popupVisibleRoot);
+    }
+
+    public static AnchorPane getPopupVisibleRoot() {
+        return popupVisibleRoot;
+    }
+
+    public static void setPopupButtonPanel(AnchorPane popupButtonPanel) {
+        Layers.popupButtonPanel = popupButtonPanel;
+    }
+
+    public static AnchorPane getPopupButtonPanel() {
+        return popupButtonPanel;
+    }
+
+    public static void setPopupContentPanel(AnchorPane popupContentPanel) {
+        Layers.popupContentPanel = popupContentPanel;
+    }
+
+    public static AnchorPane getPopupContentPanel() {
+        return popupContentPanel;
+    }
 }

@@ -30,10 +30,20 @@ public abstract class WindowFx {
     protected Boolean iconIneded;
     protected Coordinate titlePanelCoordinate;
     protected EventFactory eventFactory=EventFactory.getInstance();
+    protected boolean  isPopup;
  
     abstract void initControlTopButton();
     public abstract WindowFx windowShow();
-               
+
+    public void setIsPopup(boolean popup) {
+        System.out.println("WindowFx.setIsPopup ------popup  "+popup);
+        isPopup = popup;
+    }
+
+    public Stage getStage() {
+        return stage;
+    }
+
     protected void windowInit(){
         
       this.scene= new Scene(root,width,height);

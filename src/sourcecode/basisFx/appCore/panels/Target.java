@@ -55,7 +55,7 @@ public abstract class Target {
     }
     
     protected void createPanel(){
-         panel=panelFabric.createInnerContentPanel(
+         panel=panelFabric.innerContentPanel(
             new AbstractPanel.PanelBuilder()
                     .setPanelCoordinate(new Coordinate(10d, 10d, 10d, 10d)))
                 .getPanel();

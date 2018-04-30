@@ -5,9 +5,7 @@
  */
 package basisFx.appCore.fabrics;
 
-import basisFx.appCore.windows.WindowDecorated;
-import basisFx.appCore.windows.WindowFx;
-import basisFx.appCore.windows.WindowUndecorated;
+import basisFx.appCore.windows.*;
 import javafx.stage.Stage;
 
 /**
@@ -15,30 +13,39 @@ import javafx.stage.Stage;
  * @author Alek
  */
 public class WindowFabric {
-    
-     
-     public WindowFx createPopapDecoratedWindow(double width, double height){
-     
-         return new WindowDecorated(width, height);
 
-     }
-     
-     public  WindowFx createDecoratedWindow(double width, double height, Stage stage){
+
+    public  WindowUndecorated unDecoratedWindow(double width, double height, Stage stage){
+
+        return new WindowUndecorated(width, height, stage);
+
+    }
+     public  WindowFx decoratedWindow(double width, double height, Stage stage){
      
          return new WindowDecorated(width, height, stage);
 
      }
 
-     public WindowUndecorated createPopapUnDecoratedWindow(double width, double height){
-     
-         return new WindowUndecorated(width, height,new Stage());
 
-     }
-     
-     public  WindowUndecorated createUnDecoratedWindow(double width, double height, Stage stage){
-     
-         return new WindowUndecorated(width, height, stage);
 
-     }
+    public PopupUndecorated popupUndecorated(KindOfPopup kindOfPopup){
+
+        return new PopupUndecorated(kindOfPopup);
+
+    }
+
+
+    public PopupUndecorated popupUndecorated(double width, double height, KindOfPopup kindOfPopup){
+
+        return new PopupUndecorated(width,height,kindOfPopup);
+
+    }
+
+    public WindowFx popupDecorated(double width, double height){
+
+        return new WindowDecorated(width, height);
+
+    }
+
      
 }

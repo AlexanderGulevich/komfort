@@ -21,7 +21,8 @@ public enum StylesPathes {
     LEFT_SIDE_MENU("/res/css/leftSideMenu.css"),
     COMBOBOX("/res/css/combobox.css"),
     DATAPICKER("/res/css/dataPicker.css"),
-    WINDOWS("/res/css/windows.css");
+    WINDOWS("/res/css/windows.css"),
+    POPUP("/res/css/popup.css");
 
 
     private final String path;

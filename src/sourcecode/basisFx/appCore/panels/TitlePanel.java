@@ -36,7 +36,7 @@ public class TitlePanel extends AbstractPanel {
                          .setStage(stage)
                          .setHeight(height)
                          .setWidth(width)
-                         .setEvent(eventFactory.createStageDragging())
+                         .setEvent(eventFactory.stageDragging())
                          .createAnchorPanelWrapper()
                          .getElement();
     

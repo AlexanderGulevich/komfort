@@ -9,10 +9,12 @@ public enum CSSID {
     MENUS("MENUS"),
 
     TABLE("TABLE"),
+    popupTitlePanel("popupTitlePanel"),
 
     DATEPICKER_IN_COLUMN("DATEPICKER_IN_COLUMN"),
 
     COMBOBOX("COMBOBOX"),
+    WindowButtonsPanel("WindowButtonsPanel"),
 
     PANELS_BUTTON("PANELS_BUTTON"),
     TARGET_PANEL("TARGET_PANEL"),
@@ -42,7 +44,12 @@ public enum CSSID {
     HORIZONTAL_FLOW_MENU_PANEL("HORIZONTAL_FLOW_MENU_PANEL"),
     
     IMG_ICON("IMG_ICON"),
-    HEAD_PANEL("HEAD_PANEL");
+    HEAD_PANEL("HEAD_PANEL"),
+    popupContentPanel("popupContentPanel"),
+    ALERT_ICON("ALERT_ICON"),
+    PopupTitleText("PopupTitleText"),
+    PopupMessageText("PopupMessageText"),
+    popupMessageTextPanel("popupMessageTextPanel");
     
     
     

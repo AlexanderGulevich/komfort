@@ -37,7 +37,7 @@ public class HeadPanel extends AbstractPanel{
                          .setHeight(height)
                          .setWidth(width)
                          .setStage(stage)
-                         .setEvent(eventFactory.createStageDragging())
+                         .setEvent(eventFactory.stageDragging())
                          .createAnchorPanelWrapper()
                          .getElement();
     

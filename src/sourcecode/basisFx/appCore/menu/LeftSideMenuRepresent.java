@@ -37,7 +37,7 @@ public class LeftSideMenuRepresent extends MenuRepresent{
                     .setText(topLevel.getMetaInf())
                     .setFont(FontsStore.MATERIAL_ICONS, 25)
                     .setFont(topLevel.getFontsStore(), topLevel.getSize())
-                    .setEvent(eventFactory.createleftSideMenuIconClick(topLevel))
+                    .setEvent(eventFactory.leftSideMenuIconClick(topLevel))
                     .setParent(Layers.getVerticalMenuPanel())
                     .createNButton();
         }

@@ -34,57 +34,63 @@ public class EventFactory {
             return EventFactory.eventFactory; 
        }
     }
-    
-    
-   public AppEvent createClosingWindowEvent(){
-   
-       return new CloseWindow();
-       
-   
-   }
-   public   AppEvent createHidingWindowEvent(){
+
+
+    public AppEvent closingWindow(){
+
+        return new CloseWindow();
+
+
+    }
+    public AppEvent closingPopup(){
+
+        return new ClosePopup();
+
+
+    }
+   public   AppEvent hidingWindow(){
    
        return new HideWindow();
        
    
    }
-   public   AppEvent createMaximazingSwitcher(){
+   public   AppEvent maximazingSwitcher(){
    
        return new MaximazingSwither();
        
    
    }
-   public   AppEvent createDbClickEvent(AppEvent appEvent){
+   public   AppEvent dbClickEvent(AppEvent appEvent){
    
        return new DbClick(appEvent);
        
    
    }
-   public   AppEvent createStageDragging(){
+   public   AppEvent stageDragging(){
    
        return new StageDragging();
        
    
    }
-   
-   public   AppEvent createleftSideMenuIconClick(MenuComponent component){
+
+   public   AppEvent leftSideMenuIconClick(MenuComponent component){
    
        return new leftSideMenuIconClick(component);
        
    
    }
-   public   MenuButtonsClick createMenuButtonsClick(MenuComponent component, AdditionalButtonsBehaviour b){
+   public   MenuButtonsClick menuButtonsClick(MenuComponent component, AdditionalButtonsBehaviour b){
    
        return new MenuButtonsClick(component,b);
        
    
    }
-    public   RowAddToTable createRowAdd(TableViewWrapper t, RowCreater rowCreater ){
+    public   RowAddToTable rowAdd(TableViewWrapper t, RowCreater rowCreater ){
 
         return new RowAddToTable(t, rowCreater);
 
     }
-    public   RowDeleteFromTable createRowDeleteFromTable(TableViewWrapper t ){
+    public   RowDeleteFromTable rowDeleteFromTable(TableViewWrapper t ){
 
         return new RowDeleteFromTable(t);
 

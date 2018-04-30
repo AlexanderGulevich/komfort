@@ -42,7 +42,7 @@ public class CounterpartyPanel extends Target{
                 .setText("ДОБАВИТЬ").setFont(FontsStore.ROBOTO_LIGHT, 15)
                 .setWidth(170d).setHeight(20d)
                 .setEvent(eventFactory.
-                        createRowAdd(
+                        rowAdd(
                                 tableViewWrapper,
                                 (l)->{l.add(new basisFx.domainModel.domaine.Counterparty());}))
                 .createNButton();
@@ -52,7 +52,7 @@ public class CounterpartyPanel extends Target{
                 .setCoordinate(panel, 120d,0d, null, null)
                 .setText("УДАЛИТЬ").setFont(FontsStore.ROBOTO_LIGHT, 15)
                 .setWidth(170d).setHeight(20d)
-                .setEvent(eventFactory.createRowDeleteFromTable(tableViewWrapper))
+                .setEvent(eventFactory.rowDeleteFromTable(tableViewWrapper))
                 .createNButton();
 
 

@@ -84,7 +84,7 @@ public class leftSideMenuIconClick extends AppEvent{
                           .setText(nextInerLevel.getName())
                           .setFont(FontsStore.ROBOTO_LIGHT, 17d)
                           .setEvent(
-                                  eventFactory.createMenuButtonsClick(    
+                                  eventFactory.menuButtonsClick(
                                           nextInerLevel,
                                           (button) -> {
                                               LeftSideMenuRepresent.setDefaultStyleHorisontalButtons();
