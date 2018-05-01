@@ -2,7 +2,7 @@ package basisFx.domainModel.targets;
 
 import basisFx.appCore.SubmitElement;
 import basisFx.appCore.elements.DatePickerWrapper;
-import basisFx.appCore.controlPolicy.KindOfColumn;
+import basisFx.appCore.controls.KindOfColumn;
 import basisFx.appCore.elements.TableWrapper;
 import basisFx.appCore.panels.Target;
 import basisFx.appCore.utils.Coordinate;

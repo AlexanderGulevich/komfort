@@ -1,4 +1,4 @@
-package basisFx.appCore.controlPolicy;
+package basisFx.appCore.controls;
 
 public class MultipleSubmitEditCommit <T,K> extends Edit<T,K> {
 

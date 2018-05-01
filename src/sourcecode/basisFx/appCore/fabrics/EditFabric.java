@@ -5,9 +5,8 @@
  */
 package basisFx.appCore.fabrics;
 
-import basisFx.appCore.controlPolicy.EditDefaultCommitTableCell;
-import basisFx.appCore.controlPolicy.MultipleSubmitEditCommit;
-import basisFx.appCore.domainScetch.DomainObject;
+import basisFx.appCore.controls.EditDefaultCommitTableCell;
+import basisFx.appCore.controls.MultipleSubmitEditCommit;
 
 /**
  *

@@ -3,7 +3,7 @@ package basisFx.appCore.elements;
 
 import basisFx.appCore.SubmitElement;
 import basisFx.appCore.interfaces.ValueAddToDomain;
-import basisFx.appCore.controlPolicy.Edit;
+import basisFx.appCore.controls.Edit;
 import basisFx.appCore.interfaces.EditCreater;
 import basisFx.appCore.utils.Coordinate;
 import basisFx.appCore.events.AppEvent;

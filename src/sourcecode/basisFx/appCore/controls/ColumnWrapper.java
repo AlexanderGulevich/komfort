@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package basisFx.appCore.controlPolicy;
+package basisFx.appCore.controls;
 
 import basisFx.appCore.interfaces.*;
 import basisFx.appCore.elements.TableWrapper;

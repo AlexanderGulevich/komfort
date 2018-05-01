@@ -5,7 +5,7 @@
  */
 package basisFx.appCore.fabrics;
 
-import basisFx.appCore.controlPolicy.*;
+import basisFx.appCore.controls.*;
 import basisFx.appCore.interfaces.DomainChanging;
 import basisFx.appCore.interfaces.DomainsListGetter;
 

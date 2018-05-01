@@ -1,6 +1,6 @@
 package basisFx.appCore.interfaces;
 
-import basisFx.appCore.controlPolicy.Edit;
+import basisFx.appCore.controls.Edit;
 
 public interface EditCreater {
 

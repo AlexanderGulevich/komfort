@@ -1,4 +1,4 @@
-package basisFx.appCore.controlPolicy;
+package basisFx.appCore.controls;
 
 import basisFx.appCore.fabrics.WindowFabric;
 import basisFx.appCore.windows.KindOfPopup;

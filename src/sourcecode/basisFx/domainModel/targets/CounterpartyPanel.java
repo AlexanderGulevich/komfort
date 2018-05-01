@@ -1,7 +1,6 @@
 package basisFx.domainModel.targets;
 
-import basisFx.appCore.controlPolicy.KindOfColumn;
-import basisFx.appCore.controlPolicy.TablesButtonKind;
+import basisFx.appCore.controls.KindOfColumn;
 import basisFx.appCore.elements.AppNode;
 import basisFx.appCore.elements.TableWrapper;
 import basisFx.appCore.panels.Target;

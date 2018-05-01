@@ -1,6 +1,6 @@
 //package basisFx.domainModel.targets;
 //
-//import basisFx.appCore.controlPolicy.ColumnWrapper;
+//import basisFx.appCore.controls.ColumnWrapper;
 //import basisFx.appCore.domainScetch.StringValueDomainObject;
 //import basisFx.appCore.elements.AppNode;
 //import basisFx.appCore.elements.TableWrapper;

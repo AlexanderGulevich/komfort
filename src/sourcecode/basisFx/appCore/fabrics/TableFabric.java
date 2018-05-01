@@ -1,18 +1,12 @@
 package basisFx.appCore.fabrics;
 
 import basisFx.appCore.SubmitElement;
-import basisFx.appCore.controlPolicy.TablesButtonKind;
-import basisFx.appCore.controlPolicy.ColumnWrapper;
+import basisFx.appCore.controls.ColumnWrapper;
 import basisFx.appCore.dataSource.DataMapper;
-import basisFx.appCore.elements.AnchorWrapper;
 import basisFx.appCore.elements.AppNode;
-import basisFx.appCore.elements.LabelWrapper;
 import basisFx.appCore.elements.TableWrapper;
-import basisFx.appCore.settings.FontsStore;
 import basisFx.appCore.utils.Coordinate;
 import basisFx.appCore.settings.CSSID;
-import basisFx.domainModel.domaine.RatePerHour;
-import javafx.geometry.Pos;
 import javafx.scene.layout.AnchorPane;
 
 public class TableFabric {

@@ -1,4 +1,4 @@
-package basisFx.appCore.controlPolicy;
+package basisFx.appCore.controls;
 
 import basisFx.appCore.domainScetch.DomainObject;
 import basisFx.appCore.domainScetch.StringValueDomainObject;
