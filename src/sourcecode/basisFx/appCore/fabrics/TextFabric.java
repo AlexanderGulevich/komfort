@@ -46,6 +46,16 @@ public class TextFabric {
                 .createLabel();
     }
 
+    public LabelWrapper createLabel(String str, FontsStore font, Pos pos, double fontSize) {
+
+        return AppNode.NodeBuilder.create()
+                .setPosToLabel(pos)
+                .setFont(font, fontSize)
+                .setText(str)
+                .setId(CSSID.LABEL_TEXT)
+                .createLabel();
+    }
+
     public LabelWrapper createLabel(String str, CSSID cssid,FontsStore font, Pos pos, double fontSize, AnchorPane panel, Coordinate coordinate) {
 
         return AppNode.NodeBuilder.create()

@@ -2,6 +2,9 @@ package basisFx.appCore.fabrics;
 
 import basisFx.appCore.SubmitElement;
 import basisFx.appCore.controls.ColumnWrapper;
+import basisFx.appCore.controls.ScretchedTable;
+import basisFx.appCore.controls.StandartTableScetch;
+import basisFx.appCore.controls.TablesButtonKind;
 import basisFx.appCore.dataSource.DataMapper;
 import basisFx.appCore.elements.AppNode;
 import basisFx.appCore.elements.TableWrapper;
@@ -72,6 +75,23 @@ public class TableFabric {
                 .refresh();
 
 
+    }
+
+
+
+
+    public ScretchedTable scretchedTable(String title, TablesButtonKind tablesButtonKind, Class cl, DataMapper dataMapper, AnchorPane anchorPane, Coordinate coordinate,
+                                         ColumnWrapper...columnWrappers){
+
+        StandartTableScetch standartTableScetch = new StandartTableScetch();
+        standartTableScetch.setTitle(title);
+        standartTableScetch.setTablesButtonKind(tablesButtonKind);
+        standartTableScetch.setCoordinate(coordinate);
+        standartTableScetch.setDataMapper(dataMapper);
+        standartTableScetch.setDomainClass(cl);
+        standartTableScetch.setColumnWrappers(columnWrappers);
+        standartTableScetch.init();
+        return standartTableScetch;
     }
 
 

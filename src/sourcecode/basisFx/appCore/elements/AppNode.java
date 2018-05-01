@@ -472,6 +472,9 @@ public abstract class AppNode  {
         public    GroupWrapper createGroupWrapper  (){
             return new  GroupWrapper(this);
         }
+        public    GridPaneWrapper createGridPaneWrapper  (){
+            return new  GridPaneWrapper(this);
+        }
 
 
     }
