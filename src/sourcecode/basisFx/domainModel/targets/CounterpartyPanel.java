@@ -1,15 +1,15 @@
 package basisFx.domainModel.targets;
 
-import basisFx.appCore.controls.KindOfColumn;
+import basisFx.appCore.controls.ScretchedTableGrid;
 import basisFx.appCore.controls.TablesButtonKind;
-import basisFx.appCore.elements.AppNode;
 import basisFx.appCore.elements.TableWrapper;
 import basisFx.appCore.panels.Target;
+import basisFx.appCore.registry.Layers;
 import basisFx.appCore.utils.Coordinate;
-import basisFx.domainModel.domaine.Counterparty;
 import basisFx.domainModel.domaine.Currency;
-import basisFx.appCore.settings.CSSID;
-import basisFx.appCore.settings.FontsStore;
+import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
 
 /**
  *
@@ -25,10 +25,17 @@ public class CounterpartyPanel extends Target{
     public void createElement() {
 
 
-        tableFabric.scretchedTable("1111111111", TablesButtonKind.Right_little,
-                Currency.class,dataMapper.counterpartyDataMapper(),
-                panel,new Coordinate(10d,10d,10d,10d)
+        ScretchedTableGrid scretchedTableGrid = tableFabric.scretchedTable("1111111111", TablesButtonKind.Bottom_right,
+                Currency.class, dataMapper.counterpartyDataMapper(),
+                panel, new Coordinate(10d, 10d, 10d, 10d)
         );
+
+
+//        scretchedTableGrid.getScretchedTableGridPane().setStyle("-fx-background-color:red");
+
+
+
+
 
 
 //

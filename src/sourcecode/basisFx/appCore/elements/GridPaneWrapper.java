@@ -5,10 +5,13 @@
  */
 package basisFx.appCore.elements;
 
+import javafx.geometry.HPos;
+import javafx.geometry.VPos;
+import javafx.geometry.Insets;
 import javafx.scene.Node;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.ColumnConstraints;
-import javafx.scene.layout.GridPane;
+import javafx.scene.layout.*;
+
+import java.awt.*;
 
 /**
  *
@@ -20,60 +23,84 @@ public  class GridPaneWrapper extends AppNode{
     public GridPaneWrapper(NodeBuilder builder) {
         element=new GridPane();
         gridPane=(GridPane) this.element;
-
-
-        gridPane.addColumn(1,new AnchorPane());
-
-        if (width != null) {
-            gridPane.setPrefWidth(width);
-        }
-
         gridPane.setGridLinesVisible(true);
 
-        gridPane.getColumnConstraints().add(new ColumnConstraints(100));
+//        gridPane.setMaxHeight(Region.USE_COMPUTED_SIZE);
 
-        if (widthPerCent != null) {
-            gridPane.prefWidthProperty().bind(parentAnchor.prefWidthProperty().multiply(this.widthPerCent));
+//        if (width != null) {
+//            gridPane.setPrefWidth(width);
+//        }
+//
 
-        }
+//
+//
+//        if (widthPerCent != null) {
+//            gridPane.prefWidthProperty().bind(parentAnchor.prefWidthProperty().multiply(this.widthPerCent));
+//
+//        }
 
 
 
         init(builder);
 
+//        gridPane.prefHeightProperty().bind(parentAnchor.heightProperty());
 
+//        gridPane.setPrefHeight(500d);
 
 
     }
 
 
-    public void setColumnAndPercentWidth(double percentWidth){
+    public void setColumnVsPercent(double percentWidth){
         ColumnConstraints column = new ColumnConstraints();
         column.setPercentWidth(percentWidth);
-        gridPane.getColumnConstraints().addAll(column);
+        gridPane.getColumnConstraints().add(column);
 
     }
 
-    public void setColumnAndWidth( double width ){
+    public void setColumnFixed( double width ){
         ColumnConstraints column = new ColumnConstraints();
         column.setPrefWidth(width);
-        gridPane.getColumnConstraints().addAll(column);
+        gridPane.getColumnConstraints().add(column);
+
+
+    }
+    public void setColumn ( ){
+        ColumnConstraints column = new ColumnConstraints();
+        gridPane.getColumnConstraints().add(column);
 
     }
 
-    public void setColumn(  ){
+
+    public void setColumnComputerWidth(  ){
         ColumnConstraints column = new ColumnConstraints();
-        gridPane.getColumnConstraints().addAll(column);
+        column.setHgrow( Priority.ALWAYS );
+        gridPane.getColumnConstraints().add(column);
+
+
 
     }
     //добавляет элемент, который будет для нескольких колонок
-    public void addSpanNode(Node child,int columnIndex,int rowIndex,int colspan,int rowspan){
+    public void addSpanNode(Node child,int columnIndex,int rowIndex,int colspan,int rowspan,HPos halignment, VPos valignment,Insets insets){
 
         gridPane.add( child, columnIndex, rowIndex, colspan, rowspan);
-    }
-    public void  addNode(Node child,int columnIndex,int rowIndex){
+        setConstraints(child, halignment,  valignment);
+        setMargin(child,insets);
 
-        gridPane.add( child, columnIndex,rowIndex);
     }
-    
+
+
+    private void setConstraints(Node child,HPos halignment, VPos valignment){
+        GridPane.setValignment(child,valignment);
+        GridPane.setHalignment(child,halignment);
+    }
+
+    private void setMargin(Node child, Insets in){
+        GridPane.setMargin(child,in);
+
+    }
+
+
+
+
 }

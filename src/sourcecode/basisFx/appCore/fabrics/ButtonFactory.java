@@ -20,6 +20,8 @@ import javafx.stage.Stage;
  */
 public class ButtonFactory {
 
+    private double bigButWidth=130;
+
 
     protected EventFactory eventFactory=EventFactory.getInstance();
 
@@ -29,7 +31,7 @@ public class ButtonFactory {
                 .setId(CSSID.PANELS_BUTTON)
                 .setCoordinate(coordinate)
                 .setParent(panel)
-                .setText("+").setFont(FontsStore.ROBOTO_LIGHT, 15)
+                .setText("+").setFont(FontsStore.ROBOTO_BOLD, 15)
                 .setWidth(30d).setHeight(20d)
                 .setEvent(eventFactory.
                         rowAdd(
@@ -50,7 +52,7 @@ public class ButtonFactory {
 
         return (Button)AppNode.NodeBuilder.create()
                 .setId(CSSID.PANELS_BUTTON)
-                .setText("+").setFont(FontsStore.ROBOTO_LIGHT, 15)
+                .setText("+").setFont(FontsStore.ROBOTO_BOLD, 15)
                 .setWidth(30d).setHeight(20d)
                 .setEvent(eventFactory.
                         rowAdd(
@@ -73,7 +75,7 @@ public class ButtonFactory {
                 .setId(CSSID.PANELS_BUTTON)
                 .setCoordinate(coordinate)
                 .setParent(panel)
-                .setText("-").setFont(FontsStore.ROBOTO_LIGHT, 15)
+                .setText("-").setFont(FontsStore.ROBOTO_BOLD, 15)
                 .setWidth(30d).setHeight(20d)
                 .setEvent(eventFactory.rowDeleteFromTable(tableWrapper))
                 .createNButton().getElement();
@@ -85,7 +87,7 @@ public class ButtonFactory {
 
         return (Button)AppNode.NodeBuilder.create()
                 .setId(CSSID.PANELS_BUTTON)
-                .setText("-").setFont(FontsStore.ROBOTO_LIGHT, 15)
+                .setText("-").setFont(FontsStore.ROBOTO_BOLD, 15)
                 .setWidth(30d).setHeight(20d)
                 .setEvent(eventFactory.rowDeleteFromTable(tableWrapper))
                 .createNButton().getElement();
@@ -100,7 +102,7 @@ public class ButtonFactory {
                 .setParent(panel)
                 .setCoordinate(coordinate)
                 .setText("ДОБАВИТЬ").setFont(FontsStore.ROBOTO_LIGHT, 15)
-                .setWidth(170d).setHeight(20d)
+                .setWidth(bigButWidth).setHeight(20d)
                 .setEvent(eventFactory.
                         rowAdd(
                                 tableWrapper,
@@ -123,7 +125,7 @@ public class ButtonFactory {
         return (Button)AppNode.NodeBuilder.create()
                 .setId(CSSID.PANELS_BUTTON)
                 .setText("ДОБАВИТЬ").setFont(FontsStore.ROBOTO_LIGHT, 15)
-                .setWidth(170d).setHeight(20d)
+                .setWidth(bigButWidth).setHeight(20d)
                 .setEvent(eventFactory.
                         rowAdd(
                                 tableWrapper,
@@ -147,7 +149,7 @@ public class ButtonFactory {
                 .setParent(panel)
                 .setCoordinate(coordinate)
                 .setText("УДАЛИТЬ").setFont(FontsStore.ROBOTO_LIGHT, 15)
-                .setWidth(170d).setHeight(20d)
+                .setWidth(bigButWidth).setHeight(20d)
                 .setEvent(eventFactory.rowDeleteFromTable(tableWrapper))
                 .createNButton().getElement();
 
@@ -158,7 +160,7 @@ public class ButtonFactory {
         return (Button) AppNode.NodeBuilder.create()
                 .setId(CSSID.PANELS_BUTTON)
                 .setText("УДАЛИТЬ").setFont(FontsStore.ROBOTO_LIGHT, 15)
-                .setWidth(170d).setHeight(20d)
+                .setWidth(bigButWidth).setHeight(20d)
                 .setEvent(eventFactory.rowDeleteFromTable(tableWrapper))
                 .createNButton().getElement();
 

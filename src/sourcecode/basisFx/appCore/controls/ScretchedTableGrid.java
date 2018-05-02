@@ -2,16 +2,18 @@ package basisFx.appCore.controls;
 
 import basisFx.appCore.TargetStackLogic;
 import basisFx.appCore.dataSource.DataMapper;
+import basisFx.appCore.domainScetch.DomainObject;
 import basisFx.appCore.elements.GridPaneWrapper;
+import basisFx.appCore.elements.TableWrapper;
 import basisFx.appCore.fabrics.*;
 import basisFx.appCore.utils.Coordinate;
 import basisFx.domainModel.DataMapperFabric;
+import javafx.scene.control.TableView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 
-import java.util.ArrayList;
 
-public abstract class ScretchedTable {
+public abstract class ScretchedTableGrid {
 
     protected PanelFabric panelFabric=new PanelFabric();
     protected ColumnFabric columnFabric=new ColumnFabric();
@@ -33,8 +35,16 @@ public abstract class ScretchedTable {
     protected Coordinate coordinate;
     protected DataMapper dataMapper;
     protected GridPaneWrapper gridPaneWrapper;
-//    protected ArrayList <ColumnWrapper> columnWrappers;
-protected ColumnWrapper[] columnWrappers;
+    protected ColumnWrapper[] columnWrappers;
+    protected TableWrapper tableWrapper;
+    protected TableView<DomainObject> tableView;
+    protected GridPane gridPane;
+
+    public GridPane getScretchedTableGridPane(){
+
+        return (GridPane) gridPaneWrapper.getElement();
+
+    }
 
     public abstract void init();
 
@@ -50,7 +60,7 @@ protected ColumnWrapper[] columnWrappers;
         this.tablesButtonKind = tablesButtonKind;
     }
 
-    public void setPanel(AnchorPane panel) {
+    public void setParentAchorPane(AnchorPane panel) {
         this.parentAnchorPane = panel;
     }
 

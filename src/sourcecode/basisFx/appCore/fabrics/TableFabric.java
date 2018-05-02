@@ -2,8 +2,8 @@ package basisFx.appCore.fabrics;
 
 import basisFx.appCore.SubmitElement;
 import basisFx.appCore.controls.ColumnWrapper;
-import basisFx.appCore.controls.ScretchedTable;
-import basisFx.appCore.controls.StandartTableScetch;
+import basisFx.appCore.controls.ScretchedTableGrid;
+import basisFx.appCore.controls.StandartTableGridScetch;
 import basisFx.appCore.controls.TablesButtonKind;
 import basisFx.appCore.dataSource.DataMapper;
 import basisFx.appCore.elements.AppNode;
@@ -80,18 +80,20 @@ public class TableFabric {
 
 
 
-    public ScretchedTable scretchedTable(String title, TablesButtonKind tablesButtonKind, Class cl, DataMapper dataMapper, AnchorPane anchorPane, Coordinate coordinate,
-                                         ColumnWrapper...columnWrappers){
+    public ScretchedTableGrid scretchedTable(String title, TablesButtonKind tablesButtonKind, Class cl,
+                                             DataMapper dataMapper, AnchorPane anchorPane, Coordinate coordinate,
+                                             ColumnWrapper...columnWrappers){
 
-        StandartTableScetch standartTableScetch = new StandartTableScetch();
-        standartTableScetch.setTitle(title);
-        standartTableScetch.setTablesButtonKind(tablesButtonKind);
-        standartTableScetch.setCoordinate(coordinate);
-        standartTableScetch.setDataMapper(dataMapper);
-        standartTableScetch.setDomainClass(cl);
-        standartTableScetch.setColumnWrappers(columnWrappers);
-        standartTableScetch.init();
-        return standartTableScetch;
+        StandartTableGridScetch standartTableGridScetch = new StandartTableGridScetch();
+        standartTableGridScetch.setTitle(title);
+        standartTableGridScetch.setParentAchorPane(anchorPane);
+        standartTableGridScetch.setTablesButtonKind(tablesButtonKind);
+        standartTableGridScetch.setCoordinate(coordinate);
+        standartTableGridScetch.setDataMapper(dataMapper);
+        standartTableGridScetch.setDomainClass(cl);
+        standartTableGridScetch.setColumnWrappers(columnWrappers);
+        standartTableGridScetch.init();
+        return standartTableGridScetch;
     }
 
 

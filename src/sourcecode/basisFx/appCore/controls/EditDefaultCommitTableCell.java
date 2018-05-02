@@ -25,8 +25,6 @@ public class EditDefaultCommitTableCell<T,K> extends Edit<T,K>{
 
                 if (Checking.check(kindOfColumn, event)) {
 
-
-
                 DomainObject domain = (DomainObject) event.getRowValue();
 
                 //проверяет, есть ли такой id в бд

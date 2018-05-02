@@ -1,4 +1,4 @@
-package basisFx.appCore;
+package basisFx.appCore.obseverved;
 
 import basisFx.appCore.interfaces.MaximazingObserver;
 
@@ -17,7 +17,7 @@ public class MaximazingManager {
     public static void notifyObjects(){
 
         for (MaximazingObserver observer : observers) {
-            observer.pervormMaximazingEventNotifier();
+            observer.pervormMaximazing();
         }
 
     }

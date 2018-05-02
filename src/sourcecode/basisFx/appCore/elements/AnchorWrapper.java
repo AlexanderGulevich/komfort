@@ -5,7 +5,7 @@
  */
 package basisFx.appCore.elements;
 
-import basisFx.appCore.MaximazingManager;
+import basisFx.appCore.obseverved.MaximazingManager;
 import basisFx.appCore.interfaces.MaximazingObserver;
 import javafx.scene.Node;
 import javafx.scene.layout.AnchorPane;
@@ -33,7 +33,7 @@ public class AnchorWrapper<T extends Node> extends AppNode implements Maximazing
         if (parentAnchor!=null && widthPerCent!=null) {
 
 
-            pervormMaximazingEventNotifier();
+            pervormMaximazing();
 
 
 
@@ -54,7 +54,7 @@ public class AnchorWrapper<T extends Node> extends AppNode implements Maximazing
     }
 
     @Override
-    public void pervormMaximazingEventNotifier() {
+    public void pervormMaximazing() {
         if (parentAnchor!=null && widthPerCent!=null) {
 
             AnchorPane element=(AnchorPane) this.element;

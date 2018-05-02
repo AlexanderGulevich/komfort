@@ -5,7 +5,7 @@
  */
 package basisFx.appCore.events;
 
-import basisFx.appCore.MaximazingManager;
+import basisFx.appCore.obseverved.MaximazingManager;
 import basisFx.appCore.elements.AppNode;
 import basisFx.appCore.settings.Settings;
 
@@ -102,4 +102,8 @@ public class MaximazingSwither extends AppEvent{
                 Logger.getLogger(CloseWindow.class.getName()).log(Level.SEVERE, null, ex);
             } 
     }
+
+
+
+
 }

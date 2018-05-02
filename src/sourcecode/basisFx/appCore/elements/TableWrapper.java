@@ -58,7 +58,7 @@ public  class TableWrapper<T> extends AppNode implements Refreshable, Submitting
 
 //todo вставить значение
         TextFabric textFabric=new TextFabric();
-        TextWrapper text = textFabric.createText("Контент отсутствует", FontsStore.ROBOTO_LIGHT, 25d, null, null);
+        TextWrapper text = textFabric.createText("Контент отсутствует".toLowerCase(), FontsStore.ROBOTO_LIGHT, 25d, null, null);
         Text elem = (Text) text.getElement();
         table.setPlaceholder(elem);
 
@@ -81,6 +81,11 @@ public  class TableWrapper<T> extends AppNode implements Refreshable, Submitting
         table.setColumnResizePolicy(policy);
         return this;
     }
+
+    public TableView<DomainObject> getTable() {
+        return table;
+    }
+
     @SuppressWarnings("unchecked")
     public TableWrapper<T> setColums(ColumnWrapper  ...columnWrappers){
        
