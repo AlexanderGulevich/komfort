@@ -58,7 +58,7 @@ public class ProductPanel  extends Target{
 
 
 
-        productTable =tableFabric.boundTable(
+        productTable =tableFabric.observedTable(
                 priceTable, panel,
                 0.6d, new Coordinate(50d, null, 70d, 0d),
                 dataMapper.productDataMapper(),

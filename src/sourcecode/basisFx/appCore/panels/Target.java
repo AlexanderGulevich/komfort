@@ -6,6 +6,8 @@
 package basisFx.appCore.panels;
 
 import basisFx.appCore.*;
+import basisFx.appCore.elements.AppNode;
+import basisFx.appCore.elements.GridPaneWrapper;
 import basisFx.appCore.fabrics.*;
 import basisFx.appCore.utils.Coordinate;
 import basisFx.domainModel.DataMapperFabric;
@@ -29,7 +31,7 @@ public abstract class Target {
     protected InnerPanelsFabric innerPanelsFabric=new InnerPanelsFabric();
     protected TextFabric textFabric=new TextFabric();
     protected VidgetFactory vidgetFactory=new VidgetFactory();
-
+    protected GridPaneWrapper gridPaneWrapper;
 
 
     protected abstract void createElement();
@@ -59,6 +61,14 @@ public abstract class Target {
             new AbstractPanel.PanelBuilder()
                     .setPanelCoordinate(new Coordinate(10d, 10d, 10d, 10d)))
                 .getPanel();
+    }
+
+    protected void createGridBasedPanel(){
+        gridPaneWrapper = AppNode.NodeBuilder.create()
+                .setParent(panel)
+                .setCoordinate(new Coordinate(0d,0d,0d,0d))
+                .createGridPaneWrapper();
+
     }
     
     

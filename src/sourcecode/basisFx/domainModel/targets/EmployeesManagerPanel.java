@@ -60,7 +60,7 @@ public class EmployeesManagerPanel extends Target {
                 employerSide, new Coordinate(10d,0d,null,0d));
 
 
-        employerTable =tableFabric.boundTable(
+        employerTable =tableFabric.observedTable(
                 rateTable,
                 panel,0.54d,new Coordinate(50d, null, 70d, 0d),
                 dataMapper.employerDataMapper(),

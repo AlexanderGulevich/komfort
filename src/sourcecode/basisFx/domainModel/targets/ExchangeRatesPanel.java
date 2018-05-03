@@ -51,7 +51,7 @@ public class ExchangeRatesPanel extends Target{
                 currencySide, new Coordinate(10d,0d,null,0d));
 
 
-        currencyTable =tableFabric.boundTable(
+        currencyTable =tableFabric.observedTable(
                 rateTable, panel,
                 0.45d, new Coordinate(50d, null, 70d, 0d),
                 dataMapper.currencyDataMapper(),

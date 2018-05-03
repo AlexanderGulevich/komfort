@@ -1,16 +1,11 @@
 package basisFx.domainModel.targets;
 
-import basisFx.appCore.controls.KindOfColumn;
-import basisFx.appCore.controls.ScretchedTableGrid;
-import basisFx.appCore.controls.TablesButtonKind;
+import basisFx.appCore.controls.*;
+import basisFx.appCore.dataSource.DataMapper;
 import basisFx.appCore.elements.TableWrapper;
 import basisFx.appCore.panels.Target;
-import basisFx.appCore.registry.Layers;
 import basisFx.appCore.utils.Coordinate;
 import basisFx.domainModel.domaine.Currency;
-import javafx.scene.control.Label;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.GridPane;
 
 /**
  *
@@ -25,13 +20,19 @@ public class CounterpartyPanel extends Target{
     @SuppressWarnings("unchecked")
     public void createElement() {
 
+        String title="Наименование yаименование  name name";
+        TablesButtonKind kind=TablesButtonKind.Bottom_right;
+        Class cl= Currency.class;
+        DataMapper dmapper = dataMapper.currencyDataMapper();
+        Coordinate coord= new Coordinate(10d, 10d, 10d, 10d);
 
-        ScretchedTableGrid scretchedTableGrid = tableFabric.scretchedTable("1111111111", TablesButtonKind.Bottom_right,
-                Currency.class, dataMapper.currencyDataMapper(),
-                panel, new Coordinate(10d, 10d, 10d, 10d),
-                columnFabric.createColumn(KindOfColumn.STRING,"Наименование","name",1d,true,
-                        (obj,val)->((Currency)obj).setName((String)val))
-        );
+        ColumnWrapper column = columnFabric.createColumn(
+                KindOfColumn.STRING, "Наименование", "name", 1d, true,
+                (obj, val) -> ((Currency) obj).setName((String) val));
+
+
+        ScretchedTableGrid scretchedTableGrid =
+                tableFabric.scretchedGridTable(title,kind ,cl,dmapper,panel,coord,column);
 
 
 

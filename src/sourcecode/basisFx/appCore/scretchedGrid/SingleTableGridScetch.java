@@ -1,5 +1,6 @@
-package basisFx.appCore.controls;
+package basisFx.appCore.scretchedGrid;
 
+import basisFx.appCore.controls.ScretchedTableGrid;
 import basisFx.appCore.elements.AppNode;
 import basisFx.appCore.elements.LabelWrapper;
 import basisFx.appCore.elements.TableWrapper;
@@ -18,10 +19,14 @@ import javafx.scene.layout.GridPane;
 import javax.swing.text.TableView;
 
 
-public class StandartTableGridScetch extends ScretchedTableGrid implements MaximazingObserver {
+public class SingleTableGridScetch extends ScretchedTableGrid implements MaximazingObserver {
     
     private Insets insets=new Insets(3,3,3,3);
-
+    private LabelWrapper label;
+    private Button buttonAdd;
+    private Button buttonDel;
+    private Button buttonAddLittle;
+    private Button buttonDelLittle;
 
 
     @Override
@@ -29,7 +34,7 @@ public class StandartTableGridScetch extends ScretchedTableGrid implements Maxim
 
         MaximazingManager.setObserver(this);
 
-        LabelWrapper label = textFabric.createLabel(title, FontsStore.ROBOTO_LIGHT, Pos.BASELINE_LEFT, 25d);
+         label = textFabric.createLabel(title, FontsStore.ROBOTO_LIGHT, Pos.BASELINE_LEFT, 25d);
 
          tableWrapper= AppNode.NodeBuilder.create()
                 .setId(CSSID.TABLE)
@@ -43,17 +48,24 @@ public class StandartTableGridScetch extends ScretchedTableGrid implements Maxim
          tableView= tableWrapper.getTable();
 
 
+         buttonAdd = buttonFactory.addRowButton(tableWrapper, domainClass);
+         buttonDel =buttonFactory.deleteRowButton(tableWrapper);
+         buttonAddLittle = buttonFactory.littleRowAddButton(tableWrapper,domainClass );
+         buttonDelLittle =buttonFactory.littleRowDeleteButton(tableWrapper ) ;
 
 
-        Button buttonAdd = buttonFactory.addRowButton(tableWrapper, domainClass);
-        Button buttonDel =buttonFactory.deleteRowButton(tableWrapper);
-        Button buttonAddLittle = buttonFactory.littleRowAddButton(tableWrapper,domainClass );
-        Button buttonDelLittle =buttonFactory.littleRowDeleteButton(tableWrapper ) ;
 
-        gridPaneWrapper = AppNode.NodeBuilder.create()
-                .setCoordinate(coordinate)
-                .setParent(parentAnchorPane)
-                .createGridPaneWrapper();
+        if (coordinate != null&& parentAnchorPane!=null) {
+            gridPaneWrapper = AppNode.NodeBuilder.create()
+                    .setCoordinate(coordinate)
+                    .setParent(parentAnchorPane)
+                    .createGridPaneWrapper();
+        }else{
+            gridPaneWrapper = AppNode.NodeBuilder.create()
+                    .createGridPaneWrapper();
+        }
+
+
 
 
         gridPane= (GridPane) gridPaneWrapper.getElement();
@@ -63,8 +75,7 @@ public class StandartTableGridScetch extends ScretchedTableGrid implements Maxim
         gridPane.heightProperty().addListener((obs, oldVal, newVal) -> {
 
 
-            tableView.setPrefHeight(gridPane.getHeight());
-            System.out.println("(gridPane.getHeight()---"+gridPane.getHeight());
+        tableView.setPrefHeight(gridPane.getHeight());
 
 //            To listen to both width and height changes, the same listener can be used really simply:
 
@@ -74,9 +85,18 @@ public class StandartTableGridScetch extends ScretchedTableGrid implements Maxim
 //            stage.widthProperty().addListener(stageSizeListener);
 //            stage.heightProperty().addListener(stageSizeListener);
 
-
         });
 
+
+
+
+        switchPoliticy();
+
+
+    }
+
+
+    private void switchPoliticy(){
 
         switch (tablesButtonKind){
 

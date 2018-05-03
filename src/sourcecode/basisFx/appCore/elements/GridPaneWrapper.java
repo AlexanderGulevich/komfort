@@ -23,29 +23,15 @@ public  class GridPaneWrapper extends AppNode{
     public GridPaneWrapper(NodeBuilder builder) {
         element=new GridPane();
         gridPane=(GridPane) this.element;
-        gridPane.setGridLinesVisible(true);
+        gridPane.setGridLinesVisible(false);
 
-//        gridPane.setMaxHeight(Region.USE_COMPUTED_SIZE);
 
-//        if (width != null) {
-//            gridPane.setPrefWidth(width);
-//        }
-//
-
-//
-//
 //        if (widthPerCent != null) {
 //            gridPane.prefWidthProperty().bind(parentAnchor.prefWidthProperty().multiply(this.widthPerCent));
 //
 //        }
 
-
-
         init(builder);
-
-//        gridPane.prefHeightProperty().bind(parentAnchor.heightProperty());
-
-//        gridPane.setPrefHeight(500d);
 
 
     }
