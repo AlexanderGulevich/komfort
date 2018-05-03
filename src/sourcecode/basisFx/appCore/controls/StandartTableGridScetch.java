@@ -59,6 +59,25 @@ public class StandartTableGridScetch extends ScretchedTableGrid implements Maxim
         gridPane= (GridPane) gridPaneWrapper.getElement();
 
 
+
+        gridPane.heightProperty().addListener((obs, oldVal, newVal) -> {
+
+
+            tableView.setPrefHeight(gridPane.getHeight());
+            System.out.println("(gridPane.getHeight()---"+gridPane.getHeight());
+
+//            To listen to both width and height changes, the same listener can be used really simply:
+
+//            ChangeListener<Number> stageSizeListener = (observable, oldValue, newValue) ->
+//                    System.out.println("Height: " + stage.getHeight() + " Width: " + stage.getWidth());
+//
+//            stage.widthProperty().addListener(stageSizeListener);
+//            stage.heightProperty().addListener(stageSizeListener);
+
+
+        });
+
+
         switch (tablesButtonKind){
 
             case Right_little:
@@ -184,34 +203,10 @@ public class StandartTableGridScetch extends ScretchedTableGrid implements Maxim
     @Override
     public void pervormMaximazing() {
 
-        System.out.println("BEFORE  gridPane.getHeight()    -- "+  gridPane.getHeight());
-        System.out.println("BEFORE  gridPane.getPrefHeight()  -- "+gridPane.getPrefHeight());
+   // по сути отпала необходимость использования данной конструкции так как выше добавил listener к height poroperty
 
-        System.out.println("BEFORE  tableView.getHeight()    -- "+  tableView.getHeight());
-        System.out.println("BEFORE  tableView.getPrefHeight()  -- "+tableView.getPrefHeight());
+        System.out.println("ОКНО УВЕЛИЧЕНО");
 
-        System.out.println("BEFORE  parentAnchorPane.getHeight()    -- "+  parentAnchorPane.getHeight());
-        System.out.println("BEFORE  parentAnchorPane.getPrefHeight()  -- "+parentAnchorPane.getPrefHeight());
-
-
-
-//        gridPane.setPrefHeight(parentAnchorPane.getHeight());
-
-
-
-        tableView.setPrefHeight(parentAnchorPane.getHeight()+40d);
-
-
-
-
-        System.out.println("AFTER  gridPane.getHeight()    -- "+  gridPane.getHeight());
-        System.out.println("AFTER  gridPane.getPrefHeight()  -- "+gridPane.getPrefHeight());
-
-        System.out.println("AFTER  tableView.getHeight()    -- "+  tableView.getHeight());
-        System.out.println("AFTER  tableView.getPrefHeight()  -- "+tableView.getPrefHeight());
-
-        System.out.println("AFTER  parentAnchorPane.getHeight()    -- "+  parentAnchorPane.getHeight());
-        System.out.println("AFTER  parentAnchorPane.getPrefHeight()  -- "+parentAnchorPane.getPrefHeight());
 
 
 
