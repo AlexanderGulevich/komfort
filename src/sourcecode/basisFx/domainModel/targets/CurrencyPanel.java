@@ -30,7 +30,7 @@ public class CurrencyPanel extends Target {
         tableWrapper = tableFabric.table(
                 panel,0.7d,new Coordinate(50d, null, 0d, 0d),
                 dataMapper.currencyDataMapper(),
-                columnFabric.createColumn(KindOfColumn.STRING,"Наименование","name",1d,true,
+                columnFabric.stringColumn(KindOfColumn.STRING,"Наименование","name",1d,true,
                                 (obj,val)->((Currency)obj).setName((String)val))
                 );
 

@@ -15,7 +15,7 @@ import basisFx.appCore.interfaces.DomainsListGetter;
  */
 public class ColumnFabric <T,K> {
 
-    public ColumnString<T> createColumn(KindOfColumn kindOfColumn, String name, String property, Double size, Boolean isEditable, DomainChanging domainChanging) {
+    public ColumnString<T> stringColumn(KindOfColumn kindOfColumn, String name, String property, Double size, Boolean isEditable, DomainChanging domainChanging) {
             ColumnWrapper.Bulder bulder =
                     ColumnWrapper.Bulder.create(name, property, size)
                     .setDomainChanging(domainChanging).setEditeble(isEditable)
@@ -23,7 +23,7 @@ public class ColumnFabric <T,K> {
 
             return new ColumnString<T>(bulder);
     }
-    public ColumnStringComboBox<T,K> createColumnComboBox(KindOfColumn kindOfColumn, String name, String property, Double size, Boolean isEditable, DomainChanging domainChanging, DomainsListGetter domainsListGetter){
+    public ColumnStringComboBox<T,K> comboBoxColumn(KindOfColumn kindOfColumn, String name, String property, Double size, Boolean isEditable, DomainChanging domainChanging, DomainsListGetter domainsListGetter){
 
             ColumnWrapper.Bulder bulder =
                     ColumnWrapper.Bulder.create(name, property, size)
@@ -35,7 +35,7 @@ public class ColumnFabric <T,K> {
             return new ColumnStringComboBox<T,K>(bulder);
 
     }
-    public ColumnLocalDate<T,K> createDateColumn(KindOfColumn kindOfColumn, String name, String property, Double size, Boolean isEditable, DomainChanging domainChanging){
+    public ColumnLocalDate<T,K> dateColumn(KindOfColumn kindOfColumn, String name, String property, Double size, Boolean isEditable, DomainChanging domainChanging){
 
                 ColumnWrapper.Bulder builder =
                         ColumnWrapper.Bulder.create(name, property, size)

@@ -26,10 +26,10 @@ public class EquipmentPanel extends Target{
         tableWrapper =
                 tableFabric.table(panel,0.7d, new Coordinate(50d, null, 0d, 0d),
                         dataMapper.equipmentDataMapper(),
-                        columnFabric.createColumn(KindOfColumn.STRING,"Наименование","name",0.6,true,
+                        columnFabric.stringColumn(KindOfColumn.STRING,"Наименование","name",0.6,true,
                                 (obj,val)->((Equipment)obj).setName((String)val)),
 
-                        columnFabric.createColumn(KindOfColumn.INT,"Ширина стержня","rodWidth",0.4,true,
+                        columnFabric.stringColumn(KindOfColumn.INT,"Ширина стержня","rodWidth",0.4,true,
                                 (obj,val)->{((Equipment)obj).setRodWidth((String)val);}
                         )
                 );

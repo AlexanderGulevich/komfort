@@ -2,9 +2,6 @@ package basisFx.appCore.fabrics;
 
 import basisFx.appCore.SubmitElement;
 import basisFx.appCore.controls.ColumnWrapper;
-import basisFx.appCore.controls.ScretchedTableGrid;
-import basisFx.appCore.scretchedGrid.SingleTableGridScetch;
-import basisFx.appCore.controls.TablesButtonKind;
 import basisFx.appCore.dataSource.DataMapper;
 import basisFx.appCore.elements.AppNode;
 import basisFx.appCore.elements.TableWrapper;
@@ -55,14 +52,6 @@ public class TableFabric {
 
     }
 
-    public TableWrapper observedGridTables(AnchorPane panel, double width, Coordinate coordinate,
-                                      DataMapper dataMapper,
-                                      ColumnWrapper...columnWrappers){
-
-
-
-
-    }
 
 
 //создает связаные таблицы
@@ -85,40 +74,6 @@ public class TableFabric {
 
 
 
-
-
-
-    public ScretchedTableGrid scretchedGridTable(String title, TablesButtonKind tablesButtonKind, Class cl,
-                                                 DataMapper dataMapper, AnchorPane anchorPane, Coordinate coordinate,
-                                                 ColumnWrapper...columnWrappers){
-
-        SingleTableGridScetch singleTableGridScetch = new SingleTableGridScetch();
-        singleTableGridScetch.setTitle(title);
-        singleTableGridScetch.setParentAchorPane(anchorPane);
-        singleTableGridScetch.setTablesButtonKind(tablesButtonKind);
-        singleTableGridScetch.setCoordinate(coordinate);
-        singleTableGridScetch.setDataMapper(dataMapper);
-        singleTableGridScetch.setDomainClass(cl);
-        singleTableGridScetch.setColumnWrappers(columnWrappers);
-        singleTableGridScetch.init();
-        return singleTableGridScetch;
-    }
-
-
-//таблица с gridpane, которую можно добавлять в gridpane
-    public ScretchedTableGrid scretchedGridTable(String title, TablesButtonKind tablesButtonKind, Class cl,
-                                                 DataMapper dataMapper,
-                                                 ColumnWrapper...columnWrappers){
-
-        SingleTableGridScetch singleTableGridScetch = new SingleTableGridScetch();
-        singleTableGridScetch.setTitle(title);
-        singleTableGridScetch.setTablesButtonKind(tablesButtonKind);
-        singleTableGridScetch.setDataMapper(dataMapper);
-        singleTableGridScetch.setDomainClass(cl);
-        singleTableGridScetch.setColumnWrappers(columnWrappers);
-        singleTableGridScetch.init();
-        return singleTableGridScetch;
-    }
 
 
 }

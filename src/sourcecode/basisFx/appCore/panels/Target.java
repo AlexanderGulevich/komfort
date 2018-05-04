@@ -6,8 +6,11 @@
 package basisFx.appCore.panels;
 
 import basisFx.appCore.*;
+import basisFx.appCore.controls.TablesButtonKind;
+import basisFx.appCore.dataSource.DataMapper;
 import basisFx.appCore.elements.AppNode;
 import basisFx.appCore.elements.GridPaneWrapper;
+import basisFx.appCore.elements.TableWrapper;
 import basisFx.appCore.fabrics.*;
 import basisFx.appCore.utils.Coordinate;
 import basisFx.domainModel.DataMapperFabric;
@@ -32,6 +35,7 @@ public abstract class Target {
     protected TextFabric textFabric=new TextFabric();
     protected VidgetFactory vidgetFactory=new VidgetFactory();
     protected GridPaneWrapper gridPaneWrapper;
+    protected GridFabric gridFabric=new GridFabric();
 
 
     protected abstract void createElement();
@@ -70,8 +74,10 @@ public abstract class Target {
                 .createGridPaneWrapper();
 
     }
-    
-    
+
+
+
+
     
     
     

@@ -33,10 +33,10 @@ public class ProductPanel  extends Target{
                 panel,0.38d,new Coordinate(50d, 0d, 70d, null),
                 dataMapper.priceDataMapper(),
 
-                        columnFabric.createColumn(KindOfColumn.DOUBLE,"Цена","price",0.3d,true,
+                        columnFabric.stringColumn(KindOfColumn.DOUBLE,"Цена","price",0.3d,true,
                         (obj,val)->{((Price)obj).setPrice( (String ) val);}),
 
-                        columnFabric.createDateColumn(KindOfColumn.DATE,"Дата начала действия ","startingDate",0.7d,true,
+                        columnFabric.dateColumn(KindOfColumn.DATE,"Дата начала действия ","startingDate",0.7d,true,
                                 (obj, val)->{((Price)obj).setStartingDate((LocalDate) val); }
                         )
                 );
@@ -63,14 +63,14 @@ public class ProductPanel  extends Target{
                 0.6d, new Coordinate(50d, null, 70d, 0d),
                 dataMapper.productDataMapper(),
 
-                columnFabric.createColumn(KindOfColumn.STRING,"Наименование","name",0.4d,true,
+                columnFabric.stringColumn(KindOfColumn.STRING,"Наименование","name",0.4d,true,
                         (obj,val)->((Product)obj).setName((String)val)),
-                columnFabric.createColumnComboBox(KindOfColumn.COMBOBOX,
+                columnFabric.comboBoxColumn(KindOfColumn.COMBOBOX,
                         "Ширина стержня","rod",0.3d,true,
                         (obj,val)->{((Product)obj).setRod((StringValueDomainObject) val);},
                         () -> dataMapper.productDataMapper().getRodWidthList()
                 ),
-                columnFabric.createColumn(KindOfColumn.INT,"C 1 стержня, шт","numberFromRods",0.3d,true,
+                columnFabric.stringColumn(KindOfColumn.INT,"C 1 стержня, шт","numberFromRods",0.3d,true,
                         (obj,val)->((Product)obj).setNumberFromRods((String)val))
 
         );

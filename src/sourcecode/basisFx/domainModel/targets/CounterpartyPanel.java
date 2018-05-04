@@ -1,7 +1,7 @@
 package basisFx.domainModel.targets;
 
 import basisFx.appCore.controls.*;
-import basisFx.appCore.dataSource.DataMapper;
+import basisFx.appCore.dataTransfers.GridDataTransfer;
 import basisFx.appCore.elements.TableWrapper;
 import basisFx.appCore.panels.Target;
 import basisFx.appCore.utils.Coordinate;
@@ -20,25 +20,27 @@ public class CounterpartyPanel extends Target{
     @SuppressWarnings("unchecked")
     public void createElement() {
 
-        String title="Наименование yаименование  name name";
-        TablesButtonKind kind=TablesButtonKind.Bottom_right;
-        Class cl= Currency.class;
-        DataMapper dmapper = dataMapper.currencyDataMapper();
-        Coordinate coord= new Coordinate(10d, 10d, 10d, 10d);
-
-        ColumnWrapper column = columnFabric.createColumn(
-                KindOfColumn.STRING, "Наименование", "name", 1d, true,
-                (obj, val) -> ((Currency) obj).setName((String) val));
-
-
-        ScretchedTableGrid scretchedTableGrid =
-                tableFabric.scretchedGridTable(title,kind ,cl,dmapper,panel,coord,column);
+        GridDataTransfer tr=new GridDataTransfer();
+        tr.setTitle("Наименование yаименование  name name");
+        tr.setTablesButtonKind(TablesButtonKind.Bottom_right);
+        tr.setDomainClass(Currency.class);
+        tr.setDataMapper(dataMapper.currencyDataMapper());
+        tr.setCoordinate(new Coordinate(10d, 10d, 10d, 10d));
+        tr.setPanel(panel);
+        tr.setColumnWrappers(
+                columnFabric.stringColumn(KindOfColumn.STRING, "Наименование", "name", 1d, true,
+                        (obj, val) -> ((Currency) obj).setName((String) val))
+        );
 
 
 
+        ScretchedTableGrid scretchedTableGrid = gridFabric.singleAnchorGridTable(tr);
 
 
-//        scretchedTableGrid.getScretchedTableGridPane().setStyle("-fx-background-color:red");
+
+
+
+//        scretchedTableGrid.getGridPane().setStyle("-fx-background-color:red");
 
 
 
@@ -48,10 +50,10 @@ public class CounterpartyPanel extends Target{
 //
 //        tableWrapper = tableFabric.table(panel,0.8d,new Coordinate(50d, null, 0d, 0d),
 //                dataMapper.counterpartyDataMapper(),
-//                        columnFabric.createColumn(KindOfColumn.STRING,
+//                        columnFabric.stringColumn(KindOfColumn.STRING,
 //                                "Наименование контрагента","name",0.5,true,
 //                                (obj,val)->((basisFx.domainModel.domaine.Counterparty)obj).setName((String)val)),
-//                        columnFabric.createColumnComboBox(KindOfColumn.COMBOBOX,
+//                        columnFabric.comboBoxColumn(KindOfColumn.COMBOBOX,
 //                                "Валюта","currency",0.2,true,
 //                                (obj,val)->{((Counterparty)obj).setCurrency((Currency) val);},
 //                                () -> dataMapper.counterpartyDataMapper().getCurrencyList()
