@@ -1,4 +1,4 @@
-package basisFx.appCore.dataTransfers;
+package basisFx.appCore.grid;
 
 import basisFx.appCore.SubmitElement;
 import basisFx.appCore.controls.ColumnWrapper;
@@ -8,7 +8,7 @@ import basisFx.appCore.elements.TableWrapper;
 import basisFx.appCore.utils.Coordinate;
 import javafx.scene.layout.AnchorPane;
 
-public   class GridDataTransfer{
+public   class GridTablesBuilder {
 
     private SubmitElement mark;
     private AnchorPane panel;
@@ -20,6 +20,9 @@ public   class GridDataTransfer{
     private TablesButtonKind tablesButtonKind;
     private Class domainClass;
     private ColumnWrapper[] columnWrappers;
+
+
+
 
     public SubmitElement getMark() {
         return mark;
@@ -92,6 +95,33 @@ public   class GridDataTransfer{
 
     public void setColumnWrappers(ColumnWrapper... columnWrappers) {
         this.columnWrappers = columnWrappers;
+    }
+
+    public void setColumn(ColumnWrapper columnWrapper) {
+        if (this.columnWrappers == null) {
+            this.columnWrappers= new ColumnWrapper[1];
+            this.columnWrappers[0]=columnWrapper;
+            System.out.println(" this.columnWrapper---"+ this.columnWrappers);
+        }else{
+            int length=this.columnWrappers.length;
+            ColumnWrapper clWrappers[]=new ColumnWrapper[length+1];
+
+            int i;
+            for (i = 0; i < length; i++) {
+
+                clWrappers[i]=this.columnWrappers[i];
+
+            }
+
+            clWrappers[i]=columnWrapper;
+
+            this.columnWrappers=clWrappers;
+
+
+
+        }
+
+//        this.columnWrapper[this.columnWrapper.length+1]=  columnWrapper;
     }
 
     public Class getDomainClass() {

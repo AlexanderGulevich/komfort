@@ -55,19 +55,26 @@ public class TableFabric {
 
 
 //создает связаные таблицы
-    public TableWrapper observedTable(TableWrapper observer, AnchorPane panel, double width,
+    public TableWrapper observedTable(TableWrapper observer, AnchorPane panel, double width, Coordinate coordinate,
                                       DataMapper dataMapper,
                                       ColumnWrapper...columnWrappers){
 
         return AppNode.NodeBuilder.create()
                 .setId(CSSID.TABLE)
+                .setParent(panel)
+                .setCoordinate(coordinate)
                 .setEditCreater(()-> {return editFabric.createDefaultEditCommit();})
-                .createTableViewWrapper().setTablesWidthProperty(width, panel.widthProperty())
+                .createTableViewWrapper()
+                .setTablesWidthProperty(width, panel.widthProperty())
                 .setDataMapper(dataMapper)
                 .setEditable(true)
                 .setColums(columnWrappers)
                 .setBoundTable(observer)
                 .refresh();
+
+
+
+
 
 
     }

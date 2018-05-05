@@ -1,13 +1,15 @@
 package basisFx.domainModel.targets;
 
 import basisFx.appCore.controls.KindOfColumn;
+import basisFx.appCore.controls.TablesButtonKind;
 import basisFx.appCore.elements.TableWrapper;
+import basisFx.appCore.grid.GridColWidth;
+import basisFx.appCore.grid.GridTablesBuilder;
+import basisFx.appCore.grid.KindOfGridCol;
 import basisFx.appCore.panels.Target;
 import basisFx.appCore.utils.Coordinate;
 import basisFx.domainModel.domaine.Currency;
 import basisFx.domainModel.domaine.ExchangeRates;
-import basisFx.appCore.settings.FontsStore;
-import javafx.geometry.Pos;
 import javafx.scene.layout.AnchorPane;
 
 import java.time.LocalDate;
@@ -22,55 +24,39 @@ public class ExchangeRatesPanel extends Target{
     @Override
     protected void createElement() {
 
-        rateSide=innerPanelsFabric.createInnerPanels(panel,0.53,new Coordinate(0d,0d,0d,null));
+        GridTablesBuilder observed=new GridTablesBuilder();
+        observed.setTitle("Список валют");
+        observed.setTablesButtonKind(TablesButtonKind.Bottom_right);
+        observed.setDomainClass(Currency.class);
+        observed.setDataMapper(dataMapper.currencyDataMapper());
+        observed.setColumn( columnFabric.stringColumn(KindOfColumn.STRING,"Наименование","name",1d,true,
+                (obj,val)->((Currency)obj).setName((String)val))  );
+        gridFabric.singleAnchorGridTable(observed);
 
-        textFabric.createLabel("Курсы валют", FontsStore.ROBOTO_LIGHT,  Pos.BASELINE_CENTER,25d,
-                rateSide, new Coordinate(10d,0d,null,0d));
 
-        rateTable =tableFabric.table(
-                panel,0.53d,new Coordinate(50d, 0d, 70d, null),
-                dataMapper.exchangeRatesDataMapper(),
-                columnFabric.stringColumn(KindOfColumn.DOUBLE,"Курсы","exchangeRate",0.3d,true,
-                        (obj,val)->{((ExchangeRates)obj).setExchangeRate( (String ) val);}
-                ),
-                columnFabric.dateColumn(KindOfColumn.DATE,"Дата начала действия ","startingDate",0.7d,true,
-                        (obj, val)->{((ExchangeRates)obj).setStartingDate((LocalDate) val); }
-                )
+
+        GridTablesBuilder observer=new GridTablesBuilder();
+        observer.setTitle("Курсы валют");
+        observer.setTablesButtonKind(TablesButtonKind.Bottom_right);
+        observer.setDomainClass(ExchangeRates.class);
+        observer.setDataMapper(dataMapper.exchangeRatesDataMapper());
+        observer.setColumn(columnFabric.stringColumn(KindOfColumn.DOUBLE,"Курсы","exchangeRate",0.3d,true,
+                        (obj,val)->{((ExchangeRates)obj).setExchangeRate( (String ) val);}    ));
+        observer.setColumn( columnFabric.dateColumn(KindOfColumn.DATE,"Дата начала действия ","startingDate",0.7d,true,
+                (obj, val)->{((ExchangeRates)obj).setStartingDate((LocalDate) val); }  )  );
+        gridFabric.singleAnchorGridTable(observer);
+
+
+
+
+        gridFabric.boundTables(
+                observed,
+                observer,
+                new GridColWidth(KindOfGridCol.percent,60d),
+                new GridColWidth(KindOfGridCol.percent,40d),
+                new Coordinate(10d,10d,10d,10d),
+                panel
         );
-
-        buttonFactory.addRowButton(
-                rateSide,new Coordinate(null,0d, 10d, null), rateTable,ExchangeRates.class);
-        buttonFactory.deleteRowButton(
-                rateSide,new Coordinate(null,180d, 10d, null), rateTable);
-
-////////////////////////////////////////////////////////
-
-        currencySide=innerPanelsFabric.createInnerPanels(panel,0.45,new Coordinate(0d,null,0d,0d));
-
-        textFabric.createLabel("Список валют ", FontsStore.ROBOTO_LIGHT,  Pos.BASELINE_CENTER,25d,
-                currencySide, new Coordinate(10d,0d,null,0d));
-
-
-        currencyTable =tableFabric.observedTable(
-                rateTable, panel,
-                0.45d, new Coordinate(50d, null, 70d, 0d),
-                dataMapper.currencyDataMapper(),
-
-                columnFabric.stringColumn(KindOfColumn.STRING,"Наименование","name",1d,true,
-                        (obj,val)->((Currency)obj).setName((String)val))
-        );
-
-        buttonFactory.addRowButton(
-                currencySide,new Coordinate(null,0d, 10d, null), currencyTable,Currency.class);
-        buttonFactory.deleteRowButton(
-                currencySide,new Coordinate(null,180d, 10d, null), currencyTable);
-
-
-////////////////////////////////////////////////////
-
-
-
-
 
 
 

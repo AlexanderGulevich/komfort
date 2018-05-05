@@ -1,9 +1,8 @@
-package basisFx.appCore.scretchedGrid;
+package basisFx.appCore.grid;
 
 import basisFx.appCore.controls.ScretchedTableGrid;
 import basisFx.appCore.elements.AppNode;
 import basisFx.appCore.elements.LabelWrapper;
-import basisFx.appCore.elements.TableWrapper;
 import basisFx.appCore.interfaces.MaximazingObserver;
 import basisFx.appCore.obseverved.MaximazingManager;
 import basisFx.appCore.settings.CSSID;
@@ -13,13 +12,10 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.geometry.VPos;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 
-import javax.swing.text.TableView;
 
-
-public class SingleTableGridScetch extends ScretchedTableGrid implements MaximazingObserver {
+public class SingleTableGrid extends ScretchedTableGrid implements MaximazingObserver {
     
     private Insets insets=new Insets(3,3,3,3);
     private LabelWrapper label;
@@ -36,14 +32,31 @@ public class SingleTableGridScetch extends ScretchedTableGrid implements Maximaz
 
          label = textFabric.createLabel(title, FontsStore.ROBOTO_LIGHT, Pos.BASELINE_LEFT, 25d);
 
-         tableWrapper= AppNode.NodeBuilder.create()
-                .setId(CSSID.TABLE)
-                .setEditCreater(()-> {return editFabric.createDefaultEditCommit();})
-                .createTableViewWrapper()
-                .setDataMapper(dataMapper)
-                .setEditable(true)
-                .setColums(columnWrappers)
-                .refresh();
+
+         if (observers.isEmpty()){
+             tableWrapper= AppNode.NodeBuilder.create()
+                     .setId(CSSID.TABLE)
+                     .setEditCreater(()-> {return editFabric.createDefaultEditCommit();})
+                     .createTableViewWrapper()
+                     .setDataMapper(dataMapper)
+                     .setEditable(true)
+                     .setColums(columnWrappers)
+                     .refresh();
+
+         }
+         else{
+            tableWrapper= AppNode.NodeBuilder.create()
+                    .setId(CSSID.TABLE)
+                    .setEditCreater(()-> {return editFabric.createDefaultEditCommit();})
+                    .createTableViewWrapper()
+                    .setDataMapper(dataMapper)
+                    .setEditable(true)
+                    .setBoundTable(observers.get(0))
+                    .setColums(columnWrappers)
+                    .refresh();
+
+        }
+
 
          tableView= tableWrapper.getTable();
 
@@ -90,13 +103,13 @@ public class SingleTableGridScetch extends ScretchedTableGrid implements Maximaz
 
 
 
-        switchPoliticy();
+        organize();
 
 
     }
 
 
-    private void switchPoliticy(){
+    private void organize(){
 
         switch (tablesButtonKind){
 
@@ -226,10 +239,6 @@ public class SingleTableGridScetch extends ScretchedTableGrid implements Maximaz
    // по сути отпала необходимость использования данной конструкции так как выше добавил listener к height poroperty
 
         System.out.println("ОКНО УВЕЛИЧЕНО");
-
-
-
-
 
     }
 }

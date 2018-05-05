@@ -152,6 +152,8 @@ public abstract class AppNode  {
     public void bond(AppNode n) {
         
          if(hasBond!=false){
+
+
              
              if(this.parentAnchor!=null){
              
@@ -283,6 +285,10 @@ public abstract class AppNode  {
        
         public NodeBuilder setCoordinate(Coordinate c) {
             this.coordinate=c;
+//            if (c.getParentAnchorPane() != null) {
+//                this.parentAnchor=c.getParentAnchorPane();
+//            }
+
 
             return this;
     }

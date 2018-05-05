@@ -25,6 +25,7 @@
 }
 
 #PANELS_BUTTON{
+-fx-padding: 4 5;
 
     -fx-background-color:white;
     -fx-background-radius: 0;
@@ -33,7 +34,9 @@
     /*-fx-effect: dropshadow(gaussian ,#555555 , 4, 0, 0.5, 0.5);*/
 
      -fx-effect: dropshadow(gaussian ,#555555 , 2, 0, 0.5, 0.5);
-     -fx-text-fill:#003641;
+     /* -fx-text-fill:#003641; */
+     -fx-text-fill:#355d6e;
+     -fx-text-fill:#61757d;
     /*-fx-font-family: "Roboto Light";*/
     /*-fx-font-size: 17;*/
 

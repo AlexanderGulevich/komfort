@@ -7,7 +7,6 @@ import basisFx.appCore.elements.TableWrapper;
 import basisFx.appCore.utils.Coordinate;
 import basisFx.appCore.settings.CSSID;
 import basisFx.appCore.settings.FontsStore;
-import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -25,20 +24,27 @@ public class ButtonFactory {
 
     protected EventFactory eventFactory=EventFactory.getInstance();
 
+
+    private double littleButWidth=30d;
+    private double littleButHeight=20d;
+    private double littleFontHeight=20d;
+
+
     public Button littleRowAddButton(TableWrapper tableWrapper, AnchorPane panel, Class c, Coordinate coordinate ){
 
-        return (Button)AppNode.NodeBuilder.create()
+
+        Button button = (Button) AppNode.NodeBuilder.create()
                 .setId(CSSID.PANELS_BUTTON)
                 .setCoordinate(coordinate)
                 .setParent(panel)
-                .setText("+").setFont(FontsStore.ROBOTO_BOLD, 15)
-                .setWidth(30d).setHeight(20d)
+                .setText("\uF216").setFont(FontsStore.IONICONS, littleFontHeight)
+                .setWidth(littleButWidth).setHeight(littleButHeight)
                 .setEvent(eventFactory.
                         rowAdd(
                                 tableWrapper,
-                                (l)->{
+                                (l) -> {
                                     try {
-                                        l.add( c.newInstance());
+                                        l.add(c.newInstance());
                                     } catch (InstantiationException e) {
                                         e.printStackTrace();
                                     } catch (IllegalAccessException e) {
@@ -46,14 +52,19 @@ public class ButtonFactory {
                                     }
                                 }))
                 .createNButton().getElement();
+
+
+
+        return button;
+
 
     }
     public Button littleRowAddButton(TableWrapper tableWrapper,  Class c){
 
-        return (Button)AppNode.NodeBuilder.create()
+        Button button = (Button)AppNode.NodeBuilder.create()
                 .setId(CSSID.PANELS_BUTTON)
-                .setText("+").setFont(FontsStore.ROBOTO_BOLD, 15)
-                .setWidth(30d).setHeight(20d)
+                .setText("\uF216").setFont(FontsStore.IONICONS, littleFontHeight)
+                .setWidth(littleButWidth).setHeight(littleButHeight)
                 .setEvent(eventFactory.
                         rowAdd(
                                 tableWrapper,
@@ -68,29 +79,38 @@ public class ButtonFactory {
                                 }))
                 .createNButton().getElement();
 
+
+        return button;
+
     }
     public Button littleRowDeleteButton(TableWrapper tableWrapper, AnchorPane panel,  Coordinate coordinate ){
 
-        return (Button)AppNode.NodeBuilder.create()
+        Button button = (Button)AppNode.NodeBuilder.create()
                 .setId(CSSID.PANELS_BUTTON)
                 .setCoordinate(coordinate)
                 .setParent(panel)
-                .setText("-").setFont(FontsStore.ROBOTO_BOLD, 15)
-                .setWidth(30d).setHeight(20d)
+                .setText("\uF128").setFont(FontsStore.IONICONS, littleFontHeight)
+                .setWidth(littleButWidth).setHeight(littleButHeight)
                 .setEvent(eventFactory.rowDeleteFromTable(tableWrapper))
                 .createNButton().getElement();
+
+
+        return button;
 
 
 
     }
     public Button littleRowDeleteButton(TableWrapper tableWrapper ){
 
-        return (Button)AppNode.NodeBuilder.create()
+        Button button = (Button)AppNode.NodeBuilder.create()
                 .setId(CSSID.PANELS_BUTTON)
-                .setText("-").setFont(FontsStore.ROBOTO_BOLD, 15)
-                .setWidth(30d).setHeight(20d)
+                .setText("\uF128").setFont(FontsStore.IONICONS, littleFontHeight)
+                .setWidth(littleButWidth).setHeight(littleButHeight)
                 .setEvent(eventFactory.rowDeleteFromTable(tableWrapper))
                 .createNButton().getElement();
+
+
+        return button;
 
 
 

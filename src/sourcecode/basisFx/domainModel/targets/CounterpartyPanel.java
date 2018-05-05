@@ -1,7 +1,7 @@
 package basisFx.domainModel.targets;
 
 import basisFx.appCore.controls.*;
-import basisFx.appCore.dataTransfers.GridDataTransfer;
+import basisFx.appCore.grid.GridTablesBuilder;
 import basisFx.appCore.elements.TableWrapper;
 import basisFx.appCore.panels.Target;
 import basisFx.appCore.utils.Coordinate;
@@ -20,17 +20,18 @@ public class CounterpartyPanel extends Target{
     @SuppressWarnings("unchecked")
     public void createElement() {
 
-        GridDataTransfer tr=new GridDataTransfer();
+        GridTablesBuilder tr=new GridTablesBuilder();
         tr.setTitle("Наименование yаименование  name name");
         tr.setTablesButtonKind(TablesButtonKind.Bottom_right);
         tr.setDomainClass(Currency.class);
         tr.setDataMapper(dataMapper.currencyDataMapper());
         tr.setCoordinate(new Coordinate(10d, 10d, 10d, 10d));
         tr.setPanel(panel);
-        tr.setColumnWrappers(
-                columnFabric.stringColumn(KindOfColumn.STRING, "Наименование", "name", 1d, true,
-                        (obj, val) -> ((Currency) obj).setName((String) val))
-        );
+        tr.setColumn(columnFabric.stringColumn(KindOfColumn.STRING, "Наименование", "name", 0.5d, true,
+                        (obj, val) -> ((Currency) obj).setName((String) val))   );
+        tr.setColumn(columnFabric.stringColumn(KindOfColumn.STRING, "222222", "name", 0.5d, true,
+                (obj, val) -> ((Currency) obj).setName((String) val))   );
+
 
 
 
@@ -50,10 +51,10 @@ public class CounterpartyPanel extends Target{
 //
 //        tableWrapper = tableFabric.table(panel,0.8d,new Coordinate(50d, null, 0d, 0d),
 //                dataMapper.counterpartyDataMapper(),
-//                        columnFabric.stringColumn(KindOfColumn.STRING,
+//                        columnFabric.stringColumn(KindOfGridCol.STRING,
 //                                "Наименование контрагента","name",0.5,true,
 //                                (obj,val)->((basisFx.domainModel.domaine.Counterparty)obj).setName((String)val)),
-//                        columnFabric.comboBoxColumn(KindOfColumn.COMBOBOX,
+//                        columnFabric.comboBoxColumn(KindOfGridCol.COMBOBOX,
 //                                "Валюта","currency",0.2,true,
 //                                (obj,val)->{((Counterparty)obj).setCurrency((Currency) val);},
 //                                () -> dataMapper.counterpartyDataMapper().getCurrencyList()

@@ -1,4 +1,4 @@
-#popupContentPanel{
+1#popupContentPanel{
   -fx-border-width: 0 0 0.2 0 ;
     -fx-border-color: #a79090;
         -fx-background-color: #ffffff;
@@ -36,5 +36,5 @@
 
 
 
-  
+
 }

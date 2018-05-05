@@ -10,6 +10,8 @@ import javafx.scene.control.TableView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 
+import java.util.ArrayList;
+
 
 public abstract class ScretchedTableGrid {
 
@@ -31,6 +33,7 @@ public abstract class ScretchedTableGrid {
     protected TableWrapper tableWrapper;
     protected TableView<DomainObject> tableView;
     protected GridPane gridPane;
+    protected ArrayList<TableWrapper> observers=new ArrayList();
 
     public GridPane getGridPane(){
 
@@ -39,6 +42,12 @@ public abstract class ScretchedTableGrid {
     }
 
     public abstract void init();
+
+    public void setObserver(TableWrapper observer){
+        observer.markAsObserver(true);
+        observers.add(observer);
+
+    }
 
     public void setTitle(String title) {
         this.title = title;
@@ -80,5 +89,15 @@ public abstract class ScretchedTableGrid {
 
     }
 
+    public ArrayList<TableWrapper> getObservers() {
+        return observers;
+    }
 
+    public TableView<DomainObject> getTableView() {
+        return tableView;
+    }
+
+    public TableWrapper getTableWrapper() {
+        return tableWrapper;
+    }
 }
