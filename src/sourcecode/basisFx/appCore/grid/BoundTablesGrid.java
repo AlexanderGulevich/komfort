@@ -14,18 +14,18 @@ public class BoundTablesGrid    {
     private GridPaneWrapper gridPaneWrapper;
     private GridPane gridPane;
     private Insets insets=new Insets(3,3,3,3);
-    private SingleTableGrid observerGrid;
-    private SingleTableGrid observedGrid;
+    private SingleGridTable observerGrid;
+    private SingleGridTable observedGrid;
     private GridColWidth colWh_1;
     private GridColWidth colWh_2;
     private Coordinate coordinate;
     private AnchorPane parent;
 
-    public void setObserverGrid(SingleTableGrid observerGrid) {
+    public void setObserverGrid(SingleGridTable observerGrid) {
         this.observerGrid = observerGrid;
     }
 
-    public void setObservedGrid(SingleTableGrid observedGrid) {
+    public void setObservedGrid(SingleGridTable observedGrid) {
         this.observedGrid = observedGrid;
     }
 

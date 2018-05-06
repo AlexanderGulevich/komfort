@@ -24,6 +24,12 @@
     -fx-color:yellowgreen;
 }
 
+#Little_PANELS_BUTTON{
+
+   -fx-text-fill:#61757d; 
+
+}
+
 #PANELS_BUTTON{
 -fx-padding: 4 5;
 
@@ -34,9 +40,9 @@
     /*-fx-effect: dropshadow(gaussian ,#555555 , 4, 0, 0.5, 0.5);*/
 
      -fx-effect: dropshadow(gaussian ,#555555 , 2, 0, 0.5, 0.5);
-     /* -fx-text-fill:#003641; */
-     -fx-text-fill:#355d6e;
-     -fx-text-fill:#61757d;
+     -fx-text-fill:#003641;
+
+
     /*-fx-font-family: "Roboto Light";*/
     /*-fx-font-size: 17;*/
 

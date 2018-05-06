@@ -1,6 +1,6 @@
 package basisFx.appCore.fabrics;
 
-import basisFx.appCore.SubmitElement;
+import basisFx.appCore.KindOfSubmitElement;
 import basisFx.appCore.Submitted;
 import basisFx.appCore.elements.AppNode;
 import basisFx.appCore.elements.TableWrapper;
@@ -34,7 +34,7 @@ public class ButtonFactory {
 
 
         Button button = (Button) AppNode.NodeBuilder.create()
-                .setId(CSSID.PANELS_BUTTON)
+                .setId(CSSID.Little_PANELS_BUTTON)
                 .setCoordinate(coordinate)
                 .setParent(panel)
                 .setText("\uF216").setFont(FontsStore.IONICONS, littleFontHeight)
@@ -62,7 +62,7 @@ public class ButtonFactory {
     public Button littleRowAddButton(TableWrapper tableWrapper,  Class c){
 
         Button button = (Button)AppNode.NodeBuilder.create()
-                .setId(CSSID.PANELS_BUTTON)
+                .setId(CSSID.Little_PANELS_BUTTON)
                 .setText("\uF216").setFont(FontsStore.IONICONS, littleFontHeight)
                 .setWidth(littleButWidth).setHeight(littleButHeight)
                 .setEvent(eventFactory.
@@ -86,7 +86,7 @@ public class ButtonFactory {
     public Button littleRowDeleteButton(TableWrapper tableWrapper, AnchorPane panel,  Coordinate coordinate ){
 
         Button button = (Button)AppNode.NodeBuilder.create()
-                .setId(CSSID.PANELS_BUTTON)
+                .setId(CSSID.Little_PANELS_BUTTON)
                 .setCoordinate(coordinate)
                 .setParent(panel)
                 .setText("\uF128").setFont(FontsStore.IONICONS, littleFontHeight)
@@ -103,7 +103,7 @@ public class ButtonFactory {
     public Button littleRowDeleteButton(TableWrapper tableWrapper ){
 
         Button button = (Button)AppNode.NodeBuilder.create()
-                .setId(CSSID.PANELS_BUTTON)
+                .setId(CSSID.Little_PANELS_BUTTON)
                 .setText("\uF128").setFont(FontsStore.IONICONS, littleFontHeight)
                 .setWidth(littleButWidth).setHeight(littleButHeight)
                 .setEvent(eventFactory.rowDeleteFromTable(tableWrapper))
@@ -187,15 +187,27 @@ public class ButtonFactory {
 
 
     }
-    public Button submitButton(SubmitElement mark, AnchorPane panel, Coordinate coordinate, Submitted...submitted){
+
+    public Button submitButton(KindOfSubmitElement mark, AnchorPane panel, Coordinate coordinate, Submitted...submitted){
 
         return (Button)AppNode.NodeBuilder.create()
                 .setId(CSSID.PANELS_BUTTON)
-                .setMark(mark)
+                .setKindOfSubmitElement(mark)
                 .setParent(panel)
                 .setCoordinate(coordinate)
                 .setText("ОТПРАВИТЬ").setFont(FontsStore.ROBOTO_LIGHT, 15)
-                .setWidth(170d).setHeight(20d)
+                .setWidth(130d).setHeight(20d)
+                .createNButton().getElement();
+
+
+    }
+    public Button submitButton(KindOfSubmitElement mark, Submitted...submitted){
+
+        return (Button)AppNode.NodeBuilder.create()
+                .setId(CSSID.PANELS_BUTTON)
+                .setKindOfSubmitElement(mark)
+                .setText("ОТПРАВИТЬ").setFont(FontsStore.ROBOTO_LIGHT, 15)
+                .setWidth(130d).setHeight(20d)
                 .createNButton().getElement();
 
 

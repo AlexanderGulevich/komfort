@@ -8,7 +8,7 @@ import javafx.collections.ObservableList;
 import java.time.LocalDate;
 
 public class DataTransferSubmitObject {
-    SubmitElement mark;
+    KindOfSubmitElement mark;
 
     private ObservableList<DomainObject> list;
     private LocalDate localDate;
@@ -50,7 +50,7 @@ public class DataTransferSubmitObject {
     }
 
 
-    public SubmitElement getMark() {
+    public KindOfSubmitElement getMark() {
         return mark;
     }
 

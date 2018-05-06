@@ -1,6 +1,6 @@
 package basisFx.appCore.fabrics;
 
-import basisFx.appCore.SubmitElement;
+import basisFx.appCore.KindOfSubmitElement;
 import basisFx.appCore.controls.ColumnWrapper;
 import basisFx.appCore.dataSource.DataMapper;
 import basisFx.appCore.elements.AppNode;
@@ -34,12 +34,12 @@ public class TableFabric {
     }
 
 
-    public TableWrapper submitTable(SubmitElement mark, AnchorPane panel, double width, Coordinate coordinate,
+    public TableWrapper submitTable(KindOfSubmitElement mark, AnchorPane panel, double width, Coordinate coordinate,
                                     DataMapper dataMapper,
                                     ColumnWrapper...columnWrappers){
 
         return AppNode.NodeBuilder.create()
-                .setId(CSSID.TABLE).setMark(mark)
+                .setId(CSSID.TABLE).setKindOfSubmitElement(mark)
 //                .setEditPoliticy(editFabric.createMultipleSubmitEditCommit())
                 .setEditCreater(()-> {return editFabric.createMultipleSubmitEditCommit();})
                 .setParent(panel).setCoordinate(coordinate)

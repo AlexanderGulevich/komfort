@@ -1,7 +1,7 @@
 package basisFx.appCore.elements;
 
 
-import basisFx.appCore.SubmitElement;
+import basisFx.appCore.KindOfSubmitElement;
 import basisFx.appCore.interfaces.ValueAddToDomain;
 import basisFx.appCore.controls.Edit;
 import basisFx.appCore.interfaces.EditCreater;
@@ -72,7 +72,7 @@ public abstract class AppNode  {
     protected ValueAddToDomain valueAddToObservers;
     protected Edit editPoliticy;
     protected EditCreater editCreater;
-    protected SubmitElement mark;
+    protected KindOfSubmitElement mark;
     
     public void init (NodeBuilder builder){
         this.coordinate=builder.coordinate;
@@ -244,7 +244,7 @@ public abstract class AppNode  {
         protected ValueAddToDomain valueAddToDomain;
         protected Edit editPoliticy;
         protected EditCreater editCreater;
-        protected SubmitElement mark;
+        protected KindOfSubmitElement mark;
 
         public static NodeBuilder create(){
             return new NodeBuilder();
@@ -427,7 +427,7 @@ public abstract class AppNode  {
             }
 
 
-            public NodeBuilder setMark(SubmitElement mark) {
+            public NodeBuilder setKindOfSubmitElement(KindOfSubmitElement mark) {
                 this.mark=mark;
                 return this;
 

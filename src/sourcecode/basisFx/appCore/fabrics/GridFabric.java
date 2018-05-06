@@ -1,11 +1,7 @@
 package basisFx.appCore.fabrics;
 
-import basisFx.appCore.controls.ScretchedTableGrid;
-import basisFx.appCore.grid.BoundTablesGrid;
-import basisFx.appCore.grid.GridColWidth;
-import basisFx.appCore.grid.GridTablesBuilder;
-import basisFx.appCore.elements.TableWrapper;
-import basisFx.appCore.grid.SingleTableGrid;
+import basisFx.appCore.controls.GridTable;
+import basisFx.appCore.grid.*;
 import basisFx.appCore.utils.Coordinate;
 import javafx.scene.layout.AnchorPane;
 
@@ -13,9 +9,9 @@ import javafx.scene.layout.AnchorPane;
 public class GridFabric {
 
 
-    public ScretchedTableGrid singleAnchorGridTable(GridTablesBuilder b){
+    public GridTable singleGridTable(GridTablesBuilder b){
 
-        SingleTableGrid gr = new SingleTableGrid();
+        SingleGridTable gr = new SingleGridTable();
         gr.setTitle(b.getTitle());
         gr.setParentAchorPane(b.getPanel());
         gr.setTablesButtonKind(b.getTablesButtonKind());
@@ -23,16 +19,17 @@ public class GridFabric {
         gr.setDataMapper(b.getDataMapper());
         gr.setDomainClass(b.getClass());
         gr.setColumnWrappers(b.getColumnWrappers());
+        gr.setKindOfTable(KindOfTable.SIMPLE);
+
 
         gr.init();
         return gr;
     }
 
 
-    //таблица с gridpane, которую можно добавлять в gridpane
-    public ScretchedTableGrid singleGridTable(GridTablesBuilder b) {
+    public GridTable submitGridTable(GridTablesBuilder b){
 
-        SingleTableGrid gr = new SingleTableGrid();
+        SingleGridTable gr = new SingleGridTable();
         gr.setTitle(b.getTitle());
         gr.setParentAchorPane(b.getPanel());
         gr.setTablesButtonKind(b.getTablesButtonKind());
@@ -40,17 +37,17 @@ public class GridFabric {
         gr.setDataMapper(b.getDataMapper());
         gr.setDomainClass(b.getClass());
         gr.setColumnWrappers(b.getColumnWrappers());
-        gr.init();
+        gr.setKindOfTable(KindOfTable.SUBMIT);
 
+        gr.init();
         return gr;
     }
 
 
+    public BoundTablesGrid boundTables(GridTablesBuilder observed, GridTablesBuilder observer, GridColWidth w1, GridColWidth w2, Coordinate c, AnchorPane p){
 
-     public TableWrapper boundTables(GridTablesBuilder observed, GridTablesBuilder observer, GridColWidth w1, GridColWidth w2, Coordinate c, AnchorPane p){
 
-
-         SingleTableGrid gr_observer = new SingleTableGrid();
+         SingleGridTable gr_observer = new SingleGridTable();
 
          gr_observer.setTitle(observer.getTitle());
          gr_observer.setParentAchorPane(observer.getPanel());
@@ -62,7 +59,7 @@ public class GridFabric {
          gr_observer.init();
 
 
-         SingleTableGrid gr_observed = new SingleTableGrid();
+         SingleGridTable gr_observed = new SingleGridTable();
 
          gr_observed.setTitle(observed.getTitle());
          gr_observed.setParentAchorPane(observed.getPanel());
@@ -72,6 +69,7 @@ public class GridFabric {
          gr_observed.setDomainClass(observed.getClass());
          gr_observed.setColumnWrappers(observed.getColumnWrappers());
          gr_observed.setObserver(gr_observer.getTableWrapper());
+         gr_observed.setKindOfTable(KindOfTable.OBSERVED);
          gr_observed.init();
 
 
@@ -92,7 +90,7 @@ public class GridFabric {
 
 
 
-         return null;
+         return boundTablesGrid;
         }
 
 

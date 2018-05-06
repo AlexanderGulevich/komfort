@@ -1,6 +1,6 @@
 package basisFx.appCore;
 
-public enum SubmitElement {
+public enum KindOfSubmitElement {
 
 
     SubmitDatePicker("SubmitDatePicker"),
@@ -11,7 +11,7 @@ public enum SubmitElement {
 
     private final String name;
 
-    private SubmitElement(String name) {
+    private KindOfSubmitElement(String name) {
         this.name = name;
     }
 

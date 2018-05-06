@@ -6,11 +6,8 @@
 package basisFx.appCore.panels;
 
 import basisFx.appCore.*;
-import basisFx.appCore.controls.TablesButtonKind;
-import basisFx.appCore.dataSource.DataMapper;
 import basisFx.appCore.elements.AppNode;
 import basisFx.appCore.elements.GridPaneWrapper;
-import basisFx.appCore.elements.TableWrapper;
 import basisFx.appCore.fabrics.*;
 import basisFx.appCore.utils.Coordinate;
 import basisFx.domainModel.DataMapperFabric;

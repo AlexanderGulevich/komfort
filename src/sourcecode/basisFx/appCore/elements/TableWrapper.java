@@ -7,7 +7,7 @@ package basisFx.appCore.elements;
 
 
 import basisFx.appCore.DataTransferSubmitObject;
-import basisFx.appCore.SubmitElement;
+import basisFx.appCore.KindOfSubmitElement;
 import basisFx.appCore.Submitted;
 import basisFx.appCore.interfaces.Refreshable;
 import basisFx.appCore.interfaces.SubmittingDomains;
@@ -65,7 +65,7 @@ public  class TableWrapper<T> extends AppNode implements Refreshable, Submitting
     }
 
 
-    public SubmitElement getMark (){
+    public KindOfSubmitElement getMark (){
         return  this.mark;
     }
 

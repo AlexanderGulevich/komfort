@@ -1,8 +1,7 @@
 package basisFx.appCore.grid;
 
-import basisFx.appCore.SubmitElement;
+import basisFx.appCore.KindOfSubmitElement;
 import basisFx.appCore.controls.ColumnWrapper;
-import basisFx.appCore.controls.TablesButtonKind;
 import basisFx.appCore.dataSource.DataMapper;
 import basisFx.appCore.elements.TableWrapper;
 import basisFx.appCore.utils.Coordinate;
@@ -10,7 +9,7 @@ import javafx.scene.layout.AnchorPane;
 
 public   class GridTablesBuilder {
 
-    private SubmitElement mark;
+    private KindOfSubmitElement mark;
     private AnchorPane panel;
     private double width;
     private Coordinate coordinate;
@@ -20,15 +19,21 @@ public   class GridTablesBuilder {
     private TablesButtonKind tablesButtonKind;
     private Class domainClass;
     private ColumnWrapper[] columnWrappers;
+    private KindOfTable kindOfTable;
 
+    public KindOfTable getKindOfTable() {
+        return kindOfTable;
+    }
 
+    public void setKindOfTable(KindOfTable kindOfTable) {
+        this.kindOfTable = kindOfTable;
+    }
 
-
-    public SubmitElement getMark() {
+    public KindOfSubmitElement getMark() {
         return mark;
     }
 
-    public void setMark(SubmitElement mark) {
+    public void setMark(KindOfSubmitElement mark) {
         this.mark = mark;
     }
 

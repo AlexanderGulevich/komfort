@@ -17,6 +17,7 @@ public enum CSSID {
     WindowButtonsPanel("WindowButtonsPanel"),
 
     PANELS_BUTTON("PANELS_BUTTON"),
+    Little_PANELS_BUTTON("Little_PANELS_BUTTON"),
     TARGET_PANEL("TARGET_PANEL"),
     MAIN_MENU("MAIN_MENU"),
     TRANSPARENT_ROOT("TRANSPARENT_ROOT"),

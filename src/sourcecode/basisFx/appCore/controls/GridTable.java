@@ -1,10 +1,13 @@
 package basisFx.appCore.controls;
 
+import basisFx.appCore.KindOfSubmitElement;
 import basisFx.appCore.dataSource.DataMapper;
 import basisFx.appCore.domainScetch.DomainObject;
 import basisFx.appCore.elements.GridPaneWrapper;
 import basisFx.appCore.elements.TableWrapper;
 import basisFx.appCore.fabrics.*;
+import basisFx.appCore.grid.KindOfTable;
+import basisFx.appCore.grid.TablesButtonKind;
 import basisFx.appCore.utils.Coordinate;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.AnchorPane;
@@ -13,7 +16,7 @@ import javafx.scene.layout.GridPane;
 import java.util.ArrayList;
 
 
-public abstract class ScretchedTableGrid {
+public abstract class GridTable {
 
     protected ColumnFabric columnFabric=new ColumnFabric();
     protected EditFabric editFabric=new EditFabric();
@@ -34,6 +37,17 @@ public abstract class ScretchedTableGrid {
     protected TableView<DomainObject> tableView;
     protected GridPane gridPane;
     protected ArrayList<TableWrapper> observers=new ArrayList();
+    protected KindOfTable kindOfTable;
+    protected KindOfSubmitElement kindOfSubmitElement;
+
+    public void setKindOfSubmitElement(KindOfSubmitElement kindOfSubmitElement) {
+        this.kindOfSubmitElement = kindOfSubmitElement;
+    }
+
+    public void setKindOfTable(KindOfTable kindOfTable) {
+        this.kindOfTable = kindOfTable;
+    }
+
 
     public GridPane getGridPane(){
 

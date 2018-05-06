@@ -1,7 +1,7 @@
 package basisFx.domainModel.targets;
 
 import basisFx.appCore.controls.KindOfColumn;
-import basisFx.appCore.controls.TablesButtonKind;
+import basisFx.appCore.grid.TablesButtonKind;
 import basisFx.appCore.elements.TableWrapper;
 import basisFx.appCore.grid.GridColWidth;
 import basisFx.appCore.grid.GridTablesBuilder;
@@ -31,8 +31,6 @@ public class ExchangeRatesPanel extends Target{
         observed.setDataMapper(dataMapper.currencyDataMapper());
         observed.setColumn( columnFabric.stringColumn(KindOfColumn.STRING,"Наименование","name",1d,true,
                 (obj,val)->((Currency)obj).setName((String)val))  );
-        gridFabric.singleAnchorGridTable(observed);
-
 
 
         GridTablesBuilder observer=new GridTablesBuilder();
@@ -44,9 +42,6 @@ public class ExchangeRatesPanel extends Target{
                         (obj,val)->{((ExchangeRates)obj).setExchangeRate( (String ) val);}    ));
         observer.setColumn( columnFabric.dateColumn(KindOfColumn.DATE,"Дата начала действия ","startingDate",0.7d,true,
                 (obj, val)->{((ExchangeRates)obj).setStartingDate((LocalDate) val); }  )  );
-        gridFabric.singleAnchorGridTable(observer);
-
-
 
 
         gridFabric.boundTables(

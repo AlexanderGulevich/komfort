@@ -2,7 +2,7 @@ package basisFx.appCore.elements;
 
 
 import basisFx.appCore.DataTransferSubmitObject;
-import basisFx.appCore.SubmitElement;
+import basisFx.appCore.KindOfSubmitElement;
 import basisFx.appCore.Submitted;
 import basisFx.appCore.interfaces.ObservableVidget;
 import basisFx.appCore.domainScetch.DomainObject;
@@ -77,7 +77,7 @@ public class DatePickerWrapper  extends AppNode implements ObservableVidget, Sub
     }
 
     @Override
-    public SubmitElement getMark() {
+    public KindOfSubmitElement getMark() {
         return mark;
     }
 

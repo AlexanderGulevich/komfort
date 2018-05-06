@@ -3,6 +3,7 @@ package basisFx.domainModel.targets;
 import basisFx.appCore.controls.*;
 import basisFx.appCore.grid.GridTablesBuilder;
 import basisFx.appCore.elements.TableWrapper;
+import basisFx.appCore.grid.TablesButtonKind;
 import basisFx.appCore.panels.Target;
 import basisFx.appCore.utils.Coordinate;
 import basisFx.domainModel.domaine.Currency;
@@ -35,13 +36,13 @@ public class CounterpartyPanel extends Target{
 
 
 
-        ScretchedTableGrid scretchedTableGrid = gridFabric.singleAnchorGridTable(tr);
+        GridTable gridTable = gridFabric.singleGridTable(tr);
 
 
 
 
 
-//        scretchedTableGrid.getGridPane().setStyle("-fx-background-color:red");
+//        gridTable.getGridPane().setStyle("-fx-background-color:red");
 
 
 
