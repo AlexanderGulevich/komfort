@@ -67,7 +67,7 @@ public class ProductDataMapper  extends DataMapper{
             }
 
         } catch (SQLException ex) {
-            Logger.getLogger(EquipmentDataMapper.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(EquipmentDM.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }
@@ -135,7 +135,7 @@ public class ProductDataMapper  extends DataMapper{
 
 
             } catch (SQLException ex) {
-                Logger.getLogger(EquipmentDataMapper.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(EquipmentDM.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
 

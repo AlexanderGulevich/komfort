@@ -13,8 +13,8 @@ import basisFx.domainModel.mapper.*;
  */
 public class DataMapperFabric {
 
-    public EquipmentDataMapper equipmentDataMapper(){
-        return EquipmentDataMapper.getInstance();
+    public EquipmentDM equipmentDataMapper(){
+        return EquipmentDM.getInstance();
     }
     public CounterpartyDataMapper counterpartyDataMapper() {
         return new CounterpartyDataMapper();

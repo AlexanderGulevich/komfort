@@ -16,21 +16,11 @@ import javafx.beans.property.SimpleObjectProperty;
  */
 public class Equipment  extends DomainObject {
 
-    private SimpleObjectProperty<String> rodWidth =new SimpleObjectProperty<>(null, "rodWidth", null);
+    public Equipment() {
+        this.tableName="Equipment";
+    }
+
     private SimpleObjectProperty<String> name =new SimpleObjectProperty<>(null, "name", null);
-
-
-    public String getRodWidth() {
-        return rodWidth.get();
-    }
-
-    public SimpleObjectProperty<String> rodWidthProperty() {
-        return rodWidth;
-    }
-
-    public void setRodWidth(String rodWidth) {
-        this.rodWidth.set(rodWidth);
-    }
 
     public String getName() {
         return name.get();

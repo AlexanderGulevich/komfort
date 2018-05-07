@@ -17,7 +17,7 @@ public class GridFabric {
         gr.setTablesButtonKind(b.getTablesButtonKind());
         gr.setCoordinate(b.getCoordinate());
         gr.setDataMapper(b.getDataMapper());
-        gr.setDomainClass(b.getClass());
+        gr.setDomainClass(b.getDomainClass());
         gr.setColumnWrappers(b.getColumnWrappers());
         gr.setKindOfTable(KindOfTable.SIMPLE);
 

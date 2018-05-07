@@ -87,7 +87,7 @@ public class CounterpartyDataMapper extends DataMapper {
             }
 
         } catch (SQLException ex) {
-            Logger.getLogger(EquipmentDataMapper.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(EquipmentDM.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }
@@ -190,7 +190,7 @@ public class CounterpartyDataMapper extends DataMapper {
 
 
             } catch (SQLException ex) {
-                Logger.getLogger(EquipmentDataMapper.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(EquipmentDM.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
 

@@ -68,7 +68,7 @@ public class CurrencyDataMapper extends DataMapper {
             }
 
         } catch (SQLException ex) {
-            Logger.getLogger(EquipmentDataMapper.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(EquipmentDM.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }
@@ -101,7 +101,7 @@ public class CurrencyDataMapper extends DataMapper {
                 pstmt.executeUpdate();
 
             } catch (SQLException ex) {
-                Logger.getLogger(EquipmentDataMapper.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(EquipmentDM.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }
@@ -125,7 +125,7 @@ public class CurrencyDataMapper extends DataMapper {
 
 
             } catch (SQLException ex) {
-                Logger.getLogger(EquipmentDataMapper.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(EquipmentDM.class.getName()).log(Level.SEVERE, null, ex);
             }
 
         }

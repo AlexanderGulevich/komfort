@@ -21,21 +21,21 @@ import javafx.collections.ObservableList;
  *
  * @author Alek
  */
-public class EquipmentDataMapper extends DataMapper {
+public class EquipmentDM extends DataMapper {
     
     private Equipment domainObject;
     
-    private static EquipmentDataMapper instance;
+    private static EquipmentDM instance;
    
-    private EquipmentDataMapper() {}
+    private EquipmentDM() {}
     
-    public static EquipmentDataMapper getInstance(){
+    public static EquipmentDM getInstance(){
      
-        if(EquipmentDataMapper.instance!=null){
-            return EquipmentDataMapper.instance;
+        if(EquipmentDM.instance!=null){
+            return EquipmentDM.instance;
         }else{
-            EquipmentDataMapper.instance=new EquipmentDataMapper();
-            return  EquipmentDataMapper.instance;
+            EquipmentDM.instance=new EquipmentDM();
+            return  EquipmentDM.instance;
         }
         
     }
@@ -51,19 +51,18 @@ public class EquipmentDataMapper extends DataMapper {
 
             try {
                 String expression = "INSERT INTO " + "Equipment"
-                        + "(rodWidth ,"
+                        + "("
                         + "name"
-                        + ") VALUES(?,?)";
+                        + ") VALUES(?)";
 
                 PreparedStatement pstmt = Db.getConnection().prepareStatement(expression);
-                pstmt.setInt(1, Integer.valueOf(domainObject.getRodWidth()));
-                pstmt.setString(2, domainObject.getName());
+                pstmt.setString(1, domainObject.getName());
 
                 pstmt.executeUpdate();
 
 
             } catch (SQLException ex) {
-                Logger.getLogger(EquipmentDataMapper.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(EquipmentDM.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
 
@@ -76,22 +75,20 @@ public class EquipmentDataMapper extends DataMapper {
                 domainObject = (Equipment) d;
 
                 String expression = "UPDATE " + "Equipment"+
-                        " SET  name = ?,"
-                        + "rodWidth=? "
+                        " SET  name = ? "
                         + "WHERE id= ?";
 
 
                 PreparedStatement pstmt = Db.getConnection().prepareStatement(expression);
 
                 pstmt.setString(1, domainObject.getName());
-                pstmt.setInt(2, Integer.valueOf(domainObject.getRodWidth()));
-                pstmt.setInt(3, domainObject.getId());
+                pstmt.setInt(2, domainObject.getId());
 
 
                 pstmt.executeUpdate();
 
             } catch (SQLException ex) {
-                Logger.getLogger(EquipmentDataMapper.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(EquipmentDM.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }
@@ -99,14 +96,13 @@ public class EquipmentDataMapper extends DataMapper {
     @Override
     public boolean isReadyToTransaction(DomainObject d) {
         Equipment equipment= (Equipment) d;
-        if (equipment.getRodWidth()!= null
-                &&equipment.getName()!=null
+        if (equipment.getName()!=null
                 ) {
-            System.out.println("!!!!!!!!!!!!!!EquipmentDataMapper --- объект готов к транзакции");
+            System.out.println("!!!!!!!!!!!!!!EquipmentDM --- объект готов к транзакции");
 
             return true;
         }
-        System.out.println("!!!!!!!!!!!!!!EquipmentDataMapper --- объект НЕ готов к транзакции");
+        System.out.println("!!!!!!!!!!!!!!EquipmentDM --- объект НЕ готов к транзакции");
 
         return false;
     }
@@ -128,7 +124,7 @@ public class EquipmentDataMapper extends DataMapper {
                 Equipment pojo=new Equipment();
                 pojo.setId(rs.getInt("id"));
                 pojo.setName(rs.getString("name"));
-                pojo.setRodWidth(String.valueOf(rs.getInt("rodWidth")));
+
                 
                 //вставляю id в список хранимых в бд
                 this.unitOfWork.getStoredPojoesId().add(rs.getInt("id"));
@@ -140,7 +136,7 @@ public class EquipmentDataMapper extends DataMapper {
             }
             
         } catch (SQLException ex) {
-            Logger.getLogger(EquipmentDataMapper.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(EquipmentDM.class.getName()).log(Level.SEVERE, null, ex);
         }
  
         

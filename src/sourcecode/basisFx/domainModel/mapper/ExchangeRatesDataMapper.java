@@ -3,7 +3,6 @@ package basisFx.domainModel.mapper;
 import basisFx.appCore.dataSource.DataMapper;
 import basisFx.appCore.dataSource.Db;
 import basisFx.appCore.domainScetch.DomainObject;
-import basisFx.appCore.domainScetch.StringValueDomainObject;
 import basisFx.domainModel.domaine.ExchangeRates;
 import javafx.collections.ObservableList;
 
@@ -67,7 +66,7 @@ public class ExchangeRatesDataMapper extends DataMapper{
             }
 
         } catch (SQLException ex) {
-            Logger.getLogger(EquipmentDataMapper.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(EquipmentDM.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }
@@ -126,7 +125,7 @@ public class ExchangeRatesDataMapper extends DataMapper{
 
 
             } catch (SQLException ex) {
-                Logger.getLogger(EquipmentDataMapper.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(EquipmentDM.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }

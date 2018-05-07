@@ -8,7 +8,6 @@ import basisFx.domainModel.domaine.RatePerHour;
 import javafx.collections.ObservableList;
 
 import java.sql.*;
-import java.time.LocalDate;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -77,7 +76,7 @@ public class RatePerHourDataMapper extends DataMapper{
         }
 
     } catch (SQLException ex) {
-        Logger.getLogger(EquipmentDataMapper.class.getName()).log(Level.SEVERE, null, ex);
+        Logger.getLogger(EquipmentDM.class.getName()).log(Level.SEVERE, null, ex);
     }
 
 
@@ -136,7 +135,7 @@ public class RatePerHourDataMapper extends DataMapper{
 
 
             } catch (SQLException ex) {
-                Logger.getLogger(EquipmentDataMapper.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(EquipmentDM.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }

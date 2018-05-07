@@ -18,7 +18,7 @@ public class App{
 
     public App(Stage primaryStage) throws ClassNotFoundException, SQLException {
         
-        new DbFactory().createDbServer();
+        new DbFactory().createEmbeded();
 
         appStructuraFabric.createLeftSideIconMenuStructura(primaryStage);
         
