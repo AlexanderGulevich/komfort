@@ -64,6 +64,9 @@ public  class TableWrapper<T> extends AppNode implements Refreshable, Submitting
 
     }
 
+    public boolean isObserver() {
+        return isObserver;
+    }
 
     public KindOfSubmitElement getMark (){
         return  this.mark;
@@ -200,6 +203,10 @@ public  class TableWrapper<T> extends AppNode implements Refreshable, Submitting
     public void setClickedDomain(DomainObject clickedDomain) {
         System.out.println("setClickedDomain(DomainObject clickedDomain)");
         this.clickedDomain = clickedDomain;
+    }
+
+    public DomainObject getClickedDomain() {
+        return clickedDomain;
     }
 
     @Override

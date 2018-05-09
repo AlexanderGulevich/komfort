@@ -24,18 +24,18 @@ public class RowAddToTable <T> extends AppEvent{
     private Button but;
     private final ObservableList list;
     protected RowCreater rowCreater;
-    private TableWrapper nTableView;
+    private TableWrapper tableWrapper;
     private   UnitOfWork unitOfWork;
 
 
 
     @SuppressWarnings("unchecked")
-    public RowAddToTable(TableWrapper nTableView, RowCreater rowCreater) {
-        this.nTableView = nTableView;
-        this.table= (TableView<T>) this.nTableView.getElement();
+    public RowAddToTable(TableWrapper tableWrapper, RowCreater rowCreater) {
+        this.tableWrapper = tableWrapper;
+        this.table= (TableView<T>) this.tableWrapper.getElement();
         this.list=this.table.getItems();
         this.rowCreater=rowCreater;
-        this.unitOfWork = this.nTableView.getUnitOfWork();
+        this.unitOfWork = this.tableWrapper.getUnitOfWork();
     }
     
     
@@ -55,53 +55,19 @@ public class RowAddToTable <T> extends AppEvent{
     public void run() {
 
         if(this.unitOfWork.getNewPojoes().isEmpty()){
-            System.out.println("unitOfWork.getNewPojoes().isEmpty()");
+
+            if(tableWrapper.isObserver()&& tableWrapper.getClickedDomain()!=null){
                 rowCreater.createRow(list);
+
+            }
+            if (!tableWrapper.isObserver()){
+                rowCreater.createRow(list);
+            }
+
+
         }
 
 
-            if  (table.getSelectionModel().isEmpty() )  {//если не выбрано ничего
-                System.out.println("table.getSelectionModel().isEmpty()");
-               table.getSelectionModel().getSelectedItem();
-                rowCreater.createRow(list);
-
-            } else {//если какая-то строка выбрана
-
-
-
-//                    TreeTableViewSelectionModel<CategoryPojo> sm = treeTable.getSelectionModel();
-//                    int rowIndex = sm.getSelectedIndex();
-//                    TreeItem<CategoryPojo> selectedItem = sm.getModelItem(rowIndex);
-//
-//                    CategoryPojo domaine=new CategoryPojo("");
-//
-//                    Integer selectedItemLevel=selectedItem.getRate().getLevelId();
-//                    domaine.setLevelId(selectedItemLevel+1);
-//
-//                    item = new TreeItem<>(domaine);
-//
-//                    selectedItem.getChildren().add(item);
-//                    selectedItem.setExpanded(true);
-//
-            }
-//
-//
-//        int newRowIndex = treeTable.getRow(item);
-//        treeTable.scrollTo(newRowIndex);
-//        TreeTableColumn<CategoryPojo, ?> firstCol =treeTable.getColumns().get(0);
-//        treeTable.getSelectionModel().select(item);
-//        treeTable.getFocusModel().focus(newRowIndex);
-//        treeTable.getFocusModel().focus(newRowIndex, firstCol);
-//        treeTable.edit(newRowIndex, firstCol);
-//
-//        treeTable.getSelectionModel().clearSelection();
-//
-
-
-
-
-
-//
     
     }
     
