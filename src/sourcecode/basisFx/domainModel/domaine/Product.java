@@ -5,11 +5,10 @@
  */
 package basisFx.domainModel.domaine;
 
+import basisFx.appCore.domainScetch.BoolComboBox;
+import basisFx.appCore.domainScetch.ComboBoxStringValue;
 import basisFx.appCore.domainScetch.DomainObject;
-import basisFx.appCore.domainScetch.StringValueDomainObject;
 import javafx.beans.property.*;
-
-import java.time.LocalDate;
 
 /**
  *
@@ -18,10 +17,19 @@ import java.time.LocalDate;
 public class Product  extends DomainObject {
 
     private SimpleObjectProperty<String> name =new SimpleObjectProperty<>(this, "name", null);
-    private SimpleObjectProperty<StringValueDomainObject> rod =new SimpleObjectProperty<>(this, "rod", null);
-    private SimpleObjectProperty<String> numberFromRods =new SimpleObjectProperty<>(this, "numberFromRods", null);
+    private SimpleObjectProperty<BoolComboBox> sleeve =new SimpleObjectProperty<>(this, "sleeve", null);
 
+    public BoolComboBox getSleeve() {
+        return sleeve.get();
+    }
 
+    public SimpleObjectProperty<BoolComboBox> sleeveProperty() {
+        return sleeve;
+    }
+
+    public void setSleeve(BoolComboBox sleeve) {
+        this.sleeve.set(sleeve);
+    }
 
     public String getName() {
         return name.get();
@@ -35,29 +43,9 @@ public class Product  extends DomainObject {
         this.name.set(name);
     }
 
-    public StringValueDomainObject getRod() {
-        return rod.get();
-    }
 
-    public SimpleObjectProperty<StringValueDomainObject> rodProperty() {
-        return rod;
-    }
 
-    public void setRod(StringValueDomainObject rod) {
-        this.rod.set(rod);
-    }
 
-    public String getNumberFromRods() {
-        return numberFromRods.get();
-    }
-
-    public SimpleObjectProperty<String> numberFromRodsProperty() {
-        return numberFromRods;
-    }
-
-    public void setNumberFromRods(String numberFromRods) {
-        this.numberFromRods.set(numberFromRods);
-    }
 
 
 }

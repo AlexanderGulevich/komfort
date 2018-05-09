@@ -2,8 +2,8 @@ package basisFx.domainModel.mapper;
 
 import basisFx.appCore.dataSource.DataMapper;
 import basisFx.appCore.dataSource.Db;
+import basisFx.appCore.domainScetch.ComboBoxStringValue;
 import basisFx.appCore.domainScetch.DomainObject;
-import basisFx.appCore.domainScetch.StringValueDomainObject;
 import basisFx.domainModel.domaine.Employer;
 import basisFx.domainModel.domaine.RatePerHour;
 import javafx.collections.FXCollections;
@@ -17,7 +17,7 @@ import java.util.logging.Logger;
 
 public class EmployerDataMapper extends DataMapper {
 
-    private  ObservableList <StringValueDomainObject> rateTamlateList =null;
+    private  ObservableList <ComboBoxStringValue> rateTamlateList =null;
     private  ObservableList <RatePerHour> ratesStoredList =null;
     private  ObservableList <Employer> currentEmployees =null;
     private  HashMap<Integer,ArrayList<RatePerHour>> ratesMapById =new HashMap<>();
@@ -207,7 +207,7 @@ public class EmployerDataMapper extends DataMapper {
 
     }
 
-    public  ObservableList <StringValueDomainObject> getRateTemplateList() {
+    public  ObservableList <ComboBoxStringValue> getRateTemplateList() {
 
         if (rateTamlateList != null) {
             System.out.println("EmployerDataMapper.getRateTemplateList -----rateTamlateList != null");
@@ -217,7 +217,7 @@ public class EmployerDataMapper extends DataMapper {
 
             String expression="SELECT * FROM " +"RateTemplates"+" ORDER BY ID";
             Statement stmt  = null;
-            rateTamlateList = FXCollections.<StringValueDomainObject>observableArrayList();
+            rateTamlateList = FXCollections.<ComboBoxStringValue>observableArrayList();
 
             try {
 
@@ -226,7 +226,7 @@ public class EmployerDataMapper extends DataMapper {
                 ResultSet rs    = stmt.executeQuery(expression);
 
                 while (rs.next()) {
-                    StringValueDomainObject domainObject = new StringValueDomainObject();
+                    ComboBoxStringValue domainObject = new ComboBoxStringValue();
                     domainObject.setId(rs.getInt("id"));
                     domainObject.setStringValue(String.valueOf(rs.getDouble("rate")));
 

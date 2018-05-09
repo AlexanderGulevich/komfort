@@ -5,9 +5,9 @@ public enum KindOfColumn {
 
     STRING("STRING"),
     INT("INT"),
-    BOOL("Right_little"),
+    BOOL("BOOL"),
     DOUBLE("DOUBLE"),
-    DATE("STRING"),
+    DATE("DATE"),
     COMBOBOX("COMBOBOX");
 
 

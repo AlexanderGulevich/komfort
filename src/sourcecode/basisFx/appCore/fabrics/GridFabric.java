@@ -35,7 +35,7 @@ public class GridFabric {
         gr.setTablesButtonKind(b.getTablesButtonKind());
         gr.setCoordinate(b.getCoordinate());
         gr.setDataMapper(b.getDataMapper());
-        gr.setDomainClass(b.getClass());
+        gr.setDomainClass(b.getDomainClass());
         gr.setColumnWrappers(b.getColumnWrappers());
         gr.setKindOfTable(KindOfTable.SUBMIT);
 
@@ -54,7 +54,7 @@ public class GridFabric {
          gr_observer.setTablesButtonKind(observer.getTablesButtonKind());
          gr_observer.setCoordinate(observer.getCoordinate());
          gr_observer.setDataMapper(observer.getDataMapper());
-         gr_observer.setDomainClass(observer.getClass());
+         gr_observer.setDomainClass(observer.getDomainClass());
          gr_observer.setColumnWrappers(observer.getColumnWrappers());
          gr_observer.init();
 
@@ -66,7 +66,7 @@ public class GridFabric {
          gr_observed.setTablesButtonKind(observed.getTablesButtonKind());
          gr_observed.setCoordinate(observed.getCoordinate());
          gr_observed.setDataMapper(observed.getDataMapper());
-         gr_observed.setDomainClass(observed.getClass());
+         gr_observed.setDomainClass(observed.getDomainClass());
          gr_observed.setColumnWrappers(observed.getColumnWrappers());
          gr_observed.setObserver(gr_observer.getTableWrapper());
          gr_observed.setKindOfTable(KindOfTable.OBSERVED);

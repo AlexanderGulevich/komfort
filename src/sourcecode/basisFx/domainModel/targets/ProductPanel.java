@@ -1,8 +1,13 @@
 package basisFx.domainModel.targets;
 
 import basisFx.appCore.controls.KindOfColumn;
-import basisFx.appCore.domainScetch.StringValueDomainObject;
+import basisFx.appCore.domainScetch.BoolComboBox;
+import basisFx.appCore.domainScetch.ComboBoxStringValue;
 import basisFx.appCore.elements.TableWrapper;
+import basisFx.appCore.grid.GridColWidth;
+import basisFx.appCore.grid.GridTablesBuilder;
+import basisFx.appCore.grid.KindOfGridCol;
+import basisFx.appCore.grid.TablesButtonKind;
 import basisFx.appCore.panels.Target;
 import basisFx.appCore.utils.Coordinate;
 import basisFx.domainModel.domaine.Price;
@@ -22,70 +27,60 @@ public class ProductPanel  extends Target{
     @Override
     protected void createElement() {
 
-        priceSide =innerPanelsFabric.createInnerPanels(panel,0.38,new Coordinate(0d,0d,0d,null));
+        GridTablesBuilder observed=new GridTablesBuilder();
+        observed.setTitle("Список продукции ");
+        observed.setTablesButtonKind(TablesButtonKind.Bottom_right);
+        observed.setDomainClass(Product.class);
+        observed.setDataMapper(dataMapper.productDataMapper());
+        observed.setColumn(
+                columnFabric.stringColumn(KindOfColumn.STRING,"Наименование","name",0.7d,true,
+                        (obj,val)->((Product)obj).setName((String)val))
+        );
+        observed.setColumn(
 
-
-        textFabric.createLabel("Архив цен", FontsStore.ROBOTO_LIGHT,  Pos.BASELINE_CENTER,25d,
-                priceSide, new Coordinate(10d,0d,null,0d));
-
-
-        priceTable =tableFabric.table(
-                panel,0.38d,new Coordinate(50d, 0d, 70d, null),
-                dataMapper.priceDataMapper(),
-
-                        columnFabric.stringColumn(KindOfColumn.DOUBLE,"Цена","price",0.3d,true,
-                        (obj,val)->{((Price)obj).setPrice( (String ) val);}),
-
-                        columnFabric.dateColumn(KindOfColumn.DATE,"Дата начала действия ","startingDate",0.7d,true,
-                                (obj, val)->{((Price)obj).setStartingDate((LocalDate) val); }
-                        )
-                );
-
-
-        buttonFactory.addRowButton(
-                priceSide,new Coordinate(null,0d, 10d, null), priceTable,Price.class);
-        buttonFactory.deleteRowButton(
-                priceSide,new Coordinate(null,180d, 10d, null), priceTable);
-
-////////////////////////////////////////////////////////
-
-        productSide =innerPanelsFabric.createInnerPanels(panel,0.6d,new Coordinate(0d,null,0d,0d));
-
-
-        textFabric.createLabel("Список продукции ", FontsStore.ROBOTO_LIGHT,  Pos.BASELINE_CENTER,25d,
-                productSide, new Coordinate(10d,0d,null,0d));
-
-
-
-
-        productTable =tableFabric.observedTable(
-                priceTable, panel,
-                0.6d, new Coordinate(50d, null, 70d, 0d),
-                dataMapper.productDataMapper(),
-
-                columnFabric.stringColumn(KindOfColumn.STRING,"Наименование","name",0.4d,true,
-                        (obj,val)->((Product)obj).setName((String)val)),
                 columnFabric.comboBoxColumn(KindOfColumn.COMBOBOX,
-                        "Ширина стержня","rod",0.3d,true,
-                        (obj,val)->{((Product)obj).setRod((StringValueDomainObject) val);},
-                        () -> dataMapper.productDataMapper().getRodWidthList()
-                ),
-                columnFabric.stringColumn(KindOfColumn.INT,"C 1 стержня, шт","numberFromRods",0.3d,true,
-                        (obj,val)->((Product)obj).setNumberFromRods((String)val))
+                        "Втулка","sleeve",0.3d,true,
+                        (obj,val)->{((Product)obj).setSleeve((BoolComboBox) val);},
+                        () -> BoolComboBox.comboBoxes
+                )
+        );
 
+
+
+        GridTablesBuilder observer=new GridTablesBuilder();
+        observer.setTitle("Архив цен");
+        observer.setTablesButtonKind(TablesButtonKind.Bottom_right);
+        observer.setDomainClass(Price.class);
+        observer.setDataMapper(dataMapper.priceDataMapper());
+        observer.setColumn(  columnFabric.stringColumn(KindOfColumn.DOUBLE,"Цена","price",0.3d,true,
+                (obj,val)->{((Price)obj).setPrice( (String ) val);})
+        );
+        observer.setColumn(  columnFabric.dateColumn(KindOfColumn.DATE,"Дата начала действия ","startingDate",0.7d,true,
+                (obj, val)->{((Price)obj).setStartingDate((LocalDate) val); })
+        );
+
+
+        gridFabric.boundTables(
+                observed,
+                observer,
+                new GridColWidth(KindOfGridCol.percent,60d),
+                new GridColWidth(KindOfGridCol.percent,40d),
+                new Coordinate(10d,10d,10d,10d),
+                panel
         );
 
 
 
 
 
-        buttonFactory.addRowButton(
-                productSide,new Coordinate(null,0d, 10d, null), productTable,Product.class);
-        buttonFactory.deleteRowButton(
-                productSide,new Coordinate(null,180d, 10d, null), productTable);
 
 
-////////////////////////////////////////////////////
+
+
+
+
+
+
 
 
 

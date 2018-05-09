@@ -2,8 +2,8 @@ package basisFx.domainModel.mapper;
 
 import basisFx.appCore.dataSource.DataMapper;
 import basisFx.appCore.dataSource.Db;
+import basisFx.appCore.domainScetch.ComboBoxStringValue;
 import basisFx.appCore.domainScetch.DomainObject;
-import basisFx.appCore.domainScetch.StringValueDomainObject;
 import basisFx.domainModel.domaine.RatePerHour;
 import javafx.collections.ObservableList;
 
@@ -60,7 +60,7 @@ public class RatePerHourDataMapper extends DataMapper{
             pojo.setId(rs.getInt("id"));
 
 
-            StringValueDomainObject rate =new StringValueDomainObject();
+            ComboBoxStringValue rate =new ComboBoxStringValue();
             rate.setStringValue(Double.toString(rs.getDouble("rate")));
 
             pojo.setEmployerId(rs.getInt("employerId"));

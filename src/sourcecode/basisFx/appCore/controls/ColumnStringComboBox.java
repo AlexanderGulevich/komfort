@@ -1,7 +1,7 @@
 package basisFx.appCore.controls;
 
+import basisFx.appCore.domainScetch.ComboBoxStringValue;
 import basisFx.appCore.domainScetch.DomainObject;
-import basisFx.appCore.domainScetch.StringValueDomainObject;
 import basisFx.appCore.settings.CSSID;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.control.ComboBox;
@@ -17,7 +17,7 @@ import javafx.util.Callback;
  * @param <T>
  */
 public class ColumnStringComboBox<T,K> extends ColumnWrapper<T>{
-    protected TableColumn<DomainObject, StringValueDomainObject> column;
+    protected TableColumn<DomainObject, ComboBoxStringValue> column;
 
     @SuppressWarnings("unchecked")
     public ColumnStringComboBox(Bulder builder) {
@@ -38,8 +38,8 @@ public class ColumnStringComboBox<T,K> extends ColumnWrapper<T>{
     }
 
     public void setCellFactory(){
-        Callback<TableColumn<DomainObject, StringValueDomainObject>, TableCell<DomainObject, StringValueDomainObject>> comboBoxCellFactory
-                = (TableColumn<DomainObject, StringValueDomainObject> param) -> new ComboBoxCustomCell();
+        Callback<TableColumn<DomainObject, ComboBoxStringValue>, TableCell<DomainObject, ComboBoxStringValue>> comboBoxCellFactory
+                = (TableColumn<DomainObject, ComboBoxStringValue> param) -> new ComboBoxCustomCell();
 
         // Set a ComboBoxTableCell, so we can selects a value from a list
         column.setCellFactory(comboBoxCellFactory);
@@ -58,15 +58,15 @@ public class ColumnStringComboBox<T,K> extends ColumnWrapper<T>{
         editPoliticy.run();
     }
 
-    public TableColumn<DomainObject, StringValueDomainObject> getColumn(){
+    public TableColumn<DomainObject, ComboBoxStringValue> getColumn(){
 
         return this.column;
 
     }
 
-    class ComboBoxCustomCell extends TableCell<DomainObject, StringValueDomainObject> {
+    class ComboBoxCustomCell extends TableCell<DomainObject, ComboBoxStringValue> {
 
-        private ComboBox<StringValueDomainObject> comboBox;
+        private ComboBox<ComboBoxStringValue> comboBox;
 
         private ComboBoxCustomCell() {
         }
@@ -89,7 +89,7 @@ public class ColumnStringComboBox<T,K> extends ColumnWrapper<T>{
         }
 
         @Override
-        public void updateItem(StringValueDomainObject item, boolean empty) {
+        public void updateItem(ComboBoxStringValue item, boolean empty) {
             super.updateItem(item, empty);
 
             if (empty) {
@@ -134,32 +134,32 @@ public class ColumnStringComboBox<T,K> extends ColumnWrapper<T>{
             });
         }
 
-        private void comboBoxConverter(ComboBox<StringValueDomainObject> comboBox) {
+        private void comboBoxConverter(ComboBox<ComboBoxStringValue> comboBox) {
 //             Define rendering of the list of values in ComboBox drop down.
             comboBox.setCellFactory((c) -> {
-                return new ListCell<StringValueDomainObject>() {
+                return new ListCell<ComboBoxStringValue>() {
                     @Override
-                    protected void updateItem(StringValueDomainObject stringValueDomainObject, boolean empty) {
-                        super.updateItem(stringValueDomainObject, empty);
-                        if (stringValueDomainObject == null || empty) {
+                    protected void updateItem(ComboBoxStringValue comboBoxStringValue, boolean empty) {
+                        super.updateItem(comboBoxStringValue, empty);
+                        if (comboBoxStringValue == null || empty) {
                             setText(null);
                         } else {
-                            setText(stringValueDomainObject.getStringValue());
+                            setText(comboBoxStringValue.getStringValue());
                         }
                     }
                 };
             });
         }
 
-        private StringValueDomainObject getNamedDomainObject() {
+        private ComboBoxStringValue getNamedDomainObject() {
 
             if(getItem()== null){//if not exist
 
 
-                StringValueDomainObject stringValueDomainObject =new StringValueDomainObject();
-                stringValueDomainObject.setStringValue("");
+                ComboBoxStringValue comboBoxStringValue =new ComboBoxStringValue();
+                comboBoxStringValue.setStringValue("");
 
-                return stringValueDomainObject;
+                return comboBoxStringValue;
 
             }else {
 

@@ -1,7 +1,6 @@
 package basisFx.domainModel.domaine;
 
 import basisFx.appCore.domainScetch.DomainObject;
-import basisFx.appCore.domainScetch.StringValueDomainObject;
 import javafx.beans.property.SimpleObjectProperty;
 
 import java.time.LocalDate;
