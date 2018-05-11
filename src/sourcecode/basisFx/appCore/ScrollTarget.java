@@ -1,7 +1,7 @@
 //package basisFx.domainModel.targets;
 //
 //import basisFx.appCore.controls.ColumnWrapper;
-//import basisFx.appCore.domainScetch.ComboBoxStringValue;
+//import basisFx.appCore.domainScetch.ComboBoxValue;
 //import basisFx.appCore.elements.AppNode;
 //import basisFx.appCore.elements.TableWrapper;
 //import basisFx.appCore.panels.Target;
@@ -63,7 +63,7 @@
 //                                        .setValueChecking(check.createTextCheck())
 //                                        .setColumnSize(1)
 //                                        .setDomainChanging(
-//                                                (obj,val)->{((ComboBoxStringValue)obj).setRate((String)val);}
+//                                                (obj,val)->{((ComboBoxValue)obj).setRate((String)val);}
 //                                        )
 //                        )
 //                );

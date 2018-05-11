@@ -28,6 +28,15 @@ public class PriceDataMapper extends DataMapper {
 
 
         return false;
+
+    }
+
+
+
+    @Override
+    public DataMapper getAllDomainObjectList() {
+        getAllDomainObjectList(list);
+        return this;
     }
 
     @Override
@@ -55,7 +64,6 @@ public class PriceDataMapper extends DataMapper {
                 pojo.setProductId(rs.getInt("productId"));
                 pojo.setPrice( Double.toString(rs.getDouble("price")));
                 pojo.setStartingDate(rs.getDate("startDate").toLocalDate());
-
 
                 //вставляю id в список хранимых в бд
                 this.unitOfWork.getStoredPojoesId().add(rs.getInt("id"));

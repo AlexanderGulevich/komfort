@@ -2,10 +2,12 @@ package basisFx.domainModel.mapper;
 
 import basisFx.appCore.dataSource.DataMapper;
 import basisFx.appCore.dataSource.Db;
+import basisFx.appCore.domainScetch.ComboBoxValue;
 import basisFx.appCore.domainScetch.DomainObject;
-import basisFx.domainModel.domaine.RatePerHour;
+import basisFx.domainModel.domaine.Counterparty;
+import basisFx.domainModel.domaine.Packet;
+import basisFx.domainModel.domaine.PacketSize;
 import javafx.collections.ObservableList;
-
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -14,27 +16,31 @@ import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class RatePerHourTemplatesDataMapper extends DataMapper {
+public class PacketMapper  extends DataMapper {
+
     private static RatePerHourTemplatesDataMapper ourInstance = new RatePerHourTemplatesDataMapper();
 
     public static RatePerHourTemplatesDataMapper getInstance() {
         return ourInstance;
     }
 
+
+
+    @Override
+    public DataMapper getAllDomainObjectList() {
+        getAllDomainObjectList(list);
+        return this;
+    }
+
     @Override
     public boolean isReadyToTransaction(DomainObject d) {
-        RatePerHour ratePerHour = (RatePerHour) d;
+        Packet pojo = (Packet) d;
         if (
-
-                 ratePerHour.getName()!=null
-
+                pojo.getSize()!=null &&
+                pojo.getCounterparty()!=null
                 ) {
-            System.out.println("!!!!!!!!!!!!!!RatePerHourTemplatesDataMapper --- объект готов к транзакции");
-
             return true;
         }
-        System.out.println("!!!!!!!!!!!!!!RatePerHourTemplatesDataMapper --- объект НЕ  готов к транзакции");
-
         return false;
     }
 
@@ -42,7 +48,7 @@ public class RatePerHourTemplatesDataMapper extends DataMapper {
     public void getAllDomainObjectList(ObservableList list) {
         try {
 
-            String expression="SELECT * FROM " +"RateTemplates"+" ORDER BY ID";
+            String expression="SELECT * FROM " +"Packet"+" ORDER BY ID";
 
             Statement stmt  = Db.getConnection().createStatement();
 
@@ -51,9 +57,15 @@ public class RatePerHourTemplatesDataMapper extends DataMapper {
 
             while (rs.next()) {
 
-                RatePerHour pojo=new RatePerHour();
+                int packetSizeId=rs.getInt("packetSizeId");
+                int counterpartyId=rs.getInt("counterpartyId");
+                PacketSize packetSize = (PacketSize) dataMapperFabric.packetSizeMapper().getAllDomainObjectList().toHashMap().get(packetSizeId);
+                Counterparty counterparty = (Counterparty) dataMapperFabric.counterpartyDataMapper().getAllDomainObjectList().toHashMap().get(counterpartyId);
+
+                Packet pojo=new Packet();
                 pojo.setId(rs.getInt("id"));
-                pojo.setName(String.valueOf(rs.getDouble("rate")));
+                pojo.setSize(new ComboBoxValue(packetSize.getSize()));
+                pojo.setCounterparty(new ComboBoxValue(counterparty.getName()));
 
                 //вставляю id в список хранимых в бд
                 this.unitOfWork.getStoredPojoesId().add(rs.getInt("id"));
@@ -79,17 +91,17 @@ public class RatePerHourTemplatesDataMapper extends DataMapper {
     public void updateDomainObject(DomainObject d) {
 
         if (isReadyToTransaction(d)) {
-            RatePerHour ratePerHour = (RatePerHour) d;
-            String expression = "UPDATE " + "RATETEMPLATES" + " SET  " +
+            PacketSize pojo = (PacketSize) d;
+            String expression = "UPDATE " + "Packet" + " SET  " +
                     " id = ?," +
-                    " rate = ?";
+                    " size = ?";
 
             PreparedStatement pstmt = null;
             try {
                 pstmt = Db.getConnection().prepareStatement(expression);
 
-                pstmt.setInt(1, ratePerHour.getId());
-                pstmt.setDouble(2, Double.valueOf(ratePerHour.getName()));
+                pstmt.setInt(1, pojo.getId());
+                pstmt.setString(2, pojo.getSize());
 
                 pstmt.executeUpdate();
 
@@ -100,25 +112,16 @@ public class RatePerHourTemplatesDataMapper extends DataMapper {
         }
     }
 
-
-
-
-    @Override
-    public DataMapper getAllDomainObjectList() {
-        getAllDomainObjectList(list);
-        return this;
-    }
-
     @Override
     public void insertDomainObject(DomainObject d) {
-        RatePerHour ratePerHour= (RatePerHour) d;
+        PacketSize pojo= (PacketSize) d;
         try {
-            String expression= "INSERT INTO "+ "RateTemplates "
-                    + "(rate "
+            String expression= "INSERT INTO "+ "PacketSize "
+                    + "(size "
                     + ") VALUES(?)";
 
             PreparedStatement pstmt =  Db.getConnection().prepareStatement(expression);
-            pstmt.setDouble(1, Double.valueOf(ratePerHour.getName()));
+            pstmt.setString(1, pojo.getSize());
 
 
             pstmt.executeUpdate();

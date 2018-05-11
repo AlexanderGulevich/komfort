@@ -17,7 +17,6 @@ public class Employer extends DomainObject {
     private SimpleObjectProperty<Boolean> isFired =new SimpleObjectProperty<>(this, "isFired", false);
     private SimpleObjectProperty<DomainObject> rate =new SimpleObjectProperty<>(this, "rate", null);
 
-
     public String getName() {
         return name.get();
     }

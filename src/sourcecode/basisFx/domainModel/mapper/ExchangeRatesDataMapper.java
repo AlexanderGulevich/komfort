@@ -21,13 +21,19 @@ public class ExchangeRatesDataMapper extends DataMapper{
                 domain.getExchangeRate()!= null
                         && domain.getStartingDate() !=null
                 ) {
-            System.out.println("!!!!!!!!!!!!!!ExchangeRatesDataMapper --- объект готов к транзакции");
 
             return true;
         }
-        System.out.println("!!!!!!!!!!!!!!ExchangeRatesDataMapper --- объект НЕ  готов к транзакции");
 
         return false;
+    }
+
+
+
+    @Override
+    public DataMapper getAllDomainObjectList() {
+        getAllDomainObjectList(list);
+        return this;
     }
 
     @Override

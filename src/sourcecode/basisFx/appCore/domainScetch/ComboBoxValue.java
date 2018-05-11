@@ -7,7 +7,7 @@ import javafx.beans.property.SimpleObjectProperty;
  *
  * @autor AlexanderGulevich
  */
-public class ComboBoxStringValue extends DomainObject{
+public class ComboBoxValue extends DomainObject{
 
     private SimpleObjectProperty<String> stringValue =new SimpleObjectProperty(this, "stringValue", null);
 
@@ -23,10 +23,10 @@ public class ComboBoxStringValue extends DomainObject{
         this.stringValue.set(stringValue);
     }
 
-    public ComboBoxStringValue() {
+    public ComboBoxValue() {
 
     }
-    public ComboBoxStringValue(String str) {
+    public ComboBoxValue(String str) {
         stringValue.set(str);
     }
 

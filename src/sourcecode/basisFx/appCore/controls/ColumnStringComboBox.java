@@ -1,6 +1,6 @@
 package basisFx.appCore.controls;
 
-import basisFx.appCore.domainScetch.ComboBoxStringValue;
+import basisFx.appCore.domainScetch.ComboBoxValue;
 import basisFx.appCore.domainScetch.DomainObject;
 import basisFx.appCore.settings.CSSID;
 import javafx.beans.value.ObservableValue;
@@ -17,7 +17,7 @@ import javafx.util.Callback;
  * @param <T>
  */
 public class ColumnStringComboBox<T,K> extends ColumnWrapper<T>{
-    protected TableColumn<DomainObject, ComboBoxStringValue> column;
+    protected TableColumn<DomainObject, ComboBoxValue> column;
 
     @SuppressWarnings("unchecked")
     public ColumnStringComboBox(Bulder builder) {
@@ -38,8 +38,8 @@ public class ColumnStringComboBox<T,K> extends ColumnWrapper<T>{
     }
 
     public void setCellFactory(){
-        Callback<TableColumn<DomainObject, ComboBoxStringValue>, TableCell<DomainObject, ComboBoxStringValue>> comboBoxCellFactory
-                = (TableColumn<DomainObject, ComboBoxStringValue> param) -> new ComboBoxCustomCell();
+        Callback<TableColumn<DomainObject, ComboBoxValue>, TableCell<DomainObject, ComboBoxValue>> comboBoxCellFactory
+                = (TableColumn<DomainObject, ComboBoxValue> param) -> new ComboBoxCustomCell();
 
         // Set a ComboBoxTableCell, so we can selects a value from a list
         column.setCellFactory(comboBoxCellFactory);
@@ -58,15 +58,15 @@ public class ColumnStringComboBox<T,K> extends ColumnWrapper<T>{
         editPoliticy.run();
     }
 
-    public TableColumn<DomainObject, ComboBoxStringValue> getColumn(){
+    public TableColumn<DomainObject, ComboBoxValue> getColumn(){
 
         return this.column;
 
     }
 
-    class ComboBoxCustomCell extends TableCell<DomainObject, ComboBoxStringValue> {
+    class ComboBoxCustomCell extends TableCell<DomainObject, ComboBoxValue> {
 
-        private ComboBox<ComboBoxStringValue> comboBox;
+        private ComboBox<ComboBoxValue> comboBox;
 
         private ComboBoxCustomCell() {
         }
@@ -89,7 +89,7 @@ public class ColumnStringComboBox<T,K> extends ColumnWrapper<T>{
         }
 
         @Override
-        public void updateItem(ComboBoxStringValue item, boolean empty) {
+        public void updateItem(ComboBoxValue item, boolean empty) {
             super.updateItem(item, empty);
 
             if (empty) {
@@ -134,32 +134,32 @@ public class ColumnStringComboBox<T,K> extends ColumnWrapper<T>{
             });
         }
 
-        private void comboBoxConverter(ComboBox<ComboBoxStringValue> comboBox) {
+        private void comboBoxConverter(ComboBox<ComboBoxValue> comboBox) {
 //             Define rendering of the list of values in ComboBox drop down.
             comboBox.setCellFactory((c) -> {
-                return new ListCell<ComboBoxStringValue>() {
+                return new ListCell<ComboBoxValue>() {
                     @Override
-                    protected void updateItem(ComboBoxStringValue comboBoxStringValue, boolean empty) {
-                        super.updateItem(comboBoxStringValue, empty);
-                        if (comboBoxStringValue == null || empty) {
+                    protected void updateItem(ComboBoxValue comboBoxValue, boolean empty) {
+                        super.updateItem(comboBoxValue, empty);
+                        if (comboBoxValue == null || empty) {
                             setText(null);
                         } else {
-                            setText(comboBoxStringValue.getStringValue());
+                            setText(comboBoxValue.getStringValue());
                         }
                     }
                 };
             });
         }
 
-        private ComboBoxStringValue getNamedDomainObject() {
+        private ComboBoxValue getNamedDomainObject() {
 
             if(getItem()== null){//if not exist
 
 
-                ComboBoxStringValue comboBoxStringValue =new ComboBoxStringValue();
-                comboBoxStringValue.setStringValue("");
+                ComboBoxValue comboBoxValue =new ComboBoxValue();
+                comboBoxValue.setStringValue("");
 
-                return comboBoxStringValue;
+                return comboBoxValue;
 
             }else {
 

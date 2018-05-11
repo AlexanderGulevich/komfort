@@ -2,7 +2,7 @@ package basisFx.domainModel.mapper;
 
 import basisFx.appCore.dataSource.DataMapper;
 import basisFx.appCore.dataSource.Db;
-import basisFx.appCore.domainScetch.ComboBoxStringValue;
+import basisFx.appCore.domainScetch.ComboBoxValue;
 import basisFx.appCore.domainScetch.DomainObject;
 import basisFx.domainModel.domaine.RatePerHour;
 import javafx.collections.ObservableList;
@@ -18,7 +18,7 @@ public class RatePerHourDataMapper extends DataMapper{
 
         if (
                 ratePerHour.getRate()!= null
-                        && ratePerHour.getStartingRateDate() !=null
+                        && ratePerHour.getStartingDate() !=null
 
                 ) {
             System.out.println("!!!!!!!!!!!!!!RatePerHourDataMapper --- объект готов к транзакции");
@@ -26,10 +26,18 @@ public class RatePerHourDataMapper extends DataMapper{
             return true;
         }
         System.out.println("!!!!!!!!!!!!!!RatePerHourDataMapper --- объект НЕ  готов к транзакции");
-        System.out.println("!!!!!!!!!!!!!!getStartingRateDate --- объект НЕ  готов к транзакции---"+ratePerHour.getStartingRateDate());
+        System.out.println("!!!!!!!!!!!!!!getStartingDate --- объект НЕ  готов к транзакции---"+ratePerHour.getStartingDate());
         System.out.println("!!!!!!!!!!!!!!getStringValue --- объект НЕ  готов к транзакции---"+ratePerHour.getRate());
 
         return false;
+    }
+
+
+
+    @Override
+    public DataMapper getAllDomainObjectList() {
+        getAllDomainObjectList(list);
+        return this;
     }
 
     @Override
@@ -60,7 +68,7 @@ public class RatePerHourDataMapper extends DataMapper{
             pojo.setId(rs.getInt("id"));
 
 
-            ComboBoxStringValue rate =new ComboBoxStringValue();
+            ComboBoxValue rate =new ComboBoxValue();
             rate.setStringValue(Double.toString(rs.getDouble("rate")));
 
             pojo.setEmployerId(rs.getInt("employerId"));
@@ -100,7 +108,7 @@ public class RatePerHourDataMapper extends DataMapper{
             try {
                 pstmt = Db.getConnection().prepareStatement(expression);
                 pstmt.setDouble(1, Double.valueOf(ratePerHour.getRate().getStringValue()));
-                pstmt.setDate(2, Date.valueOf(ratePerHour.getStartingRateDate()));
+                pstmt.setDate(2, Date.valueOf(ratePerHour.getStartingDate()));
                 pstmt.setInt(3, ratePerHour.getEmployerId());
                 pstmt.setInt(4, ratePerHour.getId());
                 pstmt.executeUpdate();
@@ -128,7 +136,7 @@ public class RatePerHourDataMapper extends DataMapper{
 
                 PreparedStatement pstmt = Db.getConnection().prepareStatement(expression);
                 pstmt.setDouble(1, Double.valueOf(domainObject.getRate().getStringValue()));
-                pstmt.setDate(2, Date.valueOf(domainObject.getStartingRateDate()));
+                pstmt.setDate(2, Date.valueOf(domainObject.getStartingDate()));
                 pstmt.setInt(3, getObservableDomaineId());
 
                 pstmt.executeUpdate();

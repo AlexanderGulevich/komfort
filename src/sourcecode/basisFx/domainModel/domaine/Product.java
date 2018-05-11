@@ -6,7 +6,6 @@
 package basisFx.domainModel.domaine;
 
 import basisFx.appCore.domainScetch.BoolComboBox;
-import basisFx.appCore.domainScetch.ComboBoxStringValue;
 import basisFx.appCore.domainScetch.DomainObject;
 import javafx.beans.property.*;
 

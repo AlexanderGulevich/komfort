@@ -4,7 +4,7 @@ import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-public class BoolComboBox extends ComboBoxStringValue {
+public class BoolComboBox extends ComboBoxValue {
 
     public static ObservableList<BoolComboBox> comboBoxes= FXCollections.observableArrayList(new BoolComboBox("ДА"),new BoolComboBox("НЕТ"));
 

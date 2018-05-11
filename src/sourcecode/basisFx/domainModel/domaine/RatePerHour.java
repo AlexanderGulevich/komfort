@@ -1,6 +1,6 @@
 package basisFx.domainModel.domaine;
 
-import basisFx.appCore.domainScetch.ComboBoxStringValue;
+import basisFx.appCore.domainScetch.ComboBoxValue;
 import basisFx.appCore.domainScetch.DomainObject;
 import javafx.beans.property.SimpleObjectProperty;
 
@@ -10,7 +10,7 @@ public class RatePerHour extends DomainObject {
 
     private SimpleObjectProperty<LocalDate> startingRateDate =new SimpleObjectProperty<>(this, "startingDate", null);
     private SimpleObjectProperty<Integer> employerId =new SimpleObjectProperty<>(this, "employerId", null);
-    private SimpleObjectProperty<ComboBoxStringValue> rate =new SimpleObjectProperty<>(this, "rate", null);
+    private SimpleObjectProperty<ComboBoxValue> rate =new SimpleObjectProperty<>(this, "rate", null);
 
     private SimpleObjectProperty<String> name =new SimpleObjectProperty<>(this, "name", null);
 
@@ -26,7 +26,7 @@ public class RatePerHour extends DomainObject {
         this.name.set(name);
     }
 
-    public LocalDate getStartingRateDate() {
+    public LocalDate getStartingDate() {
         return startingRateDate.get();
     }
 
@@ -50,15 +50,15 @@ public class RatePerHour extends DomainObject {
         this.employerId.set(employerId);
     }
 
-    public ComboBoxStringValue getRate() {
+    public ComboBoxValue getRate() {
         return rate.get();
     }
 
-    public SimpleObjectProperty<ComboBoxStringValue> rateProperty() {
+    public SimpleObjectProperty<ComboBoxValue> rateProperty() {
         return rate;
     }
 
-    public void setRate(ComboBoxStringValue rate) {
+    public void setRate(ComboBoxValue rate) {
         this.rate.set(rate);
     }
 }

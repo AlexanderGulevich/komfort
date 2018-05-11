@@ -2,7 +2,7 @@ package basisFx.domainModel.mapper;
 
 import basisFx.appCore.dataSource.DataMapper;
 import basisFx.appCore.dataSource.Db;
-import basisFx.appCore.domainScetch.ComboBoxStringValue;
+import basisFx.appCore.domainScetch.ComboBoxValue;
 import basisFx.appCore.domainScetch.DomainObject;
 import basisFx.domainModel.domaine.Employer;
 import basisFx.domainModel.domaine.RatePerHour;
@@ -17,7 +17,7 @@ import java.util.logging.Logger;
 
 public class EmployerDataMapper extends DataMapper {
 
-    private  ObservableList <ComboBoxStringValue> rateTamlateList =null;
+    private  ObservableList <ComboBoxValue> rateTamlateList =null;
     private  ObservableList <RatePerHour> ratesStoredList =null;
     private  ObservableList <Employer> currentEmployees =null;
     private  HashMap<Integer,ArrayList<RatePerHour>> ratesMapById =new HashMap<>();
@@ -32,6 +32,14 @@ public class EmployerDataMapper extends DataMapper {
             return true;
         }
         return false;
+    }
+
+
+
+    @Override
+    public DataMapper getAllDomainObjectList() {
+        getAllDomainObjectList(list);
+        return this;
     }
 
     @Override
@@ -66,7 +74,7 @@ public class EmployerDataMapper extends DataMapper {
 
                 if (rate != null) {
 
-                    pojo.setStartingRateDate(rate.getStartingRateDate());
+                    pojo.setStartingRateDate(rate.getStartingDate());
 
                     pojo.setRate(rate);
                 }
@@ -110,7 +118,7 @@ public class EmployerDataMapper extends DataMapper {
 
                 }
 
-                if (rate.getStartingRateDate().isAfter(newestRate.getStartingRateDate())){
+                if (rate.getStartingDate().isAfter(newestRate.getStartingDate())){
                     newestRate=rate;
                 }
             }
@@ -207,7 +215,7 @@ public class EmployerDataMapper extends DataMapper {
 
     }
 
-    public  ObservableList <ComboBoxStringValue> getRateTemplateList() {
+    public  ObservableList <ComboBoxValue> getRateTemplateList() {
 
         if (rateTamlateList != null) {
             System.out.println("EmployerDataMapper.getRateTemplateList -----rateTamlateList != null");
@@ -217,7 +225,7 @@ public class EmployerDataMapper extends DataMapper {
 
             String expression="SELECT * FROM " +"RateTemplates"+" ORDER BY ID";
             Statement stmt  = null;
-            rateTamlateList = FXCollections.<ComboBoxStringValue>observableArrayList();
+            rateTamlateList = FXCollections.<ComboBoxValue>observableArrayList();
 
             try {
 
@@ -226,7 +234,7 @@ public class EmployerDataMapper extends DataMapper {
                 ResultSet rs    = stmt.executeQuery(expression);
 
                 while (rs.next()) {
-                    ComboBoxStringValue domainObject = new ComboBoxStringValue();
+                    ComboBoxValue domainObject = new ComboBoxValue();
                     domainObject.setId(rs.getInt("id"));
                     domainObject.setStringValue(String.valueOf(rs.getDouble("rate")));
 

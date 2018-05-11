@@ -13,6 +13,14 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class EmployeesManagerMapper extends DataMapper{
+
+
+
+    @Override
+    public DataMapper getAllDomainObjectList() {
+        getAllDomainObjectList(list);
+        return this;
+    }
     @Override
     public boolean isReadyToTransaction(DomainObject d) {
         return false;

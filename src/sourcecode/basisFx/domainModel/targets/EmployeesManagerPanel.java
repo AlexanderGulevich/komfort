@@ -1,7 +1,7 @@
 package basisFx.domainModel.targets;
 
 import basisFx.appCore.controls.KindOfColumn;
-import basisFx.appCore.domainScetch.ComboBoxStringValue;
+import basisFx.appCore.domainScetch.ComboBoxValue;
 import basisFx.appCore.elements.TableWrapper;
 import basisFx.appCore.panels.Target;
 import basisFx.appCore.utils.Coordinate;
@@ -34,7 +34,7 @@ public class EmployeesManagerPanel extends Target {
                 dataMapper.ratePerHourDataMapper(),
 
                 columnFabric.comboBoxColumn(KindOfColumn.INT,"Тариф","rate",0.3d,true,
-                        (obj,val)->{((RatePerHour)obj).setRate((ComboBoxStringValue) val);},
+                        (obj,val)->{((RatePerHour)obj).setRate((ComboBoxValue) val);},
                         () -> dataMapper.employerDataMapper().getRateTemplateList()
                 ),
                 columnFabric.dateColumn(KindOfColumn.DATE,"Дата начала действия тарифа","startingRateDate",0.7d,true,

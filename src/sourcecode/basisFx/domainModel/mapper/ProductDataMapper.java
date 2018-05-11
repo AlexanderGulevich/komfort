@@ -3,10 +3,8 @@ package basisFx.domainModel.mapper;
 import basisFx.appCore.dataSource.DataMapper;
 import basisFx.appCore.dataSource.Db;
 import basisFx.appCore.domainScetch.BoolComboBox;
-import basisFx.appCore.domainScetch.ComboBoxStringValue;
 import basisFx.appCore.domainScetch.DomainObject;
 import basisFx.domainModel.domaine.Product;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.sql.PreparedStatement;
@@ -25,21 +23,20 @@ public class ProductDataMapper  extends DataMapper{
         if (
                 product.getName() != null &&
                 product.getSleeve() != null
-
                 ) {
             return true;
-
-
         }
-
         return false;
     }
 
     @Override
+    public DataMapper getAllDomainObjectList() {
+        getAllDomainObjectList(list);
+        return this;
+    }
+
+    @Override
     public void getAllDomainObjectList(ObservableList list) {
-
-
-
 
         try {
 

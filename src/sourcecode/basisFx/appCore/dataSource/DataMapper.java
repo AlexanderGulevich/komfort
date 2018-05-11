@@ -25,11 +25,13 @@ public abstract class DataMapper {
     protected DataMapperFabric dataMapperFabric=new DataMapperFabric();
     private Map<Integer,DomainObject> map= new HashMap<>();
     private int observableDomaineId;
+
     
      protected UnitOfWork unitOfWork;
 
     public abstract boolean isReadyToTransaction(DomainObject d);
     public abstract void getAllDomainObjectList(ObservableList  list);
+    public abstract DataMapper getAllDomainObjectList();
     public abstract void getAllDomainObjectList(ObservableList  list,DomainObject selectedDomainObject);
 
 
@@ -59,6 +61,22 @@ public abstract class DataMapper {
     public int getObservableDomaineId() {
         return observableDomaineId;
     }
+    
+    public HashMap<Integer,DomainObject> toHashMap(){
+
+        HashMap<Integer,DomainObject> hm=new HashMap<>();
+
+        for (DomainObject domainObject : list) {
+
+            Integer id = domainObject.getId();
+            hm.put(id,domainObject);
+        }
+
+        return hm;
+
+    }
+
+
 }
  
         
