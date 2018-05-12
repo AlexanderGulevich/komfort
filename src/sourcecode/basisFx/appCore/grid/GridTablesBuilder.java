@@ -20,6 +20,15 @@ public   class GridTablesBuilder {
     private Class domainClass;
     private ColumnWrapper[] columnWrappers;
     private KindOfTable kindOfTable;
+    private GridColWidth  gridColWidth;
+
+    public GridColWidth getGridColWidth() {
+        return gridColWidth;
+    }
+
+    public void setGridColWidth(GridColWidth gridColWidth) {
+        this.gridColWidth = gridColWidth;
+    }
 
     public KindOfTable getKindOfTable() {
         return kindOfTable;

@@ -12,6 +12,7 @@ import javafx.scene.Node;
 import javafx.scene.layout.*;
 
 import java.awt.*;
+import java.util.ArrayList;
 
 /**
  *
@@ -23,13 +24,23 @@ public  class GridPaneWrapper extends AppNode{
     public GridPaneWrapper(NodeBuilder builder) {
         element=new GridPane();
         gridPane=(GridPane) this.element;
-//        gridPane.setGridLinesVisible(true);
-        gridPane.setGridLinesVisible(false);
+        gridPane.setGridLinesVisible(true);
+//        gridPane.setGridLinesVisible(false);
 
         init(builder);
 
 
     }
+
+
+
+
+    public void setRowConstraints(){
+        RowConstraints rc = new RowConstraints();
+        gridPane.getRowConstraints().add(rc);
+
+    }
+
 
 
     public void setColumnVsPercent(double percentWidth){
@@ -50,6 +61,7 @@ public  class GridPaneWrapper extends AppNode{
         ColumnConstraints column = new ColumnConstraints();
         gridPane.getColumnConstraints().add(column);
 
+
     }
 
 
@@ -61,8 +73,10 @@ public  class GridPaneWrapper extends AppNode{
 
 
     }
+
     //добавляет элемент, который будет для нескольких колонок
     public void addSpanNode(Node child,int columnIndex,int rowIndex,int colspan,int rowspan,HPos halignment, VPos valignment,Insets insets){
+
 
         gridPane.add( child, columnIndex, rowIndex, colspan, rowspan);
         setConstraints(child, halignment,  valignment);

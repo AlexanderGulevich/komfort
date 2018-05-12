@@ -10,7 +10,7 @@ import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class PriceDataMapper extends DataMapper {
+public class ProductPriceMapper extends DataMapper {
     @Override
     public boolean isReadyToTransaction(DomainObject d) {
         Price price = (Price) d;
@@ -20,24 +20,14 @@ public class PriceDataMapper extends DataMapper {
                         && price.getStartingDate() !=null
 
                 ) {
-            System.out.println("!!!!!!!!!!!!!!PriceDataMapper --- объект готов к транзакции");
 
             return true;
         }
-        System.out.println("!!!!!!!!!!!!!!PriceDataMapper --- объект НЕ  готов к транзакции");
-
 
         return false;
 
     }
 
-
-
-    @Override
-    public DataMapper getAllDomainObjectList() {
-        getAllDomainObjectList(list);
-        return this;
-    }
 
     @Override
     public void getAllDomainObjectList(ObservableList list) {
@@ -50,7 +40,7 @@ public class PriceDataMapper extends DataMapper {
 
         try {
 
-            String expression="SELECT * FROM " +"PriceStore "+" where productId= " +id+" ORDER BY startDate desc";
+            String expression="SELECT * FROM " +"ProductPriceStore "+" where productId= " +id+" ORDER BY startDate desc";
 
             Statement stmt  = Db.getConnection().createStatement();
 
@@ -86,7 +76,7 @@ public class PriceDataMapper extends DataMapper {
 
             Price price= (Price) d;
 
-            String expression = "UPDATE "+    "PriceStore"+ " SET  " +
+            String expression = "UPDATE "+    "ProductPriceStore"+ " SET  " +
                     " price = ?," +
                     " startDate = ?," +
                     " productId = ? " +
@@ -117,7 +107,7 @@ public class PriceDataMapper extends DataMapper {
 
 
             try {
-                String expression = "INSERT INTO " + "PriceStore "
+                String expression = "INSERT INTO " + "ProductPriceStore "
                         + "("
                         + " price ,  "
                         + " startDate,  "
@@ -138,4 +128,7 @@ public class PriceDataMapper extends DataMapper {
             }
         }
     }
+
+
+
 }

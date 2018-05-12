@@ -19,7 +19,7 @@ public class CounterpartyPanel extends Target{
     
     @Override
     @SuppressWarnings("unchecked")
-    public void createElement() {
+    public void configurate() {
 
         GridTablesBuilder tr=new GridTablesBuilder();
         tr.setTitle("Наименование yаименование  name name");

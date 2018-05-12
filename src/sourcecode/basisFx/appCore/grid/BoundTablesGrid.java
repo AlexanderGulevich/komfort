@@ -99,4 +99,12 @@ public class BoundTablesGrid    {
     public void setParent(AnchorPane parent) {
         this.parent = parent;
     }
+
+    public GridPaneWrapper getGridPaneWrapper() {
+        return gridPaneWrapper;
+    }
+
+    public GridPane getGridPane() {
+        return gridPane;
+    }
 }

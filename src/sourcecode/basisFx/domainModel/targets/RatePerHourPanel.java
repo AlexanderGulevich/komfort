@@ -17,7 +17,7 @@ public class RatePerHourPanel extends Target {
 
     @Override
     @SuppressWarnings("unchecked")
-    public void createElement() {
+    public void configurate() {
 
 
         tableWrapper = tableFabric.table(

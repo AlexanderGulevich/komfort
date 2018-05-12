@@ -19,7 +19,7 @@ public class TimeRecordingPanel extends Target {
     private DatePickerWrapper datePickerWrapper;
 
     @Override
-    protected void createElement() {
+    protected void configurate() {
 
         employerSide=innerPanelsFabric.createInnerPanels(panel,0.78d,new Coordinate(0d,null,0d,0d));
         controlSide=innerPanelsFabric.createInnerPanels(panel,0.2d,new Coordinate(0d,0d,0d,null));

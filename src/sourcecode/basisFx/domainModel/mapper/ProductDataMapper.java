@@ -30,12 +30,6 @@ public class ProductDataMapper  extends DataMapper{
     }
 
     @Override
-    public DataMapper getAllDomainObjectList() {
-        getAllDomainObjectList(list);
-        return this;
-    }
-
-    @Override
     public void getAllDomainObjectList(ObservableList list) {
 
         try {
@@ -144,10 +138,18 @@ public class ProductDataMapper  extends DataMapper{
 
 
     public void deleteDomainObject(DomainObject domainObject) throws SQLException{
-        String expression="delete from " +"Product "+" where id=? ";
-        PreparedStatement pstmt =  Db.getConnection().prepareStatement(expression);
-        pstmt.setInt(1, domainObject.getId());
-        pstmt.executeUpdate();
+
+        String expression1="delete from " +"Product "+" where id=? ";
+        PreparedStatement pstmt1 =  Db.getConnection().prepareStatement(expression1);
+        pstmt1.setInt(1, domainObject.getId());
+        pstmt1.executeUpdate();
+
+
+        String expression2="delete from " +"ProductPriceStore "+" where productId=? ";
+        PreparedStatement pstmt2 =  Db.getConnection().prepareStatement(expression2);
+        pstmt2.setInt(1, domainObject.getId());
+        pstmt2.executeUpdate();
+
 
     }
 

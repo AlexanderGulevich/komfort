@@ -20,7 +20,7 @@ public class CurrencyPanel extends Target {
 
     private TableWrapper tableWrapper;
     @Override
-    protected void createElement() {
+    protected void configurate() {
 
 
         textFabric.createLabel("Список валют", FontsStore.ROBOTO_LIGHT,  Pos.BASELINE_LEFT,25d,

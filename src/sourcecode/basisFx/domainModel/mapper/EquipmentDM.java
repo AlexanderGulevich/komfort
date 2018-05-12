@@ -42,12 +42,7 @@ public class EquipmentDM extends DataMapper {
 
 
 
-    @Override
-    public DataMapper getAllDomainObjectList() {
-        getAllDomainObjectList(list);
-        return this;
-    }
-  
+
     @Override
     public void insertDomainObject(DomainObject d) {
         

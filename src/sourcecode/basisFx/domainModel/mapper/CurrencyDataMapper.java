@@ -40,11 +40,7 @@ public class CurrencyDataMapper extends DataMapper {
         return false;
     }
 
-    @Override
-    public DataMapper getAllDomainObjectList() {
-        getAllDomainObjectList(list);
-        return this;
-    }
+
 
     @Override
     public void getAllDomainObjectList(ObservableList list) {

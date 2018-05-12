@@ -34,7 +34,7 @@ public class DataMapperFabric {
     }
     public ExchangeRatesDataMapper exchangeRatesDataMapper(){return new ExchangeRatesDataMapper();}
     public ProductDataMapper productDataMapper(){return new ProductDataMapper();}
-    public PriceDataMapper priceDataMapper(){return new PriceDataMapper();}
+    public ProductPriceMapper priceDataMapper(){return new ProductPriceMapper();}
     public PacketSizeMapper packetSizeMapper(){return new PacketSizeMapper();}
 
 

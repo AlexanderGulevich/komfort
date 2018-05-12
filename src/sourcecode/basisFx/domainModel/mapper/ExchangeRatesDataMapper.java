@@ -30,11 +30,6 @@ public class ExchangeRatesDataMapper extends DataMapper{
 
 
 
-    @Override
-    public DataMapper getAllDomainObjectList() {
-        getAllDomainObjectList(list);
-        return this;
-    }
 
     @Override
     public void getAllDomainObjectList(ObservableList list) {

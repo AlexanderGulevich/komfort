@@ -12,6 +12,7 @@ import basisFx.appCore.fabrics.*;
 import basisFx.appCore.utils.Coordinate;
 import basisFx.domainModel.DataMapperFabric;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
 
 /**
  *
@@ -33,9 +34,10 @@ public abstract class Target {
     protected VidgetFactory vidgetFactory=new VidgetFactory();
     protected GridPaneWrapper gridPaneWrapper;
     protected GridFabric gridFabric=new GridFabric();
+    protected GridPane commonGridPane;
 
 
-    protected abstract void createElement();
+    protected abstract void configurate();
   
     public AnchorPane getTargetElement() {
        return  this.panel;
@@ -46,7 +48,7 @@ public abstract class Target {
         
         targetStackLogic();
         createPanel();
-        createElement();
+        configurate();
         
  
     }
@@ -69,6 +71,9 @@ public abstract class Target {
                 .setParent(panel)
                 .setCoordinate(new Coordinate(0d,0d,0d,0d))
                 .createGridPaneWrapper();
+
+         commonGridPane = (GridPane) gridPaneWrapper.getElement();
+
 
     }
 

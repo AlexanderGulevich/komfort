@@ -6,6 +6,7 @@ import basisFx.appCore.domainScetch.DomainObject;
 import basisFx.appCore.elements.GridPaneWrapper;
 import basisFx.appCore.elements.TableWrapper;
 import basisFx.appCore.fabrics.*;
+import basisFx.appCore.grid.GridColWidth;
 import basisFx.appCore.grid.KindOfTable;
 import basisFx.appCore.grid.TablesButtonKind;
 import basisFx.appCore.utils.Coordinate;
@@ -39,6 +40,7 @@ public abstract class GridTable {
     protected ArrayList<TableWrapper> observers=new ArrayList();
     protected KindOfTable kindOfTable;
     protected KindOfSubmitElement kindOfSubmitElement;
+    protected GridColWidth gridColWidth;
 
     public void setKindOfSubmitElement(KindOfSubmitElement kindOfSubmitElement) {
         this.kindOfSubmitElement = kindOfSubmitElement;
@@ -53,6 +55,14 @@ public abstract class GridTable {
 
         return (GridPane) gridPaneWrapper.getElement();
 
+    }
+
+    public GridColWidth getGridColWidth() {
+        return gridColWidth;
+    }
+
+    public void setGridColWidth(GridColWidth gridColWidth) {
+        this.gridColWidth = gridColWidth;
     }
 
     public abstract void init();

@@ -24,7 +24,7 @@ public class EquipmentPanel extends Target{
     
     @Override
     @SuppressWarnings("unchecked")
-    public void createElement() {
+    public void configurate() {
 
         GridTablesBuilder tr=new GridTablesBuilder();
         tr.setTitle("Перечень станков ");

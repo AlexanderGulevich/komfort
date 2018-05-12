@@ -21,14 +21,6 @@ public class PacketSizeMapper extends DataMapper {
         }
 
 
-    @Override
-    public DataMapper getAllDomainObjectList() {
-        getAllDomainObjectList(list);
-        return this;
-    }
-
-
-
         @Override
         public boolean isReadyToTransaction(DomainObject d) {
             PacketSize ratePerHour = (PacketSize) d;

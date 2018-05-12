@@ -81,7 +81,7 @@ public class MenuBarRepresent extends MenuRepresent{
 //                 
 //                 item.setOnAction((ActionEvent e) -> {
 //                     
-//                     AppNode unit=next.getFactory().createElement(next.getId());
+//                     AppNode unit=next.getFactory().configurate(next.getId());
 //                     
 //                     
 //                     

@@ -15,7 +15,7 @@ public class EmployeesActualRatePanel extends Target{
 
     private TableWrapper tableWrapper;
     @Override
-    protected void createElement() {
+    protected void configurate() {
 
 
         textFabric.createLabel("Текущий список сотрудников и актуальных тарифных ставок ", FontsStore.ROBOTO_LIGHT,  Pos.BASELINE_CENTER,25d,

@@ -20,7 +20,7 @@ public class EmployeesManagerPanel extends Target {
     private AnchorPane rateSide;
 
     @Override
-    protected void createElement() {
+    protected void configurate() {
 
         rateSide=innerPanelsFabric.createInnerPanels(panel,0.45,new Coordinate(0d,0d,0d,null));
 

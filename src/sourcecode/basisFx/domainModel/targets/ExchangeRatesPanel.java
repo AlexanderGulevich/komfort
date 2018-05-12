@@ -22,12 +22,13 @@ public class ExchangeRatesPanel extends Target{
     private AnchorPane rateSide;
 
     @Override
-    protected void createElement() {
+    protected void configurate() {
 
         GridTablesBuilder observed=new GridTablesBuilder();
         observed.setTitle("Список валют");
         observed.setTablesButtonKind(TablesButtonKind.Bottom_right);
         observed.setDomainClass(Currency.class);
+        observed.setGridColWidth(new GridColWidth(KindOfGridCol.percent,60d));
         observed.setDataMapper(dataMapper.currencyDataMapper());
         observed.setColumn( columnFabric.stringColumn(KindOfColumn.STRING,"Наименование","name",1d,true,
                 (obj,val)->((Currency)obj).setName((String)val))  );
@@ -37,6 +38,7 @@ public class ExchangeRatesPanel extends Target{
         observer.setTitle("Курсы валют");
         observer.setTablesButtonKind(TablesButtonKind.Bottom_right);
         observer.setDomainClass(ExchangeRates.class);
+        observer.setGridColWidth( new GridColWidth(KindOfGridCol.percent,40d));
         observer.setDataMapper(dataMapper.exchangeRatesDataMapper());
         observer.setColumn(columnFabric.stringColumn(KindOfColumn.DOUBLE,"Курсы","exchangeRate",0.3d,true,
                         (obj,val)->{((ExchangeRates)obj).setExchangeRate( (String ) val);}    ));
@@ -47,8 +49,6 @@ public class ExchangeRatesPanel extends Target{
         gridFabric.boundTables(
                 observed,
                 observer,
-                new GridColWidth(KindOfGridCol.percent,60d),
-                new GridColWidth(KindOfGridCol.percent,40d),
                 new Coordinate(10d,10d,10d,10d),
                 panel
         );

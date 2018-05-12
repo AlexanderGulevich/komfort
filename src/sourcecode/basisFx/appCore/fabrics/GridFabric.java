@@ -18,6 +18,7 @@ public class GridFabric {
         gr.setCoordinate(b.getCoordinate());
         gr.setDataMapper(b.getDataMapper());
         gr.setDomainClass(b.getDomainClass());
+        gr.setGridColWidth(b.getGridColWidth());
         gr.setColumnWrappers(b.getColumnWrappers());
         gr.setKindOfTable(KindOfTable.SIMPLE);
 
@@ -44,7 +45,7 @@ public class GridFabric {
     }
 
 
-    public BoundTablesGrid boundTables(GridTablesBuilder observed, GridTablesBuilder observer, GridColWidth w1, GridColWidth w2, Coordinate c, AnchorPane p){
+    public BoundTablesGrid boundTables(GridTablesBuilder observed, GridTablesBuilder observer, Coordinate c, AnchorPane p){
 
 
          SingleGridTable gr_observer = new SingleGridTable();
@@ -77,8 +78,8 @@ public class GridFabric {
          BoundTablesGrid boundTablesGrid=new BoundTablesGrid();
          boundTablesGrid.setObserverGrid(gr_observer);
          boundTablesGrid.setObservedGrid(gr_observed);
-         boundTablesGrid.setColWh_1(w1);
-         boundTablesGrid.setColWh_2(w2);
+         boundTablesGrid.setColWh_1(observed.getGridColWidth());
+         boundTablesGrid.setColWh_2(observer.getGridColWidth());
          boundTablesGrid.setCoordinate(c);
          boundTablesGrid.setParent(p);
          boundTablesGrid.init();
@@ -92,6 +93,51 @@ public class GridFabric {
 
          return boundTablesGrid;
         }
+
+
+    public void boundWithSecondRaw(
+                                   BoundTablesGrid boundTablesGrid,
+                                   double firstRawPercentHeight,
+                                   double secondRawPercentHeight,
+                                   AnchorPane p,
+                                   GridTablesBuilder ...secondRawTables
+                                   ) {
+
+
+        BoundWithSecondRawGrid boundWithSecondRawGrid=new BoundWithSecondRawGrid();
+
+        boundWithSecondRawGrid.setBoundTableGrid(boundTablesGrid.getGridPane());
+        boundWithSecondRawGrid.setRawPercentHeight(firstRawPercentHeight,secondRawPercentHeight);
+        boundWithSecondRawGrid.setParent(p);
+
+
+
+
+        for (GridTablesBuilder secondRawTable : secondRawTables) {
+            GridTable gridTable = singleGridTable(secondRawTable);
+            boundWithSecondRawGrid.setSecondRawTables(gridTable);
+        }
+
+
+
+
+
+        boundWithSecondRawGrid.init();
+
+
+
+
+
+
+
+
+    }
+
+
+
+
+
+
 
 
     }

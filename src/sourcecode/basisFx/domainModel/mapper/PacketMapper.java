@@ -27,12 +27,6 @@ public class PacketMapper  extends DataMapper {
 
 
     @Override
-    public DataMapper getAllDomainObjectList() {
-        getAllDomainObjectList(list);
-        return this;
-    }
-
-    @Override
     public boolean isReadyToTransaction(DomainObject d) {
         Packet pojo = (Packet) d;
         if (
@@ -59,8 +53,8 @@ public class PacketMapper  extends DataMapper {
 
                 int packetSizeId=rs.getInt("packetSizeId");
                 int counterpartyId=rs.getInt("counterpartyId");
-                PacketSize packetSize = (PacketSize) dataMapperFabric.packetSizeMapper().getAllDomainObjectList().toHashMap().get(packetSizeId);
-                Counterparty counterparty = (Counterparty) dataMapperFabric.counterpartyDataMapper().getAllDomainObjectList().toHashMap().get(counterpartyId);
+                PacketSize packetSize = (PacketSize) dataMapperFabric.packetSizeMapper().toHashMapByCommonRawId().get(packetSizeId);
+                Counterparty counterparty = (Counterparty) dataMapperFabric.counterpartyDataMapper().toHashMapByCommonRawId().get(counterpartyId);
 
                 Packet pojo=new Packet();
                 pojo.setId(rs.getInt("id"));

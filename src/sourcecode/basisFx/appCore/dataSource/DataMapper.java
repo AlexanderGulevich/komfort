@@ -31,7 +31,6 @@ public abstract class DataMapper {
 
     public abstract boolean isReadyToTransaction(DomainObject d);
     public abstract void getAllDomainObjectList(ObservableList  list);
-    public abstract DataMapper getAllDomainObjectList();
     public abstract void getAllDomainObjectList(ObservableList  list,DomainObject selectedDomainObject);
 
 
@@ -61,8 +60,14 @@ public abstract class DataMapper {
     public int getObservableDomaineId() {
         return observableDomaineId;
     }
-    
-    public HashMap<Integer,DomainObject> toHashMap(){
+
+
+
+    // getAllDomainObjectList(list) записывает в  list значения ReturnSet БД
+    // далее идет преобразование каждой строки БД в HashMap, где ключем является id
+    public HashMap<Integer,DomainObject> toHashMapByCommonRawId(){
+
+        getAllDomainObjectList(list);
 
         HashMap<Integer,DomainObject> hm=new HashMap<>();
 

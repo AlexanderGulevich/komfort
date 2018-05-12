@@ -1,29 +1,28 @@
 package basisFx.domainModel.targets;
 
+import basisFx.appCore.controls.GridTable;
 import basisFx.appCore.controls.KindOfColumn;
 import basisFx.appCore.domainScetch.BoolComboBox;
 import basisFx.appCore.elements.TableWrapper;
-import basisFx.appCore.grid.GridColWidth;
-import basisFx.appCore.grid.GridTablesBuilder;
-import basisFx.appCore.grid.KindOfGridCol;
-import basisFx.appCore.grid.TablesButtonKind;
+import basisFx.appCore.grid.*;
 import basisFx.appCore.panels.Target;
 import basisFx.appCore.utils.Coordinate;
+import basisFx.domainModel.domaine.Equipment;
 import basisFx.domainModel.domaine.Price;
 import basisFx.domainModel.domaine.Product;
+import javafx.geometry.HPos;
+import javafx.geometry.Insets;
+import javafx.geometry.VPos;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
 
 import java.time.LocalDate;
 
-public class ProductPanel  extends Target{
-    private TableWrapper productTable;
-    private TableWrapper priceTable;
-    private AnchorPane productSide;
-    private AnchorPane priceSide;
+public class PacketPanel  extends Target {
+
 
     @Override
     protected void configurate() {
-
         GridTablesBuilder observed=new GridTablesBuilder();
         observed.setGridColWidth(new GridColWidth(KindOfGridCol.percent,60d));
         observed.setTitle("Список продукции ");
@@ -59,17 +58,45 @@ public class ProductPanel  extends Target{
         );
 
 
-        gridFabric.boundTables(
+        BoundTablesGrid boundTablesGrid = gridFabric.boundTables(
                 observed,
                 observer,
-                new Coordinate(10d,10d,10d,10d),
+                new Coordinate(10d, 10d, 10d, 10d),
                 panel
         );
 
 
 
 
+        GridTablesBuilder tr=new GridTablesBuilder();
+        tr.setTitle("Перечень станков ");
+        tr.setTablesButtonKind(TablesButtonKind.Bottom_right);
+        tr.setDomainClass(Equipment.class);
+        tr.setGridColWidth(new GridColWidth(KindOfGridCol.percent,30));
+        tr.setDataMapper(dataMapper.equipmentDataMapper());
+        tr.setCoordinate(new Coordinate(10d, 10d, 10d, 10d));
+        tr.setPanel(panel);
+        tr.setColumn(columnFabric.stringColumn(KindOfColumn.STRING,"Наименование ","name",1d,true,
+                (obj,val)->((Equipment)obj).setName((String)val))
+        );
+
+
+
+
+
+
+
+
+        gridFabric.boundWithSecondRaw(
+                boundTablesGrid,
+                0.3d,
+                0.7d,
+                panel,
+                tr,
+                tr
+
+        );
+
 
     }
-
 }

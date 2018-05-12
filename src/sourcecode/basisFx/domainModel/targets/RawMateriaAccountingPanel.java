@@ -4,7 +4,7 @@ import basisFx.appCore.panels.Target;
 
 public class RawMateriaAccountingPanel extends Target {
     @Override
-    protected void createElement() {
+    protected void configurate() {
 
     }
 }
