@@ -21,25 +21,21 @@ public class RatePerHourDataMapper extends DataMapper{
                         && ratePerHour.getStartingDate() !=null
 
                 ) {
-            System.out.println("!!!!!!!!!!!!!!RatePerHourDataMapper --- объект готов к транзакции");
 
             return true;
         }
-        System.out.println("!!!!!!!!!!!!!!RatePerHourDataMapper --- объект НЕ  готов к транзакции");
-        System.out.println("!!!!!!!!!!!!!!getStartingDate --- объект НЕ  готов к транзакции---"+ratePerHour.getStartingDate());
-        System.out.println("!!!!!!!!!!!!!!getStringValue --- объект НЕ  готов к транзакции---"+ratePerHour.getRate());
 
         return false;
     }
 
 
     @Override
-    public void getAllDomainObjectList(ObservableList list) {
+    public void getDomainList(ObservableList list) {
 
     }
 
     @Override
-    public void getAllDomainObjectList(ObservableList list, DomainObject selectedDomainObject) {
+    public void getDomainListForObserverTables(ObservableList list, DomainObject selectedDomainObject) {
 
         int id=selectedDomainObject.getId();
 

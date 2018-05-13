@@ -43,7 +43,7 @@ public class CurrencyDataMapper extends DataMapper {
 
 
     @Override
-    public void getAllDomainObjectList(ObservableList list) {
+    public void getDomainList(ObservableList list) {
         try {
 
             String expression="SELECT * FROM " +"Currency"+" ORDER BY ID";
@@ -75,7 +75,7 @@ public class CurrencyDataMapper extends DataMapper {
     }
 
     @Override
-    public void getAllDomainObjectList(ObservableList list, DomainObject selectedDomainObject) {
+    public void getDomainListForObserverTables(ObservableList list, DomainObject selectedDomainObject) {
 
     }
 

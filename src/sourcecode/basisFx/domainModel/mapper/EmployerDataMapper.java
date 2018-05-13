@@ -37,9 +37,9 @@ public class EmployerDataMapper extends DataMapper {
 
 
     @Override
-    public void getAllDomainObjectList(ObservableList list) {
+    public void getDomainList(ObservableList list) {
 
-        System.out.println("EmployerDataMapper.getAllDomainObjectList");
+        System.out.println("EmployerDataMapper.getDomainList");
 
 
         try {
@@ -93,7 +93,7 @@ public class EmployerDataMapper extends DataMapper {
     }
 
     @Override
-    public void getAllDomainObjectList(ObservableList list, DomainObject selectedDomainObject) {
+    public void getDomainListForObserverTables(ObservableList list, DomainObject selectedDomainObject) {
 
     }
 

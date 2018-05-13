@@ -22,11 +22,11 @@ public class EmployeesManagerMapper extends DataMapper{
     }
 
     @Override
-    public void getAllDomainObjectList(ObservableList list) {
+    public void getDomainList(ObservableList list) {
     }
 
     @Override
-    public void getAllDomainObjectList(ObservableList list, DomainObject selectedDomainObject) {
+    public void getDomainListForObserverTables(ObservableList list, DomainObject selectedDomainObject) {
 
     }
 

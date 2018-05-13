@@ -18,7 +18,7 @@ public class ComboBoxWrapper <T>extends AppNode {
     private ObservableList<T> list= FXCollections.<T> observableArrayList();
 //    private UnitOfWork unitOfWork=new UnitOfWork();
 //    private TableListener  tableListener=new TableListener (this);
-//    protected DataMapper dataMapper;
+//    protected DataMapper dataMapperFabric;
     protected String tableName;
 
 

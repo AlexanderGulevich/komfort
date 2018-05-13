@@ -33,6 +33,16 @@ public class TextFabric {
                 .setId(CSSID.LABEL_TEXT)
                 .createText();
     }
+    public TextWrapper createText(String str,FontsStore font, double fontSize, AnchorPane panel, Coordinate coordinate,CSSID cssid) {
+
+        return AppNode.NodeBuilder.create()
+                .setParent(panel)
+                .setCoordinate(coordinate)
+                .setFont(font, fontSize)
+                .setText(str)
+                .setId(cssid)
+                .createText();
+    }
 
     public LabelWrapper createLabel(String str, FontsStore font, Pos pos, double fontSize, AnchorPane panel, Coordinate coordinate) {
 

@@ -95,8 +95,7 @@ public class GridFabric {
         }
 
 
-    public void boundWithSecondRaw(
-                                   BoundTablesGrid boundTablesGrid,
+    public void boundWithSecondRaw(BoundTablesGrid boundTablesGrid,
                                    double firstRawPercentHeight,
                                    double secondRawPercentHeight,
                                    AnchorPane p,
@@ -110,27 +109,12 @@ public class GridFabric {
         boundWithSecondRawGrid.setRawPercentHeight(firstRawPercentHeight,secondRawPercentHeight);
         boundWithSecondRawGrid.setParent(p);
 
-
-
-
         for (GridTablesBuilder secondRawTable : secondRawTables) {
             GridTable gridTable = singleGridTable(secondRawTable);
             boundWithSecondRawGrid.setSecondRawTables(gridTable);
         }
 
-
-
-
-
         boundWithSecondRawGrid.init();
-
-
-
-
-
-
-
-
     }
 
 

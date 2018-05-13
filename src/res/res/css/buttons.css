@@ -24,11 +24,31 @@
     -fx-color:yellowgreen;
 }
 
-#Little_PANELS_BUTTON{
+#Little_PANELS_BUTTON_DEL,#Little_PANELS_BUTTON_ADD{
 
-   -fx-text-fill:#61757d; 
+   -fx-text-fill:#d9b9a9;
+   -fx-background-color:white;
+   -fx-background-radius: 0;
+   -fx-border-radius:0;
+   -fx-background-insets: 0, 0, 0, 0;
+   /*-fx-effect: dropshadow(gaussian ,#555555 , 4, 0, 0.5, 0.5);*/
+
+    -fx-effect: dropshadow(gaussian ,#555555 , 2, 0, 0.5, 0.5);
 
 }
+#Little_PANELS_BUTTON_DEL{
+
+     -fx-text-fill:#ee8061;
+
+}
+
+#Little_PANELS_BUTTON_ADD{
+
+     -fx-text-fill:#46c343;
+
+}
+
+
 
 #PANELS_BUTTON{
 -fx-padding: 4 5;
@@ -47,7 +67,7 @@
     /*-fx-font-size: 17;*/
 
 }
-#PANELS_BUTTON:armed{
+#PANELS_BUTTON:armed, #Little_PANELS_BUTTON_ADD:armed, #Little_PANELS_BUTTON_DEL:armed{
      -fx-background-color:#FF8964;
     -fx-background-radius: 0;
     -fx-border-radius:0;
@@ -63,7 +83,7 @@
 
 
 }
-#PANELS_BUTTON:hover{
+#PANELS_BUTTON:hover, #Little_PANELS_BUTTON_ADD:hover, #Little_PANELS_BUTTON_DEL:hover{
      /*-fx-background-color:#ff3d00;*/
     -fx-background-radius: 0;
     -fx-border-radius:0;

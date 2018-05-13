@@ -14,19 +14,18 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class PacketSizeMapper extends DataMapper {
-        private static RatePerHourTemplatesDataMapper ourInstance = new RatePerHourTemplatesDataMapper();
+        private static PacketSizeMapper ourInstance = new PacketSizeMapper();
 
-        public static RatePerHourTemplatesDataMapper getInstance() {
+        public static PacketSizeMapper getInstance() {
             return ourInstance;
         }
 
 
         @Override
         public boolean isReadyToTransaction(DomainObject d) {
-            PacketSize ratePerHour = (PacketSize) d;
+            PacketSize packetSize = (PacketSize) d;
             if (
-
-                    ratePerHour.getSize()!=null
+                    packetSize.getSize()!=null
 
                     ) {
 
@@ -37,7 +36,7 @@ public class PacketSizeMapper extends DataMapper {
         }
 
         @Override
-        public void getAllDomainObjectList(ObservableList list) {
+        public void getDomainList(ObservableList list) {
             try {
 
                 String expression="SELECT * FROM " +"PacketSize"+" ORDER BY ID";
@@ -69,7 +68,7 @@ public class PacketSizeMapper extends DataMapper {
         }
 
         @Override
-        public void getAllDomainObjectList(ObservableList list, DomainObject selectedDomainObject) {
+        public void getDomainListForObserverTables(ObservableList list, DomainObject selectedDomainObject) {
 
         }
 
@@ -79,15 +78,15 @@ public class PacketSizeMapper extends DataMapper {
             if (isReadyToTransaction(d)) {
                 PacketSize pojo = (PacketSize) d;
                 String expression = "UPDATE " + "PacketSize" + " SET  " +
-                        " id = ?," +
-                        " size = ?";
+                        " size = ?" +
+                        " where id=? ";
 
                 PreparedStatement pstmt = null;
                 try {
                     pstmt = Db.getConnection().prepareStatement(expression);
 
-                    pstmt.setInt(1, pojo.getId());
-                    pstmt.setString(2, pojo.getSize());
+                    pstmt.setInt(2, pojo.getId());
+                    pstmt.setString(1, pojo.getSize());
 
                     pstmt.executeUpdate();
 

@@ -1,11 +1,14 @@
 package basisFx.appCore.grid;
 
 import basisFx.appCore.controls.GridTable;
+import basisFx.appCore.domainScetch.DomainObject;
 import basisFx.appCore.elements.AppNode;
 import basisFx.appCore.elements.GridPaneWrapper;
 import basisFx.appCore.utils.Coordinate;
 import javafx.geometry.HPos;
 import javafx.geometry.VPos;
+import javafx.scene.control.ScrollBar;
+import javafx.scene.control.TableView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 
@@ -19,9 +22,9 @@ public class BoundWithSecondRawGrid {
     double secondRawPercentHeight;
     private AnchorPane parent;
     private ArrayList<GridTable> secondRawTables=new ArrayList<>();
-    private GridPaneWrapper gridPaneWrapper;
-    private GridPane gridPane;
-    private GridPaneWrapper secondRowGrid;
+    private GridPaneWrapper commonGridPaneWrapper;
+    private GridPane commonGridPane;
+    private GridPaneWrapper secondRowGridWrapper;
 
     public void setBoundTableGrid(GridPane boundTableGrid) {
         this.boundTableGrid = boundTableGrid;
@@ -50,63 +53,79 @@ public class BoundWithSecondRawGrid {
 
 
     public void init() {
-        gridPaneWrapper = AppNode.NodeBuilder.create()
+        commonGridPaneWrapper = AppNode.NodeBuilder.create()
                 .setCoordinate(new Coordinate(0d,0d,0d,0d))
                 .setParent(parent)
                 .createGridPaneWrapper();
 
-        gridPane= (GridPane) gridPaneWrapper.getElement();
+        commonGridPane = (GridPane) commonGridPaneWrapper.getElement();
 
-        gridPaneWrapper.setColumnComputerWidth();
+        commonGridPaneWrapper.setColumnVsPercent(100d);
 
-        gridPaneWrapper.setRowConstraints();
-        gridPaneWrapper.setRowConstraints();
+        commonGridPaneWrapper.setRowConstraints();
+        commonGridPaneWrapper.setRowConstraints();
 
-        gridPaneWrapper.addSpanNode(boundTableGrid,0,0,2,1, HPos.CENTER, VPos.BASELINE,null);
+        commonGridPaneWrapper.addSpanNode(boundTableGrid,0,0,1,1, HPos.CENTER, VPos.BASELINE,null);
 
 
-         secondRowGrid = AppNode.NodeBuilder.create().createGridPaneWrapper();
-        GridPane secondRowGridPane= (GridPane)secondRowGrid.getElement();
+        secondRowGridWrapper = AppNode.NodeBuilder.create().createGridPaneWrapper();
+        GridPane secondRowGridPane= (GridPane) secondRowGridWrapper.getElement();
+        commonGridPaneWrapper.addSpanNode(secondRowGridPane,0,1,1,1, HPos.CENTER, VPos.BASELINE,null);
 
-        secondRowGrid.setColumnComputerWidth();
 
         int i=0;
 
         for (GridTable secondRawTable : secondRawTables) {
+
             organizeColumn(secondRawTable.getGridColWidth());
 
-            secondRowGrid.addSpanNode(secondRawTable.getGridPane(),i++,1,1,1,HPos.CENTER,VPos.TOP,null);
+//            double v = secondRawTable.getGridPane().getColumnConstraints().get(i).percentWidthProperty().get();
+//            TableView<DomainObject> tableView = secondRawTable.getTableView();
 
+//            commonGridPane.widthProperty().addListener((obs, oldVal, newVal) -> {
+//
+//
+//                double v1 = newVal.doubleValue();
+//                double multiply = new BigDecimal(v1).multiply(new BigDecimal(v)).doubleValue();
+//
+//                secondRawTable.getTableView().setPrefWidth(
+//                        multiply
+//                );
+//
+//                    });
+
+
+
+            secondRowGridWrapper.addSpanNode(secondRawTable.getGridPane(),i,1,1,1,HPos.CENTER,VPos.TOP,null);
+
+            i++;
         }
 
 
         //установка высот по умолчанию
-        gridPane.getRowConstraints().get(0).setPrefHeight(
-                new BigDecimal(gridPane.getHeight()).multiply(new BigDecimal(firstRawPercentHeight)).doubleValue()
+        commonGridPane.getRowConstraints().get(0).setPrefHeight(
+                new BigDecimal(commonGridPane.getHeight()).multiply(new BigDecimal(firstRawPercentHeight)).doubleValue()
         );
 
 
-        gridPane.getRowConstraints().get(1).setPrefHeight(
-                new BigDecimal(gridPane.getHeight()).multiply(new BigDecimal(secondRawPercentHeight)).doubleValue()
+        commonGridPane.getRowConstraints().get(1).setPrefHeight(
+                new BigDecimal(commonGridPane.getHeight()).multiply(new BigDecimal(secondRawPercentHeight)).doubleValue()
         );
 
 
-        gridPane.heightProperty().addListener((obs, oldVal, newVal) -> {
+        commonGridPane.heightProperty().addListener((obs, oldVal, newVal) -> {
 
-            //установка высот при изменении высоты материнского gridPane
-            gridPane.getRowConstraints().get(0).setPrefHeight(
-                    new BigDecimal(gridPane.getHeight()).multiply(new BigDecimal(firstRawPercentHeight)).doubleValue()
+            //установка высот при изменении высоты материнского commonGridPane
+            commonGridPane.getRowConstraints().get(0).setPrefHeight(
+                    new BigDecimal(commonGridPane.getHeight()).multiply(new BigDecimal(firstRawPercentHeight)).doubleValue()
             );
 
 
-            gridPane.getRowConstraints().get(1).setPrefHeight(
-                    new BigDecimal(gridPane.getHeight()).multiply(new BigDecimal(secondRawPercentHeight)).doubleValue()
+            commonGridPane.getRowConstraints().get(1).setPrefHeight(
+                    new BigDecimal(commonGridPane.getHeight()).multiply(new BigDecimal(secondRawPercentHeight)).doubleValue()
             );
 
         });
-
-
-        gridPaneWrapper.addSpanNode(secondRowGridPane,0,1,2,1, HPos.CENTER, VPos.BASELINE,null);
 
 
 
@@ -122,19 +141,20 @@ public class BoundWithSecondRawGrid {
         switch (kind) {
 
             case fixed:
-                secondRowGrid.setColumnFixed(setter.getWidth());
+                secondRowGridWrapper.setColumnFixed(setter.getWidth());
+
                 break;
 
             case computed:
-                secondRowGrid.setColumnComputerWidth();
+                secondRowGridWrapper.setColumnComputerWidth();
                 break;
 
             case percent:
-                secondRowGrid.setColumnVsPercent(setter.getWidth());
+                secondRowGridWrapper.setColumnVsPercent(setter.getWidth());
                 break;
 
             case byChild:
-                secondRowGrid.setColumn();
+                secondRowGridWrapper.setColumn();
                 break;
 
 

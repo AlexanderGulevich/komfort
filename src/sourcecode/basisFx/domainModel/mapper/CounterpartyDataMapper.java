@@ -42,7 +42,7 @@ public class CounterpartyDataMapper extends DataMapper {
     }
 
     @Override
-    public void getAllDomainObjectList(ObservableList list) {
+    public void getDomainList(ObservableList list) {
 
         getCurrencyList();
 
@@ -94,7 +94,7 @@ public class CounterpartyDataMapper extends DataMapper {
 
 
     @Override
-    public void getAllDomainObjectList(ObservableList list, DomainObject selectedDomainObject) {
+    public void getDomainListForObserverTables(ObservableList list, DomainObject selectedDomainObject) {
 
     }
 

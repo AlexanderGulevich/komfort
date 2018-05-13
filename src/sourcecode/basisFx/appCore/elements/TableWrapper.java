@@ -21,10 +21,16 @@ import basisFx.appCore.domainScetch.DomainObject;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import basisFx.appCore.settings.CSSID;
 import basisFx.appCore.settings.FontsStore;
 import javafx.beans.property.ReadOnlyDoubleProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.geometry.Orientation;
+import javafx.scene.Node;
+import javafx.scene.control.ScrollBar;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
@@ -58,10 +64,44 @@ public  class TableWrapper<T> extends AppNode implements Refreshable, Submitting
 
 //todo вставить значение
         TextFabric textFabric=new TextFabric();
-        TextWrapper text = textFabric.createText("Контент отсутствует".toLowerCase(), FontsStore.ROBOTO_LIGHT, 25d, null, null);
+        TextWrapper text =
+                textFabric.createText("Контент отсутствует".toLowerCase(),
+                        FontsStore.ROBOTO_LIGHT, 25d, null, null, CSSID.PLACEHOLDER);
         Text elem = (Text) text.getElement();
         table.setPlaceholder(elem);
 
+
+        ScrollBar verticalBar = (ScrollBar) table.lookup(".scroll-bar:vertical");
+//        ScrollBar verticalBar = getVerticalScrollbar();
+
+        System.err.println("verticalBarverticalBarverticalBar-----"+verticalBar);
+//        verticalBar
+//                .visibleProperty().addListener(new ChangeListener<Boolean>() {
+//            @Override
+//            public void changed(final ObservableValue<? extends Boolean> observableValue, final Boolean aBoolean, final Boolean aBoolean2) {
+//                System.err.println("Scrol Pane visible".toUpperCase());
+//
+//            }
+//        });
+
+
+    }
+
+    private ScrollBar getVerticalScrollbar()
+    {
+        ScrollBar result = null;
+        for (Node n : table.lookupAll(".scroll-bar"))
+        {
+            if (n instanceof ScrollBar)
+            {
+                ScrollBar bar = (ScrollBar) n;
+                if (bar.getOrientation().equals(Orientation.VERTICAL))
+                {
+                    result = bar;
+                }
+            }
+        }
+        return result;
     }
 
     public boolean isObserver() {
@@ -223,10 +263,11 @@ public  class TableWrapper<T> extends AppNode implements Refreshable, Submitting
             this.list.clear();
             this.unitOfWork.clearStoredPojoesId();
 
-            this.dataMapper.getAllDomainObjectList(list);
+            this.dataMapper.getDomainList(list);
             setDataMapperToList(list);
 
         }
+
         return this;
     }
 
@@ -240,7 +281,7 @@ public  class TableWrapper<T> extends AppNode implements Refreshable, Submitting
         this.unitOfWork.clearStoredPojoesId();
 
         setDataMapperToList(list);
-        this.dataMapper.getAllDomainObjectList(list,selectedDomainObject);
+        this.dataMapper.getDomainListForObserverTables(list,selectedDomainObject);
 
         return this;
     }

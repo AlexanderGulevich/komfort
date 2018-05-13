@@ -39,7 +39,7 @@ public class RatePerHourTemplatesDataMapper extends DataMapper {
     }
 
     @Override
-    public void getAllDomainObjectList(ObservableList list) {
+    public void getDomainList(ObservableList list) {
         try {
 
             String expression="SELECT * FROM " +"RateTemplates"+" ORDER BY ID";
@@ -71,7 +71,7 @@ public class RatePerHourTemplatesDataMapper extends DataMapper {
     }
 
     @Override
-    public void getAllDomainObjectList(ObservableList list, DomainObject selectedDomainObject) {
+    public void getDomainListForObserverTables(ObservableList list, DomainObject selectedDomainObject) {
 
     }
 
@@ -81,15 +81,15 @@ public class RatePerHourTemplatesDataMapper extends DataMapper {
         if (isReadyToTransaction(d)) {
             RatePerHour ratePerHour = (RatePerHour) d;
             String expression = "UPDATE " + "RATETEMPLATES" + " SET  " +
-                    " id = ?," +
-                    " rate = ?";
+                    " rate = ?" +
+                    " where id=? ";
 
             PreparedStatement pstmt = null;
             try {
                 pstmt = Db.getConnection().prepareStatement(expression);
 
-                pstmt.setInt(1, ratePerHour.getId());
-                pstmt.setDouble(2, Double.valueOf(ratePerHour.getName()));
+                pstmt.setInt(2, ratePerHour.getId());
+                pstmt.setDouble(1, Double.valueOf(ratePerHour.getName()));
 
                 pstmt.executeUpdate();
 

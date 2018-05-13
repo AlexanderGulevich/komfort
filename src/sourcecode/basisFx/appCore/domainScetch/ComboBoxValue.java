@@ -26,6 +26,11 @@ public class ComboBoxValue extends DomainObject{
     public ComboBoxValue() {
 
     }
+    public ComboBoxValue(String str, int id) {
+        stringValue.set(str);
+        setId(id);
+
+    }
     public ComboBoxValue(String str) {
         stringValue.set(str);
     }

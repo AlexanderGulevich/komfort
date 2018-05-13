@@ -34,8 +34,11 @@ public class DataMapperFabric {
     }
     public ExchangeRatesDataMapper exchangeRatesDataMapper(){return new ExchangeRatesDataMapper();}
     public ProductDataMapper productDataMapper(){return new ProductDataMapper();}
-    public ProductPriceMapper priceDataMapper(){return new ProductPriceMapper();}
-    public PacketSizeMapper packetSizeMapper(){return new PacketSizeMapper();}
+    public ProductPriceMapper productPriceMapper(){return new ProductPriceMapper();}
+    public PacketSizeMapper packetSizeMapper(){return  PacketSizeMapper.getInstance();}
+    public PacketProductAccordanceMapper     packetProductAccordanceMapper(){return  PacketProductAccordanceMapper.getInstance();}
+    public PacketMapper     packetMapper(){return  PacketMapper.getInstance();}
+    public PacketPriceMapper     packetPriceMapper(){return  PacketPriceMapper.getInstance();}
 
 
 

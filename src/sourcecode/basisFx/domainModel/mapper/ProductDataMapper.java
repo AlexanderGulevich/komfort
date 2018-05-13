@@ -30,7 +30,7 @@ public class ProductDataMapper  extends DataMapper{
     }
 
     @Override
-    public void getAllDomainObjectList(ObservableList list) {
+    public void getDomainList(ObservableList list) {
 
         try {
 
@@ -51,7 +51,9 @@ public class ProductDataMapper  extends DataMapper{
 
 
                 //вставляю id в список хранимых в бд
-                this.unitOfWork.getStoredPojoesId().add(rs.getInt("id"));
+                if (unitOfWork != null) {
+                    this.unitOfWork.getStoredPojoesId().add(rs.getInt("id"));
+                }
 
                 list.add(pojo);
             }
@@ -63,7 +65,7 @@ public class ProductDataMapper  extends DataMapper{
     }
 
     @Override
-    public void getAllDomainObjectList(ObservableList list, DomainObject selectedDomainObject) {
+    public void getDomainListForObserverTables(ObservableList list, DomainObject selectedDomainObject) {
 
 
     }

@@ -18,9 +18,9 @@ import java.util.logging.Logger;
 
 public class PacketMapper  extends DataMapper {
 
-    private static RatePerHourTemplatesDataMapper ourInstance = new RatePerHourTemplatesDataMapper();
+    private static PacketMapper ourInstance = new PacketMapper();
 
-    public static RatePerHourTemplatesDataMapper getInstance() {
+    public static PacketMapper getInstance() {
         return ourInstance;
     }
 
@@ -39,7 +39,7 @@ public class PacketMapper  extends DataMapper {
     }
 
     @Override
-    public void getAllDomainObjectList(ObservableList list) {
+    public void getDomainList(ObservableList list) {
         try {
 
             String expression="SELECT * FROM " +"Packet"+" ORDER BY ID";
@@ -77,7 +77,7 @@ public class PacketMapper  extends DataMapper {
     }
 
     @Override
-    public void getAllDomainObjectList(ObservableList list, DomainObject selectedDomainObject) {
+    public void getDomainListForObserverTables(ObservableList list, DomainObject selectedDomainObject) {
 
     }
 
@@ -85,17 +85,19 @@ public class PacketMapper  extends DataMapper {
     public void updateDomainObject(DomainObject d) {
 
         if (isReadyToTransaction(d)) {
-            PacketSize pojo = (PacketSize) d;
+            Packet pojo = (Packet) d;
             String expression = "UPDATE " + "Packet" + " SET  " +
-                    " id = ?," +
-                    " size = ?";
+                    " packetSizeId = ?" +
+                    " counterpartyId = ?" +
+                    " where id=? ";
 
             PreparedStatement pstmt = null;
             try {
                 pstmt = Db.getConnection().prepareStatement(expression);
 
-                pstmt.setInt(1, pojo.getId());
-                pstmt.setString(2, pojo.getSize());
+                pstmt.setInt(3, pojo.getId());
+                pstmt.setInt(1, pojo.getSize().getId());
+                pstmt.setInt(2, pojo.getCounterparty().getId());
 
                 pstmt.executeUpdate();
 

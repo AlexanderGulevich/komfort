@@ -23,7 +23,7 @@ public abstract class Target {
     protected PanelFabric panelFabric=new PanelFabric();
     protected AnchorPane panel;
     protected ColumnFabric columnFabric=new ColumnFabric();
-    protected DataMapperFabric dataMapper =new DataMapperFabric();
+    protected DataMapperFabric dataMapperFabric =new DataMapperFabric();
     protected EditFabric editFabric=new EditFabric();
     protected EventFactory eventFactory=EventFactory.getInstance();
     protected TargetStackLogic targetStack=TargetStackLogic.getInstance();

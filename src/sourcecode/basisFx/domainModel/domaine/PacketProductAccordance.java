@@ -8,8 +8,11 @@ public class PacketProductAccordance extends DomainObject {
 
     private SimpleObjectProperty<ComboBoxValue> size =new SimpleObjectProperty<>(this, "size", null);
     private SimpleObjectProperty<ComboBoxValue> product =new SimpleObjectProperty<>(this, "product", null);
-    private SimpleObjectProperty<Integer> number =new SimpleObjectProperty<>(this, "number", null);
+    private SimpleObjectProperty<String> number =new SimpleObjectProperty<>(this, "number", null);
 
+    public PacketProductAccordance() {
+        setTableName("PacketProductAccordance");
+    }
 
     public ComboBoxValue getSize() {
         return size.get();
@@ -35,15 +38,15 @@ public class PacketProductAccordance extends DomainObject {
         this.product.set(product);
     }
 
-    public Integer getNumber() {
+    public String getNumber() {
         return number.get();
     }
 
-    public SimpleObjectProperty<Integer> numberProperty() {
+    public SimpleObjectProperty<String> numberProperty() {
         return number;
     }
 
-    public void setNumber(Integer number) {
+    public void setNumber(String number) {
         this.number.set(number);
     }
 }

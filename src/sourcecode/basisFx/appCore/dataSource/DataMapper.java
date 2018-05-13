@@ -5,14 +5,16 @@
  */
 package basisFx.appCore.dataSource;
 
+import basisFx.appCore.domainScetch.ComboBoxValue;
 import basisFx.appCore.domainScetch.DomainObject;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
 
+import basisFx.appCore.interfaces.StringGetterFromDomain;
 import basisFx.domainModel.DataMapperFabric;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 /**
@@ -21,7 +23,7 @@ import javafx.collections.ObservableList;
  */
 public abstract class DataMapper {
 
-    protected ObservableList<DomainObject> list;
+    protected ObservableList<DomainObject> list=FXCollections.observableArrayList();
     protected DataMapperFabric dataMapperFabric=new DataMapperFabric();
     private Map<Integer,DomainObject> map= new HashMap<>();
     private int observableDomaineId;
@@ -30,8 +32,8 @@ public abstract class DataMapper {
      protected UnitOfWork unitOfWork;
 
     public abstract boolean isReadyToTransaction(DomainObject d);
-    public abstract void getAllDomainObjectList(ObservableList  list);
-    public abstract void getAllDomainObjectList(ObservableList  list,DomainObject selectedDomainObject);
+    public abstract void getDomainList(ObservableList  list);
+    public abstract void getDomainListForObserverTables(ObservableList  list, DomainObject selectedDomainObject);
 
 
     public abstract void updateDomainObject(DomainObject d);
@@ -63,11 +65,11 @@ public abstract class DataMapper {
 
 
 
-    // getAllDomainObjectList(list) записывает в  list значения ReturnSet БД
+    // getDomainList(list) записывает в  list значения ReturnSet БД
     // далее идет преобразование каждой строки БД в HashMap, где ключем является id
     public HashMap<Integer,DomainObject> toHashMapByCommonRawId(){
-
-        getAllDomainObjectList(list);
+        list.clear();
+        getDomainList(list);
 
         HashMap<Integer,DomainObject> hm=new HashMap<>();
 
@@ -78,6 +80,29 @@ public abstract class DataMapper {
         }
 
         return hm;
+
+    }
+
+    // getDomainList(list) записывает в  list значения ReturnSet БД
+    // далее идет преобразование каждой строки БД в ComboBoxValue и возвращается список
+    public ObservableList<ComboBoxValue> toComboBoxValueList(StringGetterFromDomain stringGetterFromDomain){
+        list.clear();
+        getDomainList(list);
+
+        ObservableList<ComboBoxValue> comboBoxValueList= FXCollections.observableArrayList();
+
+        for (DomainObject domainObject : list) {
+
+            ComboBoxValue comboBoxValue = new ComboBoxValue(
+                    stringGetterFromDomain.get(domainObject),
+                    domainObject.getId()
+            );
+
+                    comboBoxValueList.add(comboBoxValue);
+
+        }
+
+        return comboBoxValueList;
 
     }
 

@@ -15,7 +15,9 @@
 #TEXT_ICON_ANCHOR{}
 #MAIN_CONTENT_ANCHOR{
 
-     -fx-background-color: #ECF1F2;
+         -fx-background-color: #ECF1F2;
+                /* -fx-background-color: #cdebf1; */
+            /* -fx-background-color: #fefeff; */
 
      /*-fx-background-color: #fcfcfd;*/
 

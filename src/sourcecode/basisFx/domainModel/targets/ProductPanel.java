@@ -29,7 +29,7 @@ public class ProductPanel  extends Target{
         observed.setTitle("Список продукции ");
         observed.setTablesButtonKind(TablesButtonKind.Bottom_right);
         observed.setDomainClass(Product.class);
-        observed.setDataMapper(dataMapper.productDataMapper());
+        observed.setDataMapper(dataMapperFabric.productDataMapper());
         observed.setColumn(
                 columnFabric.stringColumn(KindOfColumn.STRING,"Наименование","name",0.7d,true,
                         (obj,val)->((Product)obj).setName((String)val))
@@ -50,7 +50,7 @@ public class ProductPanel  extends Target{
         observer.setTitle("Архив цен");
         observer.setTablesButtonKind(TablesButtonKind.Bottom_right);
         observer.setDomainClass(Price.class);
-        observer.setDataMapper(dataMapper.priceDataMapper());
+        observer.setDataMapper(dataMapperFabric.packetPriceMapper());
         observer.setColumn(  columnFabric.stringColumn(KindOfColumn.DOUBLE,"Цена","price",0.3d,true,
                 (obj,val)->{((Price)obj).setPrice( (String ) val);})
         );

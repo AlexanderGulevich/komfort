@@ -25,19 +25,20 @@ public class ButtonFactory {
     protected EventFactory eventFactory=EventFactory.getInstance();
 
 
-    private double littleButWidth=30d;
-    private double littleButHeight=20d;
-    private double littleFontHeight=20d;
+    private double littleButWidth=25d;
+    private double littleButHeight=17d;
+    private double littleFontHeight=17d;
 
 
     public Button littleRowAddButton(TableWrapper tableWrapper, AnchorPane panel, Class c, Coordinate coordinate ){
 
 
         Button button = (Button) AppNode.NodeBuilder.create()
-                .setId(CSSID.Little_PANELS_BUTTON)
+                .setId(CSSID.Little_PANELS_BUTTON_ADD)
                 .setCoordinate(coordinate)
                 .setParent(panel)
-                .setText("\uF216").setFont(FontsStore.IONICONS, littleFontHeight)
+//                .setText("\uF216").setFont(FontsStore.IONICONS, littleFontHeight)
+                .setText("\uF199").setFont(FontsStore.FOUNDATION, littleFontHeight)
                 .setWidth(littleButWidth).setHeight(littleButHeight)
                 .setEvent(eventFactory.
                         rowAdd(
@@ -62,8 +63,9 @@ public class ButtonFactory {
     public Button littleRowAddButton(TableWrapper tableWrapper,  Class c){
 
         Button button = (Button)AppNode.NodeBuilder.create()
-                .setId(CSSID.Little_PANELS_BUTTON)
-                .setText("\uF216").setFont(FontsStore.IONICONS, littleFontHeight)
+                .setId(CSSID.Little_PANELS_BUTTON_ADD)
+//                .setText("\uF216").setFont(FontsStore.IONICONS, littleFontHeight)
+                .setText("\uF199").setFont(FontsStore.FOUNDATION, littleFontHeight)
                 .setWidth(littleButWidth).setHeight(littleButHeight)
                 .setEvent(eventFactory.
                         rowAdd(
@@ -86,10 +88,11 @@ public class ButtonFactory {
     public Button littleRowDeleteButton(TableWrapper tableWrapper, AnchorPane panel,  Coordinate coordinate ){
 
         Button button = (Button)AppNode.NodeBuilder.create()
-                .setId(CSSID.Little_PANELS_BUTTON)
+                .setId(CSSID.Little_PANELS_BUTTON_DEL)
                 .setCoordinate(coordinate)
                 .setParent(panel)
-                .setText("\uF128").setFont(FontsStore.IONICONS, littleFontHeight)
+//                .setText("\uF128").setFont(FontsStore.IONICONS, littleFontHeight)
+                .setText("\uF176").setFont(FontsStore.FOUNDATION, littleFontHeight)
                 .setWidth(littleButWidth).setHeight(littleButHeight)
                 .setEvent(eventFactory.rowDeleteFromTable(tableWrapper))
                 .createNButton().getElement();
@@ -103,8 +106,9 @@ public class ButtonFactory {
     public Button littleRowDeleteButton(TableWrapper tableWrapper ){
 
         Button button = (Button)AppNode.NodeBuilder.create()
-                .setId(CSSID.Little_PANELS_BUTTON)
-                .setText("\uF128").setFont(FontsStore.IONICONS, littleFontHeight)
+                .setId(CSSID.Little_PANELS_BUTTON_DEL)
+//                .setText("\uF128").setFont(FontsStore.IONICONS, littleFontHeight)
+                .setText("\uF176").setFont(FontsStore.FOUNDATION, littleFontHeight)
                 .setWidth(littleButWidth).setHeight(littleButHeight)
                 .setEvent(eventFactory.rowDeleteFromTable(tableWrapper))
                 .createNButton().getElement();

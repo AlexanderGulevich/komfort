@@ -18,6 +18,7 @@
 }
 #TABLE .placeholder {/*когда таблица пуста рамка*/
 -fx-border-color: transparent;
+
 }
 #TABLE .column-header-background {/*ЭТО самая нижняя подложка заголовка*/
     -fx-background-color:transparent;
@@ -152,4 +153,21 @@
     -fx-background-insets: 1, 1, 1, 1;
     -fx-padding: 3 5 3 5;
 
+}
+#PLACEHOLDER{
+
+  -fx-text-fill: #acb9bb;
+  -fx-color: #acb9bb;
+  -fx-fill:#acb9bb;
+  -fx-text-fill:#acb9bb;
+
+
+}
+/*
+cell indexed-cell table-cell text-field-table-cell table-column
+*/
+
+#TABLE .text-field-table-cell {
+
+  /* -fx-border-insets:0 15 0 0; */
 }

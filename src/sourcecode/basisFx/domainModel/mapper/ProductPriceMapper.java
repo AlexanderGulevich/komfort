@@ -30,12 +30,12 @@ public class ProductPriceMapper extends DataMapper {
 
 
     @Override
-    public void getAllDomainObjectList(ObservableList list) {
+    public void getDomainList(ObservableList list) {
 
     }
 
     @Override
-    public void getAllDomainObjectList(ObservableList list, DomainObject selectedDomainObject) {
+    public void getDomainListForObserverTables(ObservableList list, DomainObject selectedDomainObject) {
         int id=selectedDomainObject.getId();
 
         try {

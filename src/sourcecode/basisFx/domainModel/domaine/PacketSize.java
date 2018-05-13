@@ -4,6 +4,9 @@ import basisFx.appCore.domainScetch.DomainObject;
 import javafx.beans.property.SimpleObjectProperty;
 
 public class PacketSize extends DomainObject{
+    public PacketSize() {
+        this.tableName="PacketSize";
+    }
 
     private SimpleObjectProperty<String> size =new SimpleObjectProperty<>(this, "size", null);
 

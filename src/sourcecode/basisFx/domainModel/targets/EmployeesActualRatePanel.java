@@ -26,13 +26,13 @@ public class EmployeesActualRatePanel extends Target{
 
         tableWrapper = tableFabric.table(
             panel,1d,new Coordinate(50d, null, 0d, 0d),
-            dataMapper.employerDataMapper(),
+            dataMapperFabric.employerDataMapper(),
                     columnFabric.stringColumn(KindOfColumn.STRING,"ФИО","name",0.6d,true,
                             (obj,val)->((Employer)obj).setName((String)val))
 ,
                     columnFabric.comboBoxColumn(KindOfColumn.COMBOBOX,"Тариф","rate",0.1,true,
                             (obj,val)->{((Employer)obj).setRate((ComboBoxValue) val);},
-                            () -> dataMapper.employerDataMapper().getRateTemplateList()
+                            () -> dataMapperFabric.employerDataMapper().getRateTemplateList()
                     ),
                     columnFabric.dateColumn(KindOfColumn.DATE,"Дата начала действия тарифа","startingRateDate",0.3d,true,
                             (obj, val)->{((Employer)obj).setStartingRateDate((LocalDate) val); }

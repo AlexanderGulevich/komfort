@@ -18,6 +18,8 @@ public enum CSSID {
 
     PANELS_BUTTON("PANELS_BUTTON"),
     Little_PANELS_BUTTON("Little_PANELS_BUTTON"),
+    Little_PANELS_BUTTON_ADD("Little_PANELS_BUTTON_ADD"),
+    Little_PANELS_BUTTON_DEL("Little_PANELS_BUTTON_DEL"),
     TARGET_PANEL("TARGET_PANEL"),
     MAIN_MENU("MAIN_MENU"),
     TRANSPARENT_ROOT("TRANSPARENT_ROOT"),
@@ -50,7 +52,8 @@ public enum CSSID {
     ALERT_ICON("ALERT_ICON"),
     PopupTitleText("PopupTitleText"),
     PopupMessageText("PopupMessageText"),
-    popupMessageTextPanel("popupMessageTextPanel");
+    popupMessageTextPanel("popupMessageTextPanel"),
+    PLACEHOLDER("PLACEHOLDER");
     
     
     

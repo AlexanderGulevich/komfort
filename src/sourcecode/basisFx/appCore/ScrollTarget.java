@@ -54,7 +54,7 @@
 //        TableWrapper countryTableWrapper = AppNode.NodeBuilder.create()
 //                .setId(CSSID.TABLE).setCoordinate(pane,50d, 40d, 10d, 10d)
 //                .<Equipment>createTableViewWrapper().setTablesWidthProperty(0.4, pane.widthProperty()).setTablesHeight(200d)
-//                .setDataMapper(this.dataMapper.getNamedDataMapper())
+//                .setDataMapper(this.dataMapperFabric.getNamedDataMapper())
 //                .setDbTableName("Country").refresh()
 //                .setColums(
 //                        columnFabric.<Country,String>stringColumn(ColumnWrapper.Bulder.create()
