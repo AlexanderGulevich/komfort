@@ -59,7 +59,12 @@ public class CurrencyDataMapper extends DataMapper {
                 pojo.setId(rs.getInt("id"));
                 pojo.setName(rs.getString("name"));
 
-                unitOfWork.getStoredPojoesId().add(rs.getInt("id"));
+
+                if (unitOfWork != null) {
+                    unitOfWork.getStoredPojoesId().add(rs.getInt("id"));
+
+                }
+
 
 
                 list.add(pojo);

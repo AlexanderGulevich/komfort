@@ -83,6 +83,34 @@ public abstract class DataMapper {
 
     }
 
+
+    // getDomainList(list) записывает в  list значения ReturnSet БД
+    // далее идет преобразование каждой строки БД в HashMap, где ключем является id
+    // а значение ComboBoxValue для вставки в ComboBox
+    public HashMap<Integer,ComboBoxValue> toComboBoxValHashMap(StringGetterFromDomain stringGetterFromDomain){
+        list.clear();
+        getDomainList(list);
+
+        HashMap<Integer,ComboBoxValue> hm=new HashMap<>();
+
+        for (DomainObject domainObject : list) {
+
+            Integer id = domainObject.getId();
+
+            ComboBoxValue comboBoxValue = new ComboBoxValue(
+                    stringGetterFromDomain.get(domainObject),
+                    domainObject.getId()
+            );
+
+            hm.put(id,comboBoxValue);
+
+
+        }
+
+        return hm;
+
+    }
+
     // getDomainList(list) записывает в  list значения ReturnSet БД
     // далее идет преобразование каждой строки БД в ComboBoxValue и возвращается список
     public ObservableList<ComboBoxValue> toComboBoxValueList(StringGetterFromDomain stringGetterFromDomain){

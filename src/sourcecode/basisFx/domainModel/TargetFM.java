@@ -20,9 +20,6 @@ public class TargetFM {
     public CounterpartyPanel counterpartyPanel(){
         return new CounterpartyPanel();
     }
-    public CurrencyPanel currencyPanel(){
-        return new CurrencyPanel();
-    }
     public EmployeesActualRatePanel employeesActualRate(){
         return new EmployeesActualRatePanel();
     }

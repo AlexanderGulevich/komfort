@@ -2,6 +2,7 @@ package basisFx.domainModel.mapper;
 
 import basisFx.appCore.dataSource.DataMapper;
 import basisFx.appCore.dataSource.Db;
+import basisFx.appCore.domainScetch.ComboBoxValue;
 import basisFx.domainModel.domaine.Counterparty;
 import basisFx.domainModel.domaine.Currency;
 import basisFx.appCore.domainScetch.DomainObject;
@@ -23,8 +24,6 @@ import java.util.logging.Logger;
  */
 public class CounterpartyDataMapper extends DataMapper {
 
-    private  ObservableList <DomainObject> currencyList =null;
-    private Counterparty domainObject;
     private static CounterpartyDataMapper ourInstance = new CounterpartyDataMapper();
 
     @Override
@@ -32,19 +31,13 @@ public class CounterpartyDataMapper extends DataMapper {
         Counterparty counterparty= (Counterparty) d;
         if (counterparty.getCurrency()!=null
                 &&counterparty.getName()!=null) {
-            System.out.println("!!!!!!!!!!!!!!CounterpartyDataMapper --- объект готов к транзакции");
             return true;
         }
-
-        System.out.println("!!!!!!!!!!!!!!CounterpartyDataMapper --- объект НЕ готов к транзакции");
-
         return false;
     }
 
     @Override
     public void getDomainList(ObservableList list) {
-
-        getCurrencyList();
 
         try {
 
@@ -64,18 +57,14 @@ public class CounterpartyDataMapper extends DataMapper {
                 int currencyId=rs.getInt("currencyId");
 
 
+                ComboBoxValue comboBoxValue =  dataMapperFabric
+                        .currencyDataMapper()
+                        .toComboBoxValHashMap((val)->{return ((Currency)val).getName();})
+                        .get(currencyId);
 
 
-                for (Iterator iterator = currencyList.iterator(); iterator.hasNext(); ) {
-                    Currency next = (Currency) iterator.next();
+                pojo.setCurrency(comboBoxValue);
 
-                    if (currencyId==next.getId().intValue()){
-
-                        pojo.setCurrency(next);
-
-
-                    }
-                }
 
                 //вставляю id в список хранимых в бд
                 this.unitOfWork.getStoredPojoesId().add(rs.getInt("id"));
@@ -98,42 +87,6 @@ public class CounterpartyDataMapper extends DataMapper {
 
     }
 
-    private void getCurrencyListFromStore() {
-
-        String expression="SELECT * FROM " +"Currency"+" ORDER BY ID";
-        Statement stmt  = null;
-        currencyList = FXCollections.<DomainObject>observableArrayList();
-
-        try {
-
-            stmt = Db.getConnection().createStatement();
-
-            ResultSet rs    = stmt.executeQuery(expression);
-
-            while (rs.next()) {
-                Currency domainObject = new Currency();
-                domainObject.setId(rs.getInt("id"));
-                domainObject.setName(rs.getString("name"));
-
-                currencyList.add(domainObject);
-
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-    }
-
-    public  ObservableList <DomainObject> getCurrencyList() {
-
-        if (currencyList != null) {
-            return currencyList;
-        }else {
-            getCurrencyListFromStore();
-            return currencyList;
-
-        }
-    }
 
     @Override
     public void updateDomainObject(DomainObject d) {
@@ -164,8 +117,6 @@ public class CounterpartyDataMapper extends DataMapper {
                 e.printStackTrace();
             }
 
-            System.out.println("ДАТАМАППЕР CounterpartyDataMapper ОБНОВЛЕНИЕ ОБЪЕКТА");
-
         }
 
     }
@@ -174,13 +125,13 @@ public class CounterpartyDataMapper extends DataMapper {
 
         if(isReadyToTransaction(d)) {
 
-            domainObject = (Counterparty) d;
+            Counterparty domainObject = (Counterparty) d;
 
             try {
                 String expression = "INSERT INTO " + "Counterparty"
                         + "(name ,"
                         + "currencyId"
-                        + ") VALUES(?,?,?)";
+                        + ") VALUES(?,?)";
 
                 PreparedStatement pstmt = Db.getConnection().prepareStatement(expression);
                 pstmt.setString(1, domainObject.getName());
