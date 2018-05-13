@@ -66,8 +66,11 @@ public class CounterpartyDataMapper extends DataMapper {
                 pojo.setCurrency(comboBoxValue);
 
 
-                //вставляю id в список хранимых в бд
-                this.unitOfWork.getStoredPojoesId().add(rs.getInt("id"));
+                if (unitOfWork != null) {
+                    //вставляю id в список хранимых в бд
+                    this.unitOfWork.getStoredPojoesId().add(rs.getInt("id"));
+                }
+
 
                 list.add(pojo);
 

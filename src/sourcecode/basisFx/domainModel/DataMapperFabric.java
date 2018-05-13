@@ -5,6 +5,7 @@
  */
 package basisFx.domainModel;
 
+import basisFx.appCore.elements.LabelWrapper;
 import basisFx.domainModel.mapper.*;
 
 /**
@@ -39,6 +40,8 @@ public class DataMapperFabric {
     public PacketProductAccordanceMapper     packetProductAccordanceMapper(){return  PacketProductAccordanceMapper.getInstance();}
     public PacketMapper     packetMapper(){return  PacketMapper.getInstance();}
     public PacketPriceMapper     packetPriceMapper(){return  PacketPriceMapper.getInstance();}
+    public LabelMapper labelMapper(){return  LabelMapper.getInstance();}
+    public LabelPriceMapper labelPriceMapper(){return  LabelPriceMapper.getInstance();}
 
 
 

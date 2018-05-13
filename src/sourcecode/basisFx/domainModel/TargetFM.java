@@ -50,6 +50,9 @@ public class TargetFM {
     public PacketPanel packetPanel(){
         return new PacketPanel();
     }
+    public LabelPanel labelPanel(){
+        return new LabelPanel();
+    }
 
 
 
