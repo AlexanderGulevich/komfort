@@ -73,7 +73,8 @@ public class MainMenuSketch extends MenuSketch{
                                create("Пакеты", fm.packetPanel(), composit.SIMPLE),
                                create("Этикетки", fm.labelPanel(), composit.SIMPLE),
                                create("Контрагенты", fm.counterpartyPanel(), composit.SIMPLE),
-                               create("Сырье", fm.counterpartyPanel(), composit.SIMPLE)
+                               create("Втулки", fm.sleevePanel(), composit.SIMPLE),
+                               create("Бумага", fm.paperPanel(), composit.SIMPLE)
 
                        )
 

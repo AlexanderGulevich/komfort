@@ -53,6 +53,12 @@ public class TargetFM {
     public LabelPanel labelPanel(){
         return new LabelPanel();
     }
+    public PaperPanel paperPanel(){
+        return new PaperPanel();
+    }
+    public SleevePanel sleevePanel(){
+        return new SleevePanel();
+    }
 
 
 

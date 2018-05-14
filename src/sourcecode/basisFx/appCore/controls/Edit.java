@@ -18,7 +18,7 @@ public class Edit<T,K> {
     
     protected TableColumn<T,K> column;
     protected UnitOfWork unitOfWork;
-    protected DomainChanging<T,K> domainChanging;
+    protected DomainChanging domainChanging;
     protected TableWrapper tvw;
     protected KindOfColumn kindOfColumn;
 
@@ -34,7 +34,7 @@ public class Edit<T,K> {
         this.unitOfWork = unitOfWork;
     }
 
-    public void setDomainChanging(DomainChanging<T, K> domainChanging) {
+    public void setDomainChanging(DomainChanging domainChanging) {
         this.domainChanging = domainChanging;
     }
 

@@ -5,6 +5,8 @@
  */
 package basisFx.appCore.interfaces;
 
+import basisFx.appCore.domainScetch.DomainObject;
+
 /**
  *
  * @author Alek
@@ -12,6 +14,6 @@ package basisFx.appCore.interfaces;
  * @param <K>
  */
 @FunctionalInterface
-public interface DomainChanging<T,K>{
- public <T,K> void change(T d, K val);
+public interface DomainChanging{
+ public  void change(DomainObject d, Object val);
 }

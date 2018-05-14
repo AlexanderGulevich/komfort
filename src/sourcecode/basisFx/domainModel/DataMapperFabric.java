@@ -20,7 +20,6 @@ public class DataMapperFabric {
     public CounterpartyDataMapper counterpartyDataMapper() {
         return new CounterpartyDataMapper();
     }
-
     public CurrencyDataMapper currencyDataMapper() {
         return CurrencyDataMapper.getInstance();
     }
@@ -42,6 +41,10 @@ public class DataMapperFabric {
     public PacketPriceMapper     packetPriceMapper(){return  PacketPriceMapper.getInstance();}
     public LabelMapper labelMapper(){return  LabelMapper.getInstance();}
     public LabelPriceMapper labelPriceMapper(){return  LabelPriceMapper.getInstance();}
+    public SleevePriceMapper sleevePriceMapper(){return  SleevePriceMapper.getInstance();}
+    public PaperPriceMapper paperPriceMapper(){return  PaperPriceMapper.getInstance();}
+    public PaperMapper paperMapper(){return  PaperMapper.getInstance();}
+    public SleeveMapper sleeveMapper(){return  SleeveMapper.getInstance();}
 
 
 
