@@ -1,11 +1,18 @@
 package basisFx.domainModel.targets;
 
 import basisFx.appCore.controls.KindOfColumn;
+import basisFx.appCore.domainScetch.BoolComboBox;
 import basisFx.appCore.domainScetch.ComboBoxValue;
 import basisFx.appCore.elements.TableWrapper;
+import basisFx.appCore.grid.GridColWidth;
+import basisFx.appCore.grid.GridTablesBuilder;
+import basisFx.appCore.grid.KindOfGridCol;
+import basisFx.appCore.grid.TablesButtonKind;
 import basisFx.appCore.panels.Target;
 import basisFx.appCore.utils.Coordinate;
 import basisFx.domainModel.domaine.Employer;
+import basisFx.domainModel.domaine.Price;
+import basisFx.domainModel.domaine.Product;
 import basisFx.domainModel.domaine.RatePerHour;
 import basisFx.appCore.settings.FontsStore;
 import javafx.geometry.Pos;
@@ -22,59 +29,47 @@ public class EmployeesManagerPanel extends Target {
     @Override
     protected void configurate() {
 
-        rateSide=innerPanelsFabric.createInnerPanels(panel,0.45,new Coordinate(0d,0d,0d,null));
 
-
-        textFabric.createLabel("Реестр тарифных ставок ", FontsStore.ROBOTO_LIGHT,  Pos.BASELINE_CENTER,25d,
-                rateSide, new Coordinate(10d,0d,null,0d));
-
-
-        rateTable =tableFabric.table(
-                panel,0.45d,new Coordinate(50d, 0d, 70d, null),
-                dataMapperFabric.ratePerHourDataMapper(),
-
-                columnFabric.comboBoxColumn(KindOfColumn.INT,"Тариф","rate",0.3d,true,
-                        (obj,val)->{((RatePerHour)obj).setRate((ComboBoxValue) val);},
-                        () -> dataMapperFabric.employerDataMapper().getRateTemplateList()
-                ),
-                columnFabric.dateColumn(KindOfColumn.DATE,"Дата начала действия тарифа","startingRateDate",0.7d,true,
-                        (obj, val)->{((RatePerHour)obj).setStartingRateDate((LocalDate) val); }
-                )
-        );
-
-//////////////////////////////////////////////////////////////////
-
-
-        buttonFactory.addRowButton(
-                rateSide,new Coordinate(null,0d, 10d, null), rateTable,RatePerHour.class);
-        buttonFactory.deleteRowButton(
-                rateSide,new Coordinate(null,180d, 10d, null), rateTable);
-
-
-
-
-
-        employerSide=innerPanelsFabric.createInnerPanels(panel,0.54d,new Coordinate(0d,null,0d,0d));
-
-        textFabric.createLabel("Текущий список сотрудников", FontsStore.ROBOTO_LIGHT,  Pos.BASELINE_CENTER,25d,
-                employerSide, new Coordinate(10d,0d,null,0d));
-
-
-        employerTable =tableFabric.observedTable(
-                rateTable,
-                panel,0.54d,new Coordinate(50d, null, 70d, 0d),
-                dataMapperFabric.employerDataMapper(),
+        GridTablesBuilder observed=new GridTablesBuilder();
+        observed.setGridColWidth(new GridColWidth(KindOfGridCol.percent,60d));
+        observed.setTitle("Текущий список сотрудников ");
+        observed.setTablesButtonKind(TablesButtonKind.Bottom_right);
+        observed.setDomainClass(Employer.class);
+        observed.setDataMapper(dataMapperFabric.employerDataMapper());
+        observed.setColumn(
                 columnFabric.stringColumn(KindOfColumn.STRING,"ФИО","name",1d,true,
                         (obj,val)->{((Employer)obj).setName((String)val);})
         );
 
-        buttonFactory.addRowButton(
-                panel,new Coordinate(null,0d, 10d, null), employerTable,Employer.class);
-        buttonFactory.deleteRowButton(
-                panel,new Coordinate(null,180d, 10d, null), employerTable);
 
 
-///////////////////////////////////////////////////
+
+        GridTablesBuilder observer=new GridTablesBuilder();
+        observer.setGridColWidth(new GridColWidth(KindOfGridCol.percent,40d));
+        observer.setTitle("Реестр тарифных ставок ");
+        observer.setTablesButtonKind(TablesButtonKind.Bottom_right);
+        observer.setDomainClass(RatePerHour.class);
+        observer.setDataMapper(dataMapperFabric.ratePerHourDataMapper());
+        observer.setColumn(
+                columnFabric.comboBoxColumn(KindOfColumn.INT,"Тариф","rate",0.3d,true,
+                (obj,val)->{((RatePerHour)obj).setRate((ComboBoxValue) val);},
+                () -> dataMapperFabric.employerDataMapper().getRateTemplateList()
+                )
+        );
+        observer.setColumn( columnFabric.dateColumn(KindOfColumn.DATE,"Дата начала действия тарифа","startingRateDate",0.7d,true,
+                (obj, val)->{((RatePerHour)obj).setStartingRateDate((LocalDate) val); })
+        );
+
+
+        gridFabric.boundTables(
+                observed,
+                observer,
+                new Coordinate(10d,10d,10d,10d),
+                panel
+        );
+
+
+
 
 
 

@@ -60,7 +60,7 @@ public class MainMenuSketch extends MenuSketch{
                                create("Сотрудики", fm.employeesManagerPanel(), composit.SIMPLE),
                                create("Актуальные тарифы", fm.employeesActualRate(), composit.SIMPLE),
                                create("Шаблоны тарифов", fm.ratePerHourPanel(), composit.SIMPLE),
-                               create("Уволенные", fm.employeesActualRate(), composit.SIMPLE)
+                               create("Бывшие сотрудники", fm.employeesFiredPanel(), composit.SIMPLE)
 
                ),
 
