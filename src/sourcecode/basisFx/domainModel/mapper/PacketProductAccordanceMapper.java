@@ -40,8 +40,7 @@ public class PacketProductAccordanceMapper extends DataMapper {
     }
 
     @Override
-    public void getDomainList(ObservableList list) {
-        try {
+    public void getDomainList(ObservableList list) throws SQLException {
 
             String expression = "SELECT * FROM " + "PacketProductAccordance" + " ORDER BY ID";
 
@@ -74,9 +73,7 @@ public class PacketProductAccordanceMapper extends DataMapper {
 
             }
 
-        } catch (SQLException ex) {
-            Logger.getLogger(EquipmentDM.class.getName()).log(Level.SEVERE, null, ex);
-        }
+
 
     }
 
@@ -86,7 +83,7 @@ public class PacketProductAccordanceMapper extends DataMapper {
     }
 
     @Override
-    public void updateDomainObject(DomainObject d) {
+    public void updateDomainObject(DomainObject d) throws SQLException {
 
         if (isReadyToTransaction(d)) {
             PacketProductAccordance pojo = (PacketProductAccordance) d;
@@ -97,7 +94,7 @@ public class PacketProductAccordanceMapper extends DataMapper {
                     " where id=? ";
 
             PreparedStatement pstmt = null;
-            try {
+
                 pstmt = Db.getConnection().prepareStatement(expression);
 
                 pstmt.setInt(4, pojo.getId());
@@ -106,10 +103,6 @@ public class PacketProductAccordanceMapper extends DataMapper {
                 pstmt.setInt(3, Integer.valueOf(pojo.getNumber()));
 
                 pstmt.executeUpdate();
-
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
 
         }
     }
@@ -120,9 +113,9 @@ public class PacketProductAccordanceMapper extends DataMapper {
     }
 
     @Override
-    public void insertDomainObject(DomainObject d) {
+    public void insertDomainObject(DomainObject d) throws SQLException {
         PacketProductAccordance pojo = (PacketProductAccordance) d;
-        try {
+
             String expression = "INSERT INTO " + "PacketProductAccordance "
                     + "(packetSizeId,  productId, number "
                     + ") VALUES(?,?,?)";
@@ -136,9 +129,6 @@ public class PacketProductAccordanceMapper extends DataMapper {
             pstmt.executeUpdate();
 
 
-        } catch (SQLException ex) {
-            Logger.getLogger(EquipmentDM.class.getName()).log(Level.SEVERE, null, ex);
-        }
 
     }
 

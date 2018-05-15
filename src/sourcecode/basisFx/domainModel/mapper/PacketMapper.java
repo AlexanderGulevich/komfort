@@ -38,8 +38,8 @@ public class PacketMapper  extends DataMapper {
     }
 
     @Override
-    public void getDomainList(ObservableList list) {
-        try {
+    public void getDomainList(ObservableList list) throws SQLException {
+
 
             String expression="SELECT * FROM " +"Packet"+" ORDER BY ID";
 
@@ -65,13 +65,7 @@ public class PacketMapper  extends DataMapper {
 
                 list.add(pojo);
 
-
-
             }
-
-        } catch (SQLException ex) {
-            Logger.getLogger(EquipmentDM.class.getName()).log(Level.SEVERE, null, ex);
-        }
 
     }
 
@@ -81,7 +75,7 @@ public class PacketMapper  extends DataMapper {
     }
 
     @Override
-    public void updateDomainObject(DomainObject d) {
+    public void updateDomainObject(DomainObject d) throws SQLException {
 
         if (isReadyToTransaction(d)) {
             Packet pojo = (Packet) d;
@@ -91,7 +85,7 @@ public class PacketMapper  extends DataMapper {
                     " where id=? ";
 
             PreparedStatement pstmt = null;
-            try {
+
                 pstmt = Db.getConnection().prepareStatement(expression);
 
                 pstmt.setInt(3, pojo.getId());
@@ -100,40 +94,32 @@ public class PacketMapper  extends DataMapper {
 
                 pstmt.executeUpdate();
 
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-
         }
     }
 
     @Override
-    public void deleteDomainObject(DomainObject d) {
-        try {
-            super.delete(d,"PacketSize ");
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+    public void deleteDomainObject(DomainObject d) throws SQLException {
+
+         super.delete(d,"Packet");
+
     }
 
     @Override
-    public void insertDomainObject(DomainObject d) {
-        PacketSize pojo= (PacketSize) d;
-        try {
-            String expression= "INSERT INTO "+ "PacketSize "
-                    + "(size "
-                    + ") VALUES(?)";
+    public void insertDomainObject(DomainObject d) throws SQLException {
+        Packet pojo= (Packet) d;
+
+            String expression= "INSERT INTO "+ "Packet "
+                    + "("
+                    +"packetSizeId,"
+                    +  "counterpartyId "
+                    + ") VALUES(?,?)";
 
             PreparedStatement pstmt =  Db.getConnection().prepareStatement(expression);
-            pstmt.setString(1, pojo.getSize());
+            pstmt.setInt(1, pojo.getSize().getId());
+            pstmt.setInt(2, pojo.getCounterparty().getId());
 
 
             pstmt.executeUpdate();
-
-
-        } catch (SQLException ex) {
-            Logger.getLogger(EquipmentDM.class.getName()).log(Level.SEVERE, null, ex);
-        }
 
     }
 }

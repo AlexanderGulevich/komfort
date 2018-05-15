@@ -43,10 +43,8 @@ public class PaperPriceMapper extends DataMapper {
     }
 
     @Override
-    public void getDomainListForObserverTables(ObservableList list, DomainObject selectedDomainObject) {
+    public void getDomainListForObserverTables(ObservableList list, DomainObject selectedDomainObject) throws SQLException {
         int id=selectedDomainObject.getId();
-
-        try {
 
             String expression="SELECT * FROM " +"PaperPriceStore "+" where productId= " +id+" ORDER BY startDate desc";
 
@@ -70,17 +68,12 @@ public class PaperPriceMapper extends DataMapper {
 
             }
 
-        } catch (SQLException ex) {
-            Logger.getLogger(EquipmentDM.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-
     }
 
     @Override
-    public void updateDomainObject(DomainObject d) {
-        if(isReadyToTransaction(d)) {
+    public void updateDomainObject(DomainObject d) throws SQLException {
 
+        if(isReadyToTransaction(d)) {
 
             Price price= (Price) d;
 
@@ -92,7 +85,6 @@ public class PaperPriceMapper extends DataMapper {
 
             PreparedStatement pstmt = null;
 
-            try {
                 pstmt = Db.getConnection().prepareStatement(expression);
 
                 pstmt.setDouble(1, Double.valueOf(price.getPrice()));
@@ -100,9 +92,6 @@ public class PaperPriceMapper extends DataMapper {
                 pstmt.setInt(3, price.getProductId());
                 pstmt.setInt(4, price.getId());
                 pstmt.executeUpdate();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
 
         }
     }
@@ -113,13 +102,11 @@ public class PaperPriceMapper extends DataMapper {
     }
 
     @Override
-    public void insertDomainObject(DomainObject d) {
+    public void insertDomainObject(DomainObject d) throws SQLException {
         Price domainObject=(Price) d;
 
         if(isReadyToTransaction(d)) {
 
-
-            try {
                 String expression = "INSERT INTO " + "PaperPriceStore "
                         + "("
                         + " price ,  "
@@ -135,10 +122,6 @@ public class PaperPriceMapper extends DataMapper {
 
                 pstmt.executeUpdate();
 
-
-            } catch (SQLException ex) {
-                Logger.getLogger(EquipmentDM.class.getName()).log(Level.SEVERE, null, ex);
-            }
         }
     }
 

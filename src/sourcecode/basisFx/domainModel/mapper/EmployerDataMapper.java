@@ -16,7 +16,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class EmployerDataMapper extends DataMapper {
-
+//todo change
     private  ObservableList <ComboBoxValue> rateTamlateList =null;
     private  ObservableList <RatePerHour> ratesStoredList =null;
     private  ObservableList <Employer> currentEmployees =null;
@@ -37,12 +37,7 @@ public class EmployerDataMapper extends DataMapper {
 
 
     @Override
-    public void getDomainList(ObservableList list) {
-
-        System.out.println("EmployerDataMapper.getDomainList");
-
-
-        try {
+    public void getDomainList(ObservableList list) throws SQLException {
 
             String expression="SELECT * FROM " +"Employer"+" ORDER BY ID";
 
@@ -53,11 +48,8 @@ public class EmployerDataMapper extends DataMapper {
 
             while (rs.next()) {
 
-
                 getRateListFromeStore();
                 convertStoredRatesToHashMap();
-
-
 
                 Employer pojo=new Employer();
                 pojo.setId(rs.getInt("id"));
@@ -81,10 +73,6 @@ public class EmployerDataMapper extends DataMapper {
                 list.add(pojo);
             }
 
-        } catch (SQLException ex) {
-            Logger.getLogger(EquipmentDM.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
         currentEmployees=list;
 
         System.out.println(currentEmployees);
@@ -98,7 +86,7 @@ public class EmployerDataMapper extends DataMapper {
     }
 
     private RatePerHour getNewest(Integer id){
-
+//todo put in basic class
         RatePerHour newestRate=null;
 
         ArrayList<RatePerHour> ratePerHoursList = ratesMapById.get(id);
@@ -148,11 +136,9 @@ public class EmployerDataMapper extends DataMapper {
     }
 
     @Override
-    public void updateDomainObject(DomainObject d) {
-
+    public void updateDomainObject(DomainObject d) throws SQLException {
 
         if(isReadyToTransaction(d)) {
-
 
             Employer employer= (Employer) d;
             String expression = "UPDATE "+    "Employer"+ " SET  " +
@@ -162,31 +148,46 @@ public class EmployerDataMapper extends DataMapper {
 
             PreparedStatement pstmt = null;
 
-            try {
                 pstmt = Db.getConnection().prepareStatement(expression);
                 pstmt.setString(1, employer.getName());
                 pstmt.setBoolean(2, employer.getIsFired());
                 pstmt.setInt(3, employer.getId());
                 pstmt.executeUpdate();
 
+        }
 
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+    }
+
+    @Override
+    public void deleteDomainObject(DomainObject d) throws SQLException {
+        if(isReadyToTransaction(d)) {
+
+            Employer employer= (Employer) d;
+            String expression = "UPDATE "+    "Employer"+ " SET  " +
+                    " name = ?," +
+                    " isFired = ?" +
+                    " WHERE id= ?" ;
+
+            PreparedStatement pstmt = null;
+
+            pstmt = Db.getConnection().prepareStatement(expression);
+            pstmt.setString(1, employer.getName());
+            pstmt.setBoolean(2, true);
+            pstmt.setInt(3, employer.getId());
+            pstmt.executeUpdate();
 
         }
 
     }
 
     @Override
-    public void insertDomainObject(DomainObject d) {
+    public void insertDomainObject(DomainObject d) throws SQLException {
         Employer domainObject=(Employer) d;
 
         if(isReadyToTransaction(d)) {
 
             int maxId = getMaxEmployersId();
 
-            try {
                 String expression = "INSERT INTO " + "Employer "
                         + "("
                         + " name ,  "
@@ -202,26 +203,21 @@ public class EmployerDataMapper extends DataMapper {
                 pstmt.executeUpdate();
 
 
-            } catch (SQLException ex) {
-                Logger.getLogger(EquipmentDM.class.getName()).log(Level.SEVERE, null, ex);
-            }
         }
 
     }
 
-    public  ObservableList <ComboBoxValue> getRateTemplateList() {
+    public  ObservableList <ComboBoxValue> getRateTemplateList() throws SQLException {
 
         if (rateTamlateList != null) {
-            System.out.println("EmployerDataMapper.getRateTemplateList -----rateTamlateList != null");
             return rateTamlateList;
         }else {
-            System.out.println("EmployerDataMapper.getRateTemplateList---rateTamlateList = null");
 
             String expression="SELECT * FROM " +"RateTemplates"+" ORDER BY ID";
             Statement stmt  = null;
             rateTamlateList = FXCollections.<ComboBoxValue>observableArrayList();
 
-            try {
+
 
                 stmt = Db.getConnection().createStatement();
 
@@ -235,22 +231,17 @@ public class EmployerDataMapper extends DataMapper {
                     rateTamlateList.add(domainObject);
 
                 }
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
 
             return rateTamlateList;
 
         }
     }
 
-    private void getRateListFromeStore(){
+    private void getRateListFromeStore() throws SQLException {
 
         String expression="SELECT * FROM " +"RateStore"+" ORDER BY ID";
         Statement stmt  = null;
         ratesStoredList = FXCollections.<RatePerHour>observableArrayList();
-
-        try {
 
             stmt = Db.getConnection().createStatement();
 
@@ -267,14 +258,10 @@ public class EmployerDataMapper extends DataMapper {
                 ratesStoredList.add(domainObject);
 
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
 
     }
 
-    private Integer getMaxEmployersId(){
-        try {
+    private Integer getMaxEmployersId() throws SQLException {
 
             String expression="SELECT id FROM " +"Employer"+" where id=(SELECT MAX(id) FROM Employer)";
 
@@ -291,9 +278,6 @@ public class EmployerDataMapper extends DataMapper {
 
             }
 
-        } catch (SQLException ex) {
-            Logger.getLogger(EquipmentDM.class.getName()).log(Level.SEVERE, null, ex);
-        }
 
         return 0;
 

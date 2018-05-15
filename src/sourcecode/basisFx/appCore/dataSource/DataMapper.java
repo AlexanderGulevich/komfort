@@ -33,12 +33,12 @@ public abstract class DataMapper   {
     protected UnitOfWork unitOfWork;
 
     public abstract boolean isReadyToTransaction(DomainObject d);
-    public abstract void getDomainList(ObservableList  list);
-    public abstract void getDomainListForObserverTables(ObservableList  list, DomainObject selectedDomainObject);
+    public abstract void getDomainList(ObservableList  list) throws SQLException;
+    public abstract void getDomainListForObserverTables(ObservableList  list, DomainObject selectedDomainObject) throws SQLException;
 
-    public abstract void updateDomainObject(DomainObject d);
+    public abstract void updateDomainObject(DomainObject d) throws SQLException;
     public abstract void deleteDomainObject(DomainObject d) throws SQLException;
-    public abstract void insertDomainObject(DomainObject d);
+    public abstract void insertDomainObject(DomainObject d) throws SQLException;
 
     public void delete(DomainObject domainObject, String tableName) throws SQLException{
         String expression="delete from " +tableName+" where id=? ";

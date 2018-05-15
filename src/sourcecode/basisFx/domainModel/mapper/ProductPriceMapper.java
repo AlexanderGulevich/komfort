@@ -35,10 +35,8 @@ public class ProductPriceMapper extends DataMapper {
     }
 
     @Override
-    public void getDomainListForObserverTables(ObservableList list, DomainObject selectedDomainObject) {
+    public void getDomainListForObserverTables(ObservableList list, DomainObject selectedDomainObject) throws SQLException {
         int id=selectedDomainObject.getId();
-
-        try {
 
             String expression="SELECT * FROM " +"ProductPriceStore "+" where productId= " +id+" ORDER BY startDate desc";
 
@@ -62,15 +60,10 @@ public class ProductPriceMapper extends DataMapper {
 
             }
 
-        } catch (SQLException ex) {
-            Logger.getLogger(EquipmentDM.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-
     }
 
     @Override
-    public void updateDomainObject(DomainObject d) {
+    public void updateDomainObject(DomainObject d) throws SQLException {
         if(isReadyToTransaction(d)) {
             System.out.println("Price.updateDomainObject".toUpperCase());
 
@@ -84,7 +77,6 @@ public class ProductPriceMapper extends DataMapper {
 
             PreparedStatement pstmt = null;
 
-            try {
                 pstmt = Db.getConnection().prepareStatement(expression);
 
                 pstmt.setDouble(1, Double.valueOf(price.getPrice()));
@@ -92,21 +84,21 @@ public class ProductPriceMapper extends DataMapper {
                 pstmt.setInt(3, price.getProductId());
                 pstmt.setInt(4, price.getId());
                 pstmt.executeUpdate();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
 
         }
     }
 
     @Override
-    public void insertDomainObject(DomainObject d) {
+    public void deleteDomainObject(DomainObject d) throws SQLException {
+        super.delete(d,"ProductPriceStore ");
+    }
+
+    @Override
+    public void insertDomainObject(DomainObject d) throws SQLException {
         Price domainObject=(Price) d;
 
         if(isReadyToTransaction(d)) {
 
-
-            try {
                 String expression = "INSERT INTO " + "ProductPriceStore "
                         + "("
                         + " price ,  "
@@ -123,9 +115,6 @@ public class ProductPriceMapper extends DataMapper {
                 pstmt.executeUpdate();
 
 
-            } catch (SQLException ex) {
-                Logger.getLogger(EquipmentDM.class.getName()).log(Level.SEVERE, null, ex);
-            }
         }
     }
 

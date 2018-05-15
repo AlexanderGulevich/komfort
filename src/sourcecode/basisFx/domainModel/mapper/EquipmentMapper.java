@@ -21,38 +21,34 @@ import javafx.collections.ObservableList;
  *
  * @author Alek
  */
-public class EquipmentDM extends DataMapper {
+public class EquipmentMapper extends DataMapper {
     
     private Equipment domainObject;
     
-    private static EquipmentDM instance;
+    private static EquipmentMapper instance;
    
-    private EquipmentDM() {}
+    private EquipmentMapper() {}
     
-    public static EquipmentDM getInstance(){
+    public static EquipmentMapper getInstance(){
      
-        if(EquipmentDM.instance!=null){
-            return EquipmentDM.instance;
+        if(EquipmentMapper.instance!=null){
+            return EquipmentMapper.instance;
         }else{
-            EquipmentDM.instance=new EquipmentDM();
-            return  EquipmentDM.instance;
+            EquipmentMapper.instance=new EquipmentMapper();
+            return  EquipmentMapper.instance;
         }
         
     }
 
 
-
-
     @Override
-    public void insertDomainObject(DomainObject d) {
+    public void insertDomainObject(DomainObject d) throws SQLException {
         
         domainObject=(Equipment) d;
 
 
         if (isReadyToTransaction(d)) {
 
-
-            try {
                 String expression = "INSERT INTO " + "Equipment"
                         + "("
                         + "name"
@@ -63,18 +59,14 @@ public class EquipmentDM extends DataMapper {
 
                 pstmt.executeUpdate();
 
-
-            } catch (SQLException ex) {
-                Logger.getLogger(EquipmentDM.class.getName()).log(Level.SEVERE, null, ex);
-            }
         }
 
     }
 
     @Override
-    public void updateDomainObject(DomainObject d) {
+    public void updateDomainObject(DomainObject d) throws SQLException {
         if (isReadyToTransaction(d)) {
-            try {
+
                 domainObject = (Equipment) d;
 
                 String expression = "UPDATE " + "Equipment"+
@@ -90,10 +82,12 @@ public class EquipmentDM extends DataMapper {
 
                 pstmt.executeUpdate();
 
-            } catch (SQLException ex) {
-                Logger.getLogger(EquipmentDM.class.getName()).log(Level.SEVERE, null, ex);
-            }
         }
+    }
+
+    @Override
+    public void deleteDomainObject(DomainObject d) throws SQLException {
+        super.delete(d,"Equipment");
     }
 
     @Override
@@ -101,20 +95,15 @@ public class EquipmentDM extends DataMapper {
         Equipment equipment= (Equipment) d;
         if (equipment.getName()!=null
                 ) {
-            System.out.println("!!!!!!!!!!!!!!EquipmentDM --- объект готов к транзакции");
-
             return true;
         }
-        System.out.println("!!!!!!!!!!!!!!EquipmentDM --- объект НЕ готов к транзакции");
 
         return false;
     }
 
     @Override
-    public void getDomainList(ObservableList list) {
-        
-      try {
-             
+    public void getDomainList(ObservableList list) throws SQLException {
+
         String expression="SELECT * FROM " +"Equipment"+" ORDER BY ID";
         
         Statement stmt  = Db.getConnection().createStatement();
@@ -133,16 +122,8 @@ public class EquipmentDM extends DataMapper {
                 this.unitOfWork.getStoredPojoesId().add(rs.getInt("id"));
                 
                 list.add(pojo);
-                
-              
-        
+
             }
-            
-        } catch (SQLException ex) {
-            Logger.getLogger(EquipmentDM.class.getName()).log(Level.SEVERE, null, ex);
-        }
- 
-        
     }
 
     @Override

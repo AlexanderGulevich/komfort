@@ -43,8 +43,7 @@ public class CurrencyDataMapper extends DataMapper {
 
 
     @Override
-    public void getDomainList(ObservableList list) {
-        try {
+    public void getDomainList(ObservableList list) throws SQLException {
 
             String expression="SELECT * FROM " +"Currency"+" ORDER BY ID";
 
@@ -65,17 +64,9 @@ public class CurrencyDataMapper extends DataMapper {
 
                 }
 
-
-
                 list.add(pojo);
 
-
-
             }
-
-        } catch (SQLException ex) {
-            Logger.getLogger(EquipmentDM.class.getName()).log(Level.SEVERE, null, ex);
-        }
 
     }
 
@@ -86,11 +77,11 @@ public class CurrencyDataMapper extends DataMapper {
 
 
     @Override
-    public void updateDomainObject(DomainObject d) {
+    public void updateDomainObject(DomainObject d) throws SQLException {
 
 
         if(isReadyToTransaction(d)) {
-            try {
+
                 domainObject = (Currency) d;
 
 
@@ -106,21 +97,21 @@ public class CurrencyDataMapper extends DataMapper {
 
                 pstmt.executeUpdate();
 
-            } catch (SQLException ex) {
-                Logger.getLogger(EquipmentDM.class.getName()).log(Level.SEVERE, null, ex);
-            }
         }
     }
 
     @Override
-    public void insertDomainObject(DomainObject d) {
+    public void deleteDomainObject(DomainObject d) throws SQLException {
+        super.deleteForBoundTables(d,"Currency","ExchangeRates");
+    }
+
+    @Override
+    public void insertDomainObject(DomainObject d) throws SQLException {
 
         domainObject=(Currency) d;
 
-
         if(isReadyToTransaction(d)) {
 
-            try {
                 String expression = "INSERT INTO " + " Currency "
                         + "(name) VALUES(?)";
 
@@ -128,11 +119,6 @@ public class CurrencyDataMapper extends DataMapper {
                 pstmt.setString(1, domainObject.getName());
 
                 pstmt.executeUpdate();
-
-
-            } catch (SQLException ex) {
-                Logger.getLogger(EquipmentDM.class.getName()).log(Level.SEVERE, null, ex);
-            }
 
         }
     }

@@ -43,10 +43,8 @@ public class SleevePriceMapper extends DataMapper {
     }
 
     @Override
-    public void getDomainListForObserverTables(ObservableList list, DomainObject selectedDomainObject) {
+    public void getDomainListForObserverTables(ObservableList list, DomainObject selectedDomainObject) throws SQLException {
         int id=selectedDomainObject.getId();
-
-        try {
 
             String expression="SELECT * FROM " +"SleevePriceStore "+" where productId= " +id+" ORDER BY startDate desc";
 
@@ -70,15 +68,11 @@ public class SleevePriceMapper extends DataMapper {
 
             }
 
-        } catch (SQLException ex) {
-            Logger.getLogger(EquipmentDM.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
 
     }
 
     @Override
-    public void updateDomainObject(DomainObject d) {
+    public void updateDomainObject(DomainObject d) throws SQLException {
         if(isReadyToTransaction(d)) {
 
 
@@ -92,7 +86,6 @@ public class SleevePriceMapper extends DataMapper {
 
             PreparedStatement pstmt = null;
 
-            try {
                 pstmt = Db.getConnection().prepareStatement(expression);
 
                 pstmt.setDouble(1, Double.valueOf(price.getPrice()));
@@ -100,21 +93,22 @@ public class SleevePriceMapper extends DataMapper {
                 pstmt.setInt(3, price.getProductId());
                 pstmt.setInt(4, price.getId());
                 pstmt.executeUpdate();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
 
         }
     }
 
     @Override
-    public void insertDomainObject(DomainObject d) {
+    public void deleteDomainObject(DomainObject d) throws SQLException {
+        super.delete(d,"SleevePriceStore");
+    }
+
+    @Override
+    public void insertDomainObject(DomainObject d) throws SQLException {
         Price domainObject=(Price) d;
 
         if(isReadyToTransaction(d)) {
 
 
-            try {
                 String expression = "INSERT INTO " + "SleevePriceStore "
                         + "("
                         + " price ,  "
@@ -130,10 +124,6 @@ public class SleevePriceMapper extends DataMapper {
 
                 pstmt.executeUpdate();
 
-
-            } catch (SQLException ex) {
-                Logger.getLogger(EquipmentDM.class.getName()).log(Level.SEVERE, null, ex);
-            }
         }
     }
 
