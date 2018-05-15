@@ -102,7 +102,7 @@ public class EquipmentMapper extends DataMapper {
     }
 
     @Override
-    public void getDomainList(ObservableList list) throws SQLException {
+    public void getDomainList(ObservableList list)   {
 
         String expression="SELECT * FROM " +"Equipment"+" ORDER BY ID";
         

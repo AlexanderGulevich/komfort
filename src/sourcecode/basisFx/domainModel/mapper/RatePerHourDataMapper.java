@@ -35,7 +35,7 @@ public class RatePerHourDataMapper extends DataMapper{
     }
 
     @Override
-    public void getDomainListForObserverTables(ObservableList list, DomainObject selectedDomainObject) throws SQLException {
+    public void getDomainListForObserverTables(ObservableList list, DomainObject selectedDomainObject)   {
 
         int id=selectedDomainObject.getId();
 
@@ -71,7 +71,7 @@ public class RatePerHourDataMapper extends DataMapper{
     }
 
     @Override
-    public void updateDomainObject(DomainObject d) throws SQLException {
+    public void updateDomainObject(DomainObject d)   {
         if(isReadyToTransaction(d)) {
             System.out.println("RatePerHourDataMapper.updateDomainObject".toUpperCase());
 
@@ -95,12 +95,12 @@ public class RatePerHourDataMapper extends DataMapper{
     }
 
     @Override
-    public void deleteDomainObject(DomainObject d) throws SQLException {
+    public void deleteDomainObject(DomainObject d)   {
         super.delete(d,"RateStore");
     }
 
     @Override
-    public void insertDomainObject(DomainObject d) throws SQLException {
+    public void insertDomainObject(DomainObject d)   {
         RatePerHour domainObject=(RatePerHour) d;
 
         if(isReadyToTransaction(d)) {

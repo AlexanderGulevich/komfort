@@ -34,7 +34,7 @@ public class ExchangeRatesDataMapper extends DataMapper{
     }
 
     @Override
-    public void getDomainListForObserverTables(ObservableList list, DomainObject selectedDomainObject) throws SQLException {
+    public void getDomainListForObserverTables(ObservableList list, DomainObject selectedDomainObject)   {
         int id=selectedDomainObject.getId();
 
             String expression="SELECT * FROM " +"ExchangeRates "+" where currencyId= " +id+" ORDER BY startDate Desc";
@@ -63,7 +63,7 @@ public class ExchangeRatesDataMapper extends DataMapper{
     }
 
     @Override
-    public void updateDomainObject(DomainObject d) throws SQLException {
+    public void updateDomainObject(DomainObject d)   {
         if(isReadyToTransaction(d)) {
 
 
@@ -89,12 +89,12 @@ public class ExchangeRatesDataMapper extends DataMapper{
     }
 
     @Override
-    public void deleteDomainObject(DomainObject d) throws SQLException {
+    public void deleteDomainObject(DomainObject d)   {
         super.delete(d,"ExchangeRates ");
     }
 
     @Override
-    public void insertDomainObject(DomainObject d) throws SQLException {
+    public void insertDomainObject(DomainObject d)   {
         ExchangeRates domainObject=(ExchangeRates) d;
 
         if(isReadyToTransaction(d)) {

@@ -36,7 +36,7 @@ public class RatePerHourTemplatesDataMapper extends DataMapper {
     }
 
     @Override
-    public void getDomainList(ObservableList list) throws SQLException {
+    public void getDomainList(ObservableList list)   {
 
             String expression="SELECT * FROM " +"RateTemplates"+" ORDER BY ID";
 
@@ -66,7 +66,7 @@ public class RatePerHourTemplatesDataMapper extends DataMapper {
     }
 
     @Override
-    public void updateDomainObject(DomainObject d) throws SQLException {
+    public void updateDomainObject(DomainObject d)   {
 
         if (isReadyToTransaction(d)) {
             RatePerHour ratePerHour = (RatePerHour) d;
@@ -87,13 +87,13 @@ public class RatePerHourTemplatesDataMapper extends DataMapper {
     }
 
     @Override
-    public void deleteDomainObject(DomainObject d) throws SQLException {
+    public void deleteDomainObject(DomainObject d)   {
         super.delete(d,"RateTemplates");
     }
 
 
     @Override
-    public void insertDomainObject(DomainObject d) throws SQLException {
+    public void insertDomainObject(DomainObject d)   {
         RatePerHour ratePerHour= (RatePerHour) d;
 
             String expression= "INSERT INTO "+ "RateTemplates "

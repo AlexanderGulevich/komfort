@@ -43,7 +43,7 @@ public class PacketPriceMapper extends DataMapper {
     }
 
     @Override
-    public void getDomainListForObserverTables(ObservableList list, DomainObject selectedDomainObject) throws SQLException {
+    public void getDomainListForObserverTables(ObservableList list, DomainObject selectedDomainObject)   {
         int id=selectedDomainObject.getId();
 
             String expression="SELECT * FROM " +"PacketPriceStore "+" where packetId= " +id+" ORDER BY startDate desc";
@@ -71,7 +71,7 @@ public class PacketPriceMapper extends DataMapper {
     }
 
     @Override
-    public void updateDomainObject(DomainObject d) throws SQLException {
+    public void updateDomainObject(DomainObject d)   {
         if(isReadyToTransaction(d)) {
 
             Price price= (Price) d;
@@ -98,12 +98,12 @@ public class PacketPriceMapper extends DataMapper {
     }
 
     @Override
-    public void deleteDomainObject(DomainObject d) throws SQLException {
+    public void deleteDomainObject(DomainObject d)   {
         super.delete(d,"PacketPriceStore");
     }
 
     @Override
-    public void insertDomainObject(DomainObject d) throws SQLException {
+    public void insertDomainObject(DomainObject d)   {
         Price domainObject=(Price) d;
 
         if(isReadyToTransaction(d)) {

@@ -35,10 +35,10 @@ public class ProductPriceMapper extends DataMapper {
     }
 
     @Override
-    public void getDomainListForObserverTables(ObservableList list, DomainObject selectedDomainObject) throws SQLException {
+    public void getDomainListForObserverTables(ObservableList list, DomainObject selectedDomainObject)   {
         int id=selectedDomainObject.getId();
 
-            String expression="SELECT * FROM " +"ProductPriceStore "+" where productId= " +id+" ORDER BY startDate desc";
+            String expression="SELECT * FROM " +"  "+" where productId= " +id+" ORDER BY startDate desc";
 
             Statement stmt  = Db.getConnection().createStatement();
 
@@ -63,13 +63,13 @@ public class ProductPriceMapper extends DataMapper {
     }
 
     @Override
-    public void updateDomainObject(DomainObject d) throws SQLException {
+    public void updateDomainObject(DomainObject d)   {
         if(isReadyToTransaction(d)) {
             System.out.println("Price.updateDomainObject".toUpperCase());
 
             Price price= (Price) d;
 
-            String expression = "UPDATE "+    "ProductPriceStore"+ " SET  " +
+            String expression = "UPDATE "+    " "+ " SET  " +
                     " price = ?," +
                     " startDate = ?," +
                     " productId = ? " +
@@ -89,17 +89,17 @@ public class ProductPriceMapper extends DataMapper {
     }
 
     @Override
-    public void deleteDomainObject(DomainObject d) throws SQLException {
-        super.delete(d,"ProductPriceStore ");
+    public void deleteDomainObject(DomainObject d)   {
+        super.delete(d,"  ");
     }
 
     @Override
-    public void insertDomainObject(DomainObject d) throws SQLException {
+    public void insertDomainObject(DomainObject d)   {
         Price domainObject=(Price) d;
 
         if(isReadyToTransaction(d)) {
 
-                String expression = "INSERT INTO " + "ProductPriceStore "
+                String expression = "INSERT INTO " + "  "
                         + "("
                         + " price ,  "
                         + " startDate,  "

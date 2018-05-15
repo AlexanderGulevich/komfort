@@ -37,7 +37,7 @@ public class EmployerDataMapper extends DataMapper {
 
 
     @Override
-    public void getDomainList(ObservableList list) throws SQLException {
+    public void getDomainList(ObservableList list)  {
 
             String expression="SELECT * FROM " +"Employer"+" ORDER BY ID";
 
@@ -136,7 +136,7 @@ public class EmployerDataMapper extends DataMapper {
     }
 
     @Override
-    public void updateDomainObject(DomainObject d) throws SQLException {
+    public void updateDomainObject(DomainObject d)   {
 
         if(isReadyToTransaction(d)) {
 
@@ -159,7 +159,7 @@ public class EmployerDataMapper extends DataMapper {
     }
 
     @Override
-    public void deleteDomainObject(DomainObject d) throws SQLException {
+    public void deleteDomainObject(DomainObject d)   {
         if(isReadyToTransaction(d)) {
 
             Employer employer= (Employer) d;
@@ -181,7 +181,7 @@ public class EmployerDataMapper extends DataMapper {
     }
 
     @Override
-    public void insertDomainObject(DomainObject d) throws SQLException {
+    public void insertDomainObject(DomainObject d)   {
         Employer domainObject=(Employer) d;
 
         if(isReadyToTransaction(d)) {
@@ -207,7 +207,7 @@ public class EmployerDataMapper extends DataMapper {
 
     }
 
-    public  ObservableList <ComboBoxValue> getRateTemplateList() throws SQLException {
+    public  ObservableList <ComboBoxValue> getRateTemplateList()   {
 
         if (rateTamlateList != null) {
             return rateTamlateList;
@@ -237,7 +237,7 @@ public class EmployerDataMapper extends DataMapper {
         }
     }
 
-    private void getRateListFromeStore() throws SQLException {
+    private void getRateListFromeStore()   {
 
         String expression="SELECT * FROM " +"RateStore"+" ORDER BY ID";
         Statement stmt  = null;
@@ -261,7 +261,7 @@ public class EmployerDataMapper extends DataMapper {
 
     }
 
-    private Integer getMaxEmployersId() throws SQLException {
+    private Integer getMaxEmployersId()  {
 
             String expression="SELECT id FROM " +"Employer"+" where id=(SELECT MAX(id) FROM Employer)";
 

@@ -36,7 +36,7 @@ public class PacketSizeMapper extends DataMapper {
         }
 
         @Override
-        public void getDomainList(ObservableList list) throws SQLException {
+        public void getDomainList(ObservableList list)   {
 
                 String expression="SELECT * FROM " +"PacketSize"+" ORDER BY ID";
 
@@ -66,7 +66,7 @@ public class PacketSizeMapper extends DataMapper {
         }
 
         @Override
-        public void updateDomainObject(DomainObject d) throws SQLException {
+        public void updateDomainObject(DomainObject d)   {
 
             if (isReadyToTransaction(d)) {
                 PacketSize pojo = (PacketSize) d;
@@ -87,12 +87,12 @@ public class PacketSizeMapper extends DataMapper {
         }
 
     @Override
-    public void deleteDomainObject(DomainObject d) throws SQLException {
+    public void deleteDomainObject(DomainObject d)   {
         super.delete(d,"PacketSize");
     }
 
     @Override
-        public void insertDomainObject(DomainObject d) throws SQLException {
+        public void insertDomainObject(DomainObject d)   {
 
                 PacketSize pojo= (PacketSize) d;
 

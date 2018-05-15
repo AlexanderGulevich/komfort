@@ -30,7 +30,7 @@ public class ProductDataMapper  extends DataMapper{
     }
 
     @Override
-    public void getDomainList(ObservableList list) throws SQLException {
+    public void getDomainList(ObservableList list)   {
 
             String expression="SELECT * FROM " +"Product"+" ORDER BY ID";
 
@@ -60,7 +60,7 @@ public class ProductDataMapper  extends DataMapper{
     }
 
     @Override
-    public void updateDomainObject(DomainObject d) throws SQLException {
+    public void updateDomainObject(DomainObject d)   {
 
         if(isReadyToTransaction(d)) {
 
@@ -81,12 +81,12 @@ public class ProductDataMapper  extends DataMapper{
     }
 
     @Override
-    public void deleteDomainObject(DomainObject d) throws SQLException {
+    public void deleteDomainObject(DomainObject d)   {
         super.deleteForBoundTables(d,"Product","ProductPriceStore");
     }
 
     @Override
-    public void insertDomainObject(DomainObject d) throws SQLException {
+    public void insertDomainObject(DomainObject d)   {
 
         Product product= (Product) d;
 

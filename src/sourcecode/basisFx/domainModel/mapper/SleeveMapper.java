@@ -40,7 +40,7 @@ public class SleeveMapper  extends DataMapper {
     }
 
     @Override
-    public void getDomainList(ObservableList list) throws SQLException {
+    public void getDomainList(ObservableList list)   {
 
             String expression="SELECT * FROM " +"Sleeve"+" ORDER BY ID";
 
@@ -74,7 +74,7 @@ public class SleeveMapper  extends DataMapper {
     }
 
     @Override
-    public void updateDomainObject(DomainObject d) throws SQLException {
+    public void updateDomainObject(DomainObject d)   {
 
         if (isReadyToTransaction(d)) {
             Sleeve pojo = (Sleeve) d;
@@ -94,12 +94,12 @@ public class SleeveMapper  extends DataMapper {
     }
 
     @Override
-    public void deleteDomainObject(DomainObject d) throws SQLException {
+    public void deleteDomainObject(DomainObject d)   {
         super.deleteForBoundTables(d,"Sleeve","SleevePriceStore ");
     }
 
     @Override
-    public void insertDomainObject(DomainObject d) throws SQLException {
+    public void insertDomainObject(DomainObject d)   {
         Sleeve pojo= (Sleeve) d;
 
             String expression= "INSERT INTO "+ "Sleeve "

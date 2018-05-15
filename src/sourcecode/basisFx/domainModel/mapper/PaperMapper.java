@@ -103,7 +103,7 @@ public class PaperMapper  extends DataMapper {
     }
 
     @Override
-    public void deleteDomainObject(DomainObject d) throws SQLException {
+    public void deleteDomainObject(DomainObject d)   {
         super.delete(d, "Paper");
     }
 
