@@ -8,7 +8,6 @@ import basisFx.domainModel.domaine.Counterparty;
 import basisFx.domainModel.domaine.Packet;
 import basisFx.domainModel.domaine.PacketSize;
 import javafx.collections.ObservableList;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -105,6 +104,15 @@ public class PacketMapper  extends DataMapper {
                 e.printStackTrace();
             }
 
+        }
+    }
+
+    @Override
+    public void deleteDomainObject(DomainObject d) {
+        try {
+            super.delete(d,"PacketSize ");
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 

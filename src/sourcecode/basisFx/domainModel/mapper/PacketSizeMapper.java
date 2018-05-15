@@ -97,7 +97,12 @@ public class PacketSizeMapper extends DataMapper {
             }
         }
 
-        @Override
+    @Override
+    public void deleteDomainObject(DomainObject d) throws SQLException {
+        super.delete(d,"PacketSize");
+    }
+
+    @Override
         public void insertDomainObject(DomainObject d) {
             PacketSize pojo= (PacketSize) d;
             try {

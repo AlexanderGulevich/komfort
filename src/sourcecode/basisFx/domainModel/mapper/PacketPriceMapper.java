@@ -109,6 +109,11 @@ public class PacketPriceMapper extends DataMapper {
     }
 
     @Override
+    public void deleteDomainObject(DomainObject d) throws SQLException {
+        super.delete(d,"PacketPriceStore");
+    }
+
+    @Override
     public void insertDomainObject(DomainObject d) {
         Price domainObject=(Price) d;
 

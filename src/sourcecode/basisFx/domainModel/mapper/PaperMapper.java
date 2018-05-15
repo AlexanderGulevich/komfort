@@ -105,6 +105,11 @@ public class PaperMapper  extends DataMapper {
     }
 
     @Override
+    public void deleteDomainObject(DomainObject d) throws SQLException {
+        super.delete(d, "Paper");
+    }
+
+    @Override
     public void insertDomainObject(DomainObject d) {
         Paper pojo= (Paper) d;
         try {

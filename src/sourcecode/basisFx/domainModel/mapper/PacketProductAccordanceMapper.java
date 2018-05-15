@@ -115,6 +115,11 @@ public class PacketProductAccordanceMapper extends DataMapper {
     }
 
     @Override
+    public void deleteDomainObject(DomainObject d) throws SQLException {
+        super.delete(d,"PacketProductAccordance");
+    }
+
+    @Override
     public void insertDomainObject(DomainObject d) {
         PacketProductAccordance pojo = (PacketProductAccordance) d;
         try {

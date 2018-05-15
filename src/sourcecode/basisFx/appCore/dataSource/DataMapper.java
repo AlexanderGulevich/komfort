@@ -12,6 +12,7 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
+import basisFx.appCore.interfaces.DeleteDomainObject;
 import basisFx.appCore.interfaces.StringGetterFromDomain;
 import basisFx.domainModel.DataMapperFabric;
 import javafx.collections.FXCollections;
@@ -21,7 +22,7 @@ import javafx.collections.ObservableList;
  *
  * @author Alek
  */
-public abstract class DataMapper {
+public abstract class DataMapper   {
 
     protected ObservableList<DomainObject> list=FXCollections.observableArrayList();
     protected DataMapperFabric dataMapperFabric=new DataMapperFabric();
@@ -29,21 +30,38 @@ public abstract class DataMapper {
     private int observableDomaineId;
 
     
-     protected UnitOfWork unitOfWork;
+    protected UnitOfWork unitOfWork;
 
     public abstract boolean isReadyToTransaction(DomainObject d);
     public abstract void getDomainList(ObservableList  list);
     public abstract void getDomainListForObserverTables(ObservableList  list, DomainObject selectedDomainObject);
 
-
     public abstract void updateDomainObject(DomainObject d);
+    public abstract void deleteDomainObject(DomainObject d) throws SQLException;
     public abstract void insertDomainObject(DomainObject d);
-     
-     public void deleteDomainObject(DomainObject domainObject) throws SQLException{
-        String expression="delete from " +domainObject.getTableName()+" where id=? ";
+
+    public void delete(DomainObject domainObject, String tableName) throws SQLException{
+        String expression="delete from " +tableName+" where id=? ";
         PreparedStatement pstmt =  Db.getConnection().prepareStatement(expression);
-                 pstmt.setInt(1, domainObject.getId());
-                 pstmt.executeUpdate();
+        pstmt.setInt(1, domainObject.getId());
+        pstmt.executeUpdate();
+
+    }
+
+    public void deleteForBoundTables(DomainObject domainObject, String observedtableName,String observertableName) throws SQLException{
+
+        String expression_1="delete from " +observedtableName+" where id=? ";
+        PreparedStatement pstmt_1 =  Db.getConnection().prepareStatement(expression_1);
+        pstmt_1.setInt(1, domainObject.getId());
+        pstmt_1.executeUpdate();
+
+
+        String expression_2="delete from " +observertableName+" where id=? ";
+        PreparedStatement pstmt_2 =  Db.getConnection().prepareStatement(expression_2);
+        pstmt_2.setInt(1, domainObject.getId());
+        pstmt_2.executeUpdate();
+
+
 
     }
 
