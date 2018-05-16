@@ -111,6 +111,7 @@ public class CurrencyDataMapper extends DataMapper {
     }
 
     @Override
+<<<<<<< HEAD
     public void deleteDomainObject(DomainObject d)   {
         try {
             super.deleteForBoundTables(d,"Currency","ExchangeRates");
@@ -118,6 +119,16 @@ public class CurrencyDataMapper extends DataMapper {
             e.printStackTrace();
         }
     }
+=======
+    public void deleteDomainObject(DomainObject d) {
+        super.delete();
+    }
+
+    @Override
+    public void insertDomainObject(DomainObject d) {
+
+        domainObject=(Currency) d;
+>>>>>>> newb
 
     @Override
     public void insertDomainObject(DomainObject d)  {
