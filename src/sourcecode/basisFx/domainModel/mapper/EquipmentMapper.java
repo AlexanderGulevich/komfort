@@ -22,7 +22,8 @@ import javafx.collections.ObservableList;
  * @author Alek
  */
 public class EquipmentMapper extends DataMapper {
-    
+
+
     private Equipment domainObject;
     
     private static EquipmentMapper instance;
