@@ -257,7 +257,7 @@ public class SingleGridTable extends GridTable {
                         tableWrapper.getElement(),
                         0, 1, 1, 1, HPos.CENTER, VPos.TOP, insets);
 
-
+                break;
             case Submit:
                 gridPaneWrapper.setColumnComputerWidth();
                 gridPaneWrapper.setColumn();

@@ -59,6 +59,9 @@ public class TargetFM {
     public SleevePanel sleevePanel(){
         return new SleevePanel();
     }
+    public EmployeesFiredPanel employeesFiredPanel(){
+        return new EmployeesFiredPanel();
+    }
 
 
 

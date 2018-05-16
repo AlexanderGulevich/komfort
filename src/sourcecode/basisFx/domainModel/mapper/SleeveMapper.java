@@ -40,8 +40,7 @@ public class SleeveMapper  extends DataMapper {
     }
 
     @Override
-    public void getDomainList(ObservableList list) {
-        try {
+    public void getDomainList(ObservableList list)   {
 
             String expression="SELECT * FROM " +"Sleeve"+" ORDER BY ID";
 
@@ -67,11 +66,6 @@ public class SleeveMapper  extends DataMapper {
 
 
             }
-
-        } catch (SQLException ex) {
-            Logger.getLogger(EquipmentDM.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
     }
 
     @Override
@@ -80,7 +74,7 @@ public class SleeveMapper  extends DataMapper {
     }
 
     @Override
-    public void updateDomainObject(DomainObject d) {
+    public void updateDomainObject(DomainObject d)   {
 
         if (isReadyToTransaction(d)) {
             Sleeve pojo = (Sleeve) d;
@@ -89,25 +83,25 @@ public class SleeveMapper  extends DataMapper {
                     " where id=? ";
 
             PreparedStatement pstmt = null;
-            try {
+
                 pstmt = Db.getConnection().prepareStatement(expression);
 
                 pstmt.setInt(2, pojo.getId());
                 pstmt.setInt(1, pojo.getCounterparty().getId());
 
                 pstmt.executeUpdate();
-
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-
         }
     }
 
     @Override
-    public void insertDomainObject(DomainObject d) {
+    public void deleteDomainObject(DomainObject d)   {
+        super.deleteForBoundTables(d,"Sleeve","SleevePriceStore ");
+    }
+
+    @Override
+    public void insertDomainObject(DomainObject d)   {
         Sleeve pojo= (Sleeve) d;
-        try {
+
             String expression= "INSERT INTO "+ "Sleeve "
                     + "(counterpartyId  "
                     + ") VALUES(?)";
@@ -115,13 +109,7 @@ public class SleeveMapper  extends DataMapper {
             PreparedStatement pstmt =  Db.getConnection().prepareStatement(expression);
             pstmt.setInt(1, pojo.getCounterparty().getId());
 
-
             pstmt.executeUpdate();
-
-
-        } catch (SQLException ex) {
-            Logger.getLogger(EquipmentDM.class.getName()).log(Level.SEVERE, null, ex);
-        }
 
     }
 }

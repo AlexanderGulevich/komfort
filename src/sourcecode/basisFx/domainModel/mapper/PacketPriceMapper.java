@@ -19,8 +19,6 @@ public class PacketPriceMapper extends DataMapper {
     }
 
 
-
-
     @Override
     public boolean isReadyToTransaction(DomainObject d) {
         Price price = (Price) d;
@@ -45,10 +43,8 @@ public class PacketPriceMapper extends DataMapper {
     }
 
     @Override
-    public void getDomainListForObserverTables(ObservableList list, DomainObject selectedDomainObject) {
+    public void getDomainListForObserverTables(ObservableList list, DomainObject selectedDomainObject)   {
         int id=selectedDomainObject.getId();
-
-        try {
 
             String expression="SELECT * FROM " +"PacketPriceStore "+" where packetId= " +id+" ORDER BY startDate desc";
 
@@ -72,15 +68,10 @@ public class PacketPriceMapper extends DataMapper {
 
             }
 
-        } catch (SQLException ex) {
-            Logger.getLogger(EquipmentDM.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-
     }
 
     @Override
-    public void updateDomainObject(DomainObject d) {
+    public void updateDomainObject(DomainObject d)   {
         if(isReadyToTransaction(d)) {
 
             Price price= (Price) d;
@@ -93,7 +84,7 @@ public class PacketPriceMapper extends DataMapper {
 
             PreparedStatement pstmt = null;
 
-            try {
+
                 pstmt = Db.getConnection().prepareStatement(expression);
 
                 pstmt.setDouble(1, Double.valueOf(price.getPrice()));
@@ -101,21 +92,22 @@ public class PacketPriceMapper extends DataMapper {
                 pstmt.setInt(3, price.getProductId());
                 pstmt.setInt(4, price.getId());
                 pstmt.executeUpdate();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+
 
         }
     }
 
     @Override
-    public void insertDomainObject(DomainObject d) {
+    public void deleteDomainObject(DomainObject d)   {
+        super.delete(d,"PacketPriceStore");
+    }
+
+    @Override
+    public void insertDomainObject(DomainObject d)   {
         Price domainObject=(Price) d;
 
         if(isReadyToTransaction(d)) {
 
-
-            try {
                 String expression = "INSERT INTO " + "PacketPriceStore "
                         + "("
                         + " price ,  "
@@ -131,10 +123,6 @@ public class PacketPriceMapper extends DataMapper {
 
                 pstmt.executeUpdate();
 
-
-            } catch (SQLException ex) {
-                Logger.getLogger(EquipmentDM.class.getName()).log(Level.SEVERE, null, ex);
-            }
         }
     }
 

@@ -28,19 +28,14 @@ public class ExchangeRatesDataMapper extends DataMapper{
         return false;
     }
 
-
-
-
     @Override
     public void getDomainList(ObservableList list) {
 
     }
 
     @Override
-    public void getDomainListForObserverTables(ObservableList list, DomainObject selectedDomainObject) {
+    public void getDomainListForObserverTables(ObservableList list, DomainObject selectedDomainObject)   {
         int id=selectedDomainObject.getId();
-
-        try {
 
             String expression="SELECT * FROM " +"ExchangeRates "+" where currencyId= " +id+" ORDER BY startDate Desc";
 
@@ -50,7 +45,6 @@ public class ExchangeRatesDataMapper extends DataMapper{
 
 
             while (rs.next()) {
-
 
                 ExchangeRates pojo=new ExchangeRates();
                 pojo.setId(rs.getInt("id"));
@@ -66,16 +60,12 @@ public class ExchangeRatesDataMapper extends DataMapper{
 
             }
 
-        } catch (SQLException ex) {
-            Logger.getLogger(EquipmentDM.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
     }
 
     @Override
-    public void updateDomainObject(DomainObject d) {
+    public void updateDomainObject(DomainObject d)   {
         if(isReadyToTransaction(d)) {
-            System.out.println("ExchangeRatesDataMapper.updateDomainObject".toUpperCase());
+
 
             ExchangeRates domaine= (ExchangeRates) d;
             String expression = "UPDATE "+    "ExchangeRates"+ " SET  " +
@@ -86,7 +76,6 @@ public class ExchangeRatesDataMapper extends DataMapper{
 
             PreparedStatement pstmt = null;
 
-            try {
 
                 pstmt = Db.getConnection().prepareStatement(expression);
                 pstmt.setDouble(1, Double.valueOf(domaine.getExchangeRate()));
@@ -95,21 +84,21 @@ public class ExchangeRatesDataMapper extends DataMapper{
                 pstmt.setInt(4, domaine.getId());
 
                 pstmt.executeUpdate();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
 
         }
     }
 
     @Override
-    public void insertDomainObject(DomainObject d) {
+    public void deleteDomainObject(DomainObject d)   {
+        super.delete(d,"ExchangeRates ");
+    }
+
+    @Override
+    public void insertDomainObject(DomainObject d)   {
         ExchangeRates domainObject=(ExchangeRates) d;
 
         if(isReadyToTransaction(d)) {
 
-
-            try {
                 String expression = "INSERT INTO " + "ExchangeRates "
                         + "("
                         + " rate ,  "
@@ -124,10 +113,6 @@ public class ExchangeRatesDataMapper extends DataMapper{
 
                 pstmt.executeUpdate();
 
-
-            } catch (SQLException ex) {
-                Logger.getLogger(EquipmentDM.class.getName()).log(Level.SEVERE, null, ex);
-            }
         }
     }
 }

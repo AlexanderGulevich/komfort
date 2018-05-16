@@ -43,38 +43,35 @@ public class CurrencyDataMapper extends DataMapper {
 
 
     @Override
-    public void getDomainList(ObservableList list) {
+    public void getDomainList(ObservableList list)  {
         try {
+                    String expression="SELECT * FROM " +"Currency"+" ORDER BY ID";
 
-            String expression="SELECT * FROM " +"Currency"+" ORDER BY ID";
+                    Statement stmt  = Db.getConnection().createStatement();
 
-            Statement stmt  = Db.getConnection().createStatement();
-
-            ResultSet rs    = stmt.executeQuery(expression);
-
-
-            while (rs.next()) {
-
-                Currency pojo=new Currency();
-                pojo.setId(rs.getInt("id"));
-                pojo.setName(rs.getString("name"));
+                    ResultSet rs    = stmt.executeQuery(expression);
 
 
-                if (unitOfWork != null) {
-                    unitOfWork.getStoredPojoesId().add(rs.getInt("id"));
+                    while (rs.next()) {
 
-                }
+                        Currency pojo=new Currency();
+                        pojo.setId(rs.getInt("id"));
+
+                            pojo.setName(rs.getString("name"));
 
 
 
-                list.add(pojo);
+                        if (unitOfWork != null) {
+                            unitOfWork.getStoredPojoesId().add(rs.getInt("id"));
 
+                        }
 
+                        list.add(pojo);
 
-            }
+                    }
 
-        } catch (SQLException ex) {
-            Logger.getLogger(EquipmentDM.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException e) {
+            e.printStackTrace();
         }
 
     }
@@ -86,54 +83,61 @@ public class CurrencyDataMapper extends DataMapper {
 
 
     @Override
-    public void updateDomainObject(DomainObject d) {
+    public void updateDomainObject(DomainObject d)  {
 
 
-        if(isReadyToTransaction(d)) {
-            try {
-                domainObject = (Currency) d;
+        try {
+            if(isReadyToTransaction(d)) {
+
+                    domainObject = (Currency) d;
 
 
-                String expression = "UPDATE " + " Currency " +
-                        " SET  name = ? WHERE id= ?";
+                    String expression = "UPDATE " + " Currency " +
+                            " SET  name = ? WHERE id= ?";
 
 
-                PreparedStatement pstmt = Db.getConnection().prepareStatement(expression);
+                    PreparedStatement pstmt = Db.getConnection().prepareStatement(expression);
 
-                pstmt.setString(1, domainObject.getName());
-                pstmt.setInt(2, domainObject.getId());
+                    pstmt.setString(1, domainObject.getName());
+                    pstmt.setInt(2, domainObject.getId());
 
 
-                pstmt.executeUpdate();
+                    pstmt.executeUpdate();
 
-            } catch (SQLException ex) {
-                Logger.getLogger(EquipmentDM.class.getName()).log(Level.SEVERE, null, ex);
             }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 
     @Override
-    public void insertDomainObject(DomainObject d) {
+    public void deleteDomainObject(DomainObject d)   {
+        try {
+            super.deleteForBoundTables(d,"Currency","ExchangeRates");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
-        domainObject=(Currency) d;
+    @Override
+    public void insertDomainObject(DomainObject d)  {
 
+        try {
+            domainObject=(Currency) d;
 
-        if(isReadyToTransaction(d)) {
+            if(isReadyToTransaction(d)) {
 
-            try {
-                String expression = "INSERT INTO " + " Currency "
-                        + "(name) VALUES(?)";
+                    String expression = "INSERT INTO " + " Currency "
+                            + "(name) VALUES(?)";
 
-                PreparedStatement pstmt = Db.getConnection().prepareStatement(expression);
-                pstmt.setString(1, domainObject.getName());
+                    PreparedStatement pstmt = Db.getConnection().prepareStatement(expression);
+                    pstmt.setString(1, domainObject.getName());
 
-                pstmt.executeUpdate();
+                    pstmt.executeUpdate();
 
-
-            } catch (SQLException ex) {
-                Logger.getLogger(EquipmentDM.class.getName()).log(Level.SEVERE, null, ex);
             }
-
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 

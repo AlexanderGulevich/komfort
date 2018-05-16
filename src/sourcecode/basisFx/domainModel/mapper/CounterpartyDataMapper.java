@@ -37,9 +37,7 @@ public class CounterpartyDataMapper extends DataMapper {
     }
 
     @Override
-    public void getDomainList(ObservableList list) {
-
-        try {
+    public void getDomainList(ObservableList list) throws SQLException {
 
             String expression="SELECT * FROM " +"Counterparty"+" ORDER BY ID";
 
@@ -71,16 +69,9 @@ public class CounterpartyDataMapper extends DataMapper {
                     this.unitOfWork.getStoredPojoesId().add(rs.getInt("id"));
                 }
 
-
                 list.add(pojo);
 
-
-
             }
-
-        } catch (SQLException ex) {
-            Logger.getLogger(EquipmentDM.class.getName()).log(Level.SEVERE, null, ex);
-        }
 
     }
 
@@ -92,7 +83,7 @@ public class CounterpartyDataMapper extends DataMapper {
 
 
     @Override
-    public void updateDomainObject(DomainObject d) {
+    public void updateDomainObject(DomainObject d) throws SQLException {
 
 
         Counterparty counterparty= (Counterparty) d;
@@ -106,7 +97,7 @@ public class CounterpartyDataMapper extends DataMapper {
                     " WHERE id= ?";
 
             PreparedStatement pstmt = null;
-            try {
+
                 pstmt = Db.getConnection().prepareStatement(expression);
 
                 pstmt.setString(1, counterparty.getName());
@@ -115,22 +106,22 @@ public class CounterpartyDataMapper extends DataMapper {
 
 
                 pstmt.executeUpdate();
-
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-
         }
 
     }
+
     @Override
-    public void insertDomainObject(DomainObject d) {
+    public void deleteDomainObject(DomainObject d) throws SQLException {
+        super.delete(d,"Counterparty");
+    }
+
+    @Override
+    public void insertDomainObject(DomainObject d) throws SQLException {
 
         if(isReadyToTransaction(d)) {
 
             Counterparty domainObject = (Counterparty) d;
 
-            try {
                 String expression = "INSERT INTO " + "Counterparty"
                         + "(name ,"
                         + "currencyId"
@@ -140,13 +131,8 @@ public class CounterpartyDataMapper extends DataMapper {
                 pstmt.setString(1, domainObject.getName());
                 pstmt.setInt(2, domainObject.getCurrency().getId());
 
-
                 pstmt.executeUpdate();
 
-
-            } catch (SQLException ex) {
-                Logger.getLogger(EquipmentDM.class.getName()).log(Level.SEVERE, null, ex);
-            }
         }
 
     }

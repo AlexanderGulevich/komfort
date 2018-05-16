@@ -85,7 +85,10 @@ public class EquipmentMapper extends DataMapper {
         }
     }
 
-
+    @Override
+    public void deleteDomainObject(DomainObject d) throws SQLException {
+        super.delete(d,"Equipment");
+    }
 
     @Override
     public boolean isReadyToTransaction(DomainObject d) {

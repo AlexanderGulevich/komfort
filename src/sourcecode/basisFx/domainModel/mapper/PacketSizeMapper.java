@@ -36,8 +36,7 @@ public class PacketSizeMapper extends DataMapper {
         }
 
         @Override
-        public void getDomainList(ObservableList list) {
-            try {
+        public void getDomainList(ObservableList list)   {
 
                 String expression="SELECT * FROM " +"PacketSize"+" ORDER BY ID";
 
@@ -57,13 +56,7 @@ public class PacketSizeMapper extends DataMapper {
 
                     list.add(pojo);
 
-
-
                 }
-
-            } catch (SQLException ex) {
-                Logger.getLogger(EquipmentDM.class.getName()).log(Level.SEVERE, null, ex);
-            }
 
         }
 
@@ -73,7 +66,7 @@ public class PacketSizeMapper extends DataMapper {
         }
 
         @Override
-        public void updateDomainObject(DomainObject d) {
+        public void updateDomainObject(DomainObject d)   {
 
             if (isReadyToTransaction(d)) {
                 PacketSize pojo = (PacketSize) d;
@@ -82,7 +75,7 @@ public class PacketSizeMapper extends DataMapper {
                         " where id=? ";
 
                 PreparedStatement pstmt = null;
-                try {
+
                     pstmt = Db.getConnection().prepareStatement(expression);
 
                     pstmt.setInt(2, pojo.getId());
@@ -90,17 +83,19 @@ public class PacketSizeMapper extends DataMapper {
 
                     pstmt.executeUpdate();
 
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-
             }
         }
 
-        @Override
-        public void insertDomainObject(DomainObject d) {
-            PacketSize pojo= (PacketSize) d;
-            try {
+    @Override
+    public void deleteDomainObject(DomainObject d)   {
+        super.delete(d,"PacketSize");
+    }
+
+    @Override
+        public void insertDomainObject(DomainObject d)   {
+
+                PacketSize pojo= (PacketSize) d;
+
                 String expression= "INSERT INTO "+ "PacketSize "
                         + "(size "
                         + ") VALUES(?)";
@@ -108,13 +103,8 @@ public class PacketSizeMapper extends DataMapper {
                 PreparedStatement pstmt =  Db.getConnection().prepareStatement(expression);
                 pstmt.setString(1, pojo.getSize());
 
-
                 pstmt.executeUpdate();
 
-
-            } catch (SQLException ex) {
-                Logger.getLogger(EquipmentDM.class.getName()).log(Level.SEVERE, null, ex);
-            }
 
         }
 }

@@ -25,22 +25,18 @@ public class RatePerHourTemplatesDataMapper extends DataMapper {
     public boolean isReadyToTransaction(DomainObject d) {
         RatePerHour ratePerHour = (RatePerHour) d;
         if (
-
                  ratePerHour.getName()!=null
 
                 ) {
-            System.out.println("!!!!!!!!!!!!!!RatePerHourTemplatesDataMapper --- объект готов к транзакции");
 
             return true;
         }
-        System.out.println("!!!!!!!!!!!!!!RatePerHourTemplatesDataMapper --- объект НЕ  готов к транзакции");
 
         return false;
     }
 
     @Override
-    public void getDomainList(ObservableList list) {
-        try {
+    public void getDomainList(ObservableList list)   {
 
             String expression="SELECT * FROM " +"RateTemplates"+" ORDER BY ID";
 
@@ -60,13 +56,7 @@ public class RatePerHourTemplatesDataMapper extends DataMapper {
 
                 list.add(pojo);
 
-
-
             }
-
-        } catch (SQLException ex) {
-            Logger.getLogger(EquipmentDM.class.getName()).log(Level.SEVERE, null, ex);
-        }
 
     }
 
@@ -76,7 +66,7 @@ public class RatePerHourTemplatesDataMapper extends DataMapper {
     }
 
     @Override
-    public void updateDomainObject(DomainObject d) {
+    public void updateDomainObject(DomainObject d)   {
 
         if (isReadyToTransaction(d)) {
             RatePerHour ratePerHour = (RatePerHour) d;
@@ -85,7 +75,7 @@ public class RatePerHourTemplatesDataMapper extends DataMapper {
                     " where id=? ";
 
             PreparedStatement pstmt = null;
-            try {
+
                 pstmt = Db.getConnection().prepareStatement(expression);
 
                 pstmt.setInt(2, ratePerHour.getId());
@@ -93,19 +83,19 @@ public class RatePerHourTemplatesDataMapper extends DataMapper {
 
                 pstmt.executeUpdate();
 
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-
         }
     }
 
+    @Override
+    public void deleteDomainObject(DomainObject d)   {
+        super.delete(d,"RateTemplates");
+    }
 
 
     @Override
-    public void insertDomainObject(DomainObject d) {
+    public void insertDomainObject(DomainObject d)   {
         RatePerHour ratePerHour= (RatePerHour) d;
-        try {
+
             String expression= "INSERT INTO "+ "RateTemplates "
                     + "(rate "
                     + ") VALUES(?)";
@@ -116,10 +106,6 @@ public class RatePerHourTemplatesDataMapper extends DataMapper {
 
             pstmt.executeUpdate();
 
-
-        } catch (SQLException ex) {
-            Logger.getLogger(EquipmentDM.class.getName()).log(Level.SEVERE, null, ex);
-        }
 
     }
 }

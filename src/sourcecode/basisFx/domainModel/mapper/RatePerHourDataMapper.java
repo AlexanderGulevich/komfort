@@ -35,13 +35,9 @@ public class RatePerHourDataMapper extends DataMapper{
     }
 
     @Override
-    public void getDomainListForObserverTables(ObservableList list, DomainObject selectedDomainObject) {
+    public void getDomainListForObserverTables(ObservableList list, DomainObject selectedDomainObject)   {
 
         int id=selectedDomainObject.getId();
-
-
-        try {
-
 
         String expression="SELECT * FROM " +"RateStore "+" where employerId= " +id+" ORDER BY startDate desc";
 
@@ -72,16 +68,10 @@ public class RatePerHourDataMapper extends DataMapper{
 
         }
 
-    } catch (SQLException ex) {
-        Logger.getLogger(EquipmentDM.class.getName()).log(Level.SEVERE, null, ex);
-    }
-
-
-
     }
 
     @Override
-    public void updateDomainObject(DomainObject d) {
+    public void updateDomainObject(DomainObject d)   {
         if(isReadyToTransaction(d)) {
             System.out.println("RatePerHourDataMapper.updateDomainObject".toUpperCase());
 
@@ -94,28 +84,27 @@ public class RatePerHourDataMapper extends DataMapper{
 
             PreparedStatement pstmt = null;
 
-            try {
                 pstmt = Db.getConnection().prepareStatement(expression);
                 pstmt.setDouble(1, Double.valueOf(ratePerHour.getRate().getStringValue()));
                 pstmt.setDate(2, Date.valueOf(ratePerHour.getStartingDate()));
                 pstmt.setInt(3, ratePerHour.getEmployerId());
                 pstmt.setInt(4, ratePerHour.getId());
                 pstmt.executeUpdate();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
 
         }
     }
 
     @Override
-    public void insertDomainObject(DomainObject d) {
+    public void deleteDomainObject(DomainObject d)   {
+        super.delete(d,"RateStore");
+    }
+
+    @Override
+    public void insertDomainObject(DomainObject d)   {
         RatePerHour domainObject=(RatePerHour) d;
 
         if(isReadyToTransaction(d)) {
 
-
-            try {
                 String expression = "INSERT INTO " + "RateStore "
                         + "("
                         + " rate ,  "
@@ -130,10 +119,6 @@ public class RatePerHourDataMapper extends DataMapper{
 
                 pstmt.executeUpdate();
 
-
-            } catch (SQLException ex) {
-                Logger.getLogger(EquipmentDM.class.getName()).log(Level.SEVERE, null, ex);
-            }
         }
     }
 }

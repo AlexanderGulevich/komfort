@@ -35,12 +35,10 @@ public class ProductPriceMapper extends DataMapper {
     }
 
     @Override
-    public void getDomainListForObserverTables(ObservableList list, DomainObject selectedDomainObject) {
+    public void getDomainListForObserverTables(ObservableList list, DomainObject selectedDomainObject)   {
         int id=selectedDomainObject.getId();
 
-        try {
-
-            String expression="SELECT * FROM " +"ProductPriceStore "+" where productId= " +id+" ORDER BY startDate desc";
+            String expression="SELECT * FROM " +"  "+" where productId= " +id+" ORDER BY startDate desc";
 
             Statement stmt  = Db.getConnection().createStatement();
 
@@ -62,21 +60,16 @@ public class ProductPriceMapper extends DataMapper {
 
             }
 
-        } catch (SQLException ex) {
-            Logger.getLogger(EquipmentDM.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-
     }
 
     @Override
-    public void updateDomainObject(DomainObject d) {
+    public void updateDomainObject(DomainObject d)   {
         if(isReadyToTransaction(d)) {
             System.out.println("Price.updateDomainObject".toUpperCase());
 
             Price price= (Price) d;
 
-            String expression = "UPDATE "+    "ProductPriceStore"+ " SET  " +
+            String expression = "UPDATE "+    " "+ " SET  " +
                     " price = ?," +
                     " startDate = ?," +
                     " productId = ? " +
@@ -84,7 +77,6 @@ public class ProductPriceMapper extends DataMapper {
 
             PreparedStatement pstmt = null;
 
-            try {
                 pstmt = Db.getConnection().prepareStatement(expression);
 
                 pstmt.setDouble(1, Double.valueOf(price.getPrice()));
@@ -92,22 +84,22 @@ public class ProductPriceMapper extends DataMapper {
                 pstmt.setInt(3, price.getProductId());
                 pstmt.setInt(4, price.getId());
                 pstmt.executeUpdate();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
 
         }
     }
 
     @Override
-    public void insertDomainObject(DomainObject d) {
+    public void deleteDomainObject(DomainObject d)   {
+        super.delete(d,"  ");
+    }
+
+    @Override
+    public void insertDomainObject(DomainObject d)   {
         Price domainObject=(Price) d;
 
         if(isReadyToTransaction(d)) {
 
-
-            try {
-                String expression = "INSERT INTO " + "ProductPriceStore "
+                String expression = "INSERT INTO " + "  "
                         + "("
                         + " price ,  "
                         + " startDate,  "
@@ -123,9 +115,6 @@ public class ProductPriceMapper extends DataMapper {
                 pstmt.executeUpdate();
 
 
-            } catch (SQLException ex) {
-                Logger.getLogger(EquipmentDM.class.getName()).log(Level.SEVERE, null, ex);
-            }
         }
     }
 

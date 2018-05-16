@@ -5,7 +5,6 @@
  */
 package basisFx.domainModel;
 
-import basisFx.appCore.elements.LabelWrapper;
 import basisFx.domainModel.mapper.*;
 
 /**
@@ -14,8 +13,8 @@ import basisFx.domainModel.mapper.*;
  */
 public class DataMapperFabric {
 
-    public EquipmentDM equipmentDataMapper(){
-        return EquipmentDM.getInstance();
+    public EquipmentMapper equipmentDataMapper(){
+        return EquipmentMapper.getInstance();
     }
     public CounterpartyDataMapper counterpartyDataMapper() {
         return new CounterpartyDataMapper();

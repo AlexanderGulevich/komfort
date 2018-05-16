@@ -5,8 +5,6 @@ import basisFx.appCore.dataSource.Db;
 import basisFx.appCore.domainScetch.ComboBoxValue;
 import basisFx.appCore.domainScetch.DomainObject;
 import basisFx.domainModel.domaine.Counterparty;
-import basisFx.domainModel.domaine.Packet;
-import basisFx.domainModel.domaine.PacketSize;
 import basisFx.domainModel.domaine.Paper;
 import javafx.collections.ObservableList;
 
@@ -69,7 +67,7 @@ public class PaperMapper  extends DataMapper {
             }
 
         } catch (SQLException ex) {
-            Logger.getLogger(EquipmentDM.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(EquipmentMapper.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }
@@ -105,6 +103,11 @@ public class PaperMapper  extends DataMapper {
     }
 
     @Override
+    public void deleteDomainObject(DomainObject d)   {
+        super.delete(d, "Paper");
+    }
+
+    @Override
     public void insertDomainObject(DomainObject d) {
         Paper pojo= (Paper) d;
         try {
@@ -120,7 +123,7 @@ public class PaperMapper  extends DataMapper {
 
 
         } catch (SQLException ex) {
-            Logger.getLogger(EquipmentDM.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(EquipmentMapper.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }
