@@ -33,16 +33,7 @@ public abstract class DataMapper   {
     protected UnitOfWork unitOfWork;
 
     public abstract boolean isReadyToTransaction(DomainObject d);
-<<<<<<< HEAD
-    public abstract void getDomainList(ObservableList  list) ;
-    public abstract void getDomainListForObserverTables(ObservableList  list, DomainObject selectedDomainObject) throws SQLException;
 
-    public abstract void updateDomainObject(DomainObject d)  ;
-    public abstract void deleteDomainObject(DomainObject d)  ;
-    public abstract void insertDomainObject(DomainObject d)  ;
-
-    public void delete(DomainObject domainObject, String tableName)  {
-=======
     public abstract void getDomainList(ObservableList  list);
     public abstract void getDomainListForObserverTables(ObservableList  list, DomainObject selectedDomainObject);
 
@@ -51,7 +42,7 @@ public abstract class DataMapper   {
     public abstract void insertDomainObject(DomainObject d);
 
     public void delete(DomainObject domainObject, String tableName){
->>>>>>> newb
+
         try {
             String expression="delete from " +tableName+" where id=? ";
             PreparedStatement pstmt =  Db.getConnection().prepareStatement(expression);
@@ -63,11 +54,8 @@ public abstract class DataMapper   {
 
     }
 
-<<<<<<< HEAD
-    public void deleteForBoundTables(DomainObject domainObject, String observedtableName,String observertableName) {
-=======
+
     public void deleteForBoundTables(DomainObject domainObject, String observedtableName,String observertableName){
->>>>>>> newb
 
         try {
             String expression_1="delete from " +observedtableName+" where id=? ";
