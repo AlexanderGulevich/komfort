@@ -113,6 +113,11 @@ public class CurrencyDataMapper extends DataMapper {
     }
 
     @Override
+    public void deleteDomainObject(DomainObject d) {
+        super.delete();
+    }
+
+    @Override
     public void insertDomainObject(DomainObject d) {
 
         domainObject=(Currency) d;
