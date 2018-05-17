@@ -11,21 +11,19 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * Created by AlexanderGulevich on 24.03.2018.
  *
  * @autor AlexanderGulevich
  */
-public class CurrencyDataMapper extends DataMapper {
+public class CurrencyMapper extends DataMapper {
 
 
     private Currency domainObject;
-    private static CurrencyDataMapper ourInstance = new CurrencyDataMapper();
+    private static CurrencyMapper ourInstance = new CurrencyMapper();
 
-    public static CurrencyDataMapper getInstance() {
+    public static CurrencyMapper getInstance() {
         return ourInstance;
     }
 

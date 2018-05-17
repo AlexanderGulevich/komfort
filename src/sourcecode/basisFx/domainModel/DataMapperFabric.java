@@ -13,26 +13,26 @@ import basisFx.domainModel.mapper.*;
  */
 public class DataMapperFabric {
 
-    public EquipmentMapper equipmentDataMapper(){
+    public EquipmentMapper equipmentMapper(){
         return EquipmentMapper.getInstance();
     }
-    public CounterpartyDataMapper counterpartyDataMapper() {
-        return new CounterpartyDataMapper();
+    public CounterpartyMapper counterpartyMapper() {
+        return new CounterpartyMapper();
     }
-    public CurrencyDataMapper currencyDataMapper() {
-        return CurrencyDataMapper.getInstance();
+    public CurrencyMapper currencyMapper() {
+        return CurrencyMapper.getInstance();
     }
-    public EmployerDataMapper employerDataMapper() {
-        return new EmployerDataMapper();
+    public EmployerMapper employerMapper() {
+        return new EmployerMapper();
     }
-    public RatePerHourTemplatesDataMapper ratePerHourTemplatesDataMapper() {
-        return  RatePerHourTemplatesDataMapper.getInstance();
+    public RatePerHourTemplatesMapper ratePerHourTemplatesMapper() {
+        return  RatePerHourTemplatesMapper.getInstance();
     }
-    public RatePerHourDataMapper ratePerHourDataMapper() {
-        return  new RatePerHourDataMapper();
+    public RatePerHourMapper ratePerHourMapper() {
+        return  new RatePerHourMapper();
     }
-    public ExchangeRatesDataMapper exchangeRatesDataMapper(){return new ExchangeRatesDataMapper();}
-    public ProductDataMapper productDataMapper(){return new ProductDataMapper();}
+    public ExchangeRatesMapper exchangeRatesMapper(){return new ExchangeRatesMapper();}
+    public ProductMapper productMapper(){return new ProductMapper();}
     public ProductPriceMapper productPriceMapper(){return new ProductPriceMapper();}
     public PacketSizeMapper packetSizeMapper(){return  PacketSizeMapper.getInstance();}
     public PacketProductAccordanceMapper     packetProductAccordanceMapper(){return  PacketProductAccordanceMapper.getInstance();}

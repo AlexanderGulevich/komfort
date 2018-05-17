@@ -1,7 +1,6 @@
 package basisFx.domainModel.targets;
 
 import basisFx.appCore.controls.KindOfColumn;
-import basisFx.appCore.domainScetch.BoolComboBox;
 import basisFx.appCore.domainScetch.ComboBoxValue;
 import basisFx.appCore.grid.*;
 import basisFx.appCore.panels.Target;
@@ -29,7 +28,7 @@ public class PacketPanel  extends Target {
         observed.setColumn(
                 columnFabric.comboBoxColumn(KindOfColumn.COMBOBOX,"Поставщик ","counterparty",0.5d,true,
                         (obj,val)->((Packet)obj).setCounterparty((ComboBoxValue) val),
-                        () ->  dataMapperFabric.counterpartyDataMapper().toComboBoxValueList((val)->{return ((Counterparty)val).getName();})
+                        () ->  dataMapperFabric.counterpartyMapper().toComboBoxValueList((val)->{return ((Counterparty)val).getName();})
                 ));
 
 
@@ -85,7 +84,7 @@ public class PacketPanel  extends Target {
         packetSizeProductAccordance.setColumn(
                 columnFabric.comboBoxColumn(KindOfColumn.COMBOBOX,"Продукция ","product",0.5d,true,
                         (obj,val)->((PacketProductAccordance)obj).setProduct((ComboBoxValue)val),
-                        () -> dataMapperFabric.productDataMapper().toComboBoxValueList((val)->{return ((Product)val).getName();})
+                        () -> dataMapperFabric.productMapper().toComboBoxValueList((val)->{return ((Product)val).getName();})
                 ));
         packetSizeProductAccordance.setColumn(
                 columnFabric.stringColumn(KindOfColumn.INT,"Кол-во ","number",0.2d,true,

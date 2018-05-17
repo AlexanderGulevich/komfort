@@ -6,25 +6,21 @@ import basisFx.appCore.domainScetch.ComboBoxValue;
 import basisFx.domainModel.domaine.Counterparty;
 import basisFx.domainModel.domaine.Currency;
 import basisFx.appCore.domainScetch.DomainObject;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.Iterator;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * Created by AlexanderGulevich on 11.03.2018.
  *
  * @autor AlexanderGulevich
  */
-public class CounterpartyDataMapper extends DataMapper {
+public class CounterpartyMapper extends DataMapper {
 
-    private static CounterpartyDataMapper ourInstance = new CounterpartyDataMapper();
+    private static CounterpartyMapper ourInstance = new CounterpartyMapper();
 
     @Override
     public boolean isReadyToTransaction(DomainObject d) {
@@ -57,7 +53,7 @@ public class CounterpartyDataMapper extends DataMapper {
 
 
                 ComboBoxValue comboBoxValue =  dataMapperFabric
-                        .currencyDataMapper()
+                        .currencyMapper()
                         .toComboBoxValHashMap((val)->{return ((Currency)val).getName();})
                         .get(currencyId);
 

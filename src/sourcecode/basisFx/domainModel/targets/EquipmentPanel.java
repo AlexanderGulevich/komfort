@@ -26,7 +26,7 @@ public class EquipmentPanel extends Target{
         tr.setTitle("Перечень станков ");
         tr.setTablesButtonKind(TablesButtonKind.Bottom_right);
         tr.setDomainClass(Equipment.class);
-        tr.setDataMapper(dataMapperFabric.equipmentDataMapper());
+        tr.setDataMapper(dataMapperFabric.equipmentMapper());
         tr.setCoordinate(new Coordinate(10d, 10d, 10d, 10d));
         tr.setPanel(panel);
         tr.setColumn(columnFabric.stringColumn(KindOfColumn.STRING,"Наименование ","name",1d,true,

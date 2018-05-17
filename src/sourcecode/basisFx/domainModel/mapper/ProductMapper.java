@@ -14,7 +14,7 @@ import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class ProductDataMapper  extends DataMapper{
+public class ProductMapper extends DataMapper{
 
 
     @Override

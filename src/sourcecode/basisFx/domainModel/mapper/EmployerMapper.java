@@ -15,13 +15,7 @@ import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class EmployerDataMapper extends DataMapper {
-//todo change
-    private  ObservableList <ComboBoxValue> rateTamlateList =null;
-    private  ObservableList <RatePerHour> ratesStoredList =null;
-    private  ObservableList <Employer> currentEmployees =null;
-    private  HashMap<Integer,ArrayList<RatePerHour>> ratesMapById =new HashMap<>();
-
+public class EmployerMapper extends DataMapper {
 
     @Override
     public boolean isReadyToTransaction(DomainObject d) {
@@ -33,8 +27,6 @@ public class EmployerDataMapper extends DataMapper {
         }
         return false;
     }
-
-
 
     @Override
     public void getDomainList(ObservableList list)  {
@@ -48,9 +40,6 @@ public class EmployerDataMapper extends DataMapper {
 
 
             while (rs.next()) {
-
-                getRateListFromeStore();
-                convertStoredRatesToHashMap();
 
                 Employer pojo=new Employer();
                 pojo.setId(rs.getInt("id"));
@@ -74,7 +63,7 @@ public class EmployerDataMapper extends DataMapper {
                 list.add(pojo);
             }
 
-            currentEmployees=list;
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -84,57 +73,6 @@ public class EmployerDataMapper extends DataMapper {
 
     @Override
     public void getDomainListForObserverTables(ObservableList list, DomainObject selectedDomainObject) {
-
-    }
-
-    private RatePerHour getNewest(Integer id){
-//todo put in basic class
-        RatePerHour newestRate=null;
-
-        ArrayList<RatePerHour> ratePerHoursList = ratesMapById.get(id);
-
-        if (ratePerHoursList != null) {
-            for (RatePerHour rate:ratePerHoursList) {
-
-                if (newestRate == null) {
-
-                    newestRate=rate;
-
-                }
-
-                if (rate.getStartingDate().isAfter(newestRate.getStartingDate())){
-                    newestRate=rate;
-                }
-            }
-        }
-
-
-        return newestRate;
-
-
-
-    }
-
-    private void convertStoredRatesToHashMap() {
-
-        for (RatePerHour rate: ratesStoredList) {
-
-            Integer id=rate.getEmployerId();
-
-            if(ratesMapById.containsKey(id)){
-
-                ratesMapById.get(id).add(rate);
-
-            }else {
-
-                ArrayList<RatePerHour> ratePerHoursList=new ArrayList<>();
-                ratePerHoursList.add(rate);
-
-                ratesMapById.put(id,ratePerHoursList);
-
-            }
-        }
-
     }
 
     @Override
@@ -196,20 +134,17 @@ public class EmployerDataMapper extends DataMapper {
 
         if(isReadyToTransaction(d)) {
 
-            int maxId = getMaxEmployersId();
-
                 String expression = "INSERT INTO " + "Employer "
                         + "("
                         + " name ,  "
-                        + " isFired,  "
-                        + " id        "
-                        + ") VALUES(?,?,?)";
+                        + " isFired "
+                        + "         "
+                        + ") VALUES(?,?,)";
 
             try {
                 PreparedStatement pstmt = Db.getConnection().prepareStatement(expression);
                 pstmt.setString(1, domainObject.getName());
                 pstmt.setBoolean(2, domainObject.getIsFired());
-                pstmt.setInt(3, maxId + 1);
 
                 pstmt.executeUpdate();
             } catch (SQLException e) {
@@ -220,96 +155,6 @@ public class EmployerDataMapper extends DataMapper {
         }
 
     }
-
-    public  ObservableList <ComboBoxValue> getRateTemplateList()   {
-
-        if (rateTamlateList != null) {
-            return rateTamlateList;
-        }else {
-
-            String expression="SELECT * FROM " +"RateTemplates"+" ORDER BY ID";
-            Statement stmt  = null;
-            rateTamlateList = FXCollections.<ComboBoxValue>observableArrayList();
-
-
-            try {
-                stmt = Db.getConnection().createStatement();
-
-                ResultSet rs    = stmt.executeQuery(expression);
-
-                while (rs.next()) {
-                    ComboBoxValue domainObject = new ComboBoxValue();
-                    domainObject.setId(rs.getInt("id"));
-                    domainObject.setStringValue(String.valueOf(rs.getDouble("rate")));
-
-                    rateTamlateList.add(domainObject);
-
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-
-            return rateTamlateList;
-
-        }
-    }
-
-    private void getRateListFromeStore()   {
-
-        String expression="SELECT * FROM " +"RateStore"+" ORDER BY ID";
-        Statement stmt  = null;
-        ratesStoredList = FXCollections.<RatePerHour>observableArrayList();
-
-        try {
-            stmt = Db.getConnection().createStatement();
-
-            ResultSet rs    = stmt.executeQuery(expression);
-
-            while (rs.next()) {
-                RatePerHour domainObject = new RatePerHour();
-                domainObject.setId(rs.getInt("id"));
-                domainObject.setName(String.valueOf(rs.getDouble("rate")));
-                domainObject.setStartingRateDate(rs.getDate("startDate").toLocalDate());
-                domainObject.setEmployerId(rs.getInt("employerId"));
-
-
-                ratesStoredList.add(domainObject);
-
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-    }
-
-    private Integer getMaxEmployersId()  {
-
-            String expression="SELECT id FROM " +"Employer"+" where id=(SELECT MAX(id) FROM Employer)";
-
-        try {
-            Statement stmt  = Db.getConnection().createStatement();
-
-            ResultSet rs    = stmt.executeQuery(expression);
-
-
-            while (rs.next()) {
-
-                int id=rs.getInt("id");
-
-                return id;
-
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-
-        return 0;
-
-    }
-
-
-
 
 
 }

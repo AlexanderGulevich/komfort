@@ -11,7 +11,7 @@ import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class RatePerHourDataMapper extends DataMapper{
+public class RatePerHourMapper extends DataMapper{
     @Override
     public boolean isReadyToTransaction(DomainObject d) {
         RatePerHour ratePerHour = (RatePerHour) d;
@@ -78,7 +78,7 @@ public class RatePerHourDataMapper extends DataMapper{
     public void updateDomainObject(DomainObject d)   {
         try {
             if(isReadyToTransaction(d)) {
-                System.out.println("RatePerHourDataMapper.updateDomainObject".toUpperCase());
+                System.out.println("RatePerHourMapper.updateDomainObject".toUpperCase());
 
                 RatePerHour ratePerHour= (RatePerHour) d;
                 String expression = "UPDATE "+    "RateStore"+ " SET  " +

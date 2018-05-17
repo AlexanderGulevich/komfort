@@ -29,7 +29,7 @@ public class LabelPanel  extends Target {
         observed.setColumn(
                 columnFabric.comboBoxColumn(KindOfColumn.COMBOBOX,"Поставщик ","counterparty",0.5d,true,
                         (obj,val)->((Label)obj).setCounterparty((ComboBoxValue) val),
-                        () ->  dataMapperFabric.counterpartyDataMapper().toComboBoxValueList((val)->{return ((Counterparty)val).getName();})
+                        () ->  dataMapperFabric.counterpartyMapper().toComboBoxValueList((val)->{return ((Counterparty)val).getName();})
                 ));
 
 

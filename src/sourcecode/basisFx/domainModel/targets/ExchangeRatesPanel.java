@@ -29,7 +29,7 @@ public class ExchangeRatesPanel extends Target{
         observed.setTablesButtonKind(TablesButtonKind.Bottom_right);
         observed.setDomainClass(Currency.class);
         observed.setGridColWidth(new GridColWidth(KindOfGridCol.percent,60d));
-        observed.setDataMapper(dataMapperFabric.currencyDataMapper());
+        observed.setDataMapper(dataMapperFabric.currencyMapper());
         observed.setColumn( columnFabric.stringColumn(KindOfColumn.STRING,"Наименование","name",1d,true,
                 (obj,val)->((Currency)obj).setName((String)val))  );
 
@@ -39,7 +39,7 @@ public class ExchangeRatesPanel extends Target{
         observer.setTablesButtonKind(TablesButtonKind.Bottom_right);
         observer.setDomainClass(ExchangeRates.class);
         observer.setGridColWidth( new GridColWidth(KindOfGridCol.percent,40d));
-        observer.setDataMapper(dataMapperFabric.exchangeRatesDataMapper());
+        observer.setDataMapper(dataMapperFabric.exchangeRatesMapper());
         observer.setColumn(columnFabric.stringColumn(KindOfColumn.DOUBLE,"Курсы","exchangeRate",0.3d,true,
                         (obj,val)->{((ExchangeRates)obj).setExchangeRate( (String ) val);}    ));
         observer.setColumn( columnFabric.dateColumn(KindOfColumn.DATE,"Дата начала действия ","startingDate",0.7d,true,

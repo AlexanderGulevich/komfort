@@ -29,7 +29,7 @@ public class ProductPanel  extends Target{
         observed.setTitle("Список продукции ");
         observed.setTablesButtonKind(TablesButtonKind.Bottom_right);
         observed.setDomainClass(Product.class);
-        observed.setDataMapper(dataMapperFabric.productDataMapper());
+        observed.setDataMapper(dataMapperFabric.productMapper());
         observed.setColumn(
                 columnFabric.stringColumn(KindOfColumn.STRING,"Наименование","name",0.7d,true,
                         (obj,val)->((Product)obj).setName((String)val))

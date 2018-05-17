@@ -6,7 +6,6 @@ import basisFx.appCore.grid.*;
 import basisFx.appCore.panels.Target;
 import basisFx.appCore.utils.Coordinate;
 import basisFx.domainModel.domaine.Counterparty;
-import basisFx.domainModel.domaine.Label;
 import basisFx.domainModel.domaine.Paper;
 import basisFx.domainModel.domaine.Price;
 
@@ -27,7 +26,7 @@ public class PaperPanel  extends Target {
         observed.setColumn(
                 columnFabric.comboBoxColumn(KindOfColumn.COMBOBOX,"Поставщик ","counterparty",1d,true,
                         (obj,val)->((Paper)obj).setCounterparty((ComboBoxValue) val),
-                        () ->  dataMapperFabric.counterpartyDataMapper().toComboBoxValueList((val)->{return ((Counterparty)val).getName();})
+                        () ->  dataMapperFabric.counterpartyMapper().toComboBoxValueList((val)->{return ((Counterparty)val).getName();})
                 ));
 
 

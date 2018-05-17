@@ -8,11 +8,7 @@ import basisFx.appCore.grid.GridTablesBuilder;
 import basisFx.appCore.grid.TablesButtonKind;
 import basisFx.appCore.panels.Target;
 import basisFx.appCore.utils.Coordinate;
-import basisFx.domainModel.domaine.Counterparty;
-import basisFx.domainModel.domaine.Currency;
 import basisFx.domainModel.domaine.Employer;
-import basisFx.appCore.settings.FontsStore;
-import javafx.geometry.Pos;
 
 import java.time.LocalDate;
 
@@ -26,14 +22,14 @@ public class EmployeesActualRatePanel extends Target{
         tr.setTitle("Текущий список сотрудников и актуальных тарифных ставок");
         tr.setTablesButtonKind(TablesButtonKind.No_buttons);
         tr.setDomainClass(null);
-        tr.setDataMapper(dataMapperFabric.employerDataMapper());
+        tr.setDataMapper(dataMapperFabric.employerMapper());
         tr.setCoordinate(new Coordinate(10d, 10d, 10d, 10d));
         tr.setPanel(panel);
         tr.setColumn(columnFabric.stringColumn(KindOfColumn.STRING,"ФИО","name",0.6d,false,
                         (obj,val)->((Employer)obj).setName((String)val)));
         tr.setColumn(columnFabric.comboBoxColumn(KindOfColumn.COMBOBOX,"Тариф","rate",0.1,false,
                         (obj,val)->{((Employer)obj).setRate((ComboBoxValue) val);},
-                        () -> dataMapperFabric.employerDataMapper().getRateTemplateList()));
+                        () -> dataMapperFabric.employerMapper().getRateTemplateList()));
         tr.setColumn(columnFabric.dateColumn(KindOfColumn.DATE,"Дата начала действия тарифа","startingRateDate",0.3d,false,
                         (obj, val)->{((Employer)obj).setStartingRateDate((LocalDate) val); }));
 

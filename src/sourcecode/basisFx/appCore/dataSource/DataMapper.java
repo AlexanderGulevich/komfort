@@ -9,12 +9,14 @@ import basisFx.appCore.domainScetch.ComboBoxValue;
 import basisFx.appCore.domainScetch.DomainObject;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 
 import basisFx.appCore.interfaces.StringGetterFromDomain;
 import basisFx.domainModel.DataMapperFabric;
+import basisFx.domainModel.domaine.RatePerHour;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -139,6 +141,7 @@ public abstract class DataMapper   {
 
     }
 
+
     // getDomainList(list) записывает в  list значения ReturnSet БД
     // далее идет преобразование каждой строки БД в ComboBoxValue и возвращается список
     public ObservableList<ComboBoxValue> toComboBoxValueList(StringGetterFromDomain stringGetterFromDomain){
@@ -159,6 +162,34 @@ public abstract class DataMapper   {
         }
 
         return comboBoxValueList;
+
+    }
+
+    private RatePerHour getNewest(Integer id){
+
+        RatePerHour newestRate=null;
+
+        ArrayList<RatePerHour> ratePerHoursList = ratesMapById.get(id);
+
+        if (ratePerHoursList != null) {
+            for (RatePerHour rate:ratePerHoursList) {
+
+                if (newestRate == null) {
+
+                    newestRate=rate;
+
+                }
+
+                if (rate.getStartingDate().isAfter(newestRate.getStartingDate())){
+                    newestRate=rate;
+                }
+            }
+        }
+
+
+        return newestRate;
+
+
 
     }
 

@@ -14,8 +14,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class PacketProductAccordanceMapper extends DataMapper {
 
@@ -58,7 +56,7 @@ public class PacketProductAccordanceMapper extends DataMapper {
                 PacketSize packetSize =
                         (PacketSize) dataMapperFabric.packetSizeMapper().toHashMapByCommonRawId().get(packetSizeId);
                 Product product =
-                        (Product) dataMapperFabric.productDataMapper().toHashMapByCommonRawId().get(productId);
+                        (Product) dataMapperFabric.productMapper().toHashMapByCommonRawId().get(productId);
 
                 PacketProductAccordance pojo = new PacketProductAccordance();
                 pojo.setId(rs.getInt("id"));

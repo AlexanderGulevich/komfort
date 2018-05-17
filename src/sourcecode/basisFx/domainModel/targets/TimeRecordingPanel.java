@@ -29,7 +29,7 @@ public class TimeRecordingPanel extends Target {
 
         employerTable =tableFabric.submitTable(KindOfSubmitElement.SubmitTable,
                 employerSide,1.0d,new Coordinate(50d, 0d, 20d, 0d),
-                dataMapperFabric.employerDataMapper(),
+                dataMapperFabric.employerMapper(),
 
                 columnFabric.stringColumn(KindOfColumn.STRING,"ФИО","name",0.3d,true,
                         (obj,val)->{((Employer)obj).setName((String)val);})

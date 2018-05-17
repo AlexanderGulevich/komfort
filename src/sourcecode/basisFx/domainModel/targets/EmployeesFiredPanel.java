@@ -23,7 +23,7 @@ public class EmployeesFiredPanel extends Target {
         tr.setTitle("Текущий список сотрудников и актуальных тарифных ставок");
         tr.setTablesButtonKind(TablesButtonKind.No_buttons);
         tr.setDomainClass(null);
-        tr.setDataMapper(dataMapperFabric.employerDataMapper());
+        tr.setDataMapper(dataMapperFabric.employerMapper());
         tr.setCoordinate(new Coordinate(10d, 10d, 10d, 10d));
         tr.setPanel(panel);
         tr.setColumn(columnFabric.stringColumn(KindOfColumn.STRING, "ФИО", "name", 0.6d, false,
@@ -32,7 +32,7 @@ public class EmployeesFiredPanel extends Target {
                 (obj, val) -> {
                     ((Employer) obj).setRate((ComboBoxValue) val);
                 },
-                () -> dataMapperFabric.employerDataMapper().getRateTemplateList()));
+                () -> dataMapperFabric.employerMapper().getRateTemplateList()));
         tr.setColumn(columnFabric.dateColumn(KindOfColumn.DATE, "Дата начала действия тарифа", "startingRateDate", 0.3d, false,
                 (obj, val) -> {
                     ((Employer) obj).setStartingRateDate((LocalDate) val);

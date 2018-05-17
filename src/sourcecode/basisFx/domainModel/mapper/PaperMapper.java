@@ -51,7 +51,7 @@ public class PaperMapper  extends DataMapper {
             while (rs.next()) {
 
                 int counterpartyId=rs.getInt("counterpartyId");
-                Counterparty counterparty = (Counterparty) dataMapperFabric.counterpartyDataMapper().toHashMapByCommonRawId().get(counterpartyId);
+                Counterparty counterparty = (Counterparty) dataMapperFabric.counterpartyMapper().toHashMapByCommonRawId().get(counterpartyId);
 
                 Paper pojo=new Paper();
                 pojo.setId(rs.getInt("id"));

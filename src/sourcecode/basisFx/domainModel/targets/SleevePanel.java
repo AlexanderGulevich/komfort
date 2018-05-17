@@ -23,7 +23,7 @@ public class SleevePanel  extends Target {
         observed.setColumn(
                 columnFabric.comboBoxColumn(KindOfColumn.COMBOBOX,"Поставщик ","counterparty",1d,true,
                         (obj,val)->((Sleeve)obj).setCounterparty((ComboBoxValue) val),
-                        () ->  dataMapperFabric.counterpartyDataMapper().toComboBoxValueList((val)->{return ((Counterparty)val).getName();})
+                        () ->  dataMapperFabric.counterpartyMapper().toComboBoxValueList((val)->{return ((Counterparty)val).getName();})
                 ));
 
 

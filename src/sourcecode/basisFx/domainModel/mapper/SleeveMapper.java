@@ -5,7 +5,6 @@ import basisFx.appCore.dataSource.Db;
 import basisFx.appCore.domainScetch.ComboBoxValue;
 import basisFx.appCore.domainScetch.DomainObject;
 import basisFx.domainModel.domaine.Counterparty;
-import basisFx.domainModel.domaine.Packet;
 import basisFx.domainModel.domaine.Paper;
 import basisFx.domainModel.domaine.Sleeve;
 import javafx.collections.ObservableList;
@@ -14,8 +13,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class SleeveMapper  extends DataMapper {
 
@@ -53,7 +50,7 @@ public class SleeveMapper  extends DataMapper {
             while (rs.next()) {
 
                 int counterpartyId=rs.getInt("counterpartyId");
-                Counterparty counterparty = (Counterparty) dataMapperFabric.counterpartyDataMapper().toHashMapByCommonRawId().get(counterpartyId);
+                Counterparty counterparty = (Counterparty) dataMapperFabric.counterpartyMapper().toHashMapByCommonRawId().get(counterpartyId);
 
                 Sleeve pojo=new Sleeve();
                 pojo.setId(rs.getInt("id"));

@@ -12,8 +12,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class PacketMapper  extends DataMapper {
 
@@ -54,7 +52,7 @@ public class PacketMapper  extends DataMapper {
                 int packetSizeId=rs.getInt("packetSizeId");
                 int counterpartyId=rs.getInt("counterpartyId");
                 PacketSize packetSize = (PacketSize) dataMapperFabric.packetSizeMapper().toHashMapByCommonRawId().get(packetSizeId);
-                Counterparty counterparty = (Counterparty) dataMapperFabric.counterpartyDataMapper().toHashMapByCommonRawId().get(counterpartyId);
+                Counterparty counterparty = (Counterparty) dataMapperFabric.counterpartyMapper().toHashMapByCommonRawId().get(counterpartyId);
 
                 Packet pojo=new Packet();
                 pojo.setId(rs.getInt("id"));

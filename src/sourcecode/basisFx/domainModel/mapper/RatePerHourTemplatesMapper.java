@@ -11,13 +11,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
-public class RatePerHourTemplatesDataMapper extends DataMapper {
-    private static RatePerHourTemplatesDataMapper ourInstance = new RatePerHourTemplatesDataMapper();
+public class RatePerHourTemplatesMapper extends DataMapper {
+    private static RatePerHourTemplatesMapper ourInstance = new RatePerHourTemplatesMapper();
 
-    public static RatePerHourTemplatesDataMapper getInstance() {
+    public static RatePerHourTemplatesMapper getInstance() {
         return ourInstance;
     }
 

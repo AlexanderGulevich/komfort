@@ -13,8 +13,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.HashMap;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class LabelMapper  extends DataMapper {
 
@@ -49,7 +47,7 @@ public class LabelMapper  extends DataMapper {
 
 
             HashMap<Integer, ComboBoxValue> comboBoxValue_hm =
-                    dataMapperFabric.counterpartyDataMapper()
+                    dataMapperFabric.counterpartyMapper()
                     .toComboBoxValHashMap(domainObject -> ((Counterparty) domainObject).getName());
 
             while (rs.next()) {

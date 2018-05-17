@@ -9,8 +9,6 @@ import basisFx.appCore.panels.Target;
 import basisFx.appCore.utils.Coordinate;
 import basisFx.domainModel.domaine.Counterparty;
 import basisFx.domainModel.domaine.Currency;
-import basisFx.domainModel.domaine.PacketProductAccordance;
-import basisFx.domainModel.domaine.Product;
 
 /**
  *
@@ -29,7 +27,7 @@ public class CounterpartyPanel extends Target{
         tr.setTitle("Контрагенты");
         tr.setTablesButtonKind(TablesButtonKind.Bottom_right);
         tr.setDomainClass(Counterparty.class);
-        tr.setDataMapper(dataMapperFabric.counterpartyDataMapper());
+        tr.setDataMapper(dataMapperFabric.counterpartyMapper());
         tr.setCoordinate(new Coordinate(10d, 10d, 10d, 10d));
         tr.setPanel(panel);
         tr.setColumn(
@@ -39,7 +37,7 @@ public class CounterpartyPanel extends Target{
         tr.setColumn(
                 columnFabric.comboBoxColumn(KindOfColumn.COMBOBOX,"Валюта ","currency",0.4d,true,
                         (obj,val)->((Counterparty)obj).setCurrency((ComboBoxValue)val),
-                        () -> dataMapperFabric.currencyDataMapper().toComboBoxValueList((val)->{return ((Currency)val).getName();})
+                        () -> dataMapperFabric.currencyMapper().toComboBoxValueList((val)->{return ((Currency)val).getName();})
                 ));
 
 
