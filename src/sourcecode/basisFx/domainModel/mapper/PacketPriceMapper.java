@@ -48,6 +48,7 @@ public class PacketPriceMapper extends DataMapper {
 
             String expression="SELECT * FROM " +"PacketPriceStore "+" where packetId= " +id+" ORDER BY startDate desc";
 
+        try {
             Statement stmt  = Db.getConnection().createStatement();
 
             ResultSet rs    = stmt.executeQuery(expression);
@@ -67,6 +68,9 @@ public class PacketPriceMapper extends DataMapper {
                 list.add(pojo);
 
             }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
     }
 
@@ -85,6 +89,7 @@ public class PacketPriceMapper extends DataMapper {
             PreparedStatement pstmt = null;
 
 
+            try {
                 pstmt = Db.getConnection().prepareStatement(expression);
 
                 pstmt.setDouble(1, Double.valueOf(price.getPrice()));
@@ -92,6 +97,9 @@ public class PacketPriceMapper extends DataMapper {
                 pstmt.setInt(3, price.getProductId());
                 pstmt.setInt(4, price.getId());
                 pstmt.executeUpdate();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
 
 
         }
@@ -115,6 +123,7 @@ public class PacketPriceMapper extends DataMapper {
                         + " packetId        "
                         + ") VALUES(?,?,?)";
 
+            try {
                 PreparedStatement pstmt = Db.getConnection().prepareStatement(expression);
 
                 pstmt.setDouble(1, Double.valueOf(domainObject.getPrice()));
@@ -122,6 +131,9 @@ public class PacketPriceMapper extends DataMapper {
                 pstmt.setInt(3, getObservableDomaineId());
 
                 pstmt.executeUpdate();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
 
         }
     }

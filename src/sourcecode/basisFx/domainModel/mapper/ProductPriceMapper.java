@@ -36,7 +36,8 @@ public class ProductPriceMapper extends DataMapper {
 
     @Override
     public void getDomainListForObserverTables(ObservableList list, DomainObject selectedDomainObject)   {
-        int id=selectedDomainObject.getId();
+        try {
+            int id=selectedDomainObject.getId();
 
             String expression="SELECT * FROM " +"  "+" where productId= " +id+" ORDER BY startDate desc";
 
@@ -59,32 +60,39 @@ public class ProductPriceMapper extends DataMapper {
                 list.add(pojo);
 
             }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
     }
 
     @Override
     public void updateDomainObject(DomainObject d)   {
-        if(isReadyToTransaction(d)) {
-            System.out.println("Price.updateDomainObject".toUpperCase());
+        try {
+            if(isReadyToTransaction(d)) {
+                System.out.println("Price.updateDomainObject".toUpperCase());
 
-            Price price= (Price) d;
+                Price price= (Price) d;
 
-            String expression = "UPDATE "+    " "+ " SET  " +
-                    " price = ?," +
-                    " startDate = ?," +
-                    " productId = ? " +
-                    " where id =?";
+                String expression = "UPDATE "+    " "+ " SET  " +
+                        " price = ?," +
+                        " startDate = ?," +
+                        " productId = ? " +
+                        " where id =?";
 
-            PreparedStatement pstmt = null;
+                PreparedStatement pstmt = null;
 
-                pstmt = Db.getConnection().prepareStatement(expression);
+                    pstmt = Db.getConnection().prepareStatement(expression);
 
-                pstmt.setDouble(1, Double.valueOf(price.getPrice()));
-                pstmt.setDate(2, Date.valueOf(price.getStartingDate()));
-                pstmt.setInt(3, price.getProductId());
-                pstmt.setInt(4, price.getId());
-                pstmt.executeUpdate();
+                    pstmt.setDouble(1, Double.valueOf(price.getPrice()));
+                    pstmt.setDate(2, Date.valueOf(price.getStartingDate()));
+                    pstmt.setInt(3, price.getProductId());
+                    pstmt.setInt(4, price.getId());
+                    pstmt.executeUpdate();
 
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 
@@ -95,26 +103,30 @@ public class ProductPriceMapper extends DataMapper {
 
     @Override
     public void insertDomainObject(DomainObject d)   {
-        Price domainObject=(Price) d;
+        try {
+            Price domainObject=(Price) d;
 
-        if(isReadyToTransaction(d)) {
+            if(isReadyToTransaction(d)) {
 
-                String expression = "INSERT INTO " + "  "
-                        + "("
-                        + " price ,  "
-                        + " startDate,  "
-                        + " productId        "
-                        + ") VALUES(?,?,?)";
+                    String expression = "INSERT INTO " + "  "
+                            + "("
+                            + " price ,  "
+                            + " startDate,  "
+                            + " productId        "
+                            + ") VALUES(?,?,?)";
 
-                PreparedStatement pstmt = Db.getConnection().prepareStatement(expression);
+                    PreparedStatement pstmt = Db.getConnection().prepareStatement(expression);
 
-                pstmt.setDouble(1, Double.valueOf(domainObject.getPrice()));
-                pstmt.setDate(2, Date.valueOf(domainObject.getStartingDate()));
-                pstmt.setInt(3, getObservableDomaineId());
+                    pstmt.setDouble(1, Double.valueOf(domainObject.getPrice()));
+                    pstmt.setDate(2, Date.valueOf(domainObject.getStartingDate()));
+                    pstmt.setInt(3, getObservableDomaineId());
 
-                pstmt.executeUpdate();
+                    pstmt.executeUpdate();
 
 
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 

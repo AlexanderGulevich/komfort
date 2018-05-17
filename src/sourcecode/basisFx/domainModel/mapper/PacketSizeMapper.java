@@ -40,6 +40,7 @@ public class PacketSizeMapper extends DataMapper {
 
                 String expression="SELECT * FROM " +"PacketSize"+" ORDER BY ID";
 
+            try {
                 Statement stmt  = Db.getConnection().createStatement();
 
                 ResultSet rs    = stmt.executeQuery(expression);
@@ -57,6 +58,9 @@ public class PacketSizeMapper extends DataMapper {
                     list.add(pojo);
 
                 }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
 
         }
 
@@ -68,21 +72,25 @@ public class PacketSizeMapper extends DataMapper {
         @Override
         public void updateDomainObject(DomainObject d)   {
 
-            if (isReadyToTransaction(d)) {
-                PacketSize pojo = (PacketSize) d;
-                String expression = "UPDATE " + "PacketSize" + " SET  " +
-                        " size = ?" +
-                        " where id=? ";
+            try {
+                if (isReadyToTransaction(d)) {
+                    PacketSize pojo = (PacketSize) d;
+                    String expression = "UPDATE " + "PacketSize" + " SET  " +
+                            " size = ?" +
+                            " where id=? ";
 
-                PreparedStatement pstmt = null;
+                    PreparedStatement pstmt = null;
 
-                    pstmt = Db.getConnection().prepareStatement(expression);
+                        pstmt = Db.getConnection().prepareStatement(expression);
 
-                    pstmt.setInt(2, pojo.getId());
-                    pstmt.setString(1, pojo.getSize());
+                        pstmt.setInt(2, pojo.getId());
+                        pstmt.setString(1, pojo.getSize());
 
-                    pstmt.executeUpdate();
+                        pstmt.executeUpdate();
 
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
         }
 
@@ -96,15 +104,19 @@ public class PacketSizeMapper extends DataMapper {
 
                 PacketSize pojo= (PacketSize) d;
 
-                String expression= "INSERT INTO "+ "PacketSize "
-                        + "(size "
-                        + ") VALUES(?)";
+        try {
+            String expression= "INSERT INTO "+ "PacketSize "
+                    + "(size "
+                    + ") VALUES(?)";
 
-                PreparedStatement pstmt =  Db.getConnection().prepareStatement(expression);
-                pstmt.setString(1, pojo.getSize());
+            PreparedStatement pstmt =  Db.getConnection().prepareStatement(expression);
+            pstmt.setString(1, pojo.getSize());
 
-                pstmt.executeUpdate();
-
-
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
+
+
+    }
 }

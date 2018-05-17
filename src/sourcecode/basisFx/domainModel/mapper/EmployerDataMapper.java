@@ -39,6 +39,7 @@ public class EmployerDataMapper extends DataMapper {
     @Override
     public void getDomainList(ObservableList list)  {
 
+        try {
             String expression="SELECT * FROM " +"Employer"+" ORDER BY ID";
 
             Statement stmt  = Db.getConnection().createStatement();
@@ -73,9 +74,10 @@ public class EmployerDataMapper extends DataMapper {
                 list.add(pojo);
             }
 
-        currentEmployees=list;
-
-        System.out.println(currentEmployees);
+            currentEmployees=list;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
 
     }
@@ -146,13 +148,17 @@ public class EmployerDataMapper extends DataMapper {
                     " isFired = ?" +
                     " WHERE id= ?" ;
 
-            PreparedStatement pstmt = null;
+            try {
+                PreparedStatement pstmt = null;
 
                 pstmt = Db.getConnection().prepareStatement(expression);
                 pstmt.setString(1, employer.getName());
                 pstmt.setBoolean(2, employer.getIsFired());
                 pstmt.setInt(3, employer.getId());
                 pstmt.executeUpdate();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
 
         }
 
@@ -168,13 +174,17 @@ public class EmployerDataMapper extends DataMapper {
                     " isFired = ?" +
                     " WHERE id= ?" ;
 
-            PreparedStatement pstmt = null;
+            try {
+                PreparedStatement pstmt = null;
 
-            pstmt = Db.getConnection().prepareStatement(expression);
-            pstmt.setString(1, employer.getName());
-            pstmt.setBoolean(2, true);
-            pstmt.setInt(3, employer.getId());
-            pstmt.executeUpdate();
+                pstmt = Db.getConnection().prepareStatement(expression);
+                pstmt.setString(1, employer.getName());
+                pstmt.setBoolean(2, true);
+                pstmt.setInt(3, employer.getId());
+                pstmt.executeUpdate();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
 
         }
 
@@ -195,12 +205,16 @@ public class EmployerDataMapper extends DataMapper {
                         + " id        "
                         + ") VALUES(?,?,?)";
 
+            try {
                 PreparedStatement pstmt = Db.getConnection().prepareStatement(expression);
                 pstmt.setString(1, domainObject.getName());
                 pstmt.setBoolean(2, domainObject.getIsFired());
                 pstmt.setInt(3, maxId + 1);
 
                 pstmt.executeUpdate();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
 
 
         }
@@ -218,7 +232,7 @@ public class EmployerDataMapper extends DataMapper {
             rateTamlateList = FXCollections.<ComboBoxValue>observableArrayList();
 
 
-
+            try {
                 stmt = Db.getConnection().createStatement();
 
                 ResultSet rs    = stmt.executeQuery(expression);
@@ -231,6 +245,9 @@ public class EmployerDataMapper extends DataMapper {
                     rateTamlateList.add(domainObject);
 
                 }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
 
             return rateTamlateList;
 
@@ -243,6 +260,7 @@ public class EmployerDataMapper extends DataMapper {
         Statement stmt  = null;
         ratesStoredList = FXCollections.<RatePerHour>observableArrayList();
 
+        try {
             stmt = Db.getConnection().createStatement();
 
             ResultSet rs    = stmt.executeQuery(expression);
@@ -258,6 +276,9 @@ public class EmployerDataMapper extends DataMapper {
                 ratesStoredList.add(domainObject);
 
             }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
     }
 
@@ -265,6 +286,7 @@ public class EmployerDataMapper extends DataMapper {
 
             String expression="SELECT id FROM " +"Employer"+" where id=(SELECT MAX(id) FROM Employer)";
 
+        try {
             Statement stmt  = Db.getConnection().createStatement();
 
             ResultSet rs    = stmt.executeQuery(expression);
@@ -277,6 +299,9 @@ public class EmployerDataMapper extends DataMapper {
                 return id;
 
             }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
 
         return 0;

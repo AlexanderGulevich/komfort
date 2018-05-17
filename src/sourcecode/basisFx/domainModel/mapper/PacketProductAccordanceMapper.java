@@ -42,6 +42,7 @@ public class PacketProductAccordanceMapper extends DataMapper {
     @Override
     public void getDomainList(ObservableList list)   {
 
+        try {
             String expression = "SELECT * FROM " + "PacketProductAccordance" + " ORDER BY ID";
 
             Statement stmt = Db.getConnection().createStatement();
@@ -72,7 +73,9 @@ public class PacketProductAccordanceMapper extends DataMapper {
 
 
             }
-
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
 
     }
@@ -95,6 +98,7 @@ public class PacketProductAccordanceMapper extends DataMapper {
 
             PreparedStatement pstmt = null;
 
+            try {
                 pstmt = Db.getConnection().prepareStatement(expression);
 
                 pstmt.setInt(4, pojo.getId());
@@ -103,6 +107,9 @@ public class PacketProductAccordanceMapper extends DataMapper {
                 pstmt.setInt(3, Integer.valueOf(pojo.getNumber()));
 
                 pstmt.executeUpdate();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
 
         }
     }
@@ -120,6 +127,7 @@ public class PacketProductAccordanceMapper extends DataMapper {
                     + "(packetSizeId,  productId, number "
                     + ") VALUES(?,?,?)";
 
+        try {
             PreparedStatement pstmt = Db.getConnection().prepareStatement(expression);
             pstmt.setInt(1, pojo.getSize().getId());
             pstmt.setInt(2, pojo.getProduct().getId());
@@ -127,7 +135,9 @@ public class PacketProductAccordanceMapper extends DataMapper {
 
 
             pstmt.executeUpdate();
-
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
 
     }

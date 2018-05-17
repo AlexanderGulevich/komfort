@@ -37,10 +37,11 @@ public class CounterpartyDataMapper extends DataMapper {
     }
 
     @Override
-    public void getDomainList(ObservableList list) throws SQLException {
+    public void getDomainList(ObservableList list)   {
 
             String expression="SELECT * FROM " +"Counterparty"+" ORDER BY ID";
 
+        try {
             Statement stmt  = Db.getConnection().createStatement();
 
             ResultSet rs    = stmt.executeQuery(expression);
@@ -72,6 +73,9 @@ public class CounterpartyDataMapper extends DataMapper {
                 list.add(pojo);
 
             }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
     }
 
@@ -83,7 +87,7 @@ public class CounterpartyDataMapper extends DataMapper {
 
 
     @Override
-    public void updateDomainObject(DomainObject d) throws SQLException {
+    public void updateDomainObject(DomainObject d)   {
 
 
         Counterparty counterparty= (Counterparty) d;
@@ -98,6 +102,7 @@ public class CounterpartyDataMapper extends DataMapper {
 
             PreparedStatement pstmt = null;
 
+            try {
                 pstmt = Db.getConnection().prepareStatement(expression);
 
                 pstmt.setString(1, counterparty.getName());
@@ -106,33 +111,40 @@ public class CounterpartyDataMapper extends DataMapper {
 
 
                 pstmt.executeUpdate();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
 
     }
 
     @Override
-    public void deleteDomainObject(DomainObject d) throws SQLException {
+    public void deleteDomainObject(DomainObject d)   {
         super.delete(d,"Counterparty");
     }
 
     @Override
-    public void insertDomainObject(DomainObject d) throws SQLException {
+    public void insertDomainObject(DomainObject d)   {
 
-        if(isReadyToTransaction(d)) {
+        try {
+            if(isReadyToTransaction(d)) {
 
-            Counterparty domainObject = (Counterparty) d;
+                Counterparty domainObject = (Counterparty) d;
 
-                String expression = "INSERT INTO " + "Counterparty"
-                        + "(name ,"
-                        + "currencyId"
-                        + ") VALUES(?,?)";
+                    String expression = "INSERT INTO " + "Counterparty"
+                            + "(name ,"
+                            + "currencyId"
+                            + ") VALUES(?,?)";
 
-                PreparedStatement pstmt = Db.getConnection().prepareStatement(expression);
-                pstmt.setString(1, domainObject.getName());
-                pstmt.setInt(2, domainObject.getCurrency().getId());
+                    PreparedStatement pstmt = Db.getConnection().prepareStatement(expression);
+                    pstmt.setString(1, domainObject.getName());
+                    pstmt.setInt(2, domainObject.getCurrency().getId());
 
-                pstmt.executeUpdate();
+                    pstmt.executeUpdate();
 
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
 
     }

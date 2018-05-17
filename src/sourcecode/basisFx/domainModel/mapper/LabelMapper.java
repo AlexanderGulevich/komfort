@@ -42,6 +42,7 @@ public class LabelMapper  extends DataMapper {
 
             String expression="SELECT * FROM " +"Label"+" ORDER BY ID";
 
+        try {
             Statement stmt  = Db.getConnection().createStatement();
 
             ResultSet rs    = stmt.executeQuery(expression);
@@ -67,6 +68,9 @@ public class LabelMapper  extends DataMapper {
                 list.add(pojo);
 
             }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
     }
 
@@ -78,23 +82,27 @@ public class LabelMapper  extends DataMapper {
     @Override
     public void updateDomainObject(DomainObject d)   {
 
-        if (isReadyToTransaction(d)) {
-            Label pojo = (Label) d;
-            String expression = "UPDATE " + "Label" + " SET  " +
-                    " name = ?" +
-                    " counterpartyId = ?" +
-                    " where id=? ";
+        try {
+            if (isReadyToTransaction(d)) {
+                Label pojo = (Label) d;
+                String expression = "UPDATE " + "Label" + " SET  " +
+                        " name = ?" +
+                        " counterpartyId = ?" +
+                        " where id=? ";
 
-            PreparedStatement pstmt = null;
+                PreparedStatement pstmt = null;
 
-                pstmt = Db.getConnection().prepareStatement(expression);
+                    pstmt = Db.getConnection().prepareStatement(expression);
 
-                pstmt.setInt(3, pojo.getId());
-                pstmt.setString(1, pojo.getName());
-                pstmt.setInt(2, pojo.getCounterparty().getId());
+                    pstmt.setInt(3, pojo.getId());
+                    pstmt.setString(1, pojo.getName());
+                    pstmt.setInt(2, pojo.getCounterparty().getId());
 
-                pstmt.executeUpdate();
+                    pstmt.executeUpdate();
 
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 
@@ -114,10 +122,14 @@ public class LabelMapper  extends DataMapper {
                      ") " +
                     "VALUES(?,?)";
 
+        try {
             PreparedStatement pstmt =  Db.getConnection().prepareStatement(expression);
             pstmt.setString(1, pojo.getName());
             pstmt.setInt(2, pojo.getCounterparty().getId());
 
             pstmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }

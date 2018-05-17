@@ -32,6 +32,7 @@ public class ProductDataMapper  extends DataMapper{
     @Override
     public void getDomainList(ObservableList list)   {
 
+        try {
             String expression="SELECT * FROM " +"Product"+" ORDER BY ID";
 
             Statement stmt  = Db.getConnection().createStatement();
@@ -52,6 +53,9 @@ public class ProductDataMapper  extends DataMapper{
 
                 list.add(pojo);
             }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -62,21 +66,25 @@ public class ProductDataMapper  extends DataMapper{
     @Override
     public void updateDomainObject(DomainObject d)   {
 
-        if(isReadyToTransaction(d)) {
+        try {
+            if(isReadyToTransaction(d)) {
 
-            Product product= (Product) d;
-            String expression = "UPDATE "+    "Product"+ " SET  " +
-                    " name = ?," +
-                    " sleeve = ? " +
-                    " WHERE id= ?" ;
+                Product product= (Product) d;
+                String expression = "UPDATE "+    "Product"+ " SET  " +
+                        " name = ?," +
+                        " sleeve = ? " +
+                        " WHERE id= ?" ;
 
-            PreparedStatement pstmt = null;
+                PreparedStatement pstmt = null;
 
-                pstmt = Db.getConnection().prepareStatement(expression);
-                pstmt.setString(1, product.getName());
-                pstmt.setBoolean(2, product.getSleeve().getBoolean());
-                pstmt.setInt(3, product.getId());
-                pstmt.executeUpdate();
+                    pstmt = Db.getConnection().prepareStatement(expression);
+                    pstmt.setString(1, product.getName());
+                    pstmt.setBoolean(2, product.getSleeve().getBoolean());
+                    pstmt.setInt(3, product.getId());
+                    pstmt.executeUpdate();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 
@@ -88,24 +96,28 @@ public class ProductDataMapper  extends DataMapper{
     @Override
     public void insertDomainObject(DomainObject d)   {
 
-        Product product= (Product) d;
+        try {
+            Product product= (Product) d;
 
-        if(isReadyToTransaction(d)) {
+            if(isReadyToTransaction(d)) {
 
-                String expression = "INSERT INTO " + "Product "
-                        + "("
-                        + " name ,  "
-                        + " sleeve "
-                        + ") VALUES(?,?)";
+                    String expression = "INSERT INTO " + "Product "
+                            + "("
+                            + " name ,  "
+                            + " sleeve "
+                            + ") VALUES(?,?)";
 
-                PreparedStatement pstmt = Db.getConnection().prepareStatement(expression);
-                pstmt.setString(1, product.getName());
-                pstmt.setBoolean(2, product.getSleeve().getBoolean());
+                    PreparedStatement pstmt = Db.getConnection().prepareStatement(expression);
+                    pstmt.setString(1, product.getName());
+                    pstmt.setBoolean(2, product.getSleeve().getBoolean());
 
 
 
-                pstmt.executeUpdate();
+                    pstmt.executeUpdate();
 
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
 
     }

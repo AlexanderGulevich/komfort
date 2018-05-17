@@ -43,51 +43,59 @@ public class EquipmentMapper extends DataMapper {
 
 
     @Override
-    public void insertDomainObject(DomainObject d) throws SQLException {
+    public void insertDomainObject(DomainObject d)   {
         
         domainObject=(Equipment) d;
 
 
-        if (isReadyToTransaction(d)) {
+        try {
+            if (isReadyToTransaction(d)) {
 
-                String expression = "INSERT INTO " + "Equipment"
-                        + "("
-                        + "name"
-                        + ") VALUES(?)";
+                    String expression = "INSERT INTO " + "Equipment"
+                            + "("
+                            + "name"
+                            + ") VALUES(?)";
 
-                PreparedStatement pstmt = Db.getConnection().prepareStatement(expression);
-                pstmt.setString(1, domainObject.getName());
+                    PreparedStatement pstmt = Db.getConnection().prepareStatement(expression);
+                    pstmt.setString(1, domainObject.getName());
 
-                pstmt.executeUpdate();
+                    pstmt.executeUpdate();
 
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
 
     }
 
     @Override
-    public void updateDomainObject(DomainObject d) throws SQLException {
-        if (isReadyToTransaction(d)) {
+    public void updateDomainObject(DomainObject d)   {
+        try {
+            if (isReadyToTransaction(d)) {
 
-                domainObject = (Equipment) d;
+                    domainObject = (Equipment) d;
 
-                String expression = "UPDATE " + "Equipment"+
-                        " SET  name = ? "
-                        + "WHERE id= ?";
-
-
-                PreparedStatement pstmt = Db.getConnection().prepareStatement(expression);
-
-                pstmt.setString(1, domainObject.getName());
-                pstmt.setInt(2, domainObject.getId());
+                    String expression = "UPDATE " + "Equipment"+
+                            " SET  name = ? "
+                            + "WHERE id= ?";
 
 
-                pstmt.executeUpdate();
+                    PreparedStatement pstmt = Db.getConnection().prepareStatement(expression);
 
+                    pstmt.setString(1, domainObject.getName());
+                    pstmt.setInt(2, domainObject.getId());
+
+
+                    pstmt.executeUpdate();
+
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 
     @Override
-    public void deleteDomainObject(DomainObject d) throws SQLException {
+    public void deleteDomainObject(DomainObject d)   {
         super.delete(d,"Equipment");
     }
 
@@ -106,25 +114,29 @@ public class EquipmentMapper extends DataMapper {
     public void getDomainList(ObservableList list)   {
 
         String expression="SELECT * FROM " +"Equipment"+" ORDER BY ID";
-        
-        Statement stmt  = Db.getConnection().createStatement();
-        
-        ResultSet rs    = stmt.executeQuery(expression);
 
-            
-            while (rs.next()) { 
-                
+        try {
+            Statement stmt  = Db.getConnection().createStatement();
+
+            ResultSet rs    = stmt.executeQuery(expression);
+
+
+            while (rs.next()) {
+
                 Equipment pojo=new Equipment();
                 pojo.setId(rs.getInt("id"));
                 pojo.setName(rs.getString("name"));
 
-                
+
                 //вставляю id в список хранимых в бд
                 this.unitOfWork.getStoredPojoesId().add(rs.getInt("id"));
-                
+
                 list.add(pojo);
 
             }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

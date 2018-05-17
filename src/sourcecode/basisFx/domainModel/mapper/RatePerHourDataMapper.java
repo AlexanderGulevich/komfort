@@ -37,60 +37,68 @@ public class RatePerHourDataMapper extends DataMapper{
     @Override
     public void getDomainListForObserverTables(ObservableList list, DomainObject selectedDomainObject)   {
 
-        int id=selectedDomainObject.getId();
+        try {
+            int id=selectedDomainObject.getId();
 
-        String expression="SELECT * FROM " +"RateStore "+" where employerId= " +id+" ORDER BY startDate desc";
+            String expression="SELECT * FROM " +"RateStore "+" where employerId= " +id+" ORDER BY startDate desc";
 
-        Statement stmt  = Db.getConnection().createStatement();
+            Statement stmt  = Db.getConnection().createStatement();
 
-        ResultSet rs    = stmt.executeQuery(expression);
-
-
-        while (rs.next()) {
+            ResultSet rs    = stmt.executeQuery(expression);
 
 
-            RatePerHour pojo=new RatePerHour();
-            pojo.setId(rs.getInt("id"));
+            while (rs.next()) {
 
 
-            ComboBoxValue rate =new ComboBoxValue();
-            rate.setStringValue(Double.toString(rs.getDouble("rate")));
-
-            pojo.setEmployerId(rs.getInt("employerId"));
-            pojo.setRate(rate);
-            pojo.setStartingRateDate(rs.getDate("startDate").toLocalDate());
+                RatePerHour pojo=new RatePerHour();
+                pojo.setId(rs.getInt("id"));
 
 
-            //вставляю id в список хранимых в бд
-            this.unitOfWork.getStoredPojoesId().add(rs.getInt("id"));
+                ComboBoxValue rate =new ComboBoxValue();
+                rate.setStringValue(Double.toString(rs.getDouble("rate")));
 
-            list.add(pojo);
+                pojo.setEmployerId(rs.getInt("employerId"));
+                pojo.setRate(rate);
+                pojo.setStartingRateDate(rs.getDate("startDate").toLocalDate());
 
+
+                //вставляю id в список хранимых в бд
+                this.unitOfWork.getStoredPojoesId().add(rs.getInt("id"));
+
+                list.add(pojo);
+
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
 
     }
 
     @Override
     public void updateDomainObject(DomainObject d)   {
-        if(isReadyToTransaction(d)) {
-            System.out.println("RatePerHourDataMapper.updateDomainObject".toUpperCase());
+        try {
+            if(isReadyToTransaction(d)) {
+                System.out.println("RatePerHourDataMapper.updateDomainObject".toUpperCase());
 
-            RatePerHour ratePerHour= (RatePerHour) d;
-            String expression = "UPDATE "+    "RateStore"+ " SET  " +
-                    " rate = ?," +
-                    " startDate = ?," +
-                    " employerId = ? " +
-                    " where id =?";
+                RatePerHour ratePerHour= (RatePerHour) d;
+                String expression = "UPDATE "+    "RateStore"+ " SET  " +
+                        " rate = ?," +
+                        " startDate = ?," +
+                        " employerId = ? " +
+                        " where id =?";
 
-            PreparedStatement pstmt = null;
+                PreparedStatement pstmt = null;
 
-                pstmt = Db.getConnection().prepareStatement(expression);
-                pstmt.setDouble(1, Double.valueOf(ratePerHour.getRate().getStringValue()));
-                pstmt.setDate(2, Date.valueOf(ratePerHour.getStartingDate()));
-                pstmt.setInt(3, ratePerHour.getEmployerId());
-                pstmt.setInt(4, ratePerHour.getId());
-                pstmt.executeUpdate();
+                    pstmt = Db.getConnection().prepareStatement(expression);
+                    pstmt.setDouble(1, Double.valueOf(ratePerHour.getRate().getStringValue()));
+                    pstmt.setDate(2, Date.valueOf(ratePerHour.getStartingDate()));
+                    pstmt.setInt(3, ratePerHour.getEmployerId());
+                    pstmt.setInt(4, ratePerHour.getId());
+                    pstmt.executeUpdate();
 
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 
@@ -103,22 +111,26 @@ public class RatePerHourDataMapper extends DataMapper{
     public void insertDomainObject(DomainObject d)   {
         RatePerHour domainObject=(RatePerHour) d;
 
-        if(isReadyToTransaction(d)) {
+        try {
+            if(isReadyToTransaction(d)) {
 
-                String expression = "INSERT INTO " + "RateStore "
-                        + "("
-                        + " rate ,  "
-                        + " startDate,  "
-                        + " employerId        "
-                        + ") VALUES(?,?,?)";
+                    String expression = "INSERT INTO " + "RateStore "
+                            + "("
+                            + " rate ,  "
+                            + " startDate,  "
+                            + " employerId        "
+                            + ") VALUES(?,?,?)";
 
-                PreparedStatement pstmt = Db.getConnection().prepareStatement(expression);
-                pstmt.setDouble(1, Double.valueOf(domainObject.getRate().getStringValue()));
-                pstmt.setDate(2, Date.valueOf(domainObject.getStartingDate()));
-                pstmt.setInt(3, getObservableDomaineId());
+                    PreparedStatement pstmt = Db.getConnection().prepareStatement(expression);
+                    pstmt.setDouble(1, Double.valueOf(domainObject.getRate().getStringValue()));
+                    pstmt.setDate(2, Date.valueOf(domainObject.getStartingDate()));
+                    pstmt.setInt(3, getObservableDomaineId());
 
-                pstmt.executeUpdate();
+                    pstmt.executeUpdate();
 
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 }

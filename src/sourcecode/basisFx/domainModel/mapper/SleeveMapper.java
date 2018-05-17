@@ -42,6 +42,7 @@ public class SleeveMapper  extends DataMapper {
     @Override
     public void getDomainList(ObservableList list)   {
 
+        try {
             String expression="SELECT * FROM " +"Sleeve"+" ORDER BY ID";
 
             Statement stmt  = Db.getConnection().createStatement();
@@ -66,6 +67,9 @@ public class SleeveMapper  extends DataMapper {
 
 
             }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -76,20 +80,24 @@ public class SleeveMapper  extends DataMapper {
     @Override
     public void updateDomainObject(DomainObject d)   {
 
-        if (isReadyToTransaction(d)) {
-            Sleeve pojo = (Sleeve) d;
-            String expression = "UPDATE " + "Sleeve" + " SET  " +
-                    " counterpartyId = ?" +
-                    " where id=? ";
+        try {
+            if (isReadyToTransaction(d)) {
+                Sleeve pojo = (Sleeve) d;
+                String expression = "UPDATE " + "Sleeve" + " SET  " +
+                        " counterpartyId = ?" +
+                        " where id=? ";
 
-            PreparedStatement pstmt = null;
+                PreparedStatement pstmt = null;
 
-                pstmt = Db.getConnection().prepareStatement(expression);
+                    pstmt = Db.getConnection().prepareStatement(expression);
 
-                pstmt.setInt(2, pojo.getId());
-                pstmt.setInt(1, pojo.getCounterparty().getId());
+                    pstmt.setInt(2, pojo.getId());
+                    pstmt.setInt(1, pojo.getCounterparty().getId());
 
-                pstmt.executeUpdate();
+                    pstmt.executeUpdate();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 
@@ -102,6 +110,7 @@ public class SleeveMapper  extends DataMapper {
     public void insertDomainObject(DomainObject d)   {
         Sleeve pojo= (Sleeve) d;
 
+        try {
             String expression= "INSERT INTO "+ "Sleeve "
                     + "(counterpartyId  "
                     + ") VALUES(?)";
@@ -110,6 +119,9 @@ public class SleeveMapper  extends DataMapper {
             pstmt.setInt(1, pojo.getCounterparty().getId());
 
             pstmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
     }
 }

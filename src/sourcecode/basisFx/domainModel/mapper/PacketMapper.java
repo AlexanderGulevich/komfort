@@ -43,6 +43,7 @@ public class PacketMapper  extends DataMapper {
 
             String expression="SELECT * FROM " +"Packet"+" ORDER BY ID";
 
+        try {
             Statement stmt  = Db.getConnection().createStatement();
 
             ResultSet rs    = stmt.executeQuery(expression);
@@ -66,6 +67,9 @@ public class PacketMapper  extends DataMapper {
                 list.add(pojo);
 
             }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
     }
 
@@ -86,6 +90,7 @@ public class PacketMapper  extends DataMapper {
 
             PreparedStatement pstmt = null;
 
+            try {
                 pstmt = Db.getConnection().prepareStatement(expression);
 
                 pstmt.setInt(3, pojo.getId());
@@ -93,6 +98,9 @@ public class PacketMapper  extends DataMapper {
                 pstmt.setInt(2, pojo.getCounterparty().getId());
 
                 pstmt.executeUpdate();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
 
         }
     }
@@ -114,12 +122,16 @@ public class PacketMapper  extends DataMapper {
                     +  "counterpartyId "
                     + ") VALUES(?,?)";
 
+        try {
             PreparedStatement pstmt =  Db.getConnection().prepareStatement(expression);
             pstmt.setInt(1, pojo.getSize().getId());
             pstmt.setInt(2, pojo.getCounterparty().getId());
 
 
             pstmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
     }
 }

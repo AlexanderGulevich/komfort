@@ -38,6 +38,7 @@ public class RatePerHourTemplatesDataMapper extends DataMapper {
     @Override
     public void getDomainList(ObservableList list)   {
 
+        try {
             String expression="SELECT * FROM " +"RateTemplates"+" ORDER BY ID";
 
             Statement stmt  = Db.getConnection().createStatement();
@@ -57,6 +58,9 @@ public class RatePerHourTemplatesDataMapper extends DataMapper {
                 list.add(pojo);
 
             }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
     }
 
@@ -68,21 +72,25 @@ public class RatePerHourTemplatesDataMapper extends DataMapper {
     @Override
     public void updateDomainObject(DomainObject d)   {
 
-        if (isReadyToTransaction(d)) {
-            RatePerHour ratePerHour = (RatePerHour) d;
-            String expression = "UPDATE " + "RATETEMPLATES" + " SET  " +
-                    " rate = ?" +
-                    " where id=? ";
+        try {
+            if (isReadyToTransaction(d)) {
+                RatePerHour ratePerHour = (RatePerHour) d;
+                String expression = "UPDATE " + "RATETEMPLATES" + " SET  " +
+                        " rate = ?" +
+                        " where id=? ";
 
-            PreparedStatement pstmt = null;
+                PreparedStatement pstmt = null;
 
-                pstmt = Db.getConnection().prepareStatement(expression);
+                    pstmt = Db.getConnection().prepareStatement(expression);
 
-                pstmt.setInt(2, ratePerHour.getId());
-                pstmt.setDouble(1, Double.valueOf(ratePerHour.getName()));
+                    pstmt.setInt(2, ratePerHour.getId());
+                    pstmt.setDouble(1, Double.valueOf(ratePerHour.getName()));
 
-                pstmt.executeUpdate();
+                    pstmt.executeUpdate();
 
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 
@@ -94,7 +102,8 @@ public class RatePerHourTemplatesDataMapper extends DataMapper {
 
     @Override
     public void insertDomainObject(DomainObject d)   {
-        RatePerHour ratePerHour= (RatePerHour) d;
+        try {
+            RatePerHour ratePerHour= (RatePerHour) d;
 
             String expression= "INSERT INTO "+ "RateTemplates "
                     + "(rate "
@@ -105,6 +114,9 @@ public class RatePerHourTemplatesDataMapper extends DataMapper {
 
 
             pstmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
 
     }

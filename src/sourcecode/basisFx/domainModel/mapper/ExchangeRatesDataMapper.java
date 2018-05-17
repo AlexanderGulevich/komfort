@@ -39,6 +39,7 @@ public class ExchangeRatesDataMapper extends DataMapper{
 
             String expression="SELECT * FROM " +"ExchangeRates "+" where currencyId= " +id+" ORDER BY startDate Desc";
 
+        try {
             Statement stmt  = Db.getConnection().createStatement();
 
             ResultSet rs    = stmt.executeQuery(expression);
@@ -59,6 +60,9 @@ public class ExchangeRatesDataMapper extends DataMapper{
                 list.add(pojo);
 
             }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
     }
 
@@ -77,6 +81,7 @@ public class ExchangeRatesDataMapper extends DataMapper{
             PreparedStatement pstmt = null;
 
 
+            try {
                 pstmt = Db.getConnection().prepareStatement(expression);
                 pstmt.setDouble(1, Double.valueOf(domaine.getExchangeRate()));
                 pstmt.setDate(2, Date.valueOf(domaine.getStartingDate()));
@@ -84,6 +89,9 @@ public class ExchangeRatesDataMapper extends DataMapper{
                 pstmt.setInt(4, domaine.getId());
 
                 pstmt.executeUpdate();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
 
         }
     }
@@ -97,22 +105,26 @@ public class ExchangeRatesDataMapper extends DataMapper{
     public void insertDomainObject(DomainObject d)   {
         ExchangeRates domainObject=(ExchangeRates) d;
 
-        if(isReadyToTransaction(d)) {
+        try {
+            if(isReadyToTransaction(d)) {
 
-                String expression = "INSERT INTO " + "ExchangeRates "
-                        + "("
-                        + " rate ,  "
-                        + " startDate,  "
-                        + " currencyId        "
-                        + ") VALUES(?,?,?)";
+                    String expression = "INSERT INTO " + "ExchangeRates "
+                            + "("
+                            + " rate ,  "
+                            + " startDate,  "
+                            + " currencyId        "
+                            + ") VALUES(?,?,?)";
 
-                PreparedStatement pstmt = Db.getConnection().prepareStatement(expression);
-                pstmt.setDouble(1, Double.valueOf(domainObject.getExchangeRate()));
-                pstmt.setDate(2, Date.valueOf(domainObject.getStartingDate()));
-                pstmt.setInt(3, getObservableDomaineId());
+                    PreparedStatement pstmt = Db.getConnection().prepareStatement(expression);
+                    pstmt.setDouble(1, Double.valueOf(domainObject.getExchangeRate()));
+                    pstmt.setDate(2, Date.valueOf(domainObject.getStartingDate()));
+                    pstmt.setInt(3, getObservableDomaineId());
 
-                pstmt.executeUpdate();
+                    pstmt.executeUpdate();
 
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 }
