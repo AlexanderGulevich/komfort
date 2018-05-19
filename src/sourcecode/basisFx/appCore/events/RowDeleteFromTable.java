@@ -61,10 +61,24 @@ public class RowDeleteFromTable extends AppEvent{
 
         if(!selectionModel.isEmpty()){
 
+
             final DomainObject selectedItem = selectionModel.getSelectedItem();
+
             this.list.remove(selectedItem);
             this.unitOfWork.setRemovedPojoes(selectedItem);
             this.unitOfWork.commitRemoved();
+            System.out.println("удаление строки в таблице");
+
+            if (this.unitOfWork.getNewPojoes().contains(selectedItem)){
+                this.unitOfWork.clearNewPojoesList();
+                System.out.println("так как строка является новым доменным обхектом, то удаляют из списка новых");
+            }
+
+
+
+
+
+
 
         }
 
