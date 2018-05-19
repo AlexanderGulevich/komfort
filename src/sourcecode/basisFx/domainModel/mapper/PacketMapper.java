@@ -58,12 +58,14 @@ public class PacketMapper  extends DataMapper {
                 Counterparty counterparty = (Counterparty) counterpartyHm.get(counterpartyId);
 
                 Packet pojo=new Packet();
-                pojo.setId(rs.getInt("id"));
+
+                int id=rs.getInt("id");
+                pojo.setId(id);
+
                 pojo.setSize(packetSize.toComboBoxValue());
                 pojo.setCounterparty(counterparty.toComboBoxValue());
 
-                //вставляю id в список хранимых в бд
-                this.unitOfWork.getStoredPojoesId().add(rs.getInt("id"));
+                setStoredId(id);
 
                 list.add(pojo);
 

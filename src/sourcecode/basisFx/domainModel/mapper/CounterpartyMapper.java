@@ -50,20 +50,14 @@ public class CounterpartyMapper extends DataMapper {
             while (rs.next()) {
 
                 Counterparty pojo=new Counterparty();
-                pojo.setId(rs.getInt("id"));
+
+                int id=rs.getInt("id");
+                pojo.setId(id);
                 pojo.setName(rs.getString("name"));
-
-                int currencyId=rs.getInt("currencyId");
-
-                ComboBoxValue comboBoxValue = hm.get(currencyId);
-
-                pojo.setCurrency(comboBoxValue);
+                pojo.setCurrency(hm.get(rs.getInt("currencyId")));
 
 
-                if (unitOfWork != null) {
-                    //вставляю id в список хранимых в бд
-                    this.unitOfWork.getStoredPojoesId().add(rs.getInt("id"));
-                }
+                setStoredId(id);
 
                 list.add(pojo);
 

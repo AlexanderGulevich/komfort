@@ -48,11 +48,13 @@ public class RatePerHourTemplatesMapper extends DataMapper {
             while (rs.next()) {
 
                 RatePerHourTamplate pojo=new RatePerHourTamplate();
-                pojo.setId(rs.getInt("id"));
+
+                int id=rs.getInt("id");
+                pojo.setId(id);
+
                 pojo.setName(String.valueOf(rs.getDouble("rate")));
 
-                //вставляю id в список хранимых в бд
-                this.unitOfWork.getStoredPojoesId().add(rs.getInt("id"));
+                setStoredId(id);
 
                 list.add(pojo);
 

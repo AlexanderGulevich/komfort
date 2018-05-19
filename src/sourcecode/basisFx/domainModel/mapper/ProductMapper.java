@@ -42,14 +42,14 @@ public class ProductMapper extends DataMapper{
             while (rs.next()) {
 
                 Product pojo=new Product();
-                pojo.setId(rs.getInt("id"));
+
+                int id =rs.getInt("id");
+                pojo.setId(id);
+
                 pojo.setName(rs.getString("name"));
                 pojo.setSleeve(new BoolComboBox(rs.getBoolean("sleeve") )  );
 
-                //вставляю id в список хранимых в бд
-                if (unitOfWork != null) {
-                    this.unitOfWork.getStoredPojoesId().add(rs.getInt("id"));
-                }
+                setStoredId(id);
 
                 list.add(pojo);
             }

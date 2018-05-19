@@ -56,14 +56,16 @@ public class SleevePriceMapper extends DataMapper {
             while (rs.next()) {
 
                 Price pojo=new Price();
-                pojo.setId(rs.getInt("id"));
+
+                int id=rs.getInt("id");
+                pojo.setId(id);
+
 
                 pojo.setProductId(rs.getInt("productId"));
                 pojo.setPrice( Double.toString(rs.getDouble("price")));
                 pojo.setStartingDate(rs.getDate("startDate").toLocalDate());
 
-                //вставляю id в список хранимых в бд
-                this.unitOfWork.getStoredPojoesId().add(rs.getInt("id"));
+                setStoredId(id);
 
                 list.add(pojo);
 

@@ -46,9 +46,9 @@ public class PaperPriceMapper extends DataMapper {
     public void getDomainListForObserverTables(ObservableList list, DomainObject selectedDomainObject)   {
 
         try {
-            int id=selectedDomainObject.getId();
+            int selectedDomainObjectId=selectedDomainObject.getId();
 
-            String expression="SELECT * FROM " +"PaperPriceStore "+" where productId= " +id+" ORDER BY startDate desc";
+            String expression="SELECT * FROM " +"PaperPriceStore "+" where productId= " +selectedDomainObjectId+" ORDER BY startDate desc";
 
             Statement stmt  = Db.getConnection().createStatement();
 
@@ -57,14 +57,16 @@ public class PaperPriceMapper extends DataMapper {
             while (rs.next()) {
 
                 Price pojo=new Price();
-                pojo.setId(rs.getInt("id"));
+
+                int id=rs.getInt("id");
+                pojo.setId(id);
+
 
                 pojo.setProductId(rs.getInt("productId"));
                 pojo.setPrice( Double.toString(rs.getDouble("price")));
                 pojo.setStartingDate(rs.getDate("startDate").toLocalDate());
 
-                //вставляю id в список хранимых в бд
-                this.unitOfWork.getStoredPojoesId().add(rs.getInt("id"));
+                setStoredId(id);
 
                 list.add(pojo);
 

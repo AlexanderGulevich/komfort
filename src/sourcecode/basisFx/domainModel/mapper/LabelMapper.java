@@ -53,12 +53,14 @@ public class LabelMapper  extends DataMapper {
 
 
                 Label pojo=new Label();
-                pojo.setId(rs.getInt("id"));
+
+                int id=rs.getInt("id");
+                pojo.setId(id);
+
                 pojo.setCounterparty(hm.get(counterpartyId));
                 pojo.setName(rs.getString("name"));
 
-                //вставляю id в список хранимых в бд
-                this.unitOfWork.getStoredPojoesId().add(rs.getInt("id"));
+                setStoredId(id);
 
                 list.add(pojo);
 

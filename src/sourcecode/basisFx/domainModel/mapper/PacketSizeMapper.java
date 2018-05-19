@@ -49,11 +49,13 @@ public class PacketSizeMapper extends DataMapper {
                 while (rs.next()) {
 
                     PacketSize pojo=new PacketSize();
-                    pojo.setId(rs.getInt("id"));
+
+                    int id=rs.getInt("id");
+                    pojo.setId(id);
+
                     pojo.setSize(rs.getString("size"));
 
-                    //вставляю id в список хранимых в бд
-                    this.unitOfWork.getStoredPojoesId().add(rs.getInt("id"));
+                    setStoredId(id);
 
                     list.add(pojo);
 

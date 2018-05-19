@@ -94,6 +94,13 @@ public abstract class DataMapper   {
 
     }
 
+    protected void setStoredId(int id){
+        if (unitOfWork != null) {
+            //вставляю id в список хранимых в бд
+            this.unitOfWork.getStoredPojoesId().add(id);
+        }
+    }
+
     public void setUnitOfWork(UnitOfWork u) {
         this.unitOfWork=u;
     }

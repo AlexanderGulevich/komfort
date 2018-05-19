@@ -35,9 +35,9 @@ public class ExchangeRatesMapper extends DataMapper{
 
     @Override
     public void getDomainListForObserverTables(ObservableList list, DomainObject selectedDomainObject)   {
-        int id=selectedDomainObject.getId();
+        int selectedDomainObjectId=selectedDomainObject.getId();
 
-            String expression="SELECT * FROM " +"ExchangeRates "+" where currencyId= " +id+" ORDER BY startDate Desc";
+            String expression="SELECT * FROM " +"ExchangeRates "+" where currencyId= " +selectedDomainObjectId+" ORDER BY startDate Desc";
 
         try {
             Statement stmt  = Db.getConnection().createStatement();
@@ -48,14 +48,15 @@ public class ExchangeRatesMapper extends DataMapper{
             while (rs.next()) {
 
                 ExchangeRates pojo=new ExchangeRates();
-                pojo.setId(rs.getInt("id"));
+
+                int id=rs.getInt("id");
+                pojo.setId(id);
+
                 pojo.setCurrencyId(rs.getInt("currencyId"));
                 pojo.setExchangeRate(Double.toString(rs.getDouble("rate")));
                 pojo.setStartingDate(rs.getDate("startDate").toLocalDate());
 
-
-                //вставляю id в список хранимых в бд
-                this.unitOfWork.getStoredPojoesId().add(rs.getInt("id"));
+                setStoredId(id);
 
                 list.add(pojo);
 

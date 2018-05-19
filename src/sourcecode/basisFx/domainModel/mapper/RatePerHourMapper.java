@@ -38,9 +38,9 @@ public class RatePerHourMapper extends DataMapper{
     public void getDomainListForObserverTables(ObservableList list, DomainObject selectedDomainObject)   {
 
         try {
-            int id=selectedDomainObject.getId();
+            int selectedDomainObjectId=selectedDomainObject.getId();
 
-            String expression="SELECT * FROM " +"RateStore "+" where employerId= " +id+" ORDER BY startDate desc";
+            String expression="SELECT * FROM " +"RateStore "+" where employerId= " +selectedDomainObjectId+" ORDER BY startDate desc";
 
             Statement stmt  = Db.getConnection().createStatement();
 
@@ -50,15 +50,16 @@ public class RatePerHourMapper extends DataMapper{
             while (rs.next()) {
 
                 RatePerHour pojo=new RatePerHour();
-                pojo.setId(rs.getInt("id"));
+
+                int id=rs.getInt("id");
+                pojo.setId(id);
+
 
                 pojo.setEmployerId(rs.getInt("employerId"));
                 pojo.setRate(new ComboBoxValue(Double.toString(rs.getDouble("rate"))));
                 pojo.setStartingRateDate(rs.getDate("startDate").toLocalDate());
 
-
-                //вставляю id в список хранимых в бд
-                this.unitOfWork.getStoredPojoesId().add(rs.getInt("id"));
+                setStoredId(id);
 
                 list.add(pojo);
 

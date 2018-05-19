@@ -37,9 +37,9 @@ public class ProductPriceMapper extends DataMapper {
     @Override
     public void getDomainListForObserverTables(ObservableList list, DomainObject selectedDomainObject)   {
         try {
-            int id=selectedDomainObject.getId();
+            int selectedDomainObjectID=selectedDomainObject.getId();
 
-            String expression="SELECT * FROM " +"  "+" where productId= " +id+" ORDER BY startDate desc";
+            String expression="SELECT * FROM " +" ProductPriceStore "+" where productId= " +selectedDomainObjectID+" ORDER BY startDate desc";
 
             Statement stmt  = Db.getConnection().createStatement();
 
@@ -48,14 +48,15 @@ public class ProductPriceMapper extends DataMapper {
             while (rs.next()) {
 
                 Price pojo=new Price();
-                pojo.setId(rs.getInt("id"));
+
+                int id=rs.getInt("id");
+                pojo.setId(id);
 
                 pojo.setProductId(rs.getInt("productId"));
                 pojo.setPrice( Double.toString(rs.getDouble("price")));
                 pojo.setStartingDate(rs.getDate("startDate").toLocalDate());
 
-                //вставляю id в список хранимых в бд
-                this.unitOfWork.getStoredPojoesId().add(rs.getInt("id"));
+               setStoredId(id);
 
                 list.add(pojo);
 
@@ -74,7 +75,7 @@ public class ProductPriceMapper extends DataMapper {
 
                 Price price= (Price) d;
 
-                String expression = "UPDATE "+    " "+ " SET  " +
+                String expression = "UPDATE "+    " ProductPriceStore"+ " SET  " +
                         " price = ?," +
                         " startDate = ?," +
                         " productId = ? " +
@@ -98,7 +99,7 @@ public class ProductPriceMapper extends DataMapper {
 
     @Override
     public void deleteDomainObject(DomainObject d)   {
-        super.delete(d,"  ");
+        super.delete(d," ProductPriceStore ");
     }
 
     @Override
@@ -108,7 +109,7 @@ public class ProductPriceMapper extends DataMapper {
 
             if(isReadyToTransaction(d)) {
 
-                    String expression = "INSERT INTO " + "  "
+                    String expression = "INSERT INTO " + " ProductPriceStore "
                             + "("
                             + " price ,  "
                             + " startDate,  "

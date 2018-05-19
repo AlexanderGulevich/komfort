@@ -44,9 +44,9 @@ public class PacketPriceMapper extends DataMapper {
 
     @Override
     public void getDomainListForObserverTables(ObservableList list, DomainObject selectedDomainObject)   {
-        int id=selectedDomainObject.getId();
+        int selectedDomainObjectId=selectedDomainObject.getId();
 
-            String expression="SELECT * FROM " +"PacketPriceStore "+" where packetId= " +id+" ORDER BY startDate desc";
+            String expression="SELECT * FROM " +"PacketPriceStore "+" where packetId= " +selectedDomainObjectId+" ORDER BY startDate desc";
 
         try {
             Statement stmt  = Db.getConnection().createStatement();
@@ -56,14 +56,15 @@ public class PacketPriceMapper extends DataMapper {
             while (rs.next()) {
 
                 Price pojo=new Price();
-                pojo.setId(rs.getInt("id"));
+
+                int id=rs.getInt("id");
+                pojo.setId(id);
 
                 pojo.setProductId(rs.getInt("packetId"));
                 pojo.setPrice( Double.toString(rs.getDouble("price")));
                 pojo.setStartingDate(rs.getDate("startDate").toLocalDate());
 
-                //вставляю id в список хранимых в бд
-                this.unitOfWork.getStoredPojoesId().add(rs.getInt("id"));
+                setStoredId(id);
 
                 list.add(pojo);
 

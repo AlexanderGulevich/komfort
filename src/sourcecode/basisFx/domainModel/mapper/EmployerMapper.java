@@ -42,7 +42,10 @@ public class EmployerMapper extends DataMapper {
             while (rs.next()) {
 
                 Employer pojo=new Employer();
-                pojo.setId(rs.getInt("id"));
+
+                int id=rs.getInt("id");
+                pojo.setId(id);
+
                 pojo.setName(rs.getString("name"));
                 pojo.setIsFired(rs.getBoolean("isFired"));
 //todo newest stop run
@@ -55,10 +58,7 @@ public class EmployerMapper extends DataMapper {
 //                    pojo.setRate(rate);
 //                }
 
-
-
-                //вставляю id в список хранимых в бд
-                this.unitOfWork.getStoredPojoesId().add(rs.getInt("id"));
+                setStoredId(id);
 
                 list.add(pojo);
             }

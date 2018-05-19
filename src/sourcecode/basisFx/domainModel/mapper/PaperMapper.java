@@ -56,11 +56,13 @@ public class PaperMapper  extends DataMapper {
                 Counterparty counterparty = (Counterparty)counterpartyHm.get(counterpartyId);
 
                 Paper pojo=new Paper();
-                pojo.setId(rs.getInt("id"));
+
+                int id=rs.getInt("id");
+                pojo.setId(id);
+
                 pojo.setCounterparty(counterparty.toComboBoxValue());
 
-                //вставляю id в список хранимых в бд
-                this.unitOfWork.getStoredPojoesId().add(rs.getInt("id"));
+                setStoredId(id);
 
                 list.add(pojo);
 

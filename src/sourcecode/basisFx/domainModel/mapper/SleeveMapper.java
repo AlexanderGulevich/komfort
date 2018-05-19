@@ -55,11 +55,13 @@ public class SleeveMapper  extends DataMapper {
                 Counterparty counterparty = (Counterparty)counterpartyHM.get(counterpartyId);
 
                 Sleeve pojo=new Sleeve();
-                pojo.setId(rs.getInt("id"));
+
+                int id=rs.getInt("id");
+                pojo.setId(id);
+
                 pojo.setCounterparty(counterparty.toComboBoxValue());
 
-                //вставляю id в список хранимых в бд
-                this.unitOfWork.getStoredPojoesId().add(rs.getInt("id"));
+                setStoredId(id);
 
                 list.add(pojo);
 
