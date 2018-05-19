@@ -60,7 +60,7 @@ public class PacketMapper  extends DataMapper {
                 Packet pojo=new Packet();
                 pojo.setId(rs.getInt("id"));
                 pojo.setSize(packetSize.toComboBoxValue());
-                pojo.setCounterparty(counterparty.toComboBoxValue()));
+                pojo.setCounterparty(counterparty.toComboBoxValue());
 
                 //вставляю id в список хранимых в бд
                 this.unitOfWork.getStoredPojoesId().add(rs.getInt("id"));

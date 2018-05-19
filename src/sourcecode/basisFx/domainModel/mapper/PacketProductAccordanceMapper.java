@@ -62,7 +62,7 @@ public class PacketProductAccordanceMapper extends DataMapper {
                 PacketProductAccordance pojo = new PacketProductAccordance();
                 pojo.setId(rs.getInt("id"));
                 pojo.setSize(packetSize.toComboBoxValue());
-                pojo.setProduct(product.toComboBoxValue()));
+                pojo.setProduct(product.toComboBoxValue());
                 pojo.setNumber(String.valueOf(rs.getInt("number")) );
 
                 //вставляю id в список хранимых в бд
