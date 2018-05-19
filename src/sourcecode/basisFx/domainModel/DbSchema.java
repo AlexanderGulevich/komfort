@@ -156,22 +156,22 @@ public class DbSchema {
                 equipment,
                 currency,
                 counterparty,
-//                ratePerHour,
-//                currentEmployeesState,
-//                ratePerHourHistory,
+                ratePerHour,
+                currentEmployeesState,
+                ratePerHourHistory,
                 exchangeRates,
                 product,
                 productPriceStore,
                 packetSize,
                 packet,
                 packetPriceStore,
-                packetProductAccordance
-//                label,
-//                labelPriceStore,
-//                sleeve,
-//                sleevePriceStore,
-//                paper,
-//                paperPriceStore
+                packetProductAccordance,
+                label,
+                labelPriceStore,
+                sleeve,
+                sleevePriceStore,
+                paper,
+                paperPriceStore
 
         );
 

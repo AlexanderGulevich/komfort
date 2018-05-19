@@ -27,10 +27,10 @@ public class SleeveMapper  extends DataMapper {
 
     @Override
     public boolean isReadyToTransaction(DomainObject d) {
-        Paper pojo = (Paper) d;
+        Sleeve pojo = (Sleeve) d;
         if (
-                pojo.getCounterparty()!=null &&
-                        pojo.getCounterparty()!=null
+                pojo.getCounterparty()!=null
+
                 ) {
             return true;
         }

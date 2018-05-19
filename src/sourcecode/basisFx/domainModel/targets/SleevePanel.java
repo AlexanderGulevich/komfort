@@ -33,7 +33,7 @@ public class SleevePanel  extends Target {
         observer.setTitle("Архив цен");
         observer.setTablesButtonKind(TablesButtonKind.Bottom_right);
         observer.setDomainClass(Price.class);
-        observer.setDataMapper(dataMapperFabric.paperPriceMapper());
+        observer.setDataMapper(dataMapperFabric.sleevePriceMapper());
         observer.setColumn(  columnFabric.stringColumn(KindOfColumn.DOUBLE,"Цена","price",0.3d,true,
                 (obj,val)->{((Price)obj).setPrice( (String ) val);})
         );

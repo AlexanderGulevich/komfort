@@ -291,6 +291,9 @@ public  class TableWrapper<T> extends AppNode implements Refreshable, Submitting
         this.table.getItems().clear();
         this.list.clear();
         this.unitOfWork.clearStoredPojoesId();
+        this.unitOfWork.clearNewPojoesList();
+        this.unitOfWork.clearChangedPojoesList();
+        this.unitOfWork.clearRemovedPojoesList();
 
         setDataMapperToList(list);
         this.dataMapper.getDomainListForObserverTables(list,selectedDomainObject);
@@ -298,6 +301,10 @@ public  class TableWrapper<T> extends AppNode implements Refreshable, Submitting
         return this;
     }
 
+
+    /**
+     * This function operate click and notify all observers and get them clicked domaine id
+     */
     private void setClickedUpDownRowDetection(){
 
         table.setOnKeyPressed(event -> {

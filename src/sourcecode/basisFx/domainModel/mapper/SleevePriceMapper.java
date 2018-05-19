@@ -61,7 +61,7 @@ public class SleevePriceMapper extends DataMapper {
                 pojo.setId(id);
 
 
-                pojo.setProductId(rs.getInt("productId"));
+                pojo.setProductId(rs.getInt("sleeveId"));
                 pojo.setPrice( Double.toString(rs.getDouble("price")));
                 pojo.setStartingDate(rs.getDate("startDate").toLocalDate());
 
@@ -88,7 +88,7 @@ public class SleevePriceMapper extends DataMapper {
                 String expression = "UPDATE "+    "SleevePriceStore"+ " SET  " +
                         " price = ?," +
                         " startDate = ?," +
-                        " productId = ? " +
+                        " sleeveId = ? " +
                         " where id =?";
 
                 PreparedStatement pstmt = null;
@@ -124,7 +124,7 @@ public class SleevePriceMapper extends DataMapper {
                             + "("
                             + " price ,  "
                             + " startDate,  "
-                            + " productId        "
+                            + " sleeveId        "
                             + ") VALUES(?,?,?)";
 
                     PreparedStatement pstmt = Db.getConnection().prepareStatement(expression);

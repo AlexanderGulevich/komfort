@@ -8,7 +8,6 @@ public class Sleeve extends DomainObject {
 
     private SimpleObjectProperty<ComboBoxValue> counterparty = new SimpleObjectProperty<>(this, "counterparty", null);
 
-
     public ComboBoxValue getCounterparty() {
         return counterparty.get();
     }
@@ -20,7 +19,6 @@ public class Sleeve extends DomainObject {
     public void setCounterparty(ComboBoxValue counterparty) {
         this.counterparty.set(counterparty);
     }
-
 
     @Override
     public ComboBoxValue toComboBoxValue() {

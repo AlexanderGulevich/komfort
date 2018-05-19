@@ -95,7 +95,7 @@ public class PacketPanel  extends Target {
 
         gridFabric.boundWithSecondRaw(
                 boundTablesGrid,0.6d,0.4d,
-                panel,      packetSize,packetSizeProductAccordance
+                panel,      packetSizeProductAccordance,packetSize
 
         );
 
