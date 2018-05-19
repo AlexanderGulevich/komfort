@@ -61,7 +61,7 @@ public class PacketPanel  extends Target {
         packetSize.setTitle("Размеры пакетов ");
         packetSize.setTablesButtonKind(TablesButtonKind.Right_little);
         packetSize.setDomainClass(PacketSize.class);
-        packetSize.setGridColWidth(new GridColWidth(KindOfGridCol.percent,30));
+        packetSize.setGridColWidth(new GridColWidth(KindOfGridCol.percent,40));
         packetSize.setDataMapper(dataMapperFabric.packetSizeMapper());
         packetSize.setColumn(columnFabric.stringColumn(KindOfColumn.STRING,"Размер ","size",1d,true,
                 (obj,val)->((PacketSize)obj).setSize((String)val))
@@ -74,7 +74,7 @@ public class PacketPanel  extends Target {
         packetSizeProductAccordance.setTitle("Вместимость пакетов ");
         packetSizeProductAccordance.setTablesButtonKind(TablesButtonKind.Right_little);
         packetSizeProductAccordance.setDomainClass(PacketProductAccordance.class);
-        packetSizeProductAccordance.setGridColWidth(new GridColWidth(KindOfGridCol.percent,70d));
+        packetSizeProductAccordance.setGridColWidth(new GridColWidth(KindOfGridCol.percent,60d));
         packetSizeProductAccordance.setDataMapper(dataMapperFabric.packetProductAccordanceMapper());
         packetSizeProductAccordance.setColumn(
                 columnFabric.comboBoxColumn(KindOfColumn.COMBOBOX,"Размер ","size",0.3d,true,

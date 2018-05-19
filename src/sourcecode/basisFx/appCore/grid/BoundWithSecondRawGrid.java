@@ -11,6 +11,7 @@ import javafx.scene.control.ScrollBar;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.text.Text;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -78,10 +79,10 @@ public class BoundWithSecondRawGrid {
         for (GridTable secondRawTable : secondRawTables) {
 
             organizeColumn(secondRawTable.getGridColWidth());
-
+//
 //            double v = secondRawTable.getGridPane().getColumnConstraints().get(i).percentWidthProperty().get();
 //            TableView<DomainObject> tableView = secondRawTable.getTableView();
-
+//
 //            commonGridPane.widthProperty().addListener((obs, oldVal, newVal) -> {
 //
 //

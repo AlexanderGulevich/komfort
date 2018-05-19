@@ -27,7 +27,7 @@ public class SingleGridTable extends GridTable {
 
     @Override
     public void init() {
-        label = textFabric.createLabel(title, FontsStore.ROBOTO_LIGHT, Pos.BASELINE_LEFT, 25d);
+        label = textFabric.createLabel(title, FontsStore.ROBOTO_LIGHT, Pos.BASELINE_LEFT, 20d);
 
         typeOfTableInspection();
 
@@ -67,8 +67,6 @@ public class SingleGridTable extends GridTable {
     }
 
     private void typeOfTableInspection() {
-
-        System.err.println("1111111111"+kindOfTable);
 
           if (kindOfTable==KindOfTable.SUBMIT){
               System.err.println(kindOfTable.toString().toUpperCase());

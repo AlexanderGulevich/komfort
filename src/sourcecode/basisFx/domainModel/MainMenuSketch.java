@@ -15,7 +15,7 @@ import static basisFx.appCore.menu.MenuComponent.createVertical;
 public class MainMenuSketch extends MenuSketch{
     
     private TargetFM fm =new TargetFM();
-    private double iconSize =18d;
+    private double iconSize =25d;
 
 
     @Override
@@ -38,7 +38,7 @@ public class MainMenuSketch extends MenuSketch{
 
 /////////////////////////////////////////////////
 
-               createVertical("Проводки", null, composit.COMPOSITE,"\uF058", FontsStore.FAWESOME5SOLID,iconSize)
+               createVertical("Проводки", null, composit.COMPOSITE,"\uE52D", FontsStore.MATERIAL_ICONS,iconSize)
                        .addInerLevel(
 
                                create("Дневная выработка", fm.dailyOutputPanel(), composit.SIMPLE)
@@ -86,12 +86,16 @@ public class MainMenuSketch extends MenuSketch{
                        .addInerLevel(
                                create("Оборудование", fm.equipmentPanel(), composit.SIMPLE),
                                create("Контрагенты", fm.counterpartyPanel(), composit.SIMPLE)
-                       )
+                       ),
 
 
 
 /////////////////////////////////////////////////
 
+               createVertical("Настройки", null, composit.COMPOSITE,"\uF214", FontsStore.FOUNDATION ,iconSize)
+                       .addInerLevel(
+
+                       )
 
        );
     }
