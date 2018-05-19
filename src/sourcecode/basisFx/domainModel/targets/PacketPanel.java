@@ -74,7 +74,7 @@ public class PacketPanel  extends Target {
         packetSizeProductAccordance.setTitle("Вместимость пакетов ");
         packetSizeProductAccordance.setTablesButtonKind(TablesButtonKind.Right_little);
         packetSizeProductAccordance.setDomainClass(PacketProductAccordance.class);
-        packetSizeProductAccordance.setGridColWidth(new GridColWidth(KindOfGridCol.percent,70));
+        packetSizeProductAccordance.setGridColWidth(new GridColWidth(KindOfGridCol.percent,70d));
         packetSizeProductAccordance.setDataMapper(dataMapperFabric.packetProductAccordanceMapper());
         packetSizeProductAccordance.setColumn(
                 columnFabric.comboBoxColumn(KindOfColumn.COMBOBOX,"Размер ","size",0.3d,true,

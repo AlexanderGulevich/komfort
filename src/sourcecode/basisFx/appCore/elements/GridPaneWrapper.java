@@ -24,8 +24,8 @@ public  class GridPaneWrapper extends AppNode{
     public GridPaneWrapper(NodeBuilder builder) {
         element=new GridPane();
         gridPane=(GridPane) this.element;
-//        gridPane.setGridLinesVisible(true);
-        gridPane.setGridLinesVisible(false);
+        gridPane.setGridLinesVisible(true);
+//        gridPane.setGridLinesVisible(false);
 
         init(builder);
 

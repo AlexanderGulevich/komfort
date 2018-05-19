@@ -45,9 +45,9 @@ public class SleevePriceMapper extends DataMapper {
     @Override
     public void getDomainListForObserverTables(ObservableList list, DomainObject selectedDomainObject)   {
         try {
-            int id=selectedDomainObject.getId();
+            int selectedDomainObjectId=selectedDomainObject.getId();
 
-            String expression="SELECT * FROM " +"SleevePriceStore "+" where productId= " +id+" ORDER BY startDate desc";
+            String expression="SELECT * FROM " +"SleevePriceStore "+" where productId= " +selectedDomainObjectId+" ORDER BY startDate desc";
 
             Statement stmt  = Db.getConnection().createStatement();
 
