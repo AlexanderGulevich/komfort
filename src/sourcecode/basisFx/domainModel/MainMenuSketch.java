@@ -84,7 +84,7 @@ public class MainMenuSketch extends MenuSketch{
 
                createVertical("Вспомогательная информация", null, composit.COMPOSITE,"", FontsStore.MATERIAL_ICONS,iconSize)
                        .addInerLevel(
-                               create("Станки", fm.equipmentPanel(), composit.SIMPLE),
+                               create("Оборудование", fm.equipmentPanel(), composit.SIMPLE),
                                create("Контрагенты", fm.counterpartyPanel(), composit.SIMPLE)
                        )
 

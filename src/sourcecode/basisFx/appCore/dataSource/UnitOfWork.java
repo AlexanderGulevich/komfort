@@ -157,9 +157,15 @@ public class UnitOfWork {
     
         for (Iterator<DomainObject> iterator = removedPojoes.iterator(); iterator.hasNext();) {
             DomainObject next = iterator.next();
-            next.getDataMapper().deleteDomainObject(next);
 
-            System.out.println("UnitOfWork.commitRemoved");
+            if (!getNewPojoes().contains(next)) {// если обеъект не является новым, то удаляем их БД
+
+                next.getDataMapper().deleteDomainObject(next);
+
+                System.out.println("UnitOfWork.commitRemoved");
+            }else {
+                System.out.println("Объект является новым, поэтому нет обращения к БД на удаление");
+            }
             
         }
         clearRemovedPojoesList();

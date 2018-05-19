@@ -39,35 +39,57 @@ public abstract class DataMapper   {
     public abstract void deleteDomainObject(DomainObject d);
     public abstract void insertDomainObject(DomainObject d);
 
+    /**
+     *
+     * @param domainObject it is domainObject.
+     * @param tableName
+     */
     public void delete(DomainObject domainObject, String tableName){
 
-        try {
-            String expression="delete from " +tableName+" where id=? ";
-            PreparedStatement pstmt =  Db.getConnection().prepareStatement(expression);
-            pstmt.setInt(1, domainObject.getId());
-            pstmt.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
+        if (domainObject != null) {
+            try {
+                String expression="delete from " +tableName+" where id=? ";
+                PreparedStatement pstmt =  Db.getConnection().prepareStatement(expression);
+                pstmt.setInt(1, domainObject.getId());
+                pstmt.executeUpdate();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        } else {
+            System.out.println("DataMapper.delete - domainObject is NULL");
         }
 
     }
 
+    /**
+     * @param domainObject  - it is domainObject from observedtable.
+     * @param observedtableName
+     * @param observertableName
+     */
     public void deleteForBoundTables(DomainObject domainObject, String observedtableName,String observertableName){
 
-        try {
-            String expression_1="delete from " +observedtableName+" where id=? ";
-            PreparedStatement pstmt_1 =  Db.getConnection().prepareStatement(expression_1);
-            pstmt_1.setInt(1, domainObject.getId());
-            pstmt_1.executeUpdate();
+        if (domainObject != null) {
+            try {
+                String expression_1="delete from " +observedtableName+" where id=? ";
+                PreparedStatement pstmt_1 =  Db.getConnection().prepareStatement(expression_1);
+                pstmt_1.setInt(1, domainObject.getId());
+                pstmt_1.executeUpdate();
 
 
-            String expression_2="delete from " +observertableName+" where id=? ";
-            PreparedStatement pstmt_2 =  Db.getConnection().prepareStatement(expression_2);
-            pstmt_2.setInt(1, domainObject.getId());
-            pstmt_2.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
+                String expression_2="delete from " +observertableName+" where id=? ";
+                PreparedStatement pstmt_2 =  Db.getConnection().prepareStatement(expression_2);
+                pstmt_2.setInt(1, domainObject.getId());
+                pstmt_2.executeUpdate();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
+        else {
+            System.out.println("DataMapper.deleteForBoundTables - domainObject is NULL");
+        }
+
+
+
 
 
     }

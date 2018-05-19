@@ -56,6 +56,7 @@ public class TableListener  implements ListChangeListener  {
 
 
             }
+
             else if (change.wasAdded()) {
 
                 @SuppressWarnings("unchecked")
@@ -67,13 +68,13 @@ public class TableListener  implements ListChangeListener  {
                 if ( !unitOfWork.getStoredPojoesId().contains(domainObject.getId())) {
                     this.unitOfWork.setNewPojoes(domainObject);
 
-                    System.out.println("wasAdded");
+                    System.out.println("domainObject wasAdded");
 
                     this.table = (TableView<DomainObject>) this.tableWrapper.getElement();
 
                     int newPojoIndex = table.getItems().indexOf(domainObject);
 
-                    System.out.println("newPojoIndex--------"+ newPojoIndex);
+                    System.out.println("newDomainObjectIndex--------"+ newPojoIndex);
 
                     table.scrollTo(newPojoIndex);
                     table.getSelectionModel().select(newPojoIndex);
