@@ -17,7 +17,7 @@ import javafx.beans.property.SimpleObjectProperty;
  * @author 62
  */
 public abstract class DomainObject {
-    
+    //todo create toComboBoxValue
     protected DataMapper dataMapper;
     protected String tableName;
 

@@ -30,15 +30,11 @@ public abstract class DataMapper   {
     protected DataMapperFabric dataMapperFabric=new DataMapperFabric();
     private Map<Integer,DomainObject> map= new HashMap<>();
     private int observableDomaineId;
-
-    
     protected UnitOfWork unitOfWork;
 
     public abstract boolean isReadyToTransaction(DomainObject d);
-
     public abstract void getDomainList(ObservableList  list);
     public abstract void getDomainListForObserverTables(ObservableList  list, DomainObject selectedDomainObject);
-
     public abstract void updateDomainObject(DomainObject d);
     public abstract void deleteDomainObject(DomainObject d);
     public abstract void insertDomainObject(DomainObject d);
@@ -55,7 +51,6 @@ public abstract class DataMapper   {
         }
 
     }
-
 
     public void deleteForBoundTables(DomainObject domainObject, String observedtableName,String observertableName){
 
@@ -92,8 +87,6 @@ public abstract class DataMapper   {
     public int getObservableDomaineId() {
         return observableDomaineId;
     }
-
-
 
     // getDomainList(list) записывает в  list значения ReturnSet БД
     // далее идет преобразование каждой строки БД в HashMap, где ключем является id
@@ -164,34 +157,34 @@ public abstract class DataMapper   {
         return comboBoxValueList;
 
     }
-
-    private RatePerHour getNewest(Integer id){
-
-        RatePerHour newestRate=null;
-
-        ArrayList<RatePerHour> ratePerHoursList = ratesMapById.get(id);
-
-        if (ratePerHoursList != null) {
-            for (RatePerHour rate:ratePerHoursList) {
-
-                if (newestRate == null) {
-
-                    newestRate=rate;
-
-                }
-
-                if (rate.getStartingDate().isAfter(newestRate.getStartingDate())){
-                    newestRate=rate;
-                }
-            }
-        }
-
-
-        return newestRate;
-
-
-
-    }
+//todo to create nevest getter
+//    private RatePerHour getNewest(Integer id){
+//
+//        RatePerHour newestRate=null;
+//
+//        ArrayList<RatePerHour> ratePerHoursList = ratesMapById.get(id);
+//
+//        if (ratePerHoursList != null) {
+//            for (RatePerHour rate:ratePerHoursList) {
+//
+//                if (newestRate == null) {
+//
+//                    newestRate=rate;
+//
+//                }
+//
+//                if (rate.getStartingDate().isAfter(newestRate.getStartingDate())){
+//                    newestRate=rate;
+//                }
+//            }
+//        }
+//
+//
+//        return newestRate;
+//
+//
+//
+//    }
 
 
 }

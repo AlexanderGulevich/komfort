@@ -14,6 +14,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.HashMap;
 
 public class PacketProductAccordanceMapper extends DataMapper {
 
@@ -47,16 +48,16 @@ public class PacketProductAccordanceMapper extends DataMapper {
 
             ResultSet rs = stmt.executeQuery(expression);
 
+            HashMap<Integer, DomainObject> packetSizeHm = dataMapperFabric.packetSizeMapper().toHashMapByCommonRawId();
+            HashMap<Integer, DomainObject> productHm = dataMapperFabric.productMapper().toHashMapByCommonRawId();
 
             while (rs.next()) {
 
                 int packetSizeId = rs.getInt("packetSizeId");
                 int productId = rs.getInt("productId");
 
-                PacketSize packetSize =
-                        (PacketSize) dataMapperFabric.packetSizeMapper().toHashMapByCommonRawId().get(packetSizeId);
-                Product product =
-                        (Product) dataMapperFabric.productMapper().toHashMapByCommonRawId().get(productId);
+                PacketSize packetSize =(PacketSize) packetSizeHm.get(packetSizeId);
+                Product product =(Product) productHm.get(productId);
 
                 PacketProductAccordance pojo = new PacketProductAccordance();
                 pojo.setId(rs.getInt("id"));

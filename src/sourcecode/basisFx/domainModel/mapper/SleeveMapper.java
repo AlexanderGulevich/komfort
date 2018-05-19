@@ -13,6 +13,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.HashMap;
 
 public class SleeveMapper  extends DataMapper {
 
@@ -46,11 +47,12 @@ public class SleeveMapper  extends DataMapper {
 
             ResultSet rs    = stmt.executeQuery(expression);
 
+            HashMap<Integer, DomainObject> counterpartyHM = dataMapperFabric.counterpartyMapper().toHashMapByCommonRawId();
 
             while (rs.next()) {
 
                 int counterpartyId=rs.getInt("counterpartyId");
-                Counterparty counterparty = (Counterparty) dataMapperFabric.counterpartyMapper().toHashMapByCommonRawId().get(counterpartyId);
+                Counterparty counterparty = (Counterparty)counterpartyHM.get(counterpartyId);
 
                 Sleeve pojo=new Sleeve();
                 pojo.setId(rs.getInt("id"));

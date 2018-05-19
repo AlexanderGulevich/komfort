@@ -12,6 +12,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.HashMap;
 
 /**
  * Created by AlexanderGulevich on 11.03.2018.
@@ -42,6 +43,9 @@ public class CounterpartyMapper extends DataMapper {
 
             ResultSet rs    = stmt.executeQuery(expression);
 
+            HashMap<Integer, ComboBoxValue> hm = dataMapperFabric.currencyMapper().toComboBoxValHashMap((val) -> {
+                return ((Currency) val).getName();
+            });
 
             while (rs.next()) {
 
@@ -51,12 +55,7 @@ public class CounterpartyMapper extends DataMapper {
 
                 int currencyId=rs.getInt("currencyId");
 
-
-                ComboBoxValue comboBoxValue =  dataMapperFabric
-                        .currencyMapper()
-                        .toComboBoxValHashMap((val)->{return ((Currency)val).getName();})
-                        .get(currencyId);
-
+                ComboBoxValue comboBoxValue = hm.get(currencyId);
 
                 pojo.setCurrency(comboBoxValue);
 

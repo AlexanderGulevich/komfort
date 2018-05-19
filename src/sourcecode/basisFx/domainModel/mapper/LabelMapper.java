@@ -45,10 +45,7 @@ public class LabelMapper  extends DataMapper {
 
             ResultSet rs    = stmt.executeQuery(expression);
 
-
-            HashMap<Integer, ComboBoxValue> comboBoxValue_hm =
-                    dataMapperFabric.counterpartyMapper()
-                    .toComboBoxValHashMap(domainObject -> ((Counterparty) domainObject).getName());
+            HashMap<Integer, ComboBoxValue> hm =dataMapperFabric.counterpartyMapper().toComboBoxValHashMap(domainObject -> ((Counterparty) domainObject).getName());
 
             while (rs.next()) {
 
@@ -57,7 +54,7 @@ public class LabelMapper  extends DataMapper {
 
                 Label pojo=new Label();
                 pojo.setId(rs.getInt("id"));
-                pojo.setCounterparty(comboBoxValue_hm.get(counterpartyId));
+                pojo.setCounterparty(hm.get(counterpartyId));
                 pojo.setName(rs.getString("name"));
 
                 //вставляю id в список хранимых в бд

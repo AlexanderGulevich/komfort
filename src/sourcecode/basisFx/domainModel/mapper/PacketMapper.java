@@ -12,6 +12,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.HashMap;
 
 public class PacketMapper  extends DataMapper {
 
@@ -46,13 +47,15 @@ public class PacketMapper  extends DataMapper {
 
             ResultSet rs    = stmt.executeQuery(expression);
 
+            HashMap<Integer, DomainObject> packetSizeHm = dataMapperFabric.packetSizeMapper().toHashMapByCommonRawId();
+            HashMap<Integer, DomainObject> counterpartyHm = dataMapperFabric.counterpartyMapper().toHashMapByCommonRawId();
 
             while (rs.next()) {
 
                 int packetSizeId=rs.getInt("packetSizeId");
                 int counterpartyId=rs.getInt("counterpartyId");
-                PacketSize packetSize = (PacketSize) dataMapperFabric.packetSizeMapper().toHashMapByCommonRawId().get(packetSizeId);
-                Counterparty counterparty = (Counterparty) dataMapperFabric.counterpartyMapper().toHashMapByCommonRawId().get(counterpartyId);
+                PacketSize packetSize = (PacketSize) packetSizeHm.get(packetSizeId);
+                Counterparty counterparty = (Counterparty) counterpartyHm.get(counterpartyId);
 
                 Packet pojo=new Packet();
                 pojo.setId(rs.getInt("id"));
@@ -63,6 +66,8 @@ public class PacketMapper  extends DataMapper {
                 this.unitOfWork.getStoredPojoesId().add(rs.getInt("id"));
 
                 list.add(pojo);
+
+
 
             }
         } catch (SQLException e) {

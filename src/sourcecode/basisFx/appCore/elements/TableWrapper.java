@@ -62,15 +62,27 @@ public  class TableWrapper<T> extends AppNode implements Refreshable, Submitting
         list.addListener(tableListener);
         unitOfWork.setRefreshable(this);
 
-//todo вставить значение
+
         TextFabric textFabric=new TextFabric();
         TextWrapper text =
-                textFabric.createText("Контент отсутствует".toLowerCase(),
-                        FontsStore.ROBOTO_LIGHT, 25d, null, null, CSSID.PLACEHOLDER);
+                textFabric.createText(
+                        "Контент отсутствует".toLowerCase(),
+                        FontsStore.ROBOTO_LIGHT,
+                        25d,
+                        null,
+                        null,
+                        CSSID.PLACEHOLDER);
+
         Text elem = (Text) text.getElement();
         table.setPlaceholder(elem);
 
 
+
+    }
+
+
+    private void manageScrollBar(){
+//todo баг в системе не дает найти скролл в таблице и поэтому пока не могу уменьшить ширину активной ячейки, чтобы скролл не напрыгивал на нее
         ScrollBar verticalBar = (ScrollBar) table.lookup(".scroll-bar:vertical");
 //        ScrollBar verticalBar = getVerticalScrollbar();
 

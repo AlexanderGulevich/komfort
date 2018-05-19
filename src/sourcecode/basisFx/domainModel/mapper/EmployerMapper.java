@@ -45,15 +45,15 @@ public class EmployerMapper extends DataMapper {
                 pojo.setId(rs.getInt("id"));
                 pojo.setName(rs.getString("name"));
                 pojo.setIsFired(rs.getBoolean("isFired"));
-
-                RatePerHour rate=getNewest(rs.getInt("id"));
-
-                if (rate != null) {
-
-                    pojo.setStartingRateDate(rate.getStartingDate());
-
-                    pojo.setRate(rate);
-                }
+//todo newest stop run
+//                RatePerHour rate=getNewest(rs.getInt("id"));
+//
+//                if (rate != null) {
+//
+//                    pojo.setStartingRateDate(rate.getStartingDate());
+//
+//                    pojo.setRate(rate);
+//                }
 
 
 
