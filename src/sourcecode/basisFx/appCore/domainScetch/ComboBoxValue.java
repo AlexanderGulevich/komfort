@@ -41,4 +41,8 @@ public class ComboBoxValue extends DomainObject{
 
     }
 
+    @Override
+    public ComboBoxValue toComboBoxValue() {
+        return this;
+    }
 }

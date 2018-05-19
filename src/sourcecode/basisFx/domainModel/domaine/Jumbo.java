@@ -5,6 +5,7 @@
  */
 package basisFx.domainModel.domaine;
 
+import basisFx.appCore.domainScetch.ComboBoxValue;
 import basisFx.appCore.domainScetch.DomainObject;
 
 /**
@@ -14,6 +15,11 @@ import basisFx.appCore.domainScetch.DomainObject;
 public class Jumbo  extends DomainObject {
     
     private final String tableName=null;
+
+    @Override
+    public ComboBoxValue toComboBoxValue() {
+        return null;
+    }
 
     public String getTableName() {
         return tableName;

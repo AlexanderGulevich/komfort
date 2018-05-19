@@ -21,4 +21,8 @@ public class Paper extends DomainObject {
     }
 
 
+    @Override
+    public ComboBoxValue toComboBoxValue() {
+        return new ComboBoxValue(getCounterparty().getStringValue(),getId());
+    }
 }

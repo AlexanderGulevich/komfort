@@ -49,4 +49,11 @@ public class PacketProductAccordance extends DomainObject {
     public void setNumber(String number) {
         this.number.set(number);
     }
+
+    @Override
+    public ComboBoxValue toComboBoxValue() {
+        throw new Error("PacketProductAccordance нельзя сконвертировать в ComboBoxValue");
+//        return null;
+
+    }
 }

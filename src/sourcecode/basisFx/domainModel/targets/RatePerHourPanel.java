@@ -8,6 +8,7 @@ import basisFx.appCore.grid.TablesButtonKind;
 import basisFx.appCore.panels.Target;
 import basisFx.appCore.utils.Coordinate;
 import basisFx.domainModel.domaine.RatePerHour;
+import basisFx.domainModel.domaine.RatePerHourTamplate;
 
 public class RatePerHourPanel extends Target {
 
@@ -26,7 +27,7 @@ public class RatePerHourPanel extends Target {
         tr.setPanel(panel);
         tr.setColumn(columnFabric.stringColumn(KindOfColumn.DOUBLE,
                 "\"Тариф ( бел. руб/час. )\"","name",1d,true,
-                (obj,val)->((RatePerHour)obj).setName((String) val)
+                (obj,val)->((RatePerHourTamplate)obj).setName((String) val)
                 )
         );
 

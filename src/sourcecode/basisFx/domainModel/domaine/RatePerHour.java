@@ -12,19 +12,7 @@ public class RatePerHour extends DomainObject {
     private SimpleObjectProperty<Integer> employerId =new SimpleObjectProperty<>(this, "employerId", null);
     private SimpleObjectProperty<ComboBoxValue> rate =new SimpleObjectProperty<>(this, "rate", null);
 
-    private SimpleObjectProperty<String> name =new SimpleObjectProperty<>(this, "name", null);
 
-    public String getName() {
-        return name.get();
-    }
-
-    public SimpleObjectProperty<String> nameProperty() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name.set(name);
-    }
 
     public LocalDate getStartingDate() {
         return startingRateDate.get();
@@ -60,5 +48,10 @@ public class RatePerHour extends DomainObject {
 
     public void setRate(ComboBoxValue rate) {
         this.rate.set(rate);
+    }
+
+    @Override
+    public ComboBoxValue toComboBoxValue() {
+        return new ComboBoxValue(getRate().getStringValue(),getId());
     }
 }

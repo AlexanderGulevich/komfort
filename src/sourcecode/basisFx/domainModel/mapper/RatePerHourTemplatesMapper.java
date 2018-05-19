@@ -4,6 +4,7 @@ import basisFx.appCore.dataSource.DataMapper;
 import basisFx.appCore.dataSource.Db;
 import basisFx.appCore.domainScetch.DomainObject;
 import basisFx.domainModel.domaine.RatePerHour;
+import basisFx.domainModel.domaine.RatePerHourTamplate;
 import javafx.collections.ObservableList;
 
 
@@ -21,9 +22,9 @@ public class RatePerHourTemplatesMapper extends DataMapper {
 
     @Override
     public boolean isReadyToTransaction(DomainObject d) {
-        RatePerHour ratePerHour = (RatePerHour) d;
+        RatePerHourTamplate ratePerHourTamplate = (RatePerHourTamplate) d;
         if (
-                 ratePerHour.getName()!=null
+                ratePerHourTamplate.getName()!=null
 
                 ) {
 
@@ -46,7 +47,7 @@ public class RatePerHourTemplatesMapper extends DataMapper {
 
             while (rs.next()) {
 
-                RatePerHour pojo=new RatePerHour();
+                RatePerHourTamplate pojo=new RatePerHourTamplate();
                 pojo.setId(rs.getInt("id"));
                 pojo.setName(String.valueOf(rs.getDouble("rate")));
 
@@ -72,7 +73,7 @@ public class RatePerHourTemplatesMapper extends DataMapper {
 
         try {
             if (isReadyToTransaction(d)) {
-                RatePerHour ratePerHour = (RatePerHour) d;
+                RatePerHourTamplate ratePerHour = (RatePerHourTamplate) d;
                 String expression = "UPDATE " + "RATETEMPLATES" + " SET  " +
                         " rate = ?" +
                         " where id=? ";
@@ -101,7 +102,7 @@ public class RatePerHourTemplatesMapper extends DataMapper {
     @Override
     public void insertDomainObject(DomainObject d)   {
         try {
-            RatePerHour ratePerHour= (RatePerHour) d;
+            RatePerHourTamplate ratePerHour= (RatePerHourTamplate) d;
 
             String expression= "INSERT INTO "+ "RateTemplates "
                     + "(rate "

@@ -1,5 +1,6 @@
 package basisFx.domainModel.domaine;
 
+import basisFx.appCore.domainScetch.ComboBoxValue;
 import basisFx.appCore.domainScetch.DomainObject;
 import javafx.beans.property.SimpleObjectProperty;
 
@@ -46,5 +47,10 @@ public class Price extends DomainObject{
 
     public void setStartingDate(LocalDate startingDate) {
         this.startingDate.set(startingDate);
+    }
+
+    @Override
+    public ComboBoxValue toComboBoxValue() {
+        return new ComboBoxValue(getPrice(),getId());
     }
 }

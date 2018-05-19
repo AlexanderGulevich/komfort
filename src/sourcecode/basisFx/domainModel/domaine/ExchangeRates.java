@@ -1,5 +1,6 @@
 package basisFx.domainModel.domaine;
 
+import basisFx.appCore.domainScetch.ComboBoxValue;
 import basisFx.appCore.domainScetch.DomainObject;
 import javafx.beans.property.SimpleObjectProperty;
 
@@ -50,5 +51,10 @@ public class ExchangeRates extends DomainObject{
 
     public void setExchangeRate(String exchangeRate) {
         this.exchangeRate.set(exchangeRate);
+    }
+
+    @Override
+    public ComboBoxValue toComboBoxValue() {
+        return new ComboBoxValue(getExchangeRate(),getId());
     }
 }

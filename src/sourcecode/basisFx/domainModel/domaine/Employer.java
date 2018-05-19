@@ -1,5 +1,6 @@
 package basisFx.domainModel.domaine;
 
+import basisFx.appCore.domainScetch.ComboBoxValue;
 import basisFx.appCore.domainScetch.DomainObject;
 import javafx.beans.property.SimpleObjectProperty;
 
@@ -65,6 +66,8 @@ public class Employer extends DomainObject {
     }
 
 
-
-
+    @Override
+    public ComboBoxValue toComboBoxValue() {
+        return new ComboBoxValue(getName(),getId());
+    }
 }

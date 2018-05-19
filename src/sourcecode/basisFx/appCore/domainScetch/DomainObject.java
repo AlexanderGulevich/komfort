@@ -17,14 +17,12 @@ import javafx.beans.property.SimpleObjectProperty;
  * @author 62
  */
 public abstract class DomainObject {
-    //todo create toComboBoxValue
+
     protected DataMapper dataMapper;
     protected String tableName;
 
-
-
     private ObjectProperty<Integer> id =new SimpleObjectProperty<>(this, "id", null);
-    
+    public  abstract ComboBoxValue  toComboBoxValue();
     public Integer getId() {
             return id.get();
         }

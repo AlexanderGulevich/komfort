@@ -60,4 +60,9 @@ public class Packet extends DomainObject {
     public void setStartingDate(LocalDate startingDate) {
         this.startingDate.set(startingDate);
     }
+
+    @Override
+    public ComboBoxValue toComboBoxValue() {
+        return new ComboBoxValue(getSize().getStringValue(),getId());
+    }
 }

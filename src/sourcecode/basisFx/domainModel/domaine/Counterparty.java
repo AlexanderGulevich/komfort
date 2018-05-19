@@ -45,4 +45,9 @@ public class Counterparty  extends DomainObject {
     public void setName(String name) {
         this.name.set(name);
     }
+
+    @Override
+    public ComboBoxValue toComboBoxValue() {
+        return  new ComboBoxValue(getName(),getId());
+    }
 }

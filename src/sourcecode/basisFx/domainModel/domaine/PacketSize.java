@@ -1,5 +1,6 @@
 package basisFx.domainModel.domaine;
 
+import basisFx.appCore.domainScetch.ComboBoxValue;
 import basisFx.appCore.domainScetch.DomainObject;
 import javafx.beans.property.SimpleObjectProperty;
 
@@ -20,5 +21,10 @@ public class PacketSize extends DomainObject{
 
     public void setSize(String size) {
         this.size.set(size);
+    }
+
+    @Override
+    public ComboBoxValue toComboBoxValue() {
+        return new ComboBoxValue(getSize(),getId());
     }
 }

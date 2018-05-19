@@ -49,16 +49,11 @@ public class RatePerHourMapper extends DataMapper{
 
             while (rs.next()) {
 
-
                 RatePerHour pojo=new RatePerHour();
                 pojo.setId(rs.getInt("id"));
 
-
-                ComboBoxValue rate =new ComboBoxValue();
-                rate.setStringValue(Double.toString(rs.getDouble("rate")));
-
                 pojo.setEmployerId(rs.getInt("employerId"));
-                pojo.setRate(rate);
+                pojo.setRate(new ComboBoxValue(Double.toString(rs.getDouble("rate"))));
                 pojo.setStartingRateDate(rs.getDate("startDate").toLocalDate());
 
 

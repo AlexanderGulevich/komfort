@@ -64,4 +64,9 @@ public class Label extends DomainObject {
     public void setStartingDate(LocalDate startingDate) {
         this.startingDate.set(startingDate);
     }
+
+    @Override
+    public ComboBoxValue toComboBoxValue() {
+        return new ComboBoxValue(getName(),getId());
+    }
 }
