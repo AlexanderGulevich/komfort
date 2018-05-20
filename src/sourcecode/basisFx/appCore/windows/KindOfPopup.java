@@ -3,7 +3,8 @@ package basisFx.appCore.windows;
 public enum KindOfPopup {
 
 
-    ERROR("ERROR");
+    ERROR("ERROR"),
+    MESSAGE("MESSAGE");
 
 
 

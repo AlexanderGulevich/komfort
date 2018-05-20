@@ -7,13 +7,16 @@ package basisFx.appCore.dataSource;
 
 import basisFx.appCore.domainScetch.ComboBoxValue;
 import basisFx.appCore.domainScetch.DomainObject;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+
+import java.sql.*;
+import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
 
 
+import basisFx.appCore.fabrics.PopupFabric;
 import basisFx.appCore.interfaces.StringGetterFromDomain;
+import basisFx.appCore.windows.KindOfPopup;
 import basisFx.domainModel.DataMapperFabric;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -188,9 +191,48 @@ public abstract class DataMapper   {
 
     }
 
+    /**
+     * Эта функция неоходима для того, чтобы не допустить в связанных таблицах попадание тарифа или цены или курса в базу данных
+     * с одной и той же датой. Дата в разрезе одного конкретного одентификатора, например сотрудника или продукта должна быть уникальной в БД
+     * Должна использоваться в insert и update методах отображателей
+     * @param tableName
+     * @param dateName
+     * @param date
+     * @param checkedEntityName
+     * @param checkedEntityId
+     * @return Возвращает TRUE если в БД есть значение на данную дату по данной сущности
+     */
+    public boolean checkUniquenessDateById(String tableName, String dateName, LocalDate date, String checkedEntityName, int checkedEntityId ){
+        try {
 
-    public boolean checkUniquenessDateById(String tableName, String dateName, String checkedEntityName, int checkedEntityId ){
+            String expression="SELECT * FROM " + tableName+" where " +checkedEntityName+
+                    " =?  and "+dateName+" = ?";
 
+            Statement stmt  = Db.getConnection().createStatement();
+
+            PreparedStatement pstmt = Db.getConnection().prepareStatement(expression);
+            pstmt.setInt(1, checkedEntityId);
+            pstmt.setDate(2,  Date.valueOf(date));
+            ResultSet rs    = pstmt.executeQuery();
+
+
+            if (rs.next()) {
+                System.err.println("11rs1111111111111111111111===DataMapper.checkUniquenessDateById --- "+rs.getDate("startDate")
+                +"----checkedEntityId---"+rs.getInt("employerId"));
+
+
+                PopupFabric.popupUndecorated(
+                        KindOfPopup.MESSAGE, 20d,
+                        "В Базе Данных уже есть значение на дату: " + date.toString()+
+                        ". Создать новую запись с такой же датой нельзя. Вы можете изменить старую, либо удалить ее."
+                );
+
+                return true;
+
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
 
         return false;

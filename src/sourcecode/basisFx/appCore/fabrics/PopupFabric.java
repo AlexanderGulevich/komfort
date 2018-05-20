@@ -13,6 +13,11 @@ public class PopupFabric {
         return new PopupUndecorated(kindOfPopup,text);
 
     }
+    public  static PopupUndecorated popupUndecorated(KindOfPopup kindOfPopup,double fonSize, String text){
+
+        return new PopupUndecorated(kindOfPopup,text);
+
+    }
 
     public static PopupUndecorated popupUndecorated(double width, double height, KindOfPopup kindOfPopup, String text){
 

@@ -11,13 +11,11 @@ import java.sql.*;
 
 public class EmployeesRateMapper extends DataMapper{
 
-
     private static EmployeesRateMapper ourInstance = new EmployeesRateMapper();
 
     public static EmployeesRateMapper getInstance() {
         return ourInstance;
     }
-
 
     @Override
     public boolean isReadyToTransaction(DomainObject d) {
@@ -25,12 +23,16 @@ public class EmployeesRateMapper extends DataMapper{
 
         if (
                 employeesRatePerHour.getRate()!= null
-                        && employeesRatePerHour.getStartingDate() !=null
+                && employeesRatePerHour.getStartingDate() !=null
 
                 ) {
-
+            System.err.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+            System.err.println("mployeesRatePerHour.getRate()==="+employeesRatePerHour.getRate());
+            System.err.println("employeesRatePerHour.getStartingDate()=="+employeesRatePerHour.getStartingDate());
             return true;
         }
+
+
 
         return false;
     }
@@ -79,29 +81,45 @@ public class EmployeesRateMapper extends DataMapper{
 
     @Override
     public void updateDomainObject(DomainObject d)   {
-        try {
-            if(isReadyToTransaction(d)) {
 
-                EmployeesRatePerHour employeesRatePerHour = (EmployeesRatePerHour) d;
-                String expression = "UPDATE "+    "RateStore"+ " SET  " +
-                        " rate = ?," +
-                        " startDate = ?," +
-                        " employerId = ? " +
-                        " where id =?";
+        System.err.println("111111111111111111111111111111EmployeesRateMapper.updateDomainObject");
 
-                PreparedStatement pstmt = null;
+        EmployeesRatePerHour domainObject = (EmployeesRatePerHour) d;
 
-                    pstmt = Db.getConnection().prepareStatement(expression);
-                    pstmt.setDouble(1, Double.valueOf(employeesRatePerHour.getRate().getStringValue()));
-                    pstmt.setDate(2, Date.valueOf(employeesRatePerHour.getStartingDate()));
-                    pstmt.setInt(3, employeesRatePerHour.getEmployerId());
-                    pstmt.setInt(4, employeesRatePerHour.getId());
-                    pstmt.executeUpdate();
+            try {
+                if(isReadyToTransaction(d)) {
 
+
+                    boolean check = checkUniquenessDateById(
+                            "RateStore",
+                            "startDate",
+                            domainObject.getStartingDate(),
+                            "employerId",
+                            getObservableDomaineId()
+                    );
+
+                    if (!check) {
+                        String expression = "UPDATE "+    "RateStore"+ " SET  " +
+                                " rate = ?," +
+                                " startDate = ?," +
+                                " employerId = ? " +
+                                " where id =?";
+
+                        PreparedStatement pstmt = null;
+
+                        pstmt = Db.getConnection().prepareStatement(expression);
+                        pstmt.setDouble(1, Double.valueOf(domainObject.getRate().getStringValue()));
+                        pstmt.setDate(2, Date.valueOf(domainObject.getStartingDate()));
+                        pstmt.setInt(3, domainObject.getEmployerId());
+                        pstmt.setInt(4, domainObject.getId());
+                        pstmt.executeUpdate();
+                    }
+
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+
     }
 
     @Override
@@ -113,26 +131,39 @@ public class EmployeesRateMapper extends DataMapper{
     public void insertDomainObject(DomainObject d)   {
         EmployeesRatePerHour domainObject=(EmployeesRatePerHour) d;
 
-        try {
-            if(isReadyToTransaction(d)) {
+            try {
+                if(isReadyToTransaction(d)) {
 
-                    String expression = "INSERT INTO " + "RateStore "
-                            + "("
-                            + " rate ,  "
-                            + " startDate,  "
-                            + " employerId        "
-                            + ") VALUES(?,?,?)";
+                    System.err.println("1111111111EmployeesRateMapper.insertDomainObject".toUpperCase());
+                    boolean check = checkUniquenessDateById(
+                            "RateStore",
+                            "startDate",
+                            domainObject.getStartingDate(),
+                            "employerId",
+                            getObservableDomaineId()
+                    );
 
-                    PreparedStatement pstmt = Db.getConnection().prepareStatement(expression);
-                    pstmt.setDouble(1, Double.valueOf(domainObject.getRate().getStringValue()));
-                    pstmt.setDate(2, Date.valueOf(domainObject.getStartingDate()));
-                    pstmt.setInt(3, getObservableDomaineId());
 
-                    pstmt.executeUpdate();
+                    if (!check) {
+                        String expression = "INSERT INTO " + "RateStore "
+                                    + "("
+                                    + " rate ,  "
+                                    + " startDate,  "
+                                    + " employerId        "
+                                    + ") VALUES(?,?,?)";
 
+                        PreparedStatement pstmt = Db.getConnection().prepareStatement(expression);
+                        pstmt.setDouble(1, Double.valueOf(domainObject.getRate().getStringValue()));
+                        pstmt.setDate(2, Date.valueOf(domainObject.getStartingDate()));
+                        pstmt.setInt(3, getObservableDomaineId());
+
+                        pstmt.executeUpdate();
+                    }
+
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+
     }
 }

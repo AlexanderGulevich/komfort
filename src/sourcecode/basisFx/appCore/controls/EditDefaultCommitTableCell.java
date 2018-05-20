@@ -18,7 +18,7 @@ public class EditDefaultCommitTableCell<T,K> extends Edit<T,K>{
     public void run() {
 
             column.setOnEditCommit((event) -> {
-
+                System.err.println(" <<<<<<<<<<<<<<<<<<<column.setOnEditCommit".toUpperCase());
                 if (Checking.check(kindOfColumn, event)) {
 
                 DomainObject domain = (DomainObject) event.getRowValue();
@@ -26,12 +26,11 @@ public class EditDefaultCommitTableCell<T,K> extends Edit<T,K>{
                 //проверяет, есть ли такой id в бд
                 if (unitOfWork.getStoredPojoesId().contains(domain.getId())) {
 
-                    System.out.println("Доменный объект есть В БД ");
+                    System.err.println("EditDefaultCommitTableCell- Доменный объект есть В БД ");
 
                     this.domainChanging.change(domain, event.getNewValue());
 
-
-                    System.out.println("Доменный объект готов к транзакции ");
+                    System.err.println("EditDefaultCommitTableCell - Доменный объект готов к транзакции ");
 
                     unitOfWork.setChangedPojoes(domain);
                     unitOfWork.commitChanged();
@@ -42,12 +41,12 @@ public class EditDefaultCommitTableCell<T,K> extends Edit<T,K>{
                     //проверяет, новый ли это объект из уже созданных но не имеющихся в БД
                     if (unitOfWork.getNewPojoes().contains(domain)) {
 
-                        System.out.println("НОВЫЙ ОБЪЕКТ");
+                        System.err.println("EditDefaultCommitTableCell -редактирование части кортежа НОВОГО ОБЪЕКТА");
 
                         //вставить значение в домен
                         this.domainChanging.change(domain, event.getNewValue());
 
-                        System.out.println("НОВЫЙ отправляется на ТРАНЗАКЦИЮ{");
+                        System.err.println("EditDefaultCommitTableCell - НОВЫЙ ОБЪЕКТ отправляется на попытку ТРАНЗАКЦИИ, есл кортеж окажется полным");
 
                         unitOfWork.commitNew();
 

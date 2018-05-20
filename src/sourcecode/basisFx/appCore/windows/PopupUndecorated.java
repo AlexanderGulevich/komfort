@@ -28,6 +28,7 @@ public class PopupUndecorated {
     protected PopupTitlePanel popupTitlePanel;
     protected PopupContentPanel popupContentPanel;
     protected  AnchorPane popupMessageTextPanel;
+    protected  Double fontSize=null;
 
 
     public PopupUndecorated(double width,double height,KindOfPopup kindOfPopup, String text) {
@@ -49,22 +50,40 @@ public class PopupUndecorated {
 
     }
 
+    public PopupUndecorated(KindOfPopup kindOfPopup ,double fontSize, String text) {
+        this.kindOfPopup=kindOfPopup;
+        this.message=text;
+        this.fontSize=fontSize;
+        selectTitle();
+        init();
+        createTextArea(text);
+
+    }
+
 
     private void selectTitle(){
 
         switch (kindOfPopup){
-            case ERROR: title="   Ошибка  ";
+            case ERROR: title="   Ошибка  " ;
+                break;
 
+            case MESSAGE: title=" Уведомление  ";
+                break;
         }
 
     }
 
     public void createTextArea(String message) {
 
+        if (fontSize == null) {
+            fontSize=25d;
+        }
+
+
         AppNode.NodeBuilder.create()
                 .setParent(popupContentPanel.getPanel())
                 .setCoordinate( new Coordinate(10d,80d,10d,10d))
-                .setFont(FontsStore.ROBOTO_LIGHT,25d)
+                .setFont(FontsStore.ROBOTO_LIGHT,fontSize)
                 .setText(message)
                 .setId(CSSID.PopupTextArea)
                 .createTextAreaWrapper().getElement();
@@ -118,7 +137,7 @@ public class PopupUndecorated {
         textFabric.createLabel(
                 title,CSSID.PopupTitleText,
                 FontsStore.ROBOTO_BOLD,  Pos.CENTER_LEFT,23d,
-                popupTitlePanel.getPanel(), new Coordinate(10d,0d,null,0d)
+                popupTitlePanel.getPanel(), new Coordinate(10d,0d,null,10d)
         );
 
 

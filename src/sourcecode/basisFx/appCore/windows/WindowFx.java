@@ -36,7 +36,7 @@ public abstract class WindowFx {
     public abstract WindowFx windowShow();
 
     public void setIsPopup(boolean popup) {
-        System.out.println("WindowFx.setIsPopup ------popup  "+popup);
+
         isPopup = popup;
     }
 

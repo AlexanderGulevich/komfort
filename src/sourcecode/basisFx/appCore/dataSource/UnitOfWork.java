@@ -35,7 +35,7 @@ public class UnitOfWork {
     } 
     public void setChangedPojoes(DomainObject p){
 
-        System.out.println("UnitOfWork.setChangedPojoes,   getTableName==="+p.getTableName());
+        System.err.println("UnitOfWork.setChangedPojoes,   getTableName==="+p.getTableName());
     
         this.changedPojoes.add(p);
         
@@ -72,7 +72,7 @@ public class UnitOfWork {
         this.removedPojoes.clear();
     }
     public void clearChangedPojoesList(){
-        System.out.println("UnitOfWork.clearChangedPojoesList");
+        System.err.println("UnitOfWork.clearChangedPojoesList");
         this.changedPojoes.clear();
     
     }
@@ -81,28 +81,21 @@ public class UnitOfWork {
         commitChanged();
         commitRemoved();
 
-        System.out.println("UnitOfWork.commitAll");
+        System.err.println("UnitOfWork.commitAll");
     }
     public void commitNew(){
 
-
         boolean isReady=true;
-      
+
+
         for (Iterator<DomainObject> iterator = newPojoes.iterator(); iterator.hasNext();) {
             DomainObject next = iterator.next();
 
             if (next.getDataMapper().isReadyToTransaction(next)) {
 
-
-                System.out.println("UnitOfWork --КОММИТ НОВОГО ДОМЕНА");
-                System.out.println("UnitOfWork --ДАТА МАППЕР----" + next.getDataMapper());
+                System.err.println("UnitOfWork --ПОПЫТКА КОММИТА НОВОГО ДОМЕНА=");
 
                 next.getDataMapper().insertDomainObject(next);
-
-                System.out.println("UnitOfWork.commitNew");
-
-
-
 
             }else {
                 isReady=false;
@@ -129,8 +122,8 @@ public class UnitOfWork {
 
             if (next.getDataMapper().isReadyToTransaction(next)) {
 
-                System.out.println("UnitOfWork --КОММИТ ИЗМЕНЕННОГО ДОМЕНА");
-                System.out.println("UnitOfWork --ДАТА МАППЕР----" + next.getDataMapper());
+                System.err.println("UnitOfWork --КОММИТ ИЗМЕНЕННОГО ДОМЕНА");
+                System.err.println("UnitOfWork --ДАТА МАППЕР----" + next.getDataMapper());
                 next.getDataMapper().updateDomainObject(next);
 
 
@@ -162,9 +155,9 @@ public class UnitOfWork {
 
                 next.getDataMapper().deleteDomainObject(next);
 
-                System.out.println("UnitOfWork.commitRemoved");
+                System.err.println("UnitOfWork.commitRemoved");
             }else {
-                System.out.println("Объект является новым, поэтому нет обращения к БД на удаление");
+                System.err.println("Объект является новым, поэтому нет обращения к БД на удаление");
             }
             
         }

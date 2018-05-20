@@ -5,7 +5,6 @@
  */
 package basisFx.appCore.elements;
 
-
 import basisFx.appCore.DataTransferSubmitObject;
 import basisFx.appCore.KindOfSubmitElement;
 import basisFx.appCore.Submitted;
@@ -50,7 +49,6 @@ public  class TableWrapper<T> extends AppNode implements Refreshable, Submitting
     private boolean isObserver=false;
     private  DomainObject clickedDomain;
 
-
     @SuppressWarnings("unchecked")
  public TableWrapper(NodeBuilder builder) {
         table=new TableView<>(list);
@@ -61,7 +59,6 @@ public  class TableWrapper<T> extends AppNode implements Refreshable, Submitting
         setClickedUpDownRowDetection();
         list.addListener(tableListener);
         unitOfWork.setRefreshable(this);
-
 
         TextFabric textFabric=new TextFabric();
         TextWrapper text =
@@ -75,8 +72,6 @@ public  class TableWrapper<T> extends AppNode implements Refreshable, Submitting
 
         Text elem = (Text) text.getElement();
         table.setPlaceholder(elem);
-
-
 
     }
 
