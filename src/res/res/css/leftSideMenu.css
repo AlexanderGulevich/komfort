@@ -22,6 +22,8 @@
     -fx-color:yellowgreen;
      -fx-pref-width: 60;
      -fx-pref-height:50;
+    -fx-border-width: 0 0 0.2 0 ;
+   -fx-border-color: #619494;
 }
 #LEFT_SIDE_MENU_VERTICAL_BUTTONS:armed,
 #LEFT_SIDE_MENU_VERTICAL_BUTTONS_CLICKED{

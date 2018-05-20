@@ -1,5 +1,6 @@
 package basisFx.appCore.controls;
 
+import basisFx.appCore.fabrics.PopupFabric;
 import basisFx.appCore.fabrics.WindowFabric;
 import basisFx.appCore.windows.KindOfPopup;
 import basisFx.appCore.windows.PopupUndecorated;
@@ -12,10 +13,7 @@ public class Checking {
 
     protected static PopupUndecorated popupUndecorated;
     protected static WindowFabric windowFabric= new WindowFabric();
-    protected static String message=   "\n"+
-            "   Произошла ошибка. В поле\n" +
-            "   было  введено   неправильное\n" +
-            "   значение.";
+    protected static String message=   "Произошла ошибка.\nВ поле было введено неправильное значение.";
 
 
     public  static <T, K> boolean check(KindOfColumn kindOfColumn,TableColumn.CellEditEvent<T, K> event){
@@ -37,8 +35,8 @@ public class Checking {
                     LocalDate newValue = (LocalDate) event.getNewValue();
                     return true;
                 }catch (DateTimeException e){
-                    popupUndecorated =windowFabric.popupUndecorated(KindOfPopup.ERROR);
-                    popupUndecorated.setMessage(message);
+                    popupUndecorated = PopupFabric.popupUndecorated(KindOfPopup.ERROR,message);
+
                     return false;
                 }
 
@@ -49,8 +47,8 @@ public class Checking {
                     return true;
 
                 }catch (NumberFormatException  e){
-                    popupUndecorated =windowFabric.popupUndecorated(KindOfPopup.ERROR);
-                    popupUndecorated.setMessage(message);
+                    popupUndecorated =PopupFabric.popupUndecorated(KindOfPopup.ERROR,message);
+
                     return false;
                 }
 
@@ -69,8 +67,7 @@ public class Checking {
 
                 }catch (NumberFormatException   e){
 
-                    popupUndecorated =windowFabric.popupUndecorated(KindOfPopup.ERROR);
-                    popupUndecorated.setMessage(message);
+                    popupUndecorated =PopupFabric.popupUndecorated(KindOfPopup.ERROR,message);
 
                     return false;
                 }

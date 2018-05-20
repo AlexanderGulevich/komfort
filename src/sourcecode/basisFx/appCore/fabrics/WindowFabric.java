@@ -27,25 +27,5 @@ public class WindowFabric {
      }
 
 
-
-    public PopupUndecorated popupUndecorated(KindOfPopup kindOfPopup){
-
-        return new PopupUndecorated(kindOfPopup);
-
-    }
-
-
-    public PopupUndecorated popupUndecorated(double width, double height, KindOfPopup kindOfPopup){
-
-        return new PopupUndecorated(width,height,kindOfPopup);
-
-    }
-
-    public WindowFx popupDecorated(double width, double height){
-
-        return new WindowDecorated(width, height);
-
-    }
-
      
 }

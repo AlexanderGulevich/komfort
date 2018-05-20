@@ -8,6 +8,7 @@ public enum CSSID {
     PRELOADER_VISIBLE_ROOT("PRELOADER_VISIBLE_ROOT"),
     MENUS("MENUS"),
 
+    PopupTextArea("PopupTextArea"),
     TABLE("TABLE"),
     popupTitlePanel("popupTitlePanel"),
 

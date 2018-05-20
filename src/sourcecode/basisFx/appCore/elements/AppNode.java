@@ -481,6 +481,9 @@ public abstract class AppNode  {
         public    GridPaneWrapper createGridPaneWrapper  (){
             return new  GridPaneWrapper(this);
         }
+        public    TextAreaWrapper createTextAreaWrapper (){
+            return new  TextAreaWrapper(this);
+        }
 
 
     }

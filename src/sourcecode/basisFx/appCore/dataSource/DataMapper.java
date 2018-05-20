@@ -188,6 +188,14 @@ public abstract class DataMapper   {
 
     }
 
+
+    public boolean checkUniquenessDateById(String tableName, String dateName, String checkedEntityName, int checkedEntityId ){
+
+
+
+        return false;
+    }
+
 //    private EmployeesRatePerHour getNewest(Integer id){
 //
 //        EmployeesRatePerHour newestRate=null;

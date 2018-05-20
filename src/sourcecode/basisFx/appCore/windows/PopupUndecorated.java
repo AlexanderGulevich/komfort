@@ -30,49 +30,45 @@ public class PopupUndecorated {
     protected  AnchorPane popupMessageTextPanel;
 
 
-    public PopupUndecorated(double width,double height,KindOfPopup kindOfPopup) {
-        this.height = height;
+    public PopupUndecorated(double width,double height,KindOfPopup kindOfPopup, String text) {
+         this.height = height;
          this.width=width;
          this.kindOfPopup=kindOfPopup;
 
         selectTitle();
-
-
-
-         init();
-
+        init();
+        createTextArea(text);
 
     }
-    public PopupUndecorated(KindOfPopup kindOfPopup ) {
+    public PopupUndecorated(KindOfPopup kindOfPopup , String text) {
         this.kindOfPopup=kindOfPopup;
+        this.message=text;
         selectTitle();
         init();
-
+        createTextArea(text);
 
     }
 
 
     private void selectTitle(){
 
-
         switch (kindOfPopup){
             case ERROR: title="   Ошибка  ";
-
-
 
         }
 
     }
 
-    public void setMessage(String message) {
-        this.message = message;
+    public void createTextArea(String message) {
 
-        textFabric.createText(
-                message, CSSID.PopupMessageText,
-                FontsStore.ROBOTO_LIGHT,25d,
-                popupContentPanel.getPanel(),
-                new Coordinate(10d,0d,0d,0d)
-        );
+        AppNode.NodeBuilder.create()
+                .setParent(popupContentPanel.getPanel())
+                .setCoordinate( new Coordinate(10d,80d,10d,10d))
+                .setFont(FontsStore.ROBOTO_LIGHT,25d)
+                .setText(message)
+                .setId(CSSID.PopupTextArea)
+                .createTextAreaWrapper().getElement();
+
     }
 
     private void init(){
@@ -82,7 +78,7 @@ public class PopupUndecorated {
             windowUndecorated = new WindowUndecorated(width, height, WindowType.POPUP);
 
         }else{
-            windowUndecorated = new WindowUndecorated(500d , 340d, WindowType.POPUP);
+            windowUndecorated = new WindowUndecorated(500d , 300d, WindowType.POPUP);
 
         }
 
@@ -125,10 +121,13 @@ public class PopupUndecorated {
                 popupTitlePanel.getPanel(), new Coordinate(10d,0d,null,0d)
         );
 
+
+
+        // icon
         textFabric.createText(
                 "  \uF06A ", CSSID.ALERT_ICON,
                 FontsStore.FAWESOME5SOLID,50d,
-                popupContentPanel.getPanel(), new Coordinate(10d,0d,null,null)
+                popupContentPanel.getPanel(), new Coordinate(10d,-10d,null,null)
         );
 
 

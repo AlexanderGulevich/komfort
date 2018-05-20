@@ -17,11 +17,7 @@ public class EditDefaultCommitTableCell<T,K> extends Edit<T,K>{
 
     public void run() {
 
-
-
-            
             column.setOnEditCommit((event) -> {
-                System.err.println("EditDefaultCommitTableCell.run");
 
                 if (Checking.check(kindOfColumn, event)) {
 
@@ -40,7 +36,7 @@ public class EditDefaultCommitTableCell<T,K> extends Edit<T,K>{
                     unitOfWork.setChangedPojoes(domain);
                     unitOfWork.commitChanged();
 
-//
+
                 } else {
 
                     //проверяет, новый ли это объект из уже созданных но не имеющихся в БД
@@ -50,7 +46,6 @@ public class EditDefaultCommitTableCell<T,K> extends Edit<T,K>{
 
                         //вставить значение в домен
                         this.domainChanging.change(domain, event.getNewValue());
-
 
                         System.out.println("НОВЫЙ отправляется на ТРАНЗАКЦИЮ{");
 
