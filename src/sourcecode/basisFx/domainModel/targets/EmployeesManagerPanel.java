@@ -9,8 +9,9 @@ import basisFx.appCore.grid.KindOfGridCol;
 import basisFx.appCore.grid.TablesButtonKind;
 import basisFx.appCore.panels.Target;
 import basisFx.appCore.utils.Coordinate;
+import basisFx.domainModel.domaine.EmployeesRatePerHour;
 import basisFx.domainModel.domaine.Employer;
-import basisFx.domainModel.domaine.RatePerHour;
+import basisFx.domainModel.domaine.RatePerHourTamplate;
 import javafx.scene.layout.AnchorPane;
 
 import java.time.LocalDate;
@@ -43,18 +44,17 @@ public class EmployeesManagerPanel extends Target {
         observer.setGridColWidth(new GridColWidth(KindOfGridCol.percent,40d));
         observer.setTitle("Реестр тарифных ставок ");
         observer.setTablesButtonKind(TablesButtonKind.Bottom_right);
-        observer.setDomainClass(RatePerHour.class);
-        observer.setDataMapper(dataMapperFabric.ratePerHourMapper());
+        observer.setDomainClass(EmployeesRatePerHour.class);
+        observer.setDataMapper(dataMapperFabric.employeesRateMapper());
         observer.setColumn(
-                columnFabric.comboBoxColumn(KindOfColumn.INT,"Тариф","rate",0.3d,true,
-                (obj,val)->{((RatePerHour)obj).setRate((ComboBoxValue) val);},
-                () -> dataMapperFabric
-                        .ratePerHourTemplatesMapper()
-                        .toComboBoxValueList(( domainObject -> ((RatePerHour) domainObject).getRate().getStringValue()))
+                columnFabric.comboBoxColumn(KindOfColumn.COMBOBOX,"Тариф","rate",0.3d,true,
+                (obj,val)->{((EmployeesRatePerHour)obj).setRate((ComboBoxValue) val);},
+                () -> dataMapperFabric.ratePerHourTemplatesMapper()
+                        .toComboBoxValueList(( domainObject -> ((RatePerHourTamplate) domainObject).getName()))
                 )
         );
         observer.setColumn( columnFabric.dateColumn(KindOfColumn.DATE,"Дата начала действия тарифа","startingRateDate",0.7d,true,
-                (obj, val)->{((RatePerHour)obj).setStartingRateDate((LocalDate) val); })
+                (obj, val)->{((EmployeesRatePerHour)obj).setStartingRateDate((LocalDate) val); })
         );
 
 

@@ -48,7 +48,7 @@ public class PaperPriceMapper extends DataMapper {
         try {
             int selectedDomainObjectId=selectedDomainObject.getId();
 
-            String expression="SELECT * FROM " +"PaperPriceStore "+" where productId= " +selectedDomainObjectId+" ORDER BY startDate desc";
+            String expression="SELECT * FROM " +"PaperPriceStore "+" where paperId= " +selectedDomainObjectId+" ORDER BY startDate desc";
 
             Statement stmt  = Db.getConnection().createStatement();
 
@@ -62,7 +62,7 @@ public class PaperPriceMapper extends DataMapper {
                 pojo.setId(id);
 
 
-                pojo.setProductId(rs.getInt("productId"));
+                pojo.setProductId(rs.getInt("paperId"));
                 pojo.setPrice( Double.toString(rs.getDouble("price")));
                 pojo.setStartingDate(rs.getDate("startDate").toLocalDate());
 
@@ -87,7 +87,7 @@ public class PaperPriceMapper extends DataMapper {
             String expression = "UPDATE "+    "PaperPriceStore"+ " SET  " +
                     " price = ?," +
                     " startDate = ?," +
-                    " productId = ? " +
+                    " paperId = ? " +
                     " where id =?";
 
             PreparedStatement pstmt = null;
@@ -123,7 +123,7 @@ public class PaperPriceMapper extends DataMapper {
                             + "("
                             + " price ,  "
                             + " startDate,  "
-                            + " productId        "
+                            + " paperId        "
                             + ") VALUES(?,?,?)";
 
                     PreparedStatement pstmt = Db.getConnection().prepareStatement(expression);

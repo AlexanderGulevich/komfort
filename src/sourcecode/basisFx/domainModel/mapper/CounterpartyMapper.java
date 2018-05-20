@@ -23,6 +23,9 @@ public class CounterpartyMapper extends DataMapper {
 
     private static CounterpartyMapper ourInstance = new CounterpartyMapper();
 
+    public static CounterpartyMapper getInstance() {
+        return ourInstance;
+    }
     @Override
     public boolean isReadyToTransaction(DomainObject d) {
         Counterparty counterparty= (Counterparty) d;

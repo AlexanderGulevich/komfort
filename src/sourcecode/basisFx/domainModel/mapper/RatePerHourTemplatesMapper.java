@@ -3,7 +3,6 @@ package basisFx.domainModel.mapper;
 import basisFx.appCore.dataSource.DataMapper;
 import basisFx.appCore.dataSource.Db;
 import basisFx.appCore.domainScetch.DomainObject;
-import basisFx.domainModel.domaine.RatePerHour;
 import basisFx.domainModel.domaine.RatePerHourTamplate;
 import javafx.collections.ObservableList;
 

@@ -23,7 +23,8 @@ public class ColumnFabric <T,K> {
 
             return new ColumnString<T>(bulder);
     }
-    public ColumnStringComboBox<T,K> comboBoxColumn(KindOfColumn kindOfColumn, String name, String property, Double size, Boolean isEditable, DomainChanging domainChanging, DomainsListGetter domainsListGetter){
+    public ColumnStringComboBox<T,K> comboBoxColumn(KindOfColumn kindOfColumn, String name, String property, Double size,
+                                                    Boolean isEditable, DomainChanging domainChanging, DomainsListGetter domainsListGetter){
 
             ColumnWrapper.Bulder bulder =
                     ColumnWrapper.Bulder.create(name, property, size)

@@ -17,23 +17,23 @@ public class DataMapperFabric {
         return EquipmentMapper.getInstance();
     }
     public CounterpartyMapper counterpartyMapper() {
-        return new CounterpartyMapper();
+        return  CounterpartyMapper.getInstance();
     }
     public CurrencyMapper currencyMapper() {
         return CurrencyMapper.getInstance();
     }
     public EmployerMapper employerMapper() {
-        return new EmployerMapper();
+        return  EmployerMapper.getInstance();
     }
     public RatePerHourTemplatesMapper ratePerHourTemplatesMapper() {
         return  RatePerHourTemplatesMapper.getInstance();
     }
-    public RatePerHourMapper ratePerHourMapper() {
-        return  new RatePerHourMapper();
+    public EmployeesRateMapper employeesRateMapper() {
+        return   EmployeesRateMapper.getInstance();
     }
-    public ExchangeRatesMapper exchangeRatesMapper(){return new ExchangeRatesMapper();}
-    public ProductMapper productMapper(){return new ProductMapper();}
-    public ProductPriceMapper productPriceMapper(){return new ProductPriceMapper();}
+    public ExchangeRatesMapper exchangeRatesMapper(){return  ExchangeRatesMapper.getInstance();}
+    public ProductMapper productMapper(){return  ProductMapper.getInstance();}
+    public ProductPriceMapper productPriceMapper(){return  ProductPriceMapper.getInstance();}
     public PacketSizeMapper packetSizeMapper(){return  PacketSizeMapper.getInstance();}
     public PacketProductAccordanceMapper     packetProductAccordanceMapper(){return  PacketProductAccordanceMapper.getInstance();}
     public PacketMapper     packetMapper(){return  PacketMapper.getInstance();}
@@ -44,6 +44,7 @@ public class DataMapperFabric {
     public PaperPriceMapper paperPriceMapper(){return  PaperPriceMapper.getInstance();}
     public PaperMapper paperMapper(){return  PaperMapper.getInstance();}
     public SleeveMapper sleeveMapper(){return  SleeveMapper.getInstance();}
+    public EmployeesActualRateMapper employeesActualRateMapper(){return  EmployeesActualRateMapper.getInstance();}
 
 
 

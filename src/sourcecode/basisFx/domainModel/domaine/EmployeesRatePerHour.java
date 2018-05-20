@@ -6,7 +6,7 @@ import javafx.beans.property.SimpleObjectProperty;
 
 import java.time.LocalDate;
 
-public class RatePerHour extends DomainObject {
+public class EmployeesRatePerHour extends DomainObject {
 
     private SimpleObjectProperty<LocalDate> startingRateDate =new SimpleObjectProperty<>(this, "startingDate", null);
     private SimpleObjectProperty<Integer> employerId =new SimpleObjectProperty<>(this, "employerId", null);

@@ -47,7 +47,7 @@ public class SleevePriceMapper extends DataMapper {
         try {
             int selectedDomainObjectId=selectedDomainObject.getId();
 
-            String expression="SELECT * FROM " +"SleevePriceStore "+" where productId= " +selectedDomainObjectId+" ORDER BY startDate desc";
+            String expression="SELECT * FROM " +"SleevePriceStore "+" where sleeveId= " +selectedDomainObjectId+" ORDER BY startDate desc";
 
             Statement stmt  = Db.getConnection().createStatement();
 

@@ -4,21 +4,28 @@ import basisFx.appCore.dataSource.DataMapper;
 import basisFx.appCore.dataSource.Db;
 import basisFx.appCore.domainScetch.ComboBoxValue;
 import basisFx.appCore.domainScetch.DomainObject;
-import basisFx.domainModel.domaine.RatePerHour;
+import basisFx.domainModel.domaine.EmployeesRatePerHour;
 import javafx.collections.ObservableList;
 
 import java.sql.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
-public class RatePerHourMapper extends DataMapper{
+public class EmployeesRateMapper extends DataMapper{
+
+
+    private static EmployeesRateMapper ourInstance = new EmployeesRateMapper();
+
+    public static EmployeesRateMapper getInstance() {
+        return ourInstance;
+    }
+
+
     @Override
     public boolean isReadyToTransaction(DomainObject d) {
-        RatePerHour ratePerHour = (RatePerHour) d;
+        EmployeesRatePerHour employeesRatePerHour = (EmployeesRatePerHour) d;
 
         if (
-                ratePerHour.getRate()!= null
-                        && ratePerHour.getStartingDate() !=null
+                employeesRatePerHour.getRate()!= null
+                        && employeesRatePerHour.getStartingDate() !=null
 
                 ) {
 
@@ -49,7 +56,7 @@ public class RatePerHourMapper extends DataMapper{
 
             while (rs.next()) {
 
-                RatePerHour pojo=new RatePerHour();
+                EmployeesRatePerHour pojo=new EmployeesRatePerHour();
 
                 int id=rs.getInt("id");
                 pojo.setId(id);
@@ -74,9 +81,8 @@ public class RatePerHourMapper extends DataMapper{
     public void updateDomainObject(DomainObject d)   {
         try {
             if(isReadyToTransaction(d)) {
-                System.out.println("RatePerHourMapper.updateDomainObject".toUpperCase());
 
-                RatePerHour ratePerHour= (RatePerHour) d;
+                EmployeesRatePerHour employeesRatePerHour = (EmployeesRatePerHour) d;
                 String expression = "UPDATE "+    "RateStore"+ " SET  " +
                         " rate = ?," +
                         " startDate = ?," +
@@ -86,10 +92,10 @@ public class RatePerHourMapper extends DataMapper{
                 PreparedStatement pstmt = null;
 
                     pstmt = Db.getConnection().prepareStatement(expression);
-                    pstmt.setDouble(1, Double.valueOf(ratePerHour.getRate().getStringValue()));
-                    pstmt.setDate(2, Date.valueOf(ratePerHour.getStartingDate()));
-                    pstmt.setInt(3, ratePerHour.getEmployerId());
-                    pstmt.setInt(4, ratePerHour.getId());
+                    pstmt.setDouble(1, Double.valueOf(employeesRatePerHour.getRate().getStringValue()));
+                    pstmt.setDate(2, Date.valueOf(employeesRatePerHour.getStartingDate()));
+                    pstmt.setInt(3, employeesRatePerHour.getEmployerId());
+                    pstmt.setInt(4, employeesRatePerHour.getId());
                     pstmt.executeUpdate();
 
             }
@@ -105,7 +111,7 @@ public class RatePerHourMapper extends DataMapper{
 
     @Override
     public void insertDomainObject(DomainObject d)   {
-        RatePerHour domainObject=(RatePerHour) d;
+        EmployeesRatePerHour domainObject=(EmployeesRatePerHour) d;
 
         try {
             if(isReadyToTransaction(d)) {

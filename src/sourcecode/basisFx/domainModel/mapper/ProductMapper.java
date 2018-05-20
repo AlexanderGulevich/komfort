@@ -16,6 +16,12 @@ import java.util.logging.Logger;
 
 public class ProductMapper extends DataMapper{
 
+    private static ProductMapper ourInstance = new ProductMapper();
+
+    public static ProductMapper getInstance() {
+        return ourInstance;
+    }
+
 
     @Override
     public boolean isReadyToTransaction(DomainObject d) {

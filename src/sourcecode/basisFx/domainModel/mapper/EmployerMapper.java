@@ -2,21 +2,20 @@ package basisFx.domainModel.mapper;
 
 import basisFx.appCore.dataSource.DataMapper;
 import basisFx.appCore.dataSource.Db;
-import basisFx.appCore.domainScetch.ComboBoxValue;
 import basisFx.appCore.domainScetch.DomainObject;
 import basisFx.domainModel.domaine.Employer;
-import basisFx.domainModel.domaine.RatePerHour;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class EmployerMapper extends DataMapper {
 
+
+    private static EmployerMapper ourInstance = new EmployerMapper();
+
+    public static EmployerMapper getInstance() {
+        return ourInstance;
+    }
     @Override
     public boolean isReadyToTransaction(DomainObject d) {
         Employer employer= (Employer) d;
@@ -49,7 +48,7 @@ public class EmployerMapper extends DataMapper {
                 pojo.setName(rs.getString("name"));
                 pojo.setIsFired(rs.getBoolean("isFired"));
 //todo newest stop run
-//                RatePerHour rate=getNewest(rs.getInt("id"));
+//                EmployeesRatePerHour rate=getNewest(rs.getInt("id"));
 //
 //                if (rate != null) {
 //
@@ -104,28 +103,7 @@ public class EmployerMapper extends DataMapper {
 
     @Override
     public void deleteDomainObject(DomainObject d)   {
-        if(isReadyToTransaction(d)) {
-
-            Employer employer= (Employer) d;
-            String expression = "UPDATE "+    "Employer"+ " SET  " +
-                    " name = ?," +
-                    " isFired = ?" +
-                    " WHERE id= ?" ;
-
-            try {
-                PreparedStatement pstmt = null;
-
-                pstmt = Db.getConnection().prepareStatement(expression);
-                pstmt.setString(1, employer.getName());
-                pstmt.setBoolean(2, true);
-                pstmt.setInt(3, employer.getId());
-                pstmt.executeUpdate();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-
-        }
-
+      super.delete(d,"Employees");
     }
 
     @Override
@@ -138,8 +116,7 @@ public class EmployerMapper extends DataMapper {
                         + "("
                         + " name ,  "
                         + " isFired "
-                        + "         "
-                        + ") VALUES(?,?,)";
+                        + ") VALUES(?,?)";
 
             try {
                 PreparedStatement pstmt = Db.getConnection().prepareStatement(expression);

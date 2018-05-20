@@ -11,6 +11,12 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class ProductPriceMapper extends DataMapper {
+    private static ProductPriceMapper ourInstance = new ProductPriceMapper();
+
+    public static ProductPriceMapper getInstance() {
+        return ourInstance;
+    }
+
     @Override
     public boolean isReadyToTransaction(DomainObject d) {
         Price price = (Price) d;

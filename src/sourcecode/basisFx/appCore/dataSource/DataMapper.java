@@ -9,14 +9,12 @@ import basisFx.appCore.domainScetch.ComboBoxValue;
 import basisFx.appCore.domainScetch.DomainObject;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 
 import basisFx.appCore.interfaces.StringGetterFromDomain;
 import basisFx.domainModel.DataMapperFabric;
-import basisFx.domainModel.domaine.RatePerHour;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -163,9 +161,12 @@ public abstract class DataMapper   {
 
     }
 
-
-    // getDomainList(list) записывает в  list значения ReturnSet БД
-    // далее идет преобразование каждой строки БД в ComboBoxValue и возвращается список
+    /**
+     * getDomainList(list) записывает в  list значения ReturnSet БД\
+     * далее идет преобразование каждой строки БД в ComboBoxValue и возвращается список
+     * @param stringGetterFromDomain
+     * @return
+     */
     public ObservableList<ComboBoxValue> toComboBoxValueList(StringGetterFromDomain stringGetterFromDomain){
         list.clear();
         getDomainList(list);
@@ -186,15 +187,15 @@ public abstract class DataMapper   {
         return comboBoxValueList;
 
     }
-//todo to create nevest getter
-//    private RatePerHour getNewest(Integer id){
+
+//    private EmployeesRatePerHour getNewest(Integer id){
 //
-//        RatePerHour newestRate=null;
+//        EmployeesRatePerHour newestRate=null;
 //
-//        ArrayList<RatePerHour> ratePerHoursList = ratesMapById.get(id);
+//        ArrayList<EmployeesRatePerHour> ratePerHoursList = ratesMapById.get(id);
 //
 //        if (ratePerHoursList != null) {
-//            for (RatePerHour rate:ratePerHoursList) {
+//            for (EmployeesRatePerHour rate:ratePerHoursList) {
 //
 //                if (newestRate == null) {
 //

@@ -7,7 +7,7 @@ import basisFx.appCore.grid.GridTablesBuilder;
 import basisFx.appCore.grid.TablesButtonKind;
 import basisFx.appCore.panels.Target;
 import basisFx.appCore.utils.Coordinate;
-import basisFx.domainModel.domaine.RatePerHour;
+import basisFx.domainModel.domaine.EmployeesRatePerHour;
 import basisFx.domainModel.domaine.RatePerHourTamplate;
 
 public class RatePerHourPanel extends Target {
@@ -21,7 +21,7 @@ public class RatePerHourPanel extends Target {
         GridTablesBuilder tr=new GridTablesBuilder();
         tr.setTitle("Шаблоны тарифных ставок ");
         tr.setTablesButtonKind(TablesButtonKind.Right);
-        tr.setDomainClass(RatePerHour.class);
+        tr.setDomainClass(RatePerHourTamplate.class);
         tr.setDataMapper(dataMapperFabric.ratePerHourTemplatesMapper());
         tr.setCoordinate(new Coordinate(10d, 10d, 10d, 10d));
         tr.setPanel(panel);

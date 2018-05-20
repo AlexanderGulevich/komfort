@@ -14,6 +14,12 @@ import java.util.logging.Logger;
 public class ExchangeRatesMapper extends DataMapper{
 
 
+    private static ExchangeRatesMapper ourInstance = new ExchangeRatesMapper();
+
+    public static ExchangeRatesMapper getInstance() {
+        return ourInstance;
+    }
+
     @Override
     public boolean isReadyToTransaction(DomainObject d) {
         ExchangeRates domain = (ExchangeRates) d;
