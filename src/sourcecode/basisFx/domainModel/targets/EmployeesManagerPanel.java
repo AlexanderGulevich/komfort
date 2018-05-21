@@ -3,12 +3,14 @@ package basisFx.domainModel.targets;
 import basisFx.appCore.controls.KindOfColumn;
 import basisFx.appCore.domainScetch.ComboBoxValue;
 import basisFx.appCore.elements.TableWrapper;
+import basisFx.appCore.fabrics.PopupFabric;
 import basisFx.appCore.grid.GridColWidth;
 import basisFx.appCore.grid.GridTablesBuilder;
 import basisFx.appCore.grid.KindOfGridCol;
 import basisFx.appCore.grid.TablesButtonKind;
 import basisFx.appCore.panels.Target;
 import basisFx.appCore.utils.Coordinate;
+import basisFx.appCore.windows.KindOfPopup;
 import basisFx.domainModel.domaine.EmployeesRatePerHour;
 import basisFx.domainModel.domaine.Employer;
 import basisFx.domainModel.domaine.RatePerHourTamplate;
@@ -24,7 +26,6 @@ public class EmployeesManagerPanel extends Target {
 
     @Override
     protected void configurate() {
-
 
         GridTablesBuilder observed=new GridTablesBuilder();
         observed.setGridColWidth(new GridColWidth(KindOfGridCol.percent,60d));

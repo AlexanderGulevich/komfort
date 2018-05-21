@@ -69,7 +69,13 @@ public class SingleGridTable extends GridTable {
     private void typeOfTableInspection() {
 
           if (kindOfTable==KindOfTable.SUBMIT){
-              System.err.println(kindOfTable.toString().toUpperCase());
+
+              System.err.println("\n");
+              System.err.println("Создана таблица в SingleGridTable");
+              System.err.println("Вид таблицы - "+kindOfTable.toString().toUpperCase());
+              System.err.println("\n");
+
+
             tableWrapper =AppNode.NodeBuilder.create()
                     .setId(CSSID.TABLE)
                     .setEditCreater(()-> {return editFabric.createMultipleSubmitEditCommit();})
@@ -81,8 +87,14 @@ public class SingleGridTable extends GridTable {
 
 
         } else if (kindOfTable==KindOfTable.OBSERVED){
-              System.err.println(kindOfTable.toString().toUpperCase());
-            tableWrapper = AppNode.NodeBuilder.create()
+
+              System.err.println("\n");
+              System.err.println("Создана таблица в SingleGridTable");
+              System.err.println("Вид таблицы - "+kindOfTable.toString().toUpperCase());
+              System.err.println("\n");
+
+
+              tableWrapper = AppNode.NodeBuilder.create()
                     .setId(CSSID.TABLE)
                     .setEditCreater(() -> {
                         return editFabric.createDefaultEditCommit();
@@ -95,6 +107,12 @@ public class SingleGridTable extends GridTable {
                     .refresh();
 
         }else {
+
+              System.err.println("\n");
+              System.err.println("Создана таблица в SingleGridTable");
+              System.err.println("Вид таблицы - ПРОСТАЯ ");
+              System.err.println("\n");
+
 
               tableWrapper = AppNode.NodeBuilder.create()
                       .setId(CSSID.TABLE)

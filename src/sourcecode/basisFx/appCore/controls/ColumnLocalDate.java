@@ -116,7 +116,7 @@ public class ColumnLocalDate <T,K>extends ColumnWrapper<T> {
             datePicker.setConverter(new CustomStringConverter());
             datePicker.setPromptText("");
             datePicker.setOnAction((e) -> {
-                System.out.println("Committed: " + datePicker.getValue().toString());
+//                System.out.println("Committed: " + datePicker.getValue().toString());
 //                commitEdit(LocalDate.from(datePicker.getRate().atStartOfDay(ZoneId.systemDefault()).toInstant()));
                 commitEdit(datePicker.getValue());
             });

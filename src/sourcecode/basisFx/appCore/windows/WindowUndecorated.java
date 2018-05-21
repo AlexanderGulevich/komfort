@@ -193,11 +193,8 @@ public class WindowUndecorated extends WindowFx{
 
 
           if (isPopup){
-              System.out.println("WindowUndecorated.setVisibleRoot isPopup    --- "+isPopup);
               Layers.setPopupVisibleRoot(visibleRoot);
           }else{
-
-              System.out.println("WindowUndecorated.setVisibleRoot isPopup    --- "+isPopup);
               Layers.setVisibleRoot(visibleRoot);
           }
      }

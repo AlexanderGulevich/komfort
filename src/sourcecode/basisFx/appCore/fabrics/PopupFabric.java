@@ -15,7 +15,7 @@ public class PopupFabric {
     }
     public  static PopupUndecorated popupUndecorated(KindOfPopup kindOfPopup,double fonSize, String text){
 
-        return new PopupUndecorated(kindOfPopup,text);
+        return new PopupUndecorated(kindOfPopup,fonSize,text);
 
     }
 

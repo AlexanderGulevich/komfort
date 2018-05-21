@@ -93,9 +93,15 @@ public class UnitOfWork {
 
             if (next.getDataMapper().isReadyToTransaction(next)) {
 
-                System.err.println("UnitOfWork --ПОПЫТКА КОММИТА НОВОГО ДОМЕНА=");
-
                 next.getDataMapper().insertDomainObject(next);
+
+                System.err.println("\n");
+                System.err.println("UnitOfWork ");
+                System.err.println("ПРОИЗОШЕЛ КОММИТ НОВОГО ДОМЕНА  в UnitOfWork next.getDataMapper().insertDomainObject(next);");
+                System.err.println("ДАТА МАППЕР----" + next.getDataMapper());
+                System.err.println("ДОМЕН----" + next);
+                System.err.println("\n");
+
 
             }else {
                 isReady=false;
@@ -122,10 +128,14 @@ public class UnitOfWork {
 
             if (next.getDataMapper().isReadyToTransaction(next)) {
 
-                System.err.println("UnitOfWork --КОММИТ ИЗМЕНЕННОГО ДОМЕНА");
-                System.err.println("UnitOfWork --ДАТА МАППЕР----" + next.getDataMapper());
                 next.getDataMapper().updateDomainObject(next);
 
+                System.err.println("\n");
+                System.err.println("UnitOfWork ");
+                System.err.println("ПРОИЗОШЕЛ КОММИТ ИЗМЕНЕННОГО ДОМЕНА");
+                System.err.println("ДАТА МАППЕР----" + next.getDataMapper());
+                System.err.println("ДОМЕН----" + next);
+                System.err.println("\n");
 
 
             }else {

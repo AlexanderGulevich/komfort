@@ -124,7 +124,7 @@ public class ColumnStringComboBox<T,K> extends ColumnWrapper<T>{
             comboBox.valueProperty().set(getNamedDomainObject());
             comboBox.setMinWidth(this.getWidth() - this.getGraphicTextGap() * 2);
             comboBox.setOnAction((e) -> {
-                System.err.println("Committed: " + comboBox.getSelectionModel().getSelectedItem());
+//                System.err.println("Committed: " + comboBox.getSelectionModel().getSelectedItem());
                 commitEdit(comboBox.getSelectionModel().getSelectedItem());
             });
             comboBox.focusedProperty().addListener((ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) -> {

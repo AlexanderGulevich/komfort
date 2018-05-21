@@ -17,8 +17,8 @@ import javafx.scene.layout.AnchorPane;
 public class PopupUndecorated {
 
     protected PanelFabric panelFabric =new PanelFabric();
-    protected double width=0;
-    protected double height=0;
+    protected Double width=null;
+    protected Double height=null;
     protected WindowUndecorated windowUndecorated;
     protected TextFabric textFabric=new TextFabric();
     protected ButtonFactory buttonFactory=new ButtonFactory();
@@ -86,13 +86,13 @@ public class PopupUndecorated {
                 .setFont(FontsStore.ROBOTO_LIGHT,fontSize)
                 .setText(message)
                 .setId(CSSID.PopupTextArea)
-                .createTextAreaWrapper().getElement();
+                .createTextAreaWrapper();
 
     }
 
     private void init(){
 
-        if (width!=0 && height!=0){
+        if (width!=null && height!=null){
 
             windowUndecorated = new WindowUndecorated(width, height, WindowType.POPUP);
 

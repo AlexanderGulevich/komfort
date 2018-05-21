@@ -81,7 +81,6 @@ public  class TableWrapper<T> extends AppNode implements Refreshable, Submitting
         ScrollBar verticalBar = (ScrollBar) table.lookup(".scroll-bar:vertical");
 //        ScrollBar verticalBar = getVerticalScrollbar();
 
-        System.err.println("verticalBarverticalBarverticalBar-----"+verticalBar);
 //        verticalBar
 //                .visibleProperty().addListener(new ChangeListener<Boolean>() {
 //            @Override
@@ -248,7 +247,6 @@ public  class TableWrapper<T> extends AppNode implements Refreshable, Submitting
     }
 
     public void setClickedDomain(DomainObject clickedDomain) {
-        System.out.println("setClickedDomain(DomainObject clickedDomain)");
         this.clickedDomain = clickedDomain;
     }
 
@@ -258,20 +256,24 @@ public  class TableWrapper<T> extends AppNode implements Refreshable, Submitting
 
     @Override
     public TableWrapper refresh(){
-        System.out.println("TableWrapper.refresh");
 
         if (isObserver){
-            System.out.println("TableWrapper refresh()---isObserver TRUE    clickedDomain---"+clickedDomain.getId());
+
             refresh(clickedDomain);
 
         }else {
-
             this.table.getItems().clear();
             this.list.clear();
             this.unitOfWork.clearStoredPojoesId();
-
             this.dataMapper.getDomainList(list);
             setDataMapperToList(list);
+
+            System.err.println("\n");
+            System.err.println("TableWrapper.refresh");
+            System.err.println("Обновление таблицы, которая не является обсервером");
+            System.err.println("Объекты - количество- "+table.getItems().size());
+            System.err.println("\n");
+
 
         }
 
@@ -281,7 +283,6 @@ public  class TableWrapper<T> extends AppNode implements Refreshable, Submitting
     @Override
     public TableWrapper refresh(DomainObject selectedDomainObject) {
 
-        System.out.println("TableWrapper.refresh(DomainObject selectedDomainObject)");
 
         this.table.getItems().clear();
         this.list.clear();
@@ -292,6 +293,13 @@ public  class TableWrapper<T> extends AppNode implements Refreshable, Submitting
 
         setDataMapperToList(list);
         this.dataMapper.getDomainListForObserverTables(list,selectedDomainObject);
+
+        System.err.println("\n");
+        System.err.println("TableWrapper.refresh");
+        System.err.println("Обновление таблицы-ОБСЕРВЕРА");
+        System.err.println("Объекты - количество- "+table.getItems().size());
+        System.err.println("clickedDomain---"+clickedDomain.getId());
+        System.err.println("\n");
 
         return this;
     }
@@ -318,13 +326,9 @@ public  class TableWrapper<T> extends AppNode implements Refreshable, Submitting
 
                         DomainObject selectedItem = table.getItems().get(nextIndex);
 
-                        System.out.println("table.setOnKeyPressed(event -> ");
-
                         for (TableWrapper observer : observers) {
 
                             if (selectedItem.getId() != null) {
-
-                                System.out.println("TableWrapper.setClickedRowDetection()   ---   for (TableWrapper observer : observers) {");
 
                                 observer.setClickedDomain(selectedItem);
                                 observer.dataMapper.setObservableDomaineId(selectedItem.getId());
@@ -336,24 +340,12 @@ public  class TableWrapper<T> extends AppNode implements Refreshable, Submitting
                                     for (TableWrapper concreteObserver : observers) {
                                         concreteObserver.refresh(selectedItem);
                                     }
-
                                 }
-
-
                             }
-
-
                         }
-
-
-
                     }
                 }
-
         );
-
-
-
     }
 
     private void setClickedRowDetection(){
@@ -368,46 +360,24 @@ public  class TableWrapper<T> extends AppNode implements Refreshable, Submitting
 
                    DomainObject domainObject=row.getItem();
 
-
                     for (TableWrapper observer : observers) {
 
                         if (domainObject.getId() !=null) {
 
-                            System.out.println("TableWrapper.setClickedRowDetection()   ---   for (TableWrapper observer : observers) {");
-
                             observer.setClickedDomain(domainObject);
                             observer.dataMapper.setObservableDomaineId(domainObject.getId());
 
-
-
                             if (!observers.isEmpty()){
-
 
                                 for (TableWrapper concreteObserver : observers) {
                                     concreteObserver.refresh(domainObject);
                                 }
-
                             }
-
-
                         }
-
-
                     }
-
-
-
-
                 }
             }
-
             );
-
-
-
-
-
-
             return row ;
         });
 

@@ -68,7 +68,7 @@ public class TableListener  implements ListChangeListener  {
                 if ( !unitOfWork.getStoredPojoesId().contains(domainObject.getId())) {
                     this.unitOfWork.setNewPojoes(domainObject);
 
-                    System.out.println("TableListener - new domainObject wasAdded");
+                    System.err.println("TableListener - Новый доменнй объект был добавлен в список");
 
                     this.table = (TableView<DomainObject>) this.tableWrapper.getElement();
 

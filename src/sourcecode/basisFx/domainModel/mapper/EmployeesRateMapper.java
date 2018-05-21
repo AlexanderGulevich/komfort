@@ -4,6 +4,8 @@ import basisFx.appCore.dataSource.DataMapper;
 import basisFx.appCore.dataSource.Db;
 import basisFx.appCore.domainScetch.ComboBoxValue;
 import basisFx.appCore.domainScetch.DomainObject;
+import basisFx.appCore.fabrics.PopupFabric;
+import basisFx.appCore.windows.KindOfPopup;
 import basisFx.domainModel.domaine.EmployeesRatePerHour;
 import javafx.collections.ObservableList;
 
@@ -26,9 +28,12 @@ public class EmployeesRateMapper extends DataMapper{
                 && employeesRatePerHour.getStartingDate() !=null
 
                 ) {
-            System.err.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
-            System.err.println("mployeesRatePerHour.getRate()==="+employeesRatePerHour.getRate());
-            System.err.println("employeesRatePerHour.getStartingDate()=="+employeesRatePerHour.getStartingDate());
+//            System.err.println("\n");
+//            System.err.println("isReadyToTransaction");
+//            System.err.println("mployeesRatePerHour.getRate()==="+employeesRatePerHour.getRate());
+//            System.err.println("employeesRatePerHour.getStartingDate()=="+employeesRatePerHour.getStartingDate());
+//            System.err.println("\n");
+
             return true;
         }
 
@@ -82,12 +87,12 @@ public class EmployeesRateMapper extends DataMapper{
     @Override
     public void updateDomainObject(DomainObject d)   {
 
-        System.err.println("111111111111111111111111111111EmployeesRateMapper.updateDomainObject");
 
         EmployeesRatePerHour domainObject = (EmployeesRatePerHour) d;
 
             try {
                 if(isReadyToTransaction(d)) {
+//                if(true) {
 
 
                     boolean check = checkUniquenessDateById(
@@ -131,39 +136,49 @@ public class EmployeesRateMapper extends DataMapper{
     public void insertDomainObject(DomainObject d)   {
         EmployeesRatePerHour domainObject=(EmployeesRatePerHour) d;
 
-            try {
-                if(isReadyToTransaction(d)) {
 
-                    System.err.println("1111111111EmployeesRateMapper.insertDomainObject".toUpperCase());
-                    boolean check = checkUniquenessDateById(
-                            "RateStore",
-                            "startDate",
-                            domainObject.getStartingDate(),
-                            "employerId",
-                            getObservableDomaineId()
+        System.err.println("<<<<<<<<<<<<<<<<<<<<<<<< ВСТАВКА ОБЪЕКТА >>>>>>>>>>>>>>>>>>>>>" );
+
+//            try {
+                if (isReadyToTransaction(domainObject)) {
+
+                    PopupFabric.popupUndecorated(
+                            KindOfPopup.MESSAGE, 20d,
+                            "MESSAGE"
                     );
-
-
-                    if (!check) {
-                        String expression = "INSERT INTO " + "RateStore "
-                                    + "("
-                                    + " rate ,  "
-                                    + " startDate,  "
-                                    + " employerId        "
-                                    + ") VALUES(?,?,?)";
-
-                        PreparedStatement pstmt = Db.getConnection().prepareStatement(expression);
-                        pstmt.setDouble(1, Double.valueOf(domainObject.getRate().getStringValue()));
-                        pstmt.setDate(2, Date.valueOf(domainObject.getStartingDate()));
-                        pstmt.setInt(3, getObservableDomaineId());
-
-                        pstmt.executeUpdate();
-                    }
-
+//                    boolean check = checkUniquenessDateById(
+//                            "RateStore",
+//                            "startDate",
+//                            domainObject.getStartingDate(),
+//                            "employerId",
+//                            getObservableDomaineId()
+//                    );
+//
+//                    if (!check) {
+//
+//                        String expression = "INSERT INTO " + "RateStore "
+//                                    + "("
+//                                    + " rate ,  "
+//                                    + " startDate,  "
+//                                    + " employerId        "
+//                                    + ") VALUES(?,?,?)";
+//
+//                        PreparedStatement pstmt = Db.getConnection().prepareStatement(expression);
+//                        pstmt.setDouble(1, Double.valueOf(domainObject.getRate().getStringValue()));
+//                        pstmt.setDate(2, Date.valueOf(domainObject.getStartingDate()));
+//                        pstmt.setInt(3, getObservableDomaineId());
+//
+////                        pstmt.executeUpdate();
+//
+//                        System.err.println("\n");
+//                        System.err.println("ОСУЩЕСТВЛЕНА ТРАНЗАКЦИЯ -  ВСТАВЛЕН ОБЪЕКТ В RateStore");
+//                        System.err.println("\n");
+//                    }
                 }
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+//
+//            } catch (SQLException e) {
+//                e.printStackTrace();
+//            }
 
     }
 }

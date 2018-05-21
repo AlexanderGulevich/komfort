@@ -215,16 +215,22 @@ public abstract class DataMapper   {
             pstmt.setDate(2,  Date.valueOf(date));
             ResultSet rs    = pstmt.executeQuery();
 
-
             if (rs.next()) {
-                System.err.println("11rs1111111111111111111111===DataMapper.checkUniquenessDateById --- "+rs.getDate("startDate")
-                +"----checkedEntityId---"+rs.getInt("employerId"));
 
+                System.err.println("\n");
+                System.err.println("DataMapper.checkUniquenessDateById () ");
+                System.err.println("Date-"+rs.getDate("startDate"));
+                System.err.println("EmployerId  "+rs.getInt("employerId"));
+                System.err.println("\n");
+
+                String message="В Базе Данных уже есть значение на дату: "
+                        + date.toString()+
+                        ". Создать новую запись с такой же датой нельзя." +
+                        " Вы можете изменить старую, либо удалить ее.";
 
                 PopupFabric.popupUndecorated(
                         KindOfPopup.MESSAGE, 20d,
-                        "В Базе Данных уже есть значение на дату: " + date.toString()+
-                        ". Создать новую запись с такой же датой нельзя. Вы можете изменить старую, либо удалить ее."
+                        message
                 );
 
                 return true;
