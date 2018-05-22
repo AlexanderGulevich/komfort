@@ -5,11 +5,20 @@
  */
 package basisFx.appCore.dataSource;
 
+import basisFx.appCore.fabrics.PopupFabric;
 import basisFx.appCore.interfaces.Refreshable;
 import basisFx.appCore.domainScetch.DomainObject;
+import basisFx.appCore.windows.KindOfPopup;
+import basisFx.appCore.windows.PopupUndecorated;
+import javafx.application.Platform;
+import javafx.scene.Scene;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
 import java.sql.SQLException;
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
 
 /**
  *
@@ -20,7 +29,6 @@ public class UnitOfWork {
     private List <DomainObject>newPojoes=new ArrayList<>();
     private List <DomainObject>removedPojoes=new ArrayList<>();
     private List <DomainObject>changedPojoes=new ArrayList<>();
-//    private Map<Integer,DomainObject>storedPojoesMap=new HashMap<>();
     private Refreshable refreshable;
     
     public void setNewPojoes(DomainObject p){
@@ -86,18 +94,24 @@ public class UnitOfWork {
     public void commitNew(){
 
         boolean isReady=true;
+        Set<DomainObject> domainObjects = Collections.newSetFromMap(new ConcurrentHashMap<DomainObject, Boolean>() {});
+        domainObjects.addAll(newPojoes);
 
 
-        for (Iterator<DomainObject> iterator = newPojoes.iterator(); iterator.hasNext();) {
+
+        for (Iterator<DomainObject> iterator = domainObjects.iterator(); iterator.hasNext();) {
             DomainObject next = iterator.next();
 
             if (next.getDataMapper().isReadyToTransaction(next)) {
 
                 next.getDataMapper().insertDomainObject(next);
 
+
+
+
                 System.err.println("\n");
                 System.err.println("UnitOfWork ");
-                System.err.println("ПРОИЗОШЕЛ КОММИТ НОВОГО ДОМЕНА  в UnitOfWork next.getDataMapper().insertDomainObject(next);");
+                System.err.println("ПРОИЗОШЕЛА попытка КОММИТА НОВОГО ДОМЕНА  в UnitOfWork next.getDataMapper().insertDomainObject(next);");
                 System.err.println("ДАТА МАППЕР----" + next.getDataMapper());
                 System.err.println("ДОМЕН----" + next);
                 System.err.println("\n");

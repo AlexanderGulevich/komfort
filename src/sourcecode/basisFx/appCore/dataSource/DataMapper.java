@@ -17,7 +17,9 @@ import java.util.Map;
 import basisFx.appCore.fabrics.PopupFabric;
 import basisFx.appCore.interfaces.StringGetterFromDomain;
 import basisFx.appCore.windows.KindOfPopup;
+import basisFx.appCore.windows.PopupUndecorated;
 import basisFx.domainModel.DataMapperFabric;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -217,21 +219,23 @@ public abstract class DataMapper   {
 
             if (rs.next()) {
 
-                System.err.println("\n");
-                System.err.println("DataMapper.checkUniquenessDateById () ");
-                System.err.println("Date-"+rs.getDate("startDate"));
-                System.err.println("EmployerId  "+rs.getInt("employerId"));
-                System.err.println("\n");
+//                System.err.println("\n");
+//                System.err.println("DataMapper.checkUniquenessDateById () ");
+//                System.err.println("Date-"+rs.getDate("startDate"));
+//                System.err.println("EmployerId  "+rs.getInt("employerId"));
+//                System.err.println("\n");
 
                 String message="В Базе Данных уже есть значение на дату: "
                         + date.toString()+
                         ". Создать новую запись с такой же датой нельзя." +
                         " Вы можете изменить старую, либо удалить ее.";
 
-                PopupFabric.popupUndecorated(
-                        KindOfPopup.MESSAGE, 20d,
-                        message
-                );
+                Platform.runLater(() -> {
+                    PopupUndecorated popup = PopupFabric.popupUndecorated(
+                            KindOfPopup.ERROR, message
+                    );
+                });
+
 
                 return true;
 

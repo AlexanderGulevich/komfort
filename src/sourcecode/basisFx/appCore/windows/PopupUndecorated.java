@@ -140,8 +140,6 @@ public class PopupUndecorated {
                 popupTitlePanel.getPanel(), new Coordinate(10d,0d,null,10d)
         );
 
-
-
         // icon
         textFabric.createText(
                 "  \uF06A ", CSSID.ALERT_ICON,
@@ -149,23 +147,14 @@ public class PopupUndecorated {
                 popupContentPanel.getPanel(), new Coordinate(10d,-10d,null,null)
         );
 
-
-
-
-
         buttonFactory.popupCloseOkButton(
                 popupContentPanel.getPanel(),
                 new Coordinate(null,15d,10d,null),
                 windowUndecorated.getStage()
         );
-
-
-
-
-
         windowUndecorated.windowShow();
 
 
-
     }
+
 }

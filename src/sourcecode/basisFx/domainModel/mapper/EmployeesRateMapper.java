@@ -4,8 +4,6 @@ import basisFx.appCore.dataSource.DataMapper;
 import basisFx.appCore.dataSource.Db;
 import basisFx.appCore.domainScetch.ComboBoxValue;
 import basisFx.appCore.domainScetch.DomainObject;
-import basisFx.appCore.fabrics.PopupFabric;
-import basisFx.appCore.windows.KindOfPopup;
 import basisFx.domainModel.domaine.EmployeesRatePerHour;
 import javafx.collections.ObservableList;
 
@@ -28,11 +26,6 @@ public class EmployeesRateMapper extends DataMapper{
                 && employeesRatePerHour.getStartingDate() !=null
 
                 ) {
-//            System.err.println("\n");
-//            System.err.println("isReadyToTransaction");
-//            System.err.println("mployeesRatePerHour.getRate()==="+employeesRatePerHour.getRate());
-//            System.err.println("employeesRatePerHour.getStartingDate()=="+employeesRatePerHour.getStartingDate());
-//            System.err.println("\n");
 
             return true;
         }
@@ -136,49 +129,39 @@ public class EmployeesRateMapper extends DataMapper{
     public void insertDomainObject(DomainObject d)   {
         EmployeesRatePerHour domainObject=(EmployeesRatePerHour) d;
 
-
-        System.err.println("<<<<<<<<<<<<<<<<<<<<<<<< ВСТАВКА ОБЪЕКТА >>>>>>>>>>>>>>>>>>>>>" );
-
-//            try {
+            try {
                 if (isReadyToTransaction(domainObject)) {
 
-                    PopupFabric.popupUndecorated(
-                            KindOfPopup.MESSAGE, 20d,
-                            "MESSAGE"
+                    boolean check = checkUniquenessDateById(
+                            "RateStore",
+                            "startDate",
+                            domainObject.getStartingDate(),
+                            "employerId",
+                            getObservableDomaineId()
                     );
-//                    boolean check = checkUniquenessDateById(
-//                            "RateStore",
-//                            "startDate",
-//                            domainObject.getStartingDate(),
-//                            "employerId",
-//                            getObservableDomaineId()
-//                    );
+
 //
-//                    if (!check) {
-//
-//                        String expression = "INSERT INTO " + "RateStore "
-//                                    + "("
-//                                    + " rate ,  "
-//                                    + " startDate,  "
-//                                    + " employerId        "
-//                                    + ") VALUES(?,?,?)";
-//
-//                        PreparedStatement pstmt = Db.getConnection().prepareStatement(expression);
-//                        pstmt.setDouble(1, Double.valueOf(domainObject.getRate().getStringValue()));
-//                        pstmt.setDate(2, Date.valueOf(domainObject.getStartingDate()));
-//                        pstmt.setInt(3, getObservableDomaineId());
-//
-////                        pstmt.executeUpdate();
-//
-//                        System.err.println("\n");
-//                        System.err.println("ОСУЩЕСТВЛЕНА ТРАНЗАКЦИЯ -  ВСТАВЛЕН ОБЪЕКТ В RateStore");
-//                        System.err.println("\n");
-//                    }
+                    if (!check) {
+
+                        String expression = "INSERT INTO " + "RateStore "
+                                    + "("
+                                    + " rate ,  "
+                                    + " startDate,  "
+                                    + " employerId        "
+                                    + ") VALUES(?,?,?)";
+
+                        PreparedStatement pstmt = Db.getConnection().prepareStatement(expression);
+                        pstmt.setDouble(1, Double.valueOf(domainObject.getRate().getStringValue()));
+                        pstmt.setDate(2, Date.valueOf(domainObject.getStartingDate()));
+                        pstmt.setInt(3, getObservableDomaineId());
+
+                        pstmt.executeUpdate();
+
+                    }
                 }
-//
-//            } catch (SQLException e) {
-//                e.printStackTrace();
-//            }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
 
     }
 }
