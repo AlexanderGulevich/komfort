@@ -78,7 +78,7 @@ public class ExchangeRatesMapper extends DataMapper{
         if(isReadyToTransaction(d)) {
 
 
-            ExchangeRates domaine= (ExchangeRates) d;
+            ExchangeRates domainObject= (ExchangeRates) d;
             String expression = "UPDATE "+    "ExchangeRates"+ " SET  " +
                     " rate = ?," +
                     " startDate = ?," +
@@ -87,17 +87,27 @@ public class ExchangeRatesMapper extends DataMapper{
 
             PreparedStatement pstmt = null;
 
+            boolean check = checkUniquenessDateById(
+                    "ExchangeRates",
+                    "startDate",
+                    domainObject.getStartingDate(),
+                    "currencyId",
+                    getObservableDomaineId()
+            );
 
-            try {
-                pstmt = Db.getConnection().prepareStatement(expression);
-                pstmt.setDouble(1, Double.valueOf(domaine.getExchangeRate()));
-                pstmt.setDate(2, Date.valueOf(domaine.getStartingDate()));
-                pstmt.setInt(3, domaine.getCurrencyId());
-                pstmt.setInt(4, domaine.getId());
 
-                pstmt.executeUpdate();
-            } catch (SQLException e) {
-                e.printStackTrace();
+            if (!check) {
+                try {
+                    pstmt = Db.getConnection().prepareStatement(expression);
+                    pstmt.setDouble(1, Double.valueOf(domainObject.getExchangeRate()));
+                    pstmt.setDate(2, Date.valueOf(domainObject.getStartingDate()));
+                    pstmt.setInt(3, domainObject.getCurrencyId());
+                    pstmt.setInt(4, domainObject.getId());
+
+                    pstmt.executeUpdate();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
             }
 
         }
@@ -115,6 +125,14 @@ public class ExchangeRatesMapper extends DataMapper{
         try {
             if(isReadyToTransaction(d)) {
 
+                boolean check = checkUniquenessDateById(
+                        "ExchangeRates",
+                        "startDate",
+                        domainObject.getStartingDate(),
+                        "currencyId",
+                        getObservableDomaineId()
+                );
+                if (!check) {
                     String expression = "INSERT INTO " + "ExchangeRates "
                             + "("
                             + " rate ,  "
@@ -128,6 +146,7 @@ public class ExchangeRatesMapper extends DataMapper{
                     pstmt.setInt(3, getObservableDomaineId());
 
                     pstmt.executeUpdate();
+                }
 
             }
         } catch (SQLException e) {

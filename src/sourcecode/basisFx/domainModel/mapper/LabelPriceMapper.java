@@ -78,7 +78,7 @@ public class LabelPriceMapper extends DataMapper {
     public void updateDomainObject(DomainObject d)   {
         if(isReadyToTransaction(d)) {
 
-            Price price= (Price) d;
+            Price domainObject= (Price) d;
 
             String expression = "UPDATE "+    "LabelPriceStore"+ " SET  " +
                     " price = ?," +
@@ -88,16 +88,27 @@ public class LabelPriceMapper extends DataMapper {
 
             PreparedStatement pstmt = null;
 
-            try {
-                pstmt = Db.getConnection().prepareStatement(expression);
+            boolean check = checkUniquenessDateById(
+                    "LabelPriceStore",
+                    "startDate",
+                    domainObject.getStartingDate(),
+                    "labelId",
+                    getObservableDomaineId()
+            );
 
-                pstmt.setDouble(1, Double.valueOf(price.getPrice()));
-                pstmt.setDate(2, Date.valueOf(price.getStartingDate()));
-                pstmt.setInt(3, price.getProductId());
-                pstmt.setInt(4, price.getId());
-                pstmt.executeUpdate();
-            } catch (SQLException e) {
-                e.printStackTrace();
+
+            if (!check) {
+                try {
+                    pstmt = Db.getConnection().prepareStatement(expression);
+
+                    pstmt.setDouble(1, Double.valueOf(domainObject.getPrice()));
+                    pstmt.setDate(2, Date.valueOf(domainObject.getStartingDate()));
+                    pstmt.setInt(3, domainObject.getProductId());
+                    pstmt.setInt(4, domainObject.getId());
+                    pstmt.executeUpdate();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
             }
         }
     }
@@ -120,16 +131,26 @@ public class LabelPriceMapper extends DataMapper {
                         + " labelId        "
                         + ") VALUES(?,?,?)";
 
-            try {
-                PreparedStatement pstmt = Db.getConnection().prepareStatement(expression);
+            boolean check = checkUniquenessDateById(
+                    "LabelPriceStore",
+                    "startDate",
+                    domainObject.getStartingDate(),
+                    "labelId",
+                    getObservableDomaineId()
+            );
 
-                pstmt.setDouble(1, Double.valueOf(domainObject.getPrice()));
-                pstmt.setDate(2, Date.valueOf(domainObject.getStartingDate()));
-                pstmt.setInt(3, getObservableDomaineId());
+            if (!check) {
+                try {
+                    PreparedStatement pstmt = Db.getConnection().prepareStatement(expression);
 
-                pstmt.executeUpdate();
-            } catch (SQLException e) {
-                e.printStackTrace();
+                    pstmt.setDouble(1, Double.valueOf(domainObject.getPrice()));
+                    pstmt.setDate(2, Date.valueOf(domainObject.getStartingDate()));
+                    pstmt.setInt(3, getObservableDomaineId());
+
+                    pstmt.executeUpdate();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
             }
         }
     }

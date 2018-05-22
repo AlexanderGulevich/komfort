@@ -85,8 +85,6 @@ public class EmployeesRateMapper extends DataMapper{
 
             try {
                 if(isReadyToTransaction(d)) {
-//                if(true) {
-
 
                     boolean check = checkUniquenessDateById(
                             "RateStore",

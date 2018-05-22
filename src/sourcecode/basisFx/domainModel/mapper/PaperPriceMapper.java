@@ -82,7 +82,7 @@ public class PaperPriceMapper extends DataMapper {
 
         if(isReadyToTransaction(d)) {
 
-            Price price= (Price) d;
+            Price domainObject= (Price) d;
 
             String expression = "UPDATE "+    "PaperPriceStore"+ " SET  " +
                     " price = ?," +
@@ -92,16 +92,27 @@ public class PaperPriceMapper extends DataMapper {
 
             PreparedStatement pstmt = null;
 
-            try {
-                pstmt = Db.getConnection().prepareStatement(expression);
 
-                pstmt.setDouble(1, Double.valueOf(price.getPrice()));
-                pstmt.setDate(2, Date.valueOf(price.getStartingDate()));
-                pstmt.setInt(3, price.getProductId());
-                pstmt.setInt(4, price.getId());
-                pstmt.executeUpdate();
-            } catch (SQLException e) {
-                e.printStackTrace();
+            boolean check = checkUniquenessDateById(
+                    "PaperPriceStore",
+                    "startDate",
+                    domainObject.getStartingDate(),
+                    "paperId",
+                    getObservableDomaineId()
+            );
+
+            if (!check) {
+                try {
+                    pstmt = Db.getConnection().prepareStatement(expression);
+
+                    pstmt.setDouble(1, Double.valueOf(domainObject.getPrice()));
+                    pstmt.setDate(2, Date.valueOf(domainObject.getStartingDate()));
+                    pstmt.setInt(3, domainObject.getProductId());
+                    pstmt.setInt(4, domainObject.getId());
+                    pstmt.executeUpdate();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
             }
 
         }
@@ -126,6 +137,15 @@ public class PaperPriceMapper extends DataMapper {
                             + " paperId        "
                             + ") VALUES(?,?,?)";
 
+                boolean check = checkUniquenessDateById(
+                        "PaperPriceStore",
+                        "startDate",
+                        domainObject.getStartingDate(),
+                        "paperId",
+                        getObservableDomaineId()
+                );
+
+                if (!check) {
                     PreparedStatement pstmt = Db.getConnection().prepareStatement(expression);
 
                     pstmt.setDouble(1, Double.valueOf(domainObject.getPrice()));
@@ -133,6 +153,7 @@ public class PaperPriceMapper extends DataMapper {
                     pstmt.setInt(3, getObservableDomaineId());
 
                     pstmt.executeUpdate();
+                }
 
             }
         } catch (SQLException e) {

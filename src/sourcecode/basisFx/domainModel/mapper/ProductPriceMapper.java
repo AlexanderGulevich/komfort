@@ -79,7 +79,7 @@ public class ProductPriceMapper extends DataMapper {
             if(isReadyToTransaction(d)) {
                 System.out.println("Price.updateDomainObject".toUpperCase());
 
-                Price price= (Price) d;
+                Price domainObject= (Price) d;
 
                 String expression = "UPDATE "+    " ProductPriceStore"+ " SET  " +
                         " price = ?," +
@@ -87,15 +87,26 @@ public class ProductPriceMapper extends DataMapper {
                         " productId = ? " +
                         " where id =?";
 
-                PreparedStatement pstmt = null;
+
+                boolean check = checkUniquenessDateById(
+                        "ProductPriceStore",
+                        "startDate",
+                        domainObject.getStartingDate(),
+                        "productId",
+                        getObservableDomaineId()
+                );
+
+                if (!check) {
+                    PreparedStatement pstmt = null;
 
                     pstmt = Db.getConnection().prepareStatement(expression);
 
-                    pstmt.setDouble(1, Double.valueOf(price.getPrice()));
-                    pstmt.setDate(2, Date.valueOf(price.getStartingDate()));
-                    pstmt.setInt(3, price.getProductId());
-                    pstmt.setInt(4, price.getId());
+                    pstmt.setDouble(1, Double.valueOf(domainObject.getPrice()));
+                    pstmt.setDate(2, Date.valueOf(domainObject.getStartingDate()));
+                    pstmt.setInt(3, domainObject.getProductId());
+                    pstmt.setInt(4, domainObject.getId());
                     pstmt.executeUpdate();
+                }
 
             }
         } catch (SQLException e) {
@@ -122,6 +133,17 @@ public class ProductPriceMapper extends DataMapper {
                             + " productId        "
                             + ") VALUES(?,?,?)";
 
+
+                boolean check = checkUniquenessDateById(
+                        "ProductPriceStore",
+                        "startDate",
+                        domainObject.getStartingDate(),
+                        "productId",
+                        getObservableDomaineId()
+                );
+
+
+                if (!check) {
                     PreparedStatement pstmt = Db.getConnection().prepareStatement(expression);
 
                     pstmt.setDouble(1, Double.valueOf(domainObject.getPrice()));
@@ -129,6 +151,7 @@ public class ProductPriceMapper extends DataMapper {
                     pstmt.setInt(3, getObservableDomaineId());
 
                     pstmt.executeUpdate();
+                }
 
 
             }
