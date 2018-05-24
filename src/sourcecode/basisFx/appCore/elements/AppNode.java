@@ -484,6 +484,7 @@ public abstract class AppNode  {
         public    TextAreaWrapper createTextAreaWrapper (){
             return new  TextAreaWrapper(this);
         }
+        public    AreaChartWrapper createAreaChartWrapper (){return new  AreaChartWrapper(this); }
 
 
     }

@@ -50,7 +50,7 @@ public class MainMenuSketch extends MenuSketch{
                createVertical("Статистика", null, composit.COMPOSITE,"\uF080", FontsStore.FAWESOME5SOLID,iconSize)
                         .addInerLevel(
                                create("Затраты", null, composit.SIMPLE),
-                               create("Курсы", null, composit.SIMPLE),
+                               create("Курсы", fm.exchangeRatesChartPanel(), composit.SIMPLE),
                                create("Выход", null, composit.SIMPLE),
                                create("Рентабельность", null, composit.SIMPLE)
                        ),

@@ -62,6 +62,9 @@ public class TargetFM {
     public EmployeesFiredPanel employeesFiredPanel(){
         return new EmployeesFiredPanel();
     }
+    public ExchangeRatesChartPanel exchangeRatesChartPanel(){
+        return new ExchangeRatesChartPanel();
+    }
 
 
 
