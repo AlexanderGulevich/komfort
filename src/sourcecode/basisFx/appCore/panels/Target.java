@@ -35,6 +35,7 @@ public abstract class Target {
     protected GridPaneWrapper gridPaneWrapper;
     protected GridFabric gridFabric=new GridFabric();
     protected GridPane commonGridPane;
+    protected ChartFabric chartFabric=new ChartFabric();
 
 
     protected abstract void configurate();

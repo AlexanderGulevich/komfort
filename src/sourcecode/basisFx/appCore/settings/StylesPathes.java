@@ -22,6 +22,7 @@ public enum StylesPathes {
     COMBOBOX("/res/css/combobox.css"),
     DATAPICKER("/res/css/dataPicker.css"),
     WINDOWS("/res/css/windows.css"),
+    CHART("/res/css/chart.css"),
     POPUP("/res/css/popup.css");
 
 
