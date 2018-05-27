@@ -1,0 +1,46 @@
+
+
+def echo(mess) {
+    print mess
+}
+def info() {
+    println "\n Фаза конфинурации"
+    print " buildDir "  print  project.buildDir
+    println  "\n rootDir:      "+ project.rootDir +"\n";
+
+
+    tasks.whenTaskAdded { task ->
+        task.ext.mes = 'добавлена задача '+task
+        println task.mes
+    }
+
+
+    gradle.taskGraph.whenReady {taskGraph ->
+        println "\n\n||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||"
+        println "Found " + taskGraph.allTasks.size() + " tasks."
+        taskGraph.allTasks.forEach { task ->
+            print"\n"
+            print task
+            print  "  --dependsOn-- "
+            task.dependsOn.forEach { dep ->
+                print   dep
+            }
+        }
+        println "\n\n||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n\n"
+
+    }
+
+
+    println "\n КОНФИГУРАЦИИ \n"
+    configurations.each{ it->println it }
+    println "\n\n  "
+}
+
+
+
+
+task hello {
+    doLast {
+        info()
+    }
+}

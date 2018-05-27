@@ -15,21 +15,38 @@ public class NumberSeries {
     }
 
 
-    public void setSeries(String name, NumberAxisValue...axisValues){
+    public Series createSeries(String name){
 
-        XYChart.Series<Number, Number> series=new XYChart.Series<>();
-        series.setName(name);
+        Series series = new Series(name);
 
-        for (NumberAxisValue axisValue : axisValues) {
-            new XYChart.Data<>(axisValue.getxVal(), axisValue.getyYal());
-        }
-
-        data.add(series);
+        return series;
 
     }
 
 
     public ObservableList<XYChart.Series<Number, Number>> getData() {
         return data;
+    }
+
+
+    public class Series{
+        XYChart.Series<Number, Number> series;
+
+        public Series(String name) {
+            series=new XYChart.Series<>();
+            series.setName(name);
+            data.add(series);
+
+        }
+
+
+       public void setAxisValue(NumberAxisValue axisValue){
+           XYChart.Data<Number, Number> data = new XYChart.Data<>(axisValue.getxVal(), axisValue.getyYal());
+           series.getData().add(data);
+       }
+
+
+
+
     }
 }

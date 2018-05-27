@@ -12,6 +12,7 @@ import java.sql.SQLException;
  *
  * @author Alek
  */
+//" FOREIGN KEY (currencyId) REFERENCES Currency(id)  ON DELETE CASCADE"
 public class DbSchema {
 
     public DbSchema() {
