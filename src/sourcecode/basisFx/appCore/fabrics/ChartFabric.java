@@ -6,12 +6,15 @@ import basisFx.appCore.chart.NumberSeries;
 import basisFx.appCore.elements.AppNode;
 import basisFx.appCore.elements.AreaChartWrapper;
 import javafx.scene.chart.AreaChart;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
-//import org.apache.log4j.Logger;
 
 public class ChartFabric {
-
-//    private static final Logger log = Logger.getLogger(ChartFabric.class);
+    static {
+        System.setProperty("log4j2.xml", "res/log4j/log4j2.xml");
+    }
+    static final Logger logger = LogManager.getLogger(ChartFabric.class.getName());
 
     public AreaChart areaChart(AreaChartBuilder builder){
 
@@ -44,8 +47,7 @@ public class ChartFabric {
         AreaChart chart = (AreaChart) areaChartWrapper.getElement();
 
         chart.setData(numberSeries.getData());
-//        log.info(" log.info");
-//        log.error("  log.error");
+        logger.info(" log.info");
 
 
         return chart;
