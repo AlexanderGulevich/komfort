@@ -15,7 +15,7 @@ import javafx.stage.Stage;
 public class LineChartWithHover extends Application {
   @SuppressWarnings("unchecked")
   @Override public void start(Stage stage) {
-    final LineChart lineChart = new LineChart(
+    final LineChart lineChart = new  LineChart(
         new NumberAxis(), new NumberAxis(),
         FXCollections.observableArrayList(
             new XYChart.Series(

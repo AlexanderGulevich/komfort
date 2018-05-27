@@ -40,7 +40,6 @@ public class MainMenuSketch extends MenuSketch{
 
                createVertical("Проводки", null, composit.COMPOSITE,"\uE52D", FontsStore.MATERIAL_ICONS,iconSize)
                        .addInerLevel(
-
                                create("Дневная выработка", fm.dailyOutputPanel(), composit.SIMPLE)
                        ),
 
