@@ -30,7 +30,8 @@ public class EmployeesActualRateMapper extends DataMapper {
                     " from RATESTORE where " +
                      "(EMPLOYERID, STARTDATE) " +
                      " in " +
-                     " (select EMPLOYERID, max(STARTDATE) as date from RATESTORE group by EMPLOYERID) ";
+                     " (select EMPLOYERID, max(STARTDATE) " +
+                            "as date from RATESTORE group by EMPLOYERID) ";
 
             Statement stmt  = Db.getConnection().createStatement();
             ResultSet rs    = stmt.executeQuery(expression);

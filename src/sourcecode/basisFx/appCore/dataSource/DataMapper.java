@@ -248,6 +248,14 @@ public abstract class DataMapper   {
         return false;
     }
 
+
+
+
+    private EmployeesRatePerHour getNewest(Integer id){}
+
+
+
+
 //    private EmployeesRatePerHour getNewest(Integer id){
 //
 //        EmployeesRatePerHour newestRate=null;
@@ -276,6 +284,14 @@ public abstract class DataMapper   {
 //
 //    }
 
+
+//
+//    SELECT * FROM PRODUCTPRICESTORE
+//    WHERE PRODUCTID=2
+//    AND STARTDATE=(
+//            SELECT MAX(STARTDATE) FROM PRODUCTPRICESTORE
+//    WHERE PRODUCTID=2
+//	)
 
 }
  

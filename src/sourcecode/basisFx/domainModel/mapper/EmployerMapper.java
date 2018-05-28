@@ -31,7 +31,9 @@ public class EmployerMapper extends DataMapper {
     public void getDomainList(ObservableList list)  {
 
         try {
-            String expression="SELECT * FROM " +"Employer"+" ORDER BY ID";
+            String expression="SELECT * FROM " +"Employer" +
+                    "where isFired = false " +
+                    " "+" ORDER BY ID";
 
             Statement stmt  = Db.getConnection().createStatement();
 
@@ -43,11 +45,16 @@ public class EmployerMapper extends DataMapper {
                 Employer pojo=new Employer();
 
                 int id=rs.getInt("id");
+
+                int externalId=rs.getInt("PRODUCTID");
+
                 pojo.setId(id);
 
                 pojo.setName(rs.getString("name"));
+
                 pojo.setIsFired(rs.getBoolean("isFired"));
-//todo newest stop run
+                dataMapperFabric.employeesRateMapper().t;
+                pojo.setRate();
 //                EmployeesRatePerHour rate=getNewest(rs.getInt("id"));
 //
 //                if (rate != null) {
