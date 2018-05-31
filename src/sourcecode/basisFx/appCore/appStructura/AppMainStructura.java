@@ -8,7 +8,7 @@ import basisFx.appCore.fabrics.WindowFabric;
 
 public abstract class AppMainStructura {
 
-    protected WindowFabric windowFabric=new WindowFabric();
+
     protected TitleFabric titleFabric =new TitleFabric();
     protected PanelFabric panelFabric =new PanelFabric();
     protected MenuTrigger menuTrigger =new MenuTrigger();

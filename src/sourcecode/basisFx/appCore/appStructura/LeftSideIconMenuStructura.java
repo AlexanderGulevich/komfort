@@ -4,16 +4,29 @@ import basisFx.appCore.menu.MenuCreator;
 import basisFx.appCore.panels.AbstractPanel;
 import basisFx.appCore.registry.Layers;
 import basisFx.appCore.utils.Coordinate;
+import basisFx.appCore.windows.WindowFx;
 import basisFx.domainModel.MainMenuSketch;
 import basisFx.appCore.settings.FontsStore;
 import basisFx.appCore.settings.Settings;
+import javafx.geometry.Insets;
 import javafx.stage.Stage;
 
 public class LeftSideIconMenuStructura extends AppMainStructura {
 
-    public LeftSideIconMenuStructura(Stage primaryStage ) {
+    public LeftSideIconMenuStructura(WindowFx window ) {
 
-        windowFabric.unDecoratedWindow(Settings.WIDTH, Settings.HEIGHT, primaryStage)
+//Корневой узел прозрачный для безрамкового окна
+        window.setPanel(panelFabric.transparentRootPanel(new Insets(3d, 3d, 3d, 3d)));
+
+//Дочерняя панель к корневому узлу, явл. первой видимой
+        window.setPanel(panelFabric.visibleRootPanel(new Coordinate(0d, 0d, 0d, 0d)));
+
+//ПАНЕЛЬ ДИНАМИЧЕСКОГО КОНТНЕНТА
+        window.setPanel(panelFabric.contentPanel(
+                        new AbstractPanel.PanelBuilder()
+                                .setPanelCoordinate(new Coordinate(80d,0d,0d,60d))
+                                .setParent(Layers.getVisibleRoot())
+                ))
                 .setPanel(panelFabric.contentPanel(//ПАНЕЛЬ ДИНАМИЧЕСКОГО КОНТНЕНТА
                         new AbstractPanel.PanelBuilder()
                                 .setPanelCoordinate(new Coordinate(80d,0d,0d,60d))

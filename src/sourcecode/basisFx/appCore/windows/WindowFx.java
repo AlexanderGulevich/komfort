@@ -1,8 +1,13 @@
 package basisFx.appCore.windows;
 
+import basisFx.appCore.elements.AppNode;
+import basisFx.appCore.panels.AbstractPanel;
+import basisFx.appCore.registry.Layers;
+import basisFx.appCore.settings.CSSID;
 import basisFx.appCore.utils.Coordinate;
 import basisFx.appCore.utils.StylesLoader;
 import basisFx.appCore.fabrics.EventFactory;
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -18,17 +23,10 @@ public abstract class WindowFx {
     protected String id;
     protected double width;
     protected double height;
-    protected double top;
-    protected double right;
-    protected double bottom;
     protected double left;
     protected  Stage stage;
     protected  Scene scene;
     protected  AnchorPane root;
-    protected AnchorPane visibleRoot;
-    protected AnchorPane contentLauer;
-    protected Boolean iconIneded;
-    protected Coordinate titlePanelCoordinate;
     protected EventFactory eventFactory=EventFactory.getInstance();
     protected boolean  isPopup;
  
@@ -36,7 +34,6 @@ public abstract class WindowFx {
     public abstract WindowFx windowShow();
 
     public void setIsPopup(boolean popup) {
-
         isPopup = popup;
     }
 
@@ -46,22 +43,20 @@ public abstract class WindowFx {
 
     protected void windowInit(){
         
-      this.scene= new Scene(root,width,height);
-
+      this.scene= new Scene(Layers.getTransparentRoot(),width,height);
       stage.setScene(scene);
-
       StylesLoader.loadAll(scene);
-      //TODO scenicView
-//      ScenicView.show(scene);
-
 
     }
 
-    public WindowFx getWindow(){
-        return this;
+    public Scene getScene() {
+        return scene;
     }
-     public void windowClose(){
-         stage.close();
-     }
+
+    public void setPanel(AbstractPanel p){
+        p.setStage(stage);
+        p.init();
+        p.register();
+    }
         
 }

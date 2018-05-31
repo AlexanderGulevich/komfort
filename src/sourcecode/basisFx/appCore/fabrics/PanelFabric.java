@@ -6,6 +6,8 @@
 package basisFx.appCore.fabrics;
 
 import basisFx.appCore.panels.*;
+import basisFx.appCore.utils.Coordinate;
+import javafx.geometry.Insets;
 
 /**
  *
@@ -17,6 +19,16 @@ public class PanelFabric {
 
         return new TitlePanel(b);
 
+    };
+
+    public TransparentRootPanel transparentRootPanel(Insets insets){
+        AbstractPanel.PanelBuilder builder = new AbstractPanel.PanelBuilder().setInsets(insets);
+        return new TransparentRootPanel(builder);
+    };
+
+    public VisibleRootPanel visibleRootPanel(Coordinate coordinate){
+        AbstractPanel.PanelBuilder builder = new AbstractPanel.PanelBuilder().setPanelCoordinate(coordinate);
+        return new VisibleRootPanel(builder);
     };
 
     public PopupTitlePanel popupTitlePanel(AbstractPanel.PanelBuilder b){

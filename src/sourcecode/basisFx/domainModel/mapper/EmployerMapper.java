@@ -53,8 +53,8 @@ public class EmployerMapper extends DataMapper {
                 pojo.setName(rs.getString("name"));
 
                 pojo.setIsFired(rs.getBoolean("isFired"));
-                dataMapperFabric.employeesRateMapper().t;
-                pojo.setRate();
+//                dataMapperFabric.employeesRateMapper().t;
+//                pojo.setRate();
 //                EmployeesRatePerHour rate=getNewest(rs.getInt("id"));
 //
 //                if (rate != null) {

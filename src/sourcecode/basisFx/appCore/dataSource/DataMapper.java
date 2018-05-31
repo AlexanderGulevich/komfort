@@ -251,7 +251,7 @@ public abstract class DataMapper   {
 
 
 
-    private EmployeesRatePerHour getNewest(Integer id){}
+//    private EmployeesRatePerHour getNewest(Integer id){}
 
 
 

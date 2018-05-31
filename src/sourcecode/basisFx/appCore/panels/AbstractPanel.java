@@ -94,7 +94,7 @@ public abstract class AbstractPanel implements Initiated{
             return this;
         }
         
-         public PanelBuilder setPadding(Insets i) {
+         public PanelBuilder setInsets(Insets i) {
            
           this.insects=i;
           return this;

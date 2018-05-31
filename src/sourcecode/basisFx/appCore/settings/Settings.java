@@ -13,9 +13,6 @@ package basisFx.appCore.settings;
  */
 public abstract class Settings {
 
- public static final String PROJECTDIR="/basisFx/";
- public static final String RESOURCEDIR="/res/";
- public static final String TITLEICONDIR=RESOURCEDIR+"img/bank.png";
  public static final double WIDTH= 1000d;
  public static final double HEIGHT= 600d ;
  public static final double Preloader_WIDTH= 600d;

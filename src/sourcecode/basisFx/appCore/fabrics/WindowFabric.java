@@ -20,7 +20,7 @@ public class WindowFabric {
         return new WindowUndecorated(width, height, stage);
 
     }
-     public  WindowFx decoratedWindow(double width, double height, Stage stage){
+     public  WindowDecorated decoratedWindow(double width, double height, Stage stage){
      
          return new WindowDecorated(width, height, stage);
 

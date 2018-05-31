@@ -11,6 +11,7 @@ import basisFx.appCore.registry.Layers;
 import basisFx.appCore.settings.CSSID;
 import basisFx.appCore.settings.FontsStore;
 import basisFx.appCore.utils.Coordinate;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.layout.AnchorPane;
 
@@ -32,9 +33,9 @@ public class PopupUndecorated {
 
 
     public PopupUndecorated(double width,double height,KindOfPopup kindOfPopup, String text) {
-         this.height = height;
-         this.width=width;
-         this.kindOfPopup=kindOfPopup;
+        this.height = height;
+        this.width=width;
+        this.kindOfPopup=kindOfPopup;
 
         selectTitle();
         init();
@@ -79,7 +80,6 @@ public class PopupUndecorated {
             fontSize=25d;
         }
 
-
         AppNode.NodeBuilder.create()
                 .setParent(popupContentPanel.getPanel())
                 .setCoordinate( new Coordinate(10d,80d,10d,10d))
@@ -111,15 +111,42 @@ public class PopupUndecorated {
 
         );
 
-         popupContentPanel = panelFabric.popupContentPanel(
+
+
+        AnchorPane popupTransparentRoot=(AnchorPane) AppNode.NodeBuilder.create()
+                .setId(CSSID.TRANSPARENT_ROOT)
+                .setInsects(new Insets(3d, 3d, 3d, 3d))
+                .createAnchorPanelWrapper()
+                .getElement();
+
+
+        Layers.setPopupTransparentRoot(popupTransparentRoot);
+
+
+
+        AnchorPane visibleRoot
+                = (AnchorPane) AppNode.NodeBuilder.create()
+                .setCoordinate( 0d, 0d, 0d, 0d)
+                .setId(CSSID.VISIBLE_ROOT)
+                .setParent(Layers.getPopupTransparentRoot())
+                .setStage(windowUndecorated.getStage())
+                .createAnchorPanelWrapper()
+                .getElement();
+
+        Layers.setPopupVisibleRoot(visibleRoot);
+
+
+
+
+
+
+        popupContentPanel = panelFabric.popupContentPanel(
                 new AbstractPanel.PanelBuilder()
                         .setHeight(45d)
                         .setStage(windowUndecorated.getStage())
                         .setPanelCoordinate(new Coordinate(45d, 5d, 5d, 5d))
                         .setParent(Layers.getPopupVisibleRoot())
         );
-
-
 
          popupMessageTextPanel =  (AnchorPane) AppNode.NodeBuilder.create()
                 .setId(CSSID.popupMessageTextPanel)
@@ -128,11 +155,8 @@ public class PopupUndecorated {
                 .setParent(popupContentPanel.getPanel())
                 .createAnchorPanelWrapper().getElement();
 
-
-
         windowUndecorated.setPanel(popupTitlePanel);
         windowUndecorated.setPanel(popupContentPanel);
-
 
         textFabric.createLabel(
                 title,CSSID.PopupTitleText,

@@ -36,9 +36,9 @@ public class TimeRecordingPanel extends Target {
         tr.setColumn(columnFabric.stringColumn(KindOfColumn.STRING,"ФИО ","name",0.3d,true,
                 (obj,val)->((Employer)obj).setName((String)val))
         );
-        tr.setColumn(columnFabric.stringColumn(KindOfColumn.COMBOBOX,"Тариф ","rate",0.1d,false,
-                null,()->dataMapperFabric.employeesRateMapper().)
-        );
+//        tr.setColumn(columnFabric.stringColumn(KindOfColumn.COMBOBOX,"Тариф ","rate",0.1d,false,
+//                null,()->dataMapperFabric.employeesRateMapper().)
+//        );
 
 
 

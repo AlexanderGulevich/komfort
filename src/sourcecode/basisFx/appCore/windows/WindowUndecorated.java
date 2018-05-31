@@ -31,10 +31,7 @@ public class WindowUndecorated extends WindowFx{
 
     public WindowUndecorated(double w,double h, Stage stage) {
         this.stage=stage;
-        setTransparentRoot();
-        setVisibleRoot();
         this.isManeWindow=true;
-
         this.width=w;
         this.height=h;
         this.stage.initStyle(StageStyle.UNDECORATED);
@@ -45,26 +42,12 @@ public class WindowUndecorated extends WindowFx{
 
             setIsPopup(true);
             this.stage = new Stage();
-            setTransparentRoot();
-            setVisibleRoot();
-//            this.isManeWindow = true;
-
             this.width = w;
             this.height = h;
             this.stage.initStyle(StageStyle.UNDECORATED);
         }
 
 
-    }
-
-    public WindowUndecorated(double w,double h) {
-         this.stage=new Stage();
-        setTransparentRoot();
-        setVisibleRoot();
-        this.width=w;
-        this.height=h;
-       
-        
     }
     
     public WindowUndecorated setTitle(AbstracttTitle t){
@@ -166,52 +149,12 @@ public class WindowUndecorated extends WindowFx{
          }
     }
 
-      private void setTransparentRoot(){
-                 this.root=(AnchorPane) AppNode.NodeBuilder.create()
-                         .setId(CSSID.TRANSPARENT_ROOT)
-                         .setStage(stage)
-                         .setInsects(new Insets(3d, 3d, 3d, 3d))
-                         .createAnchorPanelWrapper()
-                         .getElement();
-                 
 
-                if (isPopup){
-                    Layers.setPopupTransparentRoot(root);
-                }else{
-                    Layers.setTransparentRoot(root);
-                }
-     }
-      private void setVisibleRoot(){
-                 this.visibleRoot=(AnchorPane) AppNode.NodeBuilder.create()
-                         .setCoordinate(root, 0d, 0d, 0d, 0d)
-                         .setId(CSSID.VISIBLE_ROOT)
-                         .setStage(stage)
-//                         .setDropShadow(new DropShadow())
-                         .createAnchorPanelWrapper()
-                         .getElement();
-                 
-
-
-          if (isPopup){
-              Layers.setPopupVisibleRoot(visibleRoot);
-          }else{
-              Layers.setVisibleRoot(visibleRoot);
-          }
-     }
-      public WindowUndecorated setPanel(AbstractPanel p){
-          p.setStage(stage);
-          p.init();
-//          if(this.isManeWindow)   {p.register();}
-          p.register();
-          return this;
-     }
       public WindowFx windowShow(){
             
             windowInit();
-            
             scene.setFill( Color.TRANSPARENT);
             stage.initStyle(StageStyle.TRANSPARENT);
-            
             initControlTopButton();
             stage.show();
             return this;
