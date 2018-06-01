@@ -4,11 +4,13 @@ import basisFx.appCore.elements.AppNode;
 import basisFx.appCore.panels.AbstractPanel;
 import basisFx.appCore.registry.Layers;
 import basisFx.appCore.settings.CSSID;
+import basisFx.appCore.settings.IMGpath;
 import basisFx.appCore.utils.Coordinate;
 import basisFx.appCore.utils.StylesLoader;
 import basisFx.appCore.fabrics.EventFactory;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 //import org.scenicview.ScenicView;
@@ -46,8 +48,13 @@ public abstract class WindowFx {
       this.scene= new Scene(Layers.getTransparentRoot(),width,height);
       stage.setScene(scene);
       StylesLoader.loadAll(scene);
+      initIcon();
 
     }
+    public void setTitle(AbstracttTitle t){
+        t.init();
+    }
+
 
     public Scene getScene() {
         return scene;
@@ -58,5 +65,12 @@ public abstract class WindowFx {
         p.init();
         p.register();
     }
-        
+
+    void initIcon() {
+        stage.getIcons().add(
+                new Image(getClass().getResourceAsStream(IMGpath.ICONTOOP.get()
+                )));
+    }
+
+
 }

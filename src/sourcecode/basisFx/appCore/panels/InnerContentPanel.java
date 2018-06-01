@@ -21,21 +21,17 @@ public class InnerContentPanel extends AbstractPanel{
        
           build(b);
           init();
-          
     }
     
     @Override
     public void init() {
 
-
-
         panel =  (AnchorPane) AppNode.NodeBuilder.create()
                  .setId(CSSID.TARGET_PANEL)
                  .setCoordinate(panelCoordinate)
-                 .setParent(Layers.getContentLayer())
+                 .setParent(parent)
                  .createAnchorPanelWrapper().getElement();
 
-//
 //        ScrollPane scrollPane = (ScrollPane) AppNode.NodeBuilder.create()
 //                .setParent(Layers.getContentLayer())
 //                .setCoordinate(panelCoordinate)

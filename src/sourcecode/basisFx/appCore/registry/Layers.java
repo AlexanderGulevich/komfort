@@ -27,6 +27,7 @@ public  class Layers {
         private    static  AnchorPane popupVisibleRoot;
         private    static  AnchorPane popupButtonPanel;
         private    static  AnchorPane popupContentPanel;
+        private    static  AnchorPane iconAnchorPanel;
 
 
     public static AnchorPane getVisibleRoot() {
@@ -139,5 +140,13 @@ public  class Layers {
 
     public static AnchorPane getPopupContentPanel() {
         return popupContentPanel;
+    }
+
+    public static void setIconAnchorPanel(AnchorPane iconAnchorPanel) {
+        Layers.iconAnchorPanel = iconAnchorPanel;
+    }
+
+    public static AnchorPane getIconAnchorPanel() {
+        return iconAnchorPanel;
     }
 }

@@ -28,8 +28,6 @@ public abstract class MenuRepresent {
     
     public abstract void make();
     
-    
-    
     public void setCss(CSSID id) {
         this.css = id;
          }

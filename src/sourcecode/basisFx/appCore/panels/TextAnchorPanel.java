@@ -22,7 +22,7 @@ public class TextAnchorPanel extends AbstractPanel{
     public TextAnchorPanel(PanelBuilder b) {
        
           build(b);
-          init();
+
           
     }
 

@@ -9,6 +9,7 @@ import basisFx.appCore.*;
 import basisFx.appCore.elements.AppNode;
 import basisFx.appCore.elements.GridPaneWrapper;
 import basisFx.appCore.fabrics.*;
+import basisFx.appCore.registry.Layers;
 import basisFx.appCore.utils.Coordinate;
 import basisFx.domainModel.DataMapperFabric;
 import javafx.scene.layout.AnchorPane;
@@ -63,6 +64,7 @@ public abstract class Target {
     protected void createPanel(){
          panel=panelFabric.innerContentPanel(
             new AbstractPanel.PanelBuilder()
+                    .setParent(Layers.getContentLayer())
                     .setPanelCoordinate(new Coordinate(10d, 10d, 10d, 10d)))
                 .getPanel();
     }

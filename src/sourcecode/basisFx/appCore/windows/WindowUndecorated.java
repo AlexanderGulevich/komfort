@@ -47,28 +47,8 @@ public class WindowUndecorated extends WindowFx{
             this.stage.initStyle(StageStyle.UNDECORATED);
         }
 
-
-    }
-    
-    public WindowUndecorated setTitle(AbstracttTitle t){
-        t.init();
-        return this;
-        
-        
     }
 
-   
-    public WindowUndecorated setIconAnchor(Coordinate c, AnchorPane p) {
-        AppNode.NodeBuilder.create()
-                .setCoordinate(c)
-                .setParent(p)
-                .setId(CSSID.IMG_ICON)
-                .createAnchorPanelWrapper()
-                .getElement();
-        return this;
-        
-    }
-    
     public WindowUndecorated setTextIcon(AnchorPane parent, Coordinate c, FontsStore f, Double fHeight, String tIcn){
         AppNode.NodeBuilder.create()
                  .setCoordinate(c)
@@ -149,8 +129,7 @@ public class WindowUndecorated extends WindowFx{
          }
     }
 
-
-      public WindowFx windowShow(){
+    public WindowFx windowShow(){
             
             windowInit();
             scene.setFill( Color.TRANSPARENT);

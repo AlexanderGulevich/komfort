@@ -10,7 +10,7 @@ import javafx.scene.layout.AnchorPane;
  *
  * @author Alek
  */
-public class MenuComponent{ 
+public class MenuComponent {
     
     private  ArrayList<MenuComponent> components=new ArrayList<>();
     protected Target target;
@@ -50,7 +50,7 @@ public class MenuComponent{
         return mh;
     
     }
-    public static MenuComponent createVertical(String name,Target target, composit c, String iconFontName){
+    public static MenuComponent createCompositLevel(String name, Target target, composit c, String iconFontName){
 
         MenuComponent mh=new MenuComponent(c);
         mh.setName(name);
@@ -59,7 +59,7 @@ public class MenuComponent{
         return mh;
 
     }
-    public static MenuComponent createVertical(String name,Target target, composit c, String iconFontName,FontsStore fontsStore,double size){
+    public static MenuComponent createCompositLevel(String name, Target target, composit c, String iconFontName, FontsStore fontsStore, double size){
 
         MenuComponent mh=new MenuComponent(c);
         mh.setName(name);
@@ -83,7 +83,7 @@ public class MenuComponent{
         }
     }
     
-    public MenuComponent addInerLevel(MenuComponent ... m){
+    public MenuComponent addInerLevel(MenuComponent... m){
         
         for (int i = 0; i < m.length; i++) {
             MenuComponent concrete = m[i];

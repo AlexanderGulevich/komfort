@@ -2,6 +2,7 @@ package basisFx.appCore.fabrics;
 
 import basisFx.appCore.appStructura.AppMainStructura;
 import basisFx.appCore.appStructura.LeftSideIconMenuStructura;
+import basisFx.appCore.appStructura.MenuBarStructura;
 import basisFx.appCore.appStructura.TabStructura;
 import basisFx.appCore.windows.WindowFx;
 import javafx.stage.Stage;
@@ -18,6 +19,11 @@ public class AppStructuraFabric {
     public AppMainStructura tabStructura(WindowFx windowFx){
 
         return new TabStructura(windowFx);
+
+    }
+    public MenuBarStructura menuBarStructura(WindowFx windowFx){
+
+        return new MenuBarStructura(windowFx);
 
     }
 

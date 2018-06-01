@@ -32,9 +32,9 @@ public class MenuBarRepresent extends MenuRepresent{
     public void make() {
         
         this.nMenuBar=AppNode.NodeBuilder.create()
-                .setParent(ap)
-                .setCoordinate(c)
-                .setId(css)
+//                .setParent(ap)
+//                .setCoordinate(c)
+//                .setId(css)
                 .createNMenuBar();
         this.menuBar=(MenuBar) this.nMenuBar.getElement();
         
@@ -47,9 +47,9 @@ public class MenuBarRepresent extends MenuRepresent{
     */
     
     @Override
-    public <T> void makeStructuredMenuView(MenuComponent menuHierarchy, T parentMenu) {
+    public <T> void makeStructuredMenuView(MenuComponent menuComponent, T parentMenu) {
         
-        ArrayList<MenuComponent> h=menuHierarchy.getComponents();
+        ArrayList<MenuComponent> h= menuComponent.getComponents();
         
                         
         for (Iterator<MenuComponent> iterator = h.iterator(); iterator.hasNext();) {

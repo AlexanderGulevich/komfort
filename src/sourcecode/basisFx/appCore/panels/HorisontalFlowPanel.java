@@ -22,8 +22,7 @@ public class HorisontalFlowPanel extends AbstractPanel{
         
         build(b);
         
-        init();
-   
+
 
     }
 

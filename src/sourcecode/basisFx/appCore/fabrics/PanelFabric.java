@@ -16,64 +16,43 @@ import javafx.geometry.Insets;
 public class PanelFabric {
 
     public TitlePanel titlePanel(AbstractPanel.PanelBuilder b){
-
         return new TitlePanel(b);
-
+    };
+    public TransparentRootPanel transparentRootPanel(AbstractPanel.PanelBuilder b){
+        return new TransparentRootPanel(b);
     };
 
-    public TransparentRootPanel transparentRootPanel(Insets insets){
-        AbstractPanel.PanelBuilder builder = new AbstractPanel.PanelBuilder().setInsets(insets);
-        return new TransparentRootPanel(builder);
+    public VisibleRootPanel visibleRootPanel(AbstractPanel.PanelBuilder b){
+        return new VisibleRootPanel(b);
     };
-
-    public VisibleRootPanel visibleRootPanel(Coordinate coordinate){
-        AbstractPanel.PanelBuilder builder = new AbstractPanel.PanelBuilder().setPanelCoordinate(coordinate);
-        return new VisibleRootPanel(builder);
+    public IconAnchorPanel iconAnchorPanel(AbstractPanel.PanelBuilder b){
+        return new IconAnchorPanel(b);
     };
-
     public PopupTitlePanel popupTitlePanel(AbstractPanel.PanelBuilder b){
-
         return new PopupTitlePanel(b);
-
     };
     public ContentPanel contentPanel(AbstractPanel.PanelBuilder b){
-    
         return new ContentPanel(b);
-    
     };
     public VerticalMenuPanel verticalMenuPanel(AbstractPanel.PanelBuilder b){
-    
         return new VerticalMenuPanel(b);
-    
     };
     public HorisontalFlowPanel horisontalFlowPanel(AbstractPanel.PanelBuilder b){
-    
         return new HorisontalFlowPanel(b);
-    
     };
     public TextAnchorPanel textAnchorPanel(AbstractPanel.PanelBuilder b){
-    
         return new TextAnchorPanel(b);
-    
     };
     public InnerContentPanel innerContentPanel(AbstractPanel.PanelBuilder b){
-
         return new InnerContentPanel(b);
-
     };
     public WindowButtonsPanel windowButtonsPanel(AbstractPanel.PanelBuilder b){
-
         return new WindowButtonsPanel(b);
-
     };
     public PopupButtonPanel popupButtonPanel(AbstractPanel.PanelBuilder b){
-
         return new PopupButtonPanel(b);
-
     };
     public PopupContentPanel popupContentPanel(AbstractPanel.PanelBuilder b){
-
         return new PopupContentPanel(b);
-
     };
 }

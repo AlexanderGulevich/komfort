@@ -31,7 +31,7 @@ public class EmployerMapper extends DataMapper {
     public void getDomainList(ObservableList list)  {
 
         try {
-            String expression="SELECT * FROM " +"Employer" +
+            String expression="SELECT * FROM " +"Employer " +
                     "where isFired = false " +
                     " "+" ORDER BY ID";
 

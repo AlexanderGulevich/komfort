@@ -10,7 +10,7 @@ public class WindowButtonsPanel extends AbstractPanel {
     public WindowButtonsPanel(PanelBuilder b) {
 
         build(b);
-        init();
+
 
     }
     @Override

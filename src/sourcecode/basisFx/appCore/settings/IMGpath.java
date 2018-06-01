@@ -10,8 +10,8 @@ package basisFx.appCore.settings;
  * @author Alek
  */
 public enum IMGpath {
-    ICONTOOP("/res/img/bank.png"),
-    webtreatsetc("/res/img/webtreatsetc-3.jpg");
+    ICONTOOP("/res/img/icon.png");
+
 
 
     private final String path;

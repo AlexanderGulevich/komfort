@@ -29,14 +29,9 @@ public class WindowDecorated extends WindowFx{
         this.stage=primaryStage;
         stage.setTitle(WindowsTitlesNames.MAIN_WINDOW_NAME.get());
         this.stage.initStyle(StageStyle.DECORATED);
-        initIcon();
+
     }
     
-    void initIcon() {
-          stage.getIcons().add(
-                new Image(getClass().getResourceAsStream(IMGpath.ICONTOOP.get()
-                )));
-    }
 
     @Override
     void initControlTopButton() {

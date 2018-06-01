@@ -13,7 +13,7 @@ public class MenuFabric {
     
     
     
-    public  MenuBarRepresent menuNBarFabric(){
+    public  MenuBarRepresent menuBar(){
          
         return new MenuBarRepresent();
         

@@ -6,7 +6,7 @@ import basisFx.appCore.menu.MenuComponent.composit;
 import basisFx.appCore.settings.FontsStore;
 
 import static basisFx.appCore.menu.MenuComponent.create;
-import static basisFx.appCore.menu.MenuComponent.createVertical;
+import static basisFx.appCore.menu.MenuComponent.createCompositLevel;
 
 /**
  *
@@ -21,13 +21,13 @@ public class MainMenuSketch extends MenuSketch{
     @Override
     public void initSpiritNodes() {
         
-       this.menuHierarchy=MenuComponent.createHeadElement();
+       this.menuComponent = MenuComponent.createHeadElement();
        
-       menuHierarchy.addInerLevel(
+       menuComponent.addInerLevel(
 
 /////////////////////////////////////////////////
 
-               createVertical("Результаты дня", null, composit.COMPOSITE,"\uF0A1", FontsStore.WEBHOSTINGHUB,iconSize)
+               MenuComponent.createCompositLevel("Результаты дня", null, composit.COMPOSITE,"\uF0A1", FontsStore.WEBHOSTINGHUB,iconSize)
                        .addInerLevel(
                                create("Сотрудники (учет времени)", fm.timeRecordingPanel(), composit.SIMPLE),
                                create("Продукция", fm.countingRodsPanel(), composit.SIMPLE),
@@ -38,7 +38,7 @@ public class MainMenuSketch extends MenuSketch{
 
 /////////////////////////////////////////////////
 
-               createVertical("Проводки", null, composit.COMPOSITE,"\uE52D", FontsStore.MATERIAL_ICONS,iconSize)
+               MenuComponent.createCompositLevel("Проводки", null, composit.COMPOSITE,"\uE52D", FontsStore.MATERIAL_ICONS,iconSize)
                        .addInerLevel(
                                create("Дневная выработка", fm.dailyOutputPanel(), composit.SIMPLE)
                        ),
@@ -46,7 +46,7 @@ public class MainMenuSketch extends MenuSketch{
 
 /////////////////////////////////////////////////
 
-               createVertical("Статистика", null, composit.COMPOSITE,"\uF080", FontsStore.FAWESOME5SOLID,iconSize)
+               MenuComponent.createCompositLevel("Статистика", null, composit.COMPOSITE,"\uF080", FontsStore.FAWESOME5SOLID,iconSize)
                         .addInerLevel(
                                create("Затраты", null, composit.SIMPLE),
                                create("Курсы", fm.exchangeRatesChartPanel(), composit.SIMPLE),
@@ -56,7 +56,7 @@ public class MainMenuSketch extends MenuSketch{
 
 /////////////////////////////////////////////////
 
-               createVertical("Управление сотрудниками", null, composit.COMPOSITE,"\uF007", FontsStore.FAWESOME5REGULAR,iconSize)
+               MenuComponent.createCompositLevel("Управление сотрудниками", null, composit.COMPOSITE,"\uF007", FontsStore.FAWESOME5REGULAR,iconSize)
                        .addInerLevel(
                                create("Сотрудики", fm.employeesManagerPanel(), composit.SIMPLE),
                                create("Актуальные тарифы", fm.employeesActualRate(), composit.SIMPLE),
@@ -67,7 +67,7 @@ public class MainMenuSketch extends MenuSketch{
 
 /////////////////////////////////////////////////
 
-               createVertical("Динамика цен", null, composit.COMPOSITE,"\uE263", FontsStore.MATERIAL_ICONS,iconSize)
+               MenuComponent.createCompositLevel("Динамика цен", null, composit.COMPOSITE,"\uE263", FontsStore.MATERIAL_ICONS,iconSize)
                        .addInerLevel(
                                create("Продукция", fm.productPanel(), composit.SIMPLE),
                                create("Пакеты", fm.packetPanel(), composit.SIMPLE),
@@ -81,7 +81,7 @@ public class MainMenuSketch extends MenuSketch{
 
 /////////////////////////////////////////////////
 
-               createVertical("Вспомогательная информация", null, composit.COMPOSITE,"", FontsStore.MATERIAL_ICONS,iconSize)
+               MenuComponent.createCompositLevel("Вспомогательная информация", null, composit.COMPOSITE,"", FontsStore.MATERIAL_ICONS,iconSize)
                        .addInerLevel(
                                create("Оборудование", fm.equipmentPanel(), composit.SIMPLE),
                                create("Контрагенты", fm.counterpartyPanel(), composit.SIMPLE)
@@ -91,7 +91,7 @@ public class MainMenuSketch extends MenuSketch{
 
 /////////////////////////////////////////////////
 
-               createVertical("Настройки", null, composit.COMPOSITE,"\uF214", FontsStore.FOUNDATION ,iconSize)
+               MenuComponent.createCompositLevel("Настройки", null, composit.COMPOSITE,"\uF214", FontsStore.FOUNDATION ,iconSize)
                        .addInerLevel(
 
                        )

@@ -11,8 +11,7 @@ public abstract class AppMainStructura {
 
     protected TitleFabric titleFabric =new TitleFabric();
     protected PanelFabric panelFabric =new PanelFabric();
-    protected MenuTrigger menuTrigger =new MenuTrigger();
-    protected MenuFabric menuFabric  =new MenuFabric();
+
 
 
 }

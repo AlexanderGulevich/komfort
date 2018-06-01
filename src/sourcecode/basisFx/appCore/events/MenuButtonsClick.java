@@ -52,8 +52,7 @@ public class MenuButtonsClick extends AppEvent{
 
     @Override
     public void run() {
-        
-                
+
         this.component.getTarget().init();
     
     }
