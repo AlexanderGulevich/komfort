@@ -21,12 +21,12 @@ public class PacketPanel  extends Target {
         observed.setDomainClass(Packet.class);
         observed.setDataMapper(dataMapperFabric.packetMapper());
         observed.setColumn(
-                columnFabric.comboBoxColumn(KindOfColumn.COMBOBOX,"Размер ","size",0.5d,true,
+                columnFabric.comboBox(KindOfColumn.COMBOBOX,"Размер ","size",0.5d,true,
                         (obj,val)->((Packet)obj).setSize((ComboBoxValue) val),
                         () ->  dataMapperFabric.packetSizeMapper().toComboBoxValueList((val)->{return ((PacketSize)val).getSize();})
                 ));
         observed.setColumn(
-                columnFabric.comboBoxColumn(KindOfColumn.COMBOBOX,"Поставщик ","counterparty",0.5d,true,
+                columnFabric.comboBox(KindOfColumn.COMBOBOX,"Поставщик ","counterparty",0.5d,true,
                         (obj,val)->((Packet)obj).setCounterparty((ComboBoxValue) val),
                         () ->  dataMapperFabric.counterpartyMapper().toComboBoxValueList((val)->{return ((Counterparty)val).getName();})
                 ));
@@ -39,7 +39,7 @@ public class PacketPanel  extends Target {
         observer.setTablesButtonKind(TablesButtonKind.Right_little);
         observer.setDomainClass(Price.class);
         observer.setDataMapper(dataMapperFabric.packetPriceMapper());
-        observer.setColumn(  columnFabric.stringColumn(KindOfColumn.DOUBLE,"Цена","price",0.3d,true,
+        observer.setColumn(  columnFabric.string(KindOfColumn.DOUBLE,"Цена","price",0.3d,true,
                 (obj,val)->{((Price)obj).setPrice( (String ) val);})
         );
         observer.setColumn(  columnFabric.dateColumn(KindOfColumn.DATE,"Дата начала действия ","startingDate",0.7d,true,
@@ -63,7 +63,7 @@ public class PacketPanel  extends Target {
         packetSize.setDomainClass(PacketSize.class);
         packetSize.setGridColWidth(new GridColWidth(KindOfGridCol.percent,40));
         packetSize.setDataMapper(dataMapperFabric.packetSizeMapper());
-        packetSize.setColumn(columnFabric.stringColumn(KindOfColumn.STRING,"Размер ","size",1d,true,
+        packetSize.setColumn(columnFabric.string(KindOfColumn.STRING,"Размер ","size",1d,true,
                 (obj,val)->((PacketSize)obj).setSize((String)val))
         );
 
@@ -77,17 +77,17 @@ public class PacketPanel  extends Target {
         packetSizeProductAccordance.setGridColWidth(new GridColWidth(KindOfGridCol.percent,60d));
         packetSizeProductAccordance.setDataMapper(dataMapperFabric.packetProductAccordanceMapper());
         packetSizeProductAccordance.setColumn(
-                columnFabric.comboBoxColumn(KindOfColumn.COMBOBOX,"Размер ","size",0.3d,true,
+                columnFabric.comboBox(KindOfColumn.COMBOBOX,"Размер ","size",0.3d,true,
                         (obj,val)->((PacketProductAccordance)obj).setSize((ComboBoxValue) val),
                          () ->  dataMapperFabric.packetSizeMapper().toComboBoxValueList((val)->{return ((PacketSize)val).getSize();})
                 ));
         packetSizeProductAccordance.setColumn(
-                columnFabric.comboBoxColumn(KindOfColumn.COMBOBOX,"Продукция ","product",0.5d,true,
+                columnFabric.comboBox(KindOfColumn.COMBOBOX,"Продукция ","product",0.5d,true,
                         (obj,val)->((PacketProductAccordance)obj).setProduct((ComboBoxValue)val),
                         () -> dataMapperFabric.productMapper().toComboBoxValueList((val)->{return ((Product)val).getName();})
                 ));
         packetSizeProductAccordance.setColumn(
-                columnFabric.stringColumn(KindOfColumn.INT,"Кол-во ","number",0.2d,true,
+                columnFabric.string(KindOfColumn.INT,"Кол-во ","number",0.2d,true,
                         (obj,val)->((PacketProductAccordance)obj).setNumber((String)val))
         );
 

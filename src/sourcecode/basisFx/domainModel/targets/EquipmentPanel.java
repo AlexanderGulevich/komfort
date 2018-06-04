@@ -29,7 +29,7 @@ public class EquipmentPanel extends Target{
         tr.setDataMapper(dataMapperFabric.equipmentMapper());
         tr.setCoordinate(new Coordinate(10d, 10d, 10d, 10d));
         tr.setPanel(panel);
-        tr.setColumn(columnFabric.stringColumn(KindOfColumn.STRING,"Наименование ","name",1d,true,
+        tr.setColumn(columnFabric.string(KindOfColumn.STRING,"Наименование ","name",1d,true,
                 (obj,val)->((Equipment)obj).setName((String)val))
         );
 

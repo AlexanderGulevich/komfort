@@ -6,6 +6,8 @@
 package basisFx.appCore.controls;
 
 import basisFx.appCore.domainScetch.DomainObject;
+import javafx.beans.value.ObservableValue;
+import javafx.beans.value.WritableValue;
 
 /**
  *
@@ -16,6 +18,8 @@ import basisFx.appCore.domainScetch.DomainObject;
 public class EditDefaultCommitTableCell<T,K> extends Edit<T,K>{
 
     public void run() {
+
+
 
             column.setOnEditCommit((event) -> {
 
@@ -31,7 +35,18 @@ public class EditDefaultCommitTableCell<T,K> extends Edit<T,K>{
                     System.err.println(" Доменный объект есть В БД ");
                     System.err.println("\n");
 
-                    this.domainChanging.change(domain, event.getNewValue());
+
+                    //todo НАШЕЛ, КАК ИЗМЕНЯТЬ ДОМЕН БЕЗ ЛЯМБДЫ
+                    int row = event.getTablePosition().getRow();
+//                    T cellObservableValue = (T)event.getTableColumn().getCellObservableValue(row);
+                    ObservableValue<K> v = event.getTableColumn().getCellObservableValue(row);
+                    if (v instanceof WritableValue) {
+                        ((WritableValue<K>)v).setValue(event.getNewValue());
+                    }
+
+//                    System.out.println("11111111111111111111"+cellObservableValue1);
+
+//                    this.domainChanging.change(domain, event.getNewValue());
 
                     unitOfWork.setChangedPojoes(domain);
                     unitOfWork.commitChanged();

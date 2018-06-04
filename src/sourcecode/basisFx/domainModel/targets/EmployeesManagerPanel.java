@@ -3,14 +3,12 @@ package basisFx.domainModel.targets;
 import basisFx.appCore.controls.KindOfColumn;
 import basisFx.appCore.domainScetch.ComboBoxValue;
 import basisFx.appCore.elements.TableWrapper;
-import basisFx.appCore.fabrics.PopupFabric;
 import basisFx.appCore.grid.GridColWidth;
 import basisFx.appCore.grid.GridTablesBuilder;
 import basisFx.appCore.grid.KindOfGridCol;
 import basisFx.appCore.grid.TablesButtonKind;
 import basisFx.appCore.panels.Target;
 import basisFx.appCore.utils.Coordinate;
-import basisFx.appCore.windows.KindOfPopup;
 import basisFx.domainModel.domaine.EmployeesRatePerHour;
 import basisFx.domainModel.domaine.Employer;
 import basisFx.domainModel.domaine.RatePerHourTamplate;
@@ -34,7 +32,7 @@ public class EmployeesManagerPanel extends Target {
         observed.setDomainClass(Employer.class);
         observed.setDataMapper(dataMapperFabric.employerMapper());
         observed.setColumn(
-                columnFabric.stringColumn(KindOfColumn.STRING,"ФИО","name",1d,true,
+                columnFabric.string(KindOfColumn.STRING,"ФИО","name",1d,true,
                         (obj,val)->{((Employer)obj).setName((String)val);})
         );
 
@@ -48,7 +46,7 @@ public class EmployeesManagerPanel extends Target {
         observer.setDomainClass(EmployeesRatePerHour.class);
         observer.setDataMapper(dataMapperFabric.employeesRateMapper());
         observer.setColumn(
-                columnFabric.comboBoxColumn(KindOfColumn.COMBOBOX,"Тариф","rate",0.3d,true,
+                columnFabric.comboBox(KindOfColumn.COMBOBOX,"Тариф","rate",0.3d,true,
                 (obj,val)->{((EmployeesRatePerHour)obj).setRate((ComboBoxValue) val);},
                 () -> dataMapperFabric.ratePerHourTemplatesMapper()
                         .toComboBoxValueList(( domainObject -> ((RatePerHourTamplate) domainObject).getName()))

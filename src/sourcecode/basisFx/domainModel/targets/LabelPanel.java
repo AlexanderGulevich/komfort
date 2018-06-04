@@ -23,11 +23,11 @@ public class LabelPanel  extends Target {
         observed.setTablesButtonKind(TablesButtonKind.Bottom_right);
         observed.setDomainClass(Label.class);
         observed.setDataMapper(dataMapperFabric.labelMapper());
-        observed.setColumn(columnFabric.stringColumn(KindOfColumn.STRING,"Наименование","name",0.5d,true,
+        observed.setColumn(columnFabric.string(KindOfColumn.STRING,"Наименование","name",0.5d,true,
                 (obj,val)->{((Label)obj).setName( (String ) val);})
         );
         observed.setColumn(
-                columnFabric.comboBoxColumn(KindOfColumn.COMBOBOX,"Поставщик ","counterparty",0.5d,true,
+                columnFabric.comboBox(KindOfColumn.COMBOBOX,"Поставщик ","counterparty",0.5d,true,
                         (obj,val)->((Label)obj).setCounterparty((ComboBoxValue) val),
                         () ->  dataMapperFabric.counterpartyMapper().toComboBoxValueList((val)->{return ((Counterparty)val).getName();})
                 ));
@@ -40,7 +40,7 @@ public class LabelPanel  extends Target {
         observer.setTablesButtonKind(TablesButtonKind.Bottom_right);
         observer.setDomainClass(Price.class);
         observer.setDataMapper(dataMapperFabric.labelPriceMapper());
-        observer.setColumn(  columnFabric.stringColumn(KindOfColumn.DOUBLE,"Цена","price",0.3d,true,
+        observer.setColumn(  columnFabric.string(KindOfColumn.DOUBLE,"Цена","price",0.3d,true,
                 (obj,val)->{((Price)obj).setPrice( (String ) val);})
         );
         observer.setColumn(  columnFabric.dateColumn(KindOfColumn.DATE,"Дата начала действия ","startingDate",0.7d,true,

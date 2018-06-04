@@ -31,11 +31,11 @@ public class CounterpartyPanel extends Target{
         tr.setCoordinate(new Coordinate(10d, 10d, 10d, 10d));
         tr.setPanel(panel);
         tr.setColumn(
-                columnFabric.stringColumn(KindOfColumn.STRING, "Наименование", "name", 0.6d, true,
+                columnFabric.string(KindOfColumn.STRING, "Наименование", "name", 0.6d, true,
                 (obj,val)->((Counterparty)obj).setName((String)val))
         );
         tr.setColumn(
-                columnFabric.comboBoxColumn(KindOfColumn.COMBOBOX,"Валюта ","currency",0.4d,true,
+                columnFabric.comboBox(KindOfColumn.COMBOBOX,"Валюта ","currency",0.4d,true,
                         (obj,val)->((Counterparty)obj).setCurrency((ComboBoxValue)val),
                         () -> dataMapperFabric.currencyMapper().toComboBoxValueList((val)->{return ((Currency)val).getName();})
                 ));

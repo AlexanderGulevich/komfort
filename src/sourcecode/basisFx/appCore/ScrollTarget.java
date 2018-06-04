@@ -57,7 +57,7 @@
 //                .setDataMapper(this.dataMapperFabric.getNamedDataMapper())
 //                .setDbTableName("Country").refresh()
 //                .setColums(
-//                        columnFabric.<Country,String>stringColumn(ColumnWrapper.Bulder.create()
+//                        columnFabric.<Country,String>string(ColumnWrapper.Bulder.create()
 //                                        .setColumnName("Наименование")
 //                                        .setPropertyName("name")
 //                                        .setValueChecking(check.createTextCheck())

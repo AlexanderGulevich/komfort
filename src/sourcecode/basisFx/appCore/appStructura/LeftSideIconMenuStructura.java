@@ -75,8 +75,6 @@ public class LeftSideIconMenuStructura extends AppMainStructura {
 
 
 
-       window.windowShow();
-
     }
 
 

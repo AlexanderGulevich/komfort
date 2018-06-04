@@ -8,7 +8,6 @@ import basisFx.appCore.fabrics.WindowFabric;
 
 public abstract class AppMainStructura {
 
-
     protected TitleFabric titleFabric =new TitleFabric();
     protected PanelFabric panelFabric =new PanelFabric();
 

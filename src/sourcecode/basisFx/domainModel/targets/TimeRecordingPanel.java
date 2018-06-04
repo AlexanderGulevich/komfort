@@ -10,9 +10,6 @@ import basisFx.appCore.grid.TablesButtonKind;
 import basisFx.appCore.panels.Target;
 import basisFx.appCore.utils.Coordinate;
 import basisFx.domainModel.domaine.Employer;
-import basisFx.appCore.settings.FontsStore;
-import basisFx.domainModel.domaine.Equipment;
-import javafx.geometry.Pos;
 import javafx.scene.layout.AnchorPane;
 
 public class TimeRecordingPanel extends Target {
@@ -33,10 +30,10 @@ public class TimeRecordingPanel extends Target {
         tr.setDataMapper(dataMapperFabric.employerMapper());
         tr.setCoordinate(new Coordinate(30d, 10d, 10d, 10d));
         tr.setPanel(panel);
-        tr.setColumn(columnFabric.stringColumn(KindOfColumn.STRING,"ФИО ","name",0.3d,true,
+        tr.setColumn(columnFabric.string(KindOfColumn.STRING,"ФИО ","name",0.3d,true,
                 (obj,val)->((Employer)obj).setName((String)val))
         );
-//        tr.setColumn(columnFabric.stringColumn(KindOfColumn.COMBOBOX,"Тариф ","rate",0.1d,false,
+//        tr.setColumn(columnFabric.string(KindOfColumn.COMBOBOX,"Тариф ","rate",0.1d,false,
 //                null,()->dataMapperFabric.employeesRateMapper().)
 //        );
 
@@ -51,7 +48,7 @@ public class TimeRecordingPanel extends Target {
                 employerSide,1.0d,new Coordinate(50d, 0d, 20d, 0d),
                 dataMapperFabric.employerMapper(),
 
-                columnFabric.stringColumn(KindOfColumn.STRING,"ФИО","name",0.3d,true,
+                columnFabric.string(KindOfColumn.STRING,"ФИО","name",0.3d,true,
                         (obj,val)->{((Employer)obj).setName((String)val);})
         );
 

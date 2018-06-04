@@ -21,7 +21,7 @@ public class SleevePanel  extends Target {
         observed.setDomainClass(Sleeve.class);
         observed.setDataMapper(dataMapperFabric.sleeveMapper());
         observed.setColumn(
-                columnFabric.comboBoxColumn(KindOfColumn.COMBOBOX,"Поставщик ","counterparty",1d,true,
+                columnFabric.comboBox(KindOfColumn.COMBOBOX,"Поставщик ","counterparty",1d,true,
                         (obj,val)->((Sleeve)obj).setCounterparty((ComboBoxValue) val),
                         () ->  dataMapperFabric.counterpartyMapper().toComboBoxValueList((val)->{return ((Counterparty)val).getName();})
                 ));
@@ -34,7 +34,7 @@ public class SleevePanel  extends Target {
         observer.setTablesButtonKind(TablesButtonKind.Bottom_right);
         observer.setDomainClass(Price.class);
         observer.setDataMapper(dataMapperFabric.sleevePriceMapper());
-        observer.setColumn(  columnFabric.stringColumn(KindOfColumn.DOUBLE,"Цена","price",0.3d,true,
+        observer.setColumn(  columnFabric.string(KindOfColumn.DOUBLE,"Цена","price",0.3d,true,
                 (obj,val)->{((Price)obj).setPrice( (String ) val);})
         );
         observer.setColumn(  columnFabric.dateColumn(KindOfColumn.DATE,"Дата начала действия ","startingDate",0.7d,true,

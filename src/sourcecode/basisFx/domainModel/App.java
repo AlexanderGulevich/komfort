@@ -32,13 +32,13 @@ public class App{
 //        WindowDecorated window =windowFabric.decoratedWindow(Settings.WIDTH, Settings.HEIGHT, primaryStage);
 
 
-//        structuraFabric.leftSideIconMenuStructura(window);
-//        structuraFabric.tabStructura(window);
+        structuraFabric.leftSideIconMenuStructura(window);
+////        structuraFabric.tabStructura(window);
 
 
         menuCreator.setMenuSketch(new MainMenuSketch())
-//                .setRepresent(menuFabric.createMenuLeftSideRepresentation())
-                .setRepresent(menuFabric.menuBar())
+                .setRepresent(menuFabric.createMenuLeftSideRepresentation())
+//                .setRepresent(menuFabric.menuBar())
                 .init();
 
 //        menuTrigger.verticalMenuButtonFire(1);

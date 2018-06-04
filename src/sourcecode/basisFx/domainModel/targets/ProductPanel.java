@@ -31,12 +31,12 @@ public class ProductPanel  extends Target{
         observed.setDomainClass(Product.class);
         observed.setDataMapper(dataMapperFabric.productMapper());
         observed.setColumn(
-                columnFabric.stringColumn(KindOfColumn.STRING,"Наименование","name",0.7d,true,
+                columnFabric.string(KindOfColumn.STRING,"Наименование","name",0.7d,true,
                         (obj,val)->((Product)obj).setName((String)val))
         );
         observed.setColumn(
 
-                columnFabric.comboBoxColumn(KindOfColumn.COMBOBOX,
+                columnFabric.comboBox(KindOfColumn.COMBOBOX,
                         "Втулка","sleeve",0.3d,true,
                         (obj,val)->{((Product)obj).setSleeve((BoolComboBox) val);},
                         () -> BoolComboBox.comboBoxes
@@ -51,7 +51,7 @@ public class ProductPanel  extends Target{
         observer.setTablesButtonKind(TablesButtonKind.Bottom_right);
         observer.setDomainClass(Price.class);
         observer.setDataMapper(dataMapperFabric.productPriceMapper());
-        observer.setColumn(  columnFabric.stringColumn(KindOfColumn.DOUBLE,"Цена","price",0.3d,true,
+        observer.setColumn(  columnFabric.string(KindOfColumn.DOUBLE,"Цена","price",0.3d,true,
                 (obj,val)->{((Price)obj).setPrice( (String ) val);})
         );
         observer.setColumn(  columnFabric.dateColumn(KindOfColumn.DATE,"Дата начала действия ","startingDate",0.7d,true,
