@@ -2,20 +2,17 @@ package basisFx.appCore.appStructura;
 
 import basisFx.appCore.panels.AbstractPanel;
 import basisFx.appCore.registry.Layers;
-import basisFx.appCore.settings.Settings;
 import basisFx.appCore.utils.Coordinate;
-import basisFx.appCore.windows.WindowDecorated;
-import basisFx.appCore.windows.WindowFx;
-import javafx.stage.Stage;
+import basisFx.appCore.windows.WindowBridgeAbstraction;
 
-public class TabStructura extends AppMainStructura{
+public class TabStructura extends PanelsStructura {
 
 
-    public TabStructura( WindowFx windowFx) {
+    public TabStructura( WindowBridgeAbstraction windowBridgeAbstraction) {
 
 
 
-        windowFx.setPanel(panelFabric.contentPanel(//ПАНЕЛЬ ДИНАМИЧЕСКОГО КОНТНЕНТА
+        windowBridgeAbstraction.setPanel(panelFabric.contentPanel(//ПАНЕЛЬ ДИНАМИЧЕСКОГО КОНТНЕНТА
                         new AbstractPanel.PanelBuilder()
                                 .setPanelCoordinate(new Coordinate(80d,0d,0d,60d))
                                 .setParent(Layers.getVisibleRoot())
@@ -25,7 +22,7 @@ public class TabStructura extends AppMainStructura{
 
 
 
-        windowFx.windowShow();
+        windowBridgeAbstraction.windowShow();
 
     }
 }

@@ -35,44 +35,19 @@ public class EventFactory {
        }
     }
 
-
-    public AppEvent closingWindow(){
-
-        return new CloseWindow();
-
-
-    }
     public AppEvent closingPopup(){
 
         return new ClosePopup();
 
 
     }
-   public   AppEvent hidingWindow(){
-   
-       return new HideWindow();
-       
-   
-   }
-   public   AppEvent maximazingSwitcher(){
-   
-       return new MaximazingSwither();
-       
-   
-   }
+
    public   AppEvent dbClickEvent(AppEvent appEvent){
    
        return new DbClick(appEvent);
        
    
    }
-   public   AppEvent stageDragging(){
-   
-       return new StageDragging();
-       
-   
-   }
-
    public   AppEvent leftSideMenuIconClick(MenuComponent component){
    
        return new leftSideMenuIconClick(component);

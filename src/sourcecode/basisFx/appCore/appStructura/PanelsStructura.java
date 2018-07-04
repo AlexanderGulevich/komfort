@@ -6,7 +6,7 @@ import basisFx.appCore.fabrics.PanelFabric;
 import basisFx.appCore.windows.TitleFabric;
 import basisFx.appCore.fabrics.WindowFabric;
 
-public abstract class AppMainStructura {
+public abstract class PanelsStructura {
 
     protected TitleFabric titleFabric =new TitleFabric();
     protected PanelFabric panelFabric =new PanelFabric();

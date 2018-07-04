@@ -79,7 +79,7 @@ public class LineChartWithHover extends Application {
     private Label createDataThresholdLabel(int priorValue, int value) {
       final Label label = new Label(value + "");
       label.getStyleClass().addAll("default-color0", "chart-line-symbol", "chart-series-line");
-      label.setStyle("-fx-font-size: 20; -fx-font-weight: bold;");
+      label.setStyle("-fx-fonts-size: 20; -fx-fonts-weight: bold;");
 
       if (priorValue == 0) {
         label.setTextFill(Color.DARKGRAY);

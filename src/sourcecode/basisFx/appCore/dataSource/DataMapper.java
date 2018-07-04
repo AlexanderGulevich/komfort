@@ -16,7 +16,6 @@ import java.util.Map;
 
 import basisFx.appCore.fabrics.PopupFabric;
 import basisFx.appCore.interfaces.StringGetterFromDomain;
-import basisFx.appCore.windows.KindOfPopup;
 import basisFx.appCore.windows.PopupUndecorated;
 import basisFx.domainModel.DataMapperFabric;
 import javafx.application.Platform;

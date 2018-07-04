@@ -13,41 +13,47 @@ import javafx.scene.Scene;
  *
  * @author Alek
  */
-public class StylesLoader {
-    
-    private static StylesLoader instanse;
-    
-    private static StylesLoader getInstanse(){
+public class CSSHandler {
+
+
+    //todo переделать в комманду или стратегию
+        private static CSSHandler instanse;
+        private static Scene scene;
+        private static StylesPathes stylesPathes;
+
+    private static CSSHandler getInstanse(){
         
         if(instanse==null) {
-            instanse=new StylesLoader();
+            instanse=new CSSHandler();
         }else{
              return instanse;
         }
         return instanse;
     }
-    
-    
-    private void loadNonStatic(Scene scene,StylesPathes st){
+
+    public static void setScene(Scene scene) {
+        CSSHandler.scene = scene;
+    }
+
+    public static void init(StylesPathes pathes) {
+        stylesPathes=pathes;
+    }
+
+
+    private void load(Scene scene, StylesPathes st){
     
         scene.getStylesheets().add(getClass().getResource(
               st.get()
       ).toExternalForm());
     }
     
-    public static void load(Scene scene,StylesPathes st){
-    
-      getInstanse().loadNonStatic(scene, st);
-        
-    }
-    
-    public static void loadAll(Scene scene) {
 
+    public static void loadAll(Scene scene) {
 
         StylesPathes[] values = StylesPathes.values();
 
         for (StylesPathes value : values) {
-            StylesLoader.load(scene, value);
+            getInstanse().load(scene, value);
         }
 
 

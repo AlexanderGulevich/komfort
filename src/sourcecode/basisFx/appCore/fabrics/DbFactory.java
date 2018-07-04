@@ -16,12 +16,12 @@ import java.sql.SQLException;
  */
 public class DbFactory {
     
-    public DbEmbeded createEmbeded() throws ClassNotFoundException, SQLException{
+    public static DbEmbeded createEmbeded() throws ClassNotFoundException, SQLException{
     
         return new DbEmbeded();
     
     }
-    public DbServer createDbServer() throws ClassNotFoundException, SQLException{
+    public static DbServer createDbServer() throws ClassNotFoundException, SQLException{
     
         return new DbServer();
     

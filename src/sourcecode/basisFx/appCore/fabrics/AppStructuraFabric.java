@@ -1,29 +1,28 @@
 package basisFx.appCore.fabrics;
 
-import basisFx.appCore.appStructura.AppMainStructura;
-import basisFx.appCore.appStructura.LeftSideIconMenuStructura;
+import basisFx.appCore.appStructura.PanelsStructura;
+import basisFx.appCore.appStructura.LeftSideIconMenu;
 import basisFx.appCore.appStructura.MenuBarStructura;
 import basisFx.appCore.appStructura.TabStructura;
-import basisFx.appCore.windows.WindowFx;
-import javafx.stage.Stage;
+import basisFx.appCore.windows.WindowBridgeAbstraction;
 
 public class AppStructuraFabric {
 
 
-    public AppMainStructura leftSideIconMenuStructura( WindowFx windowFx){
+    public PanelsStructura leftSideIconMenuStructura(WindowBridgeAbstraction windowBridgeAbstraction){
 
-        return new LeftSideIconMenuStructura(windowFx);
-
-    }
-
-    public AppMainStructura tabStructura(WindowFx windowFx){
-
-        return new TabStructura(windowFx);
+        return new LeftSideIconMenu(windowBridgeAbstraction);
 
     }
-    public MenuBarStructura menuBarStructura(WindowFx windowFx){
 
-        return new MenuBarStructura(windowFx);
+    public PanelsStructura tabStructura(WindowBridgeAbstraction windowBridgeAbstraction){
+
+        return new TabStructura(windowBridgeAbstraction);
+
+    }
+    public MenuBarStructura menuBarStructura(WindowBridgeAbstraction windowBridgeAbstraction){
+
+        return new MenuBarStructura(windowBridgeAbstraction);
 
     }
 

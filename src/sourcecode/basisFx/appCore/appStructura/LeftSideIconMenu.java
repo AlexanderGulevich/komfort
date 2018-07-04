@@ -1,21 +1,15 @@
 package basisFx.appCore.appStructura;
 
-import basisFx.appCore.menu.MenuCreator;
 import basisFx.appCore.panels.AbstractPanel;
 import basisFx.appCore.registry.Layers;
 import basisFx.appCore.utils.Coordinate;
-import basisFx.appCore.windows.WindowFx;
-import basisFx.domainModel.MainMenuSketch;
+import basisFx.appCore.windows.WindowBridgeAbstraction;
 import basisFx.appCore.settings.FontsStore;
-import basisFx.appCore.settings.Settings;
 import javafx.geometry.Insets;
-import javafx.stage.Stage;
 
-import java.awt.*;
+public class LeftSideIconMenu extends PanelsStructura {
 
-public class LeftSideIconMenuStructura extends AppMainStructura {
-
-    public LeftSideIconMenuStructura(WindowFx window ) {
+    public LeftSideIconMenu(WindowBridgeAbstraction window ) {
 
         window.setPanel(//Корневой узел прозрачный для безрамкового окна
                 panelFabric.transparentRootPanel(

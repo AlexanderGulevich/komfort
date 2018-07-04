@@ -7,6 +7,8 @@ import basisFx.appCore.fabrics.WindowFabric;
 import basisFx.appCore.menu.MenuCreator;
 import basisFx.appCore.menu.MenuFabric;
 import basisFx.appCore.settings.Settings;
+import basisFx.appCore.settings.StylesPathes;
+import basisFx.appCore.utils.CSSHandler;
 import basisFx.appCore.windows.WindowUndecorated;
 import javafx.stage.Stage;
 
@@ -25,8 +27,15 @@ public class App{
     protected MenuCreator menuCreator=new MenuCreator();
 
     public App(Stage primaryStage) throws ClassNotFoundException, SQLException {
-        
-        new DbFactory().createEmbeded();
+
+        DbFactory.createEmbeded();
+
+        CSSHandler.init(StylesPathes.CUSTOM_1);
+
+
+
+
+
 
         WindowUndecorated window =windowFabric.unDecoratedWindow(Settings.WIDTH, Settings.HEIGHT, primaryStage);
 //        WindowDecorated window =windowFabric.decoratedWindow(Settings.WIDTH, Settings.HEIGHT, primaryStage);

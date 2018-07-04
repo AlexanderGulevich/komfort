@@ -5,9 +5,7 @@
  */
 package basisFx.appCore.windows;
 
-import basisFx.appCore.panels.AbstractPanel;
 import basisFx.appCore.settings.IMGpath;
-import basisFx.appCore.settings.Settings;
 import basisFx.appCore.settings.WindowsTitlesNames;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
@@ -19,31 +17,28 @@ import javafx.stage.StageStyle;
  *
  * @author 62
  */
-public class WindowDecorated extends WindowFx{
+public class WindowDecorated extends WindowBridgeAbstraction {
 
-
-    public WindowDecorated(double w,double h, Stage primaryStage) {
-        this.root=new AnchorPane();
-        this.width=w;
-        this.height=h;
-        this.stage=primaryStage;
-        stage.setTitle(WindowsTitlesNames.MAIN_WINDOW_NAME.get());
+    public WindowDecorated(Stage stage,WindowBridgeImplimentation implimentation) {
+        super(implimentation);
+        this.stage=stage;
+        //todo получать из имплимент
+        this.stage.setTitle(WindowsTitlesNames.MAIN_WINDOW_NAME.get());
         this.stage.initStyle(StageStyle.DECORATED);
-
-    }
-    
-
-    @Override
-    void initControlTopButton() {
-
     }
 
     @Override
-    public WindowFx windowShow() {
-        windowInit();
+    public void windowShow() {
+        initIcon();
         scene.setFill( Color.TRANSPARENT);
         stage.show();
-        return this;
     }
+
+    void initIcon() {
+        stage.getIcons().add(
+                new Image(getClass().getResourceAsStream(IMGpath.ICONTOOP.get()
+                )));
+    }
+
 
 }

@@ -5,20 +5,12 @@
  */
 package basisFx.appCore.dataSource;
 
-import basisFx.appCore.fabrics.PopupFabric;
 import basisFx.appCore.interfaces.Refreshable;
 import basisFx.appCore.domainScetch.DomainObject;
-import basisFx.appCore.windows.KindOfPopup;
-import basisFx.appCore.windows.PopupUndecorated;
-import javafx.application.Platform;
-import javafx.scene.Scene;
-import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
 
 import java.sql.SQLException;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.ConcurrentMap;
 
 /**
  *

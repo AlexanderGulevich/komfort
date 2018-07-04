@@ -76,14 +76,10 @@ public class PopupUndecorated {
 
     public void createTextArea(String message) {
 
-        if (fontSize == null) {
-            fontSize=25d;
-        }
-
         AppNode.NodeBuilder.create()
                 .setParent(popupContentPanel.getPanel())
                 .setCoordinate( new Coordinate(10d,80d,10d,10d))
-                .setFont(FontsStore.ROBOTO_LIGHT,fontSize)
+                .setFont(FontsStore.ROBOTO_LIGHT,25d)
                 .setText(message)
                 .setId(CSSID.PopupTextArea)
                 .createTextAreaWrapper();

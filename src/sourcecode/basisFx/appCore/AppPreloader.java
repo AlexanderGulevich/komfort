@@ -50,7 +50,7 @@ public class AppPreloader extends Preloader {
         scene.setFill( Color.TRANSPARENT);
         
         scene.getStylesheets().add(getClass().getResource(
-             "/res/css/windows.css"
+                "/res/css/custom_1/windows.css"
       ).toExternalForm());
         });
     }
