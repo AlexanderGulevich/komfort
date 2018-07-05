@@ -3,7 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package basisFx.appCore.windows;
+package basisFx.appCore.fabrics;
+
+import basisFx.appCore.windows.ImageTitle;
+import basisFx.appCore.windows.TextTitle;
 
 /**
  *

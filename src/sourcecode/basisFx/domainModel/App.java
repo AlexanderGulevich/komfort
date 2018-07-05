@@ -37,6 +37,8 @@ public class App{
 
 
 
+
+
         WindowUndecorated window =windowFabric.unDecoratedWindow(Settings.WIDTH, Settings.HEIGHT, primaryStage);
 //        WindowDecorated window =windowFabric.decoratedWindow(Settings.WIDTH, Settings.HEIGHT, primaryStage);
 

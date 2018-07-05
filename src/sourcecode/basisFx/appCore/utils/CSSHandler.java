@@ -5,24 +5,18 @@
  */
 package basisFx.appCore.utils;
 
-
 import basisFx.appCore.settings.StylesPathes;
 import javafx.scene.Scene;
+import java.io.File;
 
-/**
- *
- * @author Alek
- */
 public class CSSHandler {
 
-
-    //todo переделать в комманду или стратегию
         private static CSSHandler instanse;
         private static Scene scene;
-        private static StylesPathes stylesPathes;
+        private static StylesPathes stylesPathe;
 
-    private static CSSHandler getInstanse(){
-        
+    public static CSSHandler getInstanse(){
+
         if(instanse==null) {
             instanse=new CSSHandler();
         }else{
@@ -31,35 +25,28 @@ public class CSSHandler {
         return instanse;
     }
 
-    public static void setScene(Scene scene) {
-        CSSHandler.scene = scene;
-    }
-
     public static void init(StylesPathes pathes) {
-        stylesPathes=pathes;
+        stylesPathe =pathes;
     }
 
+    public void loadStylesToScene(Scene scene){
 
-    private void load(Scene scene, StylesPathes st){
-    
-        scene.getStylesheets().add(getClass().getResource(
-              st.get()
-      ).toExternalForm());
-    }
-    
+        File folder = new File(stylesPathe.getPath());
+        File[] listOfFiles = folder.listFiles();
 
-    public static void loadAll(Scene scene) {
 
-        StylesPathes[] values = StylesPathes.values();
+        for (File listOfFile : listOfFiles) {
 
-        for (StylesPathes value : values) {
-            getInstanse().load(scene, value);
+                scene.getStylesheets().add(getClass().getResource(
+                        listOfFile.getPath()
+                ).toExternalForm());
+
         }
 
 
-
     }
     
+
     
  
     

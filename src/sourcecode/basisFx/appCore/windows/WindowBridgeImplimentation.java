@@ -1,8 +1,8 @@
 package basisFx.appCore.windows;
 
+import javafx.scene.layout.AnchorPane;
+
 public abstract class WindowBridgeImplimentation {
-
-
 
     private double width;
     private double height;
@@ -10,8 +10,8 @@ public abstract class WindowBridgeImplimentation {
 
     protected abstract void initTitle();
     protected abstract void initIcon();
-
-
+    public abstract void initStageButtons();
+    public abstract AnchorPane  getRoot();
 
     public double getWidth() {
         return width;
@@ -32,4 +32,5 @@ public abstract class WindowBridgeImplimentation {
     public void setWindow(WindowBridgeAbstraction window) {
         this.window = window;
     }
+
 }

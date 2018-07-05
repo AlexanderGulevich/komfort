@@ -1,7 +1,6 @@
 package basisFx.appCore.windows;
 
 import basisFx.appCore.panels.AbstractPanel;
-import basisFx.appCore.registry.Layers;
 import basisFx.appCore.utils.CSSHandler;
 import basisFx.appCore.fabrics.EventFactory;
 import javafx.scene.Scene;
@@ -17,15 +16,14 @@ public abstract class WindowBridgeAbstraction {
 
     protected Stage stage;
     protected Scene scene;
-    protected WindowBridgeImplimentation implimentation;
+    protected WindowBridgeImplimentation impl;
     protected EventFactory eventFactory = EventFactory.getInstance();
 
     public WindowBridgeAbstraction(WindowBridgeImplimentation implimentation) {
-        this.implimentation = implimentation;
-        this.scene= new Scene(Layers.getTransparentRoot(),implimentation.getWidth(),implimentation.getHeight());
+        impl = implimentation;
+        scene= new Scene(impl.getRoot(), impl.getWidth(), impl.getHeight());
         stage.setScene(scene);
-        CSSHandler.setScene(scene);
-        //todo переделать
+        CSSHandler.getInstanse().loadStylesToScene(scene);
     }
 
     public abstract void windowShow();

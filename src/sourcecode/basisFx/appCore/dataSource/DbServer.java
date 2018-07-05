@@ -68,7 +68,7 @@ public class DbServer extends Db{
 
         } catch (Exception e) {
 
-            System.err.println(" failed to load ");
+            System.err.println(" failed to loadStylesToScene ");
             e.printStackTrace();
             return;
         
