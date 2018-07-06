@@ -3,12 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package basisFx.appCore.panels;
+package basisFx.domainModel.targets;
 
 import basisFx.appCore.*;
 import basisFx.appCore.elements.AppNode;
 import basisFx.appCore.elements.GridPaneWrapper;
 import basisFx.appCore.fabrics.*;
+import basisFx.appCore.panels.AbstractPanel;
 import basisFx.appCore.registry.Layers;
 import basisFx.appCore.utils.Coordinate;
 import basisFx.domainModel.DataMapperFabric;

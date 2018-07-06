@@ -1,13 +1,15 @@
 package basisFx.appCore.appStructura;
 
-import basisFx.appCore.fabrics.PanelFabric;
-import basisFx.appCore.fabrics.TitleFabric;
+
+import basisFx.appCore.panels.Panel;
+
+import java.util.ArrayList;
 
 public abstract class PanelsStructura {
 
-    protected TitleFabric titleFabric =new TitleFabric();
-    protected PanelFabric panelFabric =new PanelFabric();
+protected ArrayList <Panel> panels = new ArrayList<>();
 
-
-
+    public ArrayList<Panel> getPanels() {
+        return panels;
+    }
 }

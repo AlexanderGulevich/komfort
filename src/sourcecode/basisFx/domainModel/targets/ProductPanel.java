@@ -7,7 +7,6 @@ import basisFx.appCore.grid.GridColWidth;
 import basisFx.appCore.grid.GridTablesBuilder;
 import basisFx.appCore.grid.KindOfGridCol;
 import basisFx.appCore.grid.TablesButtonKind;
-import basisFx.appCore.panels.Target;
 import basisFx.appCore.utils.Coordinate;
 import basisFx.domainModel.domaine.Price;
 import basisFx.domainModel.domaine.Product;

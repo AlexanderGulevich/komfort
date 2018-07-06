@@ -3,7 +3,6 @@ package basisFx.domainModel.targets;
 import basisFx.appCore.controls.KindOfColumn;
 import basisFx.appCore.domainScetch.ComboBoxValue;
 import basisFx.appCore.grid.*;
-import basisFx.appCore.panels.Target;
 import basisFx.appCore.utils.Coordinate;
 import basisFx.domainModel.domaine.Counterparty;
 import basisFx.domainModel.domaine.Paper;

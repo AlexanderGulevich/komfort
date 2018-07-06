@@ -34,11 +34,6 @@ public class App{
 
 
 
-
-
-
-
-
         WindowUndecorated window =windowFabric.unDecoratedWindow(Settings.WIDTH, Settings.HEIGHT, primaryStage);
 //        WindowDecorated window =windowFabric.decoratedWindow(Settings.WIDTH, Settings.HEIGHT, primaryStage);
 
@@ -56,7 +51,7 @@ public class App{
 
 
 //      ScenicView.show(window.getScene());
-        window.windowShow();
+
 
     }
     

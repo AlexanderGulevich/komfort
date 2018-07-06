@@ -1,7 +1,6 @@
 package basisFx.domainModel.targets;
 
 import basisFx.appCore.chart.AreaChartBuilder;
-import basisFx.appCore.panels.Target;
 import basisFx.appCore.utils.Coordinate;
 
 

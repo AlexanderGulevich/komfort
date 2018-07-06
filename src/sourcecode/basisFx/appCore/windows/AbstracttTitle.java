@@ -6,7 +6,6 @@
 package basisFx.appCore.windows;
 
 import basisFx.appCore.utils.Coordinate;
-import basisFx.appCore.interfaces.Initiated;
 import javafx.scene.layout.AnchorPane;
 
 /**

@@ -5,7 +5,7 @@
  */
 package basisFx.appCore.registry;
 
-import basisFx.appCore.panels.Target;
+import basisFx.domainModel.targets.Target;
 import java.util.ArrayList;
 
 /**

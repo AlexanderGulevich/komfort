@@ -1,22 +1,13 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package basisFx.appCore.panels;
 
-import basisFx.appCore.utils.Coordinate;
 import basisFx.appCore.fabrics.EventFactory;
 import basisFx.appCore.settings.FontsStore;
+import basisFx.appCore.utils.Coordinate;
 import javafx.geometry.Insets;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-/**
- *
- * @author Alek
- */
-public abstract class AbstractPanel implements Initiated{
+public class Panel {
 
     protected Coordinate panelCoordinate;
     protected AnchorPane parent;
@@ -28,31 +19,32 @@ public abstract class AbstractPanel implements Initiated{
     protected EventFactory eventFactory=EventFactory.getInstance();
     protected FontsStore font;
     protected double fontSize;
+    protected String name;
 
 
-    public abstract void init();
-    public abstract void register();
-    
+    public Panel(PanelBuilder panelBuilder) {
+        this.height=panelBuilder.height;
+        this.width=panelBuilder.width;
+        this.panelCoordinate=panelBuilder.panelCoordinate;
+        this.parent=panelBuilder.parent;
+        this.insects=panelBuilder.insects;
+        this.font=panelBuilder.font;
+        this.fontSize=panelBuilder.fontSize;
+        this.stage=panelBuilder.stage;
+        this.name=panelBuilder.name;
+
+    }
+
     public AnchorPane getPanel() {
         return panel;
     }
-    protected void build(PanelBuilder b) {
-       this.height=b.height;
-       this.width=b.width;
-       this.panelCoordinate=b.panelCoordinate;
-       this.parent=b.parent;
-       this.insects=b.insects;
-       this.font=b.font;
-       this.fontSize=b.fontSize;
-       this.stage=b.stage;
-    }
+
     public void setStage(Stage stage) {
         this.stage = stage;
     }
 
-    
     public static class  PanelBuilder {
-        
+
         protected Coordinate panelCoordinate;
         protected AnchorPane parent;
         protected Double width;
@@ -61,6 +53,10 @@ public abstract class AbstractPanel implements Initiated{
         protected FontsStore font;
         protected double fontSize;
         protected Stage stage;
+        protected String name;
+
+
+        public static PanelBuilder create(){return new PanelBuilder();}
 
         public PanelBuilder setStage(Stage stage) {
             this.stage = stage;
@@ -78,7 +74,7 @@ public abstract class AbstractPanel implements Initiated{
             return this;
         }
 
-        public PanelBuilder setParent(AnchorPane parent) {
+        public Panel.PanelBuilder setParent(AnchorPane parent) {
             this.parent = parent;
             return this;
         }
@@ -92,19 +88,27 @@ public abstract class AbstractPanel implements Initiated{
             this.height = height;
             return this;
         }
-        
-         public PanelBuilder setInsets(Insets i) {
-           
-          this.insects=i;
-          return this;
-          
-          
+
+        public PanelBuilder setInsets(Insets i) {
+            this.insects=i;
+            return this;
+        }
+        public void setName(String name) {
+            this.name = name;
         }
 
-      
-      
-    
-    
-        
+        public Panel build(){
+
+            return new Panel(this);
+
+        }
+
+
+
+
+
+
     }
+
+
 }

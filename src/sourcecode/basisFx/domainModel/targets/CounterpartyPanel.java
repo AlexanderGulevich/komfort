@@ -5,7 +5,6 @@ import basisFx.appCore.domainScetch.ComboBoxValue;
 import basisFx.appCore.grid.GridTablesBuilder;
 import basisFx.appCore.elements.TableWrapper;
 import basisFx.appCore.grid.TablesButtonKind;
-import basisFx.appCore.panels.Target;
 import basisFx.appCore.utils.Coordinate;
 import basisFx.domainModel.domaine.Counterparty;
 import basisFx.domainModel.domaine.Currency;

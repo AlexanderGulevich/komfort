@@ -1,34 +1,31 @@
 package basisFx.appCore.windows;
 
-import javafx.scene.paint.Color;
+import basisFx.appCore.elements.AppNode;
+import basisFx.appCore.settings.CSSID;
+import javafx.geometry.Insets;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 public class WindowUndecorated extends WindowBridgeAbstraction {
 
-    public WindowUndecorated(Stage stage,WindowBridgeImplimentation implimentation) {
+    public WindowUndecorated(Stage st,WindowBridgeImplimentation implimentation) {
         super(implimentation);
-        this.stage=stage;
-        this.stage.initStyle(StageStyle.UNDECORATED);
+        stage=st;
+        stage.initStyle(StageStyle.UNDECORATED);
+        implimentation.initUndecoratedTitle();
+        implimentation.initUndecoratedStageButtons();
+        stage.show();
     }
 
-    public void windowShow(){
-
-        scene.setFill( Color.TRANSPARENT);
-        stage.initStyle(StageStyle.TRANSPARENT);
-        stage.show();
-
-     }
-
-  
-     
-   
-     
-
-    
-    
-   
-    
+    @Override
+    protected void initRoot() {
+        root=(AnchorPane)  AppNode.NodeBuilder.create()
+                .setId(CSSID.TRANSPARENT_ROOT)
+                .setInsects(new Insets(3d, 3d, 3d, 3d))
+                .createAnchorPanelWrapper()
+                .getElement();
+    }
 }
 
     

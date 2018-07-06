@@ -1,6 +1,7 @@
 package basisFx.appCore.appStructura;
 
 import basisFx.appCore.panels.AbstractPanel;
+import basisFx.appCore.panels.Panel;
 import basisFx.appCore.registry.Layers;
 import basisFx.appCore.utils.Coordinate;
 import basisFx.appCore.windows.WindowBridgeAbstraction;
@@ -9,18 +10,15 @@ import javafx.geometry.Insets;
 
 public class LeftSideIconMenu extends PanelsStructura {
 
+    private Panel contentPanel;
+    private Panel titlePanel;
+    private Panel windowButtonsPanel;
+    private Panel verticalMenuPanel;
+    private Panel horisontalFlowPanel;
+    private Panel textAnchorPanel;
+
     public LeftSideIconMenu(WindowBridgeAbstraction window ) {
 
-        window.setPanel(//Корневой узел прозрачный для безрамкового окна
-                panelFabric.transparentRootPanel(
-                        new AbstractPanel.PanelBuilder()
-                                .setInsets(new Insets(3d, 3d, 3d, 3d))));
-
-        window.setPanel(//Дочерняя панель к корневому узлу, явл. первой видимой
-                panelFabric.visibleRootPanel(
-                        new AbstractPanel.PanelBuilder()
-                                .setParent(Layers.getTransparentRoot())
-                                .setPanelCoordinate(new Coordinate(0d, 0d, 0d, 0d))));
 
         window.setPanel(panelFabric.contentPanel(//ПАНЕЛЬ ДИНАМИЧЕСКОГО КОНТНЕНТА
                         new AbstractPanel.PanelBuilder()
