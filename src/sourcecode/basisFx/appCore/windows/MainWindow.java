@@ -1,7 +1,9 @@
 package basisFx.appCore.windows;
 
-import basisFx.appCore.panels.Panel;
+import basisFx.appCore.elements.AppNode;
+import basisFx.appCore.settings.CSSID;
 import basisFx.appCore.settings.WindowsTitlesNames;
+
 
 import java.util.HashMap;
 
@@ -21,6 +23,17 @@ public class MainWindow extends WindowBridgeImplimentation {
     @Override
     protected void initUndecoratedTitle() {
 
+        AppNode.NodeBuilder.create()
+                .setParent(titlePanel)
+                .setCoordinate()
+                .setId(CSSID.TITLE_WINDOW_IMG)
+                .createAnchorPanelWrapper();
+
+        titleFabric.createImageTitle()
+                        .setTitleCoordinate(new Coordinate(10d, null, null, 70d))
+                        .setTitlePanel(Layers.getTitlePanel())
+
+
     }
     @Override
     protected void initDecoratedTitle() {
@@ -28,7 +41,7 @@ public class MainWindow extends WindowBridgeImplimentation {
     }
     @Override
     public void initUndecoratedStageButtons() {
-
+        topButtonsFabric.createThreeButtons(window);
     }
 
 

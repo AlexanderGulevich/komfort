@@ -1,12 +1,10 @@
 package basisFx.appCore.appStructura;
 
-import basisFx.appCore.panels.AbstractPanel;
-import basisFx.appCore.panels.Panel;
-import basisFx.appCore.registry.Layers;
+import basisFx.appCore.settings.FontsStore;
+import basisFx.appCore.windows.Panel;
+import basisFx.appCore.settings.CSSID;
 import basisFx.appCore.utils.Coordinate;
 import basisFx.appCore.windows.WindowBridgeAbstraction;
-import basisFx.appCore.settings.FontsStore;
-import javafx.geometry.Insets;
 
 public class LeftSideIconMenu extends PanelsStructura {
 
@@ -14,57 +12,70 @@ public class LeftSideIconMenu extends PanelsStructura {
     private Panel titlePanel;
     private Panel windowButtonsPanel;
     private Panel verticalMenuPanel;
-    private Panel horisontalFlowPanel;
+    private Panel horisontalMenuPanel;
     private Panel textAnchorPanel;
+    private Panel iconAnchorPanel;
 
     public LeftSideIconMenu(WindowBridgeAbstraction window ) {
 
+        contentPanel= Panel.PanelBuilder.create()
+                .setCoordinate(new Coordinate(80d,0d,0d,60d))
+                .setParent(window.getTopVisiblePanel())
+                .setCssid(CSSID.MAIN_CONTENT_ANCHOR)
+                .setName("contentPanel")
+                .build();
 
-        window.setPanel(panelFabric.contentPanel(//ПАНЕЛЬ ДИНАМИЧЕСКОГО КОНТНЕНТА
-                        new AbstractPanel.PanelBuilder()
-                                .setPanelCoordinate(new Coordinate(80d,0d,0d,60d))
-                                .setParent(Layers.getVisibleRoot())
-                ));
-        window.setPanel(panelFabric.titlePanel(//ПАНЕЛЬ С ЗАГЛАВИЕМ
-                        new AbstractPanel.PanelBuilder().setHeight(70d)
-                                .setPanelCoordinate(new Coordinate(0d,0d,null,0d))
-                                .setParent(Layers.getVisibleRoot())
-                ));
-        window.setPanel(panelFabric.windowButtonsPanel(//ПАНЕЛЬ С Кнопками
-                        new AbstractPanel.PanelBuilder().setHeight(25d).setWidth(82d)
-                                .setPanelCoordinate(new Coordinate(0d,0d,null,null))
-                                .setParent(Layers.getVisibleRoot())
-                ));
-        window.setPanel(panelFabric.verticalMenuPanel(//ВЕРТИКАЛЬНОЕ МЕНЮ
-                        new AbstractPanel.PanelBuilder().setWidth(60d)
-                                .setPanelCoordinate(new Coordinate(0d,null,0d,0d))
-                                .setParent(Layers.getVisibleRoot())
-                ));
-        window.setPanel(panelFabric.horisontalFlowPanel(//ГОРИЗОНТАЛЬНОЕ МЕНЮ
-                        new AbstractPanel.PanelBuilder().setHeight(35d)
-                                .setPanelCoordinate( new Coordinate(49d,0d,null,60d))
-                                .setParent(Layers.getVisibleRoot())
-                ));
-        window.setPanel(panelFabric.textAnchorPanel(//Текстовая панель вывода названия категории меню
-                        new AbstractPanel.PanelBuilder().setHeight(35d)
-                                .setFont(FontsStore.ROBOTO_LIGHT, 20)
-                                .setPanelCoordinate( new Coordinate(15d, 120d, 0d, null))
-                                .setParent(Layers.getTitlePanel())
-                ));
 
-        window.setTitle(titleFabric.createImageTitle()//КАРТИНКА С ЗАГЛАВИЕМ
-                        .setTitleCoordinate(new Coordinate(10d, null, null, 70d))
-                        .setTitlePanel(Layers.getTitlePanel())
-                        .getInstance()
-                );
+        titlePanel=Panel.PanelBuilder.create()
+                .setCoordinate(new Coordinate(0d,0d,null,0d))
+                .setParent(window.getTopVisiblePanel())
+                .setHeight(70d)
+                .setCssid(CSSID.TITLE_PANEL)
+                .setEvent(eventFabric.stageDragging())
+                .setName("titlePanel")
+                .build();
 
-        window.setPanel(panelFabric.iconAnchorPanel(
-                new AbstractPanel.PanelBuilder().setHeight(35d)
-                        .setFont(FontsStore.ROBOTO_LIGHT, 20)
-                        .setPanelCoordinate( new Coordinate(0d, 0d, null, 0d))
-                        .setParent(Layers.getVerticalMenuPanel())
-        ));
+        verticalMenuPanel=Panel.PanelBuilder.create()
+                .setParent(window.getTopVisiblePanel())
+                .setCoordinate(new Coordinate(0d,null,0d,0d))
+                .setWidth(60d)
+                .setName("verticalMenuPanel")
+                .setCssid(CSSID.LEFT_SIDE_MENU_VERTICAL_PANEL)
+                .build();
 
+        horisontalMenuPanel=Panel.PanelBuilder.create()
+                .setParent(window.getTopVisiblePanel())
+                .setHeight(35d)
+                .setCoordinate(new Coordinate(49d,0d,null,60d))
+                .setCssid(CSSID.HORIZONTAL_FLOW_MENU_PANEL)
+                .setName("horisontalMenuPanel")
+                .build();
+
+        textAnchorPanel=Panel.PanelBuilder.create()
+                .setParent(titlePanel.getPanel())
+                .setCoordinate( new Coordinate(15d, 120d, 0d, null))
+                .setHeight(35d)
+                .setCssid(CSSID.LEFT_SIDE_MENU_TEXT_PANEL)
+                .setName("textAnchorPanel")
+                .build()
+                .createInsideTextLayer(FontsStore.ROBOTO_LIGHT, 20);
+
+        iconAnchorPanel=Panel.PanelBuilder.create()
+                .setParent(verticalMenuPanel.getPanel())
+                .setCoordinate(  new Coordinate(0d, 0d, null, 0d))
+                .setHeight(35d)
+                .setFont(FontsStore.ROBOTO_LIGHT, 20)
+                .setCssid(CSSID.IMG_ICON)
+                .setName("iconAnchorPanel")
+                .build();
+
+        panels.add(contentPanel);
+        panels.add(titlePanel);
+        panels.add(windowButtonsPanel);
+        panels.add(verticalMenuPanel);
+        panels.add(horisontalMenuPanel);
+        panels.add(textAnchorPanel);
+        panels.add(iconAnchorPanel);
 
 
     }

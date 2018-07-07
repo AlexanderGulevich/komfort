@@ -1,12 +1,10 @@
 package basisFx.appCore.windows;
 
 import basisFx.appCore.elements.AppNode;
-import basisFx.appCore.panels.AbstractPanel;
 import basisFx.appCore.settings.CSSID;
 import basisFx.appCore.settings.IMGpath;
 import basisFx.appCore.utils.CSSHandler;
 import basisFx.appCore.fabrics.EventFactory;
-import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
@@ -68,18 +66,15 @@ public abstract class WindowBridgeAbstraction {
         return root;
     }
 
-    public void setPanel(AbstractPanel p){
-        p.setStage(stage);
-        p.init();
-        p.register();
-    }
-
     private void initIcon() {
         stage.getIcons().add(
                 new Image(getClass().getResourceAsStream(IMGpath.ICONTOOP.get()
                 )));
     }
 
+    public AnchorPane getTopVisiblePanel() {
+        return topVisiblePanel;
+    }
 
     public void setPanel(AbstractPanel ... p){
 

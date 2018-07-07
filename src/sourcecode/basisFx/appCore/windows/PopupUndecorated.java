@@ -2,7 +2,6 @@ package basisFx.appCore.windows;
 
 import basisFx.appCore.elements.AppNode;
 import basisFx.appCore.fabrics.ButtonFactory;
-import basisFx.appCore.panels.AbstractPanel;
 import basisFx.appCore.fabrics.TextFabric;
 import basisFx.appCore.panels.PopupContentPanel;
 import basisFx.appCore.panels.PopupTitlePanel;

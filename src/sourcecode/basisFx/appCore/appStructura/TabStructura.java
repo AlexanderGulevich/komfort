@@ -1,6 +1,5 @@
 package basisFx.appCore.appStructura;
 
-import basisFx.appCore.panels.AbstractPanel;
 import basisFx.appCore.registry.Layers;
 import basisFx.appCore.utils.Coordinate;
 import basisFx.appCore.windows.WindowBridgeAbstraction;
