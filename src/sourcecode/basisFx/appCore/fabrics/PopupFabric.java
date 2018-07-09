@@ -22,7 +22,7 @@ public class PopupFabric {
 
     }
 
-//    public static WindowBridgeAbstraction popupDecorated(double width, double height, String text){
+//    public static WindowAbstraction popupDecorated(double width, double height, String text){
 //
 ////        return new WindowDecorated(width, height,text);
 //

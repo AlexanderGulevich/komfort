@@ -2,7 +2,7 @@ package basisFx.appCore.fabrics;
 
 import basisFx.appCore.windows.SingleButton;
 import basisFx.appCore.windows.ThreeButtons;
-import basisFx.appCore.windows.WindowBridgeAbstraction;
+import basisFx.appCore.windows.WindowAbstraction;
 
 public class WindowTopButtonsFabric {
     private static WindowTopButtonsFabric ourInstance = new WindowTopButtonsFabric();
@@ -14,11 +14,11 @@ public class WindowTopButtonsFabric {
     private WindowTopButtonsFabric() {
     }
 
-    public ThreeButtons createThreeButtons(WindowBridgeAbstraction bridgeAbstraction){
+    public ThreeButtons createThreeButtons(WindowAbstraction bridgeAbstraction){
         return new ThreeButtons(bridgeAbstraction);
     }
 
-    public SingleButton createSingleButton(WindowBridgeAbstraction bridgeAbstraction){
+    public SingleButton createSingleButton(WindowAbstraction bridgeAbstraction){
         return new SingleButton(bridgeAbstraction);
     }
 

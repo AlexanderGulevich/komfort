@@ -7,13 +7,13 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-public class WindowDecorated extends WindowBridgeAbstraction {
+public class WindowDecorated extends WindowAbstraction {
 
-    public WindowDecorated(Stage st,WindowBridgeImplimentation implimentation) {
+    public WindowDecorated(Stage st,WindowImplimentation implimentation) {
         super(implimentation);
         stage=st;
         stage.initStyle(StageStyle.DECORATED);
-        impl.initDecoratedTitle();
+        stage.setTitle(impl.getTitleName());
         stage.show();
     }
 

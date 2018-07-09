@@ -15,11 +15,11 @@ public abstract class WindowButtons {
     protected ButtonWrapper  closingButton;
     protected AnchorPane buttonsPanel;
     protected Stage stage;
-    protected WindowBridgeAbstraction windowBridgeAbstraction;
+    protected WindowAbstraction windowAbstraction;
     protected WindowEventFabric eventFabric= WindowEventFabric.getInstance();
 
-    public WindowButtons(WindowBridgeAbstraction windowBridgeAbstraction) {
-        this.windowBridgeAbstraction = windowBridgeAbstraction;
+    public WindowButtons(WindowAbstraction windowAbstraction) {
+        this.windowAbstraction = windowAbstraction;
         createButtonsPanel();
     }
 
@@ -28,7 +28,7 @@ public abstract class WindowButtons {
                 .setId(CSSID.WindowButtonsPanel)
                 .setCoordinate( new Coordinate(0d,0d,null,null))
                 .setHeight(25d).setWidth(82d)
-                .setParent(windowBridgeAbstraction.getTopVisiblePanel())
+                .setParent(windowAbstraction.getTopVisiblePanel())
                 .createAnchorPanelWrapper().getElement();
 
     }

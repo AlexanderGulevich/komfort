@@ -155,14 +155,16 @@ public class PopupUndecorated {
         textFabric.createLabel(
                 title,CSSID.PopupTitleText,
                 FontsStore.ROBOTO_BOLD,  Pos.CENTER_LEFT,23d,
-                popupTitlePanel.getPanel(), new Coordinate(10d,0d,null,10d)
+                popupTitlePanel.getPanel(),
+                new Coordinate(10d,0d,null,10d)
         );
 
         // icon
         textFabric.createText(
                 "  \uF06A ", CSSID.ALERT_ICON,
                 FontsStore.FAWESOME5SOLID,50d,
-                popupContentPanel.getPanel(), new Coordinate(10d,-10d,null,null)
+                popupContentPanel.getPanel(),
+                new Coordinate(10d,-10d,null,null)
         );
 
         buttonFactory.popupCloseOkButton(

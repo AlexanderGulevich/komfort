@@ -27,6 +27,9 @@ public class Panel {
     protected CSSID cssid;
     protected AppEvent event;
 
+
+
+
     public Panel(PanelBuilder panelBuilder) {
         this.height=panelBuilder.height;
         this.width=panelBuilder.width;
@@ -42,6 +45,10 @@ public class Panel {
 
     }
 
+
+    public String getName() {
+        return name;
+    }
 
     public Panel createInsideTextLayer(FontsStore fs, double size){
        AppNode.NodeBuilder.create()

@@ -18,8 +18,8 @@ public class ThreeButtons extends WindowButtons {
     Insets padding=new Insets(0d, 0d, 0d, 0d);
     FontsStore fs=FontsStore.FAWESOME5SOLID;
 
-    public ThreeButtons(WindowBridgeAbstraction windowBridgeAbstraction) {
-        super(windowBridgeAbstraction);
+    public ThreeButtons(WindowAbstraction windowAbstraction) {
+        super(windowAbstraction);
     }
     @Override
     protected void init() {

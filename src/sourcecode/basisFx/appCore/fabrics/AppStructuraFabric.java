@@ -4,25 +4,25 @@ import basisFx.appCore.appStructura.PanelsStructura;
 import basisFx.appCore.appStructura.LeftSideIconMenu;
 import basisFx.appCore.appStructura.MenuBarStructura;
 import basisFx.appCore.appStructura.TabStructura;
-import basisFx.appCore.windows.WindowBridgeAbstraction;
+import basisFx.appCore.windows.WindowAbstraction;
 
 public class AppStructuraFabric {
 
 
-    public PanelsStructura leftSideIconMenuStructura(WindowBridgeAbstraction windowBridgeAbstraction){
+    public PanelsStructura leftSideIconMenuStructura(WindowAbstraction windowAbstraction){
 
-        return new LeftSideIconMenu(windowBridgeAbstraction);
-
-    }
-
-    public PanelsStructura tabStructura(WindowBridgeAbstraction windowBridgeAbstraction){
-
-        return new TabStructura(windowBridgeAbstraction);
+        return new LeftSideIconMenu(windowAbstraction);
 
     }
-    public MenuBarStructura menuBarStructura(WindowBridgeAbstraction windowBridgeAbstraction){
 
-        return new MenuBarStructura(windowBridgeAbstraction);
+    public PanelsStructura tabStructura(WindowAbstraction windowAbstraction){
+
+        return new TabStructura(windowAbstraction);
+
+    }
+    public MenuBarStructura menuBarStructura(WindowAbstraction windowAbstraction){
+
+        return new MenuBarStructura(windowAbstraction);
 
     }
 

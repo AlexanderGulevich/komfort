@@ -4,7 +4,7 @@ import basisFx.appCore.settings.FontsStore;
 import basisFx.appCore.windows.Panel;
 import basisFx.appCore.settings.CSSID;
 import basisFx.appCore.utils.Coordinate;
-import basisFx.appCore.windows.WindowBridgeAbstraction;
+import basisFx.appCore.windows.WindowAbstraction;
 
 public class LeftSideIconMenu extends PanelsStructura {
 
@@ -15,8 +15,9 @@ public class LeftSideIconMenu extends PanelsStructura {
     private Panel horisontalMenuPanel;
     private Panel textAnchorPanel;
     private Panel iconAnchorPanel;
+    private Panel titleImage;
 
-    public LeftSideIconMenu(WindowBridgeAbstraction window ) {
+    public LeftSideIconMenu(WindowAbstraction window ) {
 
         contentPanel= Panel.PanelBuilder.create()
                 .setCoordinate(new Coordinate(80d,0d,0d,60d))
@@ -34,6 +35,16 @@ public class LeftSideIconMenu extends PanelsStructura {
                 .setEvent(eventFabric.stageDragging())
                 .setName("titlePanel")
                 .build();
+
+
+        titleImage=Panel.PanelBuilder.create()
+                .setParent(titlePanel.getPanel())
+//                .setCoordinate(new Coordinate(0d, 0d, 0d, 0d))
+                .setCoordinate(new Coordinate(10d, null, null, 70d))
+                .setCssid(CSSID.TITLE_WINDOW_IMG)
+                .setName("titleImage")
+                .build();
+
 
         verticalMenuPanel=Panel.PanelBuilder.create()
                 .setParent(window.getTopVisiblePanel())
@@ -76,6 +87,7 @@ public class LeftSideIconMenu extends PanelsStructura {
         panels.add(horisontalMenuPanel);
         panels.add(textAnchorPanel);
         panels.add(iconAnchorPanel);
+        panels.add(titleImage);
 
 
     }

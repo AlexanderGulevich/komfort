@@ -18,16 +18,16 @@ import javafx.stage.StageStyle;
  *
  * @author 62
  */
-public abstract class WindowBridgeAbstraction {
+public abstract class WindowAbstraction {
 
     protected Stage stage;
     protected Scene scene;
     protected AnchorPane root;
     protected AnchorPane topVisiblePanel;
-    protected WindowBridgeImplimentation impl;
+    protected WindowImplimentation impl;
     protected EventFactory eventFactory = EventFactory.getInstance();
 
-    public WindowBridgeAbstraction(WindowBridgeImplimentation implimentation) {
+    public WindowAbstraction(WindowImplimentation implimentation) {
         impl = implimentation;
         impl.setWindow(this);
         initRoot();
@@ -48,10 +48,6 @@ public abstract class WindowBridgeAbstraction {
                 .setId(CSSID.TopVisiblePanel)
                 .createAnchorPanelWrapper()
                 .getElement();
-    }
-
-    public void setTitle(AbstracttTitle t){
-        t.init();
     }
 
     public Scene getScene() {
@@ -76,16 +72,6 @@ public abstract class WindowBridgeAbstraction {
         return topVisiblePanel;
     }
 
-    public void setPanel(AbstractPanel ... p){
-
-        for (AbstractPanel abstractPanel : p) {
-            abstractPanel.setStage (stage);
-            abstractPanel.init();
-            abstractPanel.register();
-        }
-
-
-    }
 
 
 
