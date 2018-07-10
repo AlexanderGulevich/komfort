@@ -16,6 +16,13 @@ public class WindowDecorated extends WindowAbstraction {
         stage.setTitle(impl.getTitleName());
         stage.show();
     }
+    public WindowDecorated(WindowImplimentation implimentation) {
+        super(implimentation);
+        stage=new Stage();
+        stage.initStyle(StageStyle.DECORATED);
+        stage.setTitle(impl.getTitleName());
+        stage.show();
+    }
 
     @Override
     protected void initRoot() {

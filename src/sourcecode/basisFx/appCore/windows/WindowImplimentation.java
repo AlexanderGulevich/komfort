@@ -1,6 +1,6 @@
 package basisFx.appCore.windows;
 
-import basisFx.appCore.appStructura.PanelsStructura;
+import basisFx.appCore.appStructura.GuiStructura;
 import basisFx.appCore.fabrics.WindowTopButtonsFabric;
 
 import java.util.ArrayList;
@@ -16,8 +16,8 @@ public abstract class WindowImplimentation {
     private  HashMap<String,Panel> panelHashMap =new HashMap<>();
 
 
-    public WindowImplimentation(PanelsStructura panelsStructura) {
-        ArrayList<Panel> panels = panelsStructura.getPanels();
+    public WindowImplimentation(GuiStructura structura) {
+        ArrayList<Panel> panels = structura.getPanels();
 
         for (Panel panel : panels) {
             panelHashMap.put(panel.getName(),panel);

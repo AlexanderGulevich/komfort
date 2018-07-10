@@ -1,4 +1,4 @@
 package basisFx.appCore.appStructura;
 
-public class Popup extends PanelsStructura {
+public class Popup extends GuiStructura {
 }

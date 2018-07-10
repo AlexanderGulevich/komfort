@@ -6,7 +6,7 @@ import basisFx.appCore.settings.CSSID;
 import basisFx.appCore.utils.Coordinate;
 import basisFx.appCore.windows.WindowAbstraction;
 
-public class LeftSideIconMenu extends PanelsStructura {
+public class LeftAndTopMenuUndecorated extends GuiStructura {
 
     private Panel contentPanel;
     private Panel titlePanel;
@@ -17,7 +17,7 @@ public class LeftSideIconMenu extends PanelsStructura {
     private Panel iconAnchorPanel;
     private Panel titleImage;
 
-    public LeftSideIconMenu(WindowAbstraction window ) {
+    public LeftAndTopMenuUndecorated(WindowAbstraction window ) {
 
         contentPanel= Panel.PanelBuilder.create()
                 .setCoordinate(new Coordinate(80d,0d,0d,60d))

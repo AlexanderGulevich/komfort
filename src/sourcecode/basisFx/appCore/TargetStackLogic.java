@@ -6,8 +6,7 @@
 package basisFx.appCore;
 
 import basisFx.domainModel.targets.Target;
-import basisFx.appCore.registry.Layers;
-import basisFx.appCore.registry.TargetRegistry;
+import basisFx.appCore.utils.TargetRegistry;
 
 /**
  *

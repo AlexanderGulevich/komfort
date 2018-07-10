@@ -1,7 +1,6 @@
 package basisFx.appCore.controls;
 
 import basisFx.appCore.fabrics.PopupFabric;
-import basisFx.appCore.fabrics.WindowFabric;
 import basisFx.appCore.windows.PopupUndecorated;
 import javafx.scene.control.TableColumn;
 

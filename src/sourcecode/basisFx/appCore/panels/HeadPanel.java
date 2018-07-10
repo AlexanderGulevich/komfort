@@ -6,7 +6,6 @@
 package basisFx.appCore.panels;
 
 import basisFx.appCore.elements.AppNode;
-import basisFx.appCore.registry.Layers;
 import basisFx.appCore.settings.CSSID;
 import javafx.scene.layout.AnchorPane;
 

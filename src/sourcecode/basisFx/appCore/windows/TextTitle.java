@@ -8,7 +8,6 @@ package basisFx.appCore.windows;
 import basisFx.appCore.elements.AppNode;
 import basisFx.appCore.settings.CSSID;
 import basisFx.appCore.settings.Settings;
-import basisFx.appCore.settings.WindowsTitlesNames;
 
 /**
  *

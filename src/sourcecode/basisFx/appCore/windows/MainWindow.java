@@ -1,26 +1,25 @@
 package basisFx.appCore.windows;
 
-import basisFx.appCore.appStructura.PanelsStructura;
-import basisFx.appCore.settings.WindowsTitlesNames;
+import basisFx.appCore.appStructura.GuiStructura;
 
 public class MainWindow extends WindowImplimentation {
 
     private static MainWindow instance;
 
-    public static MainWindow getInstance(PanelsStructura panelsStructura){
+    public static MainWindow getInstance(GuiStructura GuiStructura){
         if (instance == null) {
-           return instance=new MainWindow(panelsStructura);
+           return instance=new MainWindow(GuiStructura);
         }else {
            return MainWindow.instance;
         }
     }
 
-    private MainWindow(PanelsStructura panelsStructura) {
-        super(panelsStructura);
+    private MainWindow(GuiStructura GuiStructura) {
+        super(GuiStructura);
     }
     @Override
     protected String getTitleName() {
-        return WindowsTitlesNames.MAIN_WINDOW_NAME.get();
+        return "KOMFORT";
     }
     @Override
     public void initUndecoratedStageButtons() {

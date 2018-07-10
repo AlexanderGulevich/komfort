@@ -12,20 +12,10 @@ import javafx.stage.Stage;
  *
  * @author Alek
  */
-public class WindowFabric {
+public interface WindowFabric {
 
-
-    public  WindowUndecorated unDecoratedWindow(double width, double height, Stage stage){
-
-        return new WindowUndecorated(width, height, stage);
-
-    }
-     public  WindowDecorated decoratedWindow(double width, double height, Stage stage){
-     
-         return new WindowDecorated(width, height, stage);
-
-     }
-
-
+    public void createWindow();
+    public WindowAbstraction createWindow(WindowImplimentation impl);
+    public WindowAbstraction createWindow(Stage st,WindowImplimentation impl);
      
 }

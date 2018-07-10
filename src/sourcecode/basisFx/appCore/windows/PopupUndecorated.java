@@ -5,7 +5,6 @@ import basisFx.appCore.fabrics.ButtonFactory;
 import basisFx.appCore.fabrics.TextFabric;
 import basisFx.appCore.panels.PopupContentPanel;
 import basisFx.appCore.panels.PopupTitlePanel;
-import basisFx.appCore.registry.Layers;
 import basisFx.appCore.settings.CSSID;
 import basisFx.appCore.settings.FontsStore;
 import basisFx.appCore.utils.Coordinate;

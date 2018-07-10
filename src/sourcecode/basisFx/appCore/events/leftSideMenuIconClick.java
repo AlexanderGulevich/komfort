@@ -8,7 +8,6 @@ package basisFx.appCore.events;
 import basisFx.appCore.elements.AppNode;
 import basisFx.appCore.menu.LeftSideMenuRepresent;
 import basisFx.appCore.menu.MenuComponent;
-import basisFx.appCore.registry.Layers;
 import basisFx.appCore.settings.CSSID;
 import basisFx.appCore.settings.FontsStore;
 import java.util.ArrayList;

@@ -9,7 +9,6 @@ import basisFx.appCore.utils.Coordinate;
 import basisFx.appCore.events.AppEvent;
 import basisFx.appCore.settings.CSSID;
 import basisFx.appCore.utils.FontLogic;
-import basisFx.appCore.settings.WindowsTitlesNames;
 import basisFx.appCore.settings.FontsStore;
 import javafx.geometry.Insets;
 

@@ -5,7 +5,6 @@
  */
 package basisFx.appCore;
 
-import basisFx.appCore.registry.Layers;
 import javafx.scene.control.Button;
 
 /**

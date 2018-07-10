@@ -9,7 +9,6 @@ import basisFx.appCore.*;
 import basisFx.appCore.elements.AppNode;
 import basisFx.appCore.elements.GridPaneWrapper;
 import basisFx.appCore.fabrics.*;
-import basisFx.appCore.registry.Layers;
 import basisFx.appCore.utils.Coordinate;
 import basisFx.domainModel.DataMapperFabric;
 import javafx.scene.layout.AnchorPane;

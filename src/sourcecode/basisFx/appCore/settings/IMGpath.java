@@ -12,8 +12,6 @@ package basisFx.appCore.settings;
 public enum IMGpath {
     ICONTOOP("/res/img/icon.png");
 
-
-
     private final String path;
 
     private IMGpath(String path) {

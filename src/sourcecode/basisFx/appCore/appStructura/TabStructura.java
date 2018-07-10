@@ -1,10 +1,9 @@
 package basisFx.appCore.appStructura;
 
-import basisFx.appCore.registry.Layers;
 import basisFx.appCore.utils.Coordinate;
 import basisFx.appCore.windows.WindowAbstraction;
 
-public class TabStructura extends PanelsStructura {
+public class TabStructura extends GuiStructura {
 
 
     public TabStructura( WindowAbstraction windowAbstraction) {
