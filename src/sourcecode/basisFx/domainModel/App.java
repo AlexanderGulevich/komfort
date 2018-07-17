@@ -28,7 +28,7 @@ public class App{
 
     public App(Stage primaryStage) throws ClassNotFoundException, SQLException {
 
-        SystemDecorationFabric.createSystemUndecorated();
+        DecorationAbstractFabric.createSystemUndecorated();
 
         windowFabric.createWindow(primaryStage,
                 implimentationFabric.mainWindow(structura.guiStructura()));

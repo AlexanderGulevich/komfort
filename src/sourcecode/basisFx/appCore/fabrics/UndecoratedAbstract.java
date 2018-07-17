@@ -2,10 +2,10 @@ package basisFx.appCore.fabrics;
 
 import basisFx.appCore.utils.SystemRegistry;
 
-public class SystemDecorated extends SystemDecorationFabric {
+public class UndecoratedAbstract extends DecorationAbstractFabric {
     @Override
     public WindowFabric createWindowFabric() {
-        WindowDecoratedFabric fabric = new WindowDecoratedFabric();
+        WindowUndecoratedFabric fabric = new WindowUndecoratedFabric();
         SystemRegistry.windowFabric=fabric;
         return fabric;
     }
