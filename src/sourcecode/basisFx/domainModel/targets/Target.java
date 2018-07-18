@@ -30,7 +30,6 @@ public abstract class Target {
     protected TargetStackLogic targetStack=TargetStackLogic.getInstance();
     protected ButtonFactory buttonFactory =new ButtonFactory();
     protected TableFabric tableFabric=new TableFabric();
-    protected InnerPanelsFabric innerPanelsFabric=new InnerPanelsFabric();
     protected TextFabric textFabric=new TextFabric();
     protected VidgetFactory vidgetFactory=new VidgetFactory();
     protected GridPaneWrapper gridPaneWrapper;

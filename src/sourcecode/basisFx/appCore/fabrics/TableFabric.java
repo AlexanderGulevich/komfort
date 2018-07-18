@@ -13,7 +13,7 @@ public class TableFabric {
     protected TextFabric textFabric=new TextFabric();
     protected ButtonFactory buttonFactory =new ButtonFactory();
     protected EditFabric editFabric=new EditFabric();
-    protected InnerPanelsFabric innerPanelsFabric=new InnerPanelsFabric();
+
 
     public TableWrapper table(AnchorPane panel, double width, Coordinate coordinate,
                               DataMapper dataMapper,

@@ -32,7 +32,14 @@ public class ErrorStructura extends GuiStructura{
 //                        .setParent(Layers.getPopupVisibleRoot())
 //
 //        );
-//
+//  panel =  (AnchorPane) AppNode.NodeBuilder.create()
+//                .setId(CSSID.popupTitlePanel)
+//                .setCoordinate(panelCoordinate)
+//                .setHeight(height)
+//                .setStage(stage)
+//                .setEvent(eventFactory.stageDragging())
+//                .setParent(parent)
+//                .createAnchorPanelWrapper().getElement();
 //
 //
 //        AnchorPane popupTransparentRoot=(AnchorPane) AppNode.NodeBuilder.create()
@@ -69,6 +76,26 @@ public class ErrorStructura extends GuiStructura{
 //                        .setPanelCoordinate(new Coordinate(45d, 5d, 5d, 5d))
 //                        .setParent(Layers.getPopupVisibleRoot())
 //        );
+
+
+//
+//        panel =  (AnchorPane) AppNode.NodeBuilder.create()
+//                .setId(CSSID.popupContentPanel)
+//                .setCoordinate(panelCoordinate)
+//                .setHeight(height)
+//                .setStage(stage)
+//                .setParent(parent)
+//                .createAnchorPanelWrapper().getElement();
+
+
+
+
+//        panel =  (AnchorPane) AppNode.NodeBuilder.create()
+//                .setId(CSSID.WindowButtonsPanel)
+//                .setCoordinate(panelCoordinate)
+//                .setHeight(height).setWidth(width)
+//                .setParent(parent)
+//                .createAnchorPanelWrapper().getElement();
 //
 //        popupMessageTextPanel =  (AnchorPane) AppNode.NodeBuilder.create()
 //                .setId(CSSID.popupMessageTextPanel)
