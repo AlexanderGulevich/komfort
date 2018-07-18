@@ -13,6 +13,7 @@ package basisFx.appCore.settings;
  */
 public abstract class Settings {
 
+ public static final String TITLE= "KOMFORT";
  public static final double WIDTH= 1000d;
  public static final double HEIGHT= 600d ;
  public static final double Preloader_WIDTH= 600d;

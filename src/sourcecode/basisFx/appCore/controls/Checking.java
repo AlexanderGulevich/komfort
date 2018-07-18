@@ -1,7 +1,5 @@
 package basisFx.appCore.controls;
 
-import basisFx.appCore.fabrics.PopupFabric;
-import basisFx.appCore.windows.PopupUndecorated;
 import javafx.scene.control.TableColumn;
 
 import java.time.DateTimeException;
@@ -9,8 +7,7 @@ import java.time.LocalDate;
 
 public class Checking {
 
-    protected static PopupUndecorated popupUndecorated;
-    protected static WindowFabric windowFabric= new WindowFabric();
+//    protected static PopupUndecorated popupUndecorated;
     protected static String message=   "Произошла ошибка.\nВ поле было введено неправильное значение.";
 
 
@@ -33,7 +30,7 @@ public class Checking {
                     LocalDate newValue = (LocalDate) event.getNewValue();
                     return true;
                 }catch (DateTimeException e){
-                    popupUndecorated = PopupFabric.popupUndecorated(KindOfPopup.ERROR,message);
+
 
                     return false;
                 }
@@ -45,7 +42,7 @@ public class Checking {
                     return true;
 
                 }catch (NumberFormatException  e){
-                    popupUndecorated =PopupFabric.popupUndecorated(KindOfPopup.ERROR,message);
+
 
                     return false;
                 }
@@ -65,7 +62,7 @@ public class Checking {
 
                 }catch (NumberFormatException   e){
 
-                    popupUndecorated =PopupFabric.popupUndecorated(KindOfPopup.ERROR,message);
+
 
                     return false;
                 }

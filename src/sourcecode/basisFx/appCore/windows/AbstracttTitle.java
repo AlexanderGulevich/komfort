@@ -12,7 +12,7 @@ import javafx.scene.layout.AnchorPane;
  *
  * @author Alek
  */
-public abstract class AbstracttTitle implements Initiated{
+public abstract class AbstracttTitle {
     
     
     protected AnchorPane titlePanel;

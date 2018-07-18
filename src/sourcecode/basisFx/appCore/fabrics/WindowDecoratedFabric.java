@@ -1,23 +1,42 @@
 package basisFx.appCore.fabrics;
 
-import basisFx.appCore.windows.WindowAbstraction;
+import basisFx.appCore.appStructura.GuiStructura;
+import basisFx.appCore.utils.SystemRegistry;
+import basisFx.appCore.windows.MainWindow;
+import basisFx.appCore.windows.Window;
 import basisFx.appCore.windows.WindowDecorated;
-import basisFx.appCore.windows.WindowImplimentation;
 import javafx.stage.Stage;
 
-public class WindowDecoratedFabric implements WindowFabric {
-    @Override
-    public void createWindow() {
 
+public class WindowDecoratedFabric extends WindowFabric {
+
+    @Override
+    public Window mainWindow(GuiStructura guiStructura,Stage st) {
+        MainWindow mainWindow = MainWindow.getInstance(guiStructura);
+        Window decorated=new WindowDecorated(st,mainWindow);
+        guiStructura.setWindow(decorated);
+        guiStructura.init();
+        SystemRegistry.mainWindow=mainWindow;
+        return decorated;
     }
 
     @Override
-    public WindowAbstraction createWindow(WindowImplimentation impl) {
+    public Window errorWindow(GuiStructura guiStructura) {
         return null;
     }
 
     @Override
-    public WindowDecorated createWindow(Stage st, WindowImplimentation impl) {
-            return new WindowDecorated(st,impl);
+    public Window dialogWindow(GuiStructura guiStructura) {
+        return null;
+    }
+
+    @Override
+    public Window popupWindow(GuiStructura guiStructura) {
+        return null;
+    }
+
+    @Override
+    public Window tooltipWindow(GuiStructura guiStructura) {
+        return null;
     }
 }

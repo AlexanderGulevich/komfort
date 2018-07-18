@@ -7,20 +7,20 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-public class WindowDecorated extends WindowAbstraction {
+public class WindowDecorated extends Window {
 
-    public WindowDecorated(Stage st,WindowImplimentation implimentation) {
+    public WindowDecorated(Stage st,WindowKind implimentation) {
         super(implimentation);
         stage=st;
         stage.initStyle(StageStyle.DECORATED);
-        stage.setTitle(impl.getTitleName());
+        stage.setTitle(kind.getTitleName());
         stage.show();
     }
-    public WindowDecorated(WindowImplimentation implimentation) {
+    public WindowDecorated(WindowKind implimentation) {
         super(implimentation);
         stage=new Stage();
         stage.initStyle(StageStyle.DECORATED);
-        stage.setTitle(impl.getTitleName());
+        stage.setTitle(kind.getTitleName());
         stage.show();
     }
 

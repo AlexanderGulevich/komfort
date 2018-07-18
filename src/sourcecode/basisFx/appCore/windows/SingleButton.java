@@ -16,8 +16,8 @@ public class SingleButton extends WindowButtons {
     Insets padding=new Insets(0d, 0d, 0d, 0d);
     FontsStore fs=FontsStore.FAWESOME5SOLID;
 
-    public SingleButton(WindowAbstraction windowAbstraction) {
-        super(windowAbstraction);
+    public SingleButton(Window window) {
+        super(window);
     }
 
     @Override

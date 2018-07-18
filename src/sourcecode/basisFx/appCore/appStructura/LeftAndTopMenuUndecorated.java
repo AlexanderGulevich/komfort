@@ -4,7 +4,7 @@ import basisFx.appCore.settings.FontsStore;
 import basisFx.appCore.windows.Panel;
 import basisFx.appCore.settings.CSSID;
 import basisFx.appCore.utils.Coordinate;
-import basisFx.appCore.windows.WindowAbstraction;
+import basisFx.appCore.windows.Window;
 
 public class LeftAndTopMenuUndecorated extends GuiStructura {
 
@@ -17,7 +17,8 @@ public class LeftAndTopMenuUndecorated extends GuiStructura {
     private Panel iconAnchorPanel;
     private Panel titleImage;
 
-    public LeftAndTopMenuUndecorated(WindowAbstraction window ) {
+
+    public void init(){
 
         contentPanel= Panel.PanelBuilder.create()
                 .setCoordinate(new Coordinate(80d,0d,0d,60d))
@@ -88,7 +89,6 @@ public class LeftAndTopMenuUndecorated extends GuiStructura {
         panels.add(textAnchorPanel);
         panels.add(iconAnchorPanel);
         panels.add(titleImage);
-
 
     }
 

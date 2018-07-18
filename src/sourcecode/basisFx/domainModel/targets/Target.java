@@ -9,6 +9,7 @@ import basisFx.appCore.*;
 import basisFx.appCore.elements.AppNode;
 import basisFx.appCore.elements.GridPaneWrapper;
 import basisFx.appCore.fabrics.*;
+import basisFx.appCore.settings.CSSID;
 import basisFx.appCore.utils.Coordinate;
 import basisFx.domainModel.DataMapperFabric;
 import javafx.scene.layout.AnchorPane;
@@ -20,7 +21,7 @@ import javafx.scene.layout.GridPane;
  */
 public abstract class Target {
     
-    protected PanelFabric panelFabric=new PanelFabric();
+
     protected AnchorPane panel;
     protected ColumnFabric columnFabric=new ColumnFabric();
     protected DataMapperFabric dataMapperFabric =new DataMapperFabric();
@@ -61,11 +62,23 @@ public abstract class Target {
     }
     
     protected void createPanel(){
-         panel=panelFabric.innerContentPanel(
-            new AbstractPanel.PanelBuilder()
-                    .setParent(Layers.getContentLayer())
-                    .setPanelCoordinate(new Coordinate(10d, 10d, 10d, 10d)))
-                .getPanel();
+//
+//        (AnchorPane) AppNode.NodeBuilder.create()
+//                .setId(CSSID.TARGET_PANEL)
+//                .setCoordinate(panelCoordinate)
+//                .setParent(parent)
+//                .createAnchorPanelWrapper().getElement();
+
+//        ScrollPane scrollPane = (ScrollPane) AppNode.NodeBuilder.create()
+//                .setParent(Layers.getContentLayer())
+//                .setCoordinate(panelCoordinate)
+//                .createScrollPaneWrapper().getElement();
+
+//         panel=panelFabric.innerContentPanel(
+//            new AbstractPanel.PanelBuilder()
+//                    .setParent(Layers.getContentLayer())
+//                    .setPanelCoordinate(new Coordinate(10d, 10d, 10d, 10d)))
+//                .getPanel();
     }
 
     protected void createGridBasedPanel(){

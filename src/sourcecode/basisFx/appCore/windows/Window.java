@@ -18,21 +18,21 @@ import javafx.stage.StageStyle;
  *
  * @author 62
  */
-public abstract class WindowAbstraction {
+public abstract class Window {
 
     protected Stage stage;
     protected Scene scene;
     protected AnchorPane root;
     protected AnchorPane topVisiblePanel;
-    protected WindowImplimentation impl;
+    protected WindowKind kind;
     protected EventFactory eventFactory = EventFactory.getInstance();
 
-    public WindowAbstraction(WindowImplimentation implimentation) {
-        impl = implimentation;
-        impl.setWindow(this);
+    public Window(WindowKind kind) {
+        this.kind = kind;
+        this.kind.setWindow(this);
         initRoot();
         initTopVisiblePanel();
-        scene= new Scene(root, impl.getWidth(), impl.getHeight());
+        scene= new Scene(root, this.kind.getWidth(), this.kind.getHeight());
         stage.setScene(scene);
         scene.setFill(Color.TRANSPARENT);
         stage.initStyle(StageStyle.TRANSPARENT);
@@ -42,7 +42,7 @@ public abstract class WindowAbstraction {
 
     protected abstract void initRoot();
 
-    protected void initTopVisiblePanel() {
+    private void initTopVisiblePanel() {
         topVisiblePanel = (AnchorPane) AppNode.NodeBuilder.create()
                 .setCoordinate(root, 0d, 0d, 0d, 0d)
                 .setId(CSSID.TopVisiblePanel)

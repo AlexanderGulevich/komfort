@@ -1,6 +1,6 @@
 package basisFx.appCore.fabrics;
 
-import basisFx.appCore.appStructura.GuiStructura;
+
 import basisFx.appCore.appStructura.LeftAndTopMenuUndecorated;
 
 public class GuiStructuraFabric {
@@ -11,7 +11,7 @@ public class GuiStructuraFabric {
     }
 
 
-    public LeftAndTopMenuUndecorated guiStructura(){
+    public LeftAndTopMenuUndecorated leftAndTopMenuUndecorated(){
         return new LeftAndTopMenuUndecorated();
     }
 }

@@ -1,8 +1,9 @@
 package basisFx.appCore.windows;
 
 import basisFx.appCore.appStructura.GuiStructura;
+import basisFx.appCore.settings.Settings;
 
-public class MainWindow extends WindowImplimentation {
+public class MainWindow extends WindowKind {
 
     private static MainWindow instance;
 
@@ -15,11 +16,8 @@ public class MainWindow extends WindowImplimentation {
     }
 
     private MainWindow(GuiStructura GuiStructura) {
-        super(GuiStructura);
-    }
-    @Override
-    protected String getTitleName() {
-        return "KOMFORT";
+        super(GuiStructura,Settings.WIDTH,Settings.HEIGHT,Settings.TITLE);
+
     }
     @Override
     public void initUndecoratedStageButtons() {

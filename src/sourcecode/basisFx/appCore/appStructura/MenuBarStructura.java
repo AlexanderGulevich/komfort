@@ -1,10 +1,10 @@
 package basisFx.appCore.appStructura;
 
-import basisFx.appCore.windows.WindowAbstraction;
+import basisFx.appCore.windows.Window;
 
 public class MenuBarStructura extends GuiStructura {
 
-    public MenuBarStructura(WindowAbstraction windowAbstraction) {
+    public MenuBarStructura(Window window) {
 
 
 

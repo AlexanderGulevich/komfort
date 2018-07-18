@@ -1,22 +1,25 @@
 package basisFx.appCore.windows;
 
 import basisFx.appCore.appStructura.GuiStructura;
-import basisFx.appCore.fabrics.WindowTopButtonsFabric;
+import basisFx.appCore.fabrics.StageTopButtonsFabric;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public abstract class WindowImplimentation {
+public abstract class WindowKind {
 
     private double width;
     private double height;
-    protected WindowAbstraction window;
+    protected Window window;
     protected String titleName;
-    protected WindowTopButtonsFabric topButtonsFabric=WindowTopButtonsFabric.getInstance();
+    protected StageTopButtonsFabric topButtonsFabric= StageTopButtonsFabric.getInstance();
     private  HashMap<String,Panel> panelHashMap =new HashMap<>();
 
+    public WindowKind(GuiStructura structura,double width,double height,String titleName) {
+        setHeight(height);
+        setWidth(width);
+        setTitleName(titleName);
 
-    public WindowImplimentation(GuiStructura structura) {
         ArrayList<Panel> panels = structura.getPanels();
 
         for (Panel panel : panels) {
@@ -24,7 +27,6 @@ public abstract class WindowImplimentation {
         }
     }
 
-    protected abstract String getTitleName();
     public abstract void initUndecoratedStageButtons();
 
 
@@ -44,7 +46,7 @@ public abstract class WindowImplimentation {
         this.height = height;
     }
 
-    public void setWindow(WindowAbstraction window) {
+    public void setWindow(Window window) {
         this.window = window;
     }
     public  HashMap getPanelHashMap(){
@@ -54,5 +56,7 @@ public abstract class WindowImplimentation {
         return panelHashMap.get(str);
     }
 
-
+    public void setTitleName(String titleName) {
+        this.titleName = titleName;
+    }
 }

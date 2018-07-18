@@ -399,11 +399,6 @@ public abstract class AppNode  {
           
           
         }
-        
-        public NodeBuilder setText(WindowsTitlesNames t){
-            this.text=t.get();
-            return this;
-        }
 
         public NodeBuilder setText(String str){
             this.text=str;

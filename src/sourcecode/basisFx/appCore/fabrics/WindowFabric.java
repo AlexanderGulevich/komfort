@@ -5,17 +5,30 @@
  */
 package basisFx.appCore.fabrics;
 
+import basisFx.appCore.appStructura.GuiStructura;
 import basisFx.appCore.windows.*;
 import javafx.stage.Stage;
+
 
 /**
  *
  * @author Alek
  */
-public interface WindowFabric {
+public abstract class WindowFabric {
 
-    public void createWindow();
-    public WindowAbstraction createWindow(WindowImplimentation impl);
-    public WindowAbstraction createWindow(Stage st,WindowImplimentation impl);
-     
+    public abstract Window mainWindow(GuiStructura guiStructura,Stage st);
+    public abstract Window errorWindow(GuiStructura guiStructura);
+    public abstract Window dialogWindow(GuiStructura guiStructura);
+    public abstract Window popupWindow(GuiStructura guiStructura);
+    public abstract Window tooltipWindow(GuiStructura guiStructura);
+
+    public static WindowFabric WindowDecoratedFabric(){
+        return new WindowDecoratedFabric();
+    }
+
+    public static WindowFabric WindowUndecoratedFabric(){
+        return new WindowUndecoratedFabric();
+    }
+
+
 }
