@@ -9,22 +9,22 @@ package basisFx.appCore.menu;
  *
  * @author Alek
  */
-public class MenuFabric {
+public  class MenuFabric {
     
     
-    
-    public  MenuBarRepresent menuBar(){
-         
-        return new MenuBarRepresent();
-        
-        
-    }
-    
-    public  LeftSideMenuRepresent createMenuLeftSideRepresentation(){
-         
-        return new LeftSideMenuRepresent();
-        
-        
+
+//    public static MenuBarRepresent menuBar(){
+//
+//        return new MenuBarRepresent();
+//
+//
+//    }
+
+    public  static LeftAndTopMenuRepresent createMenuLeftSideRepresentation(MenuSketch sketch){
+
+        return new LeftAndTopMenuRepresent(sketch);
+
+
     }
     
     

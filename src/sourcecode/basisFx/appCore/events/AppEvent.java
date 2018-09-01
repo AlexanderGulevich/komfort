@@ -6,7 +6,6 @@
 package basisFx.appCore.events;
 
 import basisFx.appCore.elements.AppNode;
-import basisFx.appCore.fabrics.EventFactory;
 
 import java.sql.SQLException;
 
@@ -18,15 +17,14 @@ import java.sql.SQLException;
 public abstract class AppEvent {
 
     protected AppNode appNode;
-    protected EventFactory eventFactory=EventFactory.getInstance();
-    
+
     public abstract void setElement(AppNode node);
     public AppEvent setElementNonLogic(AppNode node){
-    
+
         this.appNode=node;
         return this;
-    
+
     };
     public abstract void run() throws SQLException;
-      
+
 }

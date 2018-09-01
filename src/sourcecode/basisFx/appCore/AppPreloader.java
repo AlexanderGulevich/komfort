@@ -5,10 +5,13 @@
  */
 package basisFx.appCore;
 
+import basisFx.appCore.elements.AnchorWrapper;
 import basisFx.appCore.elements.AppNode;
 import basisFx.appCore.settings.CSSID;
 import basisFx.appCore.settings.Settings;
 import static basisFx.appCore.settings.Settings.PRELODER_COUNT_LIMIT;
+
+import basisFx.appCore.utils.Coordinate;
 import com.sun.javafx.application.LauncherImpl;
 import javafx.application.Platform;
 import javafx.application.Preloader;
@@ -29,11 +32,11 @@ public class AppPreloader extends Preloader {
     private Stage stage;
     private AnchorPane visibleRoot;
 
-    public double WIDTH_VISIBLE= Settings.Preloader_WIDTH;
-    public double HEIGHT_VISIBLE= Settings.Preloader_HEIGHT ;
+    public double WIDTH_VISIBLE=600d;
+    public double HEIGHT_VISIBLE= 400d ;
 
-    public double WIDTH_TRANSPARENT= Settings.Preloader_WIDTH+5d;
-    public double HEIGHT_TRANSPARENT= Settings.Preloader_HEIGHT+5d;
+    public double WIDTH_TRANSPARENT= WIDTH_VISIBLE+5d;
+    public double HEIGHT_TRANSPARENT= HEIGHT_VISIBLE+5d;
 
     @Override
     public void init() throws Exception {
@@ -41,9 +44,9 @@ public class AppPreloader extends Preloader {
         Platform.runLater(() -> {
             
         setTransparentRoot();
-        setVisibleRoot();     
-        
-      
+        setVisibleRoot();
+
+
         this.scene= new Scene(root,WIDTH_TRANSPARENT,HEIGHT_TRANSPARENT);
 
         
@@ -61,7 +64,7 @@ public class AppPreloader extends Preloader {
         this.stage=primaryStage;
         stage.setScene(scene);
        
-      stage.initStyle(StageStyle.TRANSPARENT);
+        stage.initStyle(StageStyle.TRANSPARENT);
         stage.show();
   
           }
@@ -103,25 +106,20 @@ public class AppPreloader extends Preloader {
     }
     
      protected void setTransparentRoot(){
-                 this.root=(AnchorPane) AppNode.NodeBuilder.create()
-                         .setId(CSSID.PRELOADER_TRANSPARENT_ROOT)
+                 this.root=AnchorWrapper.newBuilder()
+                         .setCssid(CSSID.PRELOADER_TRANSPARENT_ROOT)
                          .setInsects(new Insets(5d, 5d, 5d, 5d))
-//                         .setWidth(WIDTH_VISIBLE)
-//                         .setHeight(HEIGHT_VISIBLE)
-                         .createAnchorPanelWrapper()
-                         .getElement();
+                         .build().getElement();
               
              
      }
      
      protected void setVisibleRoot(){
-                 this.visibleRoot=(AnchorPane) AppNode.NodeBuilder.create()
-                         .setCoordinate(root, 0d, 0d, 0d, 0d)
-                         .setId(CSSID.PRELOADER_VISIBLE_ROOT)
-//                         .setWidth(WIDTH_VISIBLE)
-//                         .setHeight(HEIGHT_VISIBLE)
-                         .createAnchorPanelWrapper()
-                         .getElement();
+                 this.visibleRoot=AnchorWrapper.newBuilder()
+                         .setParentAnchor(root)
+                         .setCssid(CSSID.PRELOADER_VISIBLE_ROOT)
+                         .setCoordinate( new Coordinate(0d, 0d, 0d, 0d))
+                         .build().getElement();
                  
                  
                 

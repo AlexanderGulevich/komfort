@@ -5,8 +5,8 @@
  */
 package basisFx.appCore.fabrics;
 
-import basisFx.appCore.appStructura.GuiStructura;
-import basisFx.appCore.windows.*;
+import basisFx.presentation.appStructura.GuiStructura;
+import basisFx.presentation.windows.*;
 import javafx.stage.Stage;
 
 
@@ -23,6 +23,7 @@ public abstract class WindowFabric {
     public abstract Window tooltipWindow(GuiStructura guiStructura);
 
     public static WindowFabric WindowDecoratedFabric(){
+
         return new WindowDecoratedFabric();
     }
 

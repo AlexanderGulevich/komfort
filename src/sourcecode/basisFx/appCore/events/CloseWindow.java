@@ -5,7 +5,7 @@
  */
 package basisFx.appCore.events;
 
-import basisFx.appCore.dataSource.Db;
+import basisFx.dataSource.Db;
 import basisFx.appCore.elements.AppNode;
 
 import java.sql.SQLException;
@@ -22,19 +22,19 @@ public class CloseWindow extends AppEvent{
     protected Button  but;
     @Override
     public void setElement(AppNode n) {
-        
+
         this.appNode=n;
         this.but=(Button) n.getElement();
-        
-        
+
+
         but.setOnMouseClicked((event) -> {
-            
+
             run();
         }
-        
+
         ) ;
-        
-        
+
+
 
     }
 
@@ -61,6 +61,6 @@ public class CloseWindow extends AppEvent{
 
     }
 
-  
-    
+
+
 }

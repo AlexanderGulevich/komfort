@@ -1,12 +1,12 @@
-//package basisFx.domainModel.targets;
+//package basisFx.domain.targets;
 //
 //import basisFx.appCore.controls.ColumnWrapper;
 //import basisFx.appCore.domainScetch.ComboBoxValue;
 //import basisFx.appCore.elements.AppNode;
 //import basisFx.appCore.elements.TableWrapper;
-//import basisFx.domainModel.targets.Target;
-//import basisFx.domainModel.domaine.Country;
-//import basisFx.domainModel.domaine.Equipment;
+//import basisFx.domain.targets.Target;
+//import basisFx.domain.domaine.Country;
+//import basisFx.domain.domaine.Equipment;
 //import basisFx.appCore.settings.CSSID;
 //import javafx.scene.layout.AnchorPane;
 //

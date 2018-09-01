@@ -24,31 +24,31 @@ protected Stage stage;
         this.node= appNode.getElement();
         stage=appNode.getStage();
         run();
-       
-        
+
+
 }
 
     @Override
     public void run() {
-       
+
          node.setOnMousePressed(new EventHandler<MouseEvent>() {
 
             @Override
             public void handle(MouseEvent event) {
                  if (event.isPrimaryButtonDown() && event.getClickCount() == 1) {
-                    
+
                      if(!stage.isMaximized()){
                         xOffset = stage.getX() - event.getScreenX();
                         yOffset = stage.getY() - event.getScreenY();
                      }
 
-                }             
-                
-              
+                }
+
+
 
             }
         });
-        
+
          node.setOnMouseDragged(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
@@ -58,15 +58,15 @@ protected Stage stage;
                  }
             }
         });
-       
-     
+
+
     }
-    
-    
 
 
-        
-       
 
-    
+
+
+
+
+
 }

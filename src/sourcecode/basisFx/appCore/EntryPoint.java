@@ -2,7 +2,7 @@ package basisFx.appCore;
         
 
 import com.sun.javafx.application.LauncherImpl;
-import basisFx.domainModel.App;
+import basisFx.domain.App;
 import javafx.application.Application;
 import javafx.stage.Stage;
 

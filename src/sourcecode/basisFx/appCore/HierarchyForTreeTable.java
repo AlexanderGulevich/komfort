@@ -2,8 +2,8 @@ package basisFx.appCore;
 
 //package hepo.appCore;
 //
-//import hepo.domainModel.Communicator;
-//import hepo.domainModel.CategoryPojo;
+//import hepo.domain.Communicator;
+//import hepo.domain.CategoryPojo;
 //import java.util.HashMap;
 //import java.util.Iterator;
 //import javafx.collections.FXCollections;    

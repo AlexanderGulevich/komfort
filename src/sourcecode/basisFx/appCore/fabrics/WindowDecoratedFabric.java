@@ -1,22 +1,21 @@
 package basisFx.appCore.fabrics;
 
-import basisFx.appCore.appStructura.GuiStructura;
+import basisFx.presentation.appStructura.GuiStructura;
 import basisFx.appCore.utils.SystemRegistry;
-import basisFx.appCore.windows.MainWindow;
-import basisFx.appCore.windows.Window;
-import basisFx.appCore.windows.WindowDecorated;
+import basisFx.presentation.windows.MainWindow;
+import basisFx.presentation.windows.Window;
+import basisFx.presentation.windows.WindowDecorated;
+import basisFx.presentation.windows.WindowKind;
 import javafx.stage.Stage;
 
 
 public class WindowDecoratedFabric extends WindowFabric {
 
     @Override
-    public Window mainWindow(GuiStructura guiStructura,Stage st) {
-        MainWindow mainWindow = MainWindow.getInstance(guiStructura);
-        Window decorated=new WindowDecorated(st,mainWindow);
-        guiStructura.setWindow(decorated);
-        guiStructura.init();
-        SystemRegistry.mainWindow=mainWindow;
+    public Window mainWindow(GuiStructura structura,Stage stage) {
+        WindowKind mainWindow = MainWindow.getInstance();
+        Window decorated=new WindowDecorated(stage,mainWindow,structura);
+        SystemRegistry.mainWindow=decorated;
         return decorated;
     }
 

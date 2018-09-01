@@ -1,10 +1,10 @@
 package basisFx.appCore.utils;
 
 import basisFx.appCore.fabrics.WindowFabric;
-import basisFx.appCore.windows.MainWindow;
+import basisFx.presentation.windows.Window;
 
 public class SystemRegistry {
 
    public static WindowFabric windowFabric;
-   public static MainWindow mainWindow;
+   public static Window mainWindow;
 }

@@ -1,76 +1,188 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package basisFx.appCore.elements;
 
-import basisFx.appCore.obseverved.MaximazingManager;
-import basisFx.appCore.interfaces.MaximazingObserver;
+import basisFx.appCore.events.AppEvent;
+import basisFx.appCore.settings.CSSID;
+import basisFx.appCore.settings.FontsStore;
+import basisFx.appCore.utils.Coordinate;
+import javafx.geometry.Insets;
+import javafx.scene.Group;
 import javafx.scene.Node;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.FlowPane;
+import javafx.stage.Stage;
 
-import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.Arrays;
 
-/**
- *
- * @author Alek
- */
-public class AnchorWrapper<T extends Node> extends AppNode implements MaximazingObserver  {
-    
+public class AnchorWrapper  extends AppNode  {
 
 
-    public AnchorWrapper(NodeBuilder builder) {
+    protected AnchorPane element;
+    protected Insets insects;
+    protected FontsStore font;
+    protected double fontSize;
+
+    public AnchorPane getElement() {
+        return element;
+    }
+
+    private AnchorWrapper(Builder builder) {
         element=new AnchorPane();
-        AnchorPane element=(AnchorPane) this.element;
-        
-        init(builder);
+
+        events = builder.events;
+        cssid = builder.cssid;
+        width = builder.width;
+        height = builder.height;
+        coordinate = builder.coordinate;
+        parentAnchor = builder.parentAnchor;
+        parentGroup = builder.parentGroup;
+        parentFlowPane = builder.parentFlowPane;
+        parentScrollPane = builder.parentScrollPane;
+        name = builder.name;
+        insects = builder.insects;
+        font = builder.font;
+        fontSize = builder.fontSize;
+        stage=builder.stage;
+
+        bond(this);
+        elocateEvents();
+        applyWidth();
+        applyHeight();
+        applyCssId();
+        applyPadding();
 
 
-        MaximazingManager.setObserver(this);
-
-
-        if (parentAnchor!=null && widthPerCent!=null) {
-
-
-            pervormMaximazing();
-
-
-
-        }
-
-            if (this.height != null) {
-                element.setPrefHeight(this.height);
-            }
-            if (this.width != null) {
-                element.setPrefWidth(this.width);
-            }
-
-        
-        if(dropShadow!=null)element.setEffect(dropShadow);
-        if(insects!=null)element.setPadding(insects);
-
-        
     }
 
-    @Override
-    public void pervormMaximazing() {
-        if (parentAnchor!=null && widthPerCent!=null) {
-
-            AnchorPane element=(AnchorPane) this.element;
-
-
-            element.prefWidthProperty()
-                    .bind(parentAnchor.widthProperty().multiply(widthPerCent));
-
-
-
-            BigDecimal parentWidth=BigDecimal.valueOf(parentAnchor.widthProperty().doubleValue());
-
-
-
+    private void applyPadding() {
+        if (insects != null) {
+            element.setPadding(insects);
         }
     }
 
+    private void applyCssId() {
+        if (cssid != null) {
+            element.setId(cssid.get());
+        }
+    }
 
+    private void applyHeight() {
+        if (height != null) {
+            element.setPrefHeight(height);
+        }
+    }
+
+    private void applyWidth() {
+        if (width != null) {
+            element.setPrefWidth(width);
+        }
+    }
+
+    public static Builder newBuilder() {
+        return new Builder();
+    }
+
+
+
+    public static final class Builder {
+        private Stage stage;
+        private ArrayList<AppEvent> events;
+        private CSSID cssid;
+        private Double width;
+        private Double height;
+        private Coordinate coordinate;
+        private AnchorPane parentAnchor;
+        private Group parentGroup;
+        private FlowPane parentFlowPane;
+        private ScrollPane parentScrollPane;
+        private String name;
+        private AnchorPane element;
+        private Insets insects;
+        private FontsStore font;
+        private double fontSize;
+
+        private Builder() {
+        }
+
+        public Builder setStage(Stage stage) {
+            this.stage = stage;
+            return this;
+        }
+
+        public Builder setEvents(AppEvent ...val) {
+            events=new ArrayList<>();
+            events.addAll(Arrays.asList(val));
+            return this;
+        }
+
+        public Builder setCssid(CSSID val) {
+            cssid = val;
+            return this;
+        }
+
+        public Builder setWidth(Double val) {
+            width = val;
+            return this;
+        }
+
+        public Builder setHeight(Double val) {
+            height = val;
+            return this;
+        }
+
+        public Builder setCoordinate(Coordinate val) {
+            coordinate = val;
+            return this;
+        }
+
+        public Builder setParentAnchor(AnchorPane val) {
+            parentAnchor = val;
+            return this;
+        }
+
+        public Builder setParentGroup(Group val) {
+            parentGroup = val;
+            return this;
+        }
+
+        public Builder setParentFlowPane(FlowPane val) {
+            parentFlowPane = val;
+            return this;
+        }
+
+        public Builder setParentScrollPane(ScrollPane val) {
+            parentScrollPane = val;
+            return this;
+        }
+
+        public Builder setName(String val) {
+            name = val;
+            return this;
+        }
+
+        public Builder setElement(AnchorPane val) {
+            element = val;
+            return this;
+        }
+
+        public Builder setInsects(Insets val) {
+            insects = val;
+            return this;
+        }
+
+        public Builder setFont(FontsStore val) {
+            font = val;
+            return this;
+        }
+
+        public Builder setFontSize(double val) {
+            fontSize = val;
+            return this;
+        }
+
+        public AnchorWrapper build() {
+            return new AnchorWrapper(this);
+        }
+    }
 }

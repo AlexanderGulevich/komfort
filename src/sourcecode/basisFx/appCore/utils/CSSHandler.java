@@ -8,6 +8,12 @@ package basisFx.appCore.utils;
 import basisFx.appCore.settings.StylesPathes;
 import javafx.scene.Scene;
 import java.io.File;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.ArrayList;
 
 public class CSSHandler {
 
@@ -30,17 +36,43 @@ public class CSSHandler {
     }
 
     public void loadStylesToScene(Scene scene){
+        URI uri=null;
+        File folder=null;
+        File[] listOfFiles=null;
+//        File folder = new File(stylesPathe.getPath());
+        try {
+            Path path = Paths.get(stylesPathe.getPath());
+            path.getRoot();
+            uri = getClass().getResource(stylesPathe.getPath()).toURI();
+            folder = new File(uri);
+            listOfFiles = folder.listFiles();
 
-        File folder = new File(stylesPathe.getPath());
-        File[] listOfFiles = folder.listFiles();
+            boolean directory = folder.isDirectory();
+            boolean absolute = folder.isAbsolute();
+            boolean file = folder.isFile();
+            boolean hidden = folder.isHidden();
 
 
-        for (File listOfFile : listOfFiles) {
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+        }
 
-                scene.getStylesheets().add(getClass().getResource(
-                        listOfFile.getPath()
-                ).toExternalForm());
+        ArrayList <String>stylePathes=new ArrayList<>();
 
+
+        if (listOfFiles != null) {
+            for (File listOfFile : listOfFiles) {
+                String fileName = listOfFile.getName();
+                File parentFolder = listOfFile.getParentFile();
+
+//                scene.getStylesheets().add(getClass().getResource(
+//                        listOfFile.getPath()
+//                ).toExternalForm());
+
+
+                scene.getStylesheets().addAll("/res/css/"+parentFolder.getName()+"/"+fileName);
+
+            }
         }
 
 

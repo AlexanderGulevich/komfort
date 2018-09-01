@@ -1,0 +1,57 @@
+@startuml
+abstract class Window
+abstract class WindowKind
+abstract class WindowFabric
+
+Window     <|-- WindowDecorated
+Window     <|-- WindowUndecorated
+WindowKind <|-- MainWindow
+WindowKind <|-- MessageWindow
+WindowKind <|-- ErrorWindow
+WindowKind <|-- DialogWindow
+Window     o--  WindowKind
+WindowFabric <|-- WindowDecoratedFabric
+WindowFabric <|-- WindowUndecoratedFabric
+
+class Window {
+ #stage : Stage
+ #scene : Scene
+ #root : AnchorPane
+ #topVisiblePanel : AnchorPane
+ #impl : WindowKind
+ {abstract}  #initRoot()
+ -void initTopVisiblePanel()
+ -void initIcon()
+}
+class WindowDecorated {
+    #initRoot()
+}
+class WindowUndecorated {
+    #initRoot()
+}
+class WindowKind {
+   -height : double
+   -width : double
+   #window : WindowAbstraction
+   #titleName : String
+   #topButtonsFabric : WindowTopButtonsFabric
+   -panelHashMap : HashMap<String,Panel>
+   {abstract} +initUndecoratedStageButtons()
+}
+class WindowFabric {
+    {abstract} +mainWindow(gStr : GuiStructura) : Window;
+    {abstract} +errorWindow(gStr : GuiStructura) : Window;
+    {abstract} +dialogWindow(gStr : GuiStructura) : Window;
+    {abstract} +popupWindow(gStr : GuiStructura) : Window;
+    {abstract} +tooltipWindow(gStr : GuiStructura) : Window;
+    {static}   +windowDecoratedFabric() : WindowFabric
+    {static}   +windowUndecoratedFabric() : WindowFabric
+}
+class WindowDecoratedFabric {
+}
+class WindowUndecoratedFabric {
+}
+
+
+
+@enduml

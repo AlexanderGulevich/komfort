@@ -5,8 +5,8 @@
  */
 package basisFx.appCore.fabrics;
 
-import basisFx.appCore.dataSource.DbEmbeded;
-import basisFx.appCore.dataSource.DbServer;
+import basisFx.dataSource.DbEmbeded;
+import basisFx.dataSource.DbServer;
 
 import java.sql.SQLException;
 

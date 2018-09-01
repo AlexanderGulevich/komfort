@@ -20,16 +20,16 @@ public class HideWindow extends AppEvent{
     public void setElement(AppNode node) {
         this.appNode=node;
         this.but=(Button) node.getElement();
-        
-        
+
+
         but.setOnMouseClicked( (event) -> {
            run();
-            
+
         }
-        
+
         ) ;
-        
-        
+
+
 }
 
     @Override

@@ -26,20 +26,20 @@ public class MaximazingSwither extends AppEvent{
     protected Node  node;
     protected boolean  max=false;
 
-               
+
     @Override
     public void setElement(AppNode appNode) {
         this.appNode=appNode;
         this.node= appNode.getElement();
-        
+
         node.setOnMouseClicked( (event) -> {
 
             run();
         }
-       
+
         ) ;
-        
-        
+
+
 }
 
     @Override
@@ -59,11 +59,11 @@ public class MaximazingSwither extends AppEvent{
                   max=false;
 
                   root.setPadding(new Insets(3d, 3d, 3d, 3d));
-                    
+
                     appNode.getStage().setMaximized(false);
                     stage.setWidth(Settings.WIDTH);
                     stage.setHeight(Settings.HEIGHT);
-                    
+
                     Rectangle2D primScreenBounds = Screen.getPrimary().getVisualBounds();
                     stage.setX(
                             (primScreenBounds.getWidth() - stage.getWidth()) / 2);
@@ -96,11 +96,11 @@ public class MaximazingSwither extends AppEvent{
                 MaximazingManager.notifyObjects();
 
             }
-                
-                
+
+
             } catch (InterruptedException ex) {
                 Logger.getLogger(CloseWindow.class.getName()).log(Level.SEVERE, null, ex);
-            } 
+            }
     }
 
 

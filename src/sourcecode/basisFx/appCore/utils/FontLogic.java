@@ -34,17 +34,15 @@ public class FontLogic {
     
   
     
-    public  Font loadFont(FontsStore fs, double size){
-        
-        InputStream is=getClass().getResourceAsStream(fs.getPath());
+    public static Font loadFont(FontsStore fs, double size){
+
+
+        InputStream is=FontLogic.class.getResourceAsStream(fs.getPath());
         
         Font f=Font.loadFont(is, size);
         
         if(f!=null ){
-         
                      return f;
-                    
-            
         }else{
         
              throw new NullPointerException("setFont()- null after loading  in FontLogic.loadFont()"); 

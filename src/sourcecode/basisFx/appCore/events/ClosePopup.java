@@ -1,12 +1,7 @@
 package basisFx.appCore.events;
 
-import basisFx.appCore.dataSource.Db;
 import basisFx.appCore.elements.AppNode;
 import javafx.scene.control.Button;
-
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class ClosePopup extends AppEvent{
     protected Button but;
