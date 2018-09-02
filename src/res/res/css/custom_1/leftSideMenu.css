@@ -65,42 +65,42 @@
 
 }
 
+
 #LEFT_SIDE_MENU_HORIZONTAL_BUTTONS{
-    -fx-background-color:transparent;
     -fx-background-radius: 0;
     -fx-border-radius:0;
     -fx-background-insets: 0, 0, 0, 0;
     -fx-background-radius: 0;
-    -fx-background-color:transparent;
+    -fx-background-color:white;
     -fx-padding:3 10 3 10;
     -fx-text-fill:#22515B;
-    -fx-pref-height: 35;
-     -fx-border-width: 0.5  0.5   0    0.5;
+    -fx-pref-height: 50;
+  -fx-border-width: 0.1  0.1   0    0.1;
     /*-fx-border-insets:0.5  0.5   0    0.5;*/
     -fx-border-color: white white  white white;
     -fx-border-style:solid ;
-
+    -fx-font-size: 17;
+    /* -fx-border-insets:1  0.2   0    1; */
 
 }
 #LEFT_SIDE_MENU_HORIZONTAL_BUTTONS:armed,
 #LEFT_SIDE_MENU_HORIZONTAL_BUTTONS_CLICKED{
       /*-fx-background-color:derive(#E9FFFC,50%);*/
-      /*-fx-background-color:#ECF1F2;*/
-      -fx-background-color:FFC5B3;
-
-        -fx-text-fill:white;
-
+      -fx-background-color:#ffffff;
+      /* -fx-background-color:#FFC5B3; */
+      -fx-font-size: 17;
+      -fx-text-fill: #d96844;
       -fx-border-style:solid ;
-        -fx-padding:3 10 3 10;
-
-     -fx-pref-height: 35;
+      -fx-padding:3 10 3 10;
+      -fx-pref-height: 50;
       /*-fx-background-insets:-0.5 -0.5 -0.5  -0.5;*/
+ /* -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.9), 3, 0.05, 0.0, 0.0); */
+      /* -fx-border-color: #8ab0d1 white  white white; */
+    -fx-border-width: 0.1  0.1   0    0.1;
+    /* -fx-border-insets:1  0.2   0    1; */
 
-    -fx-border-width: 0.5  0.5   0    0.5;
-    -fx-border-insets:0.5  0.5   0    0.5;
-    -fx-border-color:derive(#4A7F77,160%);
+    -fx-border-color: #28385e;
 
-    /*-fx-border-insets:1;*/
 
 
 }

@@ -29,7 +29,7 @@ public class App{
 
         MenuFabric.createMenuLeftSideRepresentation( new MainMenuSketch());
 
-      ScenicView.show(MainWindow.getInstance().getWindow().getScene());
+//      ScenicView.show(MainWindow.getInstance().getWindow().getScene());
 
 
     }

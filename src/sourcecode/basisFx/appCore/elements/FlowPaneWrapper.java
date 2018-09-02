@@ -42,8 +42,15 @@ public class FlowPaneWrapper extends AppNode{
         setSize();
         setDropShadow();
         setPadding();
+        applyCssId();
 
 
+    }
+
+    private void applyCssId() {
+        if (cssid != null) {
+            element.setId(cssid.get());
+        }
     }
 
     private void setPadding() {

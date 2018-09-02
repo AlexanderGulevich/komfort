@@ -128,7 +128,7 @@ public class LeftAndTopMenuRepresent extends MenuRepresent {
                         .setCSSid(CSSID.LEFT_SIDE_MENU_HORIZONTAL_BUTTONS)
                         .setName(innerLevelComponent.getDescription())
                         .setFont(FontsStore.ROBOTO_LIGHT)
-                        .setFontSize( 17d)
+//                        .setFontSize( 17d)
                         .setEvents(new MenuButtonsClick(innerLevelComponent,this))
                         .setParentFlowPane(horisontalFlowPane)
                         .build();

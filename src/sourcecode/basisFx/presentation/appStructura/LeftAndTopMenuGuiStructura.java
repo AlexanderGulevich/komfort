@@ -12,7 +12,7 @@ public class LeftAndTopMenuGuiStructura extends GuiStructura {
     public void init(){
 
         AnchorWrapper contentAnchorWrapper = AnchorWrapper.newBuilder()
-                .setCoordinate(new Coordinate(120d, 0d, 0d, 60d))
+                .setCoordinate(new Coordinate(122d, 0d, 0d, 65d))
                 .setParentAnchor(window.getTopVisibleAnchor())
                 .setCSSid(CSSID.MAIN_CONTENT_ANCHOR)
                 .setName("contentAnchorPane")
@@ -45,8 +45,8 @@ public class LeftAndTopMenuGuiStructura extends GuiStructura {
 
         FlowPaneWrapper horisontalMenuFlowPane = FlowPaneWrapper.newBuilder()
                 .setParentAnchor(window.getTopVisibleAnchor())
-                .setHeight(35d)
-                .setCoordinate(new Coordinate(70d, 0d, null, 60d))
+                .setHeight(50d)
+                .setCoordinate(new Coordinate(70d, 0d, null, 65d))
                 .setCssid(CSSID.HORIZONTAL_FLOW_MENU_PANEL)
                 .setName("horisontalMenuFlowPane")
                 .build();
