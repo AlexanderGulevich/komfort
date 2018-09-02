@@ -44,14 +44,14 @@ public abstract class Target {
 //    }
 
 
-//    public void init() {
+    public void init() {
 //
 //        targetStackLogic();
 //        createPanel();
 //        configurate();
-//
-//
-//    }
+
+
+    }
 //
 //    protected void targetStackLogic(){
 //

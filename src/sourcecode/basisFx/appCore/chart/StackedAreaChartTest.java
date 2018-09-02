@@ -1,16 +1,16 @@
-// AreaChartTest.java
-package basisFx;
+// StackedAreaChartTest.java
+package basisFx.appCore.chart;
 
 import javafx.application.Application;
 import javafx.collections.ObservableList;
 import javafx.scene.Scene;
-import javafx.scene.chart.AreaChart;
+import javafx.scene.chart.StackedAreaChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
-public class AreaChartTest extends Application {
+public class StackedAreaChartTest extends Application {
 	public static void main(String[] args) {
 		Application.launch(args);
 	}
@@ -24,23 +24,23 @@ public class AreaChartTest extends Application {
 		xAxis.setAutoRanging(false);
 		xAxis.setLowerBound(1900);
 		xAxis.setUpperBound(2300);
-		xAxis.setTickUnit(1);
+		xAxis.setTickUnit(50);
 
 		NumberAxis yAxis = new NumberAxis();
 		yAxis.setLabel("Population (in millions)");
 
-		AreaChart<Number,Number> chart = new AreaChart<>(xAxis, yAxis);
+		StackedAreaChart<Number,Number> chart = new StackedAreaChart<>(xAxis, yAxis);
 		chart.setTitle("Population by Year and Country");
 
 		// Set the data for the chart
 		ObservableList<XYChart.Series<Number,Number>> chartData = 
-				XYChartDataUtil.getCountrySeries();
+			XYChartDataUtil.getCountrySeries();
 		chart.setData(chartData);
-		
+
 		StackPane root = new StackPane(chart);
 		Scene scene = new Scene(root);
 		stage.setScene(scene);
-		stage.setTitle("An Area Chart");
+		stage.setTitle("A Stacked Area Chart");
 		stage.show();
 	}
 }

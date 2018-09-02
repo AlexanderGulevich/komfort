@@ -1,6 +1,7 @@
 package basisFx.presentation.windows;
 
 
+import basisFx.appCore.fabrics.StageTopButtonsFabric;
 import basisFx.appCore.settings.Settings;
 
 public class MainWindow extends WindowKind {
@@ -21,7 +22,7 @@ public class MainWindow extends WindowKind {
     }
     @Override
     public void initUndecoratedStageButtons() {
-//        topButtonsFabric.createThreeButtons(window);
+        StageTopButtonsFabric.createThreeButtons(window);
     }
 
 

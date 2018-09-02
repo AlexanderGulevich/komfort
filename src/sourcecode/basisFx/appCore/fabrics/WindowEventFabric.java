@@ -13,16 +13,13 @@ public class WindowEventFabric {
     }
 
     public  AppEvent hidingWindow(){
-//        return new HideWindow();
-        return null;
+        return new HideWindow();
     }
     public   AppEvent maximazingSwitcher(){
-//        return new MaximazingSwither();
-        return null;
+        return new MaximazingSwither();
     }
     public  AppEvent closingWindow(){
-//        return new CloseWindow();
-        return null;
+        return new CloseWindow();
     }
     public   AppEvent stageDragging(){
         return new StageDragging();

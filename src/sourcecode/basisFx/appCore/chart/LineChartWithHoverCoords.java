@@ -1,3 +1,5 @@
+package basisFx.appCore.chart;
+
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.event.EventHandler;

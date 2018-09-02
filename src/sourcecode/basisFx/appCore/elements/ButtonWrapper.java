@@ -1,11 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package basisFx.appCore.elements;
 
-//import basisFx.appCore.events.AppEvent;
 import basisFx.appCore.events.AppEvent;
 import basisFx.appCore.settings.CSSID;
 import basisFx.appCore.settings.FontsStore;
@@ -20,7 +14,6 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import javafx.stage.Stage;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -30,13 +23,14 @@ public class ButtonWrapper extends AppNode{
     protected Insets insects;
     protected FontsStore font;
     protected Double fontSize;
-    protected Button element=new Button();
+    protected Button element;
     protected String string;
     protected Node graphicNode;
     protected ContentDisplay contentDisplay;
-    protected ArrayList<AppEvent> events;
 
     private ButtonWrapper(Builder builder) {
+        element=new Button();
+
         events = builder.events;
         cssid = builder.cssid;
         width = builder.width;
@@ -55,21 +49,25 @@ public class ButtonWrapper extends AppNode{
         string = builder.string;
         graphicNode = builder.graphicNode;
         contentDisplay = builder.contentDisplay;
-        parent = builder.parent;
 
 
+        setId();
         setName();
         setPadding();
         setGraphics();
         setFont();
         setSize();
-
         bond(this);
         elocateEvents();
 
 
 
+    }
 
+    private void setId() {
+        if (cssid != null) {
+            element.setId(cssid.get());
+        }
     }
 
     public static Builder newBuilder() {
@@ -139,7 +137,6 @@ public class ButtonWrapper extends AppNode{
         private Double height;
         private Coordinate coordinate;
         private AnchorPane parentAnchor;
-        private AppNode parent;
         private Group parentGroup;
         private FlowPane parentFlowPane;
         private ScrollPane parentScrollPane;
@@ -167,7 +164,7 @@ public class ButtonWrapper extends AppNode{
             return new ButtonWrapper(this);
         }
 
-        public Builder setCssid(CSSID val) {
+        public Builder setCSSid(CSSID val) {
             cssid = val;
             return this;
         }
@@ -189,10 +186,6 @@ public class ButtonWrapper extends AppNode{
 
         public Builder setParentAnchor(AnchorPane val) {
             parentAnchor = val;
-            return this;
-        }
-        public Builder setParent(AppNode val) {
-            parent = val;
             return this;
         }
 

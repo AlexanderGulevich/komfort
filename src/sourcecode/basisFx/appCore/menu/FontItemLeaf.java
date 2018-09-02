@@ -18,6 +18,23 @@ public class FontItemLeaf extends MenuLeaf{
         isActive=builder.isActive;
     }
 
+
+    public String getSumbols() {
+        return sumbols;
+    }
+
+    public FontsStore getFontsStore() {
+        return fontsStore;
+    }
+
+    public double getFontSize() {
+        return fontSize;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
     public static Builder newBuilder() {
         return new Builder();
     }

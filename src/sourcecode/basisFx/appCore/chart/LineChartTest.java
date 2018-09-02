@@ -1,16 +1,16 @@
-// ScatterChartTest.java
-package basisFx;
+// LineChartTest.java
+package basisFx.appCore.chart;
 
 import javafx.application.Application;
 import javafx.collections.ObservableList;
 import javafx.scene.Scene;
+import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
-import javafx.scene.chart.ScatterChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
-public class ScatterChartTest extends Application {
+public class LineChartTest extends Application {
 	public static void main(String[] args) {
 		Application.launch(args);
 	}
@@ -29,18 +29,18 @@ public class ScatterChartTest extends Application {
 		NumberAxis yAxis = new NumberAxis();
 		yAxis.setLabel("Population (in millions)");
 
-		ScatterChart<Number,Number> chart = new ScatterChart<>(xAxis, yAxis);
+		LineChart<Number,Number> chart = new LineChart<>(xAxis, yAxis);
 		chart.setTitle("Population by Year and Country");
 
 		// Set the data for the chart
-		ObservableList<XYChart.Series<Number,Number>> chartData =
-			 XYChartDataUtil.getCountrySeries();
+		ObservableList<XYChart.Series<Number,Number>> chartData = 
+				XYChartDataUtil.getCountrySeries();
 		chart.setData(chartData);
-		
+
 		StackPane root = new StackPane(chart);
 		Scene scene = new Scene(root);
 		stage.setScene(scene);
-		stage.setTitle("A Scatter Chart");
-		stage.show();
-	}	
+		stage.setTitle("A Line Chart");
+		stage.show(); 
+	}
 }

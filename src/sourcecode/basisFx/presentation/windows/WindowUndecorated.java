@@ -45,7 +45,7 @@ public class WindowUndecorated extends Window {
     @Override
     protected void initRoot() {
         root= AnchorWrapper.newBuilder()
-                .setCssid(CSSID.TRANSPARENT_ROOT)
+                .setCSSid(CSSID.TRANSPARENT_ROOT)
                 .setInsects(new Insets(3d, 3d, 3d, 3d))
                 .build()
                 .getElement();

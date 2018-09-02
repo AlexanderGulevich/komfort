@@ -5,15 +5,11 @@ import basisFx.appCore.elements.AnchorWrapper;
 import basisFx.appCore.elements.AppNode;
 import basisFx.appCore.settings.CSSID;
 import basisFx.appCore.settings.IMGpath;
-import basisFx.appCore.utils.CSSHandler;
 import basisFx.appCore.utils.Coordinate;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
-import basisFx.appCore.fabrics.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -90,7 +86,7 @@ public abstract class Window {
         topVisiblePanel = AnchorWrapper.newBuilder()
                 .setParentAnchor(root)
                 .setCoordinate( new Coordinate(0d, 0d, 0d, 0d) )
-                .setCssid(CSSID.TopVisiblePanel)
+                .setCSSid(CSSID.TopVisiblePanel)
                 .build()
                 .getElement();
     }

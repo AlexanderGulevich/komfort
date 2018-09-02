@@ -3,7 +3,6 @@ package basisFx.appCore.elements;
 import basisFx.appCore.utils.Coordinate;
 import basisFx.appCore.events.AppEvent;
 import basisFx.appCore.settings.CSSID;
-
 import java.util.ArrayList;
 import java.util.Iterator;
 import javafx.scene.Group;
@@ -22,7 +21,6 @@ public abstract class AppNode <T extends Node> {
     protected Double height;
     protected Coordinate coordinate;
     protected AnchorPane parentAnchor;
-    protected AppNode parent;
     protected Group parentGroup;
     protected FlowPane parentFlowPane;
     protected ScrollPane parentScrollPane;
@@ -39,26 +37,6 @@ public abstract class AppNode <T extends Node> {
         return stage;
     }
 
-    //    protected ArrayList <AppNode> children=new ArrayList<>();
-//    protected ArrayList <AppEvent> events=new ArrayList<>();
-
-//    protected Insets insects;
-
-//    protected Font font;
-//    protected boolean hasBond;
-
-//    protected String string;
-//    protected Insets insets;
-//    protected DropShadow dropShadow;
-
-
-
-//    protected Callback callback;
-
-//    protected Double widthPerCent=null;
-//    protected Pos pos=null;
-//    protected KindOfSubmitElement mark;
-//
 
     public void bond(AppNode node) {
             if(parentAnchor!=null){     bondAnchorAndNode(node);}

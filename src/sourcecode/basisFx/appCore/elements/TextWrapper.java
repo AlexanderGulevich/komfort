@@ -1,16 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package basisFx.appCore.elements;
 
 import basisFx.appCore.events.AppEvent;
 import basisFx.appCore.settings.CSSID;
 import basisFx.appCore.settings.FontsStore;
 import basisFx.appCore.utils.Coordinate;
+import basisFx.appCore.utils.FontLogic;
 import javafx.scene.Group;
-import javafx.scene.Node;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
@@ -18,23 +13,17 @@ import javafx.scene.text.Text;
 
 import java.util.ArrayList;
 
-/**
- *
- * @author Alek
- */
 public class TextWrapper extends AppNode{
 
     protected Text element;
     protected FontsStore font;
-    protected double fontSize;
+    protected Double fontSize;
 
     private TextWrapper(Builder builder) {
         element=new Text();
 
         events = builder.events;
         cssid = builder.cssid;
-        width = builder.width;
-        height = builder.height;
         coordinate = builder.coordinate;
         parentAnchor = builder.parentAnchor;
         parentGroup = builder.parentGroup;
@@ -47,8 +36,28 @@ public class TextWrapper extends AppNode{
 
         bond(this);
         elocateEvents();
+        setId();
+        setName();
+        setFont();
+
     }
 
+    private void setFont() {
+        if(font!=null && fontSize!=null) {
+            element.setFont(FontLogic.loadFont(font,fontSize));
+        }
+    }
+    private void setName() {
+        if (name != null) {
+            element.setText(name);
+        }
+    }
+
+    private void setId() {
+        if (cssid != null) {
+            element.setId(cssid.get());
+        }
+    }
     public static Builder newBuilder() {
         return new Builder();
     }
@@ -62,8 +71,6 @@ public class TextWrapper extends AppNode{
     public static final class Builder {
         private ArrayList<AppEvent> events;
         private CSSID cssid;
-        private Double width;
-        private Double height;
         private Coordinate coordinate;
         private AnchorPane parentAnchor;
         private Group parentGroup;
@@ -83,16 +90,6 @@ public class TextWrapper extends AppNode{
 
         public Builder setCssid(CSSID val) {
             cssid = val;
-            return this;
-        }
-
-        public Builder setWidth(Double val) {
-            width = val;
-            return this;
-        }
-
-        public Builder setHeight(Double val) {
-            height = val;
             return this;
         }
 

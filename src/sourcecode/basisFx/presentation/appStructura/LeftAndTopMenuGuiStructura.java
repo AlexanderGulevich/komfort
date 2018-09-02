@@ -12,10 +12,10 @@ public class LeftAndTopMenuGuiStructura extends GuiStructura {
     public void init(){
 
         AnchorWrapper contentAnchorWrapper = AnchorWrapper.newBuilder()
-                .setCoordinate(new Coordinate(80d, 0d, 0d, 60d))
+                .setCoordinate(new Coordinate(120d, 0d, 0d, 60d))
                 .setParentAnchor(window.getTopVisibleAnchor())
-                .setCssid(CSSID.MAIN_CONTENT_ANCHOR)
-                .setName("contentAnchorWrapper")
+                .setCSSid(CSSID.MAIN_CONTENT_ANCHOR)
+                .setName("contentAnchorPane")
                 .build();
 
         AnchorWrapper titleAnchorWrapper = AnchorWrapper.newBuilder()
@@ -23,7 +23,7 @@ public class LeftAndTopMenuGuiStructura extends GuiStructura {
                 .setParentAnchor(window.getTopVisibleAnchor())
                 .setHeight(70d)
                 .setStage(getStage())
-                .setCssid(CSSID.TITLE_PANEL)
+                .setCSSid(CSSID.TITLE_PANEL)
                 .setEvents(eventFabric.stageDragging())
                 .setName("titleAnchorWrapper")
                 .build();
@@ -31,7 +31,7 @@ public class LeftAndTopMenuGuiStructura extends GuiStructura {
         AnchorWrapper titleImageAnchorWrapper = AnchorWrapper.newBuilder()
                 .setParentAnchor(titleAnchorWrapper.getElement())
                 .setCoordinate(new Coordinate(10d, null, null, 70d))
-                .setCssid(CSSID.TITLE_WINDOW_IMG)
+                .setCSSid(CSSID.TITLE_WINDOW_IMG)
                 .setName("titleImageAnchorWrapper")
                 .build();
 
@@ -40,13 +40,13 @@ public class LeftAndTopMenuGuiStructura extends GuiStructura {
                 .setCoordinate(new Coordinate(0d, null, 0d, 0d))
                 .setWidth(60d)
                 .setName("verticalMenuAnchorWrapper")
-                .setCssid(CSSID.LEFT_SIDE_MENU_VERTICAL_PANEL)
+                .setCSSid(CSSID.LEFT_SIDE_MENU_VERTICAL_PANEL)
                 .build();
 
         FlowPaneWrapper horisontalMenuFlowPane = FlowPaneWrapper.newBuilder()
                 .setParentAnchor(window.getTopVisibleAnchor())
                 .setHeight(35d)
-                .setCoordinate(new Coordinate(49d, 0d, null, 60d))
+                .setCoordinate(new Coordinate(70d, 0d, null, 60d))
                 .setCssid(CSSID.HORIZONTAL_FLOW_MENU_PANEL)
                 .setName("horisontalMenuFlowPane")
                 .build();
@@ -55,7 +55,7 @@ public class LeftAndTopMenuGuiStructura extends GuiStructura {
                 .setParentAnchor(titleAnchorWrapper.getElement())
                 .setCoordinate(new Coordinate(15d, 120d, 0d, null))
                 .setHeight(35d)
-                .setCssid(CSSID.LEFT_SIDE_MENU_TEXT_PANEL)
+                .setCSSid(CSSID.LEFT_SIDE_MENU_TEXT_PANEL)
                 .setName("textAnchorWrapper")
                 .build();
 
@@ -75,7 +75,7 @@ public class LeftAndTopMenuGuiStructura extends GuiStructura {
                 .setHeight(35d)
                 .setFont(FontsStore.ROBOTO_LIGHT)
                 .setFontSize(20)
-                .setCssid(CSSID.IMG_ICON)
+                .setCSSid(CSSID.IMG_ICON)
                 .setName("iconAnchorWrapper")
                 .build();
 

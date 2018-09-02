@@ -18,6 +18,10 @@ public abstract class MenuComponent {
         this.parent = parent;
     }
 
+    public Target getTarget() {
+        return target;
+    }
+
     public abstract boolean  isComposit();
 
 

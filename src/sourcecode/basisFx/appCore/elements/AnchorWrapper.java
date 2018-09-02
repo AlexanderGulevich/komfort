@@ -6,7 +6,6 @@ import basisFx.appCore.settings.FontsStore;
 import basisFx.appCore.utils.Coordinate;
 import javafx.geometry.Insets;
 import javafx.scene.Group;
-import javafx.scene.Node;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
@@ -97,7 +96,6 @@ public class AnchorWrapper  extends AppNode  {
         private FlowPane parentFlowPane;
         private ScrollPane parentScrollPane;
         private String name;
-        private AnchorPane element;
         private Insets insects;
         private FontsStore font;
         private double fontSize;
@@ -116,7 +114,7 @@ public class AnchorWrapper  extends AppNode  {
             return this;
         }
 
-        public Builder setCssid(CSSID val) {
+        public Builder setCSSid(CSSID val) {
             cssid = val;
             return this;
         }
@@ -161,10 +159,6 @@ public class AnchorWrapper  extends AppNode  {
             return this;
         }
 
-        public Builder setElement(AnchorPane val) {
-            element = val;
-            return this;
-        }
 
         public Builder setInsects(Insets val) {
             insects = val;

@@ -29,7 +29,7 @@
 //                setSize(width,height).
 //                setPadding(padding).
 //                setCoordinate(topMatgin, 0d, null, null).
-//                setId(CSSID.TOP_CONTROL_BUTTON).setParent(buttonsPanel).
+//                setId(CSSID.TOP_CONTROL_BUTTON).setParent(buttonsAnchor).
 //                setStage(stage).
 //                setEvent(eventFabric.closingWindow()).
 //                createNButton().

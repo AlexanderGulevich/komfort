@@ -1,5 +1,5 @@
 // PieSliceTest.java
-package basisFx;
+package basisFx.appCore.chart;
 
 import javafx.application.Application;
 import javafx.collections.ObservableList;

@@ -1,14 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package basisFx.appCore.events;
 
 import basisFx.appCore.obseverved.MaximazingManager;
 import basisFx.appCore.elements.AppNode;
 import basisFx.appCore.settings.Settings;
-
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.geometry.Insets;
@@ -18,10 +12,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 
-/**
- *
- * @author Alek
- */
 public class MaximazingSwither extends AppEvent{
     protected Node  node;
     protected boolean  max=false;
@@ -46,7 +36,7 @@ public class MaximazingSwither extends AppEvent{
     public void run() {
         try {
 
-
+            System.err.println("MaximazingSwither.run");
             Thread.sleep(100);
 
             Stage stage =appNode.getStage();

@@ -1,5 +1,5 @@
 // PieChartUtil.java
-package basisFx;
+package basisFx.appCore.chart;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
