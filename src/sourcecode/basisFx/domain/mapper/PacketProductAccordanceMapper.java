@@ -1,6 +1,6 @@
 //package basisFx.domain.mapper;
 //
-//import basisFx.dataSource.DataMapper;
+//import basisFx.dataSource.ActiveRecord;
 //import basisFx.dataSource.Db;
 //import basisFx.appCore.domainScetch.DomainObject;
 //import basisFx.domain.domaine.PacketProductAccordance;
@@ -15,7 +15,7 @@
 //import java.sql.Statement;
 //import java.util.HashMap;
 //
-//public class PacketProductAccordanceMapper extends DataMapper {
+//public class PacketProductAccordanceMapper extends ActiveRecord {
 //
 //    private static PacketProductAccordanceMapper ourInstance = new PacketProductAccordanceMapper();
 //

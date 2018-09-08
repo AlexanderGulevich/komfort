@@ -1,7 +1,7 @@
 package basisFx.appCore.utils;
 
 import basisFx.appCore.fabrics.WindowFabric;
-import basisFx.presentation.windows.Window;
+import basisFx.appCore.windows.Window;
 
 public class SystemRegistry {
 

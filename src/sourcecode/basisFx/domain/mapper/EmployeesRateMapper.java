@@ -1,6 +1,6 @@
 //package basisFx.domain.mapper;
 //
-//import basisFx.dataSource.DataMapper;
+//import basisFx.dataSource.ActiveRecord;
 //import basisFx.dataSource.Db;
 //import basisFx.appCore.domainScetch.ComboBoxValue;
 //import basisFx.appCore.domainScetch.DomainObject;
@@ -9,7 +9,7 @@
 //
 //import java.sql.*;
 //
-//public class EmployeesRateMapper extends DataMapper{
+//public class EmployeesRateMapper extends ActiveRecord{
 //
 //    private static EmployeesRateMapper ourInstance = new EmployeesRateMapper();
 //

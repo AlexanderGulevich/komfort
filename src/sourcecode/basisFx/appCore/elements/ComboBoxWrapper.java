@@ -18,7 +18,7 @@
 //    private ObservableList<T> list= FXCollections.<T> observableArrayList();
 ////    private UnitOfWork unitOfWork=new UnitOfWork();
 ////    private TableListener  tableListener=new TableListener (this);
-////    protected DataMapper dataMapperFabric;
+////    protected ActiveRecord dataMapperFabric;
 //    protected String tableName;
 //
 //

@@ -1,6 +1,6 @@
 //package basisFx.domain.mapper;
 //
-//import basisFx.dataSource.DataMapper;
+//import basisFx.dataSource.ActiveRecord;
 //import basisFx.dataSource.Db;
 //import basisFx.appCore.domainScetch.DomainObject;
 //import basisFx.domain.domaine.ExchangeRates;
@@ -9,7 +9,7 @@
 //import java.sql.*;
 //
 //
-//public class ExchangeRatesMapper extends DataMapper{
+//public class ExchangeRatesMapper extends ActiveRecord{
 //
 //
 //    private static ExchangeRatesMapper ourInstance = new ExchangeRatesMapper();

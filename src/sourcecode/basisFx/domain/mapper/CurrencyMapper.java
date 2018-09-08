@@ -1,6 +1,6 @@
 //package basisFx.domain.mapper;
 //
-//import basisFx.dataSource.DataMapper;
+//import basisFx.dataSource.ActiveRecord;
 //import basisFx.dataSource.Db;
 //
 //import basisFx.appCore.domainScetch.DomainObject;
@@ -17,7 +17,7 @@
 // *
 // * @autor AlexanderGulevich
 // */
-//public class CurrencyMapper extends DataMapper {
+//public class CurrencyMapper extends ActiveRecord {
 //
 //
 //    private Currency domainObject;

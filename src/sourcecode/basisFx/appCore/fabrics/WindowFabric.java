@@ -6,7 +6,7 @@
 package basisFx.appCore.fabrics;
 
 import basisFx.presentation.appStructura.GuiStructura;
-import basisFx.presentation.windows.*;
+import basisFx.appCore.windows.*;
 import javafx.stage.Stage;
 
 

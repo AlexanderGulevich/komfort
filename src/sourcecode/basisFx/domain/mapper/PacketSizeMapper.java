@@ -1,6 +1,6 @@
 //package basisFx.domain.mapper;
 //
-//import basisFx.dataSource.DataMapper;
+//import basisFx.dataSource.ActiveRecord;
 //import basisFx.dataSource.Db;
 //import basisFx.appCore.domainScetch.DomainObject;
 //import basisFx.domain.domaine.PacketSize;
@@ -11,7 +11,7 @@
 //import java.sql.SQLException;
 //import java.sql.Statement;
 //
-//public class PacketSizeMapper extends DataMapper {
+//public class PacketSizeMapper extends ActiveRecord {
 //        private static PacketSizeMapper ourInstance = new PacketSizeMapper();
 //
 //        public static PacketSizeMapper getInstance() {

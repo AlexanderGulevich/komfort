@@ -5,8 +5,8 @@
 // */
 //package basisFx.appCore.fabrics;
 //
-//import basisFx.presentation.windows.ImageTitle;
-//import basisFx.presentation.windows.TextTitle;
+//import basisFx.appCore.windows.ImageTitle;
+//import basisFx.appCore.windows.TextTitle;
 //
 ///**
 // *

@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import basisFx.appCore.settings.FontsStore;
 import basisFx.appCore.utils.Coordinate;
-import basisFx.presentation.windows.MainWindow;
+import basisFx.appCore.windows.MainWindow;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
@@ -23,12 +23,23 @@ public class LeftAndTopMenuRepresent extends MenuRepresent {
     protected AnchorPane verticalMenuAnchorPane = (AnchorPane) MainWindow.getInstance().getWindowNode("verticalMenuAnchorWrapper").getElement();
     protected AnchorPane contentAnchorPane = (AnchorPane) MainWindow.getInstance().getWindowNode("contentAnchorPane").getElement();
     private double heightCounterForIcon = 0d;
+    private ArrayList<ButtonWrapper> buttonWrappers=new ArrayList<>();
 
     public LeftAndTopMenuRepresent(MenuSketch sketch) {
         text.setText("");
         makeStructuredMenuView(sketch.getComponents(), null);
         setDefaultStyleVerticalButtons();
         setDefaultStyleHorisontalButtons();
+        fireActiveMarckedButton();
+    }
+
+    private void fireActiveMarckedButton() {
+        for (ButtonWrapper wrapper:buttonWrappers) {
+            if (wrapper.isActive()){
+                wrapper.makeActive();
+
+            }
+        }
     }
 
     @Override
@@ -60,15 +71,18 @@ public class LeftAndTopMenuRepresent extends MenuRepresent {
         this.heightCounterForIcon += 50d;
 
         //создание кнопок вертикальных
-        ButtonWrapper.newBuilder()
+        ButtonWrapper wrapper = ButtonWrapper.newBuilder()
                 .setCSSid(CSSID.LEFT_SIDE_MENU_VERTICAL_BUTTONS)
                 .setCoordinate(new Coordinate(heightCounterForIcon, 0d, null, 0d))
                 .setName(composite.fontSymbol)
                 .setFont(composite.fontsStore)
+                .setIsActive(composite.isActive)
                 .setFontSize(composite.fontSize)
                 .setEvents(new leftSideMenuIconClick(verticalBut, this))
                 .setParentAnchor((AnchorPane) MainWindow.getInstance().getWindowNode("verticalMenuAnchorWrapper").getElement())
                 .build();
+
+        buttonWrappers.add(wrapper);
     }
 
 

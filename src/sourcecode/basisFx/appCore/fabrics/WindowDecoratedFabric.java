@@ -2,10 +2,10 @@ package basisFx.appCore.fabrics;
 
 import basisFx.presentation.appStructura.GuiStructura;
 import basisFx.appCore.utils.SystemRegistry;
-import basisFx.presentation.windows.MainWindow;
-import basisFx.presentation.windows.Window;
-import basisFx.presentation.windows.WindowDecorated;
-import basisFx.presentation.windows.WindowKind;
+import basisFx.appCore.windows.MainWindow;
+import basisFx.appCore.windows.Window;
+import basisFx.appCore.windows.WindowDecorated;
+import basisFx.appCore.windows.WindowKind;
 import javafx.stage.Stage;
 
 

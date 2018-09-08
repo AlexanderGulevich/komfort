@@ -6,7 +6,7 @@
 //package basisFx.domain.mapper;
 //
 //import basisFx.appCore.domainScetch.DomainObject;
-//import basisFx.dataSource.DataMapper;
+//import basisFx.dataSource.ActiveRecord;
 //import basisFx.dataSource.Db;
 //import basisFx.domain.domaine.*;
 //import java.sql.PreparedStatement;
@@ -20,7 +20,7 @@
 // *
 // * @author Alek
 // */
-//public class EquipmentMapper extends DataMapper {
+//public class EquipmentMapper extends ActiveRecord {
 //
 //
 //    private Equipment domainObject;

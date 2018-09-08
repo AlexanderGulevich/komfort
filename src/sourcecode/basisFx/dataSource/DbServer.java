@@ -5,7 +5,6 @@
  */
 package basisFx.dataSource;
 
-import basisFx.domain.DbSchema;
 import basisFx.appCore.settings.Settings;
 import java.sql.DriverManager;
 import java.sql.SQLException;

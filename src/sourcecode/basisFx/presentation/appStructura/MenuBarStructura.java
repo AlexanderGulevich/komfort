@@ -1,6 +1,6 @@
 package basisFx.presentation.appStructura;
 
-import basisFx.presentation.windows.Window;
+import basisFx.appCore.windows.Window;
 
 public class MenuBarStructura extends GuiStructura {
 

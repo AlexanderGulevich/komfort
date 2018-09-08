@@ -2,7 +2,7 @@
 //
 //import basisFx.appCore.KindOfSubmitElement;
 //import basisFx.appCore.controls.ColumnWrapper;
-//import basisFx.dataSource.DataMapper;
+//import basisFx.dataSource.ActiveRecord;
 //import basisFx.appCore.elements.AppNode;
 //import basisFx.appCore.elements.TableWrapper;
 //import basisFx.appCore.utils.Coordinate;
@@ -16,7 +16,7 @@
 //
 //
 //    public TableWrapper table(AnchorPane panel, double width, Coordinate coordinate,
-//                              DataMapper dataMapper,
+//                              ActiveRecord activeRecord,
 //                              ColumnWrapper...columnWrappers){
 //
 //        return AppNode.NodeBuilder.create()
@@ -25,7 +25,7 @@
 //                .setEditCreater(()-> {return editFabric.createDefaultEditCommit();})
 //                .setParent(panel).setCoordinate(coordinate)
 //                .createTableViewWrapper().setTablesWidthProperty(width, panel.widthProperty())
-//                .setDataMapper(dataMapper)
+//                .setActiveRecord(activeRecord)
 //                .setEditable(true)
 //                .setColums(columnWrappers)
 //                .refresh();
@@ -35,7 +35,7 @@
 //
 //
 //    public TableWrapper submitTable(KindOfSubmitElement mark, AnchorPane panel, double width, Coordinate coordinate,
-//                                    DataMapper dataMapper,
+//                                    ActiveRecord activeRecord,
 //                                    ColumnWrapper...columnWrappers){
 //
 //        return AppNode.NodeBuilder.create()
@@ -44,7 +44,7 @@
 //                .setEditCreater(()-> {return editFabric.createMultipleSubmitEditCommit();})
 //                .setParent(panel).setCoordinate(coordinate)
 //                .createTableViewWrapper().setTablesWidthProperty(width, panel.widthProperty())
-//                .setDataMapper(dataMapper)
+//                .setActiveRecord(activeRecord)
 //                .setEditable(true)
 //                .setColums(columnWrappers)
 //                .refresh();
@@ -56,7 +56,7 @@
 //
 ////создает связаные таблицы
 //    public TableWrapper observedTable(TableWrapper observer, AnchorPane panel, double width, Coordinate coordinate,
-//                                      DataMapper dataMapper,
+//                                      ActiveRecord activeRecord,
 //                                      ColumnWrapper...columnWrappers){
 //
 //        return AppNode.NodeBuilder.create()
@@ -66,7 +66,7 @@
 //                .setEditCreater(()-> {return editFabric.createDefaultEditCommit();})
 //                .createTableViewWrapper()
 //                .setTablesWidthProperty(width, panel.widthProperty())
-//                .setDataMapper(dataMapper)
+//                .setActiveRecord(activeRecord)
 //                .setEditable(true)
 //                .setColums(columnWrappers)
 //                .setBoundTable(observer)

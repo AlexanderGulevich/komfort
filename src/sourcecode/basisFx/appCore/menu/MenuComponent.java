@@ -1,10 +1,10 @@
 package basisFx.appCore.menu;
 
-import basisFx.domain.targets.Target;
+import basisFx.presentation.targets.DynamicElements;
 
 public abstract class MenuComponent {
 
-    protected Target target;
+    protected DynamicElements dynamicElements;
     protected MenuComponent parent;
     protected boolean isActive;
     protected boolean hasParent;
@@ -18,8 +18,8 @@ public abstract class MenuComponent {
         this.parent = parent;
     }
 
-    public Target getTarget() {
-        return target;
+    public DynamicElements getDynamicElements() {
+        return dynamicElements;
     }
 
     public abstract boolean  isComposit();

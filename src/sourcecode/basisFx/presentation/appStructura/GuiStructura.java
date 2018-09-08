@@ -2,7 +2,7 @@ package basisFx.presentation.appStructura;
 
 import basisFx.appCore.elements.AppNode;
 import basisFx.appCore.fabrics.WindowEventFabric;
-import basisFx.presentation.windows.Window;
+import basisFx.appCore.windows.Window;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;

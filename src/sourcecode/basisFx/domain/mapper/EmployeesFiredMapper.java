@@ -1,10 +1,10 @@
 //package basisFx.domain.mapper;
 //
-//import basisFx.dataSource.DataMapper;
+//import basisFx.dataSource.ActiveRecord;
 //import basisFx.appCore.domainScetch.DomainObject;
 //import javafx.collections.ObservableList;
 //
-//public class EmployeesFiredMapper  extends DataMapper {
+//public class EmployeesFiredMapper  extends ActiveRecord {
 //
 //    private static EmployeesFiredMapper ourInstance = new EmployeesFiredMapper();
 //

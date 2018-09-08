@@ -19,7 +19,7 @@ import java.util.Arrays;
 
 public class ButtonWrapper extends AppNode{
 
-    protected boolean isActive;
+    protected Boolean isActive;
     protected Insets insects;
     protected FontsStore font;
     protected Double fontSize;
@@ -60,8 +60,14 @@ public class ButtonWrapper extends AppNode{
         bond(this);
         elocateEvents();
 
+    }
 
+    public void makeActive() {
+        if (isActive != null && isActive==true) {
 
+            element.fire();
+
+        }
     }
 
     private void setId() {

@@ -23,10 +23,10 @@ public class leftSideMenuIconClick extends AppEvent{
         but=(Button) n.getElement();
 
         but.setOnAction((event) -> {
-
-
             run();
         });
+
+
     }
 
     @Override

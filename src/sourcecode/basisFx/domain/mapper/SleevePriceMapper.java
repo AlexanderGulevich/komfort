@@ -1,6 +1,6 @@
 //package basisFx.domain.mapper;
 //
-//import basisFx.dataSource.DataMapper;
+//import basisFx.dataSource.ActiveRecord;
 //import basisFx.dataSource.Db;
 //import basisFx.appCore.domainScetch.DomainObject;
 //import basisFx.domain.domaine.Price;
@@ -8,7 +8,7 @@
 //
 //import java.sql.*;
 //
-//public class SleevePriceMapper extends DataMapper {
+//public class SleevePriceMapper extends ActiveRecord {
 //
 //
 //    private static SleevePriceMapper ourInstance = new SleevePriceMapper();

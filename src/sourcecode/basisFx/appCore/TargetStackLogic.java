@@ -5,7 +5,7 @@
 // */
 //package basisFx.appCore;
 //
-//import basisFx.domain.targets.Target;
+//import basisFx.presentation.targets.DynamicElements;
 //import basisFx.appCore.utils.TargetRegistry;
 //
 ///**
@@ -17,10 +17,10 @@
 //    private TargetStackLogic() {
 //    }
 //
-//     public void handle(Target target) {
+//     public void handle(DynamicElements dynamicElements) {
 //
 //        TargetRegistry.targets.clear();
-//        TargetRegistry.targets.add(target);
+//        TargetRegistry.targets.add(dynamicElements);
 //        Layers.getContentLayer().getChildren().clear();
 //
 //     }

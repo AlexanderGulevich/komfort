@@ -1,6 +1,6 @@
 //package basisFx.domain.mapper;
 //
-//import basisFx.dataSource.DataMapper;
+//import basisFx.dataSource.ActiveRecord;
 //import basisFx.dataSource.Db;
 //import basisFx.appCore.domainScetch.DomainObject;
 //import basisFx.domain.domaine.RatePerHourTamplate;
@@ -12,7 +12,7 @@
 //import java.sql.SQLException;
 //import java.sql.Statement;
 //
-//public class RatePerHourTemplatesMapper extends DataMapper {
+//public class RatePerHourTemplatesMapper extends ActiveRecord {
 //    private static RatePerHourTemplatesMapper ourInstance = new RatePerHourTemplatesMapper();
 //
 //    public static RatePerHourTemplatesMapper getInstance() {

@@ -1,6 +1,6 @@
 //package basisFx.domain.mapper;
 //
-//import basisFx.dataSource.DataMapper;
+//import basisFx.dataSource.ActiveRecord;
 //import basisFx.dataSource.Db;
 //import basisFx.appCore.domainScetch.DomainObject;
 //import basisFx.domain.domaine.Counterparty;
@@ -13,7 +13,7 @@
 //import java.sql.Statement;
 //import java.util.HashMap;
 //
-//public class SleeveMapper  extends DataMapper {
+//public class SleeveMapper  extends ActiveRecord {
 //
 //    private static SleeveMapper ourInstance = new SleeveMapper();
 //

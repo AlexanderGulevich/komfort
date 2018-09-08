@@ -1,6 +1,6 @@
 //package basisFx.domain.mapper;
 //
-//import basisFx.dataSource.DataMapper;
+//import basisFx.dataSource.ActiveRecord;
 //import basisFx.dataSource.Db;
 //import basisFx.appCore.domainScetch.ComboBoxValue;
 //import basisFx.domain.domaine.Counterparty;
@@ -19,7 +19,7 @@
 // *
 // * @autor AlexanderGulevich
 // */
-//public class CounterpartyMapper extends DataMapper {
+//public class CounterpartyMapper extends ActiveRecord {
 //
 //    private static CounterpartyMapper ourInstance = new CounterpartyMapper();
 //

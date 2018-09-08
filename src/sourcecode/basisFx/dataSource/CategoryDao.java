@@ -255,14 +255,14 @@ package basisFx.dataSource;
 //            pstmt.executeUpdate();
 //    
 //    }
-//    public void move(CategoryPojo target, CategoryPojo movedPojo) throws SQLException {
+//    public void move(CategoryPojo dynamicElements, CategoryPojo movedPojo) throws SQLException {
 //        
 //        Integer movedPojoId=movedPojo.getId();
 //        Integer movedPojoLeft=movedPojo.getLeftId();
 //        Integer movedPojoRight=movedPojo.getRightId();
 //        Integer movedPojoLevel=movedPojo.getLevelId();
 //        
-//        System.err.println(movedPojo.getCategoryNameOfTnp()+"---"+target.getCategoryNameOfTnp());
+//        System.err.println(movedPojo.getCategoryNameOfTnp()+"---"+dynamicElements.getCategoryNameOfTnp());
 //        
 //        Integer parentMovedId=getParentId(movedPojo);
 //        
@@ -271,10 +271,10 @@ package basisFx.dataSource;
 //        Integer parentMovedPojoRight=parentMovedPojo.getRightId();
 //        Integer parentMovedPojoLevel=parentMovedPojo.getLevelId();
 //        
-//        Integer targetPojoId=target.getId();
-//        Integer targetPojoLeft=target.getLeftId();
-//        Integer targetPojoRight=target.getRightId();
-//        Integer targetPojoLevel=target.getLevelId();
+//        Integer targetPojoId=dynamicElements.getId();
+//        Integer targetPojoLeft=dynamicElements.getLeftId();
+//        Integer targetPojoRight=dynamicElements.getRightId();
+//        Integer targetPojoLevel=dynamicElements.getLevelId();
 //        
 //        
 //              //Обновляем правый ключ  targetPojo и родительских узлов 
@@ -325,7 +325,7 @@ package basisFx.dataSource;
 //                
 //          
 //
-//          if (!target.hasDescendants()) {
+//          if (!dynamicElements.hasDescendants()) {
 //         
 //        //Увеличиваю правый ключ targetPojo, делая его веткой а не листом
 //          String sql_10 = "UPDATE ordersCategory SET "

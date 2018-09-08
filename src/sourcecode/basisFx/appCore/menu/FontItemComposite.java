@@ -1,7 +1,7 @@
 package basisFx.appCore.menu;
 
 import basisFx.appCore.settings.FontsStore;
-import basisFx.domain.targets.Target;
+import basisFx.presentation.targets.DynamicElements;
 
 public class FontItemComposite extends MenuComposite{
     protected String fontSymbol;
@@ -10,7 +10,7 @@ public class FontItemComposite extends MenuComposite{
     protected double fontSize;
 
     private FontItemComposite(Builder builder) {
-        target = builder.target;
+        dynamicElements = builder.dynamicElements;
         fontSymbol = builder.fontSymbol;
         fontsStore = builder.fontsStore;
         fontSize = builder.fontSize;
@@ -41,7 +41,7 @@ public class FontItemComposite extends MenuComposite{
     public static final class Builder {
         private boolean isActive;
         private String description;
-        private Target target;
+        private DynamicElements dynamicElements;
         private String fontSymbol;
         private FontsStore fontsStore;
         private double fontSize;
@@ -58,8 +58,8 @@ public class FontItemComposite extends MenuComposite{
         }
 
 
-        public Builder setTarget(Target val) {
-            target = val;
+        public Builder setDynamicElements(DynamicElements val) {
+            dynamicElements = val;
             return this;
         }
 

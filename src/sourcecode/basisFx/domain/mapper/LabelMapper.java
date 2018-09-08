@@ -1,6 +1,6 @@
 //package basisFx.domain.mapper;
 //
-//import basisFx.dataSource.DataMapper;
+//import basisFx.dataSource.ActiveRecord;
 //import basisFx.dataSource.Db;
 //import basisFx.appCore.domainScetch.ComboBoxValue;
 //import basisFx.appCore.domainScetch.DomainObject;
@@ -14,7 +14,7 @@
 //import java.sql.Statement;
 //import java.util.HashMap;
 //
-//public class LabelMapper  extends DataMapper {
+//public class LabelMapper  extends ActiveRecord {
 //
 //    private static LabelMapper ourInstance = new LabelMapper();
 //

@@ -1,7 +1,7 @@
 package basisFx.appCore.fabrics;
 
-import basisFx.presentation.windows.ThreeButtons;
-import basisFx.presentation.windows.Window;
+import basisFx.appCore.windows.ThreeButtons;
+import basisFx.appCore.windows.Window;
 
 public class StageTopButtonsFabric {
 

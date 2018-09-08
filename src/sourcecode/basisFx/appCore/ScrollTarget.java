@@ -1,10 +1,10 @@
-//package basisFx.domain.targets;
+//package basisFx.presentation.targets;
 //
 //import basisFx.appCore.controls.ColumnWrapper;
 //import basisFx.appCore.domainScetch.ComboBoxValue;
 //import basisFx.appCore.elements.AppNode;
 //import basisFx.appCore.elements.TableWrapper;
-//import basisFx.domain.targets.Target;
+//import basisFx.presentation.targets.DynamicElements;
 //import basisFx.domain.domaine.Country;
 //import basisFx.domain.domaine.Equipment;
 //import basisFx.appCore.settings.CSSID;
@@ -15,7 +15,7 @@
 // *
 // * @autor AlexanderGulevich
 // */
-//public class ScrollTarget extends Target {
+//public class ScrollTarget extends DynamicElements {
 //
 //
 //
@@ -54,7 +54,7 @@
 //        TableWrapper countryTableWrapper = AppNode.NodeBuilder.create()
 //                .setId(CSSID.TABLE).setCoordinate(pane,50d, 40d, 10d, 10d)
 //                .<Equipment>createTableViewWrapper().setTablesWidthProperty(0.4, pane.widthProperty()).setTablesHeight(200d)
-//                .setDataMapper(this.dataMapperFabric.getNamedDataMapper())
+//                .setActiveRecord(this.dataMapperFabric.getNamedDataMapper())
 //                .setDbTableName("Country").refresh()
 //                .setColums(
 //                        columnFabric.<Country,String>string(ColumnWrapper.Bulder.create()

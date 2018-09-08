@@ -1,6 +1,6 @@
 //package basisFx.domain.mapper;
 //
-//import basisFx.dataSource.DataMapper;
+//import basisFx.dataSource.ActiveRecord;
 //import basisFx.dataSource.Db;
 //import basisFx.appCore.domainScetch.BoolComboBox;
 //import basisFx.appCore.domainScetch.DomainObject;
@@ -12,7 +12,7 @@
 //import java.sql.SQLException;
 //import java.sql.Statement;
 //
-//public class ProductMapper extends DataMapper{
+//public class ProductMapper extends ActiveRecord{
 //
 //    private static ProductMapper ourInstance = new ProductMapper();
 //

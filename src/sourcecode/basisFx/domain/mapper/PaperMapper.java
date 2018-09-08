@@ -1,6 +1,6 @@
 //package basisFx.domain.mapper;
 //
-//import basisFx.dataSource.DataMapper;
+//import basisFx.dataSource.ActiveRecord;
 //import basisFx.dataSource.Db;
 //import basisFx.appCore.domainScetch.DomainObject;
 //import basisFx.domain.domaine.Counterparty;
@@ -15,7 +15,7 @@
 //import java.util.logging.Level;
 //import java.util.logging.Logger;
 //
-//public class PaperMapper  extends DataMapper {
+//public class PaperMapper  extends ActiveRecord {
 //
 //    private static PaperMapper ourInstance = new PaperMapper();
 //
