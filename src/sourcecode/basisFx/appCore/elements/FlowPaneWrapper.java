@@ -14,7 +14,7 @@ import java.util.ArrayList;
 
 public class FlowPaneWrapper extends AppNode{
 
-    private FlowPane element=new FlowPane();
+    private FlowPane element =new FlowPane();
     private Double vGap;
     private Double hGap;
     private Insets insects;
@@ -54,11 +54,11 @@ public class FlowPaneWrapper extends AppNode{
     }
 
     private void setPadding() {
-        if(insects!=null)element.setPadding(insects);
+        if(insects!=null) element.setPadding(insects);
     }
 
     private void setDropShadow() {
-        if(dropShadow!=null)element.setEffect(dropShadow);
+        if(dropShadow!=null) element.setEffect(dropShadow);
     }
 
     private void setSize() {

@@ -18,6 +18,7 @@ public class TextWrapper extends AppNode{
     protected Text element;
     protected FontsStore font;
     protected Double fontSize;
+    protected String text;
 
     private TextWrapper(Builder builder) {
         element=new Text();
@@ -32,12 +33,14 @@ public class TextWrapper extends AppNode{
         name = builder.name;
         font = builder.font;
         fontSize = builder.fontSize;
+        text = builder.text;
+
 
 
         bond(this);
         elocateEvents();
         setId();
-        setName();
+        setText();
         setFont();
 
     }
@@ -47,9 +50,9 @@ public class TextWrapper extends AppNode{
             element.setFont(FontLogic.loadFont(font,fontSize));
         }
     }
-    private void setName() {
-        if (name != null) {
-            element.setText(name);
+    private void setText() {
+        if (text != null) {
+            element.setText(text);
         }
     }
 
@@ -69,6 +72,7 @@ public class TextWrapper extends AppNode{
 
 
     public static final class Builder {
+        private String text;
         private ArrayList<AppEvent> events;
         private CSSID cssid;
         private Coordinate coordinate;
@@ -81,6 +85,11 @@ public class TextWrapper extends AppNode{
         private double fontSize;
 
         private Builder() {
+        }
+
+        public Builder setText(String text) {
+            this.text = text;
+            return this;
         }
 
         public Builder setEvents(ArrayList<AppEvent> val) {

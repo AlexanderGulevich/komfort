@@ -1,6 +1,7 @@
 package basisFx.appCore.elements;
 
 import basisFx.appCore.DataTransferSubmitObject;
+import basisFx.appCore.Mediator;
 import basisFx.appCore.Submitted;
 import basisFx.appCore.fabrics.TextFabric;
 import basisFx.appCore.controls.ColumnWrapper;
@@ -24,14 +25,14 @@ import javafx.scene.text.Text;
 import javafx.util.Callback;
 
 public  class TableWrapper extends AppNode    {
-
+    private boolean isEditable;
+    private double prefHeight;
+    private Mediator mediator;
     private TableView<DomainObject> element =null;
     private ObservableList<DomainObject>  list=FXCollections.<DomainObject> observableArrayList();
     private UnitOfWork unitOfWork=new UnitOfWork();
     private TableListener  tableListener=new TableListener (this);
     protected ActiveRecord activeRecord;
-    private ArrayList <TableWrapper> observers=new ArrayList();
-    private boolean isObserver=false;
     private  DomainObject clickedDomain;
 
     @SuppressWarnings("unchecked")
@@ -49,19 +50,20 @@ public  class TableWrapper extends AppNode    {
 
     }
 
-    private void setPlaceholder() {
-        TextFabric textFabric=new TextFabric();
-        TextWrapper text =
-                textFabric.createText(
-                        "Контент отсутствует".toLowerCase(),
-                        FontsStore.ROBOTO_LIGHT,
-                        25d,
-                        null,
-                        null,
-                        CSSID.PLACEHOLDER);
 
-        Text elem =  text.getElement();
-        element.setPlaceholder(elem);
+    public void setMediator(Mediator mediator) {
+        this.mediator = mediator;
+    }
+
+    private void setPlaceholder() {
+        TextWrapper wrapper =TextWrapper.newBuilder()
+                .setText("Контент отсутствует".toLowerCase())
+                .setFont(FontsStore.ROBOTO_LIGHT)
+                .setFontSize(25d)
+                .setCssid(CSSID.PLACEHOLDER)
+                .build();
+
+        element.setPlaceholder(wrapper.getElement());
     }
 
 
@@ -99,20 +101,11 @@ public  class TableWrapper extends AppNode    {
 //        return result;
 //    }
 
-    public boolean isObserver() {
-        return isObserver;
-    }
-
-
-    public void markAsObserver(boolean isObserver) {
-        this.isObserver = isObserver;
-    }
-
     public void setDataMapperToObject(DomainObject d){
         d.setActiveRecord(activeRecord);
     }
 
-    public TableWrapper<T> setColumnResizePolicy(Callback<TableView.ResizeFeatures,Boolean> policy){
+    public TableWrapper setColumnResizePolicy(Callback<TableView.ResizeFeatures,Boolean> policy){
         element.setColumnResizePolicy(policy);
         return this;
     }
@@ -155,13 +148,7 @@ public  class TableWrapper extends AppNode    {
 
           return this;
      }
-    public TableWrapper<T> setEditable(boolean isEditable){
-
-          this.element.setEditable(isEditable);
-          return this;
-
-     }
-    private TableWrapper<T> setColumsSize(ColumnWrapper columnWrapper) {
+    private TableWrapper setColumsSize(ColumnWrapper columnWrapper) {
 
         TableColumn column = columnWrapper.getColumn();
         column.prefWidthProperty()
@@ -173,15 +160,9 @@ public  class TableWrapper extends AppNode    {
 
 
     }
-    public TableWrapper<T> setTablesWidthProperty(double val, ReadOnlyDoubleProperty widthProperty) {
+    public TableWrapper setTablesWidthProperty(double val, ReadOnlyDoubleProperty widthProperty) {
         element.prefWidthProperty()
                 .bind(widthProperty.multiply(val));
-
-        return this;
-
-    }
-    public TableWrapper<T> setTablesHeight(double val) {
-        element.setPrefHeight(val);
 
         return this;
 
@@ -367,21 +348,4 @@ public  class TableWrapper extends AppNode    {
 
     }
 
-    public TableWrapper setBoundTable(TableWrapper observer){
-            observer.markAsObserver(true);
-            observers.add(observer);
-
-        return this;
-    }
-
-
-    @Override
-    public ObservableList<DomainObject> submitList() {
-        return this.list;
-    }
-
-    @Override
-    public DataTransferSubmitObject extractData() {
-        return new DataTransferSubmitObject(this);
-    }
 }
