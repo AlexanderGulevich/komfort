@@ -72,7 +72,7 @@
 //    }
 //
 //    @Override
-//    public void getDomainListForObserverTables(ObservableList list, DomainObject selectedDomainObject) {
+//    public void getDomainListForAccessoryTable(ObservableList list, DomainObject selectedDomainObject) {
 //
 //    }
 //

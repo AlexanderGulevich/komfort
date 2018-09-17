@@ -40,7 +40,7 @@
 //    }
 //
 //    @Override
-//    public void getDomainListForObserverTables(ObservableList list, DomainObject selectedDomainObject)   {
+//    public void getDomainListForAccessoryTable(ObservableList list, DomainObject selectedDomainObject)   {
 //        int selectedDomainObjectId=selectedDomainObject.getId();
 //
 //            String expression="SELECT * FROM " +"LabelPriceStore "+" where labelId= " +selectedDomainObjectId+" ORDER BY startDate desc";

@@ -25,8 +25,6 @@ public class UnitOfWork {
     }
     public void setChangedPojoes(DomainObject p){
 
-        System.err.println("UnitOfWork.setChangedPojoes,   getTableName==="+p.getTableName());
-
         this.changedPojoes.add(p);
 
     }
@@ -62,7 +60,6 @@ public class UnitOfWork {
         this.removedPojoes.clear();
     }
     public void clearChangedPojoesList(){
-        System.err.println("UnitOfWork.clearChangedPojoesList");
         this.changedPojoes.clear();
 
     }
@@ -70,8 +67,6 @@ public class UnitOfWork {
         commitNew();
         commitChanged();
         commitRemoved();
-
-        System.err.println("UnitOfWork.commitAll");
     }
     public void commitNew(){
 
@@ -87,16 +82,6 @@ public class UnitOfWork {
             if (next.getActiveRecord().isReadyToTransaction(next)) {
 
                 next.getActiveRecord().insertDomainObject(next);
-
-
-
-
-                System.err.println("\n");
-                System.err.println("UnitOfWork ");
-                System.err.println("ПРОИЗОШЕЛА попытка КОММИТА НОВОГО ДОМЕНА  в UnitOfWork next.getActiveRecord().insertDomainObject(next);");
-                System.err.println("ДАТА МАППЕР----" + next.getActiveRecord());
-                System.err.println("ДОМЕН----" + next);
-                System.err.println("\n");
 
 
             }else {
@@ -126,13 +111,6 @@ public class UnitOfWork {
 
                 next.getActiveRecord().updateDomainObject(next);
 
-                System.err.println("\n");
-                System.err.println("UnitOfWork ");
-                System.err.println("ПРОИЗОШЕЛ КОММИТ ИЗМЕНЕННОГО ДОМЕНА");
-                System.err.println("ДАТА МАППЕР----" + next.getActiveRecord());
-                System.err.println("ДОМЕН----" + next);
-                System.err.println("\n");
-
 
             }else {
                 isReady=false;
@@ -161,9 +139,7 @@ public class UnitOfWork {
 
                 next.getActiveRecord().deleteDomainObject(next);
 
-                System.err.println("UnitOfWork.commitRemoved");
             }else {
-                System.err.println("Объект является новым, поэтому нет обращения к БД на удаление");
             }
 
         }

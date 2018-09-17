@@ -1,21 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package basisFx.dataSource;
-
-import basisFx.appCore.domainScetch.ComboBoxValue;
-import basisFx.appCore.domainScetch.DomainObject;
 
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.HashMap;
-import java.util.Map;
 
-
-import basisFx.appCore.interfaces.StringGetterFromDomain;
-import basisFx.domain.DataMapperFabric;
+import basisFx.domain.domaine.DomainObject;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -23,23 +12,17 @@ import javafx.collections.ObservableList;
 public abstract class ActiveRecord {
 
     protected ObservableList<DomainObject> list=FXCollections.observableArrayList();
-    protected DataMapperFabric dataMapperFabric=new DataMapperFabric();
     private Map<Integer,DomainObject> map= new HashMap<>();
     private int observableDomaineId;
     protected UnitOfWork unitOfWork;
 
     public abstract boolean isReadyToTransaction(DomainObject d);
     public abstract void getDomainList(ObservableList  list);
-    public abstract void getDomainListForObserverTables(ObservableList  list, DomainObject selectedDomainObject);
+    public abstract  ObservableList<DomainObject>  getDomainListForAccessoryTable(int id);
     public abstract void updateDomainObject(DomainObject d);
     public abstract void deleteDomainObject(DomainObject d);
     public abstract void insertDomainObject(DomainObject d);
 
-    /**
-     *
-     * @param domainObject it is domainObject.
-     * @param tableName
-     */
     public void delete(DomainObject domainObject, String tableName){
 
         if (domainObject != null) {
