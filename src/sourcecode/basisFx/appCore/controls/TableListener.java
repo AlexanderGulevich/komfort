@@ -1,18 +1,12 @@
 package basisFx.appCore.controls;
 
-import basisFx.dataSource.UnitOfWork;
+import basisFx.domain.domaine.ActiveRecord;
 import basisFx.appCore.elements.TableWrapper;
-import basisFx.domain.domaine.DomainObject;
-import java.util.List;
 import javafx.collections.ListChangeListener;
-import javafx.scene.control.TableView;
 
 public class TableListener  implements ListChangeListener  {
 
     private TableWrapper tableWrapper;
-    private TableView<DomainObject> table;
-
-    public TableListener() {}
 
     public TableListener(TableWrapper t) {
         this.tableWrapper =t;
@@ -31,25 +25,13 @@ public class TableListener  implements ListChangeListener  {
 
             } else if (change.wasRemoved()) {
 
-                List removed = change.getRemoved();
+                ActiveRecord domainObject = (ActiveRecord) change.getRemoved().get(0);
+                tableWrapper.unitOfWork.registercDeletedDomainObject(domainObject.entityName,domainObject);
 
             } else if (change.wasAdded()) {
 
-                @SuppressWarnings("unchecked")
-                List<DomainObject> subList = change.getAddedSubList();
-                DomainObject domainObject = subList.get(0);
-
-                if ( !unitOfWork.getStoredPojoesId().contains(domainObject.getId())) {
-                    this.unitOfWork.setNewPojoes(domainObject);
-
-                    this.table = (TableView<DomainObject>) this.tableWrapper.getElement();
-
-
-                }else{
-
-                }
-
-
+                ActiveRecord domainObject = (ActiveRecord) change.getAddedSubList().get(0);
+                tableWrapper.unitOfWork.registerNew(domainObject.entityName,domainObject);
 
             }
         }

@@ -1,6 +1,6 @@
 //package basisFx.domain.mapper;
 //
-//import basisFx.dataSource.ActiveRecord;
+//import basisFx.domain.domaine.ActiveRecord;
 //import basisFx.dataSource.Db;
 //import basisFx.appCore.domainScetch.ComboBoxValue;
 //import basisFx.domain.domaine.Counterparty;

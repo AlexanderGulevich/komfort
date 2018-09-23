@@ -1,8 +1,9 @@
-package basisFx.appCore.controls;
+package basisFx.appCore.grid;
 
 import basisFx.appCore.KindOfSubmitElement;
-import basisFx.dataSource.ActiveRecord;
-import basisFx.domain.domaine.DomainObject;
+import basisFx.appCore.controls.ColumnWrapper;
+import basisFx.appCore.fabrics.ButtonFactory;
+import basisFx.domain.domaine.ActiveRecord;
 import basisFx.appCore.elements.GridPaneWrapper;
 import basisFx.appCore.elements.TableWrapper;
 import basisFx.appCore.grid.GridColWidth;
@@ -18,9 +19,8 @@ import java.util.ArrayList;
 
 public abstract class GridTable {
 
-    protected ColumnFabric columnFabric=new ColumnFabric();
-    protected EditFabric editFabric=new EditFabric();
-    protected EventFactory eventFactory=EventFactory.getInstance();
+//    protected ColumnFabric columnFabric=new ColumnFabric();
+//    protected EditFabric editFabric=new EditFabric();
     protected ButtonFactory buttonFactory =new ButtonFactory();
     protected TableFabric tableFabric=new TableFabric();
     protected TextFabric textFabric=new TextFabric();
@@ -34,7 +34,7 @@ public abstract class GridTable {
     protected GridPaneWrapper gridPaneWrapper;
     protected ColumnWrapper[] columnWrappers;
     protected TableWrapper tableWrapper;
-    protected TableView<DomainObject> tableView;
+    protected TableView<ActiveRecord> tableView;
     protected GridPane gridPane;
     protected ArrayList<TableWrapper> observers=new ArrayList();
     protected KindOfTable kindOfTable;
@@ -66,11 +66,11 @@ public abstract class GridTable {
 
     public abstract void init();
 
-    public void setObserver(TableWrapper observer){
-        observer.markAsObserver(true);
-        observers.add(observer);
-
-    }
+//    public void setObserver(TableWrapper observer){
+//        observer.markAsObserver(true);
+//        observers.add(observer);
+//
+//    }
 
     public void setTitle(String title) {
         this.title = title;
@@ -116,7 +116,7 @@ public abstract class GridTable {
         return observers;
     }
 
-    public TableView<DomainObject> getTableView() {
+    public TableView<ActiveRecord> getTableView() {
         return tableView;
     }
 

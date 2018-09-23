@@ -2,10 +2,12 @@ package basisFx.appCore.elements;
 
 import basisFx.appCore.Mediator;
 import basisFx.appCore.controls.ColumnWrapper;
-import basisFx.appCore.interfaces.Actionable;
+import basisFx.appCore.events.AppEvent;
+import basisFx.domain.domaine.ActiveRecord;
 import basisFx.dataSource.UnitOfWork;
 import basisFx.appCore.controls.TableListener;
-import basisFx.domain.domaine.DomainObject;
+
+import java.util.ArrayList;
 import java.util.Iterator;
 import basisFx.appCore.settings.CSSID;
 import basisFx.appCore.settings.FontsStore;
@@ -15,40 +17,88 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Orientation;
+import javafx.scene.Group;
 import javafx.scene.Node;
-import javafx.scene.control.ScrollBar;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableRow;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseButton;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.FlowPane;
+import javafx.stage.Stage;
 import javafx.util.Callback;
 
-public  class TableWrapper extends AppNode implements Actionable {
-    private boolean isEditable=true;
+public  class TableWrapper extends AppNode  {
+    private boolean isEditable;
     private Callback<TableView.ResizeFeatures,Boolean> columnResizePolicy ;
     private boolean isSortableColums;
+    private double widthPercent;
+    private ReadOnlyDoubleProperty parentWidthProperty;
     private double prefHeight;
     private Mediator mediator;
     private ColumnWrapper [] columnWrappers;
-    private TableView<DomainObject> element =null;
-    private ObservableList<DomainObject>  list=FXCollections.<DomainObject> observableArrayList();
-    public UnitOfWork unitOfWork=null;
+    private TableView<ActiveRecord> element;
+    private ObservableList<ActiveRecord>  list=FXCollections.observableArrayList();
+    public UnitOfWork unitOfWork;
     private TableListener  tableListener=new TableListener (this);
-    public  DomainObject clickedDomain;
+    public  ActiveRecord clickedDomain;
+    public  ActiveRecord activeRecord;
 
-    @SuppressWarnings("unchecked")
- public TableWrapper() {
-        element =new TableView<>(list);
+    private TableWrapper(Builder builder) {
+        events = builder.events;
+        width = builder.width;
+        height = builder.height;
+        parentAnchor = builder.parentAnchor;
+        parentGroup = builder.parentGroup;
+        parentFlowPane = builder.parentFlowPane;
+        parentScrollPane = builder.parentScrollPane;
+        name = builder.name;
+        stage = builder.stage;
+        isEditable = builder.isEditable;
+        columnResizePolicy = builder.columnResizePolicy;
+        isSortableColums = builder.isSortableColums;
+        prefHeight = builder.prefHeight;
+        setMediator(builder.mediator);
+        columnWrappers = builder.columnWrappers;
+        unitOfWork = builder.unitOfWork;
+        clickedDomain = builder.clickedDomain;
+        activeRecord = builder.activeRecord;
+        widthPercent=builder.widthPercent;
+        parentWidthProperty=builder.parentWidthProperty;
+        isEditable=builder.isEditable;
 
-        element.setEditable(isEditable);
 
-        list.addListener(tableListener);
-        unitOfWork.setRefreshable(this);
+        createElement();
+        applyColumnResizePolicy();
+        applyColums();
+        applyListener();
+        applyEditable();
+        applyColumnResizePolicy();
+        applyPlaceholder();
+        applySortableAllCollums();
+        applyTablesWidthProperty();
+
+
+        manageScrollBar();
+        setClickedRowDetection();
+        setClickedUpDownRowDetection();
 
 
     }
 
+    public static Builder newBuilder() {
+        return new Builder();
+    }
+
+
+    private void createElement() {
+        element =new TableView<>(list);
+    }
+    private void applyListener() {
+        list.addListener(tableListener);
+    }
+    private void applyEditable() {
+        element.setEditable(isEditable);
+    }
     private void applyPlaceholder() {
         TextWrapper wrapper =TextWrapper.newBuilder()
                 .setText("Контент отсутствует".toLowerCase())
@@ -59,8 +109,6 @@ public  class TableWrapper extends AppNode implements Actionable {
 
         element.setPlaceholder(wrapper.getElement());
     }
-
-
     private void manageScrollBar(){
 //        ScrollBar verticalBar = (ScrollBar) element.lookup(".scroll-bar:vertical");
         ScrollBar verticalBar = getVerticalScrollbar();
@@ -70,15 +118,45 @@ public  class TableWrapper extends AppNode implements Actionable {
             @Override
             public void changed(final ObservableValue<? extends Boolean> observableValue, final Boolean aBoolean, final Boolean aBoolean2) {
                 System.err.println("Scrol Pane visible!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!".toUpperCase());
-
             }
         });
-
-
     }
+    private void applyColumnResizePolicy(){
+        element.setColumnResizePolicy(columnResizePolicy);
+    }
+    private void applyColums(){
+        for (ColumnWrapper cw : columnWrappers) {
+            cw.setTableWrapper(this);
+//             cw.setEditPoliticy(editCreater.editCreate());
+//             cw.initEditPoliticy();
+            element.getColumns().addAll(cw.getColumn());
+            applyColumsSize(cw);
+        }
+    }
+    private void applySortableAllCollums(){
 
-    private ScrollBar getVerticalScrollbar()
-    {
+        ObservableList<TableColumn<ActiveRecord, ?>> columns = element.getColumns();
+
+        for (Iterator<TableColumn<ActiveRecord, ?>> iterator = columns.iterator(); iterator.hasNext();) {
+            TableColumn<ActiveRecord, ? extends Object> next = iterator.next();
+            next.setSortable(isSortableColums);
+        }
+    }
+    private void applyColumsSize(ColumnWrapper columnWrapper) {
+        TableColumn column = columnWrapper.getColumn();
+        column.prefWidthProperty()
+                .bind(this.element.widthProperty().multiply(
+                        columnWrapper.getColumnSize()
+                ));
+    }
+    private void applyTablesWidthProperty() {
+        element.prefWidthProperty()
+                .bind(parentWidthProperty.multiply(widthPercent));
+    }
+    public TableView<ActiveRecord> getElement() {
+        return element;
+    }
+    private ScrollBar getVerticalScrollbar() {
         ScrollBar result = null;
         for (Node n : element.lookupAll(".scroll-bar"))
         {
@@ -93,76 +171,20 @@ public  class TableWrapper extends AppNode implements Actionable {
         }
         return result;
     }
-
-    public void applyColumnResizePolicy(){
-        element.setColumnResizePolicy(columnResizePolicy);
-    }
-
-    public TableView<DomainObject> getElement() {
-        return element;
-    }
-
-    public void applyColums(){
-
-         for (ColumnWrapper cw : columnWrappers) {
-
-             cw.setTableWrapper(this);
-
-//             cw.setEditPoliticy(editCreater.editCreate());
-
-//             cw.initEditPoliticy();
-
-             element.getColumns().addAll(cw.getColumn());
-
-             applyColumsSize(cw);
-
-         }
-
-
-     }
-    public void applySortableAllCollums(){
-
-        ObservableList<TableColumn<DomainObject, ?>> columns = element.getColumns();
-
-         for (Iterator<TableColumn<DomainObject, ?>> iterator = columns.iterator(); iterator.hasNext();) {
-             TableColumn<DomainObject, ? extends Object> next = iterator.next();
-             next.setSortable(isSortableColums);
-         }
-
-     }
-    private TableWrapper applyColumsSize(ColumnWrapper columnWrapper) {
-
-        TableColumn column = columnWrapper.getColumn();
-        column.prefWidthProperty()
-                .bind(this.element.widthProperty().multiply(
-                columnWrapper.getColumnSize()
-                ));
-
-        return this;
-
-    }
-    public TableWrapper applyTablesWidthProperty(double val, ReadOnlyDoubleProperty widthProperty) {
-        element.prefWidthProperty()
-                .bind(widthProperty.multiply(val));
-
-        return this;
-
-    }
     public ObservableList cloneAllPojo()throws CloneNotSupportedException{
 
-    ObservableList<DomainObject>  clon=FXCollections.observableArrayList(this.list);
+    ObservableList<ActiveRecord>  clon=FXCollections.observableArrayList(this.list);
 
     return clon;
 
     }
-
     private void setClickedUpDownRowDetection(){
 
         element.setOnKeyPressed(event -> {
 
                     if (event.getCode() == KeyCode.UP || event.getCode() == KeyCode.DOWN) {
 
-                        DomainObject itemFromEvent = element.getSelectionModel().getSelectedItem();
+                        ActiveRecord itemFromEvent = element.getSelectionModel().getSelectedItem();
 
                         int size = element.getItems().size();
                         int selectedIndex = element.getSelectionModel().getSelectedIndex();
@@ -185,27 +207,13 @@ public  class TableWrapper extends AppNode implements Actionable {
                 }
         );
     }
-
-
-    private void scrollToDomainObectItem(DomainObject domainObject) {
-        int newPojoIndex = element.getItems().indexOf(domainObject);
-        element.scrollTo(newPojoIndex);
-        element.getSelectionModel().select(newPojoIndex);
-//        element.getSelectionModel().focus(newPojoIndex);
-    }
-
     private void setClickedRowDetection(){
-
         element.setRowFactory(tv -> {
-            TableRow<DomainObject> row = new TableRow<>();
-
+            TableRow<ActiveRecord> row = new TableRow<>();
             row.setOnMouseClicked(event -> {
-
                 if (! row.isEmpty() && event.getButton()== MouseButton.PRIMARY
                         && event.getClickCount() == 1) {
-
                    clickedDomain=row.getItem();
-
 
                     if (mediator != null) {
                         mediator.inform(this);
@@ -219,9 +227,154 @@ public  class TableWrapper extends AppNode implements Actionable {
 
 
     }
+    private void scrollToDomainObectItem(ActiveRecord domainObject) {
+        int newPojoIndex = element.getItems().indexOf(domainObject);
+        element.scrollTo(newPojoIndex);
+        element.getSelectionModel().select(newPojoIndex);
+//        element.getSelectionModel().focus(newPojoIndex);
+    }
+    public void setMediator(Mediator mediator) {
+        this.mediator = mediator;
+    }
 
-    @Override
-    public void action() {
+    public static final class Builder {
+        private ReadOnlyDoubleProperty parentWidthProperty;
+        private double widthPercent;
+        private ArrayList<AppEvent> events;
+        private Double width;
+        private Double height;
+        private AnchorPane parentAnchor;
+        private Group parentGroup;
+        private FlowPane parentFlowPane;
+        private ScrollPane parentScrollPane;
+        private String name;
+        private Stage stage;
+        private boolean isEditable;
+        private Callback<TableView.ResizeFeatures, Boolean> columnResizePolicy;
+        private boolean isSortableColums;
+        private double prefHeight;
+        private Mediator mediator;
+        private ColumnWrapper[] columnWrappers;
+        private UnitOfWork unitOfWork;
+        private ActiveRecord clickedDomain;
+        private ActiveRecord activeRecord;
 
+
+        public void setWidthPercent(double widthPercent) {
+            this.widthPercent = widthPercent;
+        }
+
+        public void setEditable(boolean editable) {
+            isEditable = editable;
+        }
+
+        public void setSortableColums(boolean sortableColums) {
+            isSortableColums = sortableColums;
+        }
+
+        public void setParentWidthProperty(ReadOnlyDoubleProperty property) {
+            parentWidthProperty = property;
+        }
+
+
+
+        private Builder() {
+        }
+
+
+
+        public Builder setEvents(ArrayList<AppEvent> val) {
+            events = val;
+            return this;
+        }
+
+        public Builder setWidth(Double val) {
+            width = val;
+            return this;
+        }
+
+        public Builder setHeight(Double val) {
+            height = val;
+            return this;
+        }
+
+        public Builder setParentAnchor(AnchorPane val) {
+            parentAnchor = val;
+            return this;
+        }
+
+        public Builder setParentGroup(Group val) {
+            parentGroup = val;
+            return this;
+        }
+
+        public Builder setParentFlowPane(FlowPane val) {
+            parentFlowPane = val;
+            return this;
+        }
+
+        public Builder setParentScrollPane(ScrollPane val) {
+            parentScrollPane = val;
+            return this;
+        }
+
+        public Builder setName(String val) {
+            name = val;
+            return this;
+        }
+
+        public Builder setStage(Stage val) {
+            stage = val;
+            return this;
+        }
+
+        public Builder setIsEditable(boolean val) {
+            isEditable = val;
+            return this;
+        }
+
+        public Builder setColumnResizePolicy(Callback<TableView.ResizeFeatures, Boolean> val) {
+            columnResizePolicy = val;
+            return this;
+        }
+
+        public Builder setIsSortableColums(boolean val) {
+            isSortableColums = val;
+            return this;
+        }
+
+        public Builder setPrefHeight(double val) {
+            prefHeight = val;
+            return this;
+        }
+
+        public Builder setMediator(Mediator val) {
+            mediator = val;
+            return this;
+        }
+
+        public Builder setColumnWrappers(ColumnWrapper[] val) {
+            columnWrappers = val;
+            return this;
+        }
+
+        public Builder setUnitOfWork(UnitOfWork val) {
+            unitOfWork = val;
+            return this;
+        }
+
+        public Builder setClickedDomain(ActiveRecord val) {
+            clickedDomain = val;
+            return this;
+        }
+
+        public Builder setActiveRecord(ActiveRecord val) {
+            activeRecord = val;
+            return this;
+        }
+
+        public TableWrapper build() {
+            return new TableWrapper(this);
+        }
     }
 }

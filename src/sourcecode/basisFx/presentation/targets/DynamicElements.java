@@ -51,10 +51,10 @@ public abstract class DynamicElements {
                 .setParentAnchor(targetAnchorPane)
                 .build().getElement();
 
-        gridPaneWrapper = AppNode.NodeBuilder.create()
-                .setParent(panel)
-                .setCoordinate(new Coordinate(0d,0d,0d,0d))
-                .createGridPaneWrapper();
+//        gridPaneWrapper = AppNode.NodeBuilder.create()
+//                .setParent(panel)
+//                .setCoordinate(new Coordinate(0d,0d,0d,0d))
+//                .createGridPaneWrapper();
 
         commonGridPane = (GridPane) gridPaneWrapper.getElement();
     }

@@ -49,7 +49,7 @@
 ////                    this.domainChanging.change(domain, event.getNewValue());
 //
 //                    unitOfWork.setChangedPojoes(domain);
-//                    unitOfWork.commitChanged();
+//                    unitOfWork.updateDirty();
 //
 //
 //                } else {
@@ -66,7 +66,7 @@
 //                        System.err.println("НОВЫЙ ОБЪЕКТ отправляется ТРАНЗАКЦИИ, если кортеж полный");
 //                        System.err.println("\n");
 //
-//                        unitOfWork.commitNew();
+//                        unitOfWork.updateNew();
 //
 //                    }
 //                }

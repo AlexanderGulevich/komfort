@@ -1,6 +1,6 @@
 //package basisFx.presentation.targets;
 //
-//import basisFx.appCore.controls.GridTable;
+//import basisFx.appCore.grid.GridTable;
 //import basisFx.appCore.controls.KindOfColumn;
 //import basisFx.appCore.elements.TableWrapper;
 //import basisFx.appCore.grid.GridTablesBuilder;

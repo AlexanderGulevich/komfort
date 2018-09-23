@@ -6,7 +6,7 @@
 //package basisFx.domain.mapper;
 //
 //import basisFx.appCore.domainScetch.DomainObject;
-//import basisFx.dataSource.ActiveRecord;
+//import basisFx.domain.domaine.ActiveRecord;
 //import basisFx.dataSource.Db;
 //import basisFx.domain.domaine.*;
 //import java.sql.PreparedStatement;

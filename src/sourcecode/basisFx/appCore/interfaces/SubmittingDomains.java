@@ -1,9 +1,9 @@
 package basisFx.appCore.interfaces;
 
-import basisFx.domain.domaine.DomainObject;
+import basisFx.domain.domaine.ActiveRecord;
 import javafx.collections.ObservableList;
 
 public interface SubmittingDomains {
 
-    public ObservableList<DomainObject> submitList();
+    public ObservableList<ActiveRecord> submitList();
 }

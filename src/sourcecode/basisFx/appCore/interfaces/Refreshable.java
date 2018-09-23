@@ -5,7 +5,7 @@
  */
 package basisFx.appCore.interfaces;
 
-import basisFx.domain.domaine.DomainObject;
+import basisFx.domain.domaine.ActiveRecord;
 
 /**
  *
@@ -14,5 +14,5 @@ import basisFx.domain.domaine.DomainObject;
  */
 public  interface Refreshable  <T > {
     public T refresh();
-    public T refresh(DomainObject selectedDomainObject);
+    public T refresh(ActiveRecord selectedDomainObject);
 }

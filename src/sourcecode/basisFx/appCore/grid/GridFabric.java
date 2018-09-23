@@ -1,6 +1,6 @@
-package basisFx.appCore.fabrics;
+package basisFx.appCore.grid;
 
-import basisFx.appCore.controls.GridTable;
+import basisFx.appCore.grid.GridTable;
 import basisFx.appCore.grid.*;
 import basisFx.appCore.utils.Coordinate;
 import javafx.scene.layout.AnchorPane;

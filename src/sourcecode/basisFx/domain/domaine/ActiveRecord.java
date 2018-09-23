@@ -1,29 +1,42 @@
-package basisFx.dataSource;
+package basisFx.domain.domaine;
 
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.HashMap;
 
-import basisFx.domain.domaine.DomainObject;
+import basisFx.appCore.interfaces.StringGetterFromDomain;
+import basisFx.dataSource.Db;
+import basisFx.dataSource.UnitOfWork;
 import javafx.application.Platform;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 public abstract class ActiveRecord {
 
-    protected ObservableList<DomainObject> list=FXCollections.observableArrayList();
-    private Map<Integer,DomainObject> map= new HashMap<>();
-    private int observableDomaineId;
-    protected UnitOfWork unitOfWork;
+    public String entityName;
+    public ObjectProperty<Integer> id =new SimpleObjectProperty<>(this, "id", null);
+    private UnitOfWork unitOfWork;
 
-    public abstract boolean isReadyToTransaction(DomainObject d);
+    public Integer getId() {
+        return id.get();
+    }
+    public void setId(int value) {
+        this.id.set(value);
+    }
+
+    public  abstract ComboBoxValue  toComboBoxValue();
+//    private Map<Integer,ActiveRecord> map= new HashMap<>();
+
+    public abstract boolean isReadyToTransaction(ActiveRecord d);
     public abstract void getDomainList(ObservableList  list);
-    public abstract  ObservableList<DomainObject>  getDomainListForAccessoryTable(int id);
-    public abstract void updateDomainObject(DomainObject d);
-    public abstract void deleteDomainObject(DomainObject d);
-    public abstract void insertDomainObject(DomainObject d);
+    public abstract  ObservableList<ActiveRecord>  getDomainListForAccessoryTable(int id);
+    public abstract void updateDomainObject(ActiveRecord d);
+    public abstract void deleteDomainObject(ActiveRecord d);
+    public abstract void insertDomainObject(ActiveRecord d);
 
-    public void delete(DomainObject domainObject, String tableName){
+    public void delete(ActiveRecord domainObject, String tableName){
 
         if (domainObject != null) {
             try {
@@ -45,7 +58,7 @@ public abstract class ActiveRecord {
      * @param observedtableName
      * @param observertableName
      */
-    public void deleteForBoundTables(DomainObject domainObject, String observedtableName,String observertableName){
+    public void deleteForBoundTables(ActiveRecord domainObject, String observedtableName,String observertableName){
 
         if (domainObject != null) {
             try {
@@ -73,13 +86,6 @@ public abstract class ActiveRecord {
 
     }
 
-    protected void setStoredId(int id){
-        if (unitOfWork != null) {
-            //вставляю id в список хранимых в бд
-            this.unitOfWork.getStoredPojoesId().add(id);
-        }
-    }
-
     public void setUnitOfWork(UnitOfWork u) {
         this.unitOfWork=u;
     }
@@ -88,23 +94,16 @@ public abstract class ActiveRecord {
         return unitOfWork;
     }
 
-    public void setObservableDomaineId(int observableDomaineId) {
-        this.observableDomaineId = observableDomaineId;
-    }
-
-    public int getObservableDomaineId() {
-        return observableDomaineId;
-    }
 
     // getDomainList(list) записывает в  list значения ReturnSet БД
     // далее идет преобразование каждой строки БД в HashMap, где ключем является id
-    public HashMap<Integer,DomainObject> toHashMapByCommonRawId(){
+    public HashMap<Integer,ActiveRecord> toHashMapByCommonRawId(ObservableList<ActiveRecord> list){
         list.clear();
         getDomainList(list);
 
-        HashMap<Integer,DomainObject> hm=new HashMap<>();
+        HashMap<Integer,ActiveRecord> hm=new HashMap<>();
 
-        for (DomainObject domainObject : list) {
+        for (ActiveRecord domainObject : list) {
 
             Integer id = domainObject.getId();
             hm.put(id,domainObject);
@@ -118,13 +117,13 @@ public abstract class ActiveRecord {
     // getDomainList(list) записывает в  list значения ReturnSet БД
     // далее идет преобразование каждой строки БД в HashMap, где ключем является id
     // а значение ComboBoxValue для вставки в ComboBox
-    public HashMap<Integer,ComboBoxValue> toComboBoxValHashMap(StringGetterFromDomain stringGetterFromDomain){
+    public HashMap<Integer,ComboBoxValue> toComboBoxValHashMap(ObservableList<ActiveRecord> list, StringGetterFromDomain stringGetterFromDomain){
         list.clear();
         getDomainList(list);
 
         HashMap<Integer,ComboBoxValue> hm=new HashMap<>();
 
-        for (DomainObject domainObject : list) {
+        for (ActiveRecord domainObject : list) {
 
             Integer id = domainObject.getId();
 
@@ -148,13 +147,13 @@ public abstract class ActiveRecord {
      * @param stringGetterFromDomain
      * @return
      */
-    public ObservableList<ComboBoxValue> toComboBoxValueList(StringGetterFromDomain stringGetterFromDomain){
+    public ObservableList<ComboBoxValue> toComboBoxValueList(ObservableList<ActiveRecord> list,StringGetterFromDomain stringGetterFromDomain){
         list.clear();
         getDomainList(list);
 
         ObservableList<ComboBoxValue> comboBoxValueList= FXCollections.observableArrayList();
 
-        for (DomainObject domainObject : list) {
+        for (ActiveRecord domainObject : list) {
 
             ComboBoxValue comboBoxValue = new ComboBoxValue(
                     stringGetterFromDomain.get(domainObject),
@@ -207,9 +206,8 @@ public abstract class ActiveRecord {
                         " Вы можете изменить старую, либо удалить ее.";
 
                 Platform.runLater(() -> {
-                    PopupUndecorated popup = PopupFabric.popupUndecorated(
-                            KindOfPopup.ERROR, message
-                    );
+
+
                 });
 
 

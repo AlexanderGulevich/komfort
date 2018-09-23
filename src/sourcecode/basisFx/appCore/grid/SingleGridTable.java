@@ -1,9 +1,6 @@
 package basisFx.appCore.grid;
 
-import basisFx.appCore.controls.GridTable;
-import basisFx.appCore.elements.AppNode;
 import basisFx.appCore.elements.LabelWrapper;
-import basisFx.appCore.settings.CSSID;
 import basisFx.appCore.settings.FontsStore;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
@@ -27,17 +24,17 @@ public class SingleGridTable extends GridTable {
 
     @Override
     public void init() {
-        label = textFabric.createLabel(title, FontsStore.ROBOTO_LIGHT, Pos.BASELINE_LEFT, 20d);
-
-        typeOfTableInspection();
+        label =LabelWrapper.newBuilder()
+                .setName(title)
+                .setFont(FontsStore.ROBOTO_LIGHT)
+                .setAlignment(Pos.BASELINE_LEFT)
+                .setFontSize(20d)
+                .build();
 
         buttonAdd = buttonFactory.addRowButton(tableWrapper, domainClass);
         buttonDel = buttonFactory.deleteRowButton(tableWrapper);
         buttonAddLittle = buttonFactory.littleRowAddButton(tableWrapper, domainClass);
         buttonDelLittle = buttonFactory.littleRowDeleteButton(tableWrapper);
-
-
-        anchorBasedInspection();
 
         gridPane = (GridPane) gridPaneWrapper.getElement();
 
@@ -53,94 +50,7 @@ public class SingleGridTable extends GridTable {
         gridPane.heightProperty().addListener((obs, oldVal, newVal) -> {
 
             tableView.setPrefHeight(gridPane.getHeight());
-
-//            To listen to both width and height changes, the same listener can be used really simply:
-
-//            ChangeListener<Number> stageSizeListener = (observable, oldValue, newValue) ->
-//                    System.out.println("Height: " + stage.getHeight() + " Width: " + stage.getWidth());
-//
-//            stage.widthProperty().addListener(stageSizeListener);
-//            stage.heightProperty().addListener(stageSizeListener);
-
         });
-
-    }
-
-    private void typeOfTableInspection() {
-
-          if (kindOfTable==KindOfTable.SUBMIT){
-
-              System.err.println("\n");
-              System.err.println("Создана таблица в SingleGridTable");
-              System.err.println("Вид таблицы - "+kindOfTable.toString().toUpperCase());
-              System.err.println("\n");
-
-
-            tableWrapper =AppNode.NodeBuilder.create()
-                    .setId(CSSID.TABLE)
-                    .setEditCreater(()-> {return editFabric.createMultipleSubmitEditCommit();})
-                    .createTableViewWrapper()
-                    .setDataMapper(activeRecord)
-                    .setEditable(true)
-                    .setColums(columnWrappers)
-                    .refresh();
-
-
-        } else if (kindOfTable==KindOfTable.OBSERVED){
-
-              System.err.println("\n");
-              System.err.println("Создана таблица в SingleGridTable");
-              System.err.println("Вид таблицы - "+kindOfTable.toString().toUpperCase());
-              System.err.println("\n");
-
-
-              tableWrapper = AppNode.NodeBuilder.create()
-                    .setId(CSSID.TABLE)
-                    .setEditCreater(() -> {
-                        return editFabric.createDefaultEditCommit();
-                    })
-                    .createTableViewWrapper()
-                    .setDataMapper(activeRecord)
-                    .setEditable(true)
-                    .setBoundTable(observers.get(0))
-                    .setColums(columnWrappers)
-                    .refresh();
-
-        }else {
-
-              System.err.println("\n");
-              System.err.println("Создана таблица в SingleGridTable");
-              System.err.println("Вид таблицы - ПРОСТАЯ ");
-              System.err.println("\n");
-
-
-              tableWrapper = AppNode.NodeBuilder.create()
-                      .setId(CSSID.TABLE)
-                      .setEditCreater(() -> {
-                          return editFabric.createDefaultEditCommit();
-                      })
-                      .createTableViewWrapper()
-                      .setDataMapper(activeRecord)
-                      .setEditable(true)
-                      .setColums(columnWrappers)
-                      .refresh();
-
-          }
-
-        tableView = tableWrapper.getElement();
-    }
-
-    private void anchorBasedInspection() {
-
-        if (coordinate != null && parentAnchorPane != null) {
-            gridPaneWrapper = AppNode.NodeBuilder.create()
-                    .setCoordinate(coordinate)
-                    .setParent(parentAnchorPane)
-                    .createGridPaneWrapper();
-        } else {
-            gridPaneWrapper = AppNode.NodeBuilder.create()
-                    .createGridPaneWrapper();
-        }
 
     }
 

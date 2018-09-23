@@ -1,158 +1,113 @@
 
 package basisFx.dataSource;
-import basisFx.appCore.interfaces.Refreshable;
-import basisFx.domain.domaine.DomainObject;
+import basisFx.domain.domaine.ActiveRecord;
+
 import java.sql.SQLException;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class UnitOfWork {
-    private List<Integer> storedPojoesId=new ArrayList<>();
-    private List <DomainObject>newPojoes=new ArrayList<>();
-    private List <DomainObject>removedPojoes=new ArrayList<>();
-    private List <DomainObject>changedPojoes=new ArrayList<>();
-    private Refreshable refreshable;
 
-    public void setNewPojoes(DomainObject p){
+    private HashMap <String,ArrayList<ActiveRecord>>      newDomainObjects=new HashMap<>();
+    private HashMap <String,ArrayList<ActiveRecord>>      dirtyDomainObjects=new HashMap<>();
+    private HashMap <String,ArrayList<ActiveRecord>>      deletedDomainObject=new HashMap<>();
 
-        this.newPojoes.add(p);
+    public void registerNew(String activeRecordName, ActiveRecord record){
+        listNullCheck(newDomainObjects,activeRecordName);
+        ArrayList<ActiveRecord> records = newDomainObjects.get(activeRecordName);
+        records.add(record);
+    }
+    public void registercDirty(String activeRecordName,ActiveRecord record){
+        listNullCheck(dirtyDomainObjects,activeRecordName);
+        ArrayList<ActiveRecord> records = dirtyDomainObjects.get(activeRecordName);
+        records.add(record);
+    }
+    public void registercDeletedDomainObject(String activeRecordName,ActiveRecord record){
+        listNullCheck(deletedDomainObject,activeRecordName);
+        ArrayList<ActiveRecord> records = deletedDomainObject.get(activeRecordName);
+        records.add(record);
+    }
+
+    public void clearNew(){
+        this.newDomainObjects.clear();
+    }
+    public void cleardDeleted(){
+        this.deletedDomainObject.clear();
+    }
+    public void clearDirty(){
+        this.dirtyDomainObjects.clear();
 
     }
-    public void setRemovedPojoes(DomainObject p){
 
-        this.removedPojoes.add(p);
-
+    public boolean isExistNew(String s,ActiveRecord record){
+        return newDomainObjects.get(s).contains(record);
     }
-    public void setChangedPojoes(DomainObject p){
-
-        this.changedPojoes.add(p);
-
+    public boolean isExistDeleted(String s,ActiveRecord record){
+        return deletedDomainObject.get(s).contains(record);
     }
-    public List <DomainObject> getNewPojoes(){
-
-        return newPojoes;
-
+    public boolean isExistDirty(String s,ActiveRecord record){
+        return dirtyDomainObjects.get(s).contains(record);
     }
-    public List<DomainObject> getRemovedPojoes() {
 
-        return removedPojoes;
+    private void listNullCheck(HashMap<String,ArrayList<ActiveRecord>>  map,String activeRecordName) {
+        ArrayList<ActiveRecord> activeRecords = map.get(activeRecordName);
+        if(activeRecords==null){
+            map.put(activeRecordName,new ArrayList<>());
+        }
     }
-    public List<DomainObject> getChangedPojoes() {
 
-        return changedPojoes;
+    public void commit() throws SQLException{
+        updateNew();
+        updateDirty();
+        updateDeleted();
+        cleardDeleted();
+        clearDirty();
+        clearNew();
     }
-    public List<Integer> getStoredPojoesId() {
+    public void updateNew(){
+        Set<ActiveRecord> recordsSet=iterateHMapAndGetAllDomainObjects(newDomainObjects);
 
-        return storedPojoesId;
-    }
-    public void clearStoredPojoesId(){
-
-
-        this.storedPojoesId.clear();
-
-    }
-    public void clearNewPojoesList(){
-
-        this.newPojoes.clear();
-    }
-    public void clearRemovedPojoesList(){
-
-        this.removedPojoes.clear();
-    }
-    public void clearChangedPojoesList(){
-        this.changedPojoes.clear();
-
-    }
-    public void commitAll() throws SQLException{
-        commitNew();
-        commitChanged();
-        commitRemoved();
-    }
-    public void commitNew(){
-
-        boolean isReady=true;
-        Set<DomainObject> domainObjects = Collections.newSetFromMap(new ConcurrentHashMap<DomainObject, Boolean>() {});
-        domainObjects.addAll(newPojoes);
-
-
-
-        for (Iterator<DomainObject> iterator = domainObjects.iterator(); iterator.hasNext();) {
-            DomainObject next = iterator.next();
-
-            if (next.getActiveRecord().isReadyToTransaction(next)) {
-
-                next.getActiveRecord().insertDomainObject(next);
-
-
-            }else {
-                isReady=false;
+        for (Iterator<ActiveRecord> iterator = recordsSet.iterator(); iterator.hasNext();) {
+            ActiveRecord next = iterator.next();
+            if (next.isReadyToTransaction(next)) {
+                next.insertDomainObject(next);
             }
-
-
         }
-
-
-        if (isReady){
-
-            clearNewPojoesList();
-            refreshable.refresh();
-
-        }
-
     }
-    public void commitChanged(){
+    public void updateDirty(){
 
-        boolean isReady=true;
+        Set<ActiveRecord> recordsSet=iterateHMapAndGetAllDomainObjects(dirtyDomainObjects);
 
-        for (Iterator<DomainObject> iterator = changedPojoes.iterator(); iterator.hasNext();) {
-            DomainObject next = iterator.next();
-
-            if (next.getActiveRecord().isReadyToTransaction(next)) {
-
-                next.getActiveRecord().updateDomainObject(next);
-
-
-            }else {
-                isReady=false;
+        for (Iterator<ActiveRecord> iterator = recordsSet.iterator(); iterator.hasNext();) {
+            ActiveRecord next = iterator.next();
+            if (next.isReadyToTransaction(next)) {
+                next.updateDomainObject(next);
             }
-
-
         }
-
-
-        if (isReady){
-
-            clearChangedPojoesList();
-            refreshable.refresh();
-
-        }
-
-
-
     }
-    public void commitRemoved() throws SQLException{
+    public void updateDeleted(){
+        Set<ActiveRecord> recordsSetDeleted=iterateHMapAndGetAllDomainObjects(deletedDomainObject);
+        Set<ActiveRecord> recordsSetNew=iterateHMapAndGetAllDomainObjects(newDomainObjects);
 
-        for (Iterator<DomainObject> iterator = removedPojoes.iterator(); iterator.hasNext();) {
-            DomainObject next = iterator.next();
+        for (Iterator<ActiveRecord> iterator = recordsSetDeleted.iterator(); iterator.hasNext();) {
+            ActiveRecord next = iterator.next();
 
-            if (!getNewPojoes().contains(next)) {// если обеъект не является новым, то удаляем их БД
+            if (!recordsSetNew.contains(next)) {// если обеъект не является новым, то удаляем их БД
 
-                next.getActiveRecord().deleteDomainObject(next);
-
-            }else {
+                next.deleteDomainObject(next);
             }
-
         }
-        clearRemovedPojoesList();
-
-
     }
 
-    public void setRefreshable(Refreshable r) {
+    private  Set<ActiveRecord>  iterateHMapAndGetAllDomainObjects(HashMap <String,ArrayList<ActiveRecord>>map) {
+        Set<ActiveRecord> recordsSet=null;
+        for (String s : map.keySet()) {
+            ArrayList<ActiveRecord> activeRecords = map.get(s);
+            recordsSet = Collections.newSetFromMap(new ConcurrentHashMap<ActiveRecord, Boolean>() {});
+            recordsSet.addAll(activeRecords);
+        }
 
-
-       this.refreshable=r;
-
+        return recordsSet;
     }
 
 }

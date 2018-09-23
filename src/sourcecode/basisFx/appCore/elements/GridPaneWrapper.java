@@ -1,10 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package basisFx.appCore.elements;
-
 import basisFx.appCore.events.AppEvent;
 import basisFx.appCore.settings.CSSID;
 import basisFx.appCore.utils.Coordinate;
@@ -15,17 +9,38 @@ import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.*;
-import javafx.scene.layout.FlowPane;
+import javafx.stage.Stage;
 
-import java.awt.*;
 import java.util.ArrayList;
 
 public  class GridPaneWrapper extends AppNode{
    protected GridPane element;
     protected boolean gridLinesVisibility=false;
 
-//    element=new GridPane();
-//        element.setGridLinesVisible(gridLinesVisibility);
+    private GridPaneWrapper(Builder builder) {
+        events = builder.events;
+        cssid = builder.cssid;
+        width = builder.width;
+        height = builder.height;
+        coordinate = builder.coordinate;
+        parentAnchor = builder.parentAnchor;
+        parentGroup = builder.parentGroup;
+        parentFlowPane = builder.parentFlowPane;
+        parentScrollPane = builder.parentScrollPane;
+        name = builder.name;
+        stage = builder.stage;
+        gridLinesVisibility = builder.gridLinesVisibility;
+
+
+
+        element=new GridPane();
+        element.setGridLinesVisible(gridLinesVisibility);
+    }
+
+    public static Builder newBuilder() {
+        return new Builder();
+    }
+
 
 
 
@@ -90,9 +105,95 @@ public  class GridPaneWrapper extends AppNode{
     }
 
 
+
+
+
+
     @Override
     public GridPane getElement() {
         return element;
     }
 
+
+    public static final class Builder {
+        private ArrayList<AppEvent> events;
+        private CSSID cssid;
+        private Double width;
+        private Double height;
+        private Coordinate coordinate;
+        private AnchorPane parentAnchor;
+        private Group parentGroup;
+        private FlowPane parentFlowPane;
+        private ScrollPane parentScrollPane;
+        private String name;
+        private Stage stage;
+        private boolean gridLinesVisibility;
+
+        private Builder() {
+        }
+
+        public Builder setEvents(ArrayList<AppEvent> val) {
+            events = val;
+            return this;
+        }
+
+        public Builder setCssid(CSSID val) {
+            cssid = val;
+            return this;
+        }
+
+        public Builder setWidth(Double val) {
+            width = val;
+            return this;
+        }
+
+        public Builder setHeight(Double val) {
+            height = val;
+            return this;
+        }
+
+        public Builder setCoordinate(Coordinate val) {
+            coordinate = val;
+            return this;
+        }
+
+        public Builder setParentAnchor(AnchorPane val) {
+            parentAnchor = val;
+            return this;
+        }
+
+        public Builder setParentGroup(Group val) {
+            parentGroup = val;
+            return this;
+        }
+
+        public Builder setParentFlowPane(FlowPane val) {
+            parentFlowPane = val;
+            return this;
+        }
+
+        public Builder setParentScrollPane(ScrollPane val) {
+            parentScrollPane = val;
+            return this;
+        }
+
+        public Builder setName(String val) {
+            name = val;
+            return this;
+        }
+
+        public Builder setStage(Stage val) {
+            stage = val;
+            return this;
+        }
+
+        public Builder setGridLinesVisibility(boolean val) {
+            gridLinesVisibility = val;
+            return this;
+        }
+
+        public GridPaneWrapper build() {
+            return new GridPaneWrapper(this);
+        }
+    }
 }
