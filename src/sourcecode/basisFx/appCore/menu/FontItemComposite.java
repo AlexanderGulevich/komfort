@@ -1,7 +1,7 @@
 package basisFx.appCore.menu;
 
 import basisFx.appCore.settings.FontsStore;
-import basisFx.presentation.targets.DynamicElements;
+import basisFx.presentation.DynamicElements;
 
 public class FontItemComposite extends MenuComposite{
     protected String fontSymbol;

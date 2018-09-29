@@ -5,7 +5,7 @@
 // */
 //package basisFx.appCore;
 //
-//import basisFx.presentation.targets.DynamicElements;
+//import basisFx.presentation.DynamicElements;
 //import basisFx.appCore.utils.TargetRegistry;
 //
 ///**

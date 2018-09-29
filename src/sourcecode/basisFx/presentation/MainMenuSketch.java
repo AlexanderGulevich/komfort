@@ -2,12 +2,11 @@ package basisFx.presentation;
 
 import basisFx.appCore.menu.*;
 import basisFx.appCore.settings.FontsStore;
+import basisFx.presentation.targets.EquipmentPanel;
 
 public class MainMenuSketch extends MenuSketch {
 
     private double iconSize = 25d;
-
-
 
     public MainMenuSketch() {
 
@@ -80,7 +79,7 @@ public class MainMenuSketch extends MenuSketch {
                         .build().add(
                                 FontItemLeaf.newBuilder()
                                         .setDescription("Сотрудики")
-//                                        .setDynamicElements(fm.employeesManagerPanel())
+//                                        .setDynamicElements(Employ)
                                         .build(),
                                 FontItemLeaf.newBuilder()
                                         .setDescription("Актуальные тарифы")
@@ -130,7 +129,7 @@ public class MainMenuSketch extends MenuSketch {
                         .build().add(
                                     FontItemLeaf.newBuilder()
                                             .setDescription("Оборудование")
-//                                            .setDynamicElements(fm.equipmentPanel())
+                                            .setDynamicElements(new EquipmentPanel())
                                             .build(),
                                     FontItemLeaf.newBuilder()
                                             .setDescription("Контрагенты")

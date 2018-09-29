@@ -34,7 +34,6 @@ public  class LabelWrapper extends AppNode{
         parentFlowPane = builder.parentFlowPane;
         parentScrollPane = builder.parentScrollPane;
         name = builder.name;
-        element = builder.element;
         font = builder.font;
         fontSize = builder.fontSize;
         alignment = builder.alignment;
@@ -87,7 +86,6 @@ public  class LabelWrapper extends AppNode{
         private FlowPane parentFlowPane;
         private ScrollPane parentScrollPane;
         private String name;
-        private Label element;
         private FontsStore font;
         private double fontSize;
         private Pos alignment;
@@ -144,11 +142,6 @@ public  class LabelWrapper extends AppNode{
 
         public Builder setName(String val) {
             name = val;
-            return this;
-        }
-
-        public Builder setElement(Label val) {
-            element = val;
             return this;
         }
 

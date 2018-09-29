@@ -12,7 +12,7 @@
 //    double fontHeight= 17d;
 //    double topMatgin=4d;
 //    double height=25d;
-//    double width=25d;
+//    double widthValue=25d;
 //    Insets padding=new Insets(0d, 0d, 0d, 0d);
 //    FontsStore fs=FontsStore.FAWESOME5SOLID;
 //
@@ -26,7 +26,7 @@
 //        //крестик
 //        closingButton= AppNode.NodeBuilder.create().
 //                setFont(fs, fontHeight).
-//                setSize(width,height).
+//                setSize(widthValue,height).
 //                setPadding(padding).
 //                setCoordinate(topMatgin, 0d, null, null).
 //                setId(CSSID.TOP_CONTROL_BUTTON).setParent(buttonsAnchor).

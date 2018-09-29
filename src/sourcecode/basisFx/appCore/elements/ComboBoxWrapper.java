@@ -29,7 +29,7 @@
 //        setElement(comboBox);
 //        comboBox.setEditable(true);
 //        init(builder);
-//        comboBox.setPrefWidth(this.width);
+//        comboBox.setPrefWidth(this.widthValue);
 //        comboBox.setPrefHeight(this.height);
 //
 ////        list.addListener(tableListener);

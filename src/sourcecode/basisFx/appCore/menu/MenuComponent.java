@@ -1,6 +1,6 @@
 package basisFx.appCore.menu;
 
-import basisFx.presentation.targets.DynamicElements;
+import basisFx.presentation.DynamicElements;
 
 public abstract class MenuComponent {
 

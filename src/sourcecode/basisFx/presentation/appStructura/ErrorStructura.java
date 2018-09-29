@@ -85,7 +85,7 @@ public class ErrorStructura extends GuiStructura{
 //        panel =  (AnchorPane) AppNode.NodeBuilder.create()
 //                .setId(CSSID.WindowButtonsPanel)
 //                .setCoordinate(panelCoordinate)
-//                .setHeight(height).setWidth(width)
+//                .setHeight(height).setWidth(widthValue)
 //                .setParent(parent)
 //                .createAnchorPanelWrapper().getElement();
 //

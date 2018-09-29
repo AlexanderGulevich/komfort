@@ -1,18 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package basisFx.appCore.controls;
 
 import basisFx.appCore.interfaces.*;
 import basisFx.appCore.elements.TableWrapper;
 import javafx.scene.control.TableColumn;
-
-/**
- *
- * @author Alek
- */
 public  class ColumnWrapper<T> {
 
     protected TableWrapper tableWrapper;
@@ -20,10 +10,10 @@ public  class ColumnWrapper<T> {
     protected String columnName;
     protected Checking valueChecking;
     protected double columnSize;
-    protected Edit editPoliticy;
-    protected ComboBoxCellValueInitLogic comboBoxCellValueInitLogic;
+//    protected Edit editPoliticy;
+//    protected ComboBoxCellValueInitLogic comboBoxCellValueInitLogic;
     protected TableColumn column;
-    protected DomainChanging domainChanging;
+//    protected DomainChanging domainChanging;
     protected DomainsListGetter domainObjectsListGetter;
     protected DateCellValueInitLogic dateCellValueInitLogic;
     protected Boolean isEditeble;
@@ -37,9 +27,9 @@ public  class ColumnWrapper<T> {
         this.columnName=b.columnName;
         this.valueChecking=b.valueChecking;
         this.columnSize=b.columnSize;
-        this.comboBoxCellValueInitLogic=b.comboBoxCellValueInitLogic;
+//        this.comboBoxCellValueInitLogic=b.comboBoxCellValueInitLogic;
         this.domainObjectsListGetter =b.domainsListGetter;
-        this.domainChanging =b.domainChanging;
+//        this.domainChanging =b.domainChanging;
         this.dateCellValueInitLogic=b.dateCellValueInitLogic;
         this.isEditeble=b.isEditeble;
         this.kindOfColumn=b.kindOfColumn;
@@ -60,18 +50,18 @@ public  class ColumnWrapper<T> {
         return columnSize;
     }
 
-    public void setEditPoliticy(Edit editPoliticy) {
-        this.editPoliticy = editPoliticy;
-    }
+//    public void setEditPoliticy(Edit editPoliticy) {
+//        this.editPoliticy = editPoliticy;
+//    }
 
     public static class Bulder{
 
          protected String propertyName;
          protected String columnName;
          protected Checking valueChecking;
-         protected DomainChanging domainChanging;
+//         protected DomainChanging domainChanging;
          protected double columnSize;
-         protected ComboBoxCellValueInitLogic comboBoxCellValueInitLogic;
+//         protected ComboBoxCellValueInitLogic comboBoxCellValueInitLogic;
          protected DomainsListGetter domainsListGetter;
          protected DateCellValueInitLogic dateCellValueInitLogic;
          protected Boolean isEditeble;
@@ -105,10 +95,10 @@ public  class ColumnWrapper<T> {
 
          }
 
-         public Bulder setComboBoxCellValueInitLogic(ComboBoxCellValueInitLogic comboBoxCellValueInitLogic) {
-             this.comboBoxCellValueInitLogic = comboBoxCellValueInitLogic;
-             return this;
-         }
+//         public Bulder setComboBoxCellValueInitLogic(ComboBoxCellValueInitLogic comboBoxCellValueInitLogic) {
+//             this.comboBoxCellValueInitLogic = comboBoxCellValueInitLogic;
+//             return this;
+//         }
 
          public Bulder setDateCellValueInitLogic(DateCellValueInitLogic dateCellValueInitLogic) {
              this.dateCellValueInitLogic = dateCellValueInitLogic;
@@ -130,11 +120,11 @@ public  class ColumnWrapper<T> {
          return this;
 
          }
-         public  Bulder setDomainChanging(DomainChanging domainChanging){
-         this.domainChanging = domainChanging;
-         return this;
-
-         }
+//         public  Bulder setDomainChanging(DomainChanging domainChanging){
+//         this.domainChanging = domainChanging;
+//         return this;
+//
+//         }
 
 
          public Bulder setDomainsListGetter(DomainsListGetter domainsListGetter) {

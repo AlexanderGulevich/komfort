@@ -10,11 +10,11 @@
 //public class VidgetFactory {
 //
 //
-//    public DatePickerWrapper datePickerWrapper(AnchorPane panel, double width, Coordinate coordinate,ObservableList<DomainObject> list){
+//    public DatePickerWrapper datePickerWrapper(AnchorPane panel, double widthValue, Coordinate coordinate,ObservableList<DomainObject> list){
 //
 //        DatePickerWrapper datePickerWrapper=
 //                AppNode.NodeBuilder.create()
-//                        .setWidth(width)
+//                        .setWidth(widthValue)
 //                .setParent(panel).setCoordinate(coordinate)
 //                .createDatePickerWrapper();
 //

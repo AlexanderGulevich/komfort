@@ -4,7 +4,7 @@
 //import basisFx.appCore.domainScetch.ComboBoxValue;
 //import basisFx.appCore.elements.AppNode;
 //import basisFx.appCore.elements.TableWrapper;
-//import basisFx.presentation.targets.DynamicElements;
+//import basisFx.presentation.DynamicElements;
 //import basisFx.domain.domaine.Country;
 //import basisFx.domain.domaine.Equipment;
 //import basisFx.appCore.settings.CSSID;

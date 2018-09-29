@@ -1,21 +1,29 @@
-package basisFx.appCore.elements;
+package basisFx.appCore.grid;
+import basisFx.appCore.elements.AppNode;
+import basisFx.appCore.elements.LabelWrapper;
 import basisFx.appCore.events.AppEvent;
 import basisFx.appCore.settings.CSSID;
+import basisFx.appCore.settings.FontsStore;
 import basisFx.appCore.utils.Coordinate;
 import javafx.geometry.HPos;
+import javafx.geometry.Pos;
 import javafx.geometry.VPos;
 import javafx.geometry.Insets;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TableView;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
 
-public  class GridPaneWrapper extends AppNode{
+public  class GridPaneWrapper extends AppNode {
    protected GridPane element;
     protected boolean gridLinesVisibility=false;
+    public LabelWrapper label;
+    public TablesButtonKindConfigurationStrategy buttonKindConfigurationStrategy;
+    private ArrayList <ColumnConstraints> column ;
 
     private GridPaneWrapper(Builder builder) {
         events = builder.events;
@@ -29,12 +37,67 @@ public  class GridPaneWrapper extends AppNode{
         parentScrollPane = builder.parentScrollPane;
         name = builder.name;
         stage = builder.stage;
-        gridLinesVisibility = builder.gridLinesVisibility;
-
+        column=builder.columns;
+        buttonKindConfigurationStrategy=builder.buttonKindConfigurationStrategy;
+        applyLabel();
+        applyColums();
+        applyButtonStrategy();
 
 
         element=new GridPane();
         element.setGridLinesVisible(gridLinesVisibility);
+    }
+
+    private void applyButtonStrategy() {
+        if (buttonKindConfigurationStrategy != null) {
+            buttonKindConfigurationStrategy.organize(this);
+        }
+    }
+
+    private void applyColums() {
+        for (ColumnConstraints columnConstraints:column
+             ) {
+            element.getColumnConstraints().add(columnConstraints);
+        }
+    }
+
+    //        gridPaneWrapper.addSpanNode(
+//                observedGrid.getGridPane(),
+//                0,0,1,1, HPos.LEFT, VPos.TOP,insets);
+//
+//        gridPaneWrapper.addSpanNode(
+//                observerGrid.getGridPane(),
+//                1,0,1,1, HPos.LEFT, VPos.TOP,insets);
+//
+//
+//
+//        gridPane.heightProperty().addListener((obs, oldVal, newVal) -> {
+//
+//
+//        observedGrid.getGridPane().setPrefHeight(gridPane.getHeight());
+//        observerGrid.getGridPane().setPrefHeight(gridPane.getHeight());
+//
+//    });
+    private void applyLabel() {
+
+        if (name != null) {
+            label =LabelWrapper.newBuilder()
+                    .setName(name)
+                    .setFont(FontsStore.ROBOTO_LIGHT)
+                    .setAlignment(Pos.BASELINE_LEFT)
+                    .setFontSize(20d)
+                    .build();
+        }
+
+
+    }
+    private void tableHeightSwitchingByGrid(TableView tableView) {
+
+        element.heightProperty().addListener((obs, oldVal, newVal) -> {
+
+            tableView.setPrefHeight(element.getHeight());
+        });
+
     }
 
     public static Builder newBuilder() {
@@ -51,37 +114,6 @@ public  class GridPaneWrapper extends AppNode{
     }
 
 
-
-    public void setColumnVsPercent(double percentWidth){
-        ColumnConstraints column = new ColumnConstraints();
-        column.setPercentWidth(percentWidth);
-        element.getColumnConstraints().add(column);
-
-    }
-
-    public void setColumnFixed( double width ){
-        ColumnConstraints column = new ColumnConstraints();
-        column.setPrefWidth(width);
-        element.getColumnConstraints().add(column);
-
-
-    }
-    public void setColumn ( ){
-        ColumnConstraints column = new ColumnConstraints();
-        element.getColumnConstraints().add(column);
-
-
-    }
-
-
-    public void setColumnComputerWidth(  ){
-        ColumnConstraints column = new ColumnConstraints();
-        column.setHgrow( Priority.ALWAYS );
-        element.getColumnConstraints().add(column);
-
-
-
-    }
 
     //добавляет элемент, который будет для нескольких колонок
     public void addSpanNode(Node child,int columnIndex,int rowIndex,int colspan,int rowspan,HPos halignment, VPos valignment,Insets insets){
@@ -105,10 +137,6 @@ public  class GridPaneWrapper extends AppNode{
     }
 
 
-
-
-
-
     @Override
     public GridPane getElement() {
         return element;
@@ -127,9 +155,14 @@ public  class GridPaneWrapper extends AppNode{
         private ScrollPane parentScrollPane;
         private String name;
         private Stage stage;
-        private boolean gridLinesVisibility;
+        private TablesButtonKindConfigurationStrategy buttonKindConfigurationStrategy;
+        private ArrayList <ColumnConstraints> columns;
 
         private Builder() {
+        }
+
+        public void setButtonKindConfigurationStrategy(TablesButtonKindConfigurationStrategy buttonKindConfigurationStrategy) {
+            this.buttonKindConfigurationStrategy = buttonKindConfigurationStrategy;
         }
 
         public Builder setEvents(ArrayList<AppEvent> val) {
@@ -187,10 +220,37 @@ public  class GridPaneWrapper extends AppNode{
             return this;
         }
 
-        public Builder setGridLinesVisibility(boolean val) {
-            gridLinesVisibility = val;
-            return this;
+        public void setColumnVsPercent(double percentWidth){
+            ColumnConstraints column = new ColumnConstraints();
+            column.setPercentWidth(percentWidth);
+            columns.add(column);
+
         }
+
+        public void setColumnFixed( double width ){
+            ColumnConstraints column = new ColumnConstraints();
+            column.setPrefWidth(width);
+            columns.add(column);
+
+
+        }
+        public void setColumn ( ){
+            ColumnConstraints column = new ColumnConstraints();
+            columns.add(column);
+
+
+        }
+
+
+        public void setColumnComputerWidth(  ){
+            ColumnConstraints column = new ColumnConstraints();
+            column.setHgrow( Priority.ALWAYS );
+            columns.add(column);
+
+
+
+        }
+
 
         public GridPaneWrapper build() {
             return new GridPaneWrapper(this);

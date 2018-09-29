@@ -32,7 +32,7 @@
 //    private ImgViewWrapper(Builder builder) {
 //        events = builder.events;
 //        cssid = builder.cssid;
-//        width = builder.width;
+//        widthValue = builder.widthValue;
 //        height = builder.height;
 //        coordinate = builder.coordinate;
 //        parentAnchor = builder.parentAnchor;
@@ -49,7 +49,7 @@
 //
 //    private void setSize() {
 //        element.setFitHeight(this.height);
-//        element.setFitWidth(this.width);
+//        element.setFitWidth(this.widthValue);
 //    }
 //
 //    private void setImage() {
@@ -70,7 +70,7 @@
 //    public static final class Builder {
 //        private ArrayList<AppEvent> events;
 //        private CSSID cssid;
-//        private Double width;
+//        private Double widthValue;
 //        private Double height;
 //        private Coordinate coordinate;
 //        private AnchorPane parentAnchor;
@@ -94,7 +94,7 @@
 //        }
 //
 //        public Builder setWidth(Double val) {
-//            width = val;
+//            widthValue = val;
 //            return this;
 //        }
 //

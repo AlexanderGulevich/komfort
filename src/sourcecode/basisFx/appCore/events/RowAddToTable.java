@@ -41,20 +41,20 @@ public class RowAddToTable <T> extends AppEvent{
     @Override
     public void run() {
 
-        if(this.unitOfWork..isEmpty()){
-
-            if(tableWrapper.isObserver()&& tableWrapper.getClickedDomain()!=null){
-                rowCreater.createRow(list);
-
-            }
-            if (!tableWrapper.isObserver()){
-                rowCreater.createRow(list);
-            }
-
-
-        }else{
-
-        }
+//        if(this.unitOfWork..isEmpty()){
+//
+//            if(tableWrapper.isObserver()&& tableWrapper.getClickedDomain()!=null){
+//                rowCreater.createRow(list);
+//
+//            }
+//            if (!tableWrapper.isObserver()){
+//                rowCreater.createRow(list);
+//            }
+//
+//
+//        }else{
+//
+//        }
 
 
 

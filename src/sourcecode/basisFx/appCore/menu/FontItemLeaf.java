@@ -1,7 +1,7 @@
 package basisFx.appCore.menu;
 
 import basisFx.appCore.settings.FontsStore;
-import basisFx.presentation.targets.DynamicElements;
+import basisFx.presentation.DynamicElements;
 
 public class FontItemLeaf extends MenuLeaf{
     protected String sumbols;
@@ -17,7 +17,6 @@ public class FontItemLeaf extends MenuLeaf{
         description=builder.description;
         isActive=builder.isActive;
     }
-
 
     public String getSumbols() {
         return sumbols;

@@ -26,7 +26,7 @@
 //
 //
 //        element.setId(CSSID.DATEPICKER_IN_COLUMN.get());
-//        element.setPrefWidth(width);
+//        element.setPrefWidth(widthValue);
 //        element.setConverter(new CustomStringConverter());
 //        element.setPromptText("");
 //
