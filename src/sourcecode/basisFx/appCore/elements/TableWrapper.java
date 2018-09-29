@@ -260,20 +260,20 @@ public  class TableWrapper extends AppNode  {
         private ActiveRecord activeRecord;
 
 
-        public void setWidthPercent(double widthPercent) {
+        public Builder setWidthPercent(double widthPercent) {
             this.widthPercent = widthPercent;
+            return this;
         }
 
-        public void setEditable(boolean editable) {
-            isEditable = editable;
-        }
 
-        public void setSortableColums(boolean sortableColums) {
+        public Builder setSortableColums(boolean sortableColums) {
             isSortableColums = sortableColums;
+            return this;
         }
 
-        public void setParentWidthProperty(ReadOnlyDoubleProperty property) {
+        public Builder setParentWidthProperty(ReadOnlyDoubleProperty property) {
             parentWidthProperty = property;
+            return this;
         }
 
 

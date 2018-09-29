@@ -1,5 +1,9 @@
 package basisFx.presentation.targets;
 
+import basisFx.appCore.SingleTableMediator;
+import basisFx.appCore.TwoLinkedTablesMediator;
+import basisFx.appCore.controls.ColumnWrapper;
+import basisFx.appCore.controls.KindOfColumn;
 import basisFx.appCore.elements.TableWrapper;
 import basisFx.appCore.grid.ButtomRightMiddleBig;
 import basisFx.appCore.grid.GridPaneWrapper;
@@ -12,12 +16,27 @@ public class EquipmentPanel extends DynamicElements {
     protected void init() {
 
         TableWrapper.newBuilder()
-                .setActiveRecord()
-                .setColumnResizePolicy()
-                .
+//                .setActiveRecord()
+                .setIsEditable(true)
+                .setIsSortableColums(false)
+                .setMediator(new SingleTableMediator())
+                .setName("111111111111111")
+                .setColumnWrappers(
+                        ColumnWrapper.Bulder.create()
+                                .setKindOfColumn(KindOfColumn.COMBOBOX)
+                        .setColumnName("ghgh")
+                        .setEditeble(false)
+                        .setColumnSize(34)
+                        .
 
-        GridPaneWrapper.newBuilder()
-                .setButtonKindConfigurationStrategy(new ButtomRightMiddleBig());
+                )
+
+
+
+//        GridPaneWrapper.newBuilder()
+//                .setButtonKindConfigurationStrategy(new ButtomRightMiddleBig())
+//                .setColumnVsPercent();
+
 
     }
 }

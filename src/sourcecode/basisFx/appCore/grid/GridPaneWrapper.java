@@ -161,8 +161,9 @@ public  class GridPaneWrapper extends AppNode {
         private Builder() {
         }
 
-        public void setButtonKindConfigurationStrategy(TablesButtonKindConfigurationStrategy buttonKindConfigurationStrategy) {
+        public Builder setButtonKindConfigurationStrategy(TablesButtonKindConfigurationStrategy buttonKindConfigurationStrategy) {
             this.buttonKindConfigurationStrategy = buttonKindConfigurationStrategy;
+            return this;
         }
 
         public Builder setEvents(ArrayList<AppEvent> val) {
