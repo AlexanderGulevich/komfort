@@ -15,7 +15,7 @@
 //
 //import java.time.LocalDate;
 //
-//public class EmployeesManagerPanel extends DynamicElements {
+//public class EmployeesManagerPanel extends TargetPanel {
 //    private TableWrapper employerTable;
 //    private TableWrapper rateTable;
 //    private AnchorPane employerSide;

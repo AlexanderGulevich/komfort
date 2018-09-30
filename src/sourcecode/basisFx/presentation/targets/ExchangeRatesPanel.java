@@ -13,7 +13,7 @@
 //
 //import java.time.LocalDate;
 //
-//public class ExchangeRatesPanel extends DynamicElements{
+//public class ExchangeRatesPanel extends TargetPanel{
 //
 //    private TableWrapper currencyTable;
 //    private TableWrapper rateTable;

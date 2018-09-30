@@ -10,7 +10,7 @@
 //
 //import java.time.LocalDate;
 //
-//public class EmployeesActualRatePanel extends DynamicElements{
+//public class EmployeesActualRatePanel extends TargetPanel{
 //
 //    private static EmployeesActualRatePanel ourInstance = new EmployeesActualRatePanel();
 //

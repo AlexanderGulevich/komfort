@@ -13,7 +13,7 @@
 // *
 // * @author Alek
 // */
-//public class CounterpartyPanel extends DynamicElements{
+//public class CounterpartyPanel extends TargetPanel{
 //
 //    private TableWrapper tableWrapper;
 //

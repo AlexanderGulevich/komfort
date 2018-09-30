@@ -29,7 +29,6 @@ protected Stage stage;
 
          node.setOnMousePressed(event -> {
 
-             System.err.println("setOnMousePressed");
               if (event.isPrimaryButtonDown() && event.getClickCount() == 1) {
 
                   if(!stage.isMaximized()){
@@ -44,7 +43,6 @@ protected Stage stage;
          });
 
          node.setOnMouseDragged(event -> {
-             System.err.println("setOnMouseDragged");
               if(!stage.isMaximized()){
                      stage.setX(event.getScreenX() + xOffset);
                      stage.setY(event.getScreenY() + yOffset);

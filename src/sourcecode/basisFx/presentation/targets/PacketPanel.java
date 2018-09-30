@@ -8,7 +8,7 @@
 //
 //import java.time.LocalDate;
 //
-//public class PacketPanel  extends DynamicElements {
+//public class PacketPanel  extends TargetPanel {
 //
 //
 //    @Override

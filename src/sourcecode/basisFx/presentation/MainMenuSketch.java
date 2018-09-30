@@ -21,19 +21,19 @@ public class MainMenuSketch extends MenuSketch {
                         .build().add(
                             FontItemLeaf.newBuilder()
                                     .setDescription("Сотрудники (учет времени)")
-//                                    .setDynamicElements(fm.timeRecordingPanel())
+//                                    .setTargetCreator(fm.timeRecordingPanel())
                                     .build(),
                             FontItemLeaf.newBuilder()
                                     .setDescription("Продукция")
-//                                    .setDynamicElements(fm.countingRodsPanel())
+//                                    .setTargetCreator(fm.countingRodsPanel())
                                     .build(),
                             FontItemLeaf.newBuilder()
                                     .setDescription("Учет сырья")
-//                                    .setDynamicElements(fm.rawMateriaAccountingPanel())
+//                                    .setTargetCreator(fm.rawMateriaAccountingPanel())
                                     .build(),
                             FontItemLeaf.newBuilder()
                                     .setDescription("Курсы")
-//                                    .setDynamicElements(fm.exchangeRatesPanel())
+//                                    .setTargetCreator(fm.exchangeRatesPanel())
                                     .build()
                 ),
 
@@ -44,7 +44,7 @@ public class MainMenuSketch extends MenuSketch {
                         .build().add(
                               FontItemLeaf.newBuilder()
                                       .setDescription("Дневная выработка")
-//                                      .setDynamicElements(fm.dailyOutputPanel())
+//                                      .setTargetCreator(fm.dailyOutputPanel())
                                       .build()
                 ),
 
@@ -56,19 +56,19 @@ public class MainMenuSketch extends MenuSketch {
                         .build().add(
                                 FontItemLeaf.newBuilder()
                                         .setDescription("Затраты")
-//                                        .setDynamicElements(fm.dailyOutputPanel())
+//                                        .setTargetCreator(fm.dailyOutputPanel())
                                         .build(),
                                 FontItemLeaf.newBuilder()
                                         .setDescription("Курсы")
-//                                        .setDynamicElements(fm.dailyOutputPanel())
+//                                        .setTargetCreator(fm.dailyOutputPanel())
                                         .build(),
                                 FontItemLeaf.newBuilder()
                                         .setDescription("Выход")
-//                                        .setDynamicElements(fm.dailyOutputPanel())
+//                                        .setTargetCreator(fm.dailyOutputPanel())
                                         .build(),
                                 FontItemLeaf.newBuilder()
                                         .setDescription("Рентабельность")
-//                                        .setDynamicElements(fm.dailyOutputPanel())
+//                                        .setTargetCreator(fm.dailyOutputPanel())
                                         .build()
                 ),
 
@@ -79,19 +79,19 @@ public class MainMenuSketch extends MenuSketch {
                         .build().add(
                                 FontItemLeaf.newBuilder()
                                         .setDescription("Сотрудики")
-//                                        .setDynamicElements(Employ)
+//                                        .setTargetCreator(Employ)
                                         .build(),
                                 FontItemLeaf.newBuilder()
                                         .setDescription("Актуальные тарифы")
-//                                        .setDynamicElements(fm.employeesActualRate())
+//                                        .setTargetCreator(fm.employeesActualRate())
                                         .build(),
                                 FontItemLeaf.newBuilder()
                                         .setDescription("Шаблоны тарифов")
-//                                        .setDynamicElements(fm.ratePerHourPanel())
+//                                        .setTargetCreator(fm.ratePerHourPanel())
                                         .build(),
                                 FontItemLeaf.newBuilder()
                                         .setDescription("Бывшие сотрудники")
-//                                        .setDynamicElements(fm.employeesFiredPanel())
+//                                        .setTargetCreator(fm.employeesFiredPanel())
                                         .build()
                 ),
 
@@ -102,23 +102,23 @@ public class MainMenuSketch extends MenuSketch {
                         .build().add(
                                 FontItemLeaf.newBuilder()
                                         .setDescription("Продукция")
-//                                        .setDynamicElements(fm.productPanel())
+//                                        .setTargetCreator(fm.productPanel())
                                         .build(),
                                 FontItemLeaf.newBuilder()
                                         .setDescription("Пакеты")
-//                                        .setDynamicElements(fm.packetPanel())
+//                                        .setTargetCreator(fm.packetPanel())
                                         .build(),
                                 FontItemLeaf.newBuilder()
                                         .setDescription("Этикетки")
-//                                        .setDynamicElements(fm.labelPanel())
+//                                        .setTargetCreator(fm.labelPanel())
                                         .build(),
                                 FontItemLeaf.newBuilder()
                                         .setDescription("Втулки")
-//                                        .setDynamicElements(fm.sleevePanel())
+//                                        .setTargetCreator(fm.sleevePanel())
                                         .build(),
                                 FontItemLeaf.newBuilder()
                                         .setDescription("Бумага")
-//                                        .setDynamicElements(fm.paperPanel())
+//                                        .setTargetCreator(fm.paperPanel())
                                         .build()
                 ),
 
@@ -129,11 +129,11 @@ public class MainMenuSketch extends MenuSketch {
                         .build().add(
                                     FontItemLeaf.newBuilder()
                                             .setDescription("Оборудование")
-                                            .setDynamicElements(new EquipmentPanel())
+                                            .setTargetCreator(EquipmentPanel::new)
                                             .build(),
                                     FontItemLeaf.newBuilder()
                                             .setDescription("Контрагенты")
-//                                            .setDynamicElements(fm.counterpartyPanel())
+//                                            .setTargetCreator(fm.counterpartyPanel())
                                             .build()
                 ),
 

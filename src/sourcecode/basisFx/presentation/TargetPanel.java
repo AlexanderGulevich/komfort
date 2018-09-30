@@ -5,28 +5,23 @@ import basisFx.appCore.grid.GridPaneWrapper;
 import basisFx.appCore.settings.CSSID;
 import basisFx.appCore.utils.Coordinate;
 import basisFx.appCore.windows.MainWindow;
+import javafx.scene.Node;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 
-public abstract class DynamicElements {
+public abstract class TargetPanel {
 
     protected AnchorPane innerAnchorPane;
     protected AnchorPane commonAnchorPane;
-    protected GridPaneWrapper gridPaneWrapper;
-    protected GridPane commonGridPane;
 
 
-    public DynamicElements() {
-        createPanel();
+    public TargetPanel() {
+        createPanels();
     }
 
     public abstract void init();
 
-    public AnchorPane getTargetElement() {
-       return  this.commonAnchorPane;
-    }
-
-    protected void createPanel(){
+    protected void createPanels(){
         createCommonPane();
         createInnerLevelPane();
     }
@@ -36,14 +31,21 @@ public abstract class DynamicElements {
                 .setCoordinate(new Coordinate(10d, 10d, 10d, 10d))
                 .setParentAnchor(commonAnchorPane)
                 .build().getElement();
+
     }
 
     private void createCommonPane() {
+        AnchorPane  mainContentAnchor = ((AnchorPane ) MainWindow.getInstance()
+                .getWindowNode("contentAnchorPane").getElement());
+
         commonAnchorPane = AnchorWrapper.newBuilder()
                 .setCSSid(CSSID.TARGET_PANEL)
-                .setCoordinate(new Coordinate(0d, 0d, 0d, 0d))
-                .setParentAnchor(((AnchorPane) MainWindow.getInstance().getWindowNode("contentAnchorPane").getElement()))
+                .setCoordinate(new Coordinate(10d, 10d, 10d, 10d))
+                .setParentAnchor(mainContentAnchor)
                 .build().getElement();
+
+
+
     }
 
 

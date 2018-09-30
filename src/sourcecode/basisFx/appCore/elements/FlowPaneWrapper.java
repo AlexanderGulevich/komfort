@@ -47,11 +47,6 @@ public class FlowPaneWrapper extends AppNode{
 
     }
 
-    private void applyCssId() {
-        if (cssid != null) {
-            element.setId(cssid.get());
-        }
-    }
 
     private void setPadding() {
         if(insects!=null) element.setPadding(insects);

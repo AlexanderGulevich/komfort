@@ -2,13 +2,12 @@ package basisFx.presentation.targets;
 
 import basisFx.appCore.SingleTableMediator;
 import basisFx.appCore.elements.TableWrapper;
-import basisFx.appCore.grid.ButtomRightMiddleBig;
 import basisFx.appCore.grid.ButtonNon;
 import basisFx.appCore.grid.GridPaneWrapper;
 import basisFx.appCore.utils.Coordinate;
-import basisFx.presentation.DynamicElements;
+import basisFx.presentation.TargetPanel;
 
-public class EquipmentPanel extends DynamicElements {
+public class EquipmentPanel extends TargetPanel {
 
 
     @Override
@@ -17,23 +16,23 @@ public class EquipmentPanel extends DynamicElements {
 
         System.err.println("EquipmentPanel.init".toUpperCase());
 
-//        TableWrapper tableWrapper = TableWrapper.newBuilder()
-////                .setActiveRecord()
-//                .setIsEditable(true)
-//                .setIsSortableColums(false)
-//                .setMediator(new SingleTableMediator())
-//                .setName("111111111111111")
-//                .build();
+        TableWrapper tableWrapper = TableWrapper.newBuilder()
+//                .setActiveRecord()
+                .setIsEditable(true)
+                .setIsSortableColums(false)
+                .setMediator(new SingleTableMediator())
+                .setName("111111111111111")
+                .build();
 
 
         GridPaneWrapper.newBuilder()
-//                .setButtonKindConfigurationStrategy(new ButtonNon(tableWrapper))
+                .setButtonKindConfigurationStrategy(new ButtonNon(tableWrapper))
                 .setColumnVsPercent(139)
                 .setColumnVsPercent(200)
                 .setName("444")
                 .setParentAnchor(innerAnchorPane)
                 .setCoordinate(new Coordinate(10d,10d,10d,10d))
-                .setGridLinesVisibility(true)
+                .setGridLinesVisibility(false)
                 .build();
 
 

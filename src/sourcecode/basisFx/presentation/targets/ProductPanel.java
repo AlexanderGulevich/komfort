@@ -14,7 +14,7 @@
 //
 //import java.time.LocalDate;
 //
-//public class ProductPanel  extends DynamicElements{
+//public class ProductPanel  extends TargetPanel{
 //    private TableWrapper productTable;
 //    private TableWrapper priceTable;
 //    private AnchorPane productSide;

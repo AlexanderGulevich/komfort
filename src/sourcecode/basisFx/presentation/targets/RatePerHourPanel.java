@@ -8,7 +8,7 @@
 //import basisFx.appCore.utils.Coordinate;
 //import basisFx.domain.domaine.RatePerHourTamplate;
 //
-//public class RatePerHourPanel extends DynamicElements {
+//public class RatePerHourPanel extends TargetPanel {
 //
 //    private TableWrapper tableWrapper;
 //

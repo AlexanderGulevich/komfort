@@ -28,9 +28,9 @@ public class App{
 
 //        DbFactory.createEmbeded();
 
-//        MenuFabric.createMenuLeftSideRepresentation( new MainMenuSketch());
+        MenuFabric.createMenuLeftSideRepresentation( new MainMenuSketch());
 
-      ScenicView.show(MainWindow.getInstance().getWindow().getScene());
+//      ScenicView.show(MainWindow.getInstance().getWindow().getScene());
 
 
     }

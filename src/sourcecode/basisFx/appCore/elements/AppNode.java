@@ -75,16 +75,14 @@ public abstract class AppNode <T extends Node> {
             AppEvent next = iterator.next();
             next.setEventToElement(this);
         }
-
         }
-       
-        
-    
-             
     }
 
- 
-
+    protected void applyCssId() {
+        if (cssid != null) {
+            getElement().setId(cssid.get());
+        }
+    }
 
 
     }

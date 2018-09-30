@@ -47,8 +47,8 @@ public  class GridPaneWrapper extends AppNode {
         applyConfigurationPlaceSrategy();
         bond(this);
         applyLineVisibility();
+        applyCssId();
 
-        element.setStyle("-fx-background-color:red");
 
 
     }
@@ -67,6 +67,7 @@ public  class GridPaneWrapper extends AppNode {
 
     private void applyColums() {
         for (ColumnConstraints columnConstraints:column) {
+
             element.getColumnConstraints().add(columnConstraints);
         }
     }

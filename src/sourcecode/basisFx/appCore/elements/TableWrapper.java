@@ -44,6 +44,7 @@ public  class TableWrapper extends AppNode  {
     public  ActiveRecord activeRecord;
 
     private TableWrapper(Builder builder) {
+
         events = builder.events;
         width = builder.width;
         height = builder.height;
@@ -67,7 +68,9 @@ public  class TableWrapper extends AppNode  {
         isEditable=builder.isEditable;
 
 
-        createElement();
+        element =new TableView<>(list);
+        element.setId(CSSID.TABLE.get());
+
         applyColumnResizePolicy();
         applyColums();
         applyListener();
@@ -90,9 +93,6 @@ public  class TableWrapper extends AppNode  {
     }
 
 
-    private void createElement() {
-        element =new TableView<>(list);
-    }
     private void applyListener() {
         list.addListener(tableListener);
     }

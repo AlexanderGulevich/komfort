@@ -62,12 +62,6 @@ public class AnchorWrapper  extends AppNode  {
         }
     }
 
-    private void applyCssId() {
-        if (cssid != null) {
-            element.setId(cssid.get());
-        }
-    }
-
     private void applyHeight() {
         if (height != null) {
             element.setPrefHeight(height);

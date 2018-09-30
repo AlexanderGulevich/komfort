@@ -10,7 +10,7 @@
 //
 //import java.time.LocalDate;
 //
-//public class PaperPanel  extends DynamicElements {
+//public class PaperPanel  extends TargetPanel {
 //
 //
 //    @Override

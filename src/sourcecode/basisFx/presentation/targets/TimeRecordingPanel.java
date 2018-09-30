@@ -11,7 +11,7 @@
 //import basisFx.domain.domaine.Employer;
 //import javafx.scene.layout.AnchorPane;
 //
-//public class TimeRecordingPanel extends DynamicElements {
+//public class TimeRecordingPanel extends TargetPanel {
 //
 //    private TableWrapper employerTable;
 //    private AnchorPane employerSide;

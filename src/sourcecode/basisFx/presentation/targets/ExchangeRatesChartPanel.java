@@ -4,7 +4,7 @@
 //import basisFx.appCore.utils.Coordinate;
 //
 //
-//public class ExchangeRatesChartPanel extends DynamicElements {
+//public class ExchangeRatesChartPanel extends TargetPanel {
 //
 //    @Override
 //    protected void configurate() {

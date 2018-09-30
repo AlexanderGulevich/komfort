@@ -2,7 +2,7 @@
 //
 //import basisFx.appCore.elements.TableWrapper;
 //
-//public class EmployeesFiredPanel extends DynamicElements {
+//public class EmployeesFiredPanel extends TargetPanel {
 //
 //    private TableWrapper tableWrapper;
 //

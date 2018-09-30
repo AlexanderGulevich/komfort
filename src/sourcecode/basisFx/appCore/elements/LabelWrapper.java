@@ -17,13 +17,16 @@ import java.util.ArrayList;
 
 public  class LabelWrapper extends AppNode{
 
-    private Label element=new Label();
+    private Label element;
     protected FontsStore font;
     protected Double fontSize;
     protected Pos alignment;
     protected String text;
 
     private LabelWrapper(Builder builder) {
+        element=new Label();
+
+
         events = builder.events;
         cssid = builder.cssid;
         width = builder.width;
@@ -37,21 +40,20 @@ public  class LabelWrapper extends AppNode{
         font = builder.font;
         fontSize = builder.fontSize;
         alignment = builder.alignment;
-        text = builder.text;
 
         setAlignment();
         setFont();
-        setText();
+        appllyName();
         elocateEvents();
-
+        applyCssId();
+        bond(this);
 
     }
 
-    private void setText() {
-        if (text != null) {
-            element.setText(text);
+    private void appllyName() {
+        if (name != null) {
+            element.setText(name);
         }
-
     }
 
     private void setFont() {
@@ -62,7 +64,6 @@ public  class LabelWrapper extends AppNode{
 
     private void setAlignment() {
         if (alignment != null) {
-
             element.setAlignment(alignment);
         }
     }

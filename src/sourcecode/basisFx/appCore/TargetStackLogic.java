@@ -5,7 +5,7 @@
 // */
 //package basisFx.appCore;
 //
-//import basisFx.presentation.DynamicElements;
+//import basisFx.presentation.TargetPanel;
 //import basisFx.appCore.utils.TargetRegistry;
 //
 ///**
@@ -17,7 +17,7 @@
 //    private TargetStackLogic() {
 //    }
 //
-//     public void handle(DynamicElements dynamicElements) {
+//     public void handle(TargetPanel dynamicElements) {
 //
 //        TargetRegistry.targets.clear();
 //        TargetRegistry.targets.add(dynamicElements);

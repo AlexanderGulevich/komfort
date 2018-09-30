@@ -35,8 +35,7 @@ public class MenuButtonsClick extends AppEvent{
 
     @Override
     public void run() {
-//todo 11111111111
-        fontItemLeaf.getDynamicElements().init();
+        fontItemLeaf.getDynamicElementsCreator().create().init();
 
     }
 

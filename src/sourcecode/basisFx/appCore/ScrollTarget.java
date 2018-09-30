@@ -4,7 +4,7 @@
 //import basisFx.appCore.domainScetch.ComboBoxValue;
 //import basisFx.appCore.elements.AppNode;
 //import basisFx.appCore.elements.TableWrapper;
-//import basisFx.presentation.DynamicElements;
+//import basisFx.presentation.TargetPanel;
 //import basisFx.domain.domaine.Country;
 //import basisFx.domain.domaine.Equipment;
 //import basisFx.appCore.settings.CSSID;
@@ -15,7 +15,7 @@
 // *
 // * @autor AlexanderGulevich
 // */
-//public class ScrollTarget extends DynamicElements {
+//public class ScrollTarget extends TargetPanel {
 //
 //
 //
