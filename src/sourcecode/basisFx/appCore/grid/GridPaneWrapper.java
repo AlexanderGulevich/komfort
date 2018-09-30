@@ -20,12 +20,14 @@ import java.util.ArrayList;
 
 public  class GridPaneWrapper extends AppNode {
    protected GridPane element;
-    protected boolean gridLinesVisibility=false;
+    protected Boolean gridLinesVisibility;
     public LabelWrapper label;
     public TablesButtonKindConfigurationStrategy buttonKindConfigurationStrategy;
     private ArrayList <ColumnConstraints> column ;
 
     private GridPaneWrapper(Builder builder) {
+        element=new GridPane();
+
         events = builder.events;
         cssid = builder.cssid;
         width = builder.width;
@@ -42,22 +44,29 @@ public  class GridPaneWrapper extends AppNode {
         gridLinesVisibility=builder.gridLinesVisibility;
         applyLabel();
         applyColums();
-        applyButtonStrategy();
+        applyConfigurationPlaceSrategy();
+        bond(this);
+        applyLineVisibility();
+
+        element.setStyle("-fx-background-color:red");
 
 
-        element=new GridPane();
-        element.setGridLinesVisible(gridLinesVisibility);
     }
 
-    private void applyButtonStrategy() {
+    private void applyLineVisibility() {
+        if (gridLinesVisibility != null) {
+            element.setGridLinesVisible(gridLinesVisibility);
+        }
+    }
+
+    private void applyConfigurationPlaceSrategy() {
         if (buttonKindConfigurationStrategy != null) {
             buttonKindConfigurationStrategy.organize(this);
         }
     }
 
     private void applyColums() {
-        for (ColumnConstraints columnConstraints:column
-             ) {
+        for (ColumnConstraints columnConstraints:column) {
             element.getColumnConstraints().add(columnConstraints);
         }
     }
@@ -157,7 +166,7 @@ public  class GridPaneWrapper extends AppNode {
         private String name;
         private Stage stage;
         private TablesButtonKindConfigurationStrategy buttonKindConfigurationStrategy;
-        private ArrayList <ColumnConstraints> columns;
+        private ArrayList <ColumnConstraints> columns=new ArrayList<>();
         protected boolean gridLinesVisibility;
 
         public Builder setGridLinesVisibility(boolean gridLinesVisibility) {

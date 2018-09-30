@@ -9,10 +9,6 @@ import basisFx.appCore.utils.Coordinate;
 import basisFx.appCore.settings.CSSID;
 import javafx.scene.layout.AnchorPane;
 
-/**
- *
- * @author Alek
- */
 public abstract class MenuRepresent {
 
     protected CSSID css;

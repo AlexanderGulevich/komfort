@@ -31,7 +31,7 @@ public  class TableWrapper extends AppNode  {
     private boolean isEditable;
     private Callback<TableView.ResizeFeatures,Boolean> columnResizePolicy ;
     private boolean isSortableColums;
-    private double widthPercent;
+    private Double widthPercent;
     private ReadOnlyDoubleProperty parentWidthProperty;
     private double prefHeight;
     private Mediator mediator;
@@ -78,7 +78,7 @@ public  class TableWrapper extends AppNode  {
         applyTablesWidthProperty();
 
 
-        manageScrollBar();
+//        manageScrollBar();
         setClickedRowDetection();
         setClickedUpDownRowDetection();
 
@@ -113,25 +113,29 @@ public  class TableWrapper extends AppNode  {
 //        ScrollBar verticalBar = (ScrollBar) element.lookup(".scroll-bar:vertical");
         ScrollBar verticalBar = getVerticalScrollbar();
 
-        verticalBar
-                .visibleProperty().addListener(new ChangeListener<Boolean>() {
-            @Override
-            public void changed(final ObservableValue<? extends Boolean> observableValue, final Boolean aBoolean, final Boolean aBoolean2) {
-                System.err.println("Scrol Pane visible!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!".toUpperCase());
-            }
-        });
+        verticalBar.visibleProperty().addListener((observableValue, aBoolean, aBoolean2) ->
+                System.err.println("Scrol Pane visible!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!".toUpperCase()));
     }
     private void applyColumnResizePolicy(){
-        element.setColumnResizePolicy(columnResizePolicy);
+
+        if (columnResizePolicy != null) {
+            element.setColumnResizePolicy(columnResizePolicy);
+        }
+
     }
     private void applyColums(){
-        for (ColumnWrapper cw : columnWrappers) {
-            cw.setTableWrapper(this);
+
+        if (columnWrappers != null) {
+            for (ColumnWrapper cw : columnWrappers) {
+                cw.setTableWrapper(this);
 //             cw.setEditPoliticy(editCreater.editCreate());
 //             cw.initEditPoliticy();
-            element.getColumns().addAll(cw.getColumn());
-            applyColumsSize(cw);
+                element.getColumns().addAll(cw.getColumn());
+                applyColumsSize(cw);
+            }
         }
+
+
     }
     private void applySortableAllCollums(){
 
@@ -150,8 +154,17 @@ public  class TableWrapper extends AppNode  {
                 ));
     }
     private void applyTablesWidthProperty() {
-        element.prefWidthProperty()
-                .bind(parentWidthProperty.multiply(widthPercent));
+
+        if (widthPercent != null) {
+            if (parentWidthProperty != null) {
+                element.prefWidthProperty()
+                        .bind(parentWidthProperty.multiply(widthPercent));
+            }
+        }
+
+
+
+
     }
     public TableView<ActiveRecord> getElement() {
         return element;

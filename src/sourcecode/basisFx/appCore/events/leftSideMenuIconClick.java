@@ -34,7 +34,7 @@ public class leftSideMenuIconClick extends AppEvent{
 
         represent.setDefaultStyleVerticalButtons();
         represent.setCommonTextName(component);
-        represent.setButtons(component);
+        represent.setHorisontalButtons(component);
         but.setId(CSSID.LEFT_SIDE_MENU_VERTICAL_BUTTONS_CLICKED.get());
 
 

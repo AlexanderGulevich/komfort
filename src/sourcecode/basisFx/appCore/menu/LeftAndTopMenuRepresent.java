@@ -124,7 +124,7 @@ public class LeftAndTopMenuRepresent extends MenuRepresent {
     }
 
 
-    public void setButtons(FontItemComposite itemComposite) {
+    public void setHorisontalButtons(FontItemComposite itemComposite) {
 
         horisontalFlowPane.getChildren().clear();
 
