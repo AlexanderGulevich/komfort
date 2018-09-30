@@ -39,6 +39,7 @@ public  class GridPaneWrapper extends AppNode {
         stage = builder.stage;
         column=builder.columns;
         buttonKindConfigurationStrategy=builder.buttonKindConfigurationStrategy;
+        gridLinesVisibility=builder.gridLinesVisibility;
         applyLabel();
         applyColums();
         applyButtonStrategy();
@@ -157,6 +158,13 @@ public  class GridPaneWrapper extends AppNode {
         private Stage stage;
         private TablesButtonKindConfigurationStrategy buttonKindConfigurationStrategy;
         private ArrayList <ColumnConstraints> columns;
+        protected boolean gridLinesVisibility;
+
+        public Builder setGridLinesVisibility(boolean gridLinesVisibility) {
+            this.gridLinesVisibility = gridLinesVisibility;
+            return this;
+        }
+
 
         private Builder() {
         }
@@ -221,32 +229,36 @@ public  class GridPaneWrapper extends AppNode {
             return this;
         }
 
-        public void setColumnVsPercent(double percentWidth){
+        public Builder setColumnVsPercent(double percentWidth){
             ColumnConstraints column = new ColumnConstraints();
             column.setPercentWidth(percentWidth);
             columns.add(column);
+            return this;
 
         }
 
-        public void setColumnFixed( double width ){
+        public Builder setColumnFixed( double width ){
             ColumnConstraints column = new ColumnConstraints();
             column.setPrefWidth(width);
             columns.add(column);
+            return this;
 
 
         }
-        public void setColumn ( ){
+        public Builder setColumn ( ){
             ColumnConstraints column = new ColumnConstraints();
             columns.add(column);
+            return this;
 
 
         }
 
 
-        public void setColumnComputerWidth(  ){
+        public Builder setColumnComputerWidth(  ){
             ColumnConstraints column = new ColumnConstraints();
             column.setHgrow( Priority.ALWAYS );
             columns.add(column);
+            return this;
 
 
 

@@ -1,13 +1,16 @@
 package basisFx.appCore.windows;
 
 import basisFx.appCore.elements.ButtonWrapper;
+import basisFx.appCore.events.CloseWindow;
+import basisFx.appCore.events.HideWindow;
+import basisFx.appCore.events.MaximazingSwither;
 import basisFx.appCore.settings.CSSID;
 import basisFx.appCore.settings.FontsStore;
 import basisFx.appCore.utils.Coordinate;
 import javafx.geometry.Insets;
 import javafx.scene.control.ContentDisplay;
 
-public class ThreeButtons extends WindowButtons {
+public class ButtonsForWindowStageThreeEntity extends ButtonsForWindowStage {
 
     private String closeStr="";
     private String hideStr="";
@@ -19,7 +22,7 @@ public class ThreeButtons extends WindowButtons {
     private Insets padding=new Insets(0d, 0d, 0d, 0d);
     private FontsStore fs=FontsStore.FAWESOME5SOLID;
 
-    public ThreeButtons(Window window) {
+    public ButtonsForWindowStageThreeEntity(Window window) {
         super(window);
         init();
     }
@@ -37,7 +40,7 @@ public class ThreeButtons extends WindowButtons {
                         .setCSSid(CSSID.TOP_CONTROL_BUTTON)
                         .setParentAnchor(buttonsAnchor)
                         .setStage(window.getStage())
-                        .setEvents(eventFabric.closingWindow())
+                        .setEvents(new CloseWindow())
                         .setName(closeStr)
                         .setContentDisplay(ContentDisplay.CENTER)
                         .build();
@@ -46,7 +49,7 @@ public class ThreeButtons extends WindowButtons {
                 ButtonWrapper.newBuilder()
                         .setFont(fs)
                         .setFontSize(fontHeight)
-                        .setEvents(eventFabric.hidingWindow())
+                        .setEvents(new HideWindow())
                         .setWidth(width)
                         .setHeight(height)
                         .setInsects(padding)
@@ -62,7 +65,7 @@ public class ThreeButtons extends WindowButtons {
                 ButtonWrapper.newBuilder()
                         .setFont(fs)
                         .setFontSize(fontHeight)
-                        .setEvents(eventFabric.maximazingSwitcher())
+                        .setEvents(new MaximazingSwither())
                         .setWidth(width)
                         .setHeight(height)
                         .setInsects(padding)

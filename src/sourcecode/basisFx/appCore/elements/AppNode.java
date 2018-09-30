@@ -31,7 +31,7 @@ public abstract class AppNode <T extends Node> {
         return name;
     }
 
-    public abstract T getElement();
+    public abstract Node getElement();
 
     public Stage getStage() {
         return stage;
@@ -68,11 +68,12 @@ public abstract class AppNode <T extends Node> {
 
     protected void elocateEvents() {
 
+
         if ( events != null  &&! events.isEmpty()) {
 
             for (Iterator<AppEvent> iterator = events.iterator(); iterator.hasNext();) {
             AppEvent next = iterator.next();
-            next.setElement(this);
+            next.setEventToElement(this);
 
         }
         }

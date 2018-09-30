@@ -37,12 +37,12 @@ public class FlowPaneWrapper extends AppNode{
         dropShadow = builder.dropShadow;
 
         bond(this);
-        elocateEvents();
         setGap();
         setSize();
         setDropShadow();
         setPadding();
         applyCssId();
+        elocateEvents();
 
 
     }

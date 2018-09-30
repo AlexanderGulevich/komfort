@@ -3,6 +3,7 @@ package basisFx.presentation.appStructura;
 import basisFx.appCore.elements.AnchorWrapper;
 import basisFx.appCore.elements.FlowPaneWrapper;
 import basisFx.appCore.elements.TextWrapper;
+import basisFx.appCore.events.StageDragging;
 import basisFx.appCore.settings.FontsStore;
 import basisFx.appCore.settings.CSSID;
 import basisFx.appCore.utils.Coordinate;
@@ -24,7 +25,7 @@ public class LeftAndTopMenuGuiStructura extends GuiStructura {
                 .setHeight(70d)
                 .setStage(getStage())
                 .setCSSid(CSSID.TITLE_PANEL)
-                .setEvents(eventFabric.stageDragging())
+                .setEvents(new StageDragging())
                 .setName("titleAnchorWrapper")
                 .build();
 

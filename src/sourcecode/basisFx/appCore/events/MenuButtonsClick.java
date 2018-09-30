@@ -20,7 +20,7 @@ public class MenuButtonsClick extends AppEvent{
     }
 
     @Override
-    public void setElement(AppNode node) {
+    public void setEventToElement(AppNode node) {
         this.but=(Button) node.getElement();
 
         but.setOnMouseClicked((event) -> {

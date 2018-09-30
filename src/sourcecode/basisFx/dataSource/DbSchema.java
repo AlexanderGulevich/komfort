@@ -183,7 +183,7 @@ public class DbSchema {
         for (String tableName : val) {
           try {
                 Db.getConnection().createStatement().execute(tableName);
-
+//
             } catch (SQLException e) {
               System.out.println("Не создалась таблица");
               System.err.println(tableName.toUpperCase());

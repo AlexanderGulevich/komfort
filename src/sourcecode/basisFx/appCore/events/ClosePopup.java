@@ -6,9 +6,9 @@ import javafx.scene.control.Button;
 public class ClosePopup extends AppEvent{
     protected Button but;
     @Override
-    public void setElement(AppNode n) {
+    public void setEventToElement(AppNode n) {
 
-        this.appNode=n;
+        this.nodeWrapper =n;
         this.but=(Button) n.getElement();
 
 
@@ -34,7 +34,7 @@ public class ClosePopup extends AppEvent{
         }
 
 
-        appNode.getStage().close();
+        nodeWrapper.getStage().close();
 
 
 

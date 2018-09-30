@@ -6,7 +6,7 @@
 //import javafx.geometry.Insets;
 //import javafx.scene.control.ContentDisplay;
 //
-//public class SingleButton extends WindowButtons {
+//public class SingleButton extends ButtonsForWindowStage {
 //
 //    String closeStr="";
 //    double fontHeight= 17d;

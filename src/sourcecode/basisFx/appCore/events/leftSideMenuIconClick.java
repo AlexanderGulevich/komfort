@@ -19,7 +19,7 @@ public class leftSideMenuIconClick extends AppEvent{
     }
 
     @Override
-    public void setElement(AppNode n) {
+    public void setEventToElement(AppNode n) {
         but=(Button) n.getElement();
 
         but.setOnAction((event) -> {

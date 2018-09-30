@@ -17,8 +17,8 @@ import javafx.scene.control.Button;
 public class HideWindow extends AppEvent{
     protected Button  but;
     @Override
-    public void setElement(AppNode node) {
-        this.appNode=node;
+    public void setEventToElement(AppNode node) {
+        this.nodeWrapper =node;
         this.but=(Button) node.getElement();
 
 
@@ -36,7 +36,7 @@ public class HideWindow extends AppEvent{
     public void run() {
          try {
                 Thread.sleep(200);
-                appNode.getStage().setIconified(true);
+                nodeWrapper.getStage().setIconified(true);
             } catch (InterruptedException ex) {
                 Logger.getLogger(CloseWindow.class.getName()).log(Level.SEVERE, null, ex);
             }

@@ -162,7 +162,11 @@ public class ButtonWrapper extends AppNode{
 
         public Builder setEvents(AppEvent ...val) {
             events=new ArrayList<>();
-            events.addAll(Arrays.asList(val));
+//            events.addAll(Arrays.asList(val));
+            for (AppEvent event:val
+                 ) {
+                events.add(event);
+            }
             return this;
         }
 

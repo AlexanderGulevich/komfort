@@ -26,10 +26,10 @@ public class DbClick  extends AppEvent{
     }
     
     @Override
-    public void setElement(AppNode appNode) {
+    public void setEventToElement(AppNode appNode) {
         
         this.node=appNode.getElement();
-        this.appNode=appNode;
+        this.nodeWrapper =appNode;
         
         
         node.setOnMousePressed(new EventHandler<MouseEvent>() {
@@ -55,7 +55,7 @@ public class DbClick  extends AppEvent{
 
     @Override
     public void run() throws SQLException {
-        this.innerEvent.setElementNonLogic(appNode).run();
+        this.innerEvent.setElementNonLogic(nodeWrapper).run();
         
     }
 }

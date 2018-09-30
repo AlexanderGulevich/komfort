@@ -20,7 +20,7 @@ public abstract class DynamicElements {
         createPanel();
     }
 
-    protected abstract void init();
+    public abstract void init();
 
     public AnchorPane getTargetElement() {
        return  this.commonAnchorPane;

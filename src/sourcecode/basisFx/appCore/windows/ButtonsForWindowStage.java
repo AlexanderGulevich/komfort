@@ -2,13 +2,12 @@ package basisFx.appCore.windows;
 
 import basisFx.appCore.elements.AnchorWrapper;
 import basisFx.appCore.elements.ButtonWrapper;
-import basisFx.appCore.fabrics.WindowEventFabric;
 import basisFx.appCore.settings.CSSID;
 import basisFx.appCore.utils.Coordinate;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-public abstract class WindowButtons {
+public abstract class ButtonsForWindowStage {
 
     protected ButtonWrapper hideButton;
     protected ButtonWrapper  maximazeButton;
@@ -16,9 +15,9 @@ public abstract class WindowButtons {
     protected AnchorPane buttonsAnchor;
     protected Stage stage;
     protected Window window;
-    protected WindowEventFabric eventFabric= WindowEventFabric.getInstance();
 
-    public WindowButtons(Window window) {
+
+    public ButtonsForWindowStage(Window window) {
         this.window = window;
         createButtonsPanel();
     }

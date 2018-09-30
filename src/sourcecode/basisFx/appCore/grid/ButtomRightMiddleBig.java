@@ -11,7 +11,8 @@ public class ButtomRightMiddleBig  extends TablesButtonKindConfigurationStrategy
     private Button buttonAdd = buttonFactory.addRowButton(tableWrapper, tableWrapper.activeRecord.getClass());
     private Button buttonDel = buttonFactory.deleteRowButton(tableWrapper);
 
-    public ButtomRightMiddleBig() {
+    public ButtomRightMiddleBig(TableWrapper tableWrapper) {
+        super(tableWrapper);
     }
 
     @Override

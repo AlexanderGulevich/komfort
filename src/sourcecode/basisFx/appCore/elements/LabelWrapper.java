@@ -42,6 +42,7 @@ public  class LabelWrapper extends AppNode{
         setAlignment();
         setFont();
         setText();
+        elocateEvents();
 
 
     }

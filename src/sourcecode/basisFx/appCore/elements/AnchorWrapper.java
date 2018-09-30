@@ -45,11 +45,11 @@ public class AnchorWrapper  extends AppNode  {
         stage=builder.stage;
 
         bond(this);
-        elocateEvents();
         applyWidth();
         applyHeight();
         applyCssId();
         applyPadding();
+        elocateEvents();
 
 
     }

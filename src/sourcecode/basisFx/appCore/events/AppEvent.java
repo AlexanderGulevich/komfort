@@ -6,12 +6,12 @@ import java.sql.SQLException;
 
 public abstract class AppEvent {
 
-    protected AppNode appNode;
+    protected AppNode nodeWrapper;
 
-    public abstract void setElement(AppNode node);
+    public abstract void setEventToElement(AppNode node);
     public AppEvent setElementNonLogic(AppNode node){
 
-        this.appNode=node;
+        this.nodeWrapper =node;
         return this;
 
     };

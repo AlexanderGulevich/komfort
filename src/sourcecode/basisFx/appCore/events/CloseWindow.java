@@ -10,14 +10,14 @@ import javafx.scene.control.Button;
 public class CloseWindow extends AppEvent{
     protected Button  but;
     @Override
-    public void setElement(AppNode n) {
+    public void setEventToElement(AppNode n) {
 
-        this.appNode=n;
+        this.nodeWrapper =n;
         this.but=(Button) n.getElement();
 
 
         but.setOnMouseClicked((event) -> {
-
+                    System.out.println("CloseWindow.setEventToElement");
             run();
         }
 
@@ -38,7 +38,7 @@ public class CloseWindow extends AppEvent{
 
                 Db.getConnection().close();
                 Thread.sleep(500);
-                appNode.getStage().close();
+                nodeWrapper.getStage().close();
                 System.exit(0);
 
 

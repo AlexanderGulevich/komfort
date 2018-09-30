@@ -26,7 +26,7 @@
 //    public ComboBoxWrapper(NodeBuilder builder) {
 //
 //        comboBox=new ComboBox<>(list);
-//        setElement(comboBox);
+//        setEventToElement(comboBox);
 //        comboBox.setEditable(true);
 //        init(builder);
 //        comboBox.setPrefWidth(this.widthValue);

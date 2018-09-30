@@ -29,7 +29,7 @@ public class RowAddToTable <T> extends AppEvent{
 
 
     @Override
-    public void setElement(AppNode node) {
+    public void setEventToElement(AppNode node) {
         but=(Button) node.getElement();
         but.setOnMouseClicked((event) -> {
             run();
