@@ -52,6 +52,8 @@ public class AnchorWrapper  extends AppNode  {
         elocateEvents();
 
 
+
+
     }
 
     private void applyPadding() {

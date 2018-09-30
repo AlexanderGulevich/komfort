@@ -17,13 +17,9 @@ public class CloseWindow extends AppEvent{
 
 
         but.setOnMouseClicked((event) -> {
-                    System.out.println("CloseWindow.setEventToElement");
             run();
         }
-
         ) ;
-
-
 
     }
 
@@ -35,12 +31,14 @@ public class CloseWindow extends AppEvent{
             if (Db.getSonicServer() != null) {
                 Db.getSonicServer().shutdown();
             }
-
+            if (Db.getConnection() != null) {
                 Db.getConnection().close();
-                Thread.sleep(500);
-                nodeWrapper.getStage().close();
-                System.exit(0);
 
+            }
+
+            Thread.sleep(500);
+            nodeWrapper.getStage().close();
+            System.exit(0);
 
             } catch (InterruptedException ex) {
                 Logger.getLogger(CloseWindow.class.getName()).log(Level.SEVERE, null, ex);

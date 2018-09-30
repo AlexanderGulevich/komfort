@@ -26,17 +26,6 @@ protected Stage stage;
     @Override
     public void run() {
 
-        node.setOnMouseMoved(event -> {
-            System.err.println("setOnMouseMoved");
-        });
-
-
-        ((AnchorPane) node).setOnMouseClicked(event ->
-
-        {System.err.println("setOnMouseClicked");
-                stage.close();}
-        );
-
 
          node.setOnMousePressed(event -> {
 

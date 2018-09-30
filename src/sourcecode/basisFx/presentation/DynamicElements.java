@@ -42,7 +42,7 @@ public abstract class DynamicElements {
         commonAnchorPane = AnchorWrapper.newBuilder()
                 .setCSSid(CSSID.TARGET_PANEL)
                 .setCoordinate(new Coordinate(0d, 0d, 0d, 0d))
-                .setParentAnchor(MainWindow.getInstance().getWindow().getTopVisibleAnchor())
+                .setParentAnchor(((AnchorPane) MainWindow.getInstance().getWindowNode("contentAnchorPane").getElement()))
                 .build().getElement();
     }
 

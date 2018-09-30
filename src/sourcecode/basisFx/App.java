@@ -5,8 +5,10 @@ import basisFx.appCore.menu.MenuFabric;
 import basisFx.appCore.settings.StylesPathes;
 import basisFx.appCore.utils.CSSHandler;
 import basisFx.appCore.utils.SystemRegistry;
+import basisFx.appCore.windows.MainWindow;
 import basisFx.presentation.MainMenuSketch;
 import javafx.stage.Stage;
+import org.scenicview.ScenicView;
 
 import java.sql.SQLException;
 
