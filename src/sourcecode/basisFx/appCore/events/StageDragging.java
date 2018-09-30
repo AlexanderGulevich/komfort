@@ -4,6 +4,7 @@ import basisFx.appCore.elements.AppNode;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 public class StageDragging extends AppEvent{
@@ -25,9 +26,21 @@ protected Stage stage;
     @Override
     public void run() {
 
+        node.setOnMouseMoved(event -> {
+            System.err.println("setOnMouseMoved");
+        });
+
+
+        ((AnchorPane) node).setOnMouseClicked(event ->
+
+        {System.err.println("setOnMouseClicked");
+                stage.close();}
+        );
+
+
          node.setOnMousePressed(event -> {
 
-             System.out.println("StageDragging.handle");
+             System.err.println("setOnMousePressed");
               if (event.isPrimaryButtonDown() && event.getClickCount() == 1) {
 
                   if(!stage.isMaximized()){
@@ -42,7 +55,7 @@ protected Stage stage;
          });
 
          node.setOnMouseDragged(event -> {
-             System.out.println("StageDragging.run");
+             System.err.println("setOnMouseDragged");
               if(!stage.isMaximized()){
                      stage.setX(event.getScreenX() + xOffset);
                      stage.setY(event.getScreenY() + yOffset);

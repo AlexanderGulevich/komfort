@@ -74,8 +74,8 @@ public abstract class AppNode <T extends Node> {
             for (Iterator<AppEvent> iterator = events.iterator(); iterator.hasNext();) {
             AppEvent next = iterator.next();
             next.setEventToElement(this);
-
         }
+
         }
        
         
