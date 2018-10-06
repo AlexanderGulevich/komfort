@@ -38,7 +38,7 @@
 //    }
 //
 //    @Override
-//    public void getDomainList(ObservableList list) {
+//    public void getAll(ObservableList list) {
 //        try {
 //
 //            String expression="SELECT * FROM " +"Paper"+" ORDER BY ID";
@@ -81,7 +81,7 @@
 //    }
 //
 //    @Override
-//    public void updateDomainObject(DomainObject d) {
+//    public void update(DomainObject d) {
 //
 //        if (isReadyToTransaction(d)) {
 //            Paper pojo = (Paper) d;
@@ -106,12 +106,12 @@
 //    }
 //
 //    @Override
-//    public void deleteDomainObject(DomainObject d)   {
+//    public void delete(DomainObject d)   {
 //        super.delete(d, "Paper");
 //    }
 //
 //    @Override
-//    public void insertDomainObject(DomainObject d) {
+//    public void insert(DomainObject d) {
 //        Paper pojo= (Paper) d;
 //        try {
 //            String expression= "INSERT INTO "+ "Paper "

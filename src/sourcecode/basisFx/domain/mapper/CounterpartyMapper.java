@@ -37,7 +37,7 @@
 //    }
 //
 //    @Override
-//    public void getDomainList(ObservableList list)   {
+//    public void getAll(ObservableList list)   {
 //
 //            String expression="SELECT * FROM " +"Counterparty"+" ORDER BY ID";
 //
@@ -79,7 +79,7 @@
 //
 //
 //    @Override
-//    public void updateDomainObject(DomainObject d)   {
+//    public void update(DomainObject d)   {
 //
 //
 //        Counterparty counterparty= (Counterparty) d;
@@ -111,12 +111,12 @@
 //    }
 //
 //    @Override
-//    public void deleteDomainObject(DomainObject d)   {
+//    public void delete(DomainObject d)   {
 //        super.delete(d,"Counterparty");
 //    }
 //
 //    @Override
-//    public void insertDomainObject(DomainObject d)   {
+//    public void insert(DomainObject d)   {
 //
 //        try {
 //            if(isReadyToTransaction(d)) {

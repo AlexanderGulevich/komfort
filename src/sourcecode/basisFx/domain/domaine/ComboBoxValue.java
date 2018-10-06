@@ -43,32 +43,33 @@ public class ComboBoxValue extends ActiveRecord{
     }
 
     @Override
-    public boolean isReadyToTransaction(ActiveRecord d) {
+    public boolean isReadyToTransaction() {
         return false;
     }
 
     @Override
-    public void getDomainList(ObservableList list) {
+    public ObservableList<ActiveRecord> getAll() {
+        return null;
+    }
+
+
+    @Override
+    public void update() {
 
     }
 
     @Override
-    public ObservableList<ActiveRecord> getDomainListForAccessoryTable(int id) {
+    public void delete() {
+
+    }
+
+    @Override
+    public ObservableList<ActiveRecord> getAllByRelatedId(Integer id) {
         return null;
     }
 
     @Override
-    public void updateDomainObject(ActiveRecord d) {
-
-    }
-
-    @Override
-    public void deleteDomainObject(ActiveRecord d) {
-
-    }
-
-    @Override
-    public void insertDomainObject(ActiveRecord d) {
+    public void insert() {
 
     }
 }

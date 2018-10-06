@@ -1,32 +1,20 @@
 package basisFx.appCore.events;
 
-import basisFx.dataSource.UnitOfWork;
 import basisFx.appCore.elements.AppNode;
 import basisFx.appCore.elements.TableWrapper;
-import basisFx.appCore.interfaces.RowCreater;
+import basisFx.domain.domaine.ActiveRecord;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableView;
 
 public class RowAddToTable <T> extends AppEvent{
 
-    private TableView <T> table;
     private Button but;
-    private final ObservableList list;
-    protected RowCreater rowCreater;
     private TableWrapper tableWrapper;
-    private   UnitOfWork unitOfWork;
 
-
-    public RowAddToTable(TableWrapper tableWrapper, RowCreater rowCreater) {
+    public RowAddToTable(TableWrapper tableWrapper ) {
         this.tableWrapper = tableWrapper;
-        this.table= (TableView<T>) this.tableWrapper.getElement();
-        this.list=this.table.getItems();
-        this.rowCreater=rowCreater;
     }
-
-
-
 
     @Override
     public void setEventToElement(AppNode node) {
@@ -34,30 +22,23 @@ public class RowAddToTable <T> extends AppEvent{
         but.setOnMouseClicked((event) -> {
             run();
         });
-
     }
-
 
     @Override
     public void run() {
+        try {
+            System.out.println("RowAddToTable.run");
 
-//        if(this.unitOfWork..isEmpty()){
-//
-//            if(tableWrapper.isObserver()&& tableWrapper.getClickedDomain()!=null){
-//                rowCreater.createRow(list);
-//
-//            }
-//            if (!tableWrapper.isObserver()){
-//                rowCreater.createRow(list);
-//            }
-//
-//
-//        }else{
-//
-//        }
-
-
-
+            ObservableList<ActiveRecord> list = tableWrapper.list;
+            ActiveRecord instance = (ActiveRecord) tableWrapper.activeRecordClass.newInstance();
+            TableView tableView=tableWrapper.getElement();
+            ObservableList items = tableView.getItems();
+            items.add(instance);
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
     }
 
 

@@ -8,11 +8,13 @@ import javafx.scene.control.Button;
 
 public class ButtomBottomTopRightBig extends TablesButtonKindConfigurationStrategy{
     private Insets insets = new Insets(3, 3, 3, 3);
-    private Button buttonAdd = buttonFactory.addRowButton(tableWrapper, tableWrapper.activeRecord.getClass());
-    private Button buttonDel = buttonFactory.deleteRowButton(tableWrapper);
+    private Button buttonAdd;
+    private Button buttonDel;
 
     public ButtomBottomTopRightBig(TableWrapper tableWrapper) {
         super(tableWrapper);
+        buttonAdd = buttonFactory.addRowButton(tableWrapper);
+        buttonDel = buttonFactory.deleteRowButton(tableWrapper);
     }
 
     @Override

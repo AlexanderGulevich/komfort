@@ -36,7 +36,7 @@
 //
 //
 //    @Override
-//    public void getDomainList(ObservableList list) {
+//    public void getAll(ObservableList list) {
 //
 //    }
 //
@@ -74,7 +74,7 @@
 //    }
 //
 //    @Override
-//    public void updateDomainObject(DomainObject d)   {
+//    public void update(DomainObject d)   {
 //        if(isReadyToTransaction(d)) {
 //
 //            Price domainObject= (Price) d;
@@ -115,12 +115,12 @@
 //    }
 //
 //    @Override
-//    public void deleteDomainObject(DomainObject d)   {
+//    public void delete(DomainObject d)   {
 //        super.delete(d,"PacketPriceStore");
 //    }
 //
 //    @Override
-//    public void insertDomainObject(DomainObject d)   {
+//    public void insert(DomainObject d)   {
 //        Price domainObject=(Price) d;
 //
 //        if(isReadyToTransaction(d)) {

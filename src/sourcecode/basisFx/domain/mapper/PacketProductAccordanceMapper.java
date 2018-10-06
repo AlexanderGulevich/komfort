@@ -38,7 +38,7 @@
 //    }
 //
 //    @Override
-//    public void getDomainList(ObservableList list)   {
+//    public void getAll(ObservableList list)   {
 //
 //        try {
 //            String expression = "SELECT * FROM " + "PacketProductAccordance" + " ORDER BY ID";
@@ -86,7 +86,7 @@
 //    }
 //
 //    @Override
-//    public void updateDomainObject(DomainObject d)   {
+//    public void update(DomainObject d)   {
 //
 //        if (isReadyToTransaction(d)) {
 //            PacketProductAccordance pojo = (PacketProductAccordance) d;
@@ -115,12 +115,12 @@
 //    }
 //
 //    @Override
-//    public void deleteDomainObject(DomainObject d)   {
+//    public void delete(DomainObject d)   {
 //        super.delete(d,"PacketProductAccordance");
 //    }
 //
 //    @Override
-//    public void insertDomainObject(DomainObject d)   {
+//    public void insert(DomainObject d)   {
 //        PacketProductAccordance pojo = (PacketProductAccordance) d;
 //
 //            String expression = "INSERT INTO " + "PacketProductAccordance "

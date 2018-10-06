@@ -69,8 +69,8 @@ public class UnitOfWork {
 
         for (Iterator<ActiveRecord> iterator = recordsSet.iterator(); iterator.hasNext();) {
             ActiveRecord next = iterator.next();
-            if (next.isReadyToTransaction(next)) {
-                next.insertDomainObject(next);
+            if (next.isReadyToTransaction()) {
+                next.insert();
             }
         }
     }
@@ -80,8 +80,8 @@ public class UnitOfWork {
 
         for (Iterator<ActiveRecord> iterator = recordsSet.iterator(); iterator.hasNext();) {
             ActiveRecord next = iterator.next();
-            if (next.isReadyToTransaction(next)) {
-                next.updateDomainObject(next);
+            if (next.isReadyToTransaction()) {
+                next.update();
             }
         }
     }
@@ -94,7 +94,7 @@ public class UnitOfWork {
 
             if (!recordsSetNew.contains(next)) {// если обеъект не является новым, то удаляем их БД
 
-                next.deleteDomainObject(next);
+                next.delete();
             }
         }
     }

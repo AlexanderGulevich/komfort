@@ -37,10 +37,11 @@ public  class TableWrapper extends AppNode  {
     private Mediator mediator;
     private ColumnWrapper [] columnWrappers;
     private TableView<ActiveRecord> element;
-    private ObservableList<ActiveRecord>  list=FXCollections.observableArrayList();
+    public ObservableList<ActiveRecord>  list;
     public UnitOfWork unitOfWork;
     private TableListener  tableListener=new TableListener (this);
     public  ActiveRecord clickedDomain;
+    public  Class activeRecordClass;
     public  ActiveRecord activeRecord;
 
     private TableWrapper(Builder builder) {
@@ -62,11 +63,16 @@ public  class TableWrapper extends AppNode  {
         columnWrappers = builder.columnWrappers;
         unitOfWork = builder.unitOfWork;
         clickedDomain = builder.clickedDomain;
-        activeRecord = builder.activeRecord;
+        activeRecordClass = builder.activeRecordClass;
         widthPercent=builder.widthPercent;
         parentWidthProperty=builder.parentWidthProperty;
         isEditable=builder.isEditable;
 
+
+        createActiveRecord(builder);
+
+
+        list=activeRecord.getAll();
 
         element =new TableView<>(list);
         element.setId(CSSID.TABLE.get());
@@ -86,6 +92,16 @@ public  class TableWrapper extends AppNode  {
         setClickedUpDownRowDetection();
 
 
+    }
+
+    private void createActiveRecord(Builder builder) {
+        try {
+            activeRecord= (ActiveRecord) builder.activeRecordClass.newInstance();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
     }
 
     public static Builder newBuilder() {
@@ -251,6 +267,7 @@ public  class TableWrapper extends AppNode  {
     }
 
     public static final class Builder {
+        private Class activeRecordClass;
         private ReadOnlyDoubleProperty parentWidthProperty;
         private double widthPercent;
         private ArrayList<AppEvent> events;
@@ -270,7 +287,6 @@ public  class TableWrapper extends AppNode  {
         private ColumnWrapper[] columnWrappers;
         private UnitOfWork unitOfWork;
         private ActiveRecord clickedDomain;
-        private ActiveRecord activeRecord;
 
 
         public Builder setWidthPercent(double widthPercent) {
@@ -381,8 +397,8 @@ public  class TableWrapper extends AppNode  {
             return this;
         }
 
-        public Builder setActiveRecord(ActiveRecord val) {
-            activeRecord = val;
+        public Builder setActiveRecordClass(Class activeRecordClass) {
+            this.activeRecordClass = activeRecordClass;
             return this;
         }
 

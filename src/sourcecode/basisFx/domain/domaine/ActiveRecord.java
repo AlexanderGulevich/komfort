@@ -25,32 +25,21 @@ public abstract class ActiveRecord {
     public void setId(int value) {
         this.id.set(value);
     }
-
     public  abstract ComboBoxValue  toComboBoxValue();
-//    private Map<Integer,ActiveRecord> map= new HashMap<>();
+    public abstract boolean isReadyToTransaction();
+    public abstract ObservableList <ActiveRecord>  getAll();
+    public abstract void update();
+    public abstract void insert();
 
-    public abstract boolean isReadyToTransaction(ActiveRecord d);
-    public abstract void getDomainList(ObservableList  list);
-    public abstract  ObservableList<ActiveRecord>  getDomainListForAccessoryTable(int id);
-    public abstract void updateDomainObject(ActiveRecord d);
-    public abstract void deleteDomainObject(ActiveRecord d);
-    public abstract void insertDomainObject(ActiveRecord d);
-
-    public void delete(ActiveRecord domainObject, String tableName){
-
-        if (domainObject != null) {
+    public void delete(){
             try {
-                String expression="delete from " +tableName+" where id=? ";
-                PreparedStatement pstmt =  Db.getConnection().prepareStatement(expression);
-                pstmt.setInt(1, domainObject.getId());
+                String expression="delete from " +entityName+" where id=? ";
+                PreparedStatement pstmt =  Db.connection.prepareStatement(expression);
+                pstmt.setInt(1, id.get());
                 pstmt.executeUpdate();
             } catch (SQLException e) {
                 e.printStackTrace();
             }
-        } else {
-            System.out.println("ActiveRecord.delete - domainObject is NULL");
-        }
-
     }
 
     /**
@@ -63,13 +52,13 @@ public abstract class ActiveRecord {
         if (domainObject != null) {
             try {
                 String expression_1="delete from " +observedtableName+" where id=? ";
-                PreparedStatement pstmt_1 =  Db.getConnection().prepareStatement(expression_1);
+                PreparedStatement pstmt_1 =  Db.connection.prepareStatement(expression_1);
                 pstmt_1.setInt(1, domainObject.getId());
                 pstmt_1.executeUpdate();
 
 
                 String expression_2="delete from " +observertableName+" where id=? ";
-                PreparedStatement pstmt_2 =  Db.getConnection().prepareStatement(expression_2);
+                PreparedStatement pstmt_2 =  Db.connection.prepareStatement(expression_2);
                 pstmt_2.setInt(1, domainObject.getId());
                 pstmt_2.executeUpdate();
             } catch (SQLException e) {
@@ -95,11 +84,11 @@ public abstract class ActiveRecord {
     }
 
 
-    // getDomainList(list) записывает в  list значения ReturnSet БД
+    // getAll(list) записывает в  list значения ReturnSet БД
     // далее идет преобразование каждой строки БД в HashMap, где ключем является id
     public HashMap<Integer,ActiveRecord> toHashMapByCommonRawId(ObservableList<ActiveRecord> list){
         list.clear();
-        getDomainList(list);
+        getAll();
 
         HashMap<Integer,ActiveRecord> hm=new HashMap<>();
 
@@ -114,12 +103,12 @@ public abstract class ActiveRecord {
     }
 
 
-    // getDomainList(list) записывает в  list значения ReturnSet БД
+    // getAll(list) записывает в  list значения ReturnSet БД
     // далее идет преобразование каждой строки БД в HashMap, где ключем является id
     // а значение ComboBoxValue для вставки в ComboBox
     public HashMap<Integer,ComboBoxValue> toComboBoxValHashMap(ObservableList<ActiveRecord> list, StringGetterFromDomain stringGetterFromDomain){
         list.clear();
-        getDomainList(list);
+        getAll();
 
         HashMap<Integer,ComboBoxValue> hm=new HashMap<>();
 
@@ -142,14 +131,14 @@ public abstract class ActiveRecord {
     }
 
     /**
-     * getDomainList(list) записывает в  list значения ReturnSet БД\
+     * getAll(list) записывает в  list значения ReturnSet БД\
      * далее идет преобразование каждой строки БД в ComboBoxValue и возвращается список
      * @param stringGetterFromDomain
      * @return
      */
     public ObservableList<ComboBoxValue> toComboBoxValueList(ObservableList<ActiveRecord> list,StringGetterFromDomain stringGetterFromDomain){
         list.clear();
-        getDomainList(list);
+        getAll();
 
         ObservableList<ComboBoxValue> comboBoxValueList= FXCollections.observableArrayList();
 
@@ -185,9 +174,9 @@ public abstract class ActiveRecord {
             String expression="SELECT * FROM " + tableName+" where " +checkedEntityName+
                     " =?  and "+dateName+" = ?";
 
-            Statement stmt  = Db.getConnection().createStatement();
+            Statement stmt  = Db.connection.createStatement();
 
-            PreparedStatement pstmt = Db.getConnection().prepareStatement(expression);
+            PreparedStatement pstmt = Db.connection.prepareStatement(expression);
             pstmt.setInt(1, checkedEntityId);
             pstmt.setDate(2,  Date.valueOf(date));
             ResultSet rs    = pstmt.executeQuery();
@@ -222,7 +211,7 @@ public abstract class ActiveRecord {
         return false;
     }
 
-
+    public abstract ObservableList<ActiveRecord> getAllByRelatedId(Integer id);
 
 
 //    private EmployeesRatePerHour getNewest(Integer id){}

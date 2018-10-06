@@ -6,13 +6,10 @@
 package basisFx.dataSource;
 
 import basisFx.dataSource.Db;
+
+import java.sql.Connection;
 import java.sql.SQLException;
 
-/**
- *
- * @author Alek
- */
-//" FOREIGN KEY (currencyId) REFERENCES Currency(id)  ON DELETE CASCADE"
 public class DbSchema {
 
     public DbSchema() {
@@ -154,25 +151,26 @@ public class DbSchema {
 
 
         create(
-                equipment,
-                currency,
-                counterparty,
-                ratePerHour,
-                currentEmployeesState,
-                ratePerHourHistory,
-                exchangeRates,
-                product,
-                productPriceStore,
-                packetSize,
-                packet,
-                packetPriceStore,
-                packetProductAccordance,
-                label,
-                labelPriceStore,
-                sleeve,
-                sleevePriceStore,
-                paper,
-                paperPriceStore
+                equipment
+//                ,
+//                currency,
+//                counterparty,
+//                ratePerHour,
+//                currentEmployeesState,
+//                ratePerHourHistory,
+//                exchangeRates,
+//                product,
+//                productPriceStore,
+//                packetSize,
+//                packet,
+//                packetPriceStore,
+//                packetProductAccordance,
+//                label,
+//                labelPriceStore,
+//                sleeve,
+//                sleevePriceStore,
+//                paper,
+//                paperPriceStore
 
         );
 
@@ -182,7 +180,8 @@ public class DbSchema {
     
         for (String tableName : val) {
           try {
-                Db.getConnection().createStatement().execute(tableName);
+              Connection connection = Db.connection;
+              connection.createStatement().execute(tableName);
 //
             } catch (SQLException e) {
               System.out.println("Не создалась таблица");

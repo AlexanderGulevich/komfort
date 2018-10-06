@@ -28,7 +28,7 @@
 //    }
 //
 //    @Override
-//    public void getDomainList(ObservableList list)  {
+//    public void getAll(ObservableList list)  {
 //
 //        try {
 //            String expression="SELECT * FROM " +"Employer " +
@@ -82,7 +82,7 @@
 //    }
 //
 //    @Override
-//    public void updateDomainObject(DomainObject d)   {
+//    public void update(DomainObject d)   {
 //
 //        if(isReadyToTransaction(d)) {
 //
@@ -109,12 +109,12 @@
 //    }
 //
 //    @Override
-//    public void deleteDomainObject(DomainObject d)   {
+//    public void delete(DomainObject d)   {
 //      super.delete(d,"Employees");
 //    }
 //
 //    @Override
-//    public void insertDomainObject(DomainObject d)   {
+//    public void insert(DomainObject d)   {
 //        Employer domainObject=(Employer) d;
 //
 //        if(isReadyToTransaction(d)) {

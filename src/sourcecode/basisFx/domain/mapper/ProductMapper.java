@@ -34,7 +34,7 @@
 //    }
 //
 //    @Override
-//    public void getDomainList(ObservableList list)   {
+//    public void getAll(ObservableList list)   {
 //
 //        try {
 //            String expression="SELECT * FROM " +"Product"+" ORDER BY ID";
@@ -68,7 +68,7 @@
 //    }
 //
 //    @Override
-//    public void updateDomainObject(DomainObject d)   {
+//    public void update(DomainObject d)   {
 //
 //        try {
 //            if(isReadyToTransaction(d)) {
@@ -93,12 +93,12 @@
 //    }
 //
 //    @Override
-//    public void deleteDomainObject(DomainObject d)   {
+//    public void delete(DomainObject d)   {
 //        super.deleteForBoundTables(d,"Product","ProductPriceStore");
 //    }
 //
 //    @Override
-//    public void insertDomainObject(DomainObject d)   {
+//    public void insert(DomainObject d)   {
 //
 //        try {
 //            Product product= (Product) d;

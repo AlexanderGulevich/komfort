@@ -5,13 +5,9 @@
  */
 package basisFx.appCore.interfaces;
 
-import javafx.collections.ObservableList;
+import basisFx.appCore.elements.TableWrapper;
 
-/**
- *
- * @author 62
- */
 public interface RowCreater {
-     public void createRow(ObservableList list);
+     public void createRow(TableWrapper tableWrapper);
     
 }

@@ -28,11 +28,11 @@ public class CloseWindow extends AppEvent{
         try {
 
 //Todo Db.getSonicServer().shutdown();
-            if (Db.getSonicServer() != null) {
-                Db.getSonicServer().shutdown();
+            if (Db.sonicServer != null) {
+                Db.sonicServer.shutdown();
             }
-            if (Db.getConnection() != null) {
-                Db.getConnection().close();
+            if (Db.connection!= null) {
+                Db.connection.close();
 
             }
 

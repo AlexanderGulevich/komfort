@@ -20,7 +20,7 @@
 //        return false;
 //    }
 //    @Override
-//    public void getDomainList(ObservableList list) {
+//    public void getAll(ObservableList list) {
 //
 //        try {
 //            String expression=
@@ -49,9 +49,9 @@
 //    @Override
 //    public void getDomainListForAccessoryTable(ObservableList list, DomainObject selectedDomainObject){}
 //    @Override
-//    public void updateDomainObject(DomainObject d) {}
+//    public void update(DomainObject d) {}
 //    @Override
-//    public void deleteDomainObject(DomainObject d) {}
+//    public void delete(DomainObject d) {}
 //    @Override
-//    public void insertDomainObject(DomainObject d) {}
+//    public void insert(DomainObject d) {}
 //}

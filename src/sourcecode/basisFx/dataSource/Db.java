@@ -15,16 +15,9 @@ import java.sql.Connection;
  */
 public abstract class Db {
    
-    protected static Connection connection = null;
+    public static Connection connection = null;
 
-    protected static Server sonicServer = null;
-    
+    public static Server sonicServer = null;
 
-    public static Connection getConnection() {
-        return connection;
-    }
 
-    public static Server getSonicServer() {
-        return sonicServer;
-    }
 }

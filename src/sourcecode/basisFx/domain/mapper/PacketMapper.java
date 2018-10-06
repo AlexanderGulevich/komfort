@@ -36,7 +36,7 @@
 //    }
 //
 //    @Override
-//    public void getDomainList(ObservableList list)   {
+//    public void getAll(ObservableList list)   {
 //
 //
 //            String expression="SELECT * FROM " +"Packet"+" ORDER BY ID";
@@ -83,7 +83,7 @@
 //    }
 //
 //    @Override
-//    public void updateDomainObject(DomainObject d)   {
+//    public void update(DomainObject d)   {
 //
 //        if (isReadyToTransaction(d)) {
 //            Packet pojo = (Packet) d;
@@ -110,14 +110,14 @@
 //    }
 //
 //    @Override
-//    public void deleteDomainObject(DomainObject d)   {
+//    public void delete(DomainObject d)   {
 //
 //         super.delete(d,"Packet");
 //
 //    }
 //
 //    @Override
-//    public void insertDomainObject(DomainObject d)   {
+//    public void insert(DomainObject d)   {
 //        Packet pojo= (Packet) d;
 //
 //            String expression= "INSERT INTO "+ "Packet "

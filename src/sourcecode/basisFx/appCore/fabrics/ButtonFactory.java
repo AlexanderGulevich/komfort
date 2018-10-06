@@ -7,6 +7,7 @@ import basisFx.appCore.events.RowDeleteFromTable;
 import basisFx.appCore.utils.Coordinate;
 import basisFx.appCore.settings.CSSID;
 import basisFx.appCore.settings.FontsStore;
+import javafx.collections.ObservableList;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 
@@ -30,17 +31,7 @@ public class ButtonFactory {
                 .setFontSize(littleFontHeight)
                 .setWidth(littleButWidth)
                 .setHeight(littleButHeight)
-                .setEvents(new RowAddToTable<>(
-                                tableWrapper,
-                                (l) -> {
-                                    try {
-                                        l.add(c.newInstance());
-                                    } catch (InstantiationException e) {
-                                        e.printStackTrace();
-                                    } catch (IllegalAccessException e) {
-                                        e.printStackTrace();
-                                    }
-                                }))
+                .setEvents(new RowAddToTable(tableWrapper ))
                 .build().getElement();
 
 
@@ -58,17 +49,7 @@ public class ButtonFactory {
                 .setFontSize(littleFontHeight)
                 .setWidth(littleButWidth)
                 .setHeight(littleButHeight)
-                .setEvents(new RowAddToTable<>(
-                                tableWrapper,
-                                (l)->{
-                                    try {
-                                        l.add( c.newInstance());
-                                    } catch (InstantiationException e) {
-                                        e.printStackTrace();
-                                    } catch (IllegalAccessException e) {
-                                        e.printStackTrace();
-                                    }
-                                }))
+                .setEvents(new RowAddToTable(tableWrapper ))
                 .build().getElement();
 
 
@@ -113,7 +94,7 @@ public class ButtonFactory {
 
 
     }
-    public Button addRowButton(AnchorPane panel, Coordinate coordinate, TableWrapper tableWrapper, Class cl){
+    public Button addRowButton(AnchorPane panel, Coordinate coordinate, TableWrapper tableWrapper){
 
         return  ButtonWrapper.newBuilder()
                 .setCSSid(CSSID.PANELS_BUTTON)
@@ -124,24 +105,13 @@ public class ButtonFactory {
                 .setFont(FontsStore.ROBOTO_LIGHT )
                 .setWidth(bigButWidth)
                 .setHeight(20d)
-                .setEvents(
-                        new RowAddToTable<>(
-                                tableWrapper,
-                                (l)->{
-                                    try {
-                                        l.add(cl.newInstance());
-                                    } catch (InstantiationException e) {
-                                        e.printStackTrace();
-                                    } catch (IllegalAccessException e) {
-                                        e.printStackTrace();
-                                    }
-                                }))
+                .setEvents(new RowAddToTable(tableWrapper ))
                 .build().getElement();
 
 
 
     }
-    public Button addRowButton(TableWrapper tableWrapper, Class cl){
+    public Button addRowButton(TableWrapper tableWrapper){
 
         return  ButtonWrapper.newBuilder()
                 .setCSSid(CSSID.PANELS_BUTTON)
@@ -150,22 +120,14 @@ public class ButtonFactory {
                 .setFontSize(15)
                 .setWidth(bigButWidth)
                 .setHeight(20d)
-                .setEvents(new RowAddToTable(
-                                tableWrapper,
-                                (l)->{
-                                    try {
-                                        l.add(cl.newInstance());
-                                    } catch (InstantiationException e) {
-                                        e.printStackTrace();
-                                    } catch (IllegalAccessException e) {
-                                        e.printStackTrace();
-                                    }
-                                }))
+                .setEvents(new RowAddToTable(tableWrapper ))
                 .build().getElement();
 
 
 
     }
+
+
     public Button deleteRowButton(AnchorPane panel, Coordinate coordinate, TableWrapper tableWrapper){
         return ButtonWrapper.newBuilder()
                 .setCSSid(CSSID.PANELS_BUTTON)
