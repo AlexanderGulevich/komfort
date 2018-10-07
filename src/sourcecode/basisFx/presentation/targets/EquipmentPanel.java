@@ -25,6 +25,7 @@ public class EquipmentPanel extends TargetPanel {
                 .setIsEditable(true)
                 .setIsSortableColums(false)
                 .setMediator(new SingleTableMediator())
+                .setColumnWrappers()
                 .build();
 
 

@@ -1,6 +1,6 @@
 //package basisFx.presentation.targets;
 //
-//import basisFx.appCore.controls.ColumnWrapper;
+//import basisFx.appCore.table.ColumnWrapper;
 //import basisFx.appCore.domainScetch.ComboBoxValue;
 //import basisFx.appCore.elements.AppNode;
 //import basisFx.appCore.elements.TableWrapper;

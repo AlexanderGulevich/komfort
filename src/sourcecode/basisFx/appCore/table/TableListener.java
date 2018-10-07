@@ -1,4 +1,4 @@
-package basisFx.appCore.controls;
+package basisFx.appCore.table;
 
 import basisFx.domain.domaine.ActiveRecord;
 import basisFx.appCore.elements.TableWrapper;

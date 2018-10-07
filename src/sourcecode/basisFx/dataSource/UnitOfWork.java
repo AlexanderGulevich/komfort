@@ -8,9 +8,9 @@ import java.util.concurrent.ConcurrentHashMap;
 
 public class UnitOfWork {
 
-    private HashMap <String,ArrayList<ActiveRecord>>      newDomainObjects=new HashMap<>();
-    private HashMap <String,ArrayList<ActiveRecord>>      dirtyDomainObjects=new HashMap<>();
-    private HashMap <String,ArrayList<ActiveRecord>>      deletedDomainObject=new HashMap<>();
+    public HashMap <String,ArrayList<ActiveRecord>>      newDomainObjects=new HashMap<>();
+    public HashMap <String,ArrayList<ActiveRecord>>      dirtyDomainObjects=new HashMap<>();
+    public HashMap <String,ArrayList<ActiveRecord>>      deletedDomainObject=new HashMap<>();
 
     public void registerNew(String activeRecordName, ActiveRecord record){
         listNullCheck(newDomainObjects,activeRecordName);

@@ -4,7 +4,6 @@ import java.sql.*;
 import java.time.LocalDate;
 import java.util.HashMap;
 
-import basisFx.appCore.interfaces.StringGetterFromDomain;
 import basisFx.dataSource.Db;
 import basisFx.dataSource.UnitOfWork;
 import javafx.application.Platform;
@@ -130,13 +129,7 @@ public abstract class ActiveRecord {
 
     }
 
-    /**
-     * getAll(list) записывает в  list значения ReturnSet БД\
-     * далее идет преобразование каждой строки БД в ComboBoxValue и возвращается список
-     * @param stringGetterFromDomain
-     * @return
-     */
-    public ObservableList<ComboBoxValue> toComboBoxValueList(ObservableList<ActiveRecord> list,StringGetterFromDomain stringGetterFromDomain){
+    public ObservableList<ComboBoxValue> toComboBoxValueList(ObservableList<ActiveRecord> list){
         list.clear();
         getAll();
 
@@ -145,7 +138,7 @@ public abstract class ActiveRecord {
         for (ActiveRecord domainObject : list) {
 
             ComboBoxValue comboBoxValue = new ComboBoxValue(
-                    stringGetterFromDomain.get(domainObject),
+                   domainObject.toString(),
                     domainObject.getId()
             );
 

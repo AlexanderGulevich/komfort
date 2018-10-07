@@ -1,19 +1,17 @@
 package basisFx.appCore.elements;
 
 import basisFx.appCore.Mediator;
-import basisFx.appCore.controls.ColumnWrapper;
+import basisFx.appCore.table.ColumnWrapper;
 import basisFx.appCore.events.AppEvent;
 import basisFx.domain.domaine.ActiveRecord;
 import basisFx.dataSource.UnitOfWork;
-import basisFx.appCore.controls.TableListener;
+import basisFx.appCore.table.TableListener;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import basisFx.appCore.settings.CSSID;
 import basisFx.appCore.settings.FontsStore;
 import javafx.beans.property.ReadOnlyDoubleProperty;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Orientation;

@@ -1,7 +1,7 @@
 //package basisFx.appCore.fabrics;
 //
 //import basisFx.appCore.KindOfSubmitElement;
-//import basisFx.appCore.controls.ColumnWrapper;
+//import basisFx.appCore.table.ColumnWrapper;
 //import basisFx.domain.domaine.ActiveRecord;
 //import basisFx.appCore.elements.AppNode;
 //import basisFx.appCore.elements.TableWrapper;
