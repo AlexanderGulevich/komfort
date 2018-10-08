@@ -24,6 +24,15 @@ public class ColumnWrapperString<T> extends ColumnWrapper{
         column.setCellValueFactory(new PropertyValueFactory<>(propertyName));
         column.setCellFactory(TextFieldTableCell.forTableColumn());
 
+        setOnEditCommit();
+
+        if (columnSize != null) {
+            column.setPrefWidth(columnSize);
+        }
+
+
+
+
 
     }
 

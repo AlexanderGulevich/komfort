@@ -3,10 +3,16 @@
 -fx-table-cell-border-color: red;
 }
 #TABLE,#TABLE:focused,#TABLE:armed,#TABLE:selected{
-    -fx-effect: dropshadow(gaussian ,#555555 , 2, 0, 0.5, 0.5);
+    /* -fx-effect: dropshadow(gaussian ,#555555 , 2, 0, 0.5, 0.5); */
     -fx-background-insets: 0;
     -fx-padding: 0;
 }
+#TABLE {
+  -fx-border-width: 0.3  0.3  0.3  0.3 ;
+  -fx-border-style: solid;
+  -fx-border-color:#494c50;
+}
+
 #TABLE .column-resize-line{
     -fx-pref-width:0;
     -fx-background-insets: 0;
@@ -28,7 +34,11 @@
 }
 #TABLE .nested-column-header {/*не определил*/}
 #TABLE .column-header {/*ЗАГОЛОВОК КОЛОНКИ*/
-    -fx-background-color:derive(#b7d1d6,90%);
+    /* -fx-background-color:derive(#b7d1d6,90%); */
+        /* -fx-background-color:#d4bbba; */
+            -fx-background-color:#f7f7c2;
+            /* -fx-background-color:#e4e6e9; */
+
     -fx-pref-height:35;
     -fx-border-radius:0;
     -fx-border-width: 0 1 1 0;
@@ -45,18 +55,25 @@
 
 #TABLE .nested-column-header .label {
     -fx-text-fill:#003641;
+        -fx-text-fill:#3f519d;
     -fx-font-family: "Roboto Light";
     -fx-font-size: 17;
     -fx-background-insets: 0;
     -fx-padding: 0 0 0 20;
     -fx-border-insets:0 0 0 20;
 }
+#TABLE .virtual-flow,
+#TABLE .clipped-container{
+    -fx-padding: 20 20 50 20;
 
+}
 #TABLE .table-row-cell{}
 #TABLE .table-row-cell:selected,.table-row-cell:focused{}
 #TABLE .table-row-cell:odd{/* focused    filled    odd    selected*/}
 #TABLE .cell:focused:selected > .choice-box > .label {}
 #TABLE .text{}
+#TABLE .sheet{-fx-padding: 0 20 0 20;}
+
 
   #TABLE .cell{
       -fx-text-fill:#074f5d;
@@ -97,6 +114,7 @@
     -fx-border-insets:0;
     -fx-table-cell-border-color: #FFEACF;
     -fx-background: #FFEACF;
+    -fx-background: #f2f5de;
     -fx-padding: 0 0 0 0;
     -fx-padding: 0;
 

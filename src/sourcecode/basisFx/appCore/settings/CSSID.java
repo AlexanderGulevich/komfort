@@ -56,11 +56,9 @@ public enum CSSID {
     PopupTitleText("PopupTitleText"),
     PopupMessageText("PopupMessageText"),
     popupMessageTextPanel("popupMessageTextPanel"),
+    PROGRAMM_NAME("PROGRAMM_NAME"),
     PLACEHOLDER("PLACEHOLDER");
-    
-    
-    
-    
+
 
     private final String id;
 

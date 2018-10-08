@@ -13,7 +13,7 @@ public class LeftAndTopMenuGuiStructura extends GuiStructura {
     public void init(){
 
         AnchorWrapper contentAnchorWrapper = AnchorWrapper.newBuilder()
-                .setCoordinate(new Coordinate(122d, 0d, 0d, 65d))
+                .setCoordinate(new Coordinate(128d, 10d, 0d, 65d))
                 .setParentAnchor(window.getTopVisibleAnchor())
                 .setCSSid(CSSID.MAIN_CONTENT_ANCHOR)
                 .setName("contentAnchorPane")
@@ -29,12 +29,21 @@ public class LeftAndTopMenuGuiStructura extends GuiStructura {
                 .setName("titleAnchorWrapper")
                 .build();
 
-        AnchorWrapper titleImageAnchorWrapper = AnchorWrapper.newBuilder()
+        TextWrapper companyName = TextWrapper.newBuilder()
+                .setCssid(CSSID.PROGRAMM_NAME)
                 .setParentAnchor(titleAnchorWrapper.getElement())
                 .setCoordinate(new Coordinate(10d, null, null, 70d))
-                .setCSSid(CSSID.TITLE_WINDOW_IMG)
-                .setName("titleImageAnchorWrapper")
+                .setFont(FontsStore.ROBOTO_BOLD)
+                .setFontSize(50)
+                .setText("KOMFORT")
                 .build();
+
+//        AnchorWrapper titleImageAnchorWrapper = AnchorWrapper.newBuilder()
+//                .setParentAnchor(titleAnchorWrapper.getElement())
+//                .setCoordinate(new Coordinate(10d, null, null, 70d))
+//                .setCSSid(CSSID.TITLE_WINDOW_IMG)
+//                .setName("titleImageAnchorWrapper")
+//                .build();
 
         AnchorWrapper verticalMenuAnchorWrapper = AnchorWrapper.newBuilder()
                 .setParentAnchor(window.getTopVisibleAnchor())
@@ -87,7 +96,8 @@ public class LeftAndTopMenuGuiStructura extends GuiStructura {
         nodes.add(textAnchorWrapper);
         nodes.add(iconAnchorWrapper);
         nodes.add(leftCideMenuCommonText);
-        nodes.add(titleImageAnchorWrapper);
+//        nodes.add(titleImageAnchorWrapper);
+        nodes.add(companyName);
 
     }
 

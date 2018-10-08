@@ -30,7 +30,7 @@ public abstract class TargetPanel {
 
     private void createInnerLevelPane() {
         innerAnchorPane= AnchorWrapper.newBuilder()
-                .setCoordinate(new Coordinate(10d, 10d, 10d, 10d))
+                .setCoordinate(new Coordinate(0d, 0d, 0d, 0d))
                 .setParentAnchor(commonAnchorPane)
                 .build().getElement();
 

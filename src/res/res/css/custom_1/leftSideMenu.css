@@ -57,7 +57,9 @@
 
 #LEFT_SIDE_MENU_COMMON_TEXT{
 
-    -fx-fill:#22515B;
+      /* -fx-fill:#22515B; */
+          -fx-fill:#f1f1f1;
+
     -fx-opacity:0.6;
 }
 #LEFT_SIDE_MENU_ICON_TEXT_PANEL{

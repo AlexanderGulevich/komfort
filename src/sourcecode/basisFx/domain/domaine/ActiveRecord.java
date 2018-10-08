@@ -105,29 +105,29 @@ public abstract class ActiveRecord {
     // getAll(list) записывает в  list значения ReturnSet БД
     // далее идет преобразование каждой строки БД в HashMap, где ключем является id
     // а значение ComboBoxValue для вставки в ComboBox
-    public HashMap<Integer,ComboBoxValue> toComboBoxValHashMap(ObservableList<ActiveRecord> list, StringGetterFromDomain stringGetterFromDomain){
-        list.clear();
-        getAll();
-
-        HashMap<Integer,ComboBoxValue> hm=new HashMap<>();
-
-        for (ActiveRecord domainObject : list) {
-
-            Integer id = domainObject.getId();
-
-            ComboBoxValue comboBoxValue = new ComboBoxValue(
-                    stringGetterFromDomain.get(domainObject),
-                    domainObject.getId()
-            );
-
-            hm.put(id,comboBoxValue);
-
-
-        }
-
-        return hm;
-
-    }
+//    public HashMap<Integer,ComboBoxValue> toComboBoxValHashMap(ObservableList<ActiveRecord> list, StringGetterFromDomain stringGetterFromDomain){
+//        list.clear();
+//        getAll();
+//
+//        HashMap<Integer,ComboBoxValue> hm=new HashMap<>();
+//
+//        for (ActiveRecord domainObject : list) {
+//
+//            Integer id = domainObject.getId();
+//
+//            ComboBoxValue comboBoxValue = new ComboBoxValue(
+//                    stringGetterFromDomain.get(domainObject),
+//                    domainObject.getId()
+//            );
+//
+//            hm.put(id,comboBoxValue);
+//
+//
+//        }
+//
+//        return hm;
+//
+//    }
 
     public ObservableList<ComboBoxValue> toComboBoxValueList(ObservableList<ActiveRecord> list){
         list.clear();

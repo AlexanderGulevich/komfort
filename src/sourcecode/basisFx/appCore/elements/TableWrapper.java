@@ -9,6 +9,8 @@ import basisFx.appCore.table.TableListener;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.Set;
+
 import basisFx.appCore.settings.CSSID;
 import basisFx.appCore.settings.FontsStore;
 import javafx.beans.property.ReadOnlyDoubleProperty;
@@ -74,6 +76,11 @@ public  class TableWrapper extends AppNode  {
 
         element =new TableView<>(list);
         element.setId(CSSID.TABLE.get());
+
+        Set<Node> nodes = element.lookupAll(".sheet");
+        for (Node node : nodes) {
+//            ((Group) node).bo
+        }
 
         applyColumnResizePolicy();
         applyColums();
@@ -141,11 +148,11 @@ public  class TableWrapper extends AppNode  {
 
         if (columnWrappers != null) {
             for (ColumnWrapper cw : columnWrappers) {
-                cw.setTableWrapper(this);
 //             cw.setEditPoliticy(editCreater.editCreate());
 //             cw.initEditPoliticy();
-                element.getColumns().addAll(cw.getColumn());
+                element.getColumns().add(cw.getColumn());
                 applyColumsSize(cw);
+                cw.tableWrapper=this;
             }
         }
 
@@ -164,7 +171,7 @@ public  class TableWrapper extends AppNode  {
         TableColumn column = columnWrapper.getColumn();
         column.prefWidthProperty()
                 .bind(this.element.widthProperty().multiply(
-                        columnWrapper.getColumnSize()
+                        columnWrapper.columnSize
                 ));
     }
     private void applyTablesWidthProperty() {
@@ -380,7 +387,7 @@ public  class TableWrapper extends AppNode  {
             return this;
         }
 
-        public Builder setColumnWrappers(ColumnWrapper[] val) {
+        public Builder setColumnWrappers(ColumnWrapper... val) {
             columnWrappers = val;
             return this;
         }

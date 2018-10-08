@@ -15,8 +15,8 @@
 #TEXT_ICON_ANCHOR{}
 #MAIN_CONTENT_ANCHOR{
 
-         /* -fx-background-color: #ECF1F2; */
-                -fx-background-color: #f9f9f9;
+         -fx-background-color: #ffffff;
+                /* -fx-background-color: #f9f9f9; */
             /* -fx-background-color: #fefeff; */
 
      /*-fx-background-color: #fcfcfd;*/
@@ -25,9 +25,9 @@
      -fx-padding:0;
 
 
-        -fx-border-width: 0.0 0 0 0.1;
-        -fx-border-insets:0 0 0 0.1;
-        -fx-border-color: #28385e;
+        -fx-border-width: 0 0.3 0.3 0.2;
+        -fx-border-insets:1 1 1 1;
+        -fx-border-color: #3e4658;
 
      /*-fx-background-color: #F7F4FB;-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.4), 10, 0.5, 0.0, 0.0);*/
 
@@ -39,7 +39,7 @@
 
      -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.9), 3, 0.05, 0.0, 0.0);
      /*-fx-effect: dropshadow(three-pass-box, black, 30, 0.5, 0, 0);*/
-   -fx-background-color:  white;
+   -fx-background-color:  #ffffff;
    /*-fx-opacity:0.01;
 /*    -fx-background-image: url("/res/img/webtreatsetc-3.jpg");
     -fx-background-repeat: repeat-x;
@@ -49,6 +49,17 @@
 
 
 }
+
+#PROGRAMM_NAME{
+
+    -fx-text-fill: #ffffff;
+    -fx-color: #ffffff;
+    -fx-fill:#ffffff;
+
+
+}
+
+
 #TITLE_WINDOW_TEXT{
 
     /*-fx-fill:  #7ea2ae;*/
@@ -75,6 +86,8 @@
 #TITLE_PANEL{
 /*-fx-pref-height:40;*/
 
+/* -fx-background-color:  #0f3840; */
+    -fx-background-color:  #436271;
 
 
  -fx-border-width: 0 0 1 0;

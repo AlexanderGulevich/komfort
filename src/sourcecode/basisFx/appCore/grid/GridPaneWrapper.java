@@ -93,10 +93,11 @@ public  class GridPaneWrapper extends AppNode {
 
         if (name != null) {
             label =LabelWrapper.newBuilder()
+                    .setCssid(CSSID.LABEL_TEXT)
                     .setName(name)
                     .setFont(FontsStore.ROBOTO_LIGHT)
                     .setAlignment(Pos.BASELINE_LEFT)
-                    .setFontSize(20d)
+                    .setFontSize(25d)
                     .build();
         }
 

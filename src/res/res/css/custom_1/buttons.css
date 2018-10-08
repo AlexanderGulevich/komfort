@@ -1,5 +1,6 @@
 #TOP_CONTROL_BUTTON:focused{
-    -fx-text-fill:#5f7d8b;
+    /* -fx-text-fill:#5f7d8b; */
+        -fx-text-fill:#ddd790;
     -fx-border-radius:0;
     /*-fx-border-color:#57b75733;*/
      /*-fx-background-color: transparent;*/
@@ -17,6 +18,7 @@
 }
 #TOP_CONTROL_BUTTON{
     -fx-text-fill:#5f7d8b;
+        -fx-text-fill:#ddd790;
     -fx-background-color:transparent;
     -fx-border-radius:0;
     -fx-background-insets: 0, 0, 0, 0;

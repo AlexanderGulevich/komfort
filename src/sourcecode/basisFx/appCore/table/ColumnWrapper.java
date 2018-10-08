@@ -7,16 +7,13 @@ import javafx.beans.value.WritableValue;
 import javafx.scene.control.TableColumn;
 public  abstract class ColumnWrapper<T,K> {
 
-    protected TableWrapper tableWrapper;
-    protected String propertyName;
-    protected String columnName;
-    protected double columnSize;
-    protected Boolean isEditeble;
+    public TableWrapper tableWrapper;
+    public String propertyName;
+    public String columnName;
+    public Double columnSize;
+    public Boolean isEditeble;
     protected static String message=   "Произошла ошибка.\nВ поле было введено неправильное значение.";
 
-    public ColumnWrapper() {
-        setOnEditCommit();
-    }
 
 
     public abstract void setOnEditCommit(); //todo ИЗМЕНЯТЬ ДОМЕН БЕЗ ЛЯМБДЫ
