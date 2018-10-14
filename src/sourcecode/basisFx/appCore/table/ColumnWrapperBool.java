@@ -1,14 +1,12 @@
 package basisFx.appCore.table;
 
 import basisFx.appCore.elements.TableWrapper;
-import basisFx.domain.domaine.ActiveRecord;
+import basisFx.domain.ActiveRecord;
 import javafx.beans.value.ObservableValue;
 import javafx.beans.value.WritableValue;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
-
-import java.time.LocalDate;
 
 public class ColumnWrapperBool<T> extends ColumnWrapper{
 

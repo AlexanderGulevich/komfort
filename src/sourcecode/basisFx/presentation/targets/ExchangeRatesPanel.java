@@ -1,28 +1,15 @@
-//package basisFx.presentation.targets;
-//
-//import basisFx.appCore.controls.KindOfColumn;
-//import basisFx.appCore.grid.TablesButtonKind;
-//import basisFx.appCore.elements.TableWrapper;
-//import basisFx.appCore.grid.GridColWidth;
-//import basisFx.appCore.grid.GridTablesBuilder;
-//import basisFx.appCore.grid.KindOfGridCol;
-//import basisFx.appCore.utils.Coordinate;
-//import basisFx.domain.domaine.Currency;
-//import basisFx.domain.domaine.ExchangeRates;
-//import javafx.scene.layout.AnchorPane;
-//
-//import java.time.LocalDate;
-//
-//public class ExchangeRatesPanel extends TargetPanel{
-//
-//    private TableWrapper currencyTable;
-//    private TableWrapper rateTable;
-//    private AnchorPane currencySide;
-//    private AnchorPane rateSide;
-//
-//    @Override
-//    protected void configurate() {
-//
+package basisFx.presentation.targets;
+
+import basisFx.presentation.TargetPanel;
+
+public class ExchangeRatesPanel extends TargetPanel {
+
+    @Override
+    public void init() {
+
+    }
+    protected void inift() {
+
 //        GridTablesBuilder observed=new GridTablesBuilder();
 //        observed.setTitle("Список валют");
 //        observed.setTablesButtonKind(TablesButtonKind.Bottom_right);
@@ -54,11 +41,11 @@
 //
 //
 //
-//
-//
-//
-//
-//
-//    }
-//
-//}
+
+
+
+
+
+    }
+
+}

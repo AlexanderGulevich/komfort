@@ -1,9 +1,6 @@
 package basisFx.appCore.table;
 
 import basisFx.appCore.elements.TableWrapper;
-import basisFx.domain.domaine.ActiveRecord;
-import javafx.beans.value.ObservableValue;
-import javafx.beans.value.WritableValue;
 import javafx.scene.control.TableColumn;
 public  abstract class ColumnWrapper<T,K> {
 

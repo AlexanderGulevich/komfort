@@ -3,13 +3,12 @@ package basisFx.appCore.elements;
 import basisFx.appCore.Mediator;
 import basisFx.appCore.table.ColumnWrapper;
 import basisFx.appCore.events.AppEvent;
-import basisFx.domain.domaine.ActiveRecord;
+import basisFx.domain.ActiveRecord;
 import basisFx.dataSource.UnitOfWork;
 import basisFx.appCore.table.TableListener;
 
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.Set;
 
 import basisFx.appCore.settings.CSSID;
 import basisFx.appCore.settings.FontsStore;
@@ -68,19 +67,12 @@ public  class TableWrapper extends AppNode  {
         parentWidthProperty=builder.parentWidthProperty;
         isEditable=builder.isEditable;
 
-
         createActiveRecord(builder);
-
 
         list=activeRecord.getAll();
 
         element =new TableView<>(list);
         element.setId(CSSID.TABLE.get());
-
-        Set<Node> nodes = element.lookupAll(".sheet");
-        for (Node node : nodes) {
-//            ((Group) node).bo
-        }
 
         applyColumnResizePolicy();
         applyColums();
@@ -97,6 +89,10 @@ public  class TableWrapper extends AppNode  {
         setClickedUpDownRowDetection();
 
 
+    }
+
+    public Mediator getMediator() {
+        return mediator;
     }
 
     private void createActiveRecord(Builder builder) {

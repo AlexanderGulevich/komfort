@@ -1,4 +1,4 @@
-package basisFx.domain.domaine;
+package basisFx.domain;
 
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.ObservableList;
@@ -19,15 +19,14 @@ public class ComboBoxValue extends ActiveRecord{
         this.stringValue.set(stringValue);
     }
 
-    public ComboBoxValue() {
-
-    }
     public ComboBoxValue(String str, int id) {
+        super("ComboBoxValue");
         stringValue.set(str);
         setId(id);
 
     }
     public ComboBoxValue(String str) {
+        super("ComboBoxValue");
         stringValue.set(str);
     }
 

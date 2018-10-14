@@ -2,7 +2,7 @@
 //
 //import basisFx.appCore.KindOfSubmitElement;
 //import basisFx.appCore.table.ColumnWrapper;
-//import basisFx.domain.domaine.ActiveRecord;
+//import basisFx.domain.ActiveRecord;
 //import basisFx.appCore.elements.AppNode;
 //import basisFx.appCore.elements.TableWrapper;
 //import basisFx.appCore.utils.Coordinate;

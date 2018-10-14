@@ -2,7 +2,7 @@ package basisFx.appCore.table;
 
 import basisFx.appCore.elements.TableWrapper;
 import basisFx.appCore.settings.CSSID;
-import basisFx.domain.domaine.ActiveRecord;
+import basisFx.domain.ActiveRecord;
 import javafx.beans.value.ObservableValue;
 import javafx.beans.value.WritableValue;
 import javafx.scene.control.DatePicker;

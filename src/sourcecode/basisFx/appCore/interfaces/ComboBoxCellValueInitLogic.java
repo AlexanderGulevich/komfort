@@ -1,7 +1,7 @@
 package basisFx.appCore.interfaces;
 
 
-import basisFx.domain.domaine.ActiveRecord;
+import basisFx.domain.ActiveRecord;
 import javafx.beans.property.SimpleObjectProperty;
 
 public interface ComboBoxCellValueInitLogic<T> {

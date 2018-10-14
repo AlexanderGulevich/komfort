@@ -2,15 +2,15 @@ package basisFx.appCore;
 
 import basisFx.appCore.elements.AppNode;
 import basisFx.appCore.elements.TableWrapper;
-import basisFx.domain.domaine.ActiveRecord;
+import basisFx.domain.ActiveRecord;
 import javafx.collections.ObservableList;
 
-public class TwoLinkedTablesMediator implements Mediator {
+public class MediatorTwoLinkedTable implements Mediator {
 
     private  TableWrapper primaryTableWrapper;
     private  TableWrapper accessoryTableWrapper;
 
-    public TwoLinkedTablesMediator(TableWrapper primaryTableWrapper, TableWrapper accessoryTableWrapper) {
+    public MediatorTwoLinkedTable(TableWrapper primaryTableWrapper, TableWrapper accessoryTableWrapper) {
         this.primaryTableWrapper = primaryTableWrapper;
         this.primaryTableWrapper.setMediator(this);
         this.accessoryTableWrapper = accessoryTableWrapper;
@@ -26,6 +26,17 @@ public class TwoLinkedTablesMediator implements Mediator {
             //todo create exeption
     }
 
+    @Override
+    public void wasRemoved(AppNode node, ActiveRecord record) {
+
+    }
+
+    @Override
+    public void wasChanged(AppNode node, ActiveRecord record) {
+
+    }
+
+
     private void refreshAccessoryTable(ActiveRecord record) {
 
         if (record.getId() !=null) {
@@ -37,5 +48,8 @@ public class TwoLinkedTablesMediator implements Mediator {
 
         }
     }
+
+
+
 }
 

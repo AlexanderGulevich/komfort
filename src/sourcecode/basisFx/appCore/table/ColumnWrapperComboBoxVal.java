@@ -2,8 +2,8 @@ package basisFx.appCore.table;
 
 import basisFx.appCore.elements.TableWrapper;
 import basisFx.appCore.settings.CSSID;
-import basisFx.domain.domaine.ActiveRecord;
-import basisFx.domain.domaine.ComboBoxValue;
+import basisFx.domain.ActiveRecord;
+import basisFx.domain.ComboBoxValue;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.scene.control.ComboBox;

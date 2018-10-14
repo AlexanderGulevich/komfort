@@ -1,7 +1,6 @@
 package basisFx.appCore.table;
 
-import basisFx.appCore.elements.TableWrapper;
-import basisFx.domain.domaine.ActiveRecord;
+import basisFx.domain.ActiveRecord;
 import javafx.beans.value.ObservableValue;
 import javafx.beans.value.WritableValue;
 import javafx.scene.control.TableColumn;
@@ -12,7 +11,6 @@ public class ColumnWrapperString<T> extends ColumnWrapper{
     protected TableColumn<T,String> column;
 
     private ColumnWrapperString(Builder builder) {
-        tableWrapper = builder.tableWrapper;
         propertyName = builder.propertyName;
         columnName = builder.columnName;
         columnSize = builder.columnSize;
@@ -30,10 +28,6 @@ public class ColumnWrapperString<T> extends ColumnWrapper{
             column.setPrefWidth(columnSize);
         }
 
-
-
-
-
     }
 
     public static Builder newBuilder() {
@@ -44,12 +38,14 @@ public class ColumnWrapperString<T> extends ColumnWrapper{
     public void setOnEditCommit() {
         column.setOnEditCommit((event) -> {
             if (checkValue(event)) {
-                ActiveRecord domain = (ActiveRecord) event.getRowValue();
                 int row = event.getTablePosition().getRow();
-                ObservableValue<String> v = event.getTableColumn().getCellObservableValue(row);
-                if (v instanceof WritableValue) {
-                    ((WritableValue<String>)v).setValue(event.getNewValue());
+                ObservableValue<String> value = event.getTableColumn().getCellObservableValue(row);
+                if (value instanceof WritableValue) {
+                    ((WritableValue<String>)value).setValue(event.getNewValue());
                 }
+
+                ActiveRecord domain = (ActiveRecord) event.getRowValue();
+                tableWrapper.getMediator().wasChanged(tableWrapper,domain);
 
             };
         });
@@ -63,22 +59,25 @@ public class ColumnWrapperString<T> extends ColumnWrapper{
 
     @Override
     protected boolean checkValue(TableColumn.CellEditEvent event) {
+        String value = (String) event.getNewValue();
+        value=value.trim();
+        value=value;
+//        int row = event.getTablePosition().getRow();
+//        ObservableValue<String> observableValue = event.getTableColumn().getCellObservableValue(row);
+//        String value= observableValue.getValue().trim();
+        if (value.length()==0){
+            return false;
+        }
         return true;
     }
 
     public static final class Builder {
-        private TableWrapper tableWrapper;
         private String propertyName;
         private String columnName;
         private double columnSize;
         private Boolean isEditeble;
 
         private Builder() {
-        }
-
-        public Builder setTableWrapper(TableWrapper val) {
-            tableWrapper = val;
-            return this;
         }
 
         public Builder setPropertyName(String val) {

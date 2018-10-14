@@ -1,6 +1,6 @@
 //package basisFx.domain.mapper;
 //
-//import basisFx.domain.domaine.ActiveRecord;
+//import basisFx.domain.ActiveRecord;
 //import basisFx.dataSource.Db;
 //import basisFx.appCore.domainScetch.BoolComboBox;
 //import basisFx.appCore.domainScetch.DomainObject;

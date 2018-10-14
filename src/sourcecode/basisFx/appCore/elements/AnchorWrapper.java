@@ -10,17 +10,16 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import javafx.stage.Stage;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 
 public class AnchorWrapper  extends AppNode  {
 
-
     protected AnchorPane element;
     protected Insets insects;
     protected FontsStore font;
     protected double fontSize;
+
 
     public AnchorPane getElement() {
         return element;
@@ -50,9 +49,6 @@ public class AnchorWrapper  extends AppNode  {
         applyCssId();
         applyPadding();
         elocateEvents();
-
-
-
 
     }
 
@@ -95,6 +91,7 @@ public class AnchorWrapper  extends AppNode  {
         private Insets insects;
         private FontsStore font;
         private double fontSize;
+
 
         private Builder() {
         }

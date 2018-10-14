@@ -1,4 +1,4 @@
-package basisFx.domain.domaine;
+package basisFx.domain;
 
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;

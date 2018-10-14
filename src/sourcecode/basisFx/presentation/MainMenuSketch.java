@@ -33,7 +33,7 @@ public class MainMenuSketch extends MenuSketch {
                                     .build(),
                             FontItemLeaf.newBuilder()
                                     .setDescription("Курсы")
-//                                    .setTargetCreator(fm.exchangeRatesPanel())
+                                    .setTargetCreator(EquipmentPanel::new)
                                     .build()
                 ),
 

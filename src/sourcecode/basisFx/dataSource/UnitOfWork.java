@@ -1,6 +1,6 @@
 
 package basisFx.dataSource;
-import basisFx.domain.domaine.ActiveRecord;
+import basisFx.domain.ActiveRecord;
 
 import java.sql.SQLException;
 import java.util.*;
@@ -22,7 +22,7 @@ public class UnitOfWork {
         ArrayList<ActiveRecord> records = dirtyDomainObjects.get(activeRecordName);
         records.add(record);
     }
-    public void registercDeletedDomainObject(String activeRecordName,ActiveRecord record){
+    public void registercDeleted(String activeRecordName, ActiveRecord record){
         listNullCheck(deletedDomainObject,activeRecordName);
         ArrayList<ActiveRecord> records = deletedDomainObject.get(activeRecordName);
         records.add(record);
@@ -57,14 +57,14 @@ public class UnitOfWork {
     }
 
     public void commit() throws SQLException{
-        updateNew();
-        updateDirty();
-        updateDeleted();
+        commitNew();
+        commitDirty();
+        commitDeleted();
         cleardDeleted();
         clearDirty();
         clearNew();
     }
-    public void updateNew(){
+    public void commitNew(){
         Set<ActiveRecord> recordsSet=iterateHMapAndGetAllDomainObjects(newDomainObjects);
 
         for (Iterator<ActiveRecord> iterator = recordsSet.iterator(); iterator.hasNext();) {
@@ -74,7 +74,7 @@ public class UnitOfWork {
             }
         }
     }
-    public void updateDirty(){
+    public void commitDirty(){
 
         Set<ActiveRecord> recordsSet=iterateHMapAndGetAllDomainObjects(dirtyDomainObjects);
 
@@ -85,7 +85,7 @@ public class UnitOfWork {
             }
         }
     }
-    public void updateDeleted(){
+    public void commitDeleted(){
         Set<ActiveRecord> recordsSetDeleted=iterateHMapAndGetAllDomainObjects(deletedDomainObject);
         Set<ActiveRecord> recordsSetNew=iterateHMapAndGetAllDomainObjects(newDomainObjects);
 
@@ -100,10 +100,10 @@ public class UnitOfWork {
     }
 
     private  Set<ActiveRecord>  iterateHMapAndGetAllDomainObjects(HashMap <String,ArrayList<ActiveRecord>>map) {
-        Set<ActiveRecord> recordsSet=null;
+        Set<ActiveRecord> recordsSet = Collections.newSetFromMap(new ConcurrentHashMap<ActiveRecord, Boolean>() {});
+
         for (String s : map.keySet()) {
             ArrayList<ActiveRecord> activeRecords = map.get(s);
-            recordsSet = Collections.newSetFromMap(new ConcurrentHashMap<ActiveRecord, Boolean>() {});
             recordsSet.addAll(activeRecords);
         }
 

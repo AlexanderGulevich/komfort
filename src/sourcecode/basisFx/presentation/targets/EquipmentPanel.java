@@ -1,16 +1,13 @@
 package basisFx.presentation.targets;
 
-import basisFx.appCore.SingleTableMediator;
+import basisFx.appCore.MdiatorSingleTable;
 import basisFx.appCore.elements.TableWrapper;
 import basisFx.appCore.grid.ButtomRightMiddleBig;
-import basisFx.appCore.grid.ButtonNon;
 import basisFx.appCore.grid.GridPaneWrapper;
 import basisFx.appCore.table.ColumnWrapperString;
 import basisFx.appCore.utils.Coordinate;
 import basisFx.domain.Equipment;
 import basisFx.presentation.TargetPanel;
-
-import java.lang.reflect.Method;
 
 public class EquipmentPanel extends TargetPanel {
 
@@ -18,29 +15,19 @@ public class EquipmentPanel extends TargetPanel {
     @Override
     public void init() {
 
-        System.err.println("EquipmentPanel.init".toUpperCase());
-
         TableWrapper tableWrapper = TableWrapper.newBuilder()
                 .setActiveRecordClass(Equipment.class)
                 .setUnitOfWork(unitOfWork)
                 .setIsEditable(true)
                 .setIsSortableColums(false)
-                .setMediator(new SingleTableMediator())
+                .setMediator(new MdiatorSingleTable())
                 .setColumnWrappers(
                         ColumnWrapperString.newBuilder()
                                 .setColumnName("Наименование")
-                                .setColumnSize(0.7d)
+                                .setColumnSize(1d)
                                 .setIsEditeble(true)
                                 .setPropertyName("name")
                                 .build()
-                        ,
-                        ColumnWrapperString.newBuilder()
-                                .setColumnName("Количество")
-                                .setColumnSize(0.3d)
-                                .setIsEditeble(true)
-                                .setPropertyName("name")
-                                .build()
-
 
                 )
                 .build();

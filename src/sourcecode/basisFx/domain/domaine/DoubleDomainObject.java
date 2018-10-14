@@ -1,7 +1,5 @@
 package basisFx.domain.domaine;
 
-import javafx.beans.property.SimpleObjectProperty;
-
 //public class DoubleDomainObject extends DomainObject {
 //
 //    private SimpleObjectProperty<Double> doubleValue =new SimpleObjectProperty(this, "doubleValue", null);
