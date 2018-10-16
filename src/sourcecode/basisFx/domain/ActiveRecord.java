@@ -14,6 +14,7 @@ public abstract class ActiveRecord {
     public  abstract ComboBoxValue toComboBoxValue();
     public abstract ObservableList <ActiveRecord>  getAll();
     public abstract void update();
+    public abstract ActiveRecord find(int id);
     public abstract void insert();
     public ActiveRecord(String entityName) {
         this.entityName = entityName;
@@ -24,6 +25,7 @@ public abstract class ActiveRecord {
     public void setId(int value) {
         this.id.set(value);
     }
+    public  static ActiveRecord getInstance(){return  null;};
     public boolean isReadyToTransaction(){
         boolean isReady=false;
         Class<? extends ActiveRecord> aClass = this.getClass();

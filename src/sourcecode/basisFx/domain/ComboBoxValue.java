@@ -30,6 +30,10 @@ public class ComboBoxValue extends ActiveRecord{
         stringValue.set(str);
     }
 
+    public ComboBoxValue() {
+        super(" ");
+    }
+
     public String toString(){
 
         return this.stringValue.get();
@@ -55,6 +59,11 @@ public class ComboBoxValue extends ActiveRecord{
     @Override
     public void update() {
 
+    }
+
+    @Override
+    public ActiveRecord find(int id) {
+        return null;
     }
 
     @Override

@@ -2,7 +2,9 @@ package basisFx.presentation;
 
 import basisFx.appCore.menu.*;
 import basisFx.appCore.settings.FontsStore;
+import basisFx.presentation.targets.CounterpartyPanel;
 import basisFx.presentation.targets.EquipmentPanel;
+import basisFx.presentation.targets.ExchangeRatesPanel;
 
 public class MainMenuSketch extends MenuSketch {
 
@@ -33,7 +35,7 @@ public class MainMenuSketch extends MenuSketch {
                                     .build(),
                             FontItemLeaf.newBuilder()
                                     .setDescription("Курсы")
-                                    .setTargetCreator(EquipmentPanel::new)
+                                    .setTargetCreator(ExchangeRatesPanel::new)
                                     .build()
                 ),
 
@@ -133,7 +135,7 @@ public class MainMenuSketch extends MenuSketch {
                                             .build(),
                                     FontItemLeaf.newBuilder()
                                             .setDescription("Контрагенты")
-//                                            .setTargetCreator(fm.counterpartyPanel())
+                                            .setTargetCreator(CounterpartyPanel::new)
                                             .build()
                 ),
 

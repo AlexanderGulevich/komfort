@@ -41,10 +41,10 @@ public class MediatorTwoLinkedTable implements Mediator {
 
         if (record.getId() !=null) {
 
-            ObservableList<ActiveRecord> listFromDataStore = accessoryTableWrapper.activeRecord.getAllByRelatedId(record.getId());
-            ObservableList<ActiveRecord> tablesItems = accessoryTableWrapper.getElement().getItems();
-            tablesItems.clear();
-            tablesItems.addAll(listFromDataStore);
+//            ObservableList<ActiveRecord> listFromDataStore = accessoryTableWrapper.activeRecord.getAllByRelatedId(record.getId());
+//            ObservableList<ActiveRecord> tablesItems = accessoryTableWrapper.getElement().getItems();
+//            tablesItems.clear();
+//            tablesItems.addAll(listFromDataStore);
 
         }
     }

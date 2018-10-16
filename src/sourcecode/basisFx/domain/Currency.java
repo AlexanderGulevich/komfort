@@ -11,10 +11,15 @@ import java.sql.Statement;
 
 public class Currency extends ActiveRecord {
 
+    private static Currency INSTANCE = new Currency();
     private SimpleObjectProperty<String> name =new SimpleObjectProperty<>(this, "name", null);
 
     public Currency() {
         super("Currency");
+    }
+
+    public static Currency getInstance() {
+        return INSTANCE;
     }
 
     public String getName() {
@@ -69,6 +74,27 @@ public class Currency extends ActiveRecord {
     }
 
     @Override
+    public Currency find(int id) {
+        Currency pojo=new Currency() ;
+        String expression="SELECT  FROM " +"Currency"+" WHERE ID=?";
+
+        try {
+            PreparedStatement pstmt = Db.connection.prepareStatement(expression);
+            pstmt.setInt(1, id);
+            ResultSet rs = pstmt.executeQuery();
+
+            while (rs.next()){
+                pojo.setId(rs.getInt("id"));
+                pojo.setName(rs.getString("name"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return pojo;
+
+    }
+
+    @Override
     public void insert() {
         try {
             if(isReadyToTransaction()) {
@@ -83,8 +109,4 @@ public class Currency extends ActiveRecord {
         }
     }
 
-    @Override
-    public ObservableList<ActiveRecord> getAllByRelatedId(Integer id) {
-        return null;
-    }
 }

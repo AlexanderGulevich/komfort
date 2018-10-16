@@ -7,6 +7,8 @@ import basisFx.appCore.grid.GridPaneWrapper;
 import basisFx.appCore.table.ColumnWrapperComboBoxVal;
 import basisFx.appCore.table.ColumnWrapperString;
 import basisFx.appCore.utils.Coordinate;
+import basisFx.domain.Counterparty;
+import basisFx.domain.Currency;
 import basisFx.presentation.TargetPanel;
 
 public class CounterpartyPanel extends TargetPanel {
@@ -27,11 +29,12 @@ public class CounterpartyPanel extends TargetPanel {
                                 .setPropertyName("name")
                                 .build(),
                         ColumnWrapperComboBoxVal.newBuilder()
-                        .setColumnName("Валюта ")
-                        .setIsEditeble(true)
-                        .setColumnSize(0.4d)
-                        .setColumnName("currency")
-                        .build()
+                                .setColumnName("Валюта ")
+                                .setIsEditeble(true)
+                                .setColumnSize(0.4d)
+                                .setColumnName("currency")
+                                .setDomainClass(Currency.class)
+                                .build()
 
                 )
                 .build();

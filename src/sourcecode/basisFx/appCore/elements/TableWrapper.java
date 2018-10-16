@@ -144,8 +144,6 @@ public  class TableWrapper extends AppNode  {
 
         if (columnWrappers != null) {
             for (ColumnWrapper cw : columnWrappers) {
-//             cw.setEditPoliticy(editCreater.editCreate());
-//             cw.initEditPoliticy();
                 element.getColumns().add(cw.getColumn());
                 applyColumsSize(cw);
                 cw.tableWrapper=this;

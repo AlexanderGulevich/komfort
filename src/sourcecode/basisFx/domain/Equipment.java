@@ -12,10 +12,15 @@ import java.sql.Statement;
 
 public class Equipment  extends ActiveRecord {
 
+    private static Equipment INSTANCE = new Equipment();
     private SimpleObjectProperty<String> name =new SimpleObjectProperty<>(null, "name", null);
 
     public Equipment() {
         super("Equipment");
+    }
+
+    public static Equipment getInstance() {
+        return INSTANCE;
     }
 
     public String getName() {
@@ -77,6 +82,27 @@ public class Equipment  extends ActiveRecord {
             e.printStackTrace();
         }
     }
+
+    @Override
+    public Equipment find(int id) {
+        Equipment pojo=new Equipment() ;
+        String expression="SELECT  FROM " +"Equipment"+" WHERE ID=?";
+
+        try {
+            PreparedStatement pstmt = Db.connection.prepareStatement(expression);
+            pstmt.setInt(1, id);
+            ResultSet rs = pstmt.executeQuery();
+
+            while (rs.next()){
+                pojo.setId(rs.getInt("id"));
+                pojo.setName(rs.getString("name"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return pojo;
+    }
+
     @Override
     public void insert() {
 

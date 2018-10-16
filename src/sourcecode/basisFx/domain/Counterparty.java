@@ -10,18 +10,32 @@ import java.sql.Statement;
 
 public class Counterparty extends ActiveRecord {
 
+    private static Counterparty INSTANCE = new Counterparty();
     private SimpleObjectProperty<String> name =new SimpleObjectProperty(this, "name", null);
-    private SimpleObjectProperty<Integer> currencyId =new SimpleObjectProperty<>(this, "currencyId", null);
+    private SimpleObjectProperty<Currency> currency =new SimpleObjectProperty<>(this, "currencyId", null);
 
     public Counterparty( ) {
         super("Counterparty");
     }
 
+    public static Counterparty getInstance() {
+        return INSTANCE;
+    }
     @Override
     public ComboBoxValue toComboBoxValue() {
         return  new ComboBoxValue(name.get(),id.get());
     }
 
+    public Currency getCurrency() {
+        return currency.get();
+    }
+    public SimpleObjectProperty<Currency> currencyProperty() {
+        return currency;
+    }
+
+    public void setCurrency(Currency currency) {
+        this.currency.set(currency);
+    }
 
     public String getName() {
         return name.get();
@@ -31,21 +45,8 @@ public class Counterparty extends ActiveRecord {
         return name;
     }
 
-    public ComboBoxValue getCurrencyId() {
-        return currencyId.get();
-    }
-
-    public SimpleObjectProperty<ComboBoxValue> currencyIdProperty() {
-        SimpleObjectProperty<ComboBoxValue> currencyId =new SimpleObjectProperty<>(this, "currencyId", null);
-        return currencyId;
-    }
-
     public void setName(String name) {
         this.name.set(name);
-    }
-
-    public void setCurrencyId(int currencyId) {
-        this.currencyId.set(currencyId);
     }
 
     @Override
@@ -59,92 +60,77 @@ public class Counterparty extends ActiveRecord {
                 Counterparty pojo=new Counterparty();
                 pojo.setId(rs.getInt("id"));
                 pojo.setName(rs.getString("name"));
-                pojo.setCurrencyId(rs.getInt("currencyId"));
+                pojo.setCurrency(Currency.getInstance().find(  rs.getInt("currencyId")));
                 list.add(pojo);
-
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
+        return list;
     }
 
     @Override
     public void update() {
-
-    }
-
-    @Override
-    public void insert() {
-
-    }
-
-    @Override
-    public ObservableList<ActiveRecord> getAllByRelatedId(Integer id) {
-        return null;
-    }
-
-
-    @Override
-    public void update(DomainObject d)   {
-
-
-        Counterparty counterparty= (Counterparty) d;
-
-        if(isReadyToTransaction(counterparty)) {
-
-
+        if(isReadyToTransaction()) {
             String expression = "UPDATE " + "Counterparty" + " SET  " +
                     " name = ?," +
                     " currencyId = ?" +
                     " WHERE id= ?";
-
             PreparedStatement pstmt = null;
-
             try {
-                pstmt = Db.getConnection().prepareStatement(expression);
-
-                pstmt.setName(1, counterparty.getName());
-                pstmt.setInt(2, counterparty.getCurrencyId().getId());
-                pstmt.setInt(3, counterparty.getId());
-
+                pstmt = Db.connection.prepareStatement(expression);
+                pstmt.setString(1, name.get());
+                pstmt.setInt(2, currency.get().getId());
+                pstmt.setInt(3, id.get());
 
                 pstmt.executeUpdate();
             } catch (SQLException e) {
                 e.printStackTrace();
             }
         }
-
     }
 
     @Override
-    public void delete(DomainObject d)   {
-        super.delete(d,"Counterparty");
-    }
-
-    @Override
-    public void insert(DomainObject d)   {
-
+    public void insert() {
         try {
-            if(isReadyToTransaction(d)) {
+            if(isReadyToTransaction()) {
 
-                Counterparty domainObject = (Counterparty) d;
+                String expression = "INSERT INTO " + "Counterparty"
+                        + "(name ,"
+                        + "currencyId"
+                        + ") VALUES(?,?)";
 
-                    String expression = "INSERT INTO " + "Counterparty"
-                            + "(name ,"
-                            + "currencyId"
-                            + ") VALUES(?,?)";
+                PreparedStatement pstmt = Db.connection.prepareStatement(expression);
+                pstmt.setString(1,name.get());
+                pstmt.setInt(2, currency.get().getId());
 
-                    PreparedStatement pstmt = Db.getConnection().prepareStatement(expression);
-                    pstmt.setName(1, domainObject.getName());
-                    pstmt.setInt(2, domainObject.getCurrencyId().getId());
-
-                    pstmt.executeUpdate();
+                pstmt.executeUpdate();
 
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public Counterparty find(int id) {
+        Counterparty pojo=new Counterparty() ;
+        String expression="SELECT  FROM " +"Counterparty"+" WHERE ID=?";
+
+        try {
+            PreparedStatement pstmt = Db.connection.prepareStatement(expression);
+            pstmt.setInt(1, id);
+            ResultSet rs = pstmt.executeQuery();
+
+            while (rs.next()){
+                pojo.setId(rs.getInt("id"));
+                pojo.setName(rs.getString("name"));
+                pojo.setCurrency(Currency.getInstance().find(rs.getInt("currencyId")));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return pojo;
 
     }
 

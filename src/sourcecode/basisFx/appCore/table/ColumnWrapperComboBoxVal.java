@@ -13,11 +13,14 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.util.Callback;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+
 public class ColumnWrapperComboBoxVal extends ColumnWrapper{
 
-    protected TableColumn<ActiveRecord, ComboBoxValue> column;
+    protected TableColumn<ActiveRecord, ActiveRecord> column;
     protected ActiveRecord domain;
-    protected Class domainClass;
+    protected Class <? extends ActiveRecord> domainClass;
 
     private ColumnWrapperComboBoxVal(Builder builder) {
         tableWrapper = builder.tableWrapper;
@@ -33,8 +36,8 @@ public class ColumnWrapperComboBoxVal extends ColumnWrapper{
     }
 
     private void setCellFactory() {
-        Callback<TableColumn<ActiveRecord, ComboBoxValue>, TableCell<ActiveRecord, ComboBoxValue>> comboBoxCellFactory
-                = (TableColumn<ActiveRecord, ComboBoxValue> param) -> new ComboBoxCustomCell();
+        Callback<TableColumn<ActiveRecord, ActiveRecord>, TableCell<ActiveRecord, ActiveRecord>> comboBoxCellFactory
+                = (TableColumn<ActiveRecord, ActiveRecord> param) -> new ComboBoxCustomCell();
         // Set a ComboBoxTableCell, so we can selects a value from a list
         column.setCellFactory(comboBoxCellFactory);
     }
@@ -44,13 +47,23 @@ public class ColumnWrapperComboBoxVal extends ColumnWrapper{
     }
 
     private void createNewInstance() {
-        try {
-            domain= (ActiveRecord) domainClass.newInstance();
-        } catch (InstantiationException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        }
+        Method getInstanceMethod;
+            try {
+                getInstanceMethod = domainClass.getDeclaredMethod("getInstance");
+                try {
+                    try {
+                        domain = (ActiveRecord) getInstanceMethod.invoke(null);
+                    } catch (IllegalAccessException e) {
+                        e.printStackTrace();
+                    }
+                } catch (InvocationTargetException e) {
+                    e.printStackTrace();
+                }
+            } catch (NoSuchMethodException e) {
+                e.printStackTrace();
+            }
+
+
     }
 
     public static Builder newBuilder() {
@@ -64,7 +77,7 @@ public class ColumnWrapperComboBoxVal extends ColumnWrapper{
 
     @Override
     public TableColumn getColumn() {
-        return null;
+        return column;
     }
 
     @Override
@@ -77,14 +90,15 @@ public class ColumnWrapperComboBoxVal extends ColumnWrapper{
         private TableWrapper tableWrapper;
         private String propertyName;
         private String columnName;
-        private double columnSize;
+        private Double columnSize;
         private Boolean isEditeble;
 
         private Builder() {
         }
 
-        public void setDomainClass(Class domainClass) {
+        public Builder setDomainClass(Class domainClass) {
             this.domainClass = domainClass;
+            return this;
         }
 
         public Builder setTableWrapper(TableWrapper val) {
@@ -117,12 +131,11 @@ public class ColumnWrapperComboBoxVal extends ColumnWrapper{
         }
     }
 
-    class ComboBoxCustomCell extends TableCell<ActiveRecord, ComboBoxValue> {
+    class ComboBoxCustomCell extends TableCell<ActiveRecord, ActiveRecord> {
 
         private ComboBox<ComboBoxValue> comboBox;
 
-        private ComboBoxCustomCell() {
-        }
+        private ComboBoxCustomCell() {}
 
         @Override
         public void startEdit() {
@@ -142,7 +155,7 @@ public class ColumnWrapperComboBoxVal extends ColumnWrapper{
         }
 
         @Override
-        public void updateItem(ComboBoxValue item, boolean empty) {
+        public void updateItem(ActiveRecord item, boolean empty) {
             super.updateItem(item, empty);
             if (empty) {
                 setText(null);
@@ -202,7 +215,7 @@ public class ColumnWrapperComboBoxVal extends ColumnWrapper{
                 ComboBoxValue comboBoxValue =new ComboBoxValue("");
                 return comboBoxValue;
             }else {
-                return  getItem();
+                return  getItem().toComboBoxValue();
             }
         }
     }

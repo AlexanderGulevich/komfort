@@ -23,9 +23,6 @@ public class BoolComboBox extends ComboBoxValue {
         this.stringValue.set(stringValue);
     }
 
-    public BoolComboBox() {
-
-    }
     public BoolComboBox(boolean val) {
         setBoolean(val);
     }
