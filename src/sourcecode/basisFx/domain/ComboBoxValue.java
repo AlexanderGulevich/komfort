@@ -62,10 +62,6 @@ public class ComboBoxValue extends ActiveRecord{
 
     }
 
-    @Override
-    public ObservableList<ActiveRecord> getAllByRelatedId(Integer id) {
-        return null;
-    }
 
     @Override
     public void insert() {

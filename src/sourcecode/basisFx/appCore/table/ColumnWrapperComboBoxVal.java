@@ -26,7 +26,24 @@ public class ColumnWrapperComboBoxVal extends ColumnWrapper{
         columnSize = builder.columnSize;
         isEditeble = builder.isEditeble;
         domainClass=builder.domainClass;
+        createNewInstance();
+        column =  new TableColumn<>(columnName);
+        setCellValueFactory();
+        setCellFactory();
+    }
 
+    private void setCellFactory() {
+        Callback<TableColumn<ActiveRecord, ComboBoxValue>, TableCell<ActiveRecord, ComboBoxValue>> comboBoxCellFactory
+                = (TableColumn<ActiveRecord, ComboBoxValue> param) -> new ComboBoxCustomCell();
+        // Set a ComboBoxTableCell, so we can selects a value from a list
+        column.setCellFactory(comboBoxCellFactory);
+    }
+
+    private void setCellValueFactory() {
+        column.setCellValueFactory(new PropertyValueFactory<>(propertyName));
+    }
+
+    private void createNewInstance() {
         try {
             domain= (ActiveRecord) domainClass.newInstance();
         } catch (InstantiationException e) {
@@ -34,13 +51,6 @@ public class ColumnWrapperComboBoxVal extends ColumnWrapper{
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         }
-        column =  new TableColumn<>(columnName);
-        column.setCellValueFactory(new PropertyValueFactory<>(propertyName));
-        Callback<TableColumn<ActiveRecord, ComboBoxValue>, TableCell<ActiveRecord, ComboBoxValue>> comboBoxCellFactory
-                = (TableColumn<ActiveRecord, ComboBoxValue> param) -> new ColumnWrapperComboBoxVal.ComboBoxCustomCell();
-
-        // Set a ComboBoxTableCell, so we can selects a value from a list
-        column.setCellFactory(comboBoxCellFactory);
     }
 
     public static Builder newBuilder() {
@@ -107,13 +117,6 @@ public class ColumnWrapperComboBoxVal extends ColumnWrapper{
         }
     }
 
-
-
-
-
-
-
-
     class ComboBoxCustomCell extends TableCell<ActiveRecord, ComboBoxValue> {
 
         private ComboBox<ComboBoxValue> comboBox;
@@ -141,20 +144,13 @@ public class ColumnWrapperComboBoxVal extends ColumnWrapper{
         @Override
         public void updateItem(ComboBoxValue item, boolean empty) {
             super.updateItem(item, empty);
-
             if (empty) {
                 setText(null);
                 setGraphic(null);
-
-
             } else {
                 if (isEditing()) {
-
                     if (comboBox != null) {
                         comboBox.setValue(getNamedDomainObject());
-
-
-
                     }
                     setText(getNamedDomainObject().getStringValue());
                     setGraphic(comboBox);
@@ -166,9 +162,7 @@ public class ColumnWrapperComboBoxVal extends ColumnWrapper{
         }
 
         private void createComboBox() {
-
-            ObservableList<ActiveRecord> all = domain.getAll();
-            ObservableList<ComboBoxValue> comboBoxValues = domain.toComboBoxValueList(all);
+            ObservableList<ComboBoxValue> comboBoxValues = domain.toComboBoxValueList();
 
             comboBox = new ComboBox<>(comboBoxValues);
             comboBox.setId(CSSID.COMBOBOX.get());
@@ -190,39 +184,26 @@ public class ColumnWrapperComboBoxVal extends ColumnWrapper{
 
         private void comboBoxConverter(ComboBox<ComboBoxValue> comboBox) {
 //             Define rendering of the list of values in ComboBox drop down.
-            comboBox.setCellFactory((c) -> {
-                return new ListCell<ComboBoxValue>() {
-                    @Override
-                    protected void updateItem(ComboBoxValue comboBoxValue, boolean empty) {
-                        super.updateItem(comboBoxValue, empty);
-                        if (comboBoxValue == null || empty) {
-                            setText(null);
-                        } else {
-                            setText(comboBoxValue.getStringValue());
-                        }
+            comboBox.setCellFactory((c) -> new ListCell<ComboBoxValue>() {
+                @Override
+                protected void updateItem(ComboBoxValue comboBoxValue, boolean empty) {
+                    super.updateItem(comboBoxValue, empty);
+                    if (comboBoxValue == null || empty) {
+                        setText(null);
+                    } else {
+                        setText(comboBoxValue.getStringValue());
                     }
-                };
+                }
             });
         }
 
         private ComboBoxValue getNamedDomainObject() {
-
             if(getItem()== null){//if not exist
-
-
-                ComboBoxValue comboBoxValue =new ComboBoxValue();
-                comboBoxValue.setStringValue("");
-
+                ComboBoxValue comboBoxValue =new ComboBoxValue("");
                 return comboBoxValue;
-
             }else {
-
                 return  getItem();
-
             }
-
-
-
         }
     }
 

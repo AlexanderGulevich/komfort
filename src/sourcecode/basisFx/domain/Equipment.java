@@ -97,10 +97,6 @@ public class Equipment  extends ActiveRecord {
         }
     }
 
-    @Override
-    public ObservableList<ActiveRecord> getAllByRelatedId(Integer id) {
-        return null;
-    }
 
 
 }
