@@ -18,6 +18,17 @@ public class MediatorTwoLinkedTable implements Mediator {
 
     }
 
+    public MediatorTwoLinkedTable() {
+    }
+
+    public void setPrimaryTableWrapper(TableWrapper primaryTableWrapper) {
+        this.primaryTableWrapper = primaryTableWrapper;
+    }
+
+    public void setAccessoryTableWrapper(TableWrapper accessoryTableWrapper) {
+        this.accessoryTableWrapper = accessoryTableWrapper;
+    }
+
     @Override
     public void inform(AppNode node) {
             if (node==primaryTableWrapper){
