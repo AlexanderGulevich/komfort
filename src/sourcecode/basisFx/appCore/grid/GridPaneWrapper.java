@@ -19,8 +19,9 @@ import javafx.stage.Stage;
 import java.util.ArrayList;
 
 public  class GridPaneWrapper extends AppNode {
-   protected GridPane element;
+    protected GridPane element;
     protected Boolean gridLinesVisibility;
+    protected MultipleGridConfiguration multipleGridConfiguration;
     public LabelWrapper label;
     public TablesButtonKindConfigurationStrategy buttonKindConfigurationStrategy;
     private ArrayList <ColumnConstraints> column ;
@@ -42,12 +43,15 @@ public  class GridPaneWrapper extends AppNode {
         column=builder.columns;
         buttonKindConfigurationStrategy=builder.buttonKindConfigurationStrategy;
         gridLinesVisibility=builder.gridLinesVisibility;
+        multipleGridConfiguration=builder.multipleGridConfiguration;
         applyLabel();
         applyColums();
         applyConfigurationPlaceSrategy();
         bond(this);
         applyLineVisibility();
         applyCssId();
+
+
 
 
 
@@ -72,23 +76,6 @@ public  class GridPaneWrapper extends AppNode {
         }
     }
 
-    //        gridPaneWrapper.addSpanNode(
-//                observedGrid.getGridPane(),
-//                0,0,1,1, HPos.LEFT, VPos.TOP,insets);
-//
-//        gridPaneWrapper.addSpanNode(
-//                observerGrid.getGridPane(),
-//                1,0,1,1, HPos.LEFT, VPos.TOP,insets);
-//
-//
-//
-//        gridPane.heightProperty().addListener((obs, oldVal, newVal) -> {
-//
-//
-//        observedGrid.getGridPane().setPrefHeight(gridPane.getHeight());
-//        observerGrid.getGridPane().setPrefHeight(gridPane.getHeight());
-//
-//    });
     private void applyLabel() {
 
         if (name != null) {
@@ -169,13 +156,17 @@ public  class GridPaneWrapper extends AppNode {
         private Stage stage;
         private TablesButtonKindConfigurationStrategy buttonKindConfigurationStrategy;
         private ArrayList <ColumnConstraints> columns=new ArrayList<>();
-        protected boolean gridLinesVisibility;
+        private boolean gridLinesVisibility;
+        private MultipleGridConfiguration multipleGridConfiguration;
 
         public Builder setGridLinesVisibility(boolean gridLinesVisibility) {
             this.gridLinesVisibility = gridLinesVisibility;
             return this;
         }
 
+        public void setMultipleGridConfiguration(MultipleGridConfiguration multipleGridConfiguration) {
+            this.multipleGridConfiguration = multipleGridConfiguration;
+        }
 
         private Builder() {
         }

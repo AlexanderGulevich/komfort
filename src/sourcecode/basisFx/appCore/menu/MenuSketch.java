@@ -5,10 +5,6 @@
  */
 package basisFx.appCore.menu;
 
-/**
- *
- * @author Alek
- */
 public  class MenuSketch {
     protected MenuComponent components;
 

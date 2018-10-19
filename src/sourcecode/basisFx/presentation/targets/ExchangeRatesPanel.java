@@ -3,8 +3,11 @@ package basisFx.presentation.targets;
 import basisFx.appCore.MdiatorSingleTable;
 import basisFx.appCore.MediatorTwoLinkedTable;
 import basisFx.appCore.elements.TableWrapper;
+import basisFx.appCore.grid.ButtomRightMiddleBig;
+import basisFx.appCore.grid.GridPaneWrapper;
 import basisFx.appCore.table.ColumnWrapperComboBoxVal;
 import basisFx.appCore.table.ColumnWrapperString;
+import basisFx.appCore.utils.Coordinate;
 import basisFx.domain.Counterparty;
 import basisFx.domain.Currency;
 import basisFx.domain.ExchangeRates;
@@ -16,14 +19,13 @@ public class ExchangeRatesPanel extends TargetPanel {
     @Override
     public void init() {
         MediatorTwoLinkedTable mediatorTwoLinkedTable = new MediatorTwoLinkedTable();
-    }
-    protected void inift() {
+
         TableWrapper currencyTableWrapper = TableWrapper.newBuilder()
                 .setActiveRecordClass(Currency.class)
                 .setUnitOfWork(unitOfWork)
                 .setIsEditable(true)
                 .setIsSortableColums(false)
-                .setMediator(new MediatorTwoLinkedTable())
+                .setMediator(mediatorTwoLinkedTable)
                 .setColumnWrappers(
                         ColumnWrapperString.newBuilder()
                                 .setColumnName("Наименование")
@@ -38,7 +40,7 @@ public class ExchangeRatesPanel extends TargetPanel {
                 .setUnitOfWork(unitOfWork)
                 .setIsEditable(true)
                 .setIsSortableColums(false)
-                .setMediator(new MediatorTwoLinkedTable())
+                .setMediator(mediatorTwoLinkedTable)
                 .setColumnWrappers(
                         ColumnWrapperString.newBuilder()
                                 .setColumnName("Наименование")
@@ -47,6 +49,20 @@ public class ExchangeRatesPanel extends TargetPanel {
                                 .setPropertyName("name")
                                 .build())
                 .build();
+
+        mediatorTwoLinkedTable.setAccessoryTableWrapper(exchangeRatesTableWrapper);
+        mediatorTwoLinkedTable.setPrimaryTableWrapper(currencyTableWrapper);
+
+        GridPaneWrapper.newBuilder()
+                .setColumnVsPercent(60)
+                .setColumnVsPercent(40)
+                .setName("Управление валютами и динамика курсов")
+                .setParentAnchor(innerAnchorPane)
+                .setCoordinate(new Coordinate(0d,10d,10d,0d))
+                .setGridLinesVisibility(false)
+                .build();
+
+
 
 
 
