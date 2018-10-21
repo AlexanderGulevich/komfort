@@ -62,7 +62,7 @@ public class GridOrganizationInnerTwoGridsTwoTables extends GridOrganization {
 
         parentGridWrapper.addSpanNode(
                 labelWrapper.getElement(),
-                0,0,2,1, HPos.CENTER, VPos.CENTER,insets);
+                0,0,2,1, HPos.LEFT, VPos.CENTER,insets);
 
         parentGridWrapper.addSpanNode(
                 leftGridWrapper.getElement(),

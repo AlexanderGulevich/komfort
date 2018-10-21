@@ -48,26 +48,43 @@ public  class GridPaneWrapper extends AppNode {
         applyLineVisibility();
         applyCssId();
         applyGridConfiguration();
-
-
-        if (parentAnchor != null) {
-
-//            parentAnchor.heightProperty().addListener((observable, oldValue, newValue) -> {
-//                element.setPrefHeight(newValue.doubleValue());
-//                System.err.println(newValue.doubleValue());
-//
-//            });
-            element.prefHeightProperty().bindBidirectional(parentAnchor.prefHeightProperty());
-
-//            parentAnchor.heightProperty().addListener((observable, oldValue, newValue) ->{
-//
-//            } );
-        }
-
-
-
-
+        apllyBindingByParentHeight();
     }
+
+    private void apllyBindingByParentHeight() {
+        if (parentAnchor != null) {
+            bindGridToParentAnchorHeight();
+        }
+        if (parentScrollPane != null) {
+            bindGridToParentScrollPaneHeight();
+        }
+        if (parentFlowPane != null) {
+            bindGridToParentFlowHeight();
+        }
+    }
+
+    private void bindGridToParentAnchorHeight() {
+        parentAnchor.heightProperty().addListener((observable, oldValue, newValue) -> {
+            element.setPrefHeight(newValue.doubleValue()-10d);
+            System.err.println(newValue.doubleValue());
+
+        });
+    }
+    private void bindGridToParentFlowHeight() {
+        parentFlowPane.heightProperty().addListener((observable, oldValue, newValue) -> {
+            element.setPrefHeight(newValue.doubleValue()-10d);
+            System.err.println(newValue.doubleValue());
+
+        });
+    }
+    private void bindGridToParentScrollPaneHeight() {
+        parentScrollPane.heightProperty().addListener((observable, oldValue, newValue) -> {
+            element.setPrefHeight(newValue.doubleValue()-10d);
+            System.err.println(newValue.doubleValue());
+
+        });
+    }
+
 
     private void applyGridConfiguration() {
         if (gridOrganization != null) {

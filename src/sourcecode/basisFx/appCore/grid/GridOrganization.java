@@ -23,16 +23,15 @@ public abstract class GridOrganization {
     }
 
     protected void bindHeight(GridPaneWrapper gridPaneWrapper){
-        gridPaneWrapper.getElement().prefHeightProperty().bindBidirectional(
-                parentGridWrapper.getElement().prefHeightProperty()
-        );
+        parentGridWrapper.getElement().prefHeightProperty().addListener((observable, oldValue, newValue) -> {
+            gridPaneWrapper.getElement().setPrefHeight(newValue.doubleValue()-10d);
+        });
 
     }
     protected void bindHeight(TableWrapper tableWrapper){
-        tableWrapper.getElement().prefHeightProperty().bindBidirectional(
-                parentGridWrapper.getElement().prefHeightProperty()
-        );
-
+        parentGridWrapper.getElement().prefHeightProperty().addListener((observable, oldValue, newValue) -> {
+            tableWrapper.getElement().setPrefHeight(newValue.doubleValue()-10d);
+        });
     }
 
 

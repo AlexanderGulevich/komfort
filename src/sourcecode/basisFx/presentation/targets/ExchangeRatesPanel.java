@@ -13,7 +13,7 @@ import basisFx.presentation.TargetPanel;
 
 public class ExchangeRatesPanel extends TargetPanel {
 
-    private boolean gridVisibility=true;
+    private boolean gridVisibility=false;
 
     @Override
     public void init() {
