@@ -35,22 +35,14 @@ public class GridOrganizationInnerTwoGridsTwoTables extends GridOrganization {
 
     private void applyWidth() {
 
-        System.out.println("GridOrganizationInnerTwoGridsTwoTables.applyWidth");
         parentGridWrapper.getElement().getColumnConstraints().get(0).prefWidthProperty().addListener(
                 (observable, oldValue, newValue) -> {
                     leftGridWrapper.getElement().setPrefWidth(newValue.doubleValue());
-
-                    System.err.println(newValue.doubleValue());
-
-
                 }
         );
-
          parentGridWrapper.getElement().getColumnConstraints().get(1).prefWidthProperty().addListener(
                 (observable, oldValue, newValue) -> {
                     rightGridWrapper.getElement().setPrefWidth(newValue.doubleValue());
-
-                    System.err.println(newValue.doubleValue());
                 }
         );
 
@@ -92,17 +84,6 @@ public class GridOrganizationInnerTwoGridsTwoTables extends GridOrganization {
                 1,0,1,1, HPos.LEFT, VPos.TOP,insets);
     }
 
-
-//
-//
-//
-//        gridPane.heightProperty().addListener((obs, oldVal, newVal) -> {
-//
-//
-//        observedGrid.getGridPane().setPrefHeight(gridPane.getHeight());
-//        observerGrid.getGridPane().setPrefHeight(gridPane.getHeight());
-//
-//    });
 
 
 }

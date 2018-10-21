@@ -68,8 +68,8 @@ public class ExchangeRates extends ActiveRecord{
     public ActiveRecord find(int id) {
         return null;
     }
-
-    public ObservableList<ActiveRecord> findAllByCurrencyId(int id)   {
+    @Override
+    public ObservableList<ActiveRecord> findAllByOuterId(int id)   {
         ObservableList <ActiveRecord> list=FXCollections.observableArrayList();
         String expression="SELECT * FROM " +"ExchangeRates "+" where currencyId= " +id+" ORDER BY startDate Desc";
 
@@ -94,6 +94,7 @@ public class ExchangeRates extends ActiveRecord{
         }
     return list;
     }
+
 
     @Override
     public void update()   {

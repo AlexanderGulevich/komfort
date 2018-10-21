@@ -146,12 +146,11 @@ public class DbSchema {
         create(
                 equipment,
                 currency,
-                counterparty
-//                ,
+                counterparty,
 //                ratePerHour,
 //                currentEmployeesState,
 //                ratePerHourHistory,
-//                exchangeRates,
+                exchangeRates
 //                product,
 //                productPriceStore,
 //                packetSize,

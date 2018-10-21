@@ -5,6 +5,7 @@ import basisFx.appCore.elements.TableWrapper;
 import basisFx.appCore.grid.GridOrganizationButtonTopRightLittleSingleTable;
 import basisFx.appCore.grid.GridPaneWrapper;
 import basisFx.appCore.grid.GridOrganizationInnerTwoGridsTwoTables;
+import basisFx.appCore.table.ColumnWrapperDate;
 import basisFx.appCore.table.ColumnWrapperString;
 import basisFx.appCore.utils.Coordinate;
 import basisFx.domain.Currency;
@@ -39,10 +40,10 @@ public class ExchangeRatesPanel extends TargetPanel {
 
         GridPaneWrapper currencyGridPaneWrapper = GridPaneWrapper.newBuilder()
                 .setGridLinesVisibility(gridVisibility)
-                .setName("currencyTableWrapper")
+                .setName("Валюта")
                 .setColumnComputerWidth()
-                .setColumnFixed(50d)
-                .setColumnFixed(50d)
+                .setColumnFixed(40d)
+                .setColumnFixed(40d)
                 .setGridOrganization(new GridOrganizationButtonTopRightLittleSingleTable(currencyTableWrapper))
                 .build();
 
@@ -59,11 +60,11 @@ public class ExchangeRatesPanel extends TargetPanel {
                                 .setIsEditeble(true)
                                 .setPropertyName("name")
                                 .build(),
-                        ColumnWrapperString.newBuilder()
-                                .setColumnName("huy,ui,ui,")
+                        ColumnWrapperDate.newBuilder()
+                                .setColumnName("Дата")
                                 .setColumnSize(0.4d)
                                 .setIsEditeble(true)
-                                .setPropertyName("name")
+                                .setPropertyName("exchangeRate")
                                 .build()
                 )
                 .build();
@@ -71,10 +72,10 @@ public class ExchangeRatesPanel extends TargetPanel {
 
         GridPaneWrapper exchangeRatesGridPaneWrapper = GridPaneWrapper.newBuilder()
                 .setGridLinesVisibility(gridVisibility)
-                .setName("exchangeRatesGridPaneWrapper")
+                .setName("Курсы")
                 .setColumnComputerWidth()
-                .setColumnFixed(50d)
-                .setColumnFixed(50d)
+                .setColumnFixed(40d)
+                .setColumnFixed(40d)
                 .setGridOrganization(new GridOrganizationButtonTopRightLittleSingleTable(exchangeRatesTableWrapper))
                 .build();
 
@@ -93,40 +94,6 @@ public class ExchangeRatesPanel extends TargetPanel {
                 .setGridLinesVisibility(gridVisibility)
                 .setGridOrganization(gridOrganization)
                 .build();
-
-
-
-
-
-
-
-
-
-//        GridTablesBuilder observer=new GridTablesBuilder();
-//        observer.setTitle("Курсы валют");
-//        observer.setTablesButtonKind(TablesButtonKind.Bottom_right);
-//        observer.setDomainClass(ExchangeRates.class);
-//        observer.setGridColWidth( new GridColWidth(KindOfGridCol.percent,40d));
-//        observer.setActiveRecord(dataMapperFabric.exchangeRatesMapper());
-//        observer.setColumnWidthByContent(columnFabric.string(KindOfColumn.DOUBLE,"Курсы","exchangeRate",0.3d,true,
-//                        (obj,val)->{((ExchangeRates)obj).setExchangeRate( (String ) val);}    ));
-//        observer.setColumnWidthByContent( columnFabric.dateColumn(KindOfColumn.DATE,"Дата начала действия ","startingDate",0.7d,true,
-//                (obj, val)->{((ExchangeRates)obj).setStartingDate((LocalDate) val); }  )  );
-//
-//
-//        gridFabric.boundTables(
-//                observed,
-//                observer,
-//                new Coordinate(10d,10d,10d,10d),
-//                panel
-//        );
-//
-//
-//
-
-
-
-
 
     }
 

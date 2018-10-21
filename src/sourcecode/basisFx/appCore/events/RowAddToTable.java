@@ -27,13 +27,14 @@ public class RowAddToTable <T> extends AppEvent{
     @Override
     public void run() {
         try {
-            System.out.println("RowAddToTable.run");
-
             ObservableList<ActiveRecord> list = tableWrapper.list;
             ActiveRecord instance = (ActiveRecord) tableWrapper.activeRecordClass.newInstance();
             TableView tableView=tableWrapper.getElement();
             ObservableList items = tableView.getItems();
-            items.add(instance);
+            if (items != null) {
+                items.add(instance);
+            }
+
         } catch (InstantiationException e) {
             e.printStackTrace();
         } catch (IllegalAccessException e) {

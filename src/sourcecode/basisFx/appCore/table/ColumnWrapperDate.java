@@ -52,6 +52,7 @@ public class ColumnWrapperDate extends ColumnWrapper{
                 if (v instanceof WritableValue) {
                     ((WritableValue<LocalDate>)v).setValue(event.getNewValue());
                 }
+                tableWrapper.getMediator().wasChanged(tableWrapper,domain);
 
             };
         });

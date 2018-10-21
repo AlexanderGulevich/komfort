@@ -113,6 +113,12 @@ public class Counterparty extends ActiveRecord {
     }
 
     @Override
+    public ObservableList<ActiveRecord> findAllByOuterId(int id) {
+        return null;
+    }
+
+
+    @Override
     public Counterparty find(int id) {
         Counterparty pojo=new Counterparty() ;
         String expression="SELECT  FROM " +"Counterparty"+" WHERE ID=?";

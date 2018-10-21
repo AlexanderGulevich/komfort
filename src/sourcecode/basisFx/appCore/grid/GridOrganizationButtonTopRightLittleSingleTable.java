@@ -15,7 +15,7 @@ public class GridOrganizationButtonTopRightLittleSingleTable extends GridOrganiz
 
     public GridOrganizationButtonTopRightLittleSingleTable(TableWrapper tableWrapper) {
         this.tableWrapper = tableWrapper;
-        buttonAddLittle = buttonFactory.littleRowAddButton(tableWrapper, tableWrapper.activeRecord.getClass());
+        buttonAddLittle = buttonFactory.littleRowAddButton(tableWrapper);
         buttonDelLittle = buttonFactory.littleRowDeleteButton(tableWrapper);
     }
 

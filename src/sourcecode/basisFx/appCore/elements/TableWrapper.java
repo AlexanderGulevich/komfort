@@ -86,7 +86,7 @@ public  class TableWrapper extends AppNode  {
 
 //        manageScrollBar();
         setClickedRowDetection();
-        setClickedUpDownRowDetection();
+//        setClickedUpDownRowDetection();
 
 
     }
@@ -209,35 +209,35 @@ public  class TableWrapper extends AppNode  {
     return clon;
 
     }
-    private void setClickedUpDownRowDetection(){
-
-        element.setOnKeyPressed(event -> {
-
-                    if (event.getCode() == KeyCode.UP || event.getCode() == KeyCode.DOWN) {
-
-                        ActiveRecord itemFromEvent = element.getSelectionModel().getSelectedItem();
-
-                        int size = element.getItems().size();
-                        int selectedIndex = element.getSelectionModel().getSelectedIndex();
-
-                        int nextIndex=0;
-
-                        if(event.getCode() == KeyCode.UP ) nextIndex=selectedIndex-1;
-                        if(event.getCode() == KeyCode.DOWN)nextIndex=selectedIndex+1;
-
-                        clickedDomain= element.getItems().get(nextIndex);
-
-
-                        if (mediator != null) {
-                            mediator.inform(this);
-                        }
-
-
-
-                    }
-                }
-        );
-    }
+//    private void setClickedUpDownRowDetection(){
+//
+//        element.setOnKeyPressed(event -> {
+//
+//                    if (event.getCode() == KeyCode.UP || event.getCode() == KeyCode.DOWN) {
+//
+//                        ActiveRecord itemFromEvent = element.getSelectionModel().getSelectedItem();
+//
+//                        int size = element.getItems().size();
+//                        int selectedIndex = element.getSelectionModel().getSelectedIndex();
+//
+//                        int nextIndex=0;
+//
+//                        if(event.getCode() == KeyCode.UP ) nextIndex=selectedIndex-1;
+//                        if(event.getCode() == KeyCode.DOWN)nextIndex=selectedIndex+1;
+//
+//                        clickedDomain= element.getItems().get(nextIndex);
+//
+//
+//                        if (mediator != null) {
+//                            mediator.inform(this);
+//                        }
+//
+//
+//
+//                    }
+//                }
+//        );
+//    }
     private void setClickedRowDetection(){
         element.setRowFactory(tv -> {
             TableRow<ActiveRecord> row = new TableRow<>();

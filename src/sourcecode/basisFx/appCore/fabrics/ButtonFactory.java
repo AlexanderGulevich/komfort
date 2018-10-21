@@ -48,7 +48,7 @@ public class ButtonFactory {
 
 
     }
-    public Button littleRowAddButton(TableWrapper tableWrapper,  Class c){
+    public Button littleRowAddButton(TableWrapper tableWrapper){
 
         Button button = ButtonWrapper.newBuilder()
                 .setCSSid(CSSID.Little_PANELS_BUTTON_ADD)

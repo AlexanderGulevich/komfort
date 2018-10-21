@@ -76,4 +76,10 @@ public class ComboBoxValue extends ActiveRecord{
     public void insert() {
 
     }
+
+    @Override
+    public ObservableList<ActiveRecord> findAllByOuterId(int id) {
+        return null;
+    }
+
 }

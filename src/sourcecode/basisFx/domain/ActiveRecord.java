@@ -16,6 +16,7 @@ public abstract class ActiveRecord {
     public abstract void update();
     public abstract ActiveRecord find(int id);
     public abstract void insert();
+    public abstract ObservableList<ActiveRecord> findAllByOuterId(int id);
     public ActiveRecord(String entityName) {
         this.entityName = entityName;
     }

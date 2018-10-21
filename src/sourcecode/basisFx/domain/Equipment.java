@@ -123,6 +123,11 @@ public class Equipment  extends ActiveRecord {
         }
     }
 
+    @Override
+    public ObservableList<ActiveRecord> findAllByOuterId(int id) {
+        return null;
+    }
+
 
 
 }
