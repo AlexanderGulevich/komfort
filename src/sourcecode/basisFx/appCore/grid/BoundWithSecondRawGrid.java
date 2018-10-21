@@ -47,7 +47,7 @@
 //    }
 //
 //
-//    public void init() {
+//    public void organize() {
 //        commonGridPaneWrapper = AppNode.NodeBuilder.create()
 //                .setCoordinate(new Coordinate(0d,0d,0d,0d))
 //                .setParent(parent)
@@ -149,7 +149,7 @@
 //                break;
 //
 //            case byChild:
-//                secondRowGridWrapper.setColumn();
+//                secondRowGridWrapper.setColumnWidthByContent();
 //                break;
 //
 //

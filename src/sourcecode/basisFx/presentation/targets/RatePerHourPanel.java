@@ -23,7 +23,7 @@
 //        tr.setActiveRecord(dataMapperFabric.ratePerHourTemplatesMapper());
 //        tr.setCoordinate(new Coordinate(10d, 10d, 10d, 10d));
 //        tr.setPanel(panel);
-//        tr.setColumn(columnFabric.string(KindOfColumn.DOUBLE,
+//        tr.setColumnWidthByContent(columnFabric.string(KindOfColumn.DOUBLE,
 //                "\"Тариф ( бел. руб/час. )\"","name",1d,true,
 //                (obj,val)->((RatePerHourTamplate)obj).setName((String) val)
 //                )

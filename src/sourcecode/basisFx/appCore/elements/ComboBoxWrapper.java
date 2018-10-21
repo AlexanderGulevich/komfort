@@ -28,7 +28,7 @@
 //        comboBox=new ComboBox<>(list);
 //        setEventToElement(comboBox);
 //        comboBox.setEditable(true);
-//        init(builder);
+//        organize(builder);
 //        comboBox.setPrefWidth(this.widthValue);
 //        comboBox.setPrefHeight(this.height);
 //

@@ -19,12 +19,12 @@
 //        observed.setTablesButtonKind(TablesButtonKind.Right_little);
 //        observed.setDomainClass(Packet.class);
 //        observed.setActiveRecord(dataMapperFabric.packetMapper());
-//        observed.setColumn(
+//        observed.setColumnWidthByContent(
 //                columnFabric.comboBox(KindOfColumn.COMBOBOX,"Размер ","size",0.5d,true,
 //                        (obj,val)->((Packet)obj).setSize((ComboBoxValue) val),
 //                        () ->  dataMapperFabric.packetSizeMapper().toComboBoxValueList((val)->{return ((PacketSize)val).getSize();})
 //                ));
-//        observed.setColumn(
+//        observed.setColumnWidthByContent(
 //                columnFabric.comboBox(KindOfColumn.COMBOBOX,"Поставщик ","counterparty",0.5d,true,
 //                        (obj,val)->((Packet)obj).setCounterparty((ComboBoxValue) val),
 //                        () ->  dataMapperFabric.counterpartyMapper().toComboBoxValueList((val)->{return ((Counterparty)val).getName();})
@@ -38,10 +38,10 @@
 //        observer.setTablesButtonKind(TablesButtonKind.Right_little);
 //        observer.setDomainClass(Price.class);
 //        observer.setActiveRecord(dataMapperFabric.packetPriceMapper());
-//        observer.setColumn(  columnFabric.string(KindOfColumn.DOUBLE,"Цена","price",0.3d,true,
+//        observer.setColumnWidthByContent(  columnFabric.string(KindOfColumn.DOUBLE,"Цена","price",0.3d,true,
 //                (obj,val)->{((Price)obj).setPrice( (String ) val);})
 //        );
-//        observer.setColumn(  columnFabric.dateColumn(KindOfColumn.DATE,"Дата начала действия ","startingDate",0.7d,true,
+//        observer.setColumnWidthByContent(  columnFabric.dateColumn(KindOfColumn.DATE,"Дата начала действия ","startingDate",0.7d,true,
 //                (obj, val)->{((Price)obj).setStartingDate((LocalDate) val); })
 //        );
 //
@@ -62,7 +62,7 @@
 //        packetSize.setDomainClass(PacketSize.class);
 //        packetSize.setGridColWidth(new GridColWidth(KindOfGridCol.percent,40));
 //        packetSize.setActiveRecord(dataMapperFabric.packetSizeMapper());
-//        packetSize.setColumn(columnFabric.string(KindOfColumn.STRING,"Размер ","size",1d,true,
+//        packetSize.setColumnWidthByContent(columnFabric.string(KindOfColumn.STRING,"Размер ","size",1d,true,
 //                (obj,val)->((PacketSize)obj).setSize((String)val))
 //        );
 //
@@ -75,17 +75,17 @@
 //        packetSizeProductAccordance.setDomainClass(PacketProductAccordance.class);
 //        packetSizeProductAccordance.setGridColWidth(new GridColWidth(KindOfGridCol.percent,60d));
 //        packetSizeProductAccordance.setActiveRecord(dataMapperFabric.packetProductAccordanceMapper());
-//        packetSizeProductAccordance.setColumn(
+//        packetSizeProductAccordance.setColumnWidthByContent(
 //                columnFabric.comboBox(KindOfColumn.COMBOBOX,"Размер ","size",0.3d,true,
 //                        (obj,val)->((PacketProductAccordance)obj).setSize((ComboBoxValue) val),
 //                         () ->  dataMapperFabric.packetSizeMapper().toComboBoxValueList((val)->{return ((PacketSize)val).getSize();})
 //                ));
-//        packetSizeProductAccordance.setColumn(
+//        packetSizeProductAccordance.setColumnWidthByContent(
 //                columnFabric.comboBox(KindOfColumn.COMBOBOX,"Продукция ","product",0.5d,true,
 //                        (obj,val)->((PacketProductAccordance)obj).setProduct((ComboBoxValue)val),
 //                        () -> dataMapperFabric.productMapper().toComboBoxValueList((val)->{return ((Product)val).getName();})
 //                ));
-//        packetSizeProductAccordance.setColumn(
+//        packetSizeProductAccordance.setColumnWidthByContent(
 //                columnFabric.string(KindOfColumn.INT,"Кол-во ","number",0.2d,true,
 //                        (obj,val)->((PacketProductAccordance)obj).setNumber((String)val))
 //        );

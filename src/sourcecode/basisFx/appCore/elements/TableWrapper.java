@@ -111,7 +111,10 @@ public  class TableWrapper extends AppNode  {
 
 
     private void applyListener() {
-        list.addListener(tableListener);
+        if (list != null) {
+            list.addListener(tableListener);
+        }
+
     }
     private void applyEditable() {
         element.setEditable(isEditable);

@@ -6,23 +6,31 @@ import javafx.geometry.Insets;
 import javafx.geometry.VPos;
 import javafx.scene.control.Button;
 
-public class ButtonSubmit extends TablesButtonKindConfigurationStrategy{
+public class GridOrganizationButtonSubmitSingleTable extends GridOrganization{
+
+    private TableWrapper tableWrapper;
     private Insets insets = new Insets(3, 3, 3, 3);
     private Button submitButton;
-    public ButtonSubmit(TableWrapper tableWrapper) {
-        super(tableWrapper);
+
+    public GridOrganizationButtonSubmitSingleTable(TableWrapper tableWrapper) {
+        this.tableWrapper = tableWrapper;
+//        submitButton=buttonFactory.
+
     }
 
-    @Override
-    public void organize(GridPaneWrapper gridPaneWrapper) {
 
-        gridPaneWrapper.addSpanNode(
-                gridPaneWrapper.label.getElement(),
+    @Override
+    public void organize() {
+
+        bindHeight(tableWrapper);
+
+        parentGridWrapper.addSpanNode(
+                parentGridWrapper.label.getElement(),
                 0, 0, 2, 1, HPos.LEFT, VPos.TOP, insets);
-        gridPaneWrapper.addSpanNode(
+        parentGridWrapper.addSpanNode(
                 submitButton,
                 1, 1, 1, 1, HPos.CENTER, VPos.TOP, insets);
-        gridPaneWrapper.addSpanNode(
+        parentGridWrapper.addSpanNode(
                 tableWrapper.getElement(),
                 0, 1, 1, 1, HPos.CENTER, VPos.TOP, insets);
 

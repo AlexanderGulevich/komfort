@@ -21,7 +21,7 @@
 //    }
 //
 //    @Override
-//    protected void init() {
+//    protected void organize() {
 //
 //        //крестик
 //        closingButton= AppNode.NodeBuilder.create().

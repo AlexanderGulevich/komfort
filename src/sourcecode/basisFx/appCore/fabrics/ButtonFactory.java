@@ -13,10 +13,18 @@ import javafx.scene.layout.AnchorPane;
 
 public class ButtonFactory {
 
+    private static ButtonFactory INSTANCE = new ButtonFactory();
     private double bigButWidth=130;
     private double littleButWidth=25d;
     private double littleButHeight=17d;
     private double littleFontHeight=17d;
+
+    private ButtonFactory() {
+    }
+
+    public static ButtonFactory getInstance() {
+        return INSTANCE;
+    }
 
 
     public Button littleRowAddButton(TableWrapper tableWrapper, AnchorPane panel, Class c, Coordinate coordinate ){

@@ -21,9 +21,8 @@ import java.util.ArrayList;
 public  class GridPaneWrapper extends AppNode {
     protected GridPane element;
     protected Boolean gridLinesVisibility;
-    protected MultipleGridConfiguration multipleGridConfiguration;
+    protected GridOrganization gridOrganization;
     public LabelWrapper label;
-    public TablesButtonKindConfigurationStrategy buttonKindConfigurationStrategy;
     private ArrayList <ColumnConstraints> column ;
 
     private GridPaneWrapper(Builder builder) {
@@ -41,31 +40,45 @@ public  class GridPaneWrapper extends AppNode {
         name = builder.name;
         stage = builder.stage;
         column=builder.columns;
-        buttonKindConfigurationStrategy=builder.buttonKindConfigurationStrategy;
         gridLinesVisibility=builder.gridLinesVisibility;
-        multipleGridConfiguration=builder.multipleGridConfiguration;
+        gridOrganization =builder.gridOrganization;
         applyLabel();
         applyColums();
-        applyConfigurationPlaceSrategy();
         bond(this);
         applyLineVisibility();
         applyCssId();
+        applyGridConfiguration();
+
+
+        if (parentAnchor != null) {
+
+//            parentAnchor.heightProperty().addListener((observable, oldValue, newValue) -> {
+//                element.setPrefHeight(newValue.doubleValue());
+//                System.err.println(newValue.doubleValue());
+//
+//            });
+            element.prefHeightProperty().bindBidirectional(parentAnchor.prefHeightProperty());
+
+//            parentAnchor.heightProperty().addListener((observable, oldValue, newValue) ->{
+//
+//            } );
+        }
 
 
 
 
+    }
 
+    private void applyGridConfiguration() {
+        if (gridOrganization != null) {
+            gridOrganization.setParentGridPaneWrapper(this);
+            gridOrganization.organize();
+        }
     }
 
     private void applyLineVisibility() {
         if (gridLinesVisibility != null) {
             element.setGridLinesVisible(gridLinesVisibility);
-        }
-    }
-
-    private void applyConfigurationPlaceSrategy() {
-        if (buttonKindConfigurationStrategy != null) {
-            buttonKindConfigurationStrategy.organize(this);
         }
     }
 
@@ -90,11 +103,19 @@ public  class GridPaneWrapper extends AppNode {
 
 
     }
-    private void tableHeightSwitchingByGrid(TableView tableView) {
+    public void tableHeightSwitchingByGrid(TableView tableView) {
 
         element.heightProperty().addListener((obs, oldVal, newVal) -> {
 
             tableView.setPrefHeight(element.getHeight());
+        });
+
+    }
+    public void tableWidthSwitchingByGrid(TableView tableView) {
+
+        element.widthProperty().addListener((obs, oldVal, newVal) -> {
+
+            tableView.setPrefWidth(element.getWidth());
         });
 
     }
@@ -154,26 +175,21 @@ public  class GridPaneWrapper extends AppNode {
         private ScrollPane parentScrollPane;
         private String name;
         private Stage stage;
-        private TablesButtonKindConfigurationStrategy buttonKindConfigurationStrategy;
         private ArrayList <ColumnConstraints> columns=new ArrayList<>();
         private boolean gridLinesVisibility;
-        private MultipleGridConfiguration multipleGridConfiguration;
+        private GridOrganization gridOrganization;
 
         public Builder setGridLinesVisibility(boolean gridLinesVisibility) {
             this.gridLinesVisibility = gridLinesVisibility;
             return this;
         }
 
-        public void setMultipleGridConfiguration(MultipleGridConfiguration multipleGridConfiguration) {
-            this.multipleGridConfiguration = multipleGridConfiguration;
+        public Builder setGridOrganization(GridOrganization gridOrganization) {
+            this.gridOrganization = gridOrganization;
+            return this;
         }
 
         private Builder() {
-        }
-
-        public Builder setButtonKindConfigurationStrategy(TablesButtonKindConfigurationStrategy buttonKindConfigurationStrategy) {
-            this.buttonKindConfigurationStrategy = buttonKindConfigurationStrategy;
-            return this;
         }
 
         public Builder setEvents(ArrayList<AppEvent> val) {
@@ -247,7 +263,7 @@ public  class GridPaneWrapper extends AppNode {
 
 
         }
-        public Builder setColumn ( ){
+        public Builder setColumnWidthByContent( ){
             ColumnConstraints column = new ColumnConstraints();
             columns.add(column);
             return this;

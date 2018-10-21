@@ -30,7 +30,7 @@
 //        observed.setTablesButtonKind(TablesButtonKind.Bottom_right);
 //        observed.setDomainClass(Employer.class);
 //        observed.setActiveRecord(dataMapperFabric.employerMapper());
-//        observed.setColumn(
+//        observed.setColumnWidthByContent(
 //                columnFabric.string(KindOfColumn.STRING,"ФИО","name",1d,true,
 //                        (obj,val)->{((Employer)obj).setName((String)val);})
 //        );
@@ -44,14 +44,14 @@
 //        observer.setTablesButtonKind(TablesButtonKind.Bottom_right);
 //        observer.setDomainClass(EmployeesRatePerHour.class);
 //        observer.setActiveRecord(dataMapperFabric.employeesRateMapper());
-//        observer.setColumn(
+//        observer.setColumnWidthByContent(
 //                columnFabric.comboBox(KindOfColumn.COMBOBOX,"Тариф","rate",0.3d,true,
 //                (obj,val)->{((EmployeesRatePerHour)obj).setRate((ComboBoxValue) val);},
 //                () -> dataMapperFabric.ratePerHourTemplatesMapper()
 //                        .toComboBoxValueList(( domainObject -> ((RatePerHourTamplate) domainObject).getName()))
 //                )
 //        );
-//        observer.setColumn( columnFabric.dateColumn(KindOfColumn.DATE,"Дата начала действия тарифа","startingRateDate",0.7d,true,
+//        observer.setColumnWidthByContent( columnFabric.dateColumn(KindOfColumn.DATE,"Дата начала действия тарифа","startingRateDate",0.7d,true,
 //                (obj, val)->{((EmployeesRatePerHour)obj).setStartingRateDate((LocalDate) val); })
 //        );
 //

@@ -2,7 +2,7 @@ package basisFx.presentation.targets;
 
 import basisFx.appCore.MdiatorSingleTable;
 import basisFx.appCore.elements.TableWrapper;
-import basisFx.appCore.grid.ButtomRightMiddleBig;
+import basisFx.appCore.grid.GridOrganizationButtomRightMiddleBigSingleTable;
 import basisFx.appCore.grid.GridPaneWrapper;
 import basisFx.appCore.table.ColumnWrapperComboBoxVal;
 import basisFx.appCore.table.ColumnWrapperString;
@@ -40,7 +40,7 @@ public class CounterpartyPanel extends TargetPanel {
                 .build();
 
         GridPaneWrapper.newBuilder()
-                .setButtonKindConfigurationStrategy(new ButtomRightMiddleBig(tableWrapper))
+                .setGridOrganization(new GridOrganizationButtomRightMiddleBigSingleTable(tableWrapper))
                 .setColumnVsPercent(80)
                 .setColumnVsPercent(20)
                 .setName("Список контрагентов")

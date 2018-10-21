@@ -15,7 +15,7 @@
 //
 //        areaChart =new AreaChart<Number,Number>(xAxis,yAxis);
 //        element=areaChart;
-//        init(builder);
+//        organize(builder);
 //        areaChart.setTitle(string);
 //    }
 //    /**

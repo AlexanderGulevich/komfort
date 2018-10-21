@@ -29,10 +29,10 @@
 //        tr.setActiveRecord(dataMapperFabric.employerMapper());
 //        tr.setCoordinate(new Coordinate(30d, 10d, 10d, 10d));
 //        tr.setPanel(panel);
-//        tr.setColumn(columnFabric.string(KindOfColumn.STRING,"ФИО ","name",0.3d,true,
+//        tr.setColumnWidthByContent(columnFabric.string(KindOfColumn.STRING,"ФИО ","name",0.3d,true,
 //                (obj,val)->((Employer)obj).setName((String)val))
 //        );
-////        tr.setColumn(columnFabric.string(KindOfColumn.COMBOBOX,"Тариф ","rate",0.1d,false,
+////        tr.setColumnWidthByContent(columnFabric.string(KindOfColumn.COMBOBOX,"Тариф ","rate",0.1d,false,
 ////                null,()->dataMapperFabric.employeesRateMapper().)
 ////        );
 //

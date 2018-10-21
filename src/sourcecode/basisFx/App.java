@@ -33,8 +33,6 @@ public class App{
 
 
 
-
-
 //      ScenicView.show(MainWindow.getInstance().getWindow().getScene());
 
 

@@ -22,10 +22,10 @@
 //        observed.setTablesButtonKind(TablesButtonKind.Bottom_right);
 //        observed.setDomainClass(Label.class);
 //        observed.setActiveRecord(dataMapperFabric.labelMapper());
-//        observed.setColumn(columnFabric.string(KindOfColumn.STRING,"Наименование","name",0.5d,true,
+//        observed.setColumnWidthByContent(columnFabric.string(KindOfColumn.STRING,"Наименование","name",0.5d,true,
 //                (obj,val)->{((Label)obj).setName( (String ) val);})
 //        );
-//        observed.setColumn(
+//        observed.setColumnWidthByContent(
 //                columnFabric.comboBox(KindOfColumn.COMBOBOX,"Поставщик ","counterparty",0.5d,true,
 //                        (obj,val)->((Label)obj).setCounterparty((ComboBoxValue) val),
 //                        () ->  dataMapperFabric.counterpartyMapper().toComboBoxValueList((val)->{return ((Counterparty)val).getName();})
@@ -39,10 +39,10 @@
 //        observer.setTablesButtonKind(TablesButtonKind.Bottom_right);
 //        observer.setDomainClass(Price.class);
 //        observer.setActiveRecord(dataMapperFabric.labelPriceMapper());
-//        observer.setColumn(  columnFabric.string(KindOfColumn.DOUBLE,"Цена","price",0.3d,true,
+//        observer.setColumnWidthByContent(  columnFabric.string(KindOfColumn.DOUBLE,"Цена","price",0.3d,true,
 //                (obj,val)->{((Price)obj).setPrice( (String ) val);})
 //        );
-//        observer.setColumn(  columnFabric.dateColumn(KindOfColumn.DATE,"Дата начала действия ","startingDate",0.7d,true,
+//        observer.setColumnWidthByContent(  columnFabric.dateColumn(KindOfColumn.DATE,"Дата начала действия ","startingDate",0.7d,true,
 //                (obj, val)->{((Price)obj).setStartingDate((LocalDate) val); })
 //        );
 //

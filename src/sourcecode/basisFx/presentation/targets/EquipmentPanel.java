@@ -2,7 +2,7 @@ package basisFx.presentation.targets;
 
 import basisFx.appCore.MdiatorSingleTable;
 import basisFx.appCore.elements.TableWrapper;
-import basisFx.appCore.grid.ButtomRightMiddleBig;
+import basisFx.appCore.grid.GridOrganizationButtonTopRightLittleSingleTable;
 import basisFx.appCore.grid.GridPaneWrapper;
 import basisFx.appCore.table.ColumnWrapperString;
 import basisFx.appCore.utils.Coordinate;
@@ -28,13 +28,12 @@ public class EquipmentPanel extends TargetPanel {
                                 .setIsEditeble(true)
                                 .setPropertyName("name")
                                 .build()
-
                 )
                 .build();
 
 
         GridPaneWrapper.newBuilder()
-                .setButtonKindConfigurationStrategy(new ButtomRightMiddleBig(tableWrapper))
+                .setGridOrganization(new GridOrganizationButtonTopRightLittleSingleTable(tableWrapper))
                 .setColumnVsPercent(80)
                 .setColumnVsPercent(20)
                 .setName("Оборудование")

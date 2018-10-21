@@ -29,7 +29,7 @@
 //
 //         tilePane =(TilePane) element;
 //
-//        init(builder);
+//        organize(builder);
 //
 //
 //    }

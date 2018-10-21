@@ -16,7 +16,7 @@
 //public class TextTitle extends AbstracttTitle{
 //
 //    @Override
-//    public void init() {
+//    public void organize() {
 //
 //
 //         AppNode.NodeBuilder.create()
