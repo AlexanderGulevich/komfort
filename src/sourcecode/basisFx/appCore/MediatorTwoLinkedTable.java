@@ -6,7 +6,7 @@ import basisFx.domain.ActiveRecord;
 import basisFx.service.ServiceTwoLinkedTable;
 import javafx.collections.ObservableList;
 
-public class MediatorTwoLinkedTable implements Mediator {
+public class MediatorTwoLinkedTable extends Mediator {
 
     private  TableWrapper primaryTableWrapper;
     private  TableWrapper accessoryTableWrapper;
@@ -55,11 +55,11 @@ public class MediatorTwoLinkedTable implements Mediator {
     public void wasRemoved(AppNode node, ActiveRecord record) {
         if (node==primaryTableWrapper){
             System.err.println("MediatorTwoLinkedTable.wasRemoved   if (node==primaryTableWrapper){");
-            ServiceTwoLinkedTable.wasRemoved(record,this);
+            ServiceTwoLinkedTable.wasRemoved( node,  record);
         }
         if (node==accessoryTableWrapper){
             System.err.println("MediatorTwoLinkedTable.wasRemoved   if (node==accessoryTableWrapper){");
-            ServiceTwoLinkedTable.wasRemoved(record,this);
+            ServiceTwoLinkedTable.wasRemoved(node,  record);
         }
 
     }
@@ -68,18 +68,18 @@ public class MediatorTwoLinkedTable implements Mediator {
     public void wasChanged(AppNode node, ActiveRecord record) {
         if (node==primaryTableWrapper){
             System.err.println("MediatorTwoLinkedTable.wasChanged   if (node==primaryTableWrapper){");
-            ServiceTwoLinkedTable.wasChanged(node,record,primaryTableWrapper.unitOfWork);
+            ServiceTwoLinkedTable.wasChanged(node,  record);
         }
         if (node==accessoryTableWrapper){
             System.err.println("MediatorTwoLinkedTable.wasChanged   if (node==accessoryTableWrapper){");
-            ServiceTwoLinkedTable.wasChanged(node,record,accessoryTableWrapper.unitOfWork);
+            ServiceTwoLinkedTable.wasChanged(node,  record);
         }
     }
 
 
     private void refreshAccessoryTable(ActiveRecord record) {
 
-        if (record.getId() !=null) {
+        if (!isNewDomane(record)) {
 
             ObservableList<ActiveRecord> listFromDataStore = accessoryTableWrapper.activeRecord.findAllByOuterId(record.getId());
             ObservableList<ActiveRecord> tablesItems = accessoryTableWrapper.getElement().getItems();
@@ -87,9 +87,13 @@ public class MediatorTwoLinkedTable implements Mediator {
             tablesItems.addAll(listFromDataStore);
 
         }
+
     }
 
 
 
 }
+
+
+
 

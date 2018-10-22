@@ -5,7 +5,7 @@ import basisFx.appCore.elements.TableWrapper;
 import basisFx.domain.ActiveRecord;
 import basisFx.service.ServiceSingleEditableSubmitTable;
 
-public class MdiatorSingleTable implements Mediator {
+public class MdiatorSingleTable extends Mediator {
 
 
     @Override

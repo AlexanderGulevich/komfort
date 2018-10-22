@@ -1,8 +1,8 @@
 package basisFx.service;
 
-import basisFx.appCore.Mediator;
 import basisFx.appCore.MediatorTwoLinkedTable;
 import basisFx.appCore.elements.AppNode;
+import basisFx.appCore.elements.TableWrapper;
 import basisFx.dataSource.UnitOfWork;
 import basisFx.domain.ActiveRecord;
 import javafx.collections.ObservableList;
@@ -11,23 +11,20 @@ import java.sql.SQLException;
 
 public class ServiceTwoLinkedTable implements AplicationService {
 
-    public static void commitAll(UnitOfWork unitOfWork) {
+    public static void commitAll(UnitOfWork unitOfWork) {}
 
-    }
-
-    public static void wasRemoved(ActiveRecord record,  MediatorTwoLinkedTable mediator) {
+    public static void wasRemoved(AppNode node, ActiveRecord record) {
+        TableWrapper tableWrapper = (TableWrapper) node;
         Boolean isNewDomane = AplicationService.checkIsNewDomane(record);
         if (!isNewDomane){
-            mediator.gunitOfWork.registercDeleted(record.entityName,record);
-            removeAccessoryTableItems(mediator);
+            tableWrapper.unitOfWork.registercDeleted(record.entityName,record);
+            removeAccessoryTableItems(((MediatorTwoLinkedTable) tableWrapper.getMediator()));
             try {
-                unitOfWork.commit();
+                tableWrapper.unitOfWork.commit();
             } catch (SQLException e) {
                 e.printStackTrace();
             }
         }
-
-
     }
 
     private static void removeAccessoryTableItems(MediatorTwoLinkedTable mediator) {
@@ -42,21 +39,18 @@ public class ServiceTwoLinkedTable implements AplicationService {
         }
     }
 
-    public static void wasChanged(AppNode node, ActiveRecord record, UnitOfWork unitOfWork) {
-
+    public static void wasChanged(AppNode node, ActiveRecord record) {
+        TableWrapper tableWrapper = (TableWrapper) node;
         Boolean isNewDomane = AplicationService.checkIsNewDomane(record);
-
         if (!isNewDomane){
-            unitOfWork.registercDirty(record.entityName,record);
+            tableWrapper.unitOfWork.registercDirty(record.entityName,record);
         }else {
-            unitOfWork.registerNew(record.entityName,record);
+            tableWrapper.unitOfWork.registerNew(record.entityName,record);
         }
         try {
-            unitOfWork.commit();
+            tableWrapper.unitOfWork.commit();
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
     }
-
 }

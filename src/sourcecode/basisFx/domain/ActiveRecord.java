@@ -34,6 +34,10 @@ public abstract class ActiveRecord {
         Field[] declaredFields = aClass.getDeclaredFields();
         SimpleObjectProperty idProperty=getIdPropertyFromClass(aClass,record);
         for (Field declaredField : declaredFields) {
+            declaredField.setAccessible(true);
+            if (java.lang.reflect.Modifier.isStatic(declaredField.getModifiers())) {
+                continue;
+            }
             SimpleObjectProperty property= getPropertyFromClass(declaredField,record);
             if (property ==idProperty) continue;
             if (property.get() != null ) {
