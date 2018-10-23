@@ -15,4 +15,5 @@ public abstract class Mediator {
         }
         return true;
     }
+
 }

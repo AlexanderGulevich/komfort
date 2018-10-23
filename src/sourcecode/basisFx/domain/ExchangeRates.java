@@ -11,11 +11,24 @@ public class ExchangeRates extends ActiveRecord{
 
     private static ExchangeRates INSTANCE = new ExchangeRates();
     private SimpleObjectProperty<LocalDate> startingDate =new SimpleObjectProperty<>(this, "startingDate", null);
-    private SimpleObjectProperty<Integer> currencyId =new SimpleObjectProperty<>(this, "currencyId", null);
+    private SimpleObjectProperty<ComboBoxValue>  currencyComboBoxValue =new SimpleObjectProperty<>(this, "currencyComboBoxValue", null);
     private SimpleObjectProperty<String> exchangeRate =new SimpleObjectProperty<>(this, "exchangeRate", null);
 
     public ExchangeRates() {
         super("ExchangeRates");
+    }
+
+
+    public ComboBoxValue getCurrencyComboBoxValue() {
+        return currencyComboBoxValue.get();
+    }
+
+    public SimpleObjectProperty<ComboBoxValue> currencyComboBoxValueProperty() {
+        return currencyComboBoxValue;
+    }
+
+    public void setCurrencyComboBoxValue(ComboBoxValue currencyComboBoxValue) {
+        this.currencyComboBoxValue.set(currencyComboBoxValue);
     }
 
     public LocalDate getStartingDate() {
@@ -28,18 +41,6 @@ public class ExchangeRates extends ActiveRecord{
 
     public void setStartingDate(LocalDate startingDate) {
         this.startingDate.set(startingDate);
-    }
-
-    public Integer getCurrencyId() {
-        return currencyId.get();
-    }
-
-    public SimpleObjectProperty<Integer> currencyIdProperty() {
-        return currencyId;
-    }
-
-    public void setCurrencyId(Integer currencyId) {
-        this.currencyId.set(currencyId);
     }
 
     public String getExchangeRate() {
@@ -82,7 +83,8 @@ public class ExchangeRates extends ActiveRecord{
                 ExchangeRates pojo=new ExchangeRates();
 
                 pojo.setId( rs.getInt("id"));
-                pojo.setCurrencyId(rs.getInt("currencyId"));
+                pojo.setCurrencyComboBoxValue(
+                        Currency.getInstance().find(rs.getInt("currencyId")).toComboBoxValue());
                 pojo.setExchangeRate(Double.toString(rs.getDouble("rate")));
                 pojo.setStartingDate(rs.getDate("startDate").toLocalDate());
 
@@ -136,38 +138,36 @@ public class ExchangeRates extends ActiveRecord{
 
     @Override
     public void insert()   {
-//        ExchangeRates domainObject=(ExchangeRates) d;
-//
-//        try {
-//            if(isReadyToTransaction(d)) {
-//
-//                boolean check = checkUniquenessDateById(
-//                        "ExchangeRates",
-//                        "startDate",
-//                        domainObject.getStartingDate(),
-//                        "currencyId",
-//                        getObservableDomaineId()
-//                );
-//                if (!check) {
-//                    String expression = "INSERT INTO " + "ExchangeRates "
-//                            + "("
-//                            + " rate ,  "
-//                            + " startDate,  "
-//                            + " currencyId        "
-//                            + ") VALUES(?,?,?)";
-//
-//                    PreparedStatement pstmt = Db.getConnection().prepareStatement(expression);
-//                    pstmt.setDouble(1, Double.valueOf(domainObject.getExchangeRate()));
-//                    pstmt.setDate(2, Date.valueOf(domainObject.getStartingDate()));
-//                    pstmt.setInt(3, getObservableDomaineId());
-//
-//                    pstmt.executeUpdate();
-//                }
-//
-//            }
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
+
+        try {
+
+                boolean check = checkUniquenessDateById(
+                        "ExchangeRates",
+                        "startDate",
+                        getStartingDate(),
+                        "currencyId",
+                        outerId
+                );
+                if (!check) {
+                    String expression = "INSERT INTO " + "ExchangeRates "
+                            + "("
+                            + " rate ,  "
+                            + " startDate,  "
+                            + " currencyId        "
+                            + ") VALUES(?,?,?)";
+
+                    PreparedStatement pstmt = Db.getConnection().prepareStatement(expression);
+                    pstmt.setDouble(1, Double.valueOf(domainObject.getExchangeRate()));
+                    pstmt.setDate(2, Date.valueOf(domainObject.getStartingDate()));
+                    pstmt.setInt(3, getObservableDomaineId());
+
+                    pstmt.executeUpdate();
+                }
+
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
 

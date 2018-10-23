@@ -10,6 +10,7 @@ import javafx.collections.ObservableList;
 
 public abstract class ActiveRecord {
     public String entityName;
+    public int outerId;
     public ObjectProperty<Integer> id =new SimpleObjectProperty<>(this, "id", null);
     public  abstract ComboBoxValue toComboBoxValue();
     public abstract ObservableList <ActiveRecord>  getAll();
@@ -28,23 +29,18 @@ public abstract class ActiveRecord {
     }
     public  static ActiveRecord getInstance(){return  null;};
     public  ObservableList<ActiveRecord>  createNewActiveRecordList() {
-
         return FXCollections.<ActiveRecord>observableArrayList();
-
     }
     public boolean isReadyToTransaction(){
         boolean isReady=false;
         Class<? extends ActiveRecord> aClass = this.getClass();
-        ActiveRecord record= newInstanceFromClass(aClass);
         Field[] declaredFields = aClass.getDeclaredFields();
-//        SimpleObjectProperty idProperty=getIdPropertyFromClass(aClass,record);
         for (Field declaredField : declaredFields) {
             declaredField.setAccessible(true);
             if (java.lang.reflect.Modifier.isStatic(declaredField.getModifiers())) {
                 continue;
             }
-            SimpleObjectProperty property= getPropertyFromClass(declaredField,record);
-//            if (property ==idProperty) continue;
+            SimpleObjectProperty property= getPropertyFromClass(declaredField,this);
             Object obj = property.get();
             if (obj!= null ) {
                 isReady=true;
@@ -154,48 +150,48 @@ public abstract class ActiveRecord {
      * Должна использоваться в insert и update методах отображателей
      * @return Возвращает TRUE если в БД есть значение на данную дату по данной сущности
      */
-//    public boolean checkUniquenessDateById(String tableName, String dateName, LocalDate date, String checkedEntityName, int checkedEntityId ){
-//        try {
-//
-//            String expression="SELECT * FROM " + tableName+" where " +checkedEntityName+
-//                    " =?  and "+dateName+" = ?";
-//
-//            Statement stmt  = Db.connection.createStatement();
-//
-//            PreparedStatement pstmt = Db.connection.prepareStatement(expression);
-//            pstmt.setInt(1, checkedEntityId);
-//            pstmt.setDate(2,  Date.valueOf(date));
-//            ResultSet rs    = pstmt.executeQuery();
-//
-//            if (rs.next()) {
-//
-////                System.err.println("\n");
-////                System.err.println("ActiveRecord.checkUniquenessDateById () ");
-////                System.err.println("Date-"+rs.getDate("startDate"));
-////                System.err.println("EmployerId  "+rs.getInt("employerId"));
-////                System.err.println("\n");
-//
-//                String message="В Базе Данных уже есть значение на дату: "
-//                        + date.toString()+
-//                        ". Создать новую запись с такой же датой нельзя." +
-//                        " Вы можете изменить старую, либо удалить ее.";
-//
-//                Platform.runLater(() -> {
-//
-//
-//                });
-//
-//
-//                return true;
-//
-//            }
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
-//
-//
-//        return false;
-//    }
+    public boolean checkUniquenessDateById(String tableName, String dateName, LocalDate date, String checkedEntityName, int checkedEntityId ){
+        try {
+
+            String expression="SELECT * FROM " + tableName+" where " +checkedEntityName+
+                    " =?  and "+dateName+" = ?";
+
+            Statement stmt  = Db.connection.createStatement();
+
+            PreparedStatement pstmt = Db.connection.prepareStatement(expression);
+            pstmt.setInt(1, checkedEntityId);
+            pstmt.setDate(2,  Date.valueOf(date));
+            ResultSet rs    = pstmt.executeQuery();
+
+            if (rs.next()) {
+
+//                System.err.println("\n");
+//                System.err.println("ActiveRecord.checkUniquenessDateById () ");
+//                System.err.println("Date-"+rs.getDate("startDate"));
+//                System.err.println("EmployerId  "+rs.getInt("employerId"));
+//                System.err.println("\n");
+
+                String message="В Базе Данных уже есть значение на дату: "
+                        + date.toString()+
+                        ". Создать новую запись с такой же датой нельзя." +
+                        " Вы можете изменить старую, либо удалить ее.";
+
+                Platform.runLater(() -> {
+
+
+                });
+
+
+                return true;
+
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
+        return false;
+    }
 
 
 
@@ -240,34 +236,6 @@ public abstract class ActiveRecord {
 //            SELECT MAX(STARTDATE) FROM PRODUCTPRICESTORE
 //    WHERE PRODUCTID=2
 //	)
-
-    private ActiveRecord newInstanceFromClass(Class<? extends ActiveRecord> aClass ) {
-        try {
-            return aClass.newInstance();
-        } catch (InstantiationException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
-    private SimpleObjectProperty getIdPropertyFromClass(Class<? extends ActiveRecord> aClass,ActiveRecord record ) {
-        Field idField = null;
-        try {
-            idField = aClass.getField("id");
-        } catch (NoSuchFieldException e) {
-            e.printStackTrace();
-        }
-        SimpleObjectProperty idProperty=null;
-        try {
-            idProperty= (SimpleObjectProperty) idField.get(record);
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        }
-
-        return idProperty;
-    }
 
     private SimpleObjectProperty getPropertyFromClass(Field declaredField, ActiveRecord record) {
         try {

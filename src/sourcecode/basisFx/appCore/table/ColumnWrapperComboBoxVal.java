@@ -187,6 +187,7 @@ public class ColumnWrapperComboBoxVal extends ColumnWrapper{
             comboBox.setOnAction((e) -> {
 //                System.err.println("Committed: " + comboBox.getSelectionModel().getSelectedItem());
                 commitEdit(comboBox.getSelectionModel().getSelectedItem());
+                tableWrapper.getMediator().wasChanged(tableWrapper,domain);
             });
             comboBox.focusedProperty().addListener((ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) -> {
                 if (!newValue) {
