@@ -2,7 +2,10 @@ package basisFx.domain;
 
 import java.lang.reflect.Field;
 import java.sql.*;
+import java.time.LocalDate;
+
 import basisFx.dataSource.Db;
+import javafx.application.Platform;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
@@ -150,47 +153,28 @@ public abstract class ActiveRecord {
      * Должна использоваться в insert и update методах отображателей
      * @return Возвращает TRUE если в БД есть значение на данную дату по данной сущности
      */
-    public boolean checkUniquenessDateById(String tableName, String dateName, LocalDate date, String checkedEntityName, int checkedEntityId ){
-        try {
+    public boolean isUniquenessDate( ObservableList<ActiveRecord>  records, LocalDate date ){
 
-            String expression="SELECT * FROM " + tableName+" where " +checkedEntityName+
-                    " =?  and "+dateName+" = ?";
+        records.stream().filter(
+                activeRecord -> activeRecord.
+        )
 
-            Statement stmt  = Db.connection.createStatement();
 
-            PreparedStatement pstmt = Db.connection.prepareStatement(expression);
-            pstmt.setInt(1, checkedEntityId);
-            pstmt.setDate(2,  Date.valueOf(date));
-            ResultSet rs    = pstmt.executeQuery();
 
-            if (rs.next()) {
-
-//                System.err.println("\n");
-//                System.err.println("ActiveRecord.checkUniquenessDateById () ");
-//                System.err.println("Date-"+rs.getDate("startDate"));
-//                System.err.println("EmployerId  "+rs.getInt("employerId"));
-//                System.err.println("\n");
-
-                String message="В Базе Данных уже есть значение на дату: "
-                        + date.toString()+
-                        ". Создать новую запись с такой же датой нельзя." +
-                        " Вы можете изменить старую, либо удалить ее.";
 
                 Platform.runLater(() -> {
 
 
+                    String message="В Базе Данных уже есть значение на дату: "
+                            + date.toString()+
+                            ". Создать новую запись с такой же датой нельзя." +
+                            " Вы можете изменить старую, либо удалить ее.";
                 });
 
 
-                return true;
-
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
 
 
-        return false;
+
     }
 
 
