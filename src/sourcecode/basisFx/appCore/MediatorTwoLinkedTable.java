@@ -83,8 +83,12 @@ public class MediatorTwoLinkedTable extends Mediator {
 
             ObservableList<ActiveRecord> listFromDataStore = accessoryTableWrapper.activeRecord.findAllByOuterId(record.getId());
             ObservableList<ActiveRecord> tablesItems = accessoryTableWrapper.getElement().getItems();
-            tablesItems.clear();
-            tablesItems.addAll(listFromDataStore);
+            if (tablesItems != null) {
+                tablesItems.clear();
+                tablesItems.addAll(listFromDataStore);
+            }
+
+
 
         }
 

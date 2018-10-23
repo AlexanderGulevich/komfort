@@ -27,20 +27,26 @@ public abstract class ActiveRecord {
         this.id.set(value);
     }
     public  static ActiveRecord getInstance(){return  null;};
+    public  ObservableList<ActiveRecord>  createNewActiveRecordList() {
+
+        return FXCollections.<ActiveRecord>observableArrayList();
+
+    }
     public boolean isReadyToTransaction(){
         boolean isReady=false;
         Class<? extends ActiveRecord> aClass = this.getClass();
         ActiveRecord record= newInstanceFromClass(aClass);
         Field[] declaredFields = aClass.getDeclaredFields();
-        SimpleObjectProperty idProperty=getIdPropertyFromClass(aClass,record);
+//        SimpleObjectProperty idProperty=getIdPropertyFromClass(aClass,record);
         for (Field declaredField : declaredFields) {
             declaredField.setAccessible(true);
             if (java.lang.reflect.Modifier.isStatic(declaredField.getModifiers())) {
                 continue;
             }
             SimpleObjectProperty property= getPropertyFromClass(declaredField,record);
-            if (property ==idProperty) continue;
-            if (property.get() != null ) {
+//            if (property ==idProperty) continue;
+            Object obj = property.get();
+            if (obj!= null ) {
                 isReady=true;
             }else {
                 return false;

@@ -42,10 +42,13 @@ public class ServiceTwoLinkedTable implements AplicationService {
     public static void wasChanged(AppNode node, ActiveRecord record) {
         TableWrapper tableWrapper = (TableWrapper) node;
         Boolean isNewDomane = AplicationService.checkIsNewDomane(record);
-        if (!isNewDomane){
-            tableWrapper.unitOfWork.registercDirty(record.entityName,record);
-        }else {
+        System.err.println("ServiceTwoLinkedTable.wasChanged");
+        if (isNewDomane){
+            System.err.println("ServiceTwoLinkedTable.wasChanged---isNewDomane");
             tableWrapper.unitOfWork.registerNew(record.entityName,record);
+        }else {
+            tableWrapper.unitOfWork.registercDirty(record.entityName,record);
+            System.err.println("ServiceTwoLinkedTable.wasChanged---Not NewDomane");
         }
         try {
             tableWrapper.unitOfWork.commit();

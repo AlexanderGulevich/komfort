@@ -70,6 +70,7 @@ public class UnitOfWork {
         for (Iterator<ActiveRecord> iterator = recordsSet.iterator(); iterator.hasNext();) {
             ActiveRecord next = iterator.next();
             if (next.isReadyToTransaction()) {
+                System.out.println("UnitOfWork.commitNew----ReadyToTransaction");
                 next.insert();
             }
         }
@@ -81,6 +82,7 @@ public class UnitOfWork {
         for (Iterator<ActiveRecord> iterator = recordsSet.iterator(); iterator.hasNext();) {
             ActiveRecord next = iterator.next();
             if (next.isReadyToTransaction()) {
+                System.out.println("UnitOfWork.commitDirty----ReadyToTransaction");
                 next.update();
             }
         }
