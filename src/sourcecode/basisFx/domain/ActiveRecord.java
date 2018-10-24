@@ -4,6 +4,7 @@ import java.lang.reflect.Field;
 import java.sql.*;
 import java.time.LocalDate;
 
+import basisFx.appCore.interfaces.DateGetter;
 import basisFx.dataSource.Db;
 import javafx.application.Platform;
 import javafx.beans.property.ObjectProperty;
@@ -33,6 +34,12 @@ public abstract class ActiveRecord {
     public  static ActiveRecord getInstance(){return  null;};
     public  ObservableList<ActiveRecord>  createNewActiveRecordList() {
         return FXCollections.<ActiveRecord>observableArrayList();
+    }
+    public static boolean isNewDomane(ActiveRecord record) {
+        if (record.getId() !=null) {
+            return false;
+        }
+        return true;
     }
     public boolean isReadyToTransaction(){
         boolean isReady=false;
@@ -153,29 +160,34 @@ public abstract class ActiveRecord {
      * Должна использоваться в insert и update методах отображателей
      * @return Возвращает TRUE если в БД есть значение на данную дату по данной сущности
      */
-    public boolean isUniquenessDate( ObservableList<ActiveRecord>  records, LocalDate date ){
+    public boolean isUniquenessDate( ObservableList<ActiveRecord>  records, DateGetter dateGetter , LocalDate testedDate ){
 
-        records.stream().filter(
-                activeRecord -> activeRecord.
-        )
+        long count = records.stream().filter(
+                activeRecord -> dateGetter.getDate(activeRecord).isEqual(testedDate)).count();
 
+        if (count>0) {
+            return false;
 
-
-
-                Platform.runLater(() -> {
-
-
-                    String message="В Базе Данных уже есть значение на дату: "
-                            + date.toString()+
-                            ". Создать новую запись с такой же датой нельзя." +
-                            " Вы можете изменить старую, либо удалить ее.";
-                });
-
-
-
-
-
+        }
+        return true;
     }
+
+
+
+//
+//                Platform.runLater(() -> {
+//
+//
+//                    String message="В Базе Данных уже есть значение на дату: "
+//                            + date.toString()+
+//                            ". Создать новую запись с такой же датой нельзя." +
+//                            " Вы можете изменить старую, либо удалить ее.";
+//                });
+//
+
+
+
+
 
 
 

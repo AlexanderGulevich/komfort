@@ -44,7 +44,9 @@ public class MediatorTwoLinkedTable extends Mediator {
         if (node == primaryTableWrapper) {
             ActiveRecord clickedDomain = primaryTableWrapper.clickedDomain;
             refreshAccessoryTable(clickedDomain);
-            idFromPrimeTable=clickedDomain.id.get();
+            if (!ActiveRecord.isNewDomane(clickedDomain)) {
+                idFromPrimeTable = clickedDomain.id.get();
+            }
             System.err.println("MediatorTwoLinkedTable.inform   if (node==primaryTableWrapper){);");
         }
         if (node == accessoryTableWrapper) {
@@ -62,7 +64,6 @@ public class MediatorTwoLinkedTable extends Mediator {
             System.err.println("MediatorTwoLinkedTable.wasRemoved   if (node==accessoryTableWrapper){");
             ServiceTwoLinkedTable.wasRemoved(node, record);
         }
-
     }
 
     @Override
@@ -73,27 +74,22 @@ public class MediatorTwoLinkedTable extends Mediator {
         }
         if (node == accessoryTableWrapper) {
             System.err.println("MediatorTwoLinkedTable.wasChanged   if (node==accessoryTableWrapper){");
-            record.outerId=idFromPrimeTable;
+            record.outerId = idFromPrimeTable;
             ServiceTwoLinkedTable.wasChanged(node, record);
-
         }
     }
 
-
     private void refreshAccessoryTable(ActiveRecord clickedDomainFromPrimeTable) {
-        ObservableList<ActiveRecord> list = accessoryTableWrapper.activeRecord.findAllByOuterId(clickedDomainFromPrimeTable.getId());
-        ObservableList<ActiveRecord> tablesItems = accessoryTableWrapper.getElement().getItems();
-        if (!isNewDomane(clickedDomainFromPrimeTable)) {
+        if (!ActiveRecord.isNewDomane(clickedDomainFromPrimeTable)) {
+            ObservableList<ActiveRecord> list = accessoryTableWrapper.activeRecord.findAllByOuterId(clickedDomainFromPrimeTable.getId());
+            ObservableList<ActiveRecord> tablesItems = accessoryTableWrapper.getElement().getItems();
             if (tablesItems != null) {
                 tablesItems.clear();
                 tablesItems.addAll(list);
-            } else {
+            }else{
                 accessoryTableWrapper.getElement().setItems(list);
             }
-            accessoryTableWrapper.getElement().setItems(list);
         }
-
-
     }
 }
 

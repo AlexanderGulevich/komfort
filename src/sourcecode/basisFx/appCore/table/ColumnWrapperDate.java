@@ -35,6 +35,8 @@ public class ColumnWrapperDate extends ColumnWrapper{
 
         column.setCellValueFactory(new PropertyValueFactory<>(propertyName));
         column.setCellFactory(dateCellFactory);
+
+        setOnEditCommit();
     }
 
     public static Builder newBuilder() {
@@ -44,14 +46,14 @@ public class ColumnWrapperDate extends ColumnWrapper{
     @Override
     public void setOnEditCommit() {
 
-        column.setOnEditCommit((TableColumn.CellEditEvent<ActiveRecord, LocalDate> event)  -> {
+        column.setOnEditCommit(event -> {
             if (checkValue(event)) {
-                ActiveRecord domain = (ActiveRecord) event.getRowValue();
                 int row = event.getTablePosition().getRow();
                 ObservableValue<LocalDate> v = event.getTableColumn().getCellObservableValue(row);
                 if (v instanceof WritableValue) {
                     ((WritableValue<LocalDate>)v).setValue(event.getNewValue());
                 }
+                ActiveRecord domain = (ActiveRecord) event.getRowValue();
                 tableWrapper.getMediator().wasChanged(tableWrapper,domain);
 
             };

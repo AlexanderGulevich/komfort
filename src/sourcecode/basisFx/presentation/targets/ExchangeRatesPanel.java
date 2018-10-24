@@ -64,7 +64,7 @@ public class ExchangeRatesPanel extends TargetPanel {
                                 .setColumnName("Дата")
                                 .setColumnSize(0.4d)
                                 .setIsEditeble(true)
-                                .setPropertyName("exchangeRate")
+                                .setPropertyName("startingDate")
                                 .build()
                 )
                 .build();

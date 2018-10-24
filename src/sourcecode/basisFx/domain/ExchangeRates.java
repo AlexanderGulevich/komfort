@@ -100,75 +100,69 @@ public class ExchangeRates extends ActiveRecord{
 
     @Override
     public void update()   {
-//
-//            ExchangeRates domainObject= (ExchangeRates) d;
-//            String expression = "UPDATE "+    "ExchangeRates"+ " SET  " +
-//                    " rate = ?," +
-//                    " startDate = ?," +
-//                    " currencyId = ? " +
-//                    " where id =?";
-//
-//            PreparedStatement pstmt = null;
-//
-//            boolean check = checkUniquenessDateById(
-//                    "ExchangeRates",
-//                    "startDate",
-//                    domainObject.getStartingDate(),
-//                    "currencyId",
-//                    getObservableDomaineId()
-//            );
-//
-//
-//            if (!check) {
-//                try {
-//                    pstmt = Db.getConnection().prepareStatement(expression);
-//                    pstmt.setDouble(1, Double.valueOf(domainObject.getExchangeRate()));
-//                    pstmt.setDate(2, Date.valueOf(domainObject.getStartingDate()));
-//                    pstmt.setInt(3, domainObject.getCurrencyId());
-//                    pstmt.setInt(4, domainObject.getId());
-//
-//                    pstmt.executeUpdate();
-//                } catch (SQLException e) {
-//                    e.printStackTrace();
-//                }
-//            }
+
+            String expression = "UPDATE "+    "ExchangeRates"+ " SET  " +
+                    " rate = ?," +
+                    " startDate = ?," +
+                    " currencyId = ? " +
+                    " where id =?";
+
+            PreparedStatement pstmt = null;
+
+        boolean check = isUniquenessDate(
+                getAll(),
+                activeRecord -> ((ExchangeRates) activeRecord).getStartingDate(),
+                getStartingDate());
+
+
+            if (!check) {
+                try {
+                    pstmt = Db.connection.prepareStatement(expression);
+                    pstmt.setDouble(1, Double.valueOf(getExchangeRate()));
+                    pstmt.setDate(2, Date.valueOf(getStartingDate()));
+                    pstmt.setInt(3, outerId);
+                    pstmt.setInt(4, id.get());
+
+                    pstmt.executeUpdate();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
 
     }
 
 
     @Override
-    public void insert()   {
+    public void insert() {
 
-        try {
+        boolean check = isUniquenessDate(
+                getAll(),
+                activeRecord -> ((ExchangeRates) activeRecord).getStartingDate(),
+                getStartingDate()
+        );
 
-                boolean check = checkUniquenessDateById(
-                        "ExchangeRates",
-                        "startDate",
-                        getStartingDate(),
-                        "currencyId",
-                        outerId
-                );
-                if (!check) {
-                    String expression = "INSERT INTO " + "ExchangeRates "
-                            + "("
-                            + " rate ,  "
-                            + " startDate,  "
-                            + " currencyId        "
-                            + ") VALUES(?,?,?)";
+        if (!check) {
+            String expression = "INSERT INTO " + "ExchangeRates "
+                    + "("
+                    + " rate ,  "
+                    + " startDate,  "
+                    + " currencyId        "
+                    + ") VALUES(?,?,?)";
 
-                    PreparedStatement pstmt = Db.getConnection().prepareStatement(expression);
-                    pstmt.setDouble(1, Double.valueOf(domainObject.getExchangeRate()));
-                    pstmt.setDate(2, Date.valueOf(domainObject.getStartingDate()));
-                    pstmt.setInt(3, getObservableDomaineId());
+            PreparedStatement pstmt = null;
+            try {
+                pstmt = Db.connection.prepareStatement(expression);
+                pstmt.setDouble(1, Double.valueOf(getExchangeRate()));
+                pstmt.setDate(2, Date.valueOf(getStartingDate()));
+                pstmt.setInt(3,  outerId);
 
-                    pstmt.executeUpdate();
-                }
-
+                pstmt.executeUpdate();
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
         }
     }
+
 
 
 
