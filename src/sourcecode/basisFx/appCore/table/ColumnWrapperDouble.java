@@ -5,6 +5,8 @@ import basisFx.domain.ActiveRecord;
 import javafx.beans.value.ObservableValue;
 import javafx.beans.value.WritableValue;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 
 public class ColumnWrapperDouble <T>extends ColumnWrapper{
 
@@ -16,6 +18,19 @@ public class ColumnWrapperDouble <T>extends ColumnWrapper{
         columnName = builder.columnName;
         columnSize = builder.columnSize;
         isEditeble = builder.isEditeble;
+
+
+        column =  new TableColumn<>(columnName);
+
+        column.setEditable(isEditeble);
+        column.setCellValueFactory(new PropertyValueFactory<>(propertyName));
+        column.setCellFactory(TextFieldTableCell.forTableColumn());
+
+        setOnEditCommit();
+
+        if (columnSize != null) {
+            column.setPrefWidth(columnSize);
+        }
     }
 
     public static Builder newBuilder() {
@@ -25,15 +40,22 @@ public class ColumnWrapperDouble <T>extends ColumnWrapper{
     @Override
     public void setOnEditCommit() {
         column.setOnEditCommit((event) -> {
-            if (checkValue(event)) {
-                ActiveRecord domain = (ActiveRecord) event.getRowValue();
+
+            boolean checkValue = checkValue(event);
+
+            if (checkValue) {
+
                 int row = event.getTablePosition().getRow();
                 ObservableValue<String> v = event.getTableColumn().getCellObservableValue(row);
                 if (v instanceof WritableValue) {
                     ((WritableValue<String>)v).setValue(event.getNewValue());
                 }
+                ActiveRecord domain = (ActiveRecord) event.getRowValue();
+                tableWrapper.getMediator().wasChanged(tableWrapper,domain);
 
-            };
+            }else{
+                System.err.println("checkValue--ColumnWrapperDouble- НЕДОПУСТИМОЕ ЗНАЧЕНИЕ");
+            }
         });
     }
 

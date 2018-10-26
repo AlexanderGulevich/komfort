@@ -109,7 +109,9 @@ public  class TableWrapper extends AppNode  {
         return new Builder();
     }
 
-
+    public ObservableList<ActiveRecord> getList(){
+        return element.getItems();
+    }
     private void applyListener() {
         if (list != null) {
             list.addListener(tableListener);
@@ -258,12 +260,28 @@ public  class TableWrapper extends AppNode  {
 
 
     }
-    private void scrollToDomainObectItem(ActiveRecord domainObject) {
+    public void scrollToItem(ActiveRecord domainObject) {
         int newPojoIndex = element.getItems().indexOf(domainObject);
         element.scrollTo(newPojoIndex);
         element.getSelectionModel().select(newPojoIndex);
-//        element.getSelectionModel().focus(newPojoIndex);
     }
+
+    public void focusItem(ActiveRecord domainObject) {
+        int newPojoIndex = element.getItems().indexOf(domainObject);
+        element.scrollTo(newPojoIndex);
+        element.getSelectionModel().focus(newPojoIndex);
+    }
+
+    public boolean haveNewItem() {
+        ObservableList<ActiveRecord> items = element.getItems();
+        ActiveRecord activeRecord=null;
+        if ( items.size()>0) {
+             activeRecord = items.get(items.size() - 1);
+        }
+        return ActiveRecord.isNewDomane(activeRecord);
+    }
+
+
     public void setMediator(Mediator mediator) {
         this.mediator = mediator;
     }

@@ -6,6 +6,7 @@ import basisFx.appCore.grid.GridOrganizationButtonTopRightLittleSingleTable;
 import basisFx.appCore.grid.GridPaneWrapper;
 import basisFx.appCore.grid.GridOrganizationInnerTwoGridsTwoTables;
 import basisFx.appCore.table.ColumnWrapperDate;
+import basisFx.appCore.table.ColumnWrapperDouble;
 import basisFx.appCore.table.ColumnWrapperString;
 import basisFx.appCore.utils.Coordinate;
 import basisFx.domain.Currency;
@@ -54,11 +55,11 @@ public class ExchangeRatesPanel extends TargetPanel {
                 .setIsSortableColums(false)
                 .setMediator(mediatorTwoLinkedTable)
                 .setColumnWrappers(
-                        ColumnWrapperString.newBuilder()
-                                .setColumnName("Наименование")
+                        ColumnWrapperDouble.newBuilder()
+                                .setColumnName("Курс")
                                 .setColumnSize(0.6d)
                                 .setIsEditeble(true)
-                                .setPropertyName("name")
+                                .setPropertyName("rate")
                                 .build(),
                         ColumnWrapperDate.newBuilder()
                                 .setColumnName("Дата")

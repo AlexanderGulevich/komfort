@@ -13,7 +13,7 @@ public  abstract class ColumnWrapper<T,K> {
 
 
 
-    public abstract void setOnEditCommit(); //todo ИЗМЕНЯТЬ ДОМЕН БЕЗ ЛЯМБДЫ
+    public abstract void setOnEditCommit();
     public abstract TableColumn<T, K> getColumn();
     protected abstract boolean checkValue(TableColumn.CellEditEvent<T, K> event);
 

@@ -36,7 +36,7 @@ public abstract class ActiveRecord {
         return FXCollections.<ActiveRecord>observableArrayList();
     }
     public static boolean isNewDomane(ActiveRecord record) {
-        if (record.getId() !=null) {
+        if (record != null && record.getId() !=null) {
             return false;
         }
         return true;

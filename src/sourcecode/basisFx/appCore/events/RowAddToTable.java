@@ -27,12 +27,15 @@ public class RowAddToTable <T> extends AppEvent{
     @Override
     public void run() {
         try {
-            ObservableList<ActiveRecord> list = tableWrapper.list;
-            ActiveRecord instance = (ActiveRecord) tableWrapper.activeRecordClass.newInstance();
+            ActiveRecord newInstance = (ActiveRecord) tableWrapper.activeRecordClass.newInstance();
             TableView tableView=tableWrapper.getElement();
             ObservableList items = tableView.getItems();
-            if (items != null) {
-                items.add(instance);
+            if (!tableWrapper.haveNewItem()) {
+                if (items != null) {
+                    items.add(newInstance);
+                    tableWrapper.scrollToItem(newInstance);
+                    tableWrapper.focusItem(newInstance);
+                }
             }
 
         } catch (InstantiationException e) {
