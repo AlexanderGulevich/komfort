@@ -16,13 +16,11 @@ import basisFx.presentation.TargetPanel;
 public class ExchangeRatesPanel extends TargetPanel {
 
     private boolean gridVisibility=false;
+    private MediatorTwoLinkedTable mediatorTwoLinkedTable =new MediatorTwoLinkedTable();
+    private GridOrganizationInnerTwoGridsTwoTables gridOrganization =new GridOrganizationInnerTwoGridsTwoTables();
 
     @Override
     public void init() {
-        MediatorTwoLinkedTable mediatorTwoLinkedTable =
-                new MediatorTwoLinkedTable();
-        GridOrganizationInnerTwoGridsTwoTables gridOrganization =
-                new GridOrganizationInnerTwoGridsTwoTables();
 
         TableWrapper currencyTableWrapper = TableWrapper.newBuilder()
                 .setActiveRecordClass(Currency.class)
@@ -70,7 +68,6 @@ public class ExchangeRatesPanel extends TargetPanel {
                 )
                 .build();
 
-
         GridPaneWrapper exchangeRatesGridPaneWrapper = GridPaneWrapper.newBuilder()
                 .setGridLinesVisibility(gridVisibility)
                 .setName("Курсы")
@@ -80,22 +77,22 @@ public class ExchangeRatesPanel extends TargetPanel {
                 .setGridOrganization(new GridOrganizationButtonTopRightLittleSingleTable(exchangeRatesTableWrapper))
                 .build();
 
-        mediatorTwoLinkedTable.setAccessoryTableWrapper(exchangeRatesTableWrapper);
-        mediatorTwoLinkedTable.setPrimaryTableWrapper(currencyTableWrapper);
-
-        gridOrganization.setLeftGridWrapper(currencyGridPaneWrapper);
-        gridOrganization.setRightGridWrapper(exchangeRatesGridPaneWrapper);
-
-        GridPaneWrapper.newBuilder()
+        GridPaneWrapper commonGridPaneWrapper = GridPaneWrapper.newBuilder()
                 .setColumnVsPercent(60)
                 .setColumnVsPercent(40)
                 .setName("Управление валютами и динамика курсов")
                 .setParentAnchor(innerAnchorPane)
-                .setCoordinate(new Coordinate(0d,10d,10d,0d))
+                .setCoordinate(new Coordinate(0d, 10d, 10d, 0d))
                 .setGridLinesVisibility(gridVisibility)
-                .setGridOrganization(gridOrganization)
+                .setGridOrganization(gridOrganization.setGridWrappers(currencyGridPaneWrapper,exchangeRatesGridPaneWrapper))
                 .build();
 
+
+        mediatorTwoLinkedTable.setAccessoryTableWrapper(exchangeRatesTableWrapper);
+        mediatorTwoLinkedTable.setPrimaryTableWrapper(currencyTableWrapper);
+        mediatorTwoLinkedTable.initElements();
     }
+
+
 
 }

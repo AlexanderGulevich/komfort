@@ -19,7 +19,6 @@ import javafx.geometry.Orientation;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.control.*;
-import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
@@ -68,24 +67,20 @@ public  class TableWrapper extends AppNode  {
         isEditable=builder.isEditable;
 
         createActiveRecord(builder);
-
-        list=activeRecord.getAll();
-
-        element =new TableView<>(list);
-        element.setId(CSSID.TABLE.get());
-
+        element =new TableView<>();
+        applyCSS();
         applyColumnResizePolicy();
         applyColums();
-        applyListener();
         applyEditable();
         applyColumnResizePolicy();
         applyPlaceholder();
         applySortableAllCollums();
         applyTablesWidthProperty();
-
-//        manageScrollBar();
         setClickedRowDetection();
+    }
 
+    private void applyCSS() {
+        element.setId(CSSID.TABLE.get());
     }
 
     public Mediator getMediator() {
@@ -113,6 +108,12 @@ public  class TableWrapper extends AppNode  {
         if (list != null) {
             list.addListener(tableListener);
         }
+    }
+    public void setItems(ObservableList<ActiveRecord> items){
+        list=items;
+        applyListener();
+        element.setItems(list);
+        element.refresh();
 
     }
     private void applyEditable() {
@@ -243,11 +244,6 @@ public  class TableWrapper extends AppNode  {
             return true;
         }
         return false;
-    }
-    public void   clearItems() {
-        if (isItemListExist()) {
-           getItems().clear();
-        }
     }
 
     public void setMediator(Mediator mediator) {

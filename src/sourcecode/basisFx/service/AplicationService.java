@@ -25,9 +25,7 @@ public  abstract class AplicationService {
         }
     }
     public static void refreshTable(TableWrapper tableWrapper, ObservableList<ActiveRecord> list ) {
-        tableWrapper.clearItems();
-        ObservableList<ActiveRecord> items = tableWrapper.getItems();
-        items.addAll(list);
+        tableWrapper.setItems(list);
     }
 
 

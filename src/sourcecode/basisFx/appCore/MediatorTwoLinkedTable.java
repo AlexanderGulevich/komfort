@@ -13,17 +13,6 @@ public class MediatorTwoLinkedTable extends Mediator {
     private TableWrapper accessoryTableWrapper;
     public int idFromPrimeTable;
 
-    public MediatorTwoLinkedTable(TableWrapper primaryTableWrapper, TableWrapper accessoryTableWrapper) {
-        this.primaryTableWrapper = primaryTableWrapper;
-        this.primaryTableWrapper.setMediator(this);
-        this.accessoryTableWrapper = accessoryTableWrapper;
-        this.accessoryTableWrapper.setMediator(this);
-
-    }
-
-    public MediatorTwoLinkedTable() {
-    }
-
     public void setPrimaryTableWrapper(TableWrapper primaryTableWrapper) {
         this.primaryTableWrapper = primaryTableWrapper;
     }
@@ -89,14 +78,15 @@ public class MediatorTwoLinkedTable extends Mediator {
         }
     }
 
+    @Override
+    public void initElements() {
+           primaryTableWrapper.setItems(primaryTableWrapper.activeRecord.getAll());
+           accessoryTableWrapper.setItems(null);
+    }
+
     private void refreshAccessoryTable() {
             ObservableList<ActiveRecord> list = accessoryTableWrapper.activeRecord.findAllByOuterId(idFromPrimeTable);
-            if (accessoryTableWrapper.isItemListExist()) {
-                accessoryTableWrapper.clearItems();
-                accessoryTableWrapper.getItems().addAll(list);
-            }else{
-                accessoryTableWrapper.getElement().setItems(list);
-            }
+            accessoryTableWrapper.setItems(list);
     }
 }
 

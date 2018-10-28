@@ -15,12 +15,14 @@ public class EquipmentPanel extends TargetPanel {
     @Override
     public void init() {
 
+        MdiatorSingleTable mdiatorSingleTable = new MdiatorSingleTable();
+
         TableWrapper tableWrapper = TableWrapper.newBuilder()
                 .setActiveRecordClass(Equipment.class)
                 .setUnitOfWork(unitOfWork)
                 .setIsEditable(true)
                 .setIsSortableColums(false)
-                .setMediator(new MdiatorSingleTable())
+                .setMediator(mdiatorSingleTable)
                 .setColumnWrappers(
                         ColumnWrapperString.newBuilder()
                                 .setColumnName("Наименование")
@@ -41,6 +43,9 @@ public class EquipmentPanel extends TargetPanel {
                 .setCoordinate(new Coordinate(0d,10d,10d,0d))
                 .setGridLinesVisibility(false)
                 .build();
+
+        mdiatorSingleTable.setTableWrapper(tableWrapper);
+        mdiatorSingleTable.initElements();
 
 
 

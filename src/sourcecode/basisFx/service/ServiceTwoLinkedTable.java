@@ -27,6 +27,9 @@ public class ServiceTwoLinkedTable extends AplicationService {
         ObservableList<ActiveRecord> items = mediator.getAccessoryTableWrapper().getElement().getItems();
         if (items != null) {
             for (ActiveRecord record:items) {
+                if (ActiveRecord.isNewDomane(record)) {
+                    continue;
+                }
                 mediator.getAccessoryTableWrapper().unitOfWork.registercDeleted(record.entityName,record);
             }
             commit(mediator.getAccessoryTableWrapper());

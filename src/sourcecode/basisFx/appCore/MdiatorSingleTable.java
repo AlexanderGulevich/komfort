@@ -8,6 +8,11 @@ import basisFx.service.ServiceSingleEditableSubmitTable;
 
 public class MdiatorSingleTable extends Mediator {
 
+    private TableWrapper tableWrapper;
+
+    public void setTableWrapper(TableWrapper tableWrapper) {
+        this.tableWrapper = tableWrapper;
+    }
 
     @Override
     public void inform(AppNode node) {
@@ -28,6 +33,11 @@ public class MdiatorSingleTable extends Mediator {
     public void refresh(AppNode node) {
         TableWrapper tableWrapper = (TableWrapper) node;
         AplicationService.refreshTable(tableWrapper,tableWrapper.activeRecord.getAll());
+    }
+
+    @Override
+    public void initElements() {
+        tableWrapper.setItems(tableWrapper.activeRecord.getAll());
     }
 
 }

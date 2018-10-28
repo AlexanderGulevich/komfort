@@ -19,6 +19,12 @@ public class GridOrganizationInnerTwoGridsTwoTables extends GridOrganization {
         this.rightGridWrapper = rightGridWrapper;
     }
 
+    public GridOrganizationInnerTwoGridsTwoTables setGridWrappers(GridPaneWrapper leftGridWrapper,GridPaneWrapper rightGridWrapper){
+        this.leftGridWrapper = leftGridWrapper;
+        this.rightGridWrapper = rightGridWrapper;
+        return this;
+    }
+
     @Override
     public void organize() {
 
