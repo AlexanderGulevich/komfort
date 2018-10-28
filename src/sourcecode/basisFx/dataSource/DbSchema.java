@@ -150,9 +150,9 @@ public class DbSchema {
 //                ratePerHour,
 //                currentEmployeesState,
 //                ratePerHourHistory,
-                exchangeRates
-//                product,
-//                productPriceStore,
+                exchangeRates,
+                product,
+                productPriceStore
 //                packetSize,
 //                packet,
 //                packetPriceStore,

@@ -5,6 +5,7 @@ import basisFx.appCore.settings.FontsStore;
 import basisFx.presentation.targets.CounterpartyPanel;
 import basisFx.presentation.targets.EquipmentPanel;
 import basisFx.presentation.targets.ExchangeRatesPanel;
+import basisFx.presentation.targets.ProductPanel;
 
 public class MainMenuSketch extends MenuSketch {
 
@@ -27,7 +28,7 @@ public class MainMenuSketch extends MenuSketch {
                                     .build(),
                             FontItemLeaf.newBuilder()
                                     .setDescription("Продукция")
-//                                    .setTargetCreator(fm.countingRodsPanel())
+                                    .setTargetCreator(ProductPanel::new)
                                     .build(),
                             FontItemLeaf.newBuilder()
                                     .setDescription("Учет сырья")

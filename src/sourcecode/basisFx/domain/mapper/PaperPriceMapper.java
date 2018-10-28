@@ -3,7 +3,7 @@
 //import basisFx.domain.ActiveRecord;
 //import basisFx.dataSource.Db;
 //import basisFx.appCore.domainScetch.DomainObject;
-//import basisFx.domain.domaine.Price;
+//import basisFx.domain.Price;
 //import javafx.collections.ObservableList;
 //
 //import java.sql.*;

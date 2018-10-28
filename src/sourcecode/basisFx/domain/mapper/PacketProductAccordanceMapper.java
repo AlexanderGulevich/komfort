@@ -5,7 +5,7 @@
 //import basisFx.appCore.domainScetch.DomainObject;
 //import basisFx.domain.domaine.PacketProductAccordance;
 //import basisFx.domain.domaine.PacketSize;
-//import basisFx.domain.domaine.Product;
+//import basisFx.domain.Product;
 //import javafx.collections.ObservableList;
 //
 //

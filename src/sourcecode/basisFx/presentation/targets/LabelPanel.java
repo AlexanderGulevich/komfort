@@ -6,7 +6,7 @@
 //import basisFx.appCore.utils.Coordinate;
 //import basisFx.domain.domaine.Counterparty;
 //import basisFx.domain.domaine.Label;
-//import basisFx.domain.domaine.Price;
+//import basisFx.domain.Price;
 //
 //import java.time.LocalDate;
 //

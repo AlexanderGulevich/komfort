@@ -93,7 +93,7 @@ public class ExchangeRates extends ActiveRecord{
             PreparedStatement pstmt = null;
 
         boolean check = isUniquenessStartingDate(
-                getAll(),
+                findAllByOuterId(outerId),
                 activeRecord -> ((ExchangeRates) activeRecord).getStartingDate(),
                 getStartingDate());
 
