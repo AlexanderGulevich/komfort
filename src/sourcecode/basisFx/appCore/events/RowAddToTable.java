@@ -28,15 +28,15 @@ public class RowAddToTable <T> extends AppEvent{
     public void run() {
         try {
             ActiveRecord newInstance = (ActiveRecord) tableWrapper.activeRecordClass.newInstance();
-            TableView tableView=tableWrapper.getElement();
-            ObservableList items = tableView.getItems();
-            if (!tableWrapper.haveNewItem()) {
-                if (items != null) {
-                    items.add(newInstance);
+            if (tableWrapper.isItemListExist() && !tableWrapper.haveNewItem()) {
+                System.out.println("RowAddToTable.run---tableWrapper.isItemListExist() && !tableWrapper.haveNewItem()");
+                    tableWrapper.getItems().add(newInstance);
                     tableWrapper.scrollToItem(newInstance);
                     tableWrapper.focusItem(newInstance);
-                }
+            }else {
+                System.err.println("RowAddToTable--!tableWrapper.isItemListExist() && tableWrapper.haveNewItem()".toUpperCase());
             }
+
 
         } catch (InstantiationException e) {
             e.printStackTrace();

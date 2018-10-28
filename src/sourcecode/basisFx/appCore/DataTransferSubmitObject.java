@@ -21,7 +21,7 @@
 //        switch (mark){
 //
 //            case SubmitTable:
-//                list=((TableWrapper) submitted).getList();
+//                list=((TableWrapper) submitted).getItems();
 //                break;
 //
 //            case SubmitRealField:
@@ -54,7 +54,7 @@
 //        return mark;
 //    }
 //
-//    public ObservableList<DomainObject> getList() {
+//    public ObservableList<DomainObject> getItems() {
 //        return list;
 //    }
 //

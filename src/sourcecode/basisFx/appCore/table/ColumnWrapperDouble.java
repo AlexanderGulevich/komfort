@@ -45,6 +45,8 @@ public class ColumnWrapperDouble <T>extends ColumnWrapper{
 
             if (checkValue) {
 
+                System.err.println("checkValue--ColumnWrapperDouble- ДОПУСТИМОЕ ЗНАЧЕНИЕ");
+
                 int row = event.getTablePosition().getRow();
                 ObservableValue<String> v = event.getTableColumn().getCellObservableValue(row);
                 if (v instanceof WritableValue) {
@@ -77,6 +79,7 @@ public class ColumnWrapperDouble <T>extends ColumnWrapper{
             Double newValue = Double.parseDouble(string);
 
             return true;
+
 
         }catch (NumberFormatException   e){
 

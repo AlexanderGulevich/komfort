@@ -11,45 +11,38 @@ import javafx.scene.control.TableView;
 import java.sql.SQLException;
 
 public class RowDeleteFromTable extends AppEvent{
-
-    private TableView <ActiveRecord>  table;
     private Button but;
-    private final ObservableList list;
     private TableWrapper tableWrapper;
-    private   UnitOfWork unitOfWork;
 
     public RowDeleteFromTable(TableWrapper t) {
         this.tableWrapper = t;
-        this.table= (TableView<ActiveRecord>) this.tableWrapper.getElement();
-        this.list=this.table.getItems();
     }
 
     @Override
     public void setEventToElement(AppNode node) {
         but=(Button) node.getElement();
         but.setOnMouseClicked((event) -> {
-            try {
+
                 run();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+
         });
 
     }
 
 
     @Override
-    public void run() throws SQLException {
+    public void run()   {
 
-        TableView.TableViewSelectionModel<ActiveRecord> selectionModel = table.getSelectionModel();
+        TableView.TableViewSelectionModel<ActiveRecord> selectionModel = tableWrapper.getElement().getSelectionModel();
 
         if(!selectionModel.isEmpty()){
 
-
             final ActiveRecord selectedItem = selectionModel.getSelectedItem();
+            if (selectedItem != null) {
+                tableWrapper.getItems().remove(selectedItem);
+                tableWrapper.getMediator().wasRemoved(tableWrapper,selectedItem);
+            }
 
-            this.list.remove(selectedItem);
-            tableWrapper.getMediator().wasRemoved(tableWrapper,selectedItem);
 
         }
 

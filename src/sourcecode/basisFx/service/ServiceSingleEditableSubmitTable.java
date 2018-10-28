@@ -6,15 +6,11 @@ import basisFx.domain.ActiveRecord;
 
 import java.sql.SQLException;
 
-public class ServiceSingleEditableSubmitTable implements AplicationService{
+public class ServiceSingleEditableSubmitTable extends AplicationService{
 
-
-    public static void commitAll(UnitOfWork unitOfWork) {
-
-    }
 
     public static void wasRemoved(AppNode node, ActiveRecord record, UnitOfWork unitOfWork) {
-        Boolean isNewDomane = AplicationService.checkIsNewDomane(record);
+        Boolean isNewDomane = ActiveRecord.isNewDomane(record);
         if (!isNewDomane){
             unitOfWork.registercDeleted(record.entityName,record);
 
@@ -30,7 +26,7 @@ public class ServiceSingleEditableSubmitTable implements AplicationService{
 
     public static void wasChanged(AppNode node, ActiveRecord record, UnitOfWork unitOfWork) {
 
-        Boolean isNewDomane = AplicationService.checkIsNewDomane(record);
+        Boolean isNewDomane = ActiveRecord.isNewDomane(record);
 
         if (!isNewDomane){
             unitOfWork.registercDirty(record.entityName,record);

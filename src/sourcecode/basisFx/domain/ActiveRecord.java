@@ -36,10 +36,17 @@ public abstract class ActiveRecord {
         return FXCollections.<ActiveRecord>observableArrayList();
     }
     public static boolean isNewDomane(ActiveRecord record) {
-        if (record != null && record.getId() !=null) {
-            return false;
+        if (record != null) {
+            if (record.getId() !=null) {
+                return false;
+            }else{
+                return true;
+            }
+        }else{
+            throw new  NullPointerException();
         }
-        return true;
+
+
     }
     public boolean isReadyToTransaction(){
         boolean isReady=false;
@@ -55,9 +62,11 @@ public abstract class ActiveRecord {
             if (obj!= null ) {
                 isReady=true;
             }else {
-                return false;
+                isReady=false;
+                break;
             }
     }
+        System.out.println("ActiveRecord.isReadyToTransaction------isReady=="+isReady);
         return isReady;
     }
     public void delete(){
@@ -160,10 +169,9 @@ public abstract class ActiveRecord {
      * Должна использоваться в insert и update методах отображателей
      * @return Возвращает TRUE если в БД есть значение на данную дату по данной сущности
      */
-    public boolean isUniquenessDate( ObservableList<ActiveRecord>  records, DateGetter dateGetter , LocalDate testedDate ){
+    public boolean isUniquenessStartingDate(ObservableList<ActiveRecord>  records, DateGetter dateGetter , LocalDate testedDate ){
 
-        long count = records.stream().filter(
-                activeRecord -> dateGetter.getDate(activeRecord).isEqual(testedDate)).count();
+        long count = records.stream().filter(activeRecord -> dateGetter.getDate(activeRecord).isEqual(testedDate)).count();
 
         if (count>0) {
             return false;

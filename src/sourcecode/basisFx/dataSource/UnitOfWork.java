@@ -56,49 +56,66 @@ public class UnitOfWork {
         }
     }
 
-    public void commit() throws SQLException{
-        commitNew();
-        commitDirty();
-        commitDeleted();
-        cleardDeleted();
-        clearDirty();
-        clearNew();
-    }
-    public void commitNew(){
-        Set<ActiveRecord> recordsSet=iterateHMapAndGetAllDomainObjects(newDomainObjects);
+    public boolean commit() throws SQLException{
+        if (commitNew() && commitDirty() && commitDeleted()){
+            cleardDeleted();
+            clearDirty();
+            clearNew();
+            return  true;
+        }
+        return false;
 
-        for (Iterator<ActiveRecord> iterator = recordsSet.iterator(); iterator.hasNext();) {
-            ActiveRecord next = iterator.next();
-            if (next.isReadyToTransaction()) {
-                System.out.println("UnitOfWork.commitNew----ReadyToTransaction");
+    }
+    public boolean commitNew(){
+        Set<ActiveRecord> recordsSet=iterateHMapAndGetAllDomainObjects(newDomainObjects);
+        if (recordsSet.size()==0 )return true;
+        if(recordsSet.size()>0 && isReadyToTransaction(recordsSet)) {
+            for (Iterator<ActiveRecord> iterator = recordsSet.iterator(); iterator.hasNext(); ) {
+                ActiveRecord next = iterator.next();
                 next.insert();
             }
+            return true;
         }
+            return false;
     }
-    public void commitDirty(){
-
+    public boolean commitDirty(){
         Set<ActiveRecord> recordsSet=iterateHMapAndGetAllDomainObjects(dirtyDomainObjects);
+        if (recordsSet.size()==0)return true;
+        if(recordsSet.size()>0 && isReadyToTransaction(recordsSet)){
+            for (Iterator<ActiveRecord> iterator = recordsSet.iterator(); iterator.hasNext();) {
+                ActiveRecord next = iterator.next();
+                    next.update();
+            }
+            return true;
+        }
+        return false;
 
+    }
+
+    private boolean isReadyToTransaction(Set<ActiveRecord> recordsSet) {
+        boolean isReady=false;
         for (Iterator<ActiveRecord> iterator = recordsSet.iterator(); iterator.hasNext();) {
             ActiveRecord next = iterator.next();
             if (next.isReadyToTransaction()) {
-                System.out.println("UnitOfWork.commitDirty----ReadyToTransaction");
-                next.update();
+                isReady=true;
+                System.out.println("UnitOfWork----ReadyToTransaction");
+            }else {
+                System.out.println("UnitOfWork----NOT ReadyToTransaction");
+                return false;
             }
         }
+        return isReady;
     }
-    public void commitDeleted(){
-        Set<ActiveRecord> recordsSetDeleted=iterateHMapAndGetAllDomainObjects(deletedDomainObject);
-        Set<ActiveRecord> recordsSetNew=iterateHMapAndGetAllDomainObjects(newDomainObjects);
 
+    public boolean commitDeleted(){
+        Set<ActiveRecord> recordsSetDeleted=iterateHMapAndGetAllDomainObjects(deletedDomainObject);
+        if (recordsSetDeleted.size()==0)return true;
         for (Iterator<ActiveRecord> iterator = recordsSetDeleted.iterator(); iterator.hasNext();) {
             ActiveRecord next = iterator.next();
-
-            if (!recordsSetNew.contains(next)) {// если обеъект не является новым, то удаляем их БД
-
                 next.delete();
-            }
         }
+
+        return true;
     }
 
     private  Set<ActiveRecord>  iterateHMapAndGetAllDomainObjects(HashMap <String,ArrayList<ActiveRecord>>map) {

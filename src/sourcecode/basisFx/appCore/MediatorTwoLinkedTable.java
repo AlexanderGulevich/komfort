@@ -3,6 +3,7 @@ package basisFx.appCore;
 import basisFx.appCore.elements.AppNode;
 import basisFx.appCore.elements.TableWrapper;
 import basisFx.domain.ActiveRecord;
+import basisFx.service.AplicationService;
 import basisFx.service.ServiceTwoLinkedTable;
 import javafx.collections.ObservableList;
 
@@ -42,15 +43,14 @@ public class MediatorTwoLinkedTable extends Mediator {
     @Override
     public void inform(AppNode node) {
         if (node == primaryTableWrapper) {
-            ActiveRecord clickedDomain = primaryTableWrapper.clickedDomain;
-            refreshAccessoryTable(clickedDomain);
-            if (!ActiveRecord.isNewDomane(clickedDomain)) {
-                idFromPrimeTable = clickedDomain.id.get();
+            if (!ActiveRecord.isNewDomane(primaryTableWrapper.clickedDomain)) {
+                idFromPrimeTable = primaryTableWrapper.clickedDomain.id.get();
+                refreshAccessoryTable();
             }
-            System.err.println("MediatorTwoLinkedTable.inform   if (node==primaryTableWrapper){);");
+            System.err.println("Mediator----------node==primaryTableWrapper");
         }
         if (node == accessoryTableWrapper) {
-            System.err.println("MediatorTwoLinkedTable.inform   if (node==accessoryTableWrapper){");
+            System.err.println("Mediator----------node==accessoryTableWrapper)");
         }
     }
 
@@ -79,17 +79,24 @@ public class MediatorTwoLinkedTable extends Mediator {
         }
     }
 
-    private void refreshAccessoryTable(ActiveRecord clickedDomainFromPrimeTable) {
-        if (!ActiveRecord.isNewDomane(clickedDomainFromPrimeTable)) {
-            ObservableList<ActiveRecord> list = accessoryTableWrapper.activeRecord.findAllByOuterId(clickedDomainFromPrimeTable.getId());
-            ObservableList<ActiveRecord> tablesItems = accessoryTableWrapper.getElement().getItems();
-            if (tablesItems != null) {
-                tablesItems.clear();
-                tablesItems.addAll(list);
+    @Override
+    public void refresh(AppNode node) {
+        if (node == primaryTableWrapper) {
+            AplicationService.refreshTable(primaryTableWrapper,primaryTableWrapper.activeRecord.getAll());
+        }
+        if (node == accessoryTableWrapper) {
+            AplicationService.refreshTable(accessoryTableWrapper,accessoryTableWrapper.activeRecord.findAllByOuterId(idFromPrimeTable));
+        }
+    }
+
+    private void refreshAccessoryTable() {
+            ObservableList<ActiveRecord> list = accessoryTableWrapper.activeRecord.findAllByOuterId(idFromPrimeTable);
+            if (accessoryTableWrapper.isItemListExist()) {
+                accessoryTableWrapper.clearItems();
+                accessoryTableWrapper.getItems().addAll(list);
             }else{
                 accessoryTableWrapper.getElement().setItems(list);
             }
-        }
     }
 }
 

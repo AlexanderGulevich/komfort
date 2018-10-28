@@ -2,7 +2,6 @@ package basisFx.domain;
 
 import basisFx.dataSource.Db;
 import javafx.beans.property.SimpleObjectProperty;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import java.sql.*;
 import java.time.LocalDate;
@@ -11,24 +10,10 @@ public class ExchangeRates extends ActiveRecord{
 
     private static ExchangeRates INSTANCE = new ExchangeRates();
     private SimpleObjectProperty<LocalDate> startingDate =new SimpleObjectProperty<>(this, "startingDate", null);
-    private SimpleObjectProperty<ComboBoxValue>  currencyComboBoxValue =new SimpleObjectProperty<>(this, "currencyComboBoxValue", null);
     private SimpleObjectProperty<String> exchangeRate =new SimpleObjectProperty<>(this, "exchangeRate", null);
 
     public ExchangeRates() {
         super("ExchangeRates");
-    }
-
-
-    public ComboBoxValue getCurrencyComboBoxValue() {
-        return currencyComboBoxValue.get();
-    }
-
-    public SimpleObjectProperty<ComboBoxValue> currencyComboBoxValueProperty() {
-        return currencyComboBoxValue;
-    }
-
-    public void setCurrencyComboBoxValue(ComboBoxValue currencyComboBoxValue) {
-        this.currencyComboBoxValue.set(currencyComboBoxValue);
     }
 
     public LocalDate getStartingDate() {
@@ -83,8 +68,6 @@ public class ExchangeRates extends ActiveRecord{
                 ExchangeRates pojo=new ExchangeRates();
 
                 pojo.setId( rs.getInt("id"));
-                pojo.setCurrencyComboBoxValue(
-                        Currency.getInstance().find(rs.getInt("currencyId")).toComboBoxValue());
                 pojo.setExchangeRate(Double.toString(rs.getDouble("rate")));
                 pojo.setStartingDate(rs.getDate("startDate").toLocalDate());
 
@@ -109,7 +92,7 @@ public class ExchangeRates extends ActiveRecord{
 
             PreparedStatement pstmt = null;
 
-        boolean check = isUniquenessDate(
+        boolean check = isUniquenessStartingDate(
                 getAll(),
                 activeRecord -> ((ExchangeRates) activeRecord).getStartingDate(),
                 getStartingDate());
@@ -135,13 +118,13 @@ public class ExchangeRates extends ActiveRecord{
     @Override
     public void insert() {
 
-        boolean check = isUniquenessDate(
-                getAll(),
-                activeRecord -> ((ExchangeRates) activeRecord).getStartingDate(),
+        boolean check = isUniquenessStartingDate(
+                findAllByOuterId(outerId),
+                activeRecord ->   ((ExchangeRates) activeRecord).getStartingDate(),
                 getStartingDate()
         );
 
-        if (!check) {
+        if (check) {
             String expression = "INSERT INTO " + "ExchangeRates "
                     + "("
                     + " rate ,  "

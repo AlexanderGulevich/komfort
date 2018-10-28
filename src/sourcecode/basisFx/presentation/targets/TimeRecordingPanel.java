@@ -53,7 +53,7 @@
 //
 //
 //        datePickerWrapper=vidgetFactory.datePickerWrapper(
-//                controlSide,170d, new Coordinate(10d,10d, null, null),employerTable.getList());
+//                controlSide,170d, new Coordinate(10d,10d, null, null),employerTable.getItems());
 //
 //
 //

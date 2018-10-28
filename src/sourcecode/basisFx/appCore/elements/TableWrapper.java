@@ -83,11 +83,8 @@ public  class TableWrapper extends AppNode  {
         applySortableAllCollums();
         applyTablesWidthProperty();
 
-
 //        manageScrollBar();
         setClickedRowDetection();
-//        setClickedUpDownRowDetection();
-
 
     }
 
@@ -109,7 +106,7 @@ public  class TableWrapper extends AppNode  {
         return new Builder();
     }
 
-    public ObservableList<ActiveRecord> getList(){
+    public ObservableList<ActiveRecord> getItems(){
         return element.getItems();
     }
     private void applyListener() {
@@ -134,19 +131,15 @@ public  class TableWrapper extends AppNode  {
     private void manageScrollBar(){
 //        ScrollBar verticalBar = (ScrollBar) element.lookup(".scroll-bar:vertical");
         ScrollBar verticalBar = getVerticalScrollbar();
-
         verticalBar.visibleProperty().addListener((observableValue, aBoolean, aBoolean2) ->
                 System.err.println("Scrol Pane visible!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!".toUpperCase()));
     }
     private void applyColumnResizePolicy(){
-
         if (columnResizePolicy != null) {
             element.setColumnResizePolicy(columnResizePolicy);
         }
-
     }
     private void applyColums(){
-
         if (columnWrappers != null) {
             for (ColumnWrapper cw : columnWrappers) {
                 element.getColumns().add(cw.getColumn());
@@ -154,13 +147,9 @@ public  class TableWrapper extends AppNode  {
                 cw.tableWrapper=this;
             }
         }
-
-
     }
     private void applySortableAllCollums(){
-
         ObservableList<TableColumn<ActiveRecord, ?>> columns = element.getColumns();
-
         for (Iterator<TableColumn<ActiveRecord, ?>> iterator = columns.iterator(); iterator.hasNext();) {
             TableColumn<ActiveRecord, ? extends Object> next = iterator.next();
             next.setSortable(isSortableColums);
@@ -174,17 +163,12 @@ public  class TableWrapper extends AppNode  {
                 ));
     }
     private void applyTablesWidthProperty() {
-
         if (widthPercent != null) {
             if (parentWidthProperty != null) {
                 element.prefWidthProperty()
                         .bind(parentWidthProperty.multiply(widthPercent));
             }
         }
-
-
-
-
     }
     public TableView<ActiveRecord> getElement() {
         return element;
@@ -205,41 +189,9 @@ public  class TableWrapper extends AppNode  {
         return result;
     }
     public ObservableList cloneAllPojo()throws CloneNotSupportedException{
-
-    ObservableList<ActiveRecord>  clon=FXCollections.observableArrayList(this.list);
-
-    return clon;
-
+        ObservableList<ActiveRecord>  clon=FXCollections.observableArrayList(this.list);
+        return clon;
     }
-//    private void setClickedUpDownRowDetection(){
-//
-//        element.setOnKeyPressed(event -> {
-//
-//                    if (event.getCode() == KeyCode.UP || event.getCode() == KeyCode.DOWN) {
-//
-//                        ActiveRecord itemFromEvent = element.getSelectionModel().getSelectedItem();
-//
-//                        int size = element.getItems().size();
-//                        int selectedIndex = element.getSelectionModel().getSelectedIndex();
-//
-//                        int nextIndex=0;
-//
-//                        if(event.getCode() == KeyCode.UP ) nextIndex=selectedIndex-1;
-//                        if(event.getCode() == KeyCode.DOWN)nextIndex=selectedIndex+1;
-//
-//                        clickedDomain= element.getItems().get(nextIndex);
-//
-//
-//                        if (mediator != null) {
-//                            mediator.inform(this);
-//                        }
-//
-//
-//
-//                    }
-//                }
-//        );
-//    }
     private void setClickedRowDetection(){
         element.setRowFactory(tv -> {
             TableRow<ActiveRecord> row = new TableRow<>();
@@ -247,18 +199,14 @@ public  class TableWrapper extends AppNode  {
                 if (! row.isEmpty() && event.getButton()== MouseButton.PRIMARY
                         && event.getClickCount() == 1) {
                    clickedDomain=row.getItem();
-
                     if (mediator != null) {
                         mediator.inform(this);
                     }
-
                 }
             }
             );
             return row ;
         });
-
-
     }
     public void scrollToItem(ActiveRecord domainObject) {
         int newPojoIndex = element.getItems().indexOf(domainObject);
@@ -275,12 +223,32 @@ public  class TableWrapper extends AppNode  {
     public boolean haveNewItem() {
         ObservableList<ActiveRecord> items = element.getItems();
         ActiveRecord activeRecord=null;
-        if ( items.size()>0) {
-             activeRecord = items.get(items.size() - 1);
+        if (items != null) {
+            if (items.size()>0) {
+                activeRecord = items.get(items.size() - 1);
+                return ActiveRecord.isNewDomane(activeRecord);
+            }
+            if(items.size()==0){
+                return false;
+            }
+        }else {
+            throw new NullPointerException();
         }
-        return ActiveRecord.isNewDomane(activeRecord);
+        return false;
     }
 
+    public boolean  isItemListExist() {
+        ObservableList<ActiveRecord> items = element.getItems();
+        if ( items!=null) {
+            return true;
+        }
+        return false;
+    }
+    public void   clearItems() {
+        if (isItemListExist()) {
+           getItems().clear();
+        }
+    }
 
     public void setMediator(Mediator mediator) {
         this.mediator = mediator;
