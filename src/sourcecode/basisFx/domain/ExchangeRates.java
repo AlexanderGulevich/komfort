@@ -12,6 +12,10 @@ public class ExchangeRates extends ActiveRecord{
     private SimpleObjectProperty<LocalDate> startingDate =new SimpleObjectProperty<>(this, "startingDate", null);
     private SimpleObjectProperty<String> exchangeRate =new SimpleObjectProperty<>(this, "exchangeRate", null);
 
+    public static ExchangeRates getINSTANCE() {
+        return INSTANCE;
+    }
+
     public ExchangeRates() {
         super("ExchangeRates");
     }

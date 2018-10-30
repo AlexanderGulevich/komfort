@@ -19,7 +19,7 @@ public class Product  extends ActiveRecord {
         return INSTANCE;
     }
 
-    private Product() {
+    public Product() {
         super("Product");
     }
 

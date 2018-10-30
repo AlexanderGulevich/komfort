@@ -36,13 +36,13 @@
 //        observer.setGridColWidth(new GridColWidth(KindOfGridCol.percent,40d));
 //        observer.setTitle("Архив цен");
 //        observer.setTablesButtonKind(TablesButtonKind.Right_little);
-//        observer.setDomainClass(Price.class);
+//        observer.setDomainClass(ProductPrice.class);
 //        observer.setActiveRecord(dataMapperFabric.packetPriceMapper());
 //        observer.setColumnWidthByContent(  columnFabric.string(KindOfColumn.DOUBLE,"Цена","price",0.3d,true,
-//                (obj,val)->{((Price)obj).setPrice( (String ) val);})
+//                (obj,val)->{((ProductPrice)obj).setPrice( (String ) val);})
 //        );
 //        observer.setColumnWidthByContent(  columnFabric.dateColumn(KindOfColumn.DATE,"Дата начала действия ","startingDate",0.7d,true,
-//                (obj, val)->{((Price)obj).setStartingDate((LocalDate) val); })
+//                (obj, val)->{((ProductPrice)obj).setStartingDate((LocalDate) val); })
 //        );
 //
 //

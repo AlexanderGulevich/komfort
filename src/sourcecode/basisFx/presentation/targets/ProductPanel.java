@@ -10,13 +10,9 @@ import basisFx.appCore.table.ColumnWrapperDate;
 import basisFx.appCore.table.ColumnWrapperDouble;
 import basisFx.appCore.table.ColumnWrapperString;
 import basisFx.appCore.utils.Coordinate;
-import basisFx.domain.Currency;
-import basisFx.domain.ExchangeRates;
-import basisFx.domain.Price;
+import basisFx.domain.ProductPrice;
 import basisFx.domain.Product;
 import basisFx.presentation.TargetPanel;
-
-import java.time.LocalDate;
 
 public class ProductPanel  extends TargetPanel {
 
@@ -59,7 +55,7 @@ public class ProductPanel  extends TargetPanel {
                 .build();
 
         TableWrapper priceTableWrapper = TableWrapper.newBuilder()
-                .setActiveRecordClass(Price.class)
+                .setActiveRecordClass(ProductPrice.class)
                 .setUnitOfWork(unitOfWork)
                 .setIsEditable(true)
                 .setIsSortableColums(false)

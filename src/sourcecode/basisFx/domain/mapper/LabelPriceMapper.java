@@ -3,7 +3,7 @@
 //import basisFx.domain.ActiveRecord;
 //import basisFx.dataSource.Db;
 //import basisFx.appCore.domainScetch.DomainObject;
-//import basisFx.domain.Price;
+//import basisFx.domain.ProductPrice;
 //import javafx.collections.ObservableList;
 //
 //import java.sql.*;
@@ -18,7 +18,7 @@
 //
 //    @Override
 //    public boolean isReadyToTransaction(DomainObject d) {
-//        Price price = (Price) d;
+//        ProductPrice price = (ProductPrice) d;
 //
 //        if (
 //                price.getPrice()!= null
@@ -52,7 +52,7 @@
 //
 //            while (rs.next()) {
 //
-//                Price pojo=new Price();
+//                ProductPrice pojo=new ProductPrice();
 //
 //                int id=rs.getInt("id");
 //                pojo.setId(id);
@@ -76,7 +76,7 @@
 //    public void update(DomainObject d)   {
 //        if(isReadyToTransaction(d)) {
 //
-//            Price domainObject= (Price) d;
+//            ProductPrice domainObject= (ProductPrice) d;
 //
 //            String expression = "UPDATE "+    "LabelPriceStore"+ " SET  " +
 //                    " price = ?," +
@@ -118,7 +118,7 @@
 //
 //    @Override
 //    public void insert(DomainObject d)   {
-//        Price domainObject=(Price) d;
+//        ProductPrice domainObject=(ProductPrice) d;
 //
 //        if(isReadyToTransaction(d)) {
 //

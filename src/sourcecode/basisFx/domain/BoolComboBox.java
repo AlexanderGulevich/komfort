@@ -50,5 +50,11 @@ public class BoolComboBox extends ComboBoxValue {
         }else{
             setStringValue("НЕТ");
         }
+
+
+    }
+
+    public BoolComboBox toComboBoxValue() {
+        return this;
     }
 }
