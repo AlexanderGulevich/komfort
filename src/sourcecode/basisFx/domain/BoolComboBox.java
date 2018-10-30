@@ -7,9 +7,17 @@ import javafx.collections.ObservableList;
 public class BoolComboBox extends ComboBoxValue {
 
     public static ObservableList<BoolComboBox> comboBoxes= FXCollections.observableArrayList(new BoolComboBox("ДА"),new BoolComboBox("НЕТ"));
+    private static BoolComboBox INSTANCE = new BoolComboBox();
 
+    public static ObservableList<BoolComboBox> getComboBoxes() {
+        return comboBoxes;
+    }
 
-    private SimpleObjectProperty<String> stringValue =new SimpleObjectProperty(this, "stringValue", null);
+    public static BoolComboBox getInstance() {
+        return INSTANCE;
+    }
+
+    private SimpleObjectProperty<String> stringValue =new SimpleObjectProperty(this, "val", null);
 
     public String getStringValue() {
         return stringValue.get();
@@ -29,6 +37,7 @@ public class BoolComboBox extends ComboBoxValue {
     public BoolComboBox(String str) {
         stringValue.set(str);
     }
+    public BoolComboBox() {}
 
     public String toString(){
 

@@ -31,17 +31,31 @@ public class ColumnWrapperBool<T> extends ColumnWrapper{
         columnName = builder.columnName;
         columnSize = builder.columnSize;
         isEditeble = builder.isEditeble;
-        domainClass=builder.domainClass;
-        createNewInstance();
+        domain = BoolComboBox.getInstance();
         column =  new TableColumn<>(columnName);
         setCellValueFactory();
         setCellFactory();
+        setOnEditCommit();
     }
+    @Override
+    public void setOnEditCommit() {
+        column.setOnEditCommit((event) -> {
+            if (checkValue(event)) {
+                int row = event.getTablePosition().getRow();
+                ObservableValue<BoolComboBox> value = event.getTableColumn().getCellObservableValue(row);
+                if (value instanceof WritableValue) {
+                    ((WritableValue<BoolComboBox>)value).setValue(event.getNewValue());
+                }
+                ActiveRecord domain = (ActiveRecord) event.getRowValue();
+                tableWrapper.getMediator().wasChanged(tableWrapper,domain);
 
+            };
+        });
+
+    }
     private void setCellFactory() {
         Callback<TableColumn<ActiveRecord, BoolComboBox>, TableCell<ActiveRecord, BoolComboBox>> comboBoxCellFactory
                 = (TableColumn<ActiveRecord, BoolComboBox> param) -> new  ComboBoxCustomCell();
-        // Set a ComboBoxTableCell, so we can selects a value from a list
         column.setCellFactory(comboBoxCellFactory);
     }
 
@@ -49,34 +63,10 @@ public class ColumnWrapperBool<T> extends ColumnWrapper{
         column.setCellValueFactory(new PropertyValueFactory<>(propertyName));
     }
 
-    private void createNewInstance() {
-        Method getInstanceMethod;
-        try {
-            getInstanceMethod = domainClass.getDeclaredMethod("getInstance");
-            try {
-                try {
-                    domain = (ActiveRecord) getInstanceMethod.invoke(null);
-                } catch (IllegalAccessException e) {
-                    e.printStackTrace();
-                }
-            } catch (InvocationTargetException e) {
-                e.printStackTrace();
-            }
-        } catch (NoSuchMethodException e) {
-            e.printStackTrace();
-        }
-
-
-    }
-
     public static Builder newBuilder() {
         return new Builder();
     }
 
-    @Override
-    public void setOnEditCommit() {
-
-    }
 
     @Override
     public TableColumn getColumn() {
@@ -136,7 +126,7 @@ public class ColumnWrapperBool<T> extends ColumnWrapper{
 
     class ComboBoxCustomCell extends TableCell<ActiveRecord, BoolComboBox> {
 
-        private ComboBox<ComboBoxValue> comboBox;
+        private ComboBox<BoolComboBox> comboBox;
 
         private ComboBoxCustomCell() {}
 
@@ -178,7 +168,7 @@ public class ColumnWrapperBool<T> extends ColumnWrapper{
         }
 
         private void createComboBox() {
-            ObservableList<ComboBoxValue> comboBoxValues = domain.toComboBoxValueList();
+            ObservableList<BoolComboBox> comboBoxValues = BoolComboBox.getComboBoxes();
 
             comboBox = new ComboBox<>(comboBoxValues);
             comboBox.setId(CSSID.COMBOBOX.get());
@@ -188,9 +178,12 @@ public class ColumnWrapperBool<T> extends ColumnWrapper{
             comboBox.valueProperty().set(getNamedDomainObject());
             comboBox.setMinWidth(this.getWidth() - this.getGraphicTextGap() * 2);
             comboBox.setOnAction((e) -> {
-//                System.err.println("Committed: " + comboBox.getSelectionModel().getSelectedItem());
                 commitEdit(comboBox.getSelectionModel().getSelectedItem());
-                tableWrapper.getMediator().wasChanged(tableWrapper,domain);
+//                tableWrapper.getMediator().wasChanged(tableWrapper,comboBox.getSelectionModel().getSelectedItem());
+
+
+
+
             });
             comboBox.focusedProperty().addListener((ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) -> {
                 if (!newValue) {
@@ -199,11 +192,11 @@ public class ColumnWrapperBool<T> extends ColumnWrapper{
             });
         }
 
-        private void comboBoxConverter(ComboBox<ComboBoxValue> comboBox) {
+        private void comboBoxConverter(ComboBox<BoolComboBox> comboBox) {
 //             Define rendering of the list of values in ComboBox drop down.
-            comboBox.setCellFactory((c) -> new ListCell<ComboBoxValue>() {
+            comboBox.setCellFactory((c) -> new ListCell<BoolComboBox>() {
                 @Override
-                protected void updateItem(ComboBoxValue value, boolean empty) {
+                protected void updateItem(BoolComboBox value, boolean empty) {
                     super.updateItem(value, empty);
                     if (value == null || empty) {
                         setText(null);
@@ -219,7 +212,7 @@ public class ColumnWrapperBool<T> extends ColumnWrapper{
                 BoolComboBox comboBoxValue =new BoolComboBox("");
                 return comboBoxValue;
             }else {
-                return  getItem().toComboBoxValue();
+                return  getItem();
             }
         }
     }

@@ -5,6 +5,7 @@ import basisFx.appCore.settings.CSSID;
 import basisFx.domain.ActiveRecord;
 import basisFx.domain.ComboBoxValue;
 import javafx.beans.value.ObservableValue;
+import javafx.beans.value.WritableValue;
 import javafx.collections.ObservableList;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListCell;
@@ -33,6 +34,7 @@ public class ColumnWrapperComboBoxVal extends ColumnWrapper{
         column =  new TableColumn<>(columnName);
         setCellValueFactory();
         setCellFactory();
+        setOnEditCommit();
     }
 
     private void setCellFactory() {
@@ -72,9 +74,20 @@ public class ColumnWrapperComboBoxVal extends ColumnWrapper{
 
     @Override
     public void setOnEditCommit() {
+        column.setOnEditCommit((event) -> {
+            if (checkValue(event)) {
+                int row = event.getTablePosition().getRow();
+                ObservableValue<ActiveRecord> value = event.getTableColumn().getCellObservableValue(row);
+                if (value instanceof WritableValue) {
+                    ((WritableValue<ActiveRecord>)value).setValue(event.getNewValue());
+                }
+                ActiveRecord domain = (ActiveRecord) event.getRowValue();
+                tableWrapper.getMediator().wasChanged(tableWrapper,domain);
+
+            };
+        });
 
     }
-
     @Override
     public TableColumn getColumn() {
         return column;
@@ -187,7 +200,7 @@ public class ColumnWrapperComboBoxVal extends ColumnWrapper{
             comboBox.setOnAction((e) -> {
 //                System.err.println("Committed: " + comboBox.getSelectionModel().getSelectedItem());
                 commitEdit(comboBox.getSelectionModel().getSelectedItem());
-                tableWrapper.getMediator().wasChanged(tableWrapper,domain);
+//                tableWrapper.getMediator().wasChanged(tableWrapper,domain);
             });
             comboBox.focusedProperty().addListener((ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) -> {
                 if (!newValue) {

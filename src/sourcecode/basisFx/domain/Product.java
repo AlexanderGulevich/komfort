@@ -13,7 +13,7 @@ public class Product  extends ActiveRecord {
 
     private static Product INSTANCE = new Product();
     private SimpleObjectProperty<String> name =new SimpleObjectProperty<>(this, "name", null);
-    private SimpleObjectProperty<BoolComboBox> sleeve =new SimpleObjectProperty<>(this, "havingSleeve", null);
+    private SimpleObjectProperty<BoolComboBox> havingSleeve =new SimpleObjectProperty<>(this, "havingSleeve", null);
 
     public static Product getINSTANCE() {
         return INSTANCE;
@@ -35,16 +35,16 @@ public class Product  extends ActiveRecord {
         this.name.set(name);
     }
 
-    public BoolComboBox getSleeve() {
-        return sleeve.get();
+    public BoolComboBox getHavingSleeve() {
+        return havingSleeve.get();
     }
 
-    public SimpleObjectProperty<BoolComboBox> sleeveProperty() {
-        return sleeve;
+    public SimpleObjectProperty<BoolComboBox> havingSleeveProperty() {
+        return havingSleeve;
     }
 
-    public void setSleeve(BoolComboBox sleeve) {
-        this.sleeve.set(sleeve);
+    public void setHavingSleeve(BoolComboBox havingSleeve) {
+        this.havingSleeve.set(havingSleeve);
     }
 
     @Override
@@ -63,7 +63,7 @@ public class Product  extends ActiveRecord {
                 Product pojo=new Product();
                 pojo.setId(rs.getInt("id"));
                 pojo.setName(rs.getString("name"));
-                pojo.setSleeve(new BoolComboBox(rs.getBoolean("sleeve") )  );
+                pojo.setHavingSleeve(new BoolComboBox(rs.getBoolean("havingSleeve") )  );
                 list.add(pojo);
             }
         } catch (SQLException e) {
@@ -77,12 +77,12 @@ public class Product  extends ActiveRecord {
         try {
             String expression = "UPDATE "+    "Product"+ " SET  " +
                     " name = ?," +
-                    " sleeve = ? " +
+                    " havingSleeve = ? " +
                     " WHERE id= ?" ;
             PreparedStatement pstmt = null;
             pstmt = Db.connection.prepareStatement(expression);
             pstmt.setString(1, name.get());
-            pstmt.setBoolean(2,sleeve.get().getBoolean());
+            pstmt.setBoolean(2, havingSleeve.get().getBoolean());
             pstmt.setInt(3, id.get());
             pstmt.executeUpdate();
         } catch (SQLException e) {
@@ -101,12 +101,12 @@ public class Product  extends ActiveRecord {
             String expression = "INSERT INTO " + "Product "
                     + "("
                     + " name ,  "
-                    + " sleeve "
+                    + " havingSleeve "
                     + ") VALUES(?,?)";
 
             PreparedStatement pstmt = Db.connection.prepareStatement(expression);
             pstmt.setString(1, name.get());
-            pstmt.setBoolean(2, sleeve.get().getBoolean());
+            pstmt.setBoolean(2, havingSleeve.get().getBoolean());
             pstmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
