@@ -19,7 +19,7 @@ public class ExchangeRatesPanel extends TargetPanel {
     private MediatorTwoLinkedTable mediatorTwoLinkedTable =new MediatorTwoLinkedTable();
     private GridOrganizationInnerTwoGridsTwoTables gridOrganization =new GridOrganizationInnerTwoGridsTwoTables();
 
-    @Override
+      @Override
     public void init() {
 
         TableWrapper currencyTableWrapper = TableWrapper.newBuilder()

@@ -65,7 +65,7 @@ public class ProductPrice extends ActiveRecord{
 
         boolean check = isUniquenessStartingDate(
                 findAllByOuterId(outerId),
-                activeRecord -> ((ExchangeRates) activeRecord).getStartingDate(),
+                activeRecord -> ((ProductPrice) activeRecord).getStartingDate(),
                 getStartingDate());
 
         try {
@@ -98,18 +98,21 @@ public class ProductPrice extends ActiveRecord{
                 + ") VALUES(?,?,?)";
         boolean check = isUniquenessStartingDate(
                 findAllByOuterId(outerId),
-                activeRecord -> ((ExchangeRates) activeRecord).getStartingDate(),
+                activeRecord -> ((ProductPrice) activeRecord).getStartingDate(),
                 getStartingDate());
-        try {
-            if (!check) {
-                PreparedStatement pstmt = Db.connection.prepareStatement(expression);
+
+        PreparedStatement pstmt;
+        if (check) {
+            try {
+                pstmt = Db.connection.prepareStatement(expression);
                 pstmt.setDouble(1, Double.valueOf(price.get()));
                 pstmt.setDate(2, Date.valueOf(startingDate.get()));
                 pstmt.setInt(3, outerId);
+
                 pstmt.executeUpdate();
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
         }
     }
 

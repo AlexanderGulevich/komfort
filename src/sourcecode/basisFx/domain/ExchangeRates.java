@@ -136,7 +136,7 @@ public class ExchangeRates extends ActiveRecord{
                     + " currencyId        "
                     + ") VALUES(?,?,?)";
 
-            PreparedStatement pstmt = null;
+            PreparedStatement pstmt;
             try {
                 pstmt = Db.connection.prepareStatement(expression);
                 pstmt.setDouble(1, Double.valueOf(getExchangeRate()));
