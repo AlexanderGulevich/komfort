@@ -6,7 +6,7 @@ import basisFx.domain.ActiveRecord;
 import basisFx.service.AplicationService;
 import basisFx.service.ServiceSingleEditableSubmitTable;
 
-public class MdiatorSingleTable extends Mediator {
+public class MediatorSingleTable extends Mediator {
 
     private TableWrapper tableWrapper;
 
@@ -21,12 +21,18 @@ public class MdiatorSingleTable extends Mediator {
 
     @Override
     public void wasRemoved(AppNode node, ActiveRecord record) {
-        ServiceSingleEditableSubmitTable.wasRemoved(node,record, ((TableWrapper) node).unitOfWork);
+        boolean readyToTransaction = record.isReadyToTransaction();
+        if (readyToTransaction) {
+            ServiceSingleEditableSubmitTable.wasRemoved(node, record, ((TableWrapper) node).unitOfWork);
+        }
     }
 
     @Override
     public void wasChanged(AppNode node, ActiveRecord record) {
-        ServiceSingleEditableSubmitTable.wasChanged(node,record, ((TableWrapper) node).unitOfWork);
+        boolean readyToTransaction = record.isReadyToTransaction();
+        if (readyToTransaction) {
+            ServiceSingleEditableSubmitTable.wasChanged(node, record, ((TableWrapper) node).unitOfWork);
+        }
     }
 
     @Override

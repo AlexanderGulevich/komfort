@@ -13,12 +13,15 @@ public class ServiceTwoLinkedTable extends AplicationService {
         TableWrapper tableWrapper = (TableWrapper) node;
         MediatorTwoLinkedTable mediator = (MediatorTwoLinkedTable) tableWrapper.getMediator();
         Boolean isNewDomane = ActiveRecord.isNewDomane(record);
-        if (!isNewDomane){
-            tableWrapper.unitOfWork.registercDeleted(record.entityName,record);
-            if (tableWrapper==mediator.getPrimaryTableWrapper()){
-                removeAccessoryTableItems(mediator);
+        boolean readyToTransaction = record.isReadyToTransaction();
+        if (readyToTransaction) {
+            if (!isNewDomane) {
+                tableWrapper.unitOfWork.registercDeleted(record.entityName, record);
+                if (tableWrapper == mediator.getPrimaryTableWrapper()) {
+                    removeAccessoryTableItems(mediator);
+                }
+                commit(tableWrapper);
             }
-            commit(tableWrapper);
         }
     }
 
@@ -41,13 +44,17 @@ public class ServiceTwoLinkedTable extends AplicationService {
         TableWrapper tableWrapper = (TableWrapper) node;
         Boolean isNewDomane = ActiveRecord.isNewDomane(record);
         System.err.println("ServiceTwoLinkedTable.wasChanged");
-        if (isNewDomane){
-            System.err.println("ServiceTwoLinkedTable.wasChanged---isNewDomane");
-            tableWrapper.unitOfWork.registerNew(record.entityName,record);
-        }else {
-            tableWrapper.unitOfWork.registercDirty(record.entityName,record);
-            System.err.println("ServiceTwoLinkedTable.wasChanged---Not NewDomane");
+        boolean readyToTransaction = record.isReadyToTransaction();
+        if (readyToTransaction) {
+            if (isNewDomane){
+                System.err.println("ServiceTwoLinkedTable.wasChanged---isNewDomane");
+                tableWrapper.unitOfWork.registerNew(record.entityName,record);
+            }else {
+                tableWrapper.unitOfWork.registercDirty(record.entityName,record);
+                System.err.println("ServiceTwoLinkedTable.wasChanged---Not NewDomane");
+            }
+            commit(tableWrapper);
         }
-        commit(tableWrapper);
+
     }
 }

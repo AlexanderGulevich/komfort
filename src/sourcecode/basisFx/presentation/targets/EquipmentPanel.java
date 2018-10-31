@@ -1,6 +1,6 @@
 package basisFx.presentation.targets;
 
-import basisFx.appCore.MdiatorSingleTable;
+import basisFx.appCore.MediatorSingleTable;
 import basisFx.appCore.elements.TableWrapper;
 import basisFx.appCore.grid.GridOrganizationButtonTopRightLittleSingleTable;
 import basisFx.appCore.grid.GridPaneWrapper;
@@ -15,14 +15,14 @@ public class EquipmentPanel extends TargetPanel {
     @Override
     public void init() {
 
-        MdiatorSingleTable mdiatorSingleTable = new MdiatorSingleTable();
+        MediatorSingleTable mediatorSingleTable = new MediatorSingleTable();
 
         TableWrapper tableWrapper = TableWrapper.newBuilder()
                 .setActiveRecordClass(Equipment.class)
                 .setUnitOfWork(unitOfWork)
                 .setIsEditable(true)
                 .setIsSortableColums(false)
-                .setMediator(mdiatorSingleTable)
+                .setMediator(mediatorSingleTable)
                 .setColumnWrappers(
                         ColumnWrapperString.newBuilder()
                                 .setColumnName("Наименование")
@@ -44,8 +44,8 @@ public class EquipmentPanel extends TargetPanel {
                 .setGridLinesVisibility(false)
                 .build();
 
-        mdiatorSingleTable.setTableWrapper(tableWrapper);
-        mdiatorSingleTable.initElements();
+        mediatorSingleTable.setTableWrapper(tableWrapper);
+        mediatorSingleTable.initElements();
 
 
 

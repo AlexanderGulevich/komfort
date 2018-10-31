@@ -12,7 +12,6 @@ public class ProductPrice extends ActiveRecord{
     private static ProductPrice INSTANCE = new ProductPrice();
     private SimpleObjectProperty<String> price =new SimpleObjectProperty<>(this, "price", null);
     private SimpleObjectProperty<LocalDate> startingDate =new SimpleObjectProperty<>(this, "startingDate", null);
-    private SimpleObjectProperty<Integer> productId =new SimpleObjectProperty<>(this, "productId", null);
 
     public static ProductPrice getINSTANCE() {
         return INSTANCE;
@@ -42,22 +41,9 @@ public class ProductPrice extends ActiveRecord{
         this.startingDate.set(startingDate);
     }
 
-    public Integer getProductId() {
-        return productId.get();
-    }
-
-    public SimpleObjectProperty<Integer> productIdProperty() {
-        return productId;
-    }
-
-    public void setProductId(Integer productId) {
-        this.productId.set(productId);
-    }
-
     public ProductPrice() {
         super("ProductPrice");
     }
-
 
     @Override
     public ComboBoxValue toComboBoxValue() {
@@ -88,7 +74,7 @@ public class ProductPrice extends ActiveRecord{
                 pstmt = Db.connection.prepareStatement(expression);
                 pstmt.setDouble(1, Double.valueOf(price.get()));
                 pstmt.setDate(2, Date.valueOf(startingDate.get()));
-                pstmt.setInt(3, productId.get());
+                pstmt.setInt(3, outerId);
                 pstmt.setInt(4, id.get());
                 pstmt.executeUpdate();
             }
@@ -119,7 +105,7 @@ public class ProductPrice extends ActiveRecord{
                 PreparedStatement pstmt = Db.connection.prepareStatement(expression);
                 pstmt.setDouble(1, Double.valueOf(price.get()));
                 pstmt.setDate(2, Date.valueOf(startingDate.get()));
-                pstmt.setInt(3, productId.get());
+                pstmt.setInt(3, outerId);
                 pstmt.executeUpdate();
             }
         } catch (SQLException e) {
@@ -137,7 +123,6 @@ public class ProductPrice extends ActiveRecord{
         while (rs.next()) {
             ProductPrice pojo=new ProductPrice();
             pojo.setId(rs.getInt("id"));
-            pojo.setProductId(rs.getInt("productId"));
             pojo.setPrice( Double.toString(rs.getDouble("price")));
             pojo.setStartingDate(rs.getDate("startDate").toLocalDate());
             list.add(pojo);

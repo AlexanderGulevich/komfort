@@ -1,6 +1,6 @@
 package basisFx.presentation.targets;
 
-import basisFx.appCore.MdiatorSingleTable;
+import basisFx.appCore.MediatorSingleTable;
 import basisFx.appCore.elements.TableWrapper;
 import basisFx.appCore.grid.GridOrganizationButtomRightMiddleBigSingleTable;
 import basisFx.appCore.grid.GridPaneWrapper;
@@ -20,7 +20,7 @@ public class CounterpartyPanel extends TargetPanel {
                 .setUnitOfWork(unitOfWork)
                 .setIsEditable(true)
                 .setIsSortableColums(false)
-                .setMediator(new MdiatorSingleTable())
+                .setMediator(new MediatorSingleTable())
                 .setColumnWrappers(
                         ColumnWrapperString.newBuilder()
                                 .setColumnName("Наименование")
