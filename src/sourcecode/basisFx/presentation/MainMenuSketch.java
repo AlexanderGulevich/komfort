@@ -2,10 +2,7 @@ package basisFx.presentation;
 
 import basisFx.appCore.menu.*;
 import basisFx.appCore.settings.FontsStore;
-import basisFx.presentation.targets.CounterpartyPanel;
-import basisFx.presentation.targets.EquipmentPanel;
-import basisFx.presentation.targets.ExchangeRatesPanel;
-import basisFx.presentation.targets.ProductPanel;
+import basisFx.presentation.targets.*;
 
 public class MainMenuSketch extends MenuSketch {
 
@@ -113,7 +110,7 @@ public class MainMenuSketch extends MenuSketch {
                                         .build(),
                                 FontItemLeaf.newBuilder()
                                         .setDescription("Этикетки")
-//                                        .setTargetCreator(fm.labelPanel())
+                                        .setTargetCreator(LabelPanel::new)
                                         .build(),
                                 FontItemLeaf.newBuilder()
                                         .setDescription("Втулки")
