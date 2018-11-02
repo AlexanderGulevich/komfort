@@ -77,6 +77,7 @@ public class ColumnWrapperComboBoxVal extends ColumnWrapper{
 
     @Override
     public void setOnEditCommit() {
+        //todo эта функция выполняется до того как будет выполнено изменение ТРЕБУЕТСЯ ИЗМЕНЯТЬ ЗНАЧЕНИЯ ПОСЛЕ
         column.setOnEditCommit((event) -> {
             if (checkValue(event)) {
                 int row = event.getTablePosition().getRow();
