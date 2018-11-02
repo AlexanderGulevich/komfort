@@ -28,12 +28,11 @@ public class CounterpartyPanel extends TargetPanel {
                                 .setIsEditeble(true)
                                 .setPropertyName("name")
                                 .build(),
-                        ColumnWrapperComboBoxVal.newBuilder()
+                        ColumnWrapperComboBoxVal.newBuilder(Currency.class)
                                 .setColumnName("Валюта ")
                                 .setIsEditeble(true)
                                 .setColumnSize(0.4d)
                                 .setColumnName("currency")
-                                .setDomainClass(Currency.class)
                                 .build()
 
                 )

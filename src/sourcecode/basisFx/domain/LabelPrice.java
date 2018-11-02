@@ -57,10 +57,10 @@ public class LabelPrice extends ActiveRecord {
 
     @Override
     public void update() {
-        String expression = "UPDATE "+    " LabelPrice"+ " SET  " +
+        String expression = "UPDATE "+this.entityName+ " SET  " +
                 " price = ?," +
                 " startDate = ?," +
-                " productId = ? " +
+                " labelId = ? " +
                 " where id =?";
 
         boolean check = isUniquenessStartingDate(
@@ -90,11 +90,10 @@ public class LabelPrice extends ActiveRecord {
 
     @Override
     public void insert() {
-        String expression = "INSERT INTO " + " LabelPrice "
-                + "("
+        String expression = "INSERT INTO " +this.entityName+ "("
                 + " price ,  "
                 + " startDate,  "
-                + " productId        "
+                + " labelId        "
                 + ") VALUES(?,?,?)";
         boolean check = isUniquenessStartingDate(
                 findAllByOuterId(outerId),
@@ -119,7 +118,7 @@ public class LabelPrice extends ActiveRecord {
     @Override
     public ObservableList<ActiveRecord> findAllByOuterId(int id) {
         ObservableList <ActiveRecord> list=createNewActiveRecordList();
-        String expression="SELECT * FROM " +" LabelPrice "+" where productId= " +id+" ORDER BY startDate desc";
+        String expression="SELECT * FROM " +this.entityName+" where labelId= " +id+" ORDER BY startDate desc";
         try{
             Statement stmt  = Db.connection.createStatement();
             ResultSet rs    = stmt.executeQuery(expression);

@@ -10,6 +10,7 @@ import basisFx.appCore.table.ColumnWrapperDate;
 import basisFx.appCore.table.ColumnWrapperDouble;
 import basisFx.appCore.table.ColumnWrapperString;
 import basisFx.appCore.utils.Coordinate;
+import basisFx.domain.Counterparty;
 import basisFx.domain.Currency;
 import basisFx.domain.ExchangeRates;
 import basisFx.domain.Label;
@@ -39,7 +40,7 @@ public class LabelPanel  extends TargetPanel {
                                 .setIsEditeble(true)
                                 .setPropertyName("name")
                                 .build(),
-                        ColumnWrapperComboBoxVal.newBuilder()
+                        ColumnWrapperComboBoxVal.newBuilder(Counterparty.class)
                                 .setColumnName("Поставщик")
                                 .setColumnSize(0.4d)
                                 .setIsEditeble(true)

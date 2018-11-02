@@ -68,8 +68,11 @@ public class ColumnWrapperComboBoxVal extends ColumnWrapper{
 
     }
 
-    public static Builder newBuilder() {
-        return new Builder();
+    public static Builder newBuilder(Class aClass) {
+
+        Builder builder = new Builder();
+        builder.setDomainClass(aClass);
+        return builder;
     }
 
     @Override

@@ -89,30 +89,6 @@ public abstract class ActiveRecord {
 
     }
 
-//    public void deleteForBoundTables(ActiveRecord domainObject, String observedtableName,String observertableName){
-//
-//        if (domainObject != null) {
-//            try {
-//                String expression_1="delete from " +observedtableName+" where id=? ";
-//                PreparedStatement pstmt_1 =  Db.connection.prepareStatement(expression_1);
-//                pstmt_1.setInt(1, domainObject.getId());
-//                pstmt_1.executeUpdate();
-//
-//
-//                String expression_2="delete from " +observertableName+" where id=? ";
-//                PreparedStatement pstmt_2 =  Db.connection.prepareStatement(expression_2);
-//                pstmt_2.setInt(1, domainObject.getId());
-//                pstmt_2.executeUpdate();
-//            } catch (SQLException e) {
-//                e.printStackTrace();
-//            }
-//        }
-//        else {
-//            System.out.println("ActiveRecord.deleteForBoundTables - domainObject is NULL");
-//        }
-//    }
-
-
 
 
     // getAll(list) записывает в  list значения ReturnSet БД
@@ -183,7 +159,7 @@ public abstract class ActiveRecord {
 
 
 //
-//                Platform.runLater(() -> {
+//     todo           Platform.runLater(() -> {
 //
 //
 //                    String message="В Базе Данных уже есть значение на дату: "
@@ -193,13 +169,6 @@ public abstract class ActiveRecord {
 //                });
 //
 
-
-
-
-
-
-
-//    private EmployeesRatePerHour getNewest(Integer id){}
 
 
 

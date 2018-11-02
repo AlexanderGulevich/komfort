@@ -57,7 +57,7 @@ public class ProductPrice extends ActiveRecord{
 
     @Override
     public void update() {
-        String expression = "UPDATE "+    " ProductPriceStore"+ " SET  " +
+        String expression = "UPDATE "+this.entityName+ " SET  " +
                 " price = ?," +
                 " startDate = ?," +
                 " productId = ? " +
@@ -90,8 +90,7 @@ public class ProductPrice extends ActiveRecord{
 
     @Override
     public void insert() {
-        String expression = "INSERT INTO " + " ProductPriceStore "
-                + "("
+        String expression = "INSERT INTO " +this.entityName+ "("
                 + " price ,  "
                 + " startDate,  "
                 + " productId        "
@@ -119,7 +118,7 @@ public class ProductPrice extends ActiveRecord{
     @Override
     public ObservableList<ActiveRecord> findAllByOuterId(int id) {
         ObservableList <ActiveRecord> list=createNewActiveRecordList();
-        String expression="SELECT * FROM " +" ProductPriceStore "+" where productId= " +id+" ORDER BY startDate desc";
+        String expression="SELECT * FROM " +this.entityName+" where productId= " +id+" ORDER BY startDate desc";
         try{
         Statement stmt  = Db.connection.createStatement();
         ResultSet rs    = stmt.executeQuery(expression);
