@@ -14,7 +14,7 @@ import java.time.LocalDate;
 public class Label extends ActiveRecord {
 
     private SimpleObjectProperty<String> name =new SimpleObjectProperty<>(this, "name", null);
-    private SimpleObjectProperty<ComboBoxValue> counterparty =new SimpleObjectProperty<>(this, "counterparty", null);
+    private SimpleObjectProperty<Counterparty> counterparty =new SimpleObjectProperty<>(this, "counterparty", null);
     //todo private SimpleObjectProperty<String> actualPrice =new SimpleObjectProperty<>(this, "price", null);
 
 
@@ -30,15 +30,15 @@ public class Label extends ActiveRecord {
         this.name.set(name);
     }
 
-    public ComboBoxValue getCounterparty() {
+    public Counterparty getCounterparty() {
         return counterparty.get();
     }
 
-    public SimpleObjectProperty<ComboBoxValue> counterpartyProperty() {
+    public SimpleObjectProperty<Counterparty> counterpartyProperty() {
         return counterparty;
     }
 
-    public void setCounterparty(ComboBoxValue counterparty) {
+    public void setCounterparty(Counterparty counterparty) {
         this.counterparty.set(counterparty);
     }
 
@@ -64,7 +64,7 @@ public class Label extends ActiveRecord {
                 Label pojo=new Label();
                 pojo.setId(rs.getInt("id"));
                 pojo.setName(rs.getString("name"));
-                pojo.setCounterparty(Counterparty.getInstance().find(rs.getInt("counterpartyId")).toComboBoxValue());
+                pojo.setCounterparty(Counterparty.getInstance().find(rs.getInt("counterpartyId")));
                 list.add(pojo);
             }
         } catch (SQLException e) {
