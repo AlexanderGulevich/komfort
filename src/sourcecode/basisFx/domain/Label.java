@@ -46,13 +46,6 @@ public class Label extends ActiveRecord {
         super("Label");
     }
 
-
-    @Override
-    public ComboBoxValue toComboBoxValue() {
-        return new ComboBoxValue(name.get(),id.get());
-    }
-
-
     @Override
     public ObservableList<ActiveRecord> getAll() {
         ObservableList <ActiveRecord> list=FXCollections.observableArrayList();
@@ -94,6 +87,11 @@ public class Label extends ActiveRecord {
     @Override
     public ActiveRecord find(int id) {
         return null;
+    }
+
+    @Override
+    public String toString() {
+        return getName();
     }
 
     @Override

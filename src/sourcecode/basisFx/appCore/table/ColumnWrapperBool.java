@@ -4,7 +4,6 @@ import basisFx.appCore.elements.TableWrapper;
 import basisFx.appCore.settings.CSSID;
 import basisFx.domain.ActiveRecord;
 import basisFx.domain.BoolComboBox;
-import basisFx.domain.ComboBoxValue;
 import javafx.beans.value.ObservableValue;
 import javafx.beans.value.WritableValue;
 import javafx.collections.ObservableList;
@@ -12,12 +11,8 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
-import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.util.Callback;
-
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 
 public class ColumnWrapperBool<T> extends ColumnWrapper{
 

@@ -21,11 +21,6 @@ public class Counterparty extends ActiveRecord {
     public static Counterparty getInstance() {
         return INSTANCE;
     }
-    @Override
-    public ComboBoxValue toComboBoxValue() {
-        return  new ComboBoxValue(name.get(),id.get());
-    }
-
     public Currency getCurrency() {
         return currency.get();
     }
@@ -52,7 +47,7 @@ public class Counterparty extends ActiveRecord {
     @Override
     public ObservableList <ActiveRecord>  getAll( )   {
         ObservableList <ActiveRecord> list=FXCollections.observableArrayList();
-            String expression="SELECT * FROM " +"Counterparty"+" ORDER BY ID";
+            String expression="SELECT * FROM " +this.entityName+" ORDER BY ID";
         try {
             Statement stmt  = Db.connection.createStatement();
             ResultSet rs    = stmt.executeQuery(expression);
@@ -71,8 +66,7 @@ public class Counterparty extends ActiveRecord {
 
     @Override
     public void update() {
-        if(isReadyToTransaction()) {
-            String expression = "UPDATE " + "Counterparty" + " SET  " +
+            String expression = "UPDATE " + this.entityName + " SET  " +
                     " name = ?," +
                     " currencyId = ?" +
                     " WHERE id= ?";
@@ -87,15 +81,13 @@ public class Counterparty extends ActiveRecord {
             } catch (SQLException e) {
                 e.printStackTrace();
             }
-        }
     }
 
     @Override
     public void insert() {
         try {
-            if(isReadyToTransaction()) {
 
-                String expression = "INSERT INTO " + "Counterparty"
+                String expression = "INSERT INTO " + this.entityName
                         + "(name ,"
                         + "currencyId"
                         + ") VALUES(?,?)";
@@ -104,9 +96,8 @@ public class Counterparty extends ActiveRecord {
                 pstmt.setString(1,name.get());
                 pstmt.setInt(2, currency.get().getId());
 
-                pstmt.executeUpdate();
+                int i=pstmt.executeUpdate();
 
-            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -138,6 +129,11 @@ public class Counterparty extends ActiveRecord {
         }
         return pojo;
 
+    }
+
+    @Override
+    public String toString() {
+        return getName();
     }
 
 }

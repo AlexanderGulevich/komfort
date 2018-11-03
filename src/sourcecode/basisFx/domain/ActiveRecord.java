@@ -16,10 +16,10 @@ public abstract class ActiveRecord {
     public String entityName;
     public int outerId;
     public ObjectProperty<Integer> id =new SimpleObjectProperty<>(this, "id", null);
-    public  abstract ComboBoxValue toComboBoxValue();
     public abstract ObservableList <ActiveRecord>  getAll();
     public abstract void update();
     public abstract ActiveRecord find(int id);
+    public abstract String toString();
     public abstract void insert();
     public abstract ObservableList<ActiveRecord> findAllByOuterId(int id);
     public ActiveRecord(String entityName) {
@@ -79,17 +79,6 @@ public abstract class ActiveRecord {
                 e.printStackTrace();
             }
     }
-    public ObservableList<ComboBoxValue> toComboBoxValueList(){
-        ObservableList<ActiveRecord> list = getAll();
-        ObservableList<ComboBoxValue> comboBoxValueList= FXCollections.observableArrayList();
-        for (ActiveRecord domainObject : list) {
-            comboBoxValueList.add(domainObject.toComboBoxValue());
-        }
-        return comboBoxValueList;
-
-    }
-
-
 
     // getAll(list) записывает в  list значения ReturnSet БД
     // далее идет преобразование каждой строки БД в HashMap, где ключем является id

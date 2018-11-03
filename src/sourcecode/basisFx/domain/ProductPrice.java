@@ -46,11 +46,6 @@ public class ProductPrice extends ActiveRecord{
     }
 
     @Override
-    public ComboBoxValue toComboBoxValue() {
-        return null;
-    }
-
-    @Override
     public ObservableList<ActiveRecord> getAll() {
         return null;
     }
@@ -86,6 +81,11 @@ public class ProductPrice extends ActiveRecord{
     @Override
     public ActiveRecord find(int id) {
         return null;
+    }
+
+    @Override
+    public String toString() {
+        return getPrice();
     }
 
     @Override

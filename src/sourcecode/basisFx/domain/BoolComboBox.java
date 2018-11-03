@@ -4,8 +4,7 @@ import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-public class BoolComboBox extends ComboBoxValue {
-
+public class BoolComboBox extends ActiveRecord {
     public static ObservableList<BoolComboBox> comboBoxes= FXCollections.observableArrayList(new BoolComboBox("ДА"),new BoolComboBox("НЕТ"));
     private static BoolComboBox INSTANCE = new BoolComboBox();
 
@@ -32,12 +31,16 @@ public class BoolComboBox extends ComboBoxValue {
     }
 
     public BoolComboBox(boolean val) {
+        super("BoolComboBox");
         setBoolean(val);
     }
     public BoolComboBox(String str) {
+        super("BoolComboBox");
         stringValue.set(str);
     }
-    public BoolComboBox() {}
+    public BoolComboBox() {
+        super("BoolComboBox");
+    }
 
     public String toString(){
 
@@ -65,5 +68,30 @@ public class BoolComboBox extends ComboBoxValue {
 
     public BoolComboBox toComboBoxValue() {
         return this;
+    }
+
+    @Override
+    public ObservableList<ActiveRecord> getAll() {
+        return null;
+    }
+
+    @Override
+    public void update() {
+
+    }
+
+    @Override
+    public ActiveRecord find(int id) {
+        return null;
+    }
+
+    @Override
+    public void insert() {
+
+    }
+
+    @Override
+    public ObservableList<ActiveRecord> findAllByOuterId(int id) {
+        return null;
     }
 }

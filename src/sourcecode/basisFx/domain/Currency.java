@@ -34,11 +34,6 @@ public class Currency extends ActiveRecord {
         this.name.set(name);
     }
 
-    @Override
-    public ComboBoxValue toComboBoxValue() {
-        return new ComboBoxValue(name.get(),id.get());
-    }
-    //todo
     public String toString(){
         return getName();
     }
@@ -77,8 +72,8 @@ public class Currency extends ActiveRecord {
 
     @Override
     public Currency find(int id) {
-        Currency pojo=new Currency() ;
-        String expression="SELECT  FROM " +"Currency"+" WHERE ID=?";
+        Currency pojo=null;
+        String expression="SELECT * FROM " +"Currency"+" WHERE ID=?";
 
         try {
             PreparedStatement pstmt = Db.connection.prepareStatement(expression);
@@ -86,6 +81,7 @@ public class Currency extends ActiveRecord {
             ResultSet rs = pstmt.executeQuery();
 
             while (rs.next()){
+                pojo=new Currency() ;
                 pojo.setId(rs.getInt("id"));
                 pojo.setName(rs.getString("name"));
             }

@@ -33,10 +33,6 @@ public class Equipment  extends ActiveRecord {
         this.name.set(name);
     }
     @Override
-    public ComboBoxValue toComboBoxValue() {
-        return new ComboBoxValue(getName(),getId());
-    }
-    @Override
     public boolean isReadyToTransaction() {
         if (name.get()!=null) {
             return true;
@@ -78,7 +74,7 @@ public class Equipment  extends ActiveRecord {
     @Override
     public Equipment find(int id) {
         Equipment pojo=new Equipment() ;
-        String expression="SELECT  FROM " +"Equipment"+" WHERE ID=?";
+        String expression="SELECT  * FROM " +"Equipment"+" WHERE ID=?";
 
         try {
             PreparedStatement pstmt = Db.connection.prepareStatement(expression);
@@ -93,6 +89,11 @@ public class Equipment  extends ActiveRecord {
             e.printStackTrace();
         }
         return pojo;
+    }
+
+    @Override
+    public String toString() {
+        return getName();
     }
 
     @Override

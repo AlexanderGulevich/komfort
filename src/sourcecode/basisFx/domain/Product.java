@@ -48,11 +48,6 @@ public class Product  extends ActiveRecord {
     }
 
     @Override
-    public ComboBoxValue toComboBoxValue() {
-        return new ComboBoxValue(name.get(),id.get());
-    }
-
-    @Override
     public ObservableList<ActiveRecord> getAll() {
         ObservableList <ActiveRecord> list=FXCollections.observableArrayList();
         String expression="SELECT * FROM " +"Product"+" ORDER BY ID";
@@ -96,7 +91,13 @@ public class Product  extends ActiveRecord {
     }
 
     @Override
+    public String toString() {
+        return getName();
+    }
+
+    @Override
     public void insert() {
+        int executeResult;
         try {
             String expression = "INSERT INTO " + "Product "
                     + "("
@@ -107,7 +108,8 @@ public class Product  extends ActiveRecord {
             PreparedStatement pstmt = Db.connection.prepareStatement(expression);
             pstmt.setString(1, name.get());
             pstmt.setBoolean(2, havingSleeve.get().getBoolean());
-            pstmt.executeUpdate();
+            executeResult= pstmt.executeUpdate();
+
         } catch (SQLException e) {
             e.printStackTrace();
         }

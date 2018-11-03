@@ -20,7 +20,6 @@ public abstract class Settings {
  public static final double PRELODER_COUNT_LIMIT = 150000;
  public static final FontsStore MAIN_TITLE_FONT = FontsStore.FIRA_BOLD;
  public static final String DB_URL ="db";
- public static final String DB_SERVER_PATH ="C:/komfdb/";
 
 
 }

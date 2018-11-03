@@ -26,7 +26,7 @@ public class DbServer extends Db{
 
         HsqlProperties props = new HsqlProperties();
 
-        props.setProperty("server.database.0", "file:" + Settings.DB_SERVER_PATH + "komdb;");
+        props.setProperty("server.database.0", "file:" + "C:/komfdb/" + "komdb;");
 
         props.setProperty("server.dbname.0", "db");
 

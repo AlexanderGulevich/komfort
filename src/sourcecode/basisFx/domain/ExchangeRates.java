@@ -45,11 +45,6 @@ public class ExchangeRates extends ActiveRecord{
     }
 
     @Override
-    public ComboBoxValue toComboBoxValue() {
-        return new ComboBoxValue(exchangeRate.get(),id.get());
-    }
-
-    @Override
     public ObservableList<ActiveRecord> getAll() {
        return null;
     }
@@ -58,6 +53,12 @@ public class ExchangeRates extends ActiveRecord{
     public ActiveRecord find(int id) {
         return null;
     }
+
+    @Override
+    public String toString() {
+        return getExchangeRate();
+    }
+
     @Override
     public ObservableList<ActiveRecord> findAllByOuterId(int id)   {
         ObservableList <ActiveRecord> list=createNewActiveRecordList();

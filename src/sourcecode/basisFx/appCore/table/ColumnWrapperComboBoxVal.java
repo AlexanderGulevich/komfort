@@ -3,7 +3,6 @@ package basisFx.appCore.table;
 import basisFx.appCore.elements.TableWrapper;
 import basisFx.appCore.settings.CSSID;
 import basisFx.domain.ActiveRecord;
-import basisFx.domain.ComboBoxValue;
 import javafx.beans.value.ObservableValue;
 import javafx.beans.value.WritableValue;
 import javafx.collections.ObservableList;
@@ -77,7 +76,6 @@ public class ColumnWrapperComboBoxVal extends ColumnWrapper{
 
     @Override
     public void setOnEditCommit() {
-//        //todo эта функция выполняется до того как будет выполнено изменение ТРЕБУЕТСЯ ИЗМЕНЯТЬ ЗНАЧЕНИЯ ПОСЛЕ
         column.setOnEditCommit((event) -> {
             if (checkValue(event)) {
                 int row = event.getTablePosition().getRow();
@@ -85,16 +83,12 @@ public class ColumnWrapperComboBoxVal extends ColumnWrapper{
                 if (value != null) {
                     if (value instanceof WritableValue) {
                         ((WritableValue<ActiveRecord>)value).setValue(event.getNewValue());
-
                         ActiveRecord domain = (ActiveRecord) event.getRowValue();
                         tableWrapper.getMediator().wasChanged(tableWrapper,domain);
-
                     }
                 }
-
             };
         });
-
     }
 
 
@@ -157,10 +151,9 @@ public class ColumnWrapperComboBoxVal extends ColumnWrapper{
 
     class ComboBoxCustomCell extends TableCell<ActiveRecord, ActiveRecord> {
 
-        private ComboBox<ComboBoxValue> comboBox;
+        private ComboBox<ActiveRecord> comboBox;
 
         private ComboBoxCustomCell() {}
-
         @Override
         public void startEdit() {
             if (!isEmpty()) {
@@ -174,7 +167,7 @@ public class ColumnWrapperComboBoxVal extends ColumnWrapper{
         @Override
         public void cancelEdit() {
             super.cancelEdit();
-            setText(getNamedDomainObject().getStringValue());
+            setText(getNamedDomainObject().toString());
             setGraphic(null);
         }
 
@@ -189,17 +182,17 @@ public class ColumnWrapperComboBoxVal extends ColumnWrapper{
                     if (comboBox != null) {
                         comboBox.setValue(getNamedDomainObject());
                     }
-                    setText(getNamedDomainObject().getStringValue());
+                    setText(getNamedDomainObject().toString());
                     setGraphic(comboBox);
                 } else {
-                    setText(getNamedDomainObject().getStringValue());
+                    setText(getNamedDomainObject().toString());
                     setGraphic(null);
                 }
             }
         }
 
         private void createComboBox() {
-            ObservableList<ComboBoxValue> comboBoxValues = domain.toComboBoxValueList();
+            ObservableList<ActiveRecord> comboBoxValues = domain.getAll();
 
             comboBox = new ComboBox<>(comboBoxValues);
             comboBox.setId(CSSID.COMBOBOX.get());
@@ -220,27 +213,27 @@ public class ColumnWrapperComboBoxVal extends ColumnWrapper{
             });
         }
 
-        private void comboBoxConverter(ComboBox<ComboBoxValue> comboBox) {
+        private void comboBoxConverter(ComboBox<ActiveRecord> comboBox) {
 //             Define rendering of the list of values in ComboBox drop down.
-            comboBox.setCellFactory((c) -> new ListCell<ComboBoxValue>() {
+            comboBox.setCellFactory((c) -> new ListCell<ActiveRecord>() {
                 @Override
-                protected void updateItem(ComboBoxValue comboBoxValue, boolean empty) {
+                protected void updateItem(ActiveRecord comboBoxValue, boolean empty) {
                     super.updateItem(comboBoxValue, empty);
                     if (comboBoxValue == null || empty) {
                         setText(null);
                     } else {
-                        setText(comboBoxValue.getStringValue());
+                        setText(comboBoxValue.toString());
                     }
                 }
             });
         }
 
-        private ComboBoxValue getNamedDomainObject() {
-            if(getItem()== null){//if not exist
-                ComboBoxValue comboBoxValue =new ComboBoxValue("");
-                return comboBoxValue;
+        private ActiveRecord getNamedDomainObject() {
+            ActiveRecord item = getItem();
+            if(item== null){//if not exist
+                return domain;
             }else {
-                return  getItem().toComboBoxValue();
+                return  item;
             }
         }
     }

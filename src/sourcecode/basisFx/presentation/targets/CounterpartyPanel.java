@@ -15,12 +15,14 @@ public class CounterpartyPanel extends TargetPanel {
     @Override
     public void init() {
 
+        MediatorSingleTable mediatorSingleTable = new MediatorSingleTable();
+
         TableWrapper tableWrapper = TableWrapper.newBuilder()
                 .setActiveRecordClass(Counterparty.class)
                 .setUnitOfWork(unitOfWork)
                 .setIsEditable(true)
                 .setIsSortableColums(false)
-                .setMediator(new MediatorSingleTable())
+                .setMediator(mediatorSingleTable)
                 .setColumnWrappers(
                         ColumnWrapperString.newBuilder()
                                 .setColumnName("Наименование")
@@ -48,8 +50,9 @@ public class CounterpartyPanel extends TargetPanel {
                 .setGridLinesVisibility(false)
                 .build();
 
+        mediatorSingleTable.setTableWrapper(tableWrapper);
+        mediatorSingleTable.initElements();
     }
-
 
 
 
