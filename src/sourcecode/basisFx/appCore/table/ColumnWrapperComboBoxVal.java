@@ -77,21 +77,28 @@ public class ColumnWrapperComboBoxVal extends ColumnWrapper{
 
     @Override
     public void setOnEditCommit() {
-        //todo эта функция выполняется до того как будет выполнено изменение ТРЕБУЕТСЯ ИЗМЕНЯТЬ ЗНАЧЕНИЯ ПОСЛЕ
+//        //todo эта функция выполняется до того как будет выполнено изменение ТРЕБУЕТСЯ ИЗМЕНЯТЬ ЗНАЧЕНИЯ ПОСЛЕ
         column.setOnEditCommit((event) -> {
             if (checkValue(event)) {
                 int row = event.getTablePosition().getRow();
                 ObservableValue<ActiveRecord> value = event.getTableColumn().getCellObservableValue(row);
-                if (value instanceof WritableValue) {
-                    ((WritableValue<ActiveRecord>)value).setValue(event.getNewValue());
+                if (value != null) {
+                    if (value instanceof WritableValue) {
+                        ((WritableValue<ActiveRecord>)value).setValue(event.getNewValue());
+
+                        ActiveRecord domain = (ActiveRecord) event.getRowValue();
+                        tableWrapper.getMediator().wasChanged(tableWrapper,domain);
+
+                    }
                 }
-                ActiveRecord domain = (ActiveRecord) event.getRowValue();
-                tableWrapper.getMediator().wasChanged(tableWrapper,domain);
 
             };
         });
 
     }
+
+
+
     @Override
     public TableColumn getColumn() {
         return column;

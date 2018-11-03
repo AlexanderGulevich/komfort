@@ -32,7 +32,7 @@ public class CounterpartyPanel extends TargetPanel {
                                 .setColumnName("Валюта ")
                                 .setIsEditeble(true)
                                 .setColumnSize(0.4d)
-                                .setColumnName("Контрагент")
+                                .setPropertyName("currency")
                                 .build()
 
                 )

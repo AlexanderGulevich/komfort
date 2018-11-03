@@ -12,7 +12,7 @@ public class Counterparty extends ActiveRecord {
 
     private static Counterparty INSTANCE = new Counterparty();
     private SimpleObjectProperty<String> name =new SimpleObjectProperty(this, "name", null);
-    private SimpleObjectProperty<Currency> currency =new SimpleObjectProperty<>(this, "currencyId", null);
+    private SimpleObjectProperty<Currency> currency =new SimpleObjectProperty<>(this, "currency", null);
 
     public Counterparty( ) {
         super("Counterparty");

@@ -38,6 +38,10 @@ public class Currency extends ActiveRecord {
     public ComboBoxValue toComboBoxValue() {
         return new ComboBoxValue(name.get(),id.get());
     }
+    //todo
+    public String toString(){
+        return getName();
+    }
 
     @Override
     public ObservableList<ActiveRecord> getAll() {
