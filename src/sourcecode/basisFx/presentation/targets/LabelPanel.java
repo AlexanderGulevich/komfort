@@ -5,18 +5,15 @@ import basisFx.appCore.elements.TableWrapper;
 import basisFx.appCore.grid.GridOrganizationButtonTopRightLittleSingleTable;
 import basisFx.appCore.grid.GridOrganizationInnerTwoGridsTwoTables;
 import basisFx.appCore.grid.GridPaneWrapper;
-import basisFx.appCore.table.ColumnWrapperComboBoxVal;
+import basisFx.appCore.table.ColumnWrapperComboBox;
 import basisFx.appCore.table.ColumnWrapperDate;
 import basisFx.appCore.table.ColumnWrapperDouble;
 import basisFx.appCore.table.ColumnWrapperString;
 import basisFx.appCore.utils.Coordinate;
 import basisFx.domain.Counterparty;
-import basisFx.domain.Currency;
 import basisFx.domain.ExchangeRates;
 import basisFx.domain.Label;
 import basisFx.presentation.TargetPanel;
-
-import java.time.LocalDate;
 
 public class LabelPanel  extends TargetPanel {
 
@@ -40,7 +37,7 @@ public class LabelPanel  extends TargetPanel {
                                 .setIsEditeble(true)
                                 .setPropertyName("name")
                                 .build(),
-                        ColumnWrapperComboBoxVal.newBuilder(Counterparty.class)
+                        ColumnWrapperComboBox.newBuilder(Counterparty.class)
                                 .setColumnName("Поставщик")
                                 .setColumnSize(0.4d)
                                 .setIsEditeble(true)
@@ -105,31 +102,5 @@ public class LabelPanel  extends TargetPanel {
     }
 
 
-//        GridTablesBuilder observer=new GridTablesBuilder();
-//        observer.setGridColWidth(new GridColWidth(KindOfGridCol.percent,40d));
-//        observer.setTitle("Архив цен");
-//        observer.setTablesButtonKind(TablesButtonKind.Bottom_right);
-//        observer.setDomainClass(ProductPrice.class);
-//        observer.setActiveRecord(dataMapperFabric.labelPriceMapper());
-//        observer.setColumnWidthByContent(  columnFabric.string(KindOfColumn.DOUBLE,"Цена","price",0.3d,true,
-//                (obj,val)->{((ProductPrice)obj).setPrice( (String ) val);})
-//        );
-//        observer.setColumnWidthByContent(  columnFabric.dateColumn(KindOfColumn.DATE,"Дата начала действия ","startingDate",0.7d,true,
-//                (obj, val)->{((ProductPrice)obj).setStartingDate((LocalDate) val); })
-//        );
-//
-//
-//        BoundTablesGrid boundTablesGrid = gridFabric.boundTables(
-//                observed,
-//                observer,
-//                new Coordinate(10d, 10d, 10d, 10d),
-//                panel
-//        );
-//
-//
-//
-//
-//
-//    }
 
 }

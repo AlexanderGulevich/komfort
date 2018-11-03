@@ -16,13 +16,13 @@ import javafx.util.Callback;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
-public class ColumnWrapperComboBoxVal extends ColumnWrapper{
+public class ColumnWrapperComboBox extends ColumnWrapper{
 
     protected TableColumn<ActiveRecord, ActiveRecord> column;
     protected ActiveRecord domain;
     protected Class <? extends ActiveRecord> domainClass;
 
-    private ColumnWrapperComboBoxVal(Builder builder) {
+    private ColumnWrapperComboBox(Builder builder) {
         tableWrapper = builder.tableWrapper;
         propertyName = builder.propertyName;
         columnName = builder.columnName;
@@ -144,8 +144,8 @@ public class ColumnWrapperComboBoxVal extends ColumnWrapper{
             return this;
         }
 
-        public ColumnWrapperComboBoxVal build() {
-            return new ColumnWrapperComboBoxVal(this);
+        public ColumnWrapperComboBox build() {
+            return new ColumnWrapperComboBox(this);
         }
     }
 
