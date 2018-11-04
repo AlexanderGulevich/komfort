@@ -1,73 +1,128 @@
-//package basisFx.domain.domaine;
+package basisFx.domain;
+
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.collections.ObservableList;
+
+import java.time.LocalDate;
+
+public class Employer extends ActiveRecord {
+
+    private SimpleObjectProperty<String> name =new SimpleObjectProperty<>(this, "name", null);
+    private SimpleObjectProperty<LocalDate> startingRateDate =new SimpleObjectProperty<>(this, "startingRateDate", null);
+    private SimpleObjectProperty<Boolean> isFired =new SimpleObjectProperty<>(this, "isFired", false);
+    private SimpleObjectProperty<RatePerHourTamplate> rate =new SimpleObjectProperty<>(this, "rate", null);
+
+    public Employer() {
+        super("Employer");
+    }
+
+    @Override
+    public ObservableList<ActiveRecord> getAll() {
+        try {
+//            String expression="SELECT * FROM " +"Employer " +
+//                    "where isFired = false " +
+//                    " "+" ORDER BY ID";
 //
-//import basisFx.appCore.domainScetch.ComboBoxValue;
-//import basisFx.appCore.domainScetch.DomainObject;
-//import javafx.beans.property.SimpleObjectProperty;
+//            Statement stmt  = Db.getConnection().createStatement();
 //
-//import java.time.LocalDate;
-//
-///**
-// *
-// * Created by AlexanderGulevich on 11.03.2018.
-// *
-// */
-//public class Employer extends DomainObject {
-//
-//    private SimpleObjectProperty<String> name =new SimpleObjectProperty<>(this, "name", null);
-//    private SimpleObjectProperty<LocalDate> startingRateDate =new SimpleObjectProperty<>(this, "startingRateDate", null);
-//    private SimpleObjectProperty<Boolean> isFired =new SimpleObjectProperty<>(this, "isFired", false);
-//    private SimpleObjectProperty<DomainObject> rate =new SimpleObjectProperty<>(this, "rate", null);
-//
-//    public String getName() {
-//        return name.get();
-//    }
-//
-//    public SimpleObjectProperty<String> nameProperty() {
-//        return name;
-//    }
-//
-//    public void setName(String name) {
-//        this.name.set(name);
-//    }
-//    public DomainObject getRate() {
-//        return rate.get();
-//    }
-//
-//    public SimpleObjectProperty<DomainObject> rateProperty() {
-//        return rate;
-//    }
-//
-//    public void setRate(DomainObject rate) {
-//        this.rate.set(rate);
-//    }
-//
-//    public LocalDate getStartingRateDate() {
-//        return startingRateDate.get();
-//    }
-//
-//    public SimpleObjectProperty<LocalDate> startingRateDateProperty() {
-//        return startingRateDate;
-//    }
-//
-//    public void setStartingRateDate(LocalDate startingRateDate) {
-//        this.startingRateDate.set(startingRateDate);
-//    }
-//
-//    public Boolean getIsFired() {
-//        return isFired.get();
-//    }
-//
-//    public SimpleObjectProperty<Boolean> isFiredProperty() {
-//        return isFired;
-//    }
-//
-//    public void setIsFired(Boolean isFired) {
-//        this.isFired.set(isFired);
-//    }
+//            ResultSet rs    = stmt.executeQuery(expression);
 //
 //
-//    @Override
-//    public ComboBoxValue toComboBoxValue() {
-//        return new ComboBoxValue(getName(),getId());
-//    }
-//}
+//            while (rs.next()) {
+//
+//                Employer pojo=new Employer();
+//
+//                int id=rs.getInt("id");
+//
+//                int externalId=rs.getInt("PRODUCTID");
+//
+//                pojo.setId(id);
+//
+//                pojo.setName(rs.getString("name"));
+//
+//                pojo.setIsFired(rs.getBoolean("isFired"));
+////                dataMapperFabric.employeesRateMapper().t;
+////                pojo.setRate();
+////                EmployeesRatePerHour rate=getNewest(rs.getInt("id"));
+////
+////                if (rate != null) {
+////
+////                    pojo.setStartingRateDate(rate.getStartingDate());
+////
+////                    pojo.setRate(rate);
+////                }
+//
+//                setStoredId(id);
+//
+//                list.add(pojo);
+//            }
+//
+//
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+    }
+
+    @Override
+    public void update() {
+            Employer employer= (Employer) d;
+//            String expression = "UPDATE "+    "Employer"+ " SET  " +
+//                    " name = ?," +
+//                    " isFired = ?" +
+//                    " WHERE id= ?" ;
+//
+//            try {
+//                PreparedStatement pstmt = null;
+//
+//                pstmt = Db.getConnection().prepareStatement(expression);
+//                pstmt.setName(1, employer.getName());
+//                pstmt.setBoolean(2, employer.getIsFired());
+//                pstmt.setInt(3, employer.getId());
+//                pstmt.executeUpdate();
+//            } catch (SQLException e) {
+//                e.printStackTrace();
+//            }
+//
+    }
+
+    @Override
+    public ActiveRecord find(int id) {
+        return null;
+    }
+
+    @Override
+    public String toString() {
+        return null;
+    }
+
+    @Override
+    public void insert() {
+            Employer domainObject=(Employer) d;
+//
+//        if(isReadyToTransaction(d)) {
+//
+//                String expression = "INSERT INTO " + "Employer "
+//                        + "("
+//                        + " name ,  "
+//                        + " isFired "
+//                        + ") VALUES(?,?)";
+//
+//            try {
+//                PreparedStatement pstmt = Db.getConnection().prepareStatement(expression);
+//                pstmt.setName(1, domainObject.getName());
+//                pstmt.setBoolean(2, domainObject.getIsFired());
+//
+//                pstmt.executeUpdate();
+//            } catch (SQLException e) {
+//                e.printStackTrace();
+//            }
+//
+//
+//        }
+    }
+
+    @Override
+    public ObservableList<ActiveRecord> findAllByOuterId(int id) {
+        return null;
+    }
+}

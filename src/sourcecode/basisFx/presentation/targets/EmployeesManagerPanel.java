@@ -1,17 +1,13 @@
 package basisFx.presentation.targets;
-import basisFx.appCore.MediatorTwoLinkedTable;
+import basisFx.appCore.mediators.MediatorTwoLinkedTable;
 import basisFx.appCore.elements.TableWrapper;
 import basisFx.appCore.grid.GridOrganizationButtonTopRightLittleSingleTable;
 import basisFx.appCore.grid.GridOrganizationInnerTwoGridsTwoTables;
 import basisFx.appCore.grid.GridPaneWrapper;
 import basisFx.appCore.table.ColumnWrapperComboBox;
 import basisFx.appCore.table.ColumnWrapperDate;
-import basisFx.appCore.table.ColumnWrapperDouble;
 import basisFx.appCore.table.ColumnWrapperString;
 import basisFx.appCore.utils.Coordinate;
-import basisFx.domain.Counterparty;
-import basisFx.domain.ExchangeRates;
-import basisFx.domain.Label;
 import basisFx.presentation.TargetPanel;
 
 public class EmployeesManagerPanel extends TargetPanel {
@@ -23,29 +19,24 @@ public class EmployeesManagerPanel extends TargetPanel {
     public void init() {
 
         TableWrapper labelTableWrapper = TableWrapper.newBuilder()
-                .setActiveRecordClass(Label.class)
+                .setActiveRecordClass(Employer.class)
                 .setUnitOfWork(unitOfWork)
                 .setIsEditable(true)
                 .setIsSortableColums(false)
                 .setMediator(mediatorTwoLinkedTable)
                 .setColumnWrappers(
                         ColumnWrapperString.newBuilder()
-                                .setColumnName("Наименование")
+                                .setColumnName("ФИО")
                                 .setColumnSize(0.6d)
                                 .setIsEditeble(true)
                                 .setPropertyName("name")
-                                .build(),
-                        ColumnWrapperComboBox.newBuilder(Counterparty.class)
-                                .setColumnName("Поставщик")
-                                .setColumnSize(0.4d)
-                                .setIsEditeble(true)
-                                .setPropertyName("name")
-                                .build())
+                                .build()
+                )
                 .build();
 
         GridPaneWrapper labelGridPaneWrapper = GridPaneWrapper.newBuilder()
                 .setGridLinesVisibility(gridVisibility)
-                .setName("Этикетки")
+                .setName("Текущий список сотрудников ")
                 .setColumnComputerWidth()
                 .setColumnFixed(40d)
                 .setColumnFixed(40d)
@@ -53,20 +44,20 @@ public class EmployeesManagerPanel extends TargetPanel {
                 .build();
 
         TableWrapper labelPriceTableWrapper = TableWrapper.newBuilder()
-                .setActiveRecordClass(ExchangeRates.class)
+                .setActiveRecordClass(EmployeesRatePerHour.class)
                 .setUnitOfWork(unitOfWork)
                 .setIsEditable(true)
                 .setIsSortableColums(false)
                 .setMediator(mediatorTwoLinkedTable)
                 .setColumnWrappers(
-                        ColumnWrapperDouble.newBuilder()
-                                .setColumnName("Курс")
+                        ColumnWrapperComboBox.newBuilder(RatePerHourTamplate.class)
+                                .setColumnName("Тариф")
                                 .setColumnSize(0.6d)
                                 .setIsEditeble(true)
                                 .setPropertyName("exchangeRate")
                                 .build(),
                         ColumnWrapperDate.newBuilder()
-                                .setColumnName("Дата")
+                                .setColumnName("Дата начала действия тарифа")
                                 .setColumnSize(0.4d)
                                 .setIsEditeble(true)
                                 .setPropertyName("startingDate")
@@ -76,7 +67,7 @@ public class EmployeesManagerPanel extends TargetPanel {
 
         GridPaneWrapper labelPriceGridPaneWrapper = GridPaneWrapper.newBuilder()
                 .setGridLinesVisibility(gridVisibility)
-                .setName("Курсы")
+                .setName("Реестр тарифных ставок")
                 .setColumnComputerWidth()
                 .setColumnFixed(40d)
                 .setColumnFixed(40d)
@@ -98,57 +89,6 @@ public class EmployeesManagerPanel extends TargetPanel {
         mediatorTwoLinkedTable.setPrimaryTableWrapper(labelTableWrapper);
         mediatorTwoLinkedTable.initElements();
     }
-
-
-//    @Override
-//    protected void configurate() {
-//
-//        GridTablesBuilder observed=new GridTablesBuilder();
-//        observed.setGridColWidth(new GridColWidth(KindOfGridCol.percent,60d));
-//        observed.setTitle("Текущий список сотрудников ");
-//        observed.setTablesButtonKind(TablesButtonKind.Bottom_right);
-//        observed.setDomainClass(Employer.class);
-//        observed.setActiveRecord(dataMapperFabric.employerMapper());
-//        observed.setColumnWidthByContent(
-//                columnFabric.string(KindOfColumn.STRING,"ФИО","name",1d,true,
-//                        (obj,val)->{((Employer)obj).setName((String)val);})
-//        );
-//
-//
-//
-//
-//        GridTablesBuilder observer=new GridTablesBuilder();
-//        observer.setGridColWidth(new GridColWidth(KindOfGridCol.percent,40d));
-//        observer.setTitle("Реестр тарифных ставок ");
-//        observer.setTablesButtonKind(TablesButtonKind.Bottom_right);
-//        observer.setDomainClass(EmployeesRatePerHour.class);
-//        observer.setActiveRecord(dataMapperFabric.employeesRateMapper());
-//        observer.setColumnWidthByContent(
-//                columnFabric.comboBox(KindOfColumn.COMBOBOX,"Тариф","rate",0.3d,true,
-//                (obj,val)->{((EmployeesRatePerHour)obj).setRate((ComboBoxValue) val);},
-//                () -> dataMapperFabric.ratePerHourTemplatesMapper()
-//                        .toComboBoxValueList(( domainObject -> ((RatePerHourTamplate) domainObject).getName()))
-//                )
-//        );
-//        observer.setColumnWidthByContent( columnFabric.dateColumn(KindOfColumn.DATE,"Дата начала действия тарифа","startingRateDate",0.7d,true,
-//                (obj, val)->{((EmployeesRatePerHour)obj).setStartingRateDate((LocalDate) val); })
-//        );
-//
-//
-//        gridFabric.boundTables(
-//                observed,
-//                observer,
-//                new Coordinate(10d,10d,10d,10d),
-//                panel
-//        );
-//
-//
-//
-//
-//
-//
-//
-//    }
 
 
 

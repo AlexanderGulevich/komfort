@@ -1,7 +1,8 @@
-package basisFx.appCore;
+package basisFx.appCore.mediators;
 
 import basisFx.appCore.elements.AppNode;
 import basisFx.appCore.elements.TableWrapper;
+import basisFx.appCore.mediators.Mediator;
 import basisFx.domain.ActiveRecord;
 import basisFx.service.AplicationService;
 import basisFx.service.ServiceTwoLinkedTable;

@@ -79,7 +79,7 @@ public class MainMenuSketch extends MenuSketch {
                         .build().add(
                                 FontItemLeaf.newBuilder()
                                         .setDescription("Сотрудики")
-//                                        .setTargetCreator(Employ)
+                                        .setTargetCreator(EmployeesManagerPanel::new)
                                         .build(),
                                 FontItemLeaf.newBuilder()
                                         .setDescription("Актуальные тарифы")

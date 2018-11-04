@@ -1,6 +1,6 @@
 package basisFx.appCore.elements;
 
-import basisFx.appCore.Mediator;
+import basisFx.appCore.mediators.Mediator;
 import basisFx.appCore.table.ColumnWrapper;
 import basisFx.appCore.events.AppEvent;
 import basisFx.domain.ActiveRecord;

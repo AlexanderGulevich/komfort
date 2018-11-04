@@ -1,6 +1,6 @@
 package basisFx.presentation.targets;
 
-import basisFx.appCore.MediatorSingleTable;
+import basisFx.appCore.mediators.MediatorSingleTable;
 import basisFx.appCore.elements.TableWrapper;
 import basisFx.appCore.grid.GridOrganizationButtomRightMiddleBigSingleTable;
 import basisFx.appCore.grid.GridPaneWrapper;

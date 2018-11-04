@@ -1,4 +1,4 @@
-package basisFx.appCore;
+package basisFx.appCore.mediators;
 
 import basisFx.appCore.elements.AppNode;
 import basisFx.domain.ActiveRecord;
