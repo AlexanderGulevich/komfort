@@ -1,16 +1,52 @@
 package basisFx.domain;
 
+import basisFx.dataSource.Db;
 import javafx.beans.property.SimpleObjectProperty;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-
-import java.time.LocalDate;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 public class Employer extends ActiveRecord {
 
     private SimpleObjectProperty<String> name =new SimpleObjectProperty<>(this, "name", null);
-    private SimpleObjectProperty<LocalDate> startingRateDate =new SimpleObjectProperty<>(this, "startingRateDate", null);
     private SimpleObjectProperty<Boolean> isFired =new SimpleObjectProperty<>(this, "isFired", false);
-    private SimpleObjectProperty<RatePerHourTamplate> rate =new SimpleObjectProperty<>(this, "rate", null);
+    private SimpleObjectProperty<Double> rate =new SimpleObjectProperty<>(this, "actualRate", null);
+
+    public String getName() {
+        return name.get();
+    }
+    public SimpleObjectProperty<String> nameProperty() {
+        return name;
+    }
+    public void setName(String name) {
+        this.name.set(name);
+    }
+
+    public Boolean getIsFired() {
+        return isFired.get();
+    }
+
+    public SimpleObjectProperty<Boolean> isFiredProperty() {
+        return isFired;
+    }
+
+    public void setIsFired(Boolean isFired) {
+        this.isFired.set(isFired);
+    }
+
+    public Double getRate() {
+        return rate.get();
+    }
+
+    public SimpleObjectProperty<Double> rateProperty() {
+        return rate;
+    }
+
+    public void setRate(Double rate) {
+        this.rate.set(rate);
+    }
 
     public Employer() {
         super("Employer");
@@ -18,54 +54,28 @@ public class Employer extends ActiveRecord {
 
     @Override
     public ObservableList<ActiveRecord> getAll() {
+        ObservableList <ActiveRecord> list= FXCollections.observableArrayList();
+            String expression="SELECT * FROM " +this.entityName  + " where isFired = false ORDER BY ID";
+            //todo  create union
         try {
-//            String expression="SELECT * FROM " +"Employer " +
-//                    "where isFired = false " +
-//                    " "+" ORDER BY ID";
-//
-//            Statement stmt  = Db.getConnection().createStatement();
-//
-//            ResultSet rs    = stmt.executeQuery(expression);
-//
-//
-//            while (rs.next()) {
-//
-//                Employer pojo=new Employer();
-//
-//                int id=rs.getInt("id");
-//
-//                int externalId=rs.getInt("PRODUCTID");
-//
-//                pojo.setId(id);
-//
-//                pojo.setName(rs.getString("name"));
-//
-//                pojo.setIsFired(rs.getBoolean("isFired"));
-////                dataMapperFabric.employeesRateMapper().t;
-////                pojo.setRate();
-////                EmployeesRatePerHour rate=getNewest(rs.getInt("id"));
-////
-////                if (rate != null) {
-////
-////                    pojo.setStartingRateDate(rate.getStartingDate());
-////
-////                    pojo.setRate(rate);
-////                }
-//
-//                setStoredId(id);
-//
-//                list.add(pojo);
-//            }
-//
-//
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
+            Statement stmt  = Db.connection.createStatement();;
+            ResultSet rs = stmt.executeQuery(expression);
+            while (rs.next()) {
+                Employer pojo=new Employer();
+                pojo.setId(rs.getInt("id"));
+                pojo.setName(rs.getString("name"));
+                pojo.setIsFired(rs.getBoolean("isFired"));
+
+                list.add(pojo);
+            }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        return list;
     }
 
     @Override
     public void update() {
-            Employer employer= (Employer) d;
 //            String expression = "UPDATE "+    "Employer"+ " SET  " +
 //                    " name = ?," +
 //                    " isFired = ?" +
@@ -97,9 +107,7 @@ public class Employer extends ActiveRecord {
 
     @Override
     public void insert() {
-            Employer domainObject=(Employer) d;
 //
-//        if(isReadyToTransaction(d)) {
 //
 //                String expression = "INSERT INTO " + "Employer "
 //                        + "("
@@ -118,11 +126,15 @@ public class Employer extends ActiveRecord {
 //            }
 //
 //
-//        }
     }
 
     @Override
     public ObservableList<ActiveRecord> findAllByOuterId(int id) {
+        return null;
+    }
+
+    @Override
+    public ObservableList<ActiveRecord> findAllByOuterId() {
         return null;
     }
 }
