@@ -54,17 +54,26 @@ public class Employer extends ActiveRecord {
 
     @Override
     public ObservableList<ActiveRecord> getAll() {
+
         ObservableList <ActiveRecord> list= FXCollections.observableArrayList();
-            String expression="SELECT * FROM " +this.entityName  + " where isFired = false ORDER BY ID";
-            //todo  create union
+        String expression=
+                "SELECT  r.employerId, r.rate, r.startDate, e.name, e.isFired"+
+                        " from  employer as e,"+
+                        " (select * from ratePerHourHistory where (employerId, startDate)"+
+                        " in (select employerId, max(startDate) from  ratePerHourHistory group by employerId)) as r"+
+                        " where r.employerId=e.id and e.isFired = false"+
+                        "ORDER BY r.employerId";
+
+        //todo  create union
         try {
             Statement stmt  = Db.connection.createStatement();;
             ResultSet rs = stmt.executeQuery(expression);
             while (rs.next()) {
                 Employer pojo=new Employer();
-                pojo.setId(rs.getInt("id"));
+                pojo.setId(rs.getInt("employerId"));
                 pojo.setName(rs.getString("name"));
                 pojo.setIsFired(rs.getBoolean("isFired"));
+                pojo.setRate(rs.getDouble("rate"));
 
                 list.add(pojo);
             }
@@ -133,8 +142,4 @@ public class Employer extends ActiveRecord {
         return null;
     }
 
-    @Override
-    public ObservableList<ActiveRecord> findAllByOuterId() {
-        return null;
-    }
 }
