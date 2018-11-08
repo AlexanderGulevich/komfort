@@ -70,6 +70,11 @@ public class ColumnWrapperString<T> extends ColumnWrapper{
         return true;
     }
 
+    @Override
+    protected boolean checkValue(String s) {
+        return false;
+    }
+
     public static final class Builder {
         private String propertyName;
         private String columnName;

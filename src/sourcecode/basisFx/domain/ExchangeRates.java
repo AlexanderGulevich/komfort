@@ -10,7 +10,7 @@ public class ExchangeRates extends ActiveRecord{
 
     private static ExchangeRates INSTANCE = new ExchangeRates();
     private SimpleObjectProperty<LocalDate> startingDate =new SimpleObjectProperty<>(this, "startingDate", null);
-    private SimpleObjectProperty<String> exchangeRate =new SimpleObjectProperty<>(this, "exchangeRate", null);
+    private SimpleObjectProperty<Double> exchangeRate =new SimpleObjectProperty<>(this, "exchangeRate", null);
 
     public static ExchangeRates getINSTANCE() {
         return INSTANCE;
@@ -32,15 +32,15 @@ public class ExchangeRates extends ActiveRecord{
         this.startingDate.set(startingDate);
     }
 
-    public String getExchangeRate() {
+    public Double getExchangeRate() {
         return exchangeRate.get();
     }
 
-    public SimpleObjectProperty<String> exchangeRateProperty() {
+    public SimpleObjectProperty<Double> exchangeRateProperty() {
         return exchangeRate;
     }
 
-    public void setExchangeRate(String exchangeRate) {
+    public void setExchangeRate(Double exchangeRate) {
         this.exchangeRate.set(exchangeRate);
     }
 
@@ -56,7 +56,7 @@ public class ExchangeRates extends ActiveRecord{
 
     @Override
     public String toString() {
-        return getExchangeRate();
+        return getExchangeRate().toString();
     }
 
     @Override
@@ -73,7 +73,7 @@ public class ExchangeRates extends ActiveRecord{
                 ExchangeRates pojo=new ExchangeRates();
 
                 pojo.setId( rs.getInt("id"));
-                pojo.setExchangeRate(Double.toString(rs.getDouble("rate")));
+                pojo.setExchangeRate(rs.getDouble("rate"));
                 pojo.setStartingDate(rs.getDate("startDate").toLocalDate());
 
                 list.add(pojo);

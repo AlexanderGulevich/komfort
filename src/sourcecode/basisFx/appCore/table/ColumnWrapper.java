@@ -16,6 +16,7 @@ public  abstract class ColumnWrapper<T,K> {
     public abstract void setOnEditCommit();
     public abstract TableColumn<T, K> getColumn();
     protected abstract boolean checkValue(TableColumn.CellEditEvent<T, K> event);
+    protected abstract boolean checkValue(String s);
 
 
 

@@ -81,6 +81,11 @@ public class ColumnWrapperDate extends ColumnWrapper{
         }
     }
 
+    @Override
+    protected boolean checkValue(String s) {
+        return false;
+    }
+
     public static final class Builder {
         private TableWrapper tableWrapper;
         private String propertyName;

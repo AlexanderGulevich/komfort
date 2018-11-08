@@ -7,10 +7,11 @@ import javafx.beans.value.WritableValue;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.util.converter.DoubleStringConverter;
 
 public class ColumnWrapperDouble <T>extends ColumnWrapper{
 
-    protected TableColumn<T,String> column;
+    protected TableColumn<T,Double> column;
 
     private ColumnWrapperDouble(Builder builder) {
         tableWrapper = builder.tableWrapper;
@@ -19,12 +20,11 @@ public class ColumnWrapperDouble <T>extends ColumnWrapper{
         columnSize = builder.columnSize;
         isEditeble = builder.isEditeble;
 
-
         column =  new TableColumn<>(columnName);
 
         column.setEditable(isEditeble);
         column.setCellValueFactory(new PropertyValueFactory<>(propertyName));
-        column.setCellFactory(TextFieldTableCell.forTableColumn());
+        column.setCellFactory(TextFieldTableCell.forTableColumn(new CustomeDoubleStringConverter()));
 
         setOnEditCommit();
 
@@ -41,23 +41,14 @@ public class ColumnWrapperDouble <T>extends ColumnWrapper{
     public void setOnEditCommit() {
         column.setOnEditCommit((event) -> {
 
-            boolean checkValue = checkValue(event);
-
-            if (checkValue) {
-
-                System.err.println("checkValue--ColumnWrapperDouble- ДОПУСТИМОЕ ЗНАЧЕНИЕ");
-
                 int row = event.getTablePosition().getRow();
-                ObservableValue<String> v = event.getTableColumn().getCellObservableValue(row);
+                ObservableValue<Double> v = event.getTableColumn().getCellObservableValue(row);
                 if (v instanceof WritableValue) {
-                    ((WritableValue<String>)v).setValue(event.getNewValue());
+                    ((WritableValue<Double>)v).setValue(Double.valueOf(event.getNewValue()));
                 }
                 ActiveRecord domain = (ActiveRecord) event.getRowValue();
                 tableWrapper.getMediator().wasChanged(tableWrapper,domain);
 
-            }else{
-                System.err.println("checkValue--ColumnWrapperDouble- НЕДОПУСТИМОЕ ЗНАЧЕНИЕ");
-            }
         });
     }
 
@@ -68,25 +59,23 @@ public class ColumnWrapperDouble <T>extends ColumnWrapper{
 
     @Override
     protected boolean checkValue(TableColumn.CellEditEvent event) {
-        try {
-
-            String string=(String) event.getNewValue();
-
-            if(string.contains(",")){
-                string=string.replace(',','.');
-            }
-
-            Double newValue = Double.parseDouble(string);
-
-            return true;
-
-
-        }catch (NumberFormatException   e){
-
-
 
             return false;
+    }
+
+    @Override
+    protected boolean checkValue(String s) {
+        try {
+            s=s.trim();
+            if(s.contains(",")){
+                s=s.replace(',','.');
+            }
+            Double v=Double.parseDouble(s);
+        }catch (NumberFormatException   e){
+            //todo вставить всплывающее окно и обработку
+            return false;
         }
+        return  true;
     }
 
     public static final class Builder {
@@ -126,6 +115,42 @@ public class ColumnWrapperDouble <T>extends ColumnWrapper{
 
         public ColumnWrapperDouble build() {
             return new ColumnWrapperDouble(this);
+        }
+    }
+
+
+    class CustomeDoubleStringConverter extends DoubleStringConverter{
+        /** {@inheritDoc} */
+        @Override public Double fromString(String value) {
+            // If the specified value is null or zero-length, return null
+            if (value == null) {
+                return null;
+            }
+
+            value = value.trim();
+
+            if (value.length() < 1) {
+                return null;
+            }
+
+            if (checkValue(value)) {
+                if(value.contains(",")){
+                    value=value.replace(',','.');
+                }
+                Double aDouble = Double.valueOf(value);
+                return aDouble;
+            }
+            return null;
+        }
+
+        /** {@inheritDoc} */
+        @Override public String toString(Double value) {
+            // If the specified value is null, return a zero-length String
+            if (value == null) {
+                return "";
+            }
+
+            return Double.toString(value.doubleValue());
         }
     }
 }

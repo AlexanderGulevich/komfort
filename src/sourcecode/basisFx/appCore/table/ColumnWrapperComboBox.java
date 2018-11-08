@@ -103,6 +103,11 @@ public class ColumnWrapperComboBox extends ColumnWrapper{
         return true;
     }
 
+    @Override
+    protected boolean checkValue(String s) {
+        return false;
+    }
+
     public static final class Builder {
         public Class domainClass;
         private TableWrapper tableWrapper;

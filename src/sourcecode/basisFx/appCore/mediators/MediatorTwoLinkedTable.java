@@ -2,7 +2,6 @@ package basisFx.appCore.mediators;
 
 import basisFx.appCore.elements.AppNode;
 import basisFx.appCore.elements.TableWrapper;
-import basisFx.appCore.mediators.Mediator;
 import basisFx.domain.ActiveRecord;
 import basisFx.service.AplicationService;
 import basisFx.service.ServiceTwoLinkedTable;
@@ -37,21 +36,17 @@ public class MediatorTwoLinkedTable extends Mediator {
                 idFromPrimeTable = primaryTableWrapper.clickedDomain.id.get();
                 refreshAccessoryTable();
             }
-            System.err.println("Mediator----------node==primaryTableWrapper");
         }
         if (node == accessoryTableWrapper) {
-            System.err.println("Mediator----------node==accessoryTableWrapper)");
         }
     }
 
     @Override
     public void wasRemoved(AppNode node, ActiveRecord record) {
         if (node == primaryTableWrapper) {
-            System.err.println("MediatorTwoLinkedTable.wasRemoved   if (node==primaryTableWrapper){");
             ServiceTwoLinkedTable.wasRemoved(node, record);
         }
         if (node == accessoryTableWrapper) {
-            System.err.println("MediatorTwoLinkedTable.wasRemoved   if (node==accessoryTableWrapper){");
             ServiceTwoLinkedTable.wasRemoved(node, record);
         }
     }
@@ -59,11 +54,9 @@ public class MediatorTwoLinkedTable extends Mediator {
     @Override
     public void wasChanged(AppNode node, ActiveRecord record) {
         if (node == primaryTableWrapper) {
-            System.err.println("MediatorTwoLinkedTable.wasChanged   if (node==primaryTableWrapper){");
             ServiceTwoLinkedTable.wasChanged(node, record);
         }
         if (node == accessoryTableWrapper) {
-            System.err.println("MediatorTwoLinkedTable.wasChanged   if (node==accessoryTableWrapper){");
             record.outerId = idFromPrimeTable;
             ServiceTwoLinkedTable.wasChanged(node, record);
         }

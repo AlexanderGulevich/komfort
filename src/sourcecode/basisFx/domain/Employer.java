@@ -4,15 +4,18 @@ import basisFx.dataSource.Db;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+
+import java.sql.*;
+import java.time.LocalDate;
 
 public class Employer extends ActiveRecord {
 
+    private static Employer INSTANCE = new Employer();
     private SimpleObjectProperty<String> name =new SimpleObjectProperty<>(this, "name", null);
-    private SimpleObjectProperty<Boolean> isFired =new SimpleObjectProperty<>(this, "isFired", false);
-    private SimpleObjectProperty<Double> rate =new SimpleObjectProperty<>(this, "actualRate", null);
+
+    public static Employer getINSTANCE() {
+        return INSTANCE;
+    }
 
     public String getName() {
         return name.get();
@@ -24,30 +27,6 @@ public class Employer extends ActiveRecord {
         this.name.set(name);
     }
 
-    public Boolean getIsFired() {
-        return isFired.get();
-    }
-
-    public SimpleObjectProperty<Boolean> isFiredProperty() {
-        return isFired;
-    }
-
-    public void setIsFired(Boolean isFired) {
-        this.isFired.set(isFired);
-    }
-
-    public Double getRate() {
-        return rate.get();
-    }
-
-    public SimpleObjectProperty<Double> rateProperty() {
-        return rate;
-    }
-
-    public void setRate(Double rate) {
-        this.rate.set(rate);
-    }
-
     public Employer() {
         super("Employer");
     }
@@ -56,24 +35,15 @@ public class Employer extends ActiveRecord {
     public ObservableList<ActiveRecord> getAll() {
 
         ObservableList <ActiveRecord> list= FXCollections.observableArrayList();
-        String expression=
-                "SELECT  r.employerId, r.rate, r.startDate, e.name, e.isFired"+
-                        " from  employer as e,"+
-                        " (select * from ratePerHourHistory where (employerId, startDate)"+
-                        " in (select employerId, max(startDate) from  ratePerHourHistory group by employerId)) as r"+
-                        " where r.employerId=e.id and e.isFired = false"+
-                        "ORDER BY r.employerId";
+        String expression="SELECT  * from "+ this.entityName+" where isFired=false";
 
-        //todo  create union
         try {
-            Statement stmt  = Db.connection.createStatement();;
+            Statement stmt  = Db.connection.createStatement();
             ResultSet rs = stmt.executeQuery(expression);
             while (rs.next()) {
                 Employer pojo=new Employer();
-                pojo.setId(rs.getInt("employerId"));
+                pojo.setId(rs.getInt("id"));
                 pojo.setName(rs.getString("name"));
-                pojo.setIsFired(rs.getBoolean("isFired"));
-                pojo.setRate(rs.getDouble("rate"));
 
                 list.add(pojo);
             }
@@ -85,23 +55,19 @@ public class Employer extends ActiveRecord {
 
     @Override
     public void update() {
-//            String expression = "UPDATE "+    "Employer"+ " SET  " +
-//                    " name = ?," +
-//                    " isFired = ?" +
-//                    " WHERE id= ?" ;
-//
-//            try {
-//                PreparedStatement pstmt = null;
-//
-//                pstmt = Db.getConnection().prepareStatement(expression);
-//                pstmt.setName(1, employer.getName());
-//                pstmt.setBoolean(2, employer.getIsFired());
-//                pstmt.setInt(3, employer.getId());
-//                pstmt.executeUpdate();
-//            } catch (SQLException e) {
-//                e.printStackTrace();
-//            }
-//
+        try {
+            String expression = "UPDATE "+    this.entityName+ " SET  " +
+                    " name = ?," +
+                    " WHERE id= ?" ;
+            PreparedStatement pstmt = null;
+            pstmt = Db.connection.prepareStatement(expression);
+            pstmt.setString(1, name.get());
+            pstmt.setInt(2, id.get());
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
     }
 
     @Override
@@ -116,25 +82,20 @@ public class Employer extends ActiveRecord {
 
     @Override
     public void insert() {
-//
-//
-//                String expression = "INSERT INTO " + "Employer "
-//                        + "("
-//                        + " name ,  "
-//                        + " isFired "
-//                        + ") VALUES(?,?)";
-//
-//            try {
-//                PreparedStatement pstmt = Db.getConnection().prepareStatement(expression);
-//                pstmt.setName(1, domainObject.getName());
-//                pstmt.setBoolean(2, domainObject.getIsFired());
-//
-//                pstmt.executeUpdate();
-//            } catch (SQLException e) {
-//                e.printStackTrace();
-//            }
-//
-//
+        try {
+            String expression = "INSERT INTO " +  this.entityName
+                    + " ("
+                    + " name ,  "
+                    + " isFired "
+                    + ") VALUES(?,?)";
+
+            PreparedStatement pstmt = Db.connection.prepareStatement(expression);
+            pstmt.setString(1, getName());
+            pstmt.setBoolean(2, false);
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

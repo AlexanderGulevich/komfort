@@ -13,7 +13,7 @@ import basisFx.domain.EmployeesRatePerHour;
 import basisFx.domain.Employer;
 import basisFx.presentation.TargetPanel;
 
-public class EmployeesManagerPanel extends TargetPanel {
+public class EmployeesPanel extends TargetPanel {
     private boolean gridVisibility=false;
     private MediatorTwoLinkedTable mediatorTwoLinkedTable =new MediatorTwoLinkedTable();
     private GridOrganizationInnerTwoGridsTwoTables gridOrganization =new GridOrganizationInnerTwoGridsTwoTables();
@@ -30,15 +30,9 @@ public class EmployeesManagerPanel extends TargetPanel {
                 .setColumnWrappers(
                         ColumnWrapperString.newBuilder()
                                 .setColumnName("ФИО")
-                                .setColumnSize(0.8d)
+                                .setColumnSize(1d)
                                 .setIsEditeble(true)
                                 .setPropertyName("name")
-                                .build(),
-                        ColumnWrapperDouble.newBuilder()
-                                .setColumnName("Тариф")
-                                .setColumnSize(0.2d)
-                                .setIsEditeble(true)
-                                .setPropertyName("actualRate")
                                 .build()
                 )
                 .build();
@@ -61,13 +55,13 @@ public class EmployeesManagerPanel extends TargetPanel {
                 .setColumnWrappers(
                         ColumnWrapperDouble.newBuilder()
                                 .setColumnName("Тариф")
-                                .setColumnSize(0.4d)
+                                .setColumnSize(0.3d)
                                 .setIsEditeble(true)
-                                .setPropertyName("exchangeRate")
+                                .setPropertyName("rate")
                                 .build(),
                         ColumnWrapperDate.newBuilder()
-                                .setColumnName("Дата начала действия тарифа")
-                                .setColumnSize(0.6d)
+                                .setColumnName("Действует с")
+                                .setColumnSize(0.7d)
                                 .setIsEditeble(true)
                                 .setPropertyName("startingDate")
                                 .build()
@@ -84,9 +78,9 @@ public class EmployeesManagerPanel extends TargetPanel {
                 .build();
 
         GridPaneWrapper commonGridPaneWrapper = GridPaneWrapper.newBuilder()
-                .setColumnVsPercent(70)
-                .setColumnVsPercent(30)
-                .setName("Управление валютами и динамика курсов")
+                .setColumnVsPercent(60)
+                .setColumnVsPercent(40)
+                .setName("Управление сотрудниками и тарифными ставками")
                 .setParentAnchor(innerAnchorPane)
                 .setCoordinate(new Coordinate(0d, 10d, 10d, 0d))
                 .setGridLinesVisibility(gridVisibility)
