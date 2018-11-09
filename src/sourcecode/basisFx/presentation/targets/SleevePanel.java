@@ -1,52 +1,99 @@
-//package basisFx.presentation.targets;
-//
-//import basisFx.appCore.controls.KindOfColumn;
-//import basisFx.appCore.domainScetch.ComboBoxValue;
-//import basisFx.appCore.grid.*;
-//import basisFx.appCore.utils.Coordinate;
-//import basisFx.domain.domaine.*;
-//
-//import java.time.LocalDate;
-//
-//public class SleevePanel  extends TargetPanel {
-//
-//
-//    @Override
-//    protected void configurate() {
-//        GridTablesBuilder observed=new GridTablesBuilder();
-//        observed.setGridColWidth(new GridColWidth(KindOfGridCol.percent,60d));
-//        observed.setTitle("Втулка ");
-//        observed.setTablesButtonKind(TablesButtonKind.Bottom_right);
-//        observed.setDomainClass(Sleeve.class);
-//        observed.setActiveRecord(dataMapperFabric.sleeveMapper());
-//        observed.setColumnWidthByContent(
-//                columnFabric.comboBox(KindOfColumn.COMBOBOX,"Поставщик ","counterparty",1d,true,
-//                        (obj,val)->((Sleeve)obj).setCounterparty((ComboBoxValue) val),
-//                        () ->  dataMapperFabric.counterpartyMapper().toComboBoxValueList((val)->{return ((Counterparty)val).getName();})
-//                ));
-//
-//
-//
-//        GridTablesBuilder observer=new GridTablesBuilder();
-//        observer.setGridColWidth(new GridColWidth(KindOfGridCol.percent,40d));
-//        observer.setTitle("Архив цен");
-//        observer.setTablesButtonKind(TablesButtonKind.Bottom_right);
-//        observer.setDomainClass(ProductPrice.class);
-//        observer.setActiveRecord(dataMapperFabric.sleevePriceMapper());
-//        observer.setColumnWidthByContent(  columnFabric.string(KindOfColumn.DOUBLE,"Цена","price",0.3d,true,
-//                (obj,val)->{((ProductPrice)obj).setPrice( (String ) val);})
-//        );
-//        observer.setColumnWidthByContent(  columnFabric.dateColumn(KindOfColumn.DATE,"Дата начала действия ","startingDate",0.7d,true,
-//                (obj, val)->{((ProductPrice)obj).setStartingDate((LocalDate) val); })
-//        );
-//
-//
-//        BoundTablesGrid boundTablesGrid = gridFabric.boundTables(
-//                observed,
-//                observer,
-//                new Coordinate(10d, 10d, 10d, 10d),
-//                panel
-//        );
-//
-//    }
-//}
+package basisFx.presentation.targets;
+
+
+import basisFx.appCore.elements.TableWrapper;
+import basisFx.appCore.grid.GridOrganizationButtonTopRightLittleSingleTable;
+import basisFx.appCore.grid.GridOrganizationInnerTwoGridsTwoTables;
+import basisFx.appCore.grid.GridPaneWrapper;
+import basisFx.appCore.mediators.MediatorTwoLinkedTable;
+import basisFx.appCore.table.ColumnWrapperComboBox;
+import basisFx.appCore.table.ColumnWrapperDate;
+import basisFx.appCore.table.ColumnWrapperDouble;
+import basisFx.appCore.table.ColumnWrapperString;
+import basisFx.appCore.utils.Coordinate;
+import basisFx.domain.*;
+import basisFx.presentation.TargetPanel;
+
+public class SleevePanel  extends TargetPanel {
+    private boolean gridVisibility=false;
+    private MediatorTwoLinkedTable mediatorTwoLinkedTable =new MediatorTwoLinkedTable();
+    private GridOrganizationInnerTwoGridsTwoTables gridOrganization =new GridOrganizationInnerTwoGridsTwoTables();
+
+    @Override
+    public void init() {
+
+        TableWrapper labelTableWrapper = TableWrapper.newBuilder()
+                .setActiveRecordClass(Sleeve.class)
+                .setUnitOfWork(unitOfWork)
+                .setIsEditable(true)
+                .setIsSortableColums(false)
+                .setMediator(mediatorTwoLinkedTable)
+                .setColumnWrappers(
+                        ColumnWrapperComboBox.newBuilder(Counterparty.class)
+                                .setColumnName("Поставщик")
+                                .setColumnSize(1d)
+                                .setIsEditeble(true)
+                                .setPropertyName("name")
+                                .build()
+                )
+                .build();
+
+        GridPaneWrapper labelGridPaneWrapper = GridPaneWrapper.newBuilder()
+                .setGridLinesVisibility(gridVisibility)
+                .setName("Втулка")
+                .setColumnComputerWidth()
+                .setColumnFixed(40d)
+                .setColumnFixed(40d)
+                .setGridOrganization(new GridOrganizationButtonTopRightLittleSingleTable(labelTableWrapper))
+                .build();
+
+        TableWrapper labelPriceTableWrapper = TableWrapper.newBuilder()
+                .setActiveRecordClass(SleevePrice.class)
+                .setUnitOfWork(unitOfWork)
+                .setIsEditable(true)
+                .setIsSortableColums(false)
+                .setMediator(mediatorTwoLinkedTable)
+                .setColumnWrappers(
+                        ColumnWrapperDouble.newBuilder()
+                                .setColumnName("Цена")
+                                .setColumnSize(0.3d)
+                                .setIsEditeble(true)
+                                .setPropertyName("rate")
+                                .build(),
+                        ColumnWrapperDate.newBuilder()
+                                .setColumnName("Действует с")
+                                .setColumnSize(0.7d)
+                                .setIsEditeble(true)
+                                .setPropertyName("startingDate")
+                                .build()
+                )
+                .build();
+
+        GridPaneWrapper labelPriceGridPaneWrapper = GridPaneWrapper.newBuilder()
+                .setGridLinesVisibility(gridVisibility)
+                .setName("Архив цен")
+                .setColumnComputerWidth()
+                .setColumnFixed(40d)
+                .setColumnFixed(40d)
+                .setGridOrganization(new GridOrganizationButtonTopRightLittleSingleTable(labelPriceTableWrapper))
+                .build();
+
+        GridPaneWrapper commonGridPaneWrapper = GridPaneWrapper.newBuilder()
+                .setColumnVsPercent(60)
+                .setColumnVsPercent(40)
+                .setName("Поставщики втулок и цены")
+                .setParentAnchor(innerAnchorPane)
+                .setCoordinate(new Coordinate(0d, 10d, 10d, 0d))
+                .setGridLinesVisibility(gridVisibility)
+                .setGridOrganization(gridOrganization.setGridWrappers(labelGridPaneWrapper,labelPriceGridPaneWrapper))
+                .build();
+
+
+        mediatorTwoLinkedTable.setAccessoryTableWrapper(labelPriceTableWrapper);
+        mediatorTwoLinkedTable.setPrimaryTableWrapper(labelTableWrapper);
+        mediatorTwoLinkedTable.initElements();
+    }
+
+
+
+}

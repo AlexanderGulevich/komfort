@@ -14,7 +14,7 @@ import basisFx.presentation.TargetPanel;
 public class CounterpartyPanel extends TargetPanel {
     @Override
     public void init() {
-
+//todo контрагенты не добавляются правильно
         MediatorSingleTable mediatorSingleTable = new MediatorSingleTable();
 
         TableWrapper tableWrapper = TableWrapper.newBuilder()

@@ -114,7 +114,7 @@ public class MainMenuSketch extends MenuSketch {
                                         .build(),
                                 FontItemLeaf.newBuilder()
                                         .setDescription("Втулки")
-//                                        .setTargetCreator(fm.sleevePanel())
+                                        .setTargetCreator(SleevePanel::new)
                                         .build(),
                                 FontItemLeaf.newBuilder()
                                         .setDescription("Бумага")

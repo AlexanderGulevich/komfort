@@ -161,9 +161,9 @@ public class DbSchema {
 //                packetPriceStore,
 //                packetProductAccordance,
                 label,
-                labelPriceStore
-//                sleeve,
-//                sleevePriceStore,
+                labelPriceStore,
+                sleeve,
+                sleevePriceStore
 //                paper,
 //                paperPriceStore,
 
