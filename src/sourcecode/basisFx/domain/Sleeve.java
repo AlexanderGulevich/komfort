@@ -10,7 +10,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class Sleeve extends ActiveRecord {
-//todo втулки не идут в БД
     private SimpleObjectProperty<Counterparty> counterparty =new SimpleObjectProperty<>(this, "counterparty", null);
 
 

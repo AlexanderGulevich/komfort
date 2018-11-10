@@ -112,7 +112,7 @@ public class Counterparty extends ActiveRecord {
     @Override
     public Counterparty find(int id) {
         Counterparty pojo=new Counterparty() ;
-        String expression="SELECT  FROM " +"Counterparty"+" WHERE ID=?";
+        String expression="SELECT * FROM " +"Counterparty"+" WHERE ID=?";
 
         try {
             PreparedStatement pstmt = Db.connection.prepareStatement(expression);

@@ -33,7 +33,7 @@ public class SleevePanel  extends TargetPanel {
                                 .setColumnName("Поставщик")
                                 .setColumnSize(1d)
                                 .setIsEditeble(true)
-                                .setPropertyName("name")
+                                .setPropertyName("counterparty")
                                 .build()
                 )
                 .build();

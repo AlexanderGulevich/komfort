@@ -48,7 +48,6 @@ public class ColumnWrapperDate extends ColumnWrapper{
 
         column.setOnEditCommit(event -> {
             if (checkValue(event)) {
-                System.err.println("checkValue--ColumnWrapperDate- ДОПУСТИМОЕ ЗНАЧЕНИЕ");
                 int row = event.getTablePosition().getRow();
                 ObservableValue<LocalDate> v = event.getTableColumn().getCellObservableValue(row);
                 if (v instanceof WritableValue) {
@@ -59,7 +58,6 @@ public class ColumnWrapperDate extends ColumnWrapper{
 
             }else {
 
-                System.err.println("checkValue--ColumnWrapperDate- НЕДОПУСТИМОЕ ЗНАЧЕНИЕ");
             }
         });
     }

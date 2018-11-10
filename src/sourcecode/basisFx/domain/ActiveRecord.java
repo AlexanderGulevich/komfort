@@ -3,10 +3,8 @@ package basisFx.domain;
 import java.lang.reflect.Field;
 import java.sql.*;
 import java.time.LocalDate;
-
 import basisFx.appCore.interfaces.DateGetter;
 import basisFx.dataSource.Db;
-import javafx.application.Platform;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
