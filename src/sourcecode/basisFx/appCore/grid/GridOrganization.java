@@ -4,8 +4,6 @@ import basisFx.appCore.elements.TableWrapper;
 import basisFx.appCore.fabrics.ButtonFactory;
 import javafx.geometry.Insets;
 
-import javax.swing.text.TabableView;
-
 public abstract class GridOrganization {
 
     protected Insets insets = new Insets(3, 3, 3, 3);
@@ -14,7 +12,7 @@ public abstract class GridOrganization {
 
     public abstract void organize();
 
-    public GridOrganizationButtonTopRightLittleSingleTable setInsets(Insets insets) {
+    public GridOrgTopButSingleTable setInsets(Insets insets) {
         this.insets = insets;
         return null;
     }

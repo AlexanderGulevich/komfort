@@ -1,59 +1,161 @@
-//package basisFx.domain.domaine;
-//
-//import basisFx.appCore.domainScetch.ComboBoxValue;
-//import basisFx.appCore.domainScetch.DomainObject;
-//import javafx.beans.property.SimpleObjectProperty;
-//
-//public class PacketProductAccordance extends DomainObject {
-//
-//    private SimpleObjectProperty<ComboBoxValue> size =new SimpleObjectProperty<>(this, "size", null);
-//    private SimpleObjectProperty<ComboBoxValue> product =new SimpleObjectProperty<>(this, "product", null);
-//    private SimpleObjectProperty<String> number =new SimpleObjectProperty<>(this, "number", null);
-//
-//    public PacketProductAccordance() {
-//        setTableName("PacketProductAccordance");
-//    }
-//
-//    public ComboBoxValue getSize() {
-//        return size.get();
-//    }
-//
-//    public SimpleObjectProperty<ComboBoxValue> sizeProperty() {
-//        return size;
-//    }
-//
-//    public void setSize(ComboBoxValue size) {
-//        this.size.set(size);
-//    }
-//
-//    public ComboBoxValue getProduct() {
-//        return product.get();
-//    }
-//
-//    public SimpleObjectProperty<ComboBoxValue> productProperty() {
-//        return product;
-//    }
-//
-//    public void setProduct(ComboBoxValue product) {
-//        this.product.set(product);
-//    }
-//
-//    public String getNumber() {
-//        return number.get();
-//    }
-//
-//    public SimpleObjectProperty<String> numberProperty() {
-//        return number;
-//    }
-//
-//    public void setNumber(String number) {
-//        this.number.set(number);
-//    }
-//
-//    @Override
-//    public ComboBoxValue toComboBoxValue() {
-//        throw new Error("PacketProductAccordance нельзя сконвертировать в ComboBoxValue");
-////        return null;
-//
-//    }
-//}
+package basisFx.domain;
+
+
+import basisFx.dataSource.Db;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+public class PacketProductAccordance extends ActiveRecord {
+
+    private static PacketProductAccordance INSTANCE = new PacketProductAccordance();
+    private SimpleObjectProperty<PacketSize> packetSize = new SimpleObjectProperty<>(this, "packetSize", null);
+    private SimpleObjectProperty<Product> product = new SimpleObjectProperty<>(this, "product", null);
+    private SimpleObjectProperty<Integer> number = new SimpleObjectProperty<>(this, "number", null);
+
+    public PacketProductAccordance() {
+        super("PacketProductAccordance");
+    }
+
+
+    public static PacketProductAccordance getINSTANCE() {
+        return INSTANCE;
+    }
+
+    public PacketSize getPacketSize() {
+        return packetSize.get();
+    }
+
+    public SimpleObjectProperty<PacketSize> packetSizeProperty() {
+        return packetSize;
+    }
+
+    public void setPacketSize(PacketSize packetSize) {
+        this.packetSize.set(packetSize);
+    }
+
+    public Product getProduct() {
+        return product.get();
+    }
+
+    public SimpleObjectProperty<Product> productProperty() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product.set(product);
+    }
+
+    public Integer getNumber() {
+        return number.get();
+    }
+
+    public SimpleObjectProperty<Integer> numberProperty() {
+        return number;
+    }
+
+    public void setNumber(Integer number) {
+        this.number.set(number);
+    }
+
+    @Override
+    public ObservableList<ActiveRecord> getAll() {
+
+        ObservableList <ActiveRecord> list=FXCollections.observableArrayList();
+        String expression="SELECT * FROM " +this.entityName+" ORDER BY ID";
+        try {
+            Statement stmt  = Db.connection.createStatement();
+            ResultSet rs    = stmt.executeQuery(expression);
+            while (rs.next()) {
+                PacketProductAccordance pojo=new PacketProductAccordance();
+                pojo.setId(rs.getInt("id"));
+                pojo.setNumber(rs.getInt("number"));
+                pojo.setProduct(Product.getINSTANCE().find(rs.getInt("productId")));
+                pojo.setPacketSize(PacketSize.getINSTANCE().find(rs.getInt("packetSizeId")));
+                list.add(pojo);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    @Override
+    public void update() {
+        try {
+            String expression = "UPDATE "+    this.entityName+ " SET  " +
+                    " number = ?," +
+                    " productId = ?," +
+                    " packetSizeId = ?" +
+                    " WHERE id= ?" ;
+            PreparedStatement pstmt = null;
+            pstmt = Db.connection.prepareStatement(expression);
+            pstmt.setInt(1, getNumber());
+            pstmt.setInt(2, getProduct().id.get());
+            pstmt.setInt(3, getPacketSize().id.get());
+            pstmt.setInt(4, id.get());
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public ActiveRecord find(int id) {
+
+        PacketProductAccordance pojo=new PacketProductAccordance() ;
+        String expression="SELECT * FROM " +this.entityName+" WHERE ID=?";
+
+        try {
+            PreparedStatement pstmt = Db.connection.prepareStatement(expression);
+            pstmt.setInt(1, id);
+            ResultSet rs = pstmt.executeQuery();
+
+            while (rs.next()){
+                pojo.setId(rs.getInt("id"));
+                pojo.setPacketSize(PacketSize.getINSTANCE().find(rs.getInt("packetSizeId")));
+                pojo.setProduct(Product.getINSTANCE().find(rs.getInt("productId")));
+                pojo.setNumber(rs.getInt("number"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return pojo;
+
+    }
+
+    @Override
+    public String toString() {
+        return null;
+    }
+
+    @Override
+    public void insert() {
+        try {
+            String expression = "INSERT INTO " + this.entityName
+                    + "("
+                    + " number ,  "
+                    + " packetSizeId ,  "
+                    + " productId "
+                    + ") VALUES(?,?,?)";
+
+            PreparedStatement pstmt = Db.connection.prepareStatement(expression);
+            pstmt.setInt(1, getNumber());
+            pstmt.setInt(2, getPacketSize().getId());
+            pstmt.setInt(3, getProduct().getId());
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public ObservableList<ActiveRecord> findAllByOuterId(int id) {
+        return null;
+    }
+}

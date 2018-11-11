@@ -29,7 +29,6 @@ public abstract class ActiveRecord {
     public void setId(int value) {
         this.id.set(value);
     }
-    public  static ActiveRecord getInstance(){return  null;};
     public  ObservableList<ActiveRecord>  createNewActiveRecordList() {
         return FXCollections.<ActiveRecord>observableArrayList();
     }

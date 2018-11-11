@@ -1,9 +1,10 @@
 package basisFx.presentation.targets;
 
+import basisFx.appCore.grid.ButtonsForGridLittle;
 import basisFx.appCore.mediators.MediatorTwoLinkedTable;
 import basisFx.appCore.elements.TableWrapper;
-import basisFx.appCore.grid.GridOrganizationButtonTopRightLittleSingleTable;
-import basisFx.appCore.grid.GridOrganizationInnerTwoGridsTwoTables;
+import basisFx.appCore.grid.GridOrgTopButSingleTable;
+import basisFx.appCore.grid.GridOrgTwoBondGrids;
 import basisFx.appCore.grid.GridPaneWrapper;
 import basisFx.appCore.table.ColumnWrapperBool;
 import basisFx.appCore.table.ColumnWrapperDate;
@@ -18,7 +19,7 @@ public class ProductPanel  extends TargetPanel {
 
     private boolean gridVisibility=false;
     private MediatorTwoLinkedTable mediatorTwoLinkedTable =new MediatorTwoLinkedTable();
-    private GridOrganizationInnerTwoGridsTwoTables gridOrganization =new GridOrganizationInnerTwoGridsTwoTables();
+    private GridOrgTwoBondGrids gridOrganization =new GridOrgTwoBondGrids();
 
     @Override
     public void init() {
@@ -48,10 +49,7 @@ public class ProductPanel  extends TargetPanel {
         GridPaneWrapper productGridPaneWrapper = GridPaneWrapper.newBuilder()
                 .setGridLinesVisibility(gridVisibility)
                 .setName("Список продукции ")
-                .setColumnComputerWidth()
-                .setColumnFixed(40d)
-                .setColumnFixed(40d)
-                .setGridOrganization(new GridOrganizationButtonTopRightLittleSingleTable(productTableWrapper))
+                .setGridOrganization(new GridOrgTopButSingleTable(productTableWrapper,new ButtonsForGridLittle()))
                 .build();
 
         TableWrapper priceTableWrapper = TableWrapper.newBuilder()
@@ -79,10 +77,7 @@ public class ProductPanel  extends TargetPanel {
         GridPaneWrapper priceGridPaneWrapper = GridPaneWrapper.newBuilder()
                 .setGridLinesVisibility(gridVisibility)
                 .setName("Архив цен")
-                .setColumnComputerWidth()
-                .setColumnFixed(40d)
-                .setColumnFixed(40d)
-                .setGridOrganization(new GridOrganizationButtonTopRightLittleSingleTable(priceTableWrapper))
+                .setGridOrganization(new GridOrgTopButSingleTable(priceTableWrapper,new ButtonsForGridLittle()))
                 .build();
 
         GridPaneWrapper commonGridPaneWrapper = GridPaneWrapper.newBuilder()

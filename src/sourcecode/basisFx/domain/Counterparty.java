@@ -18,7 +18,7 @@ public class Counterparty extends ActiveRecord {
         super("Counterparty");
     }
 
-    public static Counterparty getInstance() {
+    public static Counterparty getINSTANCE() {
         return INSTANCE;
     }
     public Currency getCurrency() {
@@ -55,7 +55,7 @@ public class Counterparty extends ActiveRecord {
                 Counterparty pojo=new Counterparty();
                 pojo.setId(rs.getInt("id"));
                 pojo.setName(rs.getString("name"));
-                pojo.setCurrency(Currency.getInstance().find(  rs.getInt("currencyId")));
+                pojo.setCurrency(Currency.getINSTANCE().find(  rs.getInt("currencyId")));
                 list.add(pojo);
             }
         } catch (SQLException e) {
@@ -122,7 +122,7 @@ public class Counterparty extends ActiveRecord {
             while (rs.next()){
                 pojo.setId(rs.getInt("id"));
                 pojo.setName(rs.getString("name"));
-                pojo.setCurrency(Currency.getInstance().find(rs.getInt("currencyId")));
+                pojo.setCurrency(Currency.getINSTANCE().find(rs.getInt("currencyId")));
             }
         } catch (SQLException e) {
             e.printStackTrace();

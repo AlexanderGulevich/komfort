@@ -18,7 +18,7 @@ public class Currency extends ActiveRecord {
         super("Currency");
     }
 
-    public static Currency getInstance() {
+    public static Currency getINSTANCE() {
         return INSTANCE;
     }
 

@@ -13,10 +13,13 @@ import java.time.LocalDate;
 
 public class Label extends ActiveRecord {
 
+    private static Label INSTANCE = new Label();
     private SimpleObjectProperty<String> name =new SimpleObjectProperty<>(this, "name", null);
     private SimpleObjectProperty<Counterparty> counterparty =new SimpleObjectProperty<>(this, "counterparty", null);
-    //todo private SimpleObjectProperty<String> actualPrice =new SimpleObjectProperty<>(this, "price", null);
 
+    public static Label getINSTANCE() {
+        return INSTANCE;
+    }
 
     public String getName() {
         return name.get();
@@ -57,7 +60,7 @@ public class Label extends ActiveRecord {
                 Label pojo=new Label();
                 pojo.setId(rs.getInt("id"));
                 pojo.setName(rs.getString("name"));
-                pojo.setCounterparty(Counterparty.getInstance().find(rs.getInt("counterpartyId")));
+                pojo.setCounterparty(Counterparty.getINSTANCE().find(rs.getInt("counterpartyId")));
                 list.add(pojo);
             }
         } catch (SQLException e) {

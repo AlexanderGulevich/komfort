@@ -50,7 +50,7 @@ public class ColumnWrapperComboBox extends ColumnWrapper{
     private void createNewInstance() {
         Method getInstanceMethod;
             try {
-                getInstanceMethod = domainClass.getDeclaredMethod("getInstance");
+                getInstanceMethod = domainClass.getDeclaredMethod("getINSTANCE");
                 try {
                     try {
                         domain = (ActiveRecord) getInstanceMethod.invoke(null);

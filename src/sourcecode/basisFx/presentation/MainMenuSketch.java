@@ -13,27 +13,16 @@ public class MainMenuSketch extends MenuSketch {
         components = new MenuComposite () .add(
 
                 FontItemComposite.newBuilder()
-                        .setDescription("Результаты дня")
+                        .setDescription("Управление затратами и выработкой за день")
                         .setFontsStore(FontsStore.WEBHOSTINGHUB)
                         .setFontSymbol("\uF0A1")
                         .setActive(true)
                         .setFontSize(iconSize)
                         .build().add(
-                            FontItemLeaf.newBuilder()
-                                    .setDescription("Сотрудники (учет времени)")
-//                                    .setTargetCreator(fm.timeRecordingPanel())
-                                    .build(),
-                            FontItemLeaf.newBuilder()
-                                    .setDescription("Продукция")
-                                    .setTargetCreator(ProductPanel::new)
-                                    .build(),
+
                             FontItemLeaf.newBuilder()
                                     .setDescription("Учет сырья")
 //                                    .setTargetCreator(fm.rawMateriaAccountingPanel())
-                                    .build(),
-                            FontItemLeaf.newBuilder()
-                                    .setDescription("Курсы")
-                                    .setTargetCreator(ExchangeRatesPanel::new)
                                     .build()
                 ),
 
@@ -59,7 +48,7 @@ public class MainMenuSketch extends MenuSketch {
 //                                        .setTargetCreator(fm.dailyOutputPanel())
                                         .build(),
                                 FontItemLeaf.newBuilder()
-                                        .setDescription("Курсы")
+                                        .setDescription("Валюты")
 //                                        .setTargetCreator(fm.dailyOutputPanel())
                                         .build(),
                                 FontItemLeaf.newBuilder()
@@ -78,35 +67,27 @@ public class MainMenuSketch extends MenuSketch {
                         .setFontSize(iconSize)
                         .build().add(
                                 FontItemLeaf.newBuilder()
-                                        .setDescription("Сотрудики")
+                                .setDescription("Учет времени")
+//                                    .setTargetCreator(fm.timeRecordingPanel())
+                                .build(),
+                                FontItemLeaf.newBuilder()
+                                        .setDescription("Управление сотрудниками")
                                         .setTargetCreator(EmployeesPanel::new)
                                         .build(),
                                 FontItemLeaf.newBuilder()
-                                        .setDescription("Актуальные тарифы")
-//                                        .setTargetCreator(fm.employeesActualRate())
-                                        .build(),
-                                FontItemLeaf.newBuilder()
-                                        .setDescription("Шаблоны тарифов")
-//                                        .setTargetCreator(fm.ratePerHourPanel())
-                                        .build(),
-                                FontItemLeaf.newBuilder()
-                                        .setDescription("Бывшие сотрудники")
+                                        .setDescription("Архив")
 //                                        .setTargetCreator(fm.employeesFiredPanel())
                                         .build()
                 ),
 
-                FontItemComposite.newBuilder().setDescription("Динамика цен")
-                        .setFontsStore(FontsStore.MATERIAL_ICONS)
-                        .setFontSymbol("\uE263")
-                        .setFontSize(iconSize)
+                FontItemComposite.newBuilder().setDescription("СЫРЬЕ")
+                        .setFontsStore(FontsStore.IONICONS)
+                        .setFontSymbol("\uF4F4")
+                        .setFontSize(iconSize+4)
                         .build().add(
                                 FontItemLeaf.newBuilder()
-                                        .setDescription("Продукция")
-//                                        .setTargetCreator(fm.productPanel())
-                                        .build(),
-                                FontItemLeaf.newBuilder()
                                         .setDescription("Пакеты")
-//                                        .setTargetCreator(fm.packetPanel())
+                                        .setTargetCreator(PacketPanel::new)
                                         .build(),
                                 FontItemLeaf.newBuilder()
                                         .setDescription("Этикетки")
@@ -118,7 +99,7 @@ public class MainMenuSketch extends MenuSketch {
                                         .build(),
                                 FontItemLeaf.newBuilder()
                                         .setDescription("Бумага")
-//                                        .setTargetCreator(fm.paperPanel())
+                                        .setTargetCreator(PaperPanel::new)
                                         .build()
                 ),
 
@@ -127,21 +108,30 @@ public class MainMenuSketch extends MenuSketch {
                         .setFontSymbol("")
                         .setFontSize(iconSize)
                         .build().add(
-                                    FontItemLeaf.newBuilder()
-                                            .setDescription("Оборудование")
-                                            .setTargetCreator(EquipmentPanel::new)
-                                            .build(),
-                                    FontItemLeaf.newBuilder()
-                                            .setDescription("Контрагенты")
-                                            .setTargetCreator(CounterpartyPanel::new)
-                                            .build()
-                ),
-
-                FontItemComposite.newBuilder().setDescription("Настройки")
-                        .setFontsStore(FontsStore.FOUNDATION)
-                        .setFontSymbol("\uF214")
-                        .setFontSize(iconSize)
-                        .build().add()
+                            FontItemLeaf.newBuilder()
+                                    .setDescription("Продукция")
+                                    .setTargetCreator(ProductPanel::new)
+                                    .build(),
+                            FontItemLeaf.newBuilder()
+                                    .setDescription("Оборудование")
+                                    .setTargetCreator(EquipmentPanel::new)
+                                    .build(),
+                            FontItemLeaf.newBuilder()
+                                    .setDescription("Контрагенты")
+                                    .setTargetCreator(CounterpartyPanel::new)
+                                    .build(),
+                            FontItemLeaf.newBuilder()
+                                    .setDescription("Валюты")
+                                    .setTargetCreator(ExchangeRatesPanel::new)
+                                    .build()
+                )
+//                ,
+//
+//                FontItemComposite.newBuilder().setDescription("Настройки")
+//                        .setFontsStore(FontsStore.FOUNDATION)
+//                        .setFontSymbol("\uF214")
+//                        .setFontSize(iconSize)
+//                        .build().add()
 
         );
 

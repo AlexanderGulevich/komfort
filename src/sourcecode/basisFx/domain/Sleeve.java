@@ -10,7 +10,14 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class Sleeve extends ActiveRecord {
+
+
+    private static Sleeve INSTANCE = new Sleeve();
     private SimpleObjectProperty<Counterparty> counterparty =new SimpleObjectProperty<>(this, "counterparty", null);
+
+    public static Sleeve getINSTANCE() {
+        return INSTANCE;
+    }
 
 
     public Counterparty getCounterparty() {
@@ -39,7 +46,7 @@ public class Sleeve extends ActiveRecord {
             while (rs.next()) {
                 Sleeve pojo=new Sleeve();
                 pojo.setId(rs.getInt("id"));
-                pojo.setCounterparty(Counterparty.getInstance().find(rs.getInt("counterpartyId")));
+                pojo.setCounterparty(Counterparty.getINSTANCE().find(rs.getInt("counterpartyId")));
                 list.add(pojo);
             }
         } catch (SQLException e) {

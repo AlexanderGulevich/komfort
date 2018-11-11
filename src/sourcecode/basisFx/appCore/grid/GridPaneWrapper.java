@@ -24,6 +24,7 @@ public  class GridPaneWrapper extends AppNode {
     protected GridOrganization gridOrganization;
     public LabelWrapper label;
     private ArrayList <ColumnConstraints> column ;
+    private ArrayList <RowConstraints> rows=new ArrayList<>();
 
     private GridPaneWrapper(Builder builder) {
         element=new GridPane();
@@ -43,6 +44,7 @@ public  class GridPaneWrapper extends AppNode {
         gridLinesVisibility=builder.gridLinesVisibility;
         gridOrganization =builder.gridOrganization;
         applyLabel();
+        applyRows();
         applyColums();
         bond(this);
         applyLineVisibility();
@@ -96,6 +98,8 @@ public  class GridPaneWrapper extends AppNode {
     private void applyLineVisibility() {
         if (gridLinesVisibility != null) {
             element.setGridLinesVisible(gridLinesVisibility);
+        }else{
+            element.setGridLinesVisible(false);
         }
     }
 
@@ -103,6 +107,12 @@ public  class GridPaneWrapper extends AppNode {
         for (ColumnConstraints columnConstraints:column) {
 
             element.getColumnConstraints().add(columnConstraints);
+        }
+    }
+    private void applyRows() {
+        for (RowConstraints rowConstraints:rows) {
+
+            element.getRowConstraints().add(rowConstraints);
         }
     }
 
@@ -150,6 +160,33 @@ public  class GridPaneWrapper extends AppNode {
 
     }
 
+    public void setColumnVsPercent(double percentWidth){
+        ColumnConstraints column = new ColumnConstraints();
+        column.setPercentWidth(percentWidth);
+        element.getColumnConstraints().add(column);
+
+    }
+
+    public void setColumnFixed( double width ){
+        ColumnConstraints column = new ColumnConstraints();
+        column.setPrefWidth(width);
+        element.getColumnConstraints().add(column);
+
+
+    }
+    public void setColumnWidthByContent( ){
+        ColumnConstraints column = new ColumnConstraints();
+        element.getColumnConstraints().add(column);
+    }
+
+    public void setColumnComputerWidth(  ){
+        ColumnConstraints column = new ColumnConstraints();
+        column.setHgrow( Priority.ALWAYS );
+        element.getColumnConstraints().add(column);
+
+
+
+    }
 
 
     //добавляет элемент, который будет для нескольких колонок
@@ -193,6 +230,7 @@ public  class GridPaneWrapper extends AppNode {
         private String name;
         private Stage stage;
         private ArrayList <ColumnConstraints> columns=new ArrayList<>();
+        private ArrayList <RowConstraints> rows=new ArrayList<>();
         private boolean gridLinesVisibility;
         private GridOrganization gridOrganization;
 
@@ -298,6 +336,18 @@ public  class GridPaneWrapper extends AppNode {
 
 
         }
+
+        public Builder setRowVsPercent(double percentHeight){
+            RowConstraints rc = new RowConstraints();
+            rc.setPercentHeight(percentHeight);
+            rows.add(rc);
+            return this;
+
+        }
+
+
+
+
 
 
         public GridPaneWrapper build() {

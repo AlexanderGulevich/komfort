@@ -26,7 +26,7 @@
 //        //крестик
 //        closingButton= AppNode.NodeBuilder.create().
 //                setFont(fs, fontHeight).
-//                setSize(widthValue,height).
+//                setPacketSize(widthValue,height).
 //                setPadding(padding).
 //                setCoordinate(topMatgin, 0d, null, null).
 //                setId(CSSID.TOP_CONTROL_BUTTON).setParent(buttonsAnchor).

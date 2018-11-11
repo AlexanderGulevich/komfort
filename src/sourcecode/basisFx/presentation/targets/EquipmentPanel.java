@@ -1,8 +1,9 @@
 package basisFx.presentation.targets;
 
+import basisFx.appCore.grid.ButtonsForGridLittle;
 import basisFx.appCore.mediators.MediatorSingleTable;
 import basisFx.appCore.elements.TableWrapper;
-import basisFx.appCore.grid.GridOrganizationButtonTopRightLittleSingleTable;
+import basisFx.appCore.grid.GridOrgTopButSingleTable;
 import basisFx.appCore.grid.GridPaneWrapper;
 import basisFx.appCore.table.ColumnWrapperString;
 import basisFx.appCore.utils.Coordinate;
@@ -35,9 +36,7 @@ public class EquipmentPanel extends TargetPanel {
 
 
         GridPaneWrapper.newBuilder()
-                .setGridOrganization(new GridOrganizationButtonTopRightLittleSingleTable(tableWrapper))
-                .setColumnVsPercent(80)
-                .setColumnVsPercent(20)
+                .setGridOrganization(new GridOrgTopButSingleTable(tableWrapper,new ButtonsForGridLittle()))
                 .setName("Оборудование")
                 .setParentAnchor(innerAnchorPane)
                 .setCoordinate(new Coordinate(0d,10d,10d,0d))

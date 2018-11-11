@@ -5,11 +5,14 @@ import basisFx.domain.ActiveRecord;
 import javafx.beans.value.ObservableValue;
 import javafx.beans.value.WritableValue;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.util.StringConverter;
 
 public class ColumnWrapperInt<T> extends ColumnWrapper{
 
 
-    protected TableColumn<T,String> column;
+    protected TableColumn<T,Integer> column;
 
     private ColumnWrapperInt(Builder builder) {
         tableWrapper = builder.tableWrapper;
@@ -17,6 +20,36 @@ public class ColumnWrapperInt<T> extends ColumnWrapper{
         columnName = builder.columnName;
         columnSize = builder.columnSize;
         isEditeble = builder.isEditeble;
+
+        column =  new TableColumn<>(columnName);
+
+        column.setEditable(isEditeble);
+        column.setCellValueFactory(new PropertyValueFactory<>(propertyName));
+        column.setCellFactory(TextFieldTableCell.forTableColumn(new StringConverter<Integer>() {
+            @Override
+            public String toString(Integer val) {
+                if (val != null) {
+                    return val.toString();
+                }
+                return "";
+
+            }
+
+            @Override
+            public Integer fromString(String val) {
+                val=val.trim();
+                if (checkValue(val)) {
+                    return Integer.valueOf(val);
+                }
+                return null;
+            }
+        }));
+
+        setOnEditCommit();
+
+        if (columnSize != null) {
+            column.setPrefWidth(columnSize);
+        }
     }
 
     public static Builder newBuilder() {
@@ -26,15 +59,14 @@ public class ColumnWrapperInt<T> extends ColumnWrapper{
     @Override
     public void setOnEditCommit() {
         column.setOnEditCommit((event) -> {
-            if (checkValue(event)) {
-                ActiveRecord domain = (ActiveRecord) event.getRowValue();
                 int row = event.getTablePosition().getRow();
-                ObservableValue<String> v = event.getTableColumn().getCellObservableValue(row);
+                ObservableValue<Integer> v = event.getTableColumn().getCellObservableValue(row);
                 if (v instanceof WritableValue) {
-                    ((WritableValue<String>)v).setValue(event.getNewValue());
+                    ((WritableValue<Integer>)v).setValue(event.getNewValue());
                 }
+            ActiveRecord domain = (ActiveRecord) event.getRowValue();
+            tableWrapper.getMediator().wasChanged(tableWrapper,domain);
 
-            };
         });
     }
 
@@ -45,20 +77,17 @@ public class ColumnWrapperInt<T> extends ColumnWrapper{
 
     @Override
     protected boolean checkValue(TableColumn.CellEditEvent event) {
-        try {
-            Integer newValue = Integer.valueOf((String) event.getNewValue());
-            return true;
-
-        }catch (NumberFormatException  e){
-
-
-            return false;
-        }
+       return  false;
     }
 
     @Override
     protected boolean checkValue(String s) {
-        return false;
+        try {
+            Integer newValue = Integer.valueOf(s);
+            return true;
+        }catch (NumberFormatException  e){
+            return false;
+        }
     }
 
     public static final class Builder {

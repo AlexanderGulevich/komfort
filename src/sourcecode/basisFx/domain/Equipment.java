@@ -19,7 +19,7 @@ public class Equipment  extends ActiveRecord {
         super("Equipment");
     }
 
-    public static Equipment getInstance() {
+    public static Equipment getINSTANCE() {
         return INSTANCE;
     }
 

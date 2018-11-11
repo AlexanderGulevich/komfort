@@ -1,26 +1,23 @@
 package basisFx.appCore.grid;
 
 import basisFx.appCore.elements.TableWrapper;
-import basisFx.appCore.fabrics.ButtonFactory;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.VPos;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 
-public class GridOrganizationButtonTopRightLittleSingleTable extends GridOrganization{
+public class GridOrgTopButSingleTable extends GridOrganization{
     private TableWrapper tableWrapper;
-    private Button buttonAddLittle;
-    private Button  buttonDelLittle;
+    private ButtonsForGrid  buttonsForGrid;
 
-    public GridOrganizationButtonTopRightLittleSingleTable(TableWrapper tableWrapper) {
+    public GridOrgTopButSingleTable(TableWrapper tableWrapper, ButtonsForGrid  buttonsForGrid) {
         this.tableWrapper = tableWrapper;
-        buttonAddLittle = buttonFactory.littleRowAddButton(tableWrapper);
-        buttonDelLittle = buttonFactory.littleRowDeleteButton(tableWrapper);
+        this.buttonsForGrid=buttonsForGrid;
+        this.buttonsForGrid.setTableWrapper(tableWrapper);
+        this.buttonsForGrid.init();
     }
 
     @Override
-    public GridOrganizationButtonTopRightLittleSingleTable setInsets(Insets insets) {
+    public GridOrgTopButSingleTable setInsets(Insets insets) {
         this.insets = insets;
         return this;
     }
@@ -29,16 +26,20 @@ public class GridOrganizationButtonTopRightLittleSingleTable extends GridOrganiz
     @Override
     public void organize() {
 
+        parentGridWrapper.setColumnComputerWidth();
+        parentGridWrapper.setColumnFixed(buttonsForGrid.getColumnWidth());
+        parentGridWrapper.setColumnFixed(buttonsForGrid.getColumnWidth());
+
         bindHeight(tableWrapper);
 
         parentGridWrapper.addSpanNode(
                 parentGridWrapper.label.getElement(),
                 0, 0, 1, 1, HPos.LEFT, VPos.TOP, insets);
         parentGridWrapper.addSpanNode(
-                buttonAddLittle,
+                buttonsForGrid.getButtonAdd(),
                 2, 0, 1, 1, HPos.RIGHT, VPos.TOP, insets);
         parentGridWrapper.addSpanNode(
-                buttonDelLittle,
+                buttonsForGrid.getButtonDel(),
                 1, 0, 1, 1, HPos.RIGHT, VPos.TOP, insets);
         parentGridWrapper.addSpanNode(
                 tableWrapper.getElement(),

@@ -1,108 +1,165 @@
-//package basisFx.presentation.targets;
-//
-//import basisFx.appCore.controls.KindOfColumn;
-//import basisFx.appCore.domainScetch.ComboBoxValue;
-//import basisFx.appCore.grid.*;
-//import basisFx.appCore.utils.Coordinate;
-//import basisFx.domain.domaine.*;
-//
-//import java.time.LocalDate;
-//
-//public class PacketPanel  extends TargetPanel {
-//
-//
-//    @Override
-//    protected void configurate() {
-//        GridTablesBuilder observed=new GridTablesBuilder();
-//        observed.setGridColWidth(new GridColWidth(KindOfGridCol.percent,60d));
-//        observed.setTitle("Пакеты ");
-//        observed.setTablesButtonKind(TablesButtonKind.Right_little);
-//        observed.setDomainClass(Packet.class);
-//        observed.setActiveRecord(dataMapperFabric.packetMapper());
-//        observed.setColumnWidthByContent(
-//                columnFabric.comboBox(KindOfColumn.COMBOBOX,"Размер ","size",0.5d,true,
-//                        (obj,val)->((Packet)obj).setSize((ComboBoxValue) val),
-//                        () ->  dataMapperFabric.packetSizeMapper().toComboBoxValueList((val)->{return ((PacketSize)val).getSize();})
-//                ));
-//        observed.setColumnWidthByContent(
-//                columnFabric.comboBox(KindOfColumn.COMBOBOX,"Поставщик ","counterparty",0.5d,true,
-//                        (obj,val)->((Packet)obj).setCounterparty((ComboBoxValue) val),
-//                        () ->  dataMapperFabric.counterpartyMapper().toComboBoxValueList((val)->{return ((Counterparty)val).getName();})
-//                ));
-//
-//
-//
-//        GridTablesBuilder observer=new GridTablesBuilder();
-//        observer.setGridColWidth(new GridColWidth(KindOfGridCol.percent,40d));
-//        observer.setTitle("Архив цен");
-//        observer.setTablesButtonKind(TablesButtonKind.Right_little);
-//        observer.setDomainClass(ProductPrice.class);
-//        observer.setActiveRecord(dataMapperFabric.packetPriceMapper());
-//        observer.setColumnWidthByContent(  columnFabric.string(KindOfColumn.DOUBLE,"Цена","price",0.3d,true,
-//                (obj,val)->{((ProductPrice)obj).setPrice( (String ) val);})
-//        );
-//        observer.setColumnWidthByContent(  columnFabric.dateColumn(KindOfColumn.DATE,"Дата начала действия ","startingDate",0.7d,true,
-//                (obj, val)->{((ProductPrice)obj).setStartingDate((LocalDate) val); })
-//        );
-//
-//
-//        BoundTablesGrid boundTablesGrid = gridFabric.boundTables(
-//                observed,
-//                observer,
-//                new Coordinate(10d, 10d, 10d, 10d),
-//                panel
-//        );
-//
-//
-//
-//
-//        GridTablesBuilder packetSize=new GridTablesBuilder();
-//        packetSize.setTitle("Размеры пакетов ");
-//        packetSize.setTablesButtonKind(TablesButtonKind.Right_little);
-//        packetSize.setDomainClass(PacketSize.class);
-//        packetSize.setGridColWidth(new GridColWidth(KindOfGridCol.percent,40));
-//        packetSize.setActiveRecord(dataMapperFabric.packetSizeMapper());
-//        packetSize.setColumnWidthByContent(columnFabric.string(KindOfColumn.STRING,"Размер ","size",1d,true,
-//                (obj,val)->((PacketSize)obj).setSize((String)val))
-//        );
-//
-//
-//
-//
-//        GridTablesBuilder packetSizeProductAccordance=new GridTablesBuilder();
-//        packetSizeProductAccordance.setTitle("Вместимость пакетов ");
-//        packetSizeProductAccordance.setTablesButtonKind(TablesButtonKind.Right_little);
-//        packetSizeProductAccordance.setDomainClass(PacketProductAccordance.class);
-//        packetSizeProductAccordance.setGridColWidth(new GridColWidth(KindOfGridCol.percent,60d));
-//        packetSizeProductAccordance.setActiveRecord(dataMapperFabric.packetProductAccordanceMapper());
-//        packetSizeProductAccordance.setColumnWidthByContent(
-//                columnFabric.comboBox(KindOfColumn.COMBOBOX,"Размер ","size",0.3d,true,
-//                        (obj,val)->((PacketProductAccordance)obj).setSize((ComboBoxValue) val),
-//                         () ->  dataMapperFabric.packetSizeMapper().toComboBoxValueList((val)->{return ((PacketSize)val).getSize();})
-//                ));
-//        packetSizeProductAccordance.setColumnWidthByContent(
-//                columnFabric.comboBox(KindOfColumn.COMBOBOX,"Продукция ","product",0.5d,true,
-//                        (obj,val)->((PacketProductAccordance)obj).setProduct((ComboBoxValue)val),
-//                        () -> dataMapperFabric.productMapper().toComboBoxValueList((val)->{return ((Product)val).getName();})
-//                ));
-//        packetSizeProductAccordance.setColumnWidthByContent(
-//                columnFabric.string(KindOfColumn.INT,"Кол-во ","number",0.2d,true,
-//                        (obj,val)->((PacketProductAccordance)obj).setNumber((String)val))
-//        );
-//
-//
-//
-//        gridFabric.boundWithSecondRaw(
-//                boundTablesGrid,0.6d,0.4d,
-//                panel,      packetSizeProductAccordance,packetSize
-//
-//        );
-//
-//
-//
-//
-//
-//
-//    }
-//
-//}
+package basisFx.presentation.targets;
+
+import basisFx.appCore.elements.TableWrapper;
+import basisFx.appCore.grid.ButtonsForGridLittle;
+import basisFx.appCore.grid.GridOrgTopButSingleTable;
+import basisFx.appCore.grid.GridOrgFourGrids;
+import basisFx.appCore.grid.GridPaneWrapper;
+import basisFx.appCore.mediators.MediatorSingleTable;
+import basisFx.appCore.mediators.MediatorTwoLinkedTable;
+import basisFx.appCore.table.*;
+import basisFx.appCore.utils.Coordinate;
+import basisFx.domain.*;
+import basisFx.presentation.TargetPanel;
+
+public class PacketPanel  extends TargetPanel {
+    private boolean gridVisibility=false;
+    private MediatorTwoLinkedTable mediatorTwoLinkedTable =new MediatorTwoLinkedTable();
+    private MediatorSingleTable mediatorSingleTable1 =new MediatorSingleTable();
+    private MediatorSingleTable mediatorSingleTable2 =new MediatorSingleTable();
+    private GridOrgFourGrids gridOrganization =new GridOrgFourGrids();
+
+    @Override
+    public void init() {
+
+        TableWrapper packetTableWrapper = TableWrapper.newBuilder()
+                .setActiveRecordClass(Packet.class)
+                .setUnitOfWork(unitOfWork)
+                .setIsEditable(true)
+                .setIsSortableColums(false)
+                .setMediator(mediatorTwoLinkedTable)
+                .setColumnWrappers(
+                        ColumnWrapperComboBox.newBuilder(PacketSize.class)
+                                .setColumnName("Размер")
+                                .setColumnSize(0.7d)
+                                .setIsEditeble(true)
+                                .setPropertyName("size")
+                                .build(),
+                        ColumnWrapperComboBox.newBuilder(Counterparty.class)
+                                .setColumnName("Поставщик")
+                                .setColumnSize(0.3d)
+                                .setIsEditeble(true)
+                                .setPropertyName("counterparty")
+                                .build()
+                )
+                .build();
+
+        GridPaneWrapper packetGridPaneWrapper = GridPaneWrapper.newBuilder()
+                .setGridLinesVisibility(gridVisibility)
+                .setName("Пакеты ")
+                .setGridOrganization(new GridOrgTopButSingleTable(packetTableWrapper,new ButtonsForGridLittle()))
+                .build();
+
+        TableWrapper packetPriceTableWrapper = TableWrapper.newBuilder()
+                .setActiveRecordClass(PacketPrice.class)
+                .setUnitOfWork(unitOfWork)
+                .setIsEditable(true)
+                .setIsSortableColums(false)
+                .setMediator(mediatorTwoLinkedTable)
+                .setColumnWrappers(
+                        ColumnWrapperDouble.newBuilder()
+                                .setColumnName("Тариф")
+                                .setColumnSize(0.3d)
+                                .setIsEditeble(true)
+                                .setPropertyName("rate")
+                                .build(),
+                        ColumnWrapperDate.newBuilder()
+                                .setColumnName("Действует с")
+                                .setColumnSize(0.7d)
+                                .setIsEditeble(true)
+                                .setPropertyName("startingDate")
+                                .build()
+                )
+                .build();
+
+        GridPaneWrapper packetPriceGridPaneWrapper = GridPaneWrapper.newBuilder()
+                .setGridLinesVisibility(gridVisibility)
+                .setName("Реестр цен")
+                .setGridOrganization(new GridOrgTopButSingleTable(packetPriceTableWrapper,new ButtonsForGridLittle()))
+                .build();
+
+        TableWrapper packetSizeTableWrapper = TableWrapper.newBuilder()
+                .setActiveRecordClass(PacketSize.class)
+                .setUnitOfWork(unitOfWork)
+                .setIsEditable(true)
+                .setIsSortableColums(false)
+                .setMediator(mediatorSingleTable1)
+                .setColumnWrappers(
+                        ColumnWrapperString.newBuilder()
+                                .setColumnName("Размер")
+                                .setColumnSize(1d)
+                                .setIsEditeble(true)
+                                .setPropertyName("size")
+                                .build()
+                )
+                .build();
+
+        GridPaneWrapper packetSizeGridWrapper = GridPaneWrapper.newBuilder()
+                .setGridLinesVisibility(gridVisibility)
+                .setName("Размеры пакетов ")
+                .setGridOrganization(new GridOrgTopButSingleTable(packetSizeTableWrapper,new ButtonsForGridLittle()))
+                .build();
+
+
+        TableWrapper packetSizeProductAccordanceTableWrapper = TableWrapper.newBuilder()
+                .setActiveRecordClass(PacketProductAccordance.class)
+                .setUnitOfWork(unitOfWork)
+                .setIsEditable(true)
+                .setIsSortableColums(false)
+                .setMediator(mediatorSingleTable2)
+                .setColumnWrappers(
+                        ColumnWrapperComboBox.newBuilder(PacketSize.class)
+                                .setColumnName("Размер")
+                                .setColumnSize(0.3d)
+                                .setIsEditeble(true)
+                                .setPropertyName("packetSize")
+                                .build(),
+                        ColumnWrapperComboBox.newBuilder(Product.class)
+                                .setColumnName("Продукция")
+                                .setColumnSize(0.3d)
+                                .setIsEditeble(true)
+                                .setPropertyName("product")
+                                .build(),
+                        ColumnWrapperInt.newBuilder()
+                                .setColumnName("Вместимость")
+                                .setColumnSize(0.4d)
+                                .setIsEditeble(true)
+                                .setPropertyName("number")
+                                .build()
+                )
+                .build();
+
+        GridPaneWrapper packetSizeProductAccordanceGridWrapper = GridPaneWrapper.newBuilder()
+                .setGridLinesVisibility(gridVisibility)
+                .setName("Вместимость пакетов")
+                .setGridOrganization(new GridOrgTopButSingleTable(packetSizeProductAccordanceTableWrapper,new ButtonsForGridLittle()))
+                .build();
+
+
+        GridPaneWrapper commonGridPaneWrapper = GridPaneWrapper.newBuilder()
+                .setColumnVsPercent(60)
+                .setColumnVsPercent(40)
+                .setName("Управление информацией о пакетах")
+                .setParentAnchor(innerAnchorPane)
+                .setCoordinate(new Coordinate(0d, 10d, 10d, 0d))
+                .setGridLinesVisibility(gridVisibility)
+                .setGridOrganization(gridOrganization.setGrids(
+                        packetGridPaneWrapper,packetPriceGridPaneWrapper,
+                        packetSizeGridWrapper,packetSizeProductAccordanceGridWrapper
+                 ))
+                .build();
+
+
+        mediatorTwoLinkedTable.setAccessoryTableWrapper(packetPriceTableWrapper);
+        mediatorTwoLinkedTable.setPrimaryTableWrapper(packetTableWrapper);
+        mediatorTwoLinkedTable.initElements();
+
+
+        mediatorSingleTable1.setTableWrapper(packetSizeProductAccordanceTableWrapper);
+        mediatorSingleTable1.initElements();
+        mediatorSingleTable2.setTableWrapper(packetSizeTableWrapper);
+        mediatorSingleTable2.initElements();
+    }
+
+
+}

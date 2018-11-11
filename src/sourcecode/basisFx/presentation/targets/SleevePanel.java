@@ -2,14 +2,14 @@ package basisFx.presentation.targets;
 
 
 import basisFx.appCore.elements.TableWrapper;
-import basisFx.appCore.grid.GridOrganizationButtonTopRightLittleSingleTable;
-import basisFx.appCore.grid.GridOrganizationInnerTwoGridsTwoTables;
+import basisFx.appCore.grid.ButtonsForGridLittle;
+import basisFx.appCore.grid.GridOrgTopButSingleTable;
+import basisFx.appCore.grid.GridOrgTwoBondGrids;
 import basisFx.appCore.grid.GridPaneWrapper;
 import basisFx.appCore.mediators.MediatorTwoLinkedTable;
 import basisFx.appCore.table.ColumnWrapperComboBox;
 import basisFx.appCore.table.ColumnWrapperDate;
 import basisFx.appCore.table.ColumnWrapperDouble;
-import basisFx.appCore.table.ColumnWrapperString;
 import basisFx.appCore.utils.Coordinate;
 import basisFx.domain.*;
 import basisFx.presentation.TargetPanel;
@@ -17,7 +17,7 @@ import basisFx.presentation.TargetPanel;
 public class SleevePanel  extends TargetPanel {
     private boolean gridVisibility=false;
     private MediatorTwoLinkedTable mediatorTwoLinkedTable =new MediatorTwoLinkedTable();
-    private GridOrganizationInnerTwoGridsTwoTables gridOrganization =new GridOrganizationInnerTwoGridsTwoTables();
+    private GridOrgTwoBondGrids gridOrganization =new GridOrgTwoBondGrids();
 
     @Override
     public void init() {
@@ -41,10 +41,7 @@ public class SleevePanel  extends TargetPanel {
         GridPaneWrapper labelGridPaneWrapper = GridPaneWrapper.newBuilder()
                 .setGridLinesVisibility(gridVisibility)
                 .setName("Втулка")
-                .setColumnComputerWidth()
-                .setColumnFixed(40d)
-                .setColumnFixed(40d)
-                .setGridOrganization(new GridOrganizationButtonTopRightLittleSingleTable(labelTableWrapper))
+                .setGridOrganization(new GridOrgTopButSingleTable(labelTableWrapper,new ButtonsForGridLittle()))
                 .build();
 
         TableWrapper labelPriceTableWrapper = TableWrapper.newBuilder()
@@ -72,10 +69,7 @@ public class SleevePanel  extends TargetPanel {
         GridPaneWrapper labelPriceGridPaneWrapper = GridPaneWrapper.newBuilder()
                 .setGridLinesVisibility(gridVisibility)
                 .setName("Архив цен")
-                .setColumnComputerWidth()
-                .setColumnFixed(40d)
-                .setColumnFixed(40d)
-                .setGridOrganization(new GridOrganizationButtonTopRightLittleSingleTable(labelPriceTableWrapper))
+                .setGridOrganization(new GridOrgTopButSingleTable(labelPriceTableWrapper,new ButtonsForGridLittle()))
                 .build();
 
         GridPaneWrapper commonGridPaneWrapper = GridPaneWrapper.newBuilder()

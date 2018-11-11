@@ -1,10 +1,8 @@
 package basisFx.presentation.targets;
 
+import basisFx.appCore.grid.*;
 import basisFx.appCore.mediators.MediatorTwoLinkedTable;
 import basisFx.appCore.elements.TableWrapper;
-import basisFx.appCore.grid.GridOrganizationButtonTopRightLittleSingleTable;
-import basisFx.appCore.grid.GridOrganizationInnerTwoGridsTwoTables;
-import basisFx.appCore.grid.GridPaneWrapper;
 import basisFx.appCore.table.ColumnWrapperComboBox;
 import basisFx.appCore.table.ColumnWrapperDate;
 import basisFx.appCore.table.ColumnWrapperDouble;
@@ -19,7 +17,7 @@ public class LabelPanel  extends TargetPanel {
 
     private boolean gridVisibility=false;
     private MediatorTwoLinkedTable mediatorTwoLinkedTable =new MediatorTwoLinkedTable();
-    private GridOrganizationInnerTwoGridsTwoTables gridOrganization =new GridOrganizationInnerTwoGridsTwoTables();
+    private GridOrgTwoBondGrids gridOrganization =new GridOrgTwoBondGrids();
 
     @Override
     public void init() {
@@ -41,17 +39,14 @@ public class LabelPanel  extends TargetPanel {
                                 .setColumnName("Поставщик")
                                 .setColumnSize(0.4d)
                                 .setIsEditeble(true)
-                                .setPropertyName("name")
+                                .setPropertyName("counterparty")
                                 .build())
                 .build();
 
         GridPaneWrapper labelGridPaneWrapper = GridPaneWrapper.newBuilder()
                 .setGridLinesVisibility(gridVisibility)
                 .setName("Этикетки")
-                .setColumnComputerWidth()
-                .setColumnFixed(40d)
-                .setColumnFixed(40d)
-                .setGridOrganization(new GridOrganizationButtonTopRightLittleSingleTable(labelTableWrapper))
+                .setGridOrganization(new GridOrgTopButSingleTable(labelTableWrapper,new ButtonsForGridBig()))
                 .build();
 
         TableWrapper labelPriceTableWrapper = TableWrapper.newBuilder()
@@ -79,10 +74,7 @@ public class LabelPanel  extends TargetPanel {
         GridPaneWrapper labelPriceGridPaneWrapper = GridPaneWrapper.newBuilder()
                 .setGridLinesVisibility(gridVisibility)
                 .setName("Курсы")
-                .setColumnComputerWidth()
-                .setColumnFixed(40d)
-                .setColumnFixed(40d)
-                .setGridOrganization(new GridOrganizationButtonTopRightLittleSingleTable(labelPriceTableWrapper))
+                .setGridOrganization(new GridOrgTopButSingleTable(labelPriceTableWrapper,new ButtonsForGridLittle()))
                 .build();
 
         GridPaneWrapper commonGridPaneWrapper = GridPaneWrapper.newBuilder()
@@ -99,6 +91,8 @@ public class LabelPanel  extends TargetPanel {
         mediatorTwoLinkedTable.setAccessoryTableWrapper(labelPriceTableWrapper);
         mediatorTwoLinkedTable.setPrimaryTableWrapper(labelTableWrapper);
         mediatorTwoLinkedTable.initElements();
+
+
     }
 
 

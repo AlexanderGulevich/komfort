@@ -12,7 +12,7 @@ public class BoolComboBox extends ActiveRecord {
         return comboBoxes;
     }
 
-    public static BoolComboBox getInstance() {
+    public static BoolComboBox getINSTANCE() {
         return INSTANCE;
     }
 

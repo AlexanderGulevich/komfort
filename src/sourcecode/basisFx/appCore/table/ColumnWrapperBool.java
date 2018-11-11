@@ -26,7 +26,7 @@ public class ColumnWrapperBool<T> extends ColumnWrapper{
         columnName = builder.columnName;
         columnSize = builder.columnSize;
         isEditeble = builder.isEditeble;
-        domain = BoolComboBox.getInstance();
+        domain = BoolComboBox.getINSTANCE();
         column =  new TableColumn<>(columnName);
         setCellValueFactory();
         setCellFactory();

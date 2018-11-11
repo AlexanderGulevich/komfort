@@ -6,7 +6,7 @@ import basisFx.appCore.settings.FontsStore;
 import javafx.geometry.HPos;
 import javafx.geometry.VPos;
 
-public class GridOrganizationInnerTwoGridsTwoTables extends GridOrganization {
+public class GridOrgTwoBondGrids extends GridOrganization {
 
     protected GridPaneWrapper leftGridWrapper;
     protected GridPaneWrapper rightGridWrapper;
@@ -19,7 +19,7 @@ public class GridOrganizationInnerTwoGridsTwoTables extends GridOrganization {
         this.rightGridWrapper = rightGridWrapper;
     }
 
-    public GridOrganizationInnerTwoGridsTwoTables setGridWrappers(GridPaneWrapper leftGridWrapper,GridPaneWrapper rightGridWrapper){
+    public GridOrgTwoBondGrids setGridWrappers(GridPaneWrapper leftGridWrapper, GridPaneWrapper rightGridWrapper){
         this.leftGridWrapper = leftGridWrapper;
         this.rightGridWrapper = rightGridWrapper;
         return this;

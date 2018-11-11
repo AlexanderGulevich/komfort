@@ -1,10 +1,11 @@
 package basisFx.presentation.targets;
 
+import basisFx.appCore.grid.ButtonsForGridLittle;
 import basisFx.appCore.mediators.MediatorTwoLinkedTable;
 import basisFx.appCore.elements.TableWrapper;
-import basisFx.appCore.grid.GridOrganizationButtonTopRightLittleSingleTable;
+import basisFx.appCore.grid.GridOrgTopButSingleTable;
 import basisFx.appCore.grid.GridPaneWrapper;
-import basisFx.appCore.grid.GridOrganizationInnerTwoGridsTwoTables;
+import basisFx.appCore.grid.GridOrgTwoBondGrids;
 import basisFx.appCore.table.ColumnWrapperDate;
 import basisFx.appCore.table.ColumnWrapperDouble;
 import basisFx.appCore.table.ColumnWrapperString;
@@ -17,7 +18,7 @@ public class ExchangeRatesPanel extends TargetPanel {
 
     private boolean gridVisibility=false;
     private MediatorTwoLinkedTable mediatorTwoLinkedTable =new MediatorTwoLinkedTable();
-    private GridOrganizationInnerTwoGridsTwoTables gridOrganization =new GridOrganizationInnerTwoGridsTwoTables();
+    private GridOrgTwoBondGrids gridOrganization =new GridOrgTwoBondGrids();
 
       @Override
     public void init() {
@@ -40,10 +41,7 @@ public class ExchangeRatesPanel extends TargetPanel {
         GridPaneWrapper currencyGridPaneWrapper = GridPaneWrapper.newBuilder()
                 .setGridLinesVisibility(gridVisibility)
                 .setName("Валюта")
-                .setColumnComputerWidth()
-                .setColumnFixed(40d)
-                .setColumnFixed(40d)
-                .setGridOrganization(new GridOrganizationButtonTopRightLittleSingleTable(currencyTableWrapper))
+                .setGridOrganization(new GridOrgTopButSingleTable(currencyTableWrapper,new ButtonsForGridLittle()))
                 .build();
 
         TableWrapper exchangeRatesTableWrapper = TableWrapper.newBuilder()
@@ -71,10 +69,7 @@ public class ExchangeRatesPanel extends TargetPanel {
         GridPaneWrapper exchangeRatesGridPaneWrapper = GridPaneWrapper.newBuilder()
                 .setGridLinesVisibility(gridVisibility)
                 .setName("Курсы")
-                .setColumnComputerWidth()
-                .setColumnFixed(40d)
-                .setColumnFixed(40d)
-                .setGridOrganization(new GridOrganizationButtonTopRightLittleSingleTable(exchangeRatesTableWrapper))
+                .setGridOrganization(new GridOrgTopButSingleTable(exchangeRatesTableWrapper,new ButtonsForGridLittle()))
                 .build();
 
         GridPaneWrapper commonGridPaneWrapper = GridPaneWrapper.newBuilder()

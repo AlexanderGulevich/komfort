@@ -6,13 +6,13 @@ import javafx.geometry.Insets;
 import javafx.geometry.VPos;
 import javafx.scene.control.Button;
 
-public class GridOrganizationButtonSubmitSingleTable extends GridOrganization{
+public class GridOrgSubmitSingleTable extends GridOrganization{
 
     private TableWrapper tableWrapper;
     private Insets insets = new Insets(3, 3, 3, 3);
     private Button submitButton;
 
-    public GridOrganizationButtonSubmitSingleTable(TableWrapper tableWrapper) {
+    public GridOrgSubmitSingleTable(TableWrapper tableWrapper) {
         this.tableWrapper = tableWrapper;
 //        submitButton=buttonFactory.
 

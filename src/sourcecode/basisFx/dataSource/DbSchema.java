@@ -152,20 +152,21 @@ public class DbSchema {
                 counterparty,
                 employer,
                 ratePerHourHistory,
-                viewActualRate,
                 exchangeRates,
                 product,
                 productPriceStore,
-//                packetSize,
-//                packet,
-//                packetPriceStore,
-//                packetProductAccordance,
+                packetSize,
+                packet,
+                packetPriceStore,
+                packetProductAccordance,
                 label,
                 labelPriceStore,
                 sleeve,
-                sleevePriceStore
-//                paper,
-//                paperPriceStore,
+                sleevePriceStore,
+                paper,
+                paperPriceStore
+
+//                viewActualRate
 
         );
 

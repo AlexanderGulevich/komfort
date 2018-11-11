@@ -1,17 +1,21 @@
 package basisFx.appCore.grid;
 
 import basisFx.appCore.elements.TableWrapper;
+import basisFx.appCore.fabrics.ButtonFactory;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.VPos;
 import javafx.scene.control.Button;
 
-public class GridOrganizationButtonBottomRightLittleSingleTable extends GridOrganization {
+public class GridOrgMiddleButSingleTable extends GridOrganization {
+
     private TableWrapper tableWrapper;
-    private Button buttonAddLittle;
+    private Insets insets = new Insets(3, 3, 3, 3);
+    private Button   buttonAddLittle;
     private Button  buttonDelLittle;
 
-    public GridOrganizationButtonBottomRightLittleSingleTable(TableWrapper tableWrapper) {
+    public GridOrgMiddleButSingleTable(TableWrapper tableWrapper) {
+
         this.tableWrapper = tableWrapper;
         buttonAddLittle = buttonFactory.littleRowAddButton(tableWrapper);
         buttonDelLittle = buttonFactory.littleRowDeleteButton(tableWrapper);
@@ -19,7 +23,7 @@ public class GridOrganizationButtonBottomRightLittleSingleTable extends GridOrga
     }
 
     @Override
-    public void organize( ) {
+    public void organize() {
 
         bindHeight(tableWrapper);
         parentGridWrapper.addSpanNode(
@@ -27,13 +31,11 @@ public class GridOrganizationButtonBottomRightLittleSingleTable extends GridOrga
                 0, 0, 3, 1, HPos.LEFT, VPos.TOP, insets);
         parentGridWrapper.addSpanNode(
                 buttonAddLittle,
-                2, 2, 1, 1, HPos.RIGHT, VPos.TOP, insets);
+                2, 1, 1, 1, HPos.CENTER, VPos.TOP, insets);
         parentGridWrapper.addSpanNode(
                 buttonDelLittle,
-                1, 2, 1, 1, HPos.RIGHT, VPos.TOP, insets);
+                2, 2, 1, 1, HPos.CENTER, VPos.TOP, insets);
         parentGridWrapper.addSpanNode(
                 tableWrapper.getElement(),
-                0, 1, 3, 1, HPos.CENTER, VPos.TOP, insets);
-
-    }
-}
+                0, 1, 2, 2, HPos.CENTER, VPos.TOP, insets);
+    }}

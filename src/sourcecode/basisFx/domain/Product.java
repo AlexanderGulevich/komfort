@@ -86,8 +86,25 @@ public class Product  extends ActiveRecord {
     }
 
     @Override
-    public ActiveRecord find(int id) {
-        return null;
+    public Product find(int id) {
+        Product pojo=new Product() ;
+        String expression="SELECT * FROM " +this.entityName+" WHERE ID=?";
+
+        try {
+            PreparedStatement pstmt = Db.connection.prepareStatement(expression);
+            pstmt.setInt(1, id);
+            ResultSet rs = pstmt.executeQuery();
+
+            while (rs.next()){
+                pojo.setId(rs.getInt("id"));
+                pojo.setName(rs.getString("name"));
+                pojo.setHavingSleeve(new BoolComboBox(rs.getBoolean("havingSleeve")));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return pojo;
+
     }
 
     @Override

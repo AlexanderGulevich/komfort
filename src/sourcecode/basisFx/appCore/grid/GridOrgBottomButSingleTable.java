@@ -6,12 +6,12 @@ import javafx.geometry.Insets;
 import javafx.geometry.VPos;
 import javafx.scene.control.Button;
 
-public class GridOrganizationButtonBottomRightBigSingleTable extends GridOrganization{
+public class GridOrgBottomButSingleTable extends GridOrganization{
     private TableWrapper tableWrapper;
     private Button buttonAddLittle;
     private Button  buttonDelLittle;
 
-    public GridOrganizationButtonBottomRightBigSingleTable(TableWrapper tableWrapper) {
+    public GridOrgBottomButSingleTable(TableWrapper tableWrapper) {
         this.tableWrapper = tableWrapper;
         buttonAddLittle = buttonFactory.littleRowAddButton(tableWrapper);
         buttonDelLittle = buttonFactory.littleRowDeleteButton(tableWrapper);

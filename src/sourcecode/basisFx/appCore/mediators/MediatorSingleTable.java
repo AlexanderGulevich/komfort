@@ -32,6 +32,7 @@ public class MediatorSingleTable extends Mediator {
         boolean readyToTransaction = record.isReadyToTransaction();
         if (readyToTransaction) {
             ServiceSingleEditableSubmitTable.wasChanged(node, record, ((TableWrapper) node).unitOfWork);
+
         }
     }
 

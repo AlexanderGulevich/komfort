@@ -1,6 +1,7 @@
 package basisFx.service;
 
 import basisFx.appCore.elements.AppNode;
+import basisFx.appCore.elements.TableWrapper;
 import basisFx.dataSource.UnitOfWork;
 import basisFx.domain.ActiveRecord;
 
@@ -35,6 +36,7 @@ public class ServiceSingleEditableSubmitTable extends AplicationService{
         }
         try {
             unitOfWork.commit();
+            ((TableWrapper) node).getMediator().refresh(node);
         } catch (SQLException e) {
             e.printStackTrace();
         }
