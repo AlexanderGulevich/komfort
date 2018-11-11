@@ -68,7 +68,7 @@ public class MainMenuSketch extends MenuSketch {
                         .build().add(
                                 FontItemLeaf.newBuilder()
                                 .setDescription("Учет времени")
-//                                    .setTargetCreator(fm.timeRecordingPanel())
+                                    .setTargetCreator(TimeRecordingPanel ::new )
                                 .build(),
                                 FontItemLeaf.newBuilder()
                                         .setDescription("Управление сотрудниками")
