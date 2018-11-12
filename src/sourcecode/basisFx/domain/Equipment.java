@@ -33,13 +33,6 @@ public class Equipment  extends ActiveRecord {
         this.name.set(name);
     }
     @Override
-    public boolean isReadyToTransaction() {
-        if (name.get()!=null) {
-            return true;
-        }
-        return false;
-    }
-    @Override
     public  ObservableList <ActiveRecord>  getAll() {
         ObservableList <ActiveRecord> list=FXCollections.observableArrayList();
         String expression="SELECT * FROM " +"Equipment"+" ORDER BY ID";

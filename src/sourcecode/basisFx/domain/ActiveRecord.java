@@ -1,6 +1,8 @@
 package basisFx.domain;
 
 import java.lang.reflect.Field;
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
 import java.sql.*;
 import java.time.LocalDate;
 import basisFx.appCore.interfaces.DateGetter;
@@ -58,6 +60,8 @@ public abstract class ActiveRecord {
             Object obj = property.get();
             if (obj!= null ) {
                 isReady=true;
+
+              inspect(this)  ;
             }else {
                 isReady=false;
                 break;
@@ -66,6 +70,40 @@ public abstract class ActiveRecord {
         System.out.println("ActiveRecord.isReadyToTransaction------isReady=="+isReady);
         return isReady;
     }
+
+    protected  void inspect(ActiveRecord activeRecord){
+        Class<? extends ActiveRecord> aClass = this.getClass();
+        Field[] declaredFields = aClass.getDeclaredFields();
+
+        for (Field declaredField : declaredFields) {
+            declaredField.setAccessible(true);
+            if (java.lang.reflect.Modifier.isStatic(declaredField.getModifiers())) {
+                continue;
+            }
+            SimpleObjectProperty property= getPropertyFromClass(declaredField,this);
+            Type type = declaredField.getGenericType();
+
+            if (type instanceof ParameterizedType) {
+                ParameterizedType pt = (ParameterizedType) type;
+                System.out.println("raw type: " + pt.getRawType());
+                System.out.println("owner type: " + pt.getOwnerType());
+                System.out.println("actual type args:");
+                Type[] actualTypeArguments = pt.getActualTypeArguments();
+
+                Object obj = null;
+
+                try {
+                    obj = declaredField.get(activeRecord);
+                    Class<?> aClass1 = obj.getClass();
+                    Class<?> aClass2 = obj.getClass();
+                } catch (IllegalAccessException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }
+    };
+
     public void delete(){
             try {
                 String expression="delete from " +entityName+" where id=? ";
