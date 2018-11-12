@@ -37,6 +37,7 @@
     /* -fx-background-color:derive(#b7d1d6,90%); */
         /* -fx-background-color:#d4bbba; */
             -fx-background-color:#f7f7c2;
+                -fx-background-color:transparent;
             /* -fx-background-color:#e4e6e9; */
 
     -fx-pref-height:35;
