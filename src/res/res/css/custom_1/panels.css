@@ -14,18 +14,27 @@
 
 
 }
+#LABEL_COMMON_GRID_TEXT{
 
+  -fx-common:#697886;
+  -fx-text-fill: -fx-common;
+  -fx-color: -fx-common;
+  -fx-fill:-fx-common;
+  -fx-fill:-fx-common;
+  -fx-text-fill:-fx-common;
+}
 #LABEL_TEXT{
       /* -fx-text-fill: #003641;
       -fx-color: #003641;
       -fx-fill:#22515B;
       -fx-fill:#6e969e;
       -fx-text-fill:#6e969e; */
-            -fx-text-fill: #22515B;
-            -fx-color: #22515B;
-            -fx-fill:#22515B;
-            -fx-fill:#22515B;
-            -fx-text-fill:#22515B;
+      -fx-label:#697886;
+            -fx-text-fill:  -fx-label;
+            -fx-color:      -fx-label;
+            -fx-fill:       -fx-label;
+            -fx-fill:       -fx-label;
+            -fx-text-fill:  -fx-label;
 
 
 }

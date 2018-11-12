@@ -105,7 +105,8 @@ is being used to size a border should also be in pixels.
      * -fx-text-fill value for text painted on top of backgrounds colored
      * with -fx-control-inner-background.
      */
-    -fx-control-inner-background: derive(-fx-base,80%);
+    /* -fx-control-inner-background: derive(-fx-base,80%); */
+   -fx-control-inner-background: derive(-fx-base,80%);
     /* Version of -fx-control-inner-background for alternative rows */
     -fx-control-inner-background-alt: derive(-fx-control-inner-background,-2%);
 
@@ -125,17 +126,20 @@ is being used to size a border should also be in pixels.
 
     /* A bright blue for highlighting/accenting objects.  For example: selected
      * text; selected items in menus, lists, trees, and tables; progress bars */
-    -fx-accent: #0096C9;
 
-    /* Default buttons color, this is similar to accent but more subtle */
+   -fx-accent: #a2c8e3;
+
+    /* Default buttons color, this is similar to 21 but more subtle */
     -fx-default-button: #ABD8ED;
 
     /* A bright blue for the focus indicator of objects. Typically used as the
      * first color in -fx-background-color for the "focused" pseudo-class. Also
      * typically used with insets of -1.4 to provide a glowing effect.
      */
-    -fx-focus-color: #039ED3;
-    -fx-faint-focus-color: #039ED322;
+    -fx-focus-color: #856563;
+   /* -fx-focus-color: #ccff00; */
+    -fx-faint-focus-color: #fb18de;
+
 
     /* The color that is used in styling controls. The default value is based
      * on -fx-base, but is changed by pseudoclasses to change the base color.
@@ -332,7 +336,7 @@ is being used to size a border should also be in pixels.
 
     /* Background for items in list like things such as menus, lists, trees,
      * and tables. */
-    -fx-selection-bar: -fx-accent;
+    -fx-selection-bar: #1e6969;
 
     /* Background color to use for selection of list cells etc. This is when
      * the control doesn't have focus or the row of a previously selected item. */
@@ -481,7 +485,7 @@ is being used to size a border should also be in pixels.
     -fx-background-insets: -0.2, 1, 2, -1.4, 2.6;
     -fx-background-radius: 3, 2, 1, 4, 1;
 
-   
+
 }
 
 /* ====   DISABLED THINGS   ================================================= */
@@ -800,7 +804,7 @@ is being used to size a border should also be in pixels.
 .hyperlink,
 .hyperlink:hover,
 .hyperlink:hover:visited {
-    -fx-text-fill: -fx-accent;
+    -fx-text-fill:#e73232;
 }
 .hyperlink:armed,
 .hyperlink:visited,
@@ -2290,7 +2294,7 @@ is being used to size a border should also be in pixels.
     -fx-background: -fx-selection-bar;
     -fx-table-cell-border-color: derive(-fx-selection-bar, 20%);
 }
- 
+
 
 /*******************************************************************************
  *                                                                             *

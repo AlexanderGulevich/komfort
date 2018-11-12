@@ -74,7 +74,8 @@ public class GridOrgTwoBondGrids extends GridOrganization {
     private LabelWrapper createCommonLabel() {
         return LabelWrapper.newBuilder()
                     .setName(parentGridWrapper.getName())
-                    .setCssid(CSSID.LABEL_TEXT)
+//                    .setCssid(CSSID.LABEL_TEXT)
+                    .setCssid(CSSID.LABEL_COMMON_GRID_TEXT)
                     .setFontSize(25d)
                     .setFont(FontsStore.ROBOTO_BOLD)
                     .build();

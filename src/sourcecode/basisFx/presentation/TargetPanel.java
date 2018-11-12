@@ -42,7 +42,7 @@ public abstract class TargetPanel {
 
         commonAnchorPane = AnchorWrapper.newBuilder()
                 .setCSSid(CSSID.TARGET_PANEL)
-                .setCoordinate(new Coordinate(10d, 10d, 10d, 10d))
+                .setCoordinate(new Coordinate(0d, 10d, 10d, 10d))
                 .setParentAnchor(mainContentAnchor)
                 .build().getElement();
 

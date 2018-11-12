@@ -83,7 +83,7 @@ public class MainMenuSketch extends MenuSketch {
                 FontItemComposite.newBuilder().setDescription("СЫРЬЕ")
                         .setFontsStore(FontsStore.IONICONS)
                         .setFontSymbol("\uF4F4")
-                        .setFontSize(iconSize+4)
+                        .setFontSize(iconSize+2)
                         .build().add(
                                 FontItemLeaf.newBuilder()
                                         .setDescription("Пакеты")

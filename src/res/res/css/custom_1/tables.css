@@ -28,26 +28,23 @@
 }
 #TABLE .column-header-background {/*ЭТО самая нижняя подложка заголовка*/
     -fx-background-color:transparent;
-    -fx-pref-height:35;
+    -fx-pref-height:45;
     -fx-background-insets: 0;
     -fx-padding: 0;
 }
-#TABLE .nested-column-header {/*не определил*/}
-#TABLE .column-header {/*ЗАГОЛОВОК КОЛОНКИ*/
-    /* -fx-background-color:derive(#b7d1d6,90%); */
-        /* -fx-background-color:#d4bbba; */
-            -fx-background-color:#f7f7c2;
-                -fx-background-color:transparent;
-            /* -fx-background-color:#e4e6e9; */
-
-    -fx-pref-height:35;
+ #TABLE  .table-column {  -fx-pref-height:25;}
+/* #TABLE .nested-column-header, */
+#TABLE .column-header{/*ЗАГОЛОВОК КОЛОНКИ*/
+    -fx-background-color:#f7f7c2;
+    -fx-background-color:transparent;
+    -fx-pref-height:45;
     -fx-border-radius:0;
     -fx-border-width: 0 1 1 0;
-    -fx-border-style: solid;
+    -fx-border-style: solid;;
     -fx-border-color:#DFDFDF;
     -fx-background-radius: 0;
     -fx-background-insets: 0;
-    -fx-padding: 0;
+    -fx-padding: 0 0 10 0;
 }
 #TABLE .filler {/*ЭТО children самой нижней подложки заголовка*/
     -fx-background-color:derive(#d7e1e3,40%);
@@ -55,13 +52,17 @@
 #TABLE .column-drag-header {}
 
 #TABLE .nested-column-header .label {
-    -fx-text-fill:#003641;
-        -fx-text-fill:#3f519d;
-    -fx-font-family: "Roboto Light";
-    -fx-font-size: 17;
+    -fx-text-fill:#2f4a6f;
+        /* -fx-text-fill:#3f519d; */
+    /* -fx-font-family: "Roboto Bold"; */
+-fx-font-family: "Roboto Light";
+/* -fx-font-family: "FiraSans Bold"; */
+/* -fx-font-family: "Margot"; */
+    /* -fx-font-size: 17; */
+    -fx-font-size: 20;
     -fx-background-insets: 0;
-    -fx-padding: 0 0 0 20;
-    -fx-border-insets:0 0 0 20;
+    -fx-padding: 0 0 0 0;
+    -fx-border-insets:0 0 0 0;
 }
 #TABLE .virtual-flow,
 #TABLE .clipped-container{
@@ -113,13 +114,24 @@
     -fx-background-insets: 1, 1, 1, 1;
     -fx-border-width: 1;
     -fx-border-insets:0;
-    -fx-table-cell-border-color: #FFEACF;
+    /* -fx-table-cell-border-color: #FFEACF;
     -fx-background: #FFEACF;
-    -fx-background: #f2f5de;
+    -fx-background: #f2f5de; */
+    /* ряд таблицы */
+    -fx-table-cell-border-color:  #dae0d1;
+    -fx-background:  #dae0d1;
     -fx-padding: 0 0 0 0;
     -fx-padding: 0;
 
 }
+
+.table-view:focused > .virtual-flow > .clipped-container > .sheet > .table-row-cell:filled > .check-box-table-cell:selected > .check-box > .box,
+.tree-table-view:focused > .virtual-flow > .clipped-container > .sheet > .tree-table-row-cell:filled > .check-box-table-cell:selected > .check-box > .box,
+.table-view:focused > .virtual-flow > .clipped-container > .sheet > .table-row-cell:filled:selected > .check-box-table-cell > .check-box > .box,
+.tree-table-view:focused > .virtual-flow > .clipped-container > .sheet > .tree-table-row-cell:filled:selected > .check-box-table-cell > .check-box > .box {
+    -fx-background-color: red;
+  }
+
 /* focused cell (keyboard navigation) */
 #TABLE .text-field:focused, #TABLE .text:focused,
 #TABLE .list-view:focused > .virtual-flow > .clipped-container > .sheet > .list-cell:focused,
