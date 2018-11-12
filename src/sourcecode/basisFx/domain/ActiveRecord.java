@@ -47,62 +47,70 @@ public abstract class ActiveRecord {
 
 
     }
+
+
+//    public  ObservableList <ActiveRecord>  getAll(){
+//        Field[] declaredFields = getDeclaredFields();
+//        for (Field field : declaredFields) {
+//            field.setAccessible(true);
+//            if (isaStaticField(field)) continue;
+//            Type type = field.getGenericType();
+//
+//            if (type instanceof ParameterizedType) {
+//                inspectParameterizedType((ParameterizedType) type,  field );
+//                SimpleObjectProperty obj = null;
+//                try {
+//                    obj = (SimpleObjectProperty) field.get(this);
+//                    String name = obj.getName();
+//                    String h = obj.getValue();
+//                } catch (IllegalAccessException e) {
+//                    e.printStackTrace();
+//                }
+//
+//            }
+//        }
+//        return null;
+//
+//
+//    }
+
+    private boolean isaStaticField(Field field) {
+        return java.lang.reflect.Modifier.isStatic(field.getModifiers());
+    }
+
+    private void inspectParameterizedType(ParameterizedType type,Field field) {
+        ParameterizedType pt = type;
+        Type rawType = pt.getRawType();
+        Type ownerType = pt.getOwnerType();
+        Type[] actualTypeArguments = pt.getActualTypeArguments();
+        SimpleObjectProperty property= getPropertyFromClass(field,this);
+    }
+
+    private Field[] getDeclaredFields() {
+        Class<? extends ActiveRecord> aClass = this.getClass();
+        return aClass.getDeclaredFields();
+    };
+
+
+
     public boolean isReadyToTransaction(){
         boolean isReady=false;
-        Class<? extends ActiveRecord> aClass = this.getClass();
-        Field[] declaredFields = aClass.getDeclaredFields();
+        Field[] declaredFields = getDeclaredFields();
         for (Field declaredField : declaredFields) {
             declaredField.setAccessible(true);
-            if (java.lang.reflect.Modifier.isStatic(declaredField.getModifiers())) {
-                continue;
-            }
+            if (isaStaticField(declaredField)) continue;
             SimpleObjectProperty property= getPropertyFromClass(declaredField,this);
             Object obj = property.get();
             if (obj!= null ) {
                 isReady=true;
-
-              inspect(this)  ;
             }else {
                 isReady=false;
                 break;
             }
     }
-        System.out.println("ActiveRecord.isReadyToTransaction------isReady=="+isReady);
         return isReady;
     }
 
-    protected  void inspect(ActiveRecord activeRecord){
-        Class<? extends ActiveRecord> aClass = this.getClass();
-        Field[] declaredFields = aClass.getDeclaredFields();
-
-        for (Field declaredField : declaredFields) {
-            declaredField.setAccessible(true);
-            if (java.lang.reflect.Modifier.isStatic(declaredField.getModifiers())) {
-                continue;
-            }
-            SimpleObjectProperty property= getPropertyFromClass(declaredField,this);
-            Type type = declaredField.getGenericType();
-
-            if (type instanceof ParameterizedType) {
-                ParameterizedType pt = (ParameterizedType) type;
-                System.out.println("raw type: " + pt.getRawType());
-                System.out.println("owner type: " + pt.getOwnerType());
-                System.out.println("actual type args:");
-                Type[] actualTypeArguments = pt.getActualTypeArguments();
-
-                Object obj = null;
-
-                try {
-                    obj = declaredField.get(activeRecord);
-                    Class<?> aClass1 = obj.getClass();
-                    Class<?> aClass2 = obj.getClass();
-                } catch (IllegalAccessException e) {
-                    e.printStackTrace();
-                }
-
-            }
-        }
-    };
 
     public void delete(){
             try {
@@ -226,13 +234,6 @@ public abstract class ActiveRecord {
 //    }
 
 
-//
-//    SELECT * FROM PRODUCTPRICESTORE
-//    WHERE PRODUCTID=2
-//    AND STARTDATE=(
-//            SELECT MAX(STARTDATE) FROM PRODUCTPRICESTORE
-//    WHERE PRODUCTID=2
-//	)
 
     private SimpleObjectProperty getPropertyFromClass(Field declaredField, ActiveRecord record) {
         try {
