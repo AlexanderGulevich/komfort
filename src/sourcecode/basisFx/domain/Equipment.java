@@ -14,6 +14,7 @@ public class Equipment  extends ActiveRecord {
 
     private static Equipment INSTANCE = new Equipment();
     private SimpleObjectProperty<String> name =new SimpleObjectProperty<>(null, "name", null);
+    private SimpleObjectProperty<Counterparty> d =new SimpleObjectProperty<>(null, "Counterparty", null);
 
     public Equipment() {
         super("Equipment");

@@ -5,6 +5,11 @@ import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.sql.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
+import basisFx.appCore.DomainMetaInfo;
 import basisFx.appCore.interfaces.DateGetter;
 import basisFx.dataSource.Db;
 import javafx.beans.property.ObjectProperty;
@@ -45,47 +50,65 @@ public abstract class ActiveRecord {
             throw new  NullPointerException();
         }
 
-
     }
 
 
 //    public  ObservableList <ActiveRecord>  getAll(){
+//        ArrayList<DomainMetaInfo>  domainMetaInfoList = inspectDomainProperties();
+//        String query="Select * from "+ this.entityName+ " ";
+//        for (DomainMetaInfo info:domainMetaInfoList) {
+//            query=query+info.getTypeName()+ ","
+//        }
+//
+//
+//        return null;
+//
+//
+//    }
+//
+//    private   ArrayList<DomainMetaInfo>   inspectDomainProperties() {
+//      ArrayList<DomainMetaInfo>  domainMetaInfoList=new ArrayList<>();
 //        Field[] declaredFields = getDeclaredFields();
 //        for (Field field : declaredFields) {
 //            field.setAccessible(true);
 //            if (isaStaticField(field)) continue;
 //            Type type = field.getGenericType();
-//
 //            if (type instanceof ParameterizedType) {
-//                inspectParameterizedType((ParameterizedType) type,  field );
-//                SimpleObjectProperty obj = null;
-//                try {
-//                    obj = (SimpleObjectProperty) field.get(this);
-//                    String name = obj.getName();
-//                    String h = obj.getValue();
-//                } catch (IllegalAccessException e) {
-//                    e.printStackTrace();
-//                }
-//
+//                String typeName = retrieveGenericTypeName(field, (ParameterizedType) type);
+//                String propertyName = retrievePropertyName(field);
+//                domainMetaInfoList.add(new DomainMetaInfo(typeName,propertyName));
 //            }
 //        }
-//        return null;
-//
-//
+//        return domainMetaInfoList;
 //    }
-
+//
+//    private String retrievePropertyName(Field field) {
+//        SimpleObjectProperty property= getPropertyFromClass(field,this);
+//        return property.getName();
+//    }
+//
+//    private String retrieveGenericTypeName(Field field, ParameterizedType type) {
+//        Type parameterizedType = getParameterizedType(type, field);
+//        String typeName = parameterizedType.getTypeName();
+//        SimpleObjectProperty obj = null;
+//        String[] arr = typeName.split("\\.");
+//        return arr[arr.length - 1];
+//    }
+//
     private boolean isaStaticField(Field field) {
         return java.lang.reflect.Modifier.isStatic(field.getModifiers());
     }
-
-    private void inspectParameterizedType(ParameterizedType type,Field field) {
-        ParameterizedType pt = type;
-        Type rawType = pt.getRawType();
-        Type ownerType = pt.getOwnerType();
-        Type[] actualTypeArguments = pt.getActualTypeArguments();
-        SimpleObjectProperty property= getPropertyFromClass(field,this);
-    }
-
+//
+//    private Type getParameterizedType(ParameterizedType type, Field field) {
+//        ParameterizedType pt = type;
+//        Type rawType = pt.getRawType();
+//        Type ownerType = pt.getOwnerType();
+//        Type[] actualTypeArguments = pt.getActualTypeArguments();
+//        Type argument = actualTypeArguments[0];
+//        SimpleObjectProperty property= getPropertyFromClass(field,this);
+//        return argument ;
+//    }
+//
     private Field[] getDeclaredFields() {
         Class<? extends ActiveRecord> aClass = this.getClass();
         return aClass.getDeclaredFields();
