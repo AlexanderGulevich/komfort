@@ -1,7 +1,7 @@
 package basisFx.appCore.elements;
 
 import basisFx.appCore.events.AppEvent;
-import basisFx.appCore.mediators.Mediator;
+import basisFx.service.ServiceMediator;
 import basisFx.appCore.settings.CSSID;
 import basisFx.appCore.utils.Coordinate;
 import javafx.scene.Group;
@@ -20,7 +20,7 @@ import java.util.ArrayList;
 public class DatePickerWrapper  extends AppNode{
 
     private DatePicker element;
-    private Mediator mediator;
+    private ServiceMediator serviceMediator;
     private LocalDate date;
 
     private DatePickerWrapper(Builder builder) {
@@ -35,7 +35,7 @@ public class DatePickerWrapper  extends AppNode{
         parentScrollPane = builder.parentScrollPane;
         name = builder.name;
         stage = builder.stage;
-        mediator = builder.mediator;
+        serviceMediator = builder.serviceMediator;
 
         applyWidth();
         createDatePicker();
@@ -57,7 +57,7 @@ public class DatePickerWrapper  extends AppNode{
         element.setPromptText("");
         element.setOnAction((e) -> {
                this.date = element.getValue();
-               mediator.inform(this);
+               serviceMediator.inform(this);
 
         });
     }
@@ -111,7 +111,7 @@ public class DatePickerWrapper  extends AppNode{
         private ScrollPane parentScrollPane;
         private String name;
         private Stage stage;
-        private Mediator mediator;
+        private ServiceMediator serviceMediator;
 
         private Builder() {
         }
@@ -171,8 +171,8 @@ public class DatePickerWrapper  extends AppNode{
             return this;
         }
 
-        public Builder setMediator(Mediator val) {
-            mediator = val;
+        public Builder setServiceMediator(ServiceMediator val) {
+            serviceMediator = val;
             return this;
         }
 

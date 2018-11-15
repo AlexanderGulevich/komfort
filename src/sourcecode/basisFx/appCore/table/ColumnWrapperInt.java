@@ -65,7 +65,7 @@ public class ColumnWrapperInt<T> extends ColumnWrapper{
                     ((WritableValue<Integer>)v).setValue(event.getNewValue());
                 }
             ActiveRecord domain = (ActiveRecord) event.getRowValue();
-            tableWrapper.getMediator().wasChanged(tableWrapper,domain);
+            tableWrapper.getServiceMediator().wasChanged(tableWrapper,domain);
 
         });
     }

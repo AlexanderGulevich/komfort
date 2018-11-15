@@ -84,7 +84,7 @@ public class ColumnWrapperComboBox extends ColumnWrapper{
                     if (value instanceof WritableValue) {
                         ((WritableValue<ActiveRecord>)value).setValue(event.getNewValue());
                         ActiveRecord domain = (ActiveRecord) event.getRowValue();
-                        tableWrapper.getMediator().wasChanged(tableWrapper,domain);
+                        tableWrapper.getServiceMediator().wasChanged(tableWrapper,domain);
                     }
                 }
             };
@@ -209,7 +209,7 @@ public class ColumnWrapperComboBox extends ColumnWrapper{
             comboBox.setOnAction((e) -> {
 //                System.err.println("Committed: " + comboBox.getSelectionModel().getSelectedItem());
                 commitEdit(comboBox.getSelectionModel().getSelectedItem());
-//                tableWrapper.getMediator().wasChanged(tableWrapper,domain);
+//                tableWrapper.getServiceMediator().wasChanged(tableWrapper,domain);
             });
             comboBox.focusedProperty().addListener((ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) -> {
                 if (!newValue) {

@@ -1,6 +1,6 @@
 package basisFx.appCore.grid;
 
-import basisFx.appCore.mediators.Mediator;
+import basisFx.service.ServiceMediator;
 import basisFx.appCore.table.ColumnWrapper;
 import basisFx.dataSource.UnitOfWork;
 import javafx.scene.Group;
@@ -20,7 +20,7 @@ public class GUIBuilderSingleTableGrid extends GUIBuilder {
     private String name;
     private boolean isEditable;
     private boolean isSortableColums;
-    private Mediator mediator;
+    private ServiceMediator serviceMediator;
     private ColumnWrapper[] columnWrappers;
     private UnitOfWork unitOfWork;
     private boolean gridLinesVisibility;

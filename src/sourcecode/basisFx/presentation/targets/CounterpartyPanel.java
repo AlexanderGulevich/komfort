@@ -2,7 +2,7 @@ package basisFx.presentation.targets;
 
 import basisFx.appCore.grid.ButtonsForGridBig;
 import basisFx.appCore.grid.GridOrgTopButSingleTable;
-import basisFx.appCore.mediators.MediatorSingleTable;
+import basisFx.service.ServiceMediatorSingleTable;
 import basisFx.appCore.elements.TableWrapper;
 import basisFx.appCore.grid.GridPaneWrapper;
 import basisFx.appCore.table.ColumnWrapperComboBox;
@@ -15,14 +15,14 @@ import basisFx.presentation.TargetPanel;
 public class CounterpartyPanel extends TargetPanel {
     @Override
     public void init() {
-        MediatorSingleTable mediatorSingleTable = new MediatorSingleTable();
+        ServiceMediatorSingleTable mediatorSingleTable = new ServiceMediatorSingleTable();
 
         TableWrapper tableWrapper = TableWrapper.newBuilder()
                 .setActiveRecordClass(Counterparty.class)
                 .setUnitOfWork(unitOfWork)
                 .setIsEditable(true)
                 .setIsSortableColums(false)
-                .setMediator(mediatorSingleTable)
+                .setServiceMediator(mediatorSingleTable)
                 .setColumnWrappers(
                         ColumnWrapperString.newBuilder()
                                 .setColumnName("Наименование")

@@ -1,4 +1,4 @@
-package basisFx.appCore.mediators;
+package basisFx.service;
 
 import basisFx.appCore.elements.AppNode;
 import basisFx.appCore.elements.ButtonWrapper;
@@ -8,14 +8,11 @@ import basisFx.domain.ActiveRecord;
 
 import java.time.LocalDate;
 
-public class MediatorTableAndCommonDate  extends Mediator{
+public class ServiceMediatorTableAndCommonDate extends ServiceMediator {
     private TableWrapper tableWrapper;
     private DatePickerWrapper datePickerWrapper;
     private ButtonWrapper buttonWrapper;
 
-    public static void setDate(LocalDate date) {
-        MediatorTableAndCommonDate.date = date;
-    }
 
     @Override
     public void inform(AppNode node) {
@@ -46,7 +43,7 @@ public class MediatorTableAndCommonDate  extends Mediator{
 
     @Override
     public void initElements() {
-        date=null;
+
     }
 
     public void setTableWrapper(TableWrapper tableWrapper) {

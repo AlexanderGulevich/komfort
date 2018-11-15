@@ -1,6 +1,6 @@
 package basisFx.appCore.elements;
 
-import basisFx.appCore.mediators.Mediator;
+import basisFx.service.ServiceMediator;
 import basisFx.appCore.table.ColumnWrapper;
 import basisFx.appCore.events.AppEvent;
 import basisFx.domain.ActiveRecord;
@@ -32,7 +32,7 @@ public  class TableWrapper extends AppNode  {
     private Double widthPercent;
     private ReadOnlyDoubleProperty parentWidthProperty;
     private double prefHeight;
-    private Mediator mediator;
+    private ServiceMediator serviceMediator;
     private ColumnWrapper [] columnWrappers;
     private TableView<ActiveRecord> element;
     public ObservableList<ActiveRecord>  list;
@@ -57,7 +57,7 @@ public  class TableWrapper extends AppNode  {
         columnResizePolicy = builder.columnResizePolicy;
         isSortableColums = builder.isSortableColums;
         prefHeight = builder.prefHeight;
-        setMediator(builder.mediator);
+        setServiceMediator(builder.serviceMediator);
         columnWrappers = builder.columnWrappers;
         unitOfWork = builder.unitOfWork;
         clickedDomain = builder.clickedDomain;
@@ -83,8 +83,8 @@ public  class TableWrapper extends AppNode  {
         element.setId(CSSID.TABLE.get());
     }
 
-    public Mediator getMediator() {
-        return mediator;
+    public ServiceMediator getServiceMediator() {
+        return serviceMediator;
     }
 
     private void createActiveRecord(Builder builder) {
@@ -200,8 +200,8 @@ public  class TableWrapper extends AppNode  {
                 if (! row.isEmpty() && event.getButton()== MouseButton.PRIMARY
                         && event.getClickCount() == 1) {
                    clickedDomain=row.getItem();
-                    if (mediator != null) {
-                        mediator.inform(this);
+                    if (serviceMediator != null) {
+                        serviceMediator.inform(this);
                     }
                 }
             }
@@ -246,8 +246,8 @@ public  class TableWrapper extends AppNode  {
         return false;
     }
 
-    public void setMediator(Mediator mediator) {
-        this.mediator = mediator;
+    public void setServiceMediator(ServiceMediator serviceMediator) {
+        this.serviceMediator = serviceMediator;
     }
 
     public static final class Builder {
@@ -267,7 +267,7 @@ public  class TableWrapper extends AppNode  {
         private Callback<TableView.ResizeFeatures, Boolean> columnResizePolicy;
         private boolean isSortableColums;
         private double prefHeight;
-        private Mediator mediator;
+        private ServiceMediator serviceMediator;
         private ColumnWrapper[] columnWrappers;
         private UnitOfWork unitOfWork;
         private ActiveRecord clickedDomain;
@@ -361,8 +361,8 @@ public  class TableWrapper extends AppNode  {
             return this;
         }
 
-        public Builder setMediator(Mediator val) {
-            mediator = val;
+        public Builder setServiceMediator(ServiceMediator val) {
+            serviceMediator = val;
             return this;
         }
 

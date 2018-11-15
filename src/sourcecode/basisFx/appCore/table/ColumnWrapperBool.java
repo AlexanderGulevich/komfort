@@ -42,7 +42,7 @@ public class ColumnWrapperBool<T> extends ColumnWrapper{
                     ((WritableValue<BoolComboBox>)value).setValue(event.getNewValue());
                 }
                 ActiveRecord domain = (ActiveRecord) event.getRowValue();
-                tableWrapper.getMediator().wasChanged(tableWrapper,domain);
+                tableWrapper.getServiceMediator().wasChanged(tableWrapper,domain);
 
             };
         });
@@ -179,7 +179,7 @@ public class ColumnWrapperBool<T> extends ColumnWrapper{
             comboBox.setMinWidth(this.getWidth() - this.getGraphicTextGap() * 2);
             comboBox.setOnAction((e) -> {
                 commitEdit(comboBox.getSelectionModel().getSelectedItem());
-//                tableWrapper.getMediator().wasChanged(tableWrapper,comboBox.getSelectionModel().getSelectedItem());
+//                tableWrapper.getServiceMediator().wasChanged(tableWrapper,comboBox.getSelectionModel().getSelectedItem());
 
 
 

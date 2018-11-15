@@ -5,8 +5,8 @@ import basisFx.appCore.grid.ButtonsForGridLittle;
 import basisFx.appCore.grid.GridOrgTopButSingleTable;
 import basisFx.appCore.grid.GridOrgFourGrids;
 import basisFx.appCore.grid.GridPaneWrapper;
-import basisFx.appCore.mediators.MediatorSingleTable;
-import basisFx.appCore.mediators.MediatorTwoLinkedTable;
+import basisFx.service.ServiceMediatorSingleTable;
+import basisFx.service.ServiceMediatorTwoLinkedTable;
 import basisFx.appCore.table.*;
 import basisFx.appCore.utils.Coordinate;
 import basisFx.domain.*;
@@ -14,9 +14,9 @@ import basisFx.presentation.TargetPanel;
 
 public class PacketPanel  extends TargetPanel {
     private boolean gridVisibility=false;
-    private MediatorTwoLinkedTable mediatorTwoLinkedTable =new MediatorTwoLinkedTable();
-    private MediatorSingleTable mediatorSingleTable1 =new MediatorSingleTable();
-    private MediatorSingleTable mediatorSingleTable2 =new MediatorSingleTable();
+    private ServiceMediatorTwoLinkedTable mediatorTwoLinkedTable =new ServiceMediatorTwoLinkedTable();
+    private ServiceMediatorSingleTable mediatorSingleTable1 =new ServiceMediatorSingleTable();
+    private ServiceMediatorSingleTable mediatorSingleTable2 =new ServiceMediatorSingleTable();
     private GridOrgFourGrids gridOrganization =new GridOrgFourGrids();
 
     @Override
@@ -27,7 +27,7 @@ public class PacketPanel  extends TargetPanel {
                 .setUnitOfWork(unitOfWork)
                 .setIsEditable(true)
                 .setIsSortableColums(false)
-                .setMediator(mediatorTwoLinkedTable)
+                .setServiceMediator(mediatorTwoLinkedTable)
                 .setColumnWrappers(
                         ColumnWrapperComboBox.newBuilder(PacketSize.class)
                                 .setColumnName("Размер")
@@ -55,7 +55,7 @@ public class PacketPanel  extends TargetPanel {
                 .setUnitOfWork(unitOfWork)
                 .setIsEditable(true)
                 .setIsSortableColums(false)
-                .setMediator(mediatorTwoLinkedTable)
+                .setServiceMediator(mediatorTwoLinkedTable)
                 .setColumnWrappers(
                         ColumnWrapperDouble.newBuilder()
                                 .setColumnName("Тариф")
@@ -83,7 +83,7 @@ public class PacketPanel  extends TargetPanel {
                 .setUnitOfWork(unitOfWork)
                 .setIsEditable(true)
                 .setIsSortableColums(false)
-                .setMediator(mediatorSingleTable1)
+                .setServiceMediator(mediatorSingleTable1)
                 .setColumnWrappers(
                         ColumnWrapperString.newBuilder()
                                 .setColumnName("Размер")
@@ -106,7 +106,7 @@ public class PacketPanel  extends TargetPanel {
                 .setUnitOfWork(unitOfWork)
                 .setIsEditable(true)
                 .setIsSortableColums(false)
-                .setMediator(mediatorSingleTable2)
+                .setServiceMediator(mediatorSingleTable2)
                 .setColumnWrappers(
                         ColumnWrapperComboBox.newBuilder(PacketSize.class)
                                 .setColumnName("Размер")

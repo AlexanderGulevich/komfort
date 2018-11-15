@@ -1,7 +1,7 @@
 package basisFx.presentation.targets;
 
 import basisFx.appCore.grid.ButtonsForGridLittle;
-import basisFx.appCore.mediators.MediatorSingleTable;
+import basisFx.service.ServiceMediatorSingleTable;
 import basisFx.appCore.elements.TableWrapper;
 import basisFx.appCore.grid.GridOrgTopButSingleTable;
 import basisFx.appCore.grid.GridPaneWrapper;
@@ -16,14 +16,14 @@ public class EquipmentPanel extends TargetPanel {
     @Override
     public void init() {
 
-        MediatorSingleTable mediatorSingleTable = new MediatorSingleTable();
+        ServiceMediatorSingleTable mediatorSingleTable = new ServiceMediatorSingleTable();
 
         TableWrapper tableWrapper = TableWrapper.newBuilder()
                 .setActiveRecordClass(Equipment.class)
                 .setUnitOfWork(unitOfWork)
                 .setIsEditable(true)
                 .setIsSortableColums(false)
-                .setMediator(mediatorSingleTable)
+                .setServiceMediator(mediatorSingleTable)
                 .setColumnWrappers(
                         ColumnWrapperString.newBuilder()
                                 .setColumnName("Наименование")

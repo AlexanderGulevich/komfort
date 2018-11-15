@@ -1,14 +1,10 @@
 package basisFx.appCore.events;
 
-import basisFx.dataSource.UnitOfWork;
 import basisFx.appCore.elements.AppNode;
 import basisFx.appCore.elements.TableWrapper;
 import basisFx.domain.ActiveRecord;
-import javafx.collections.ObservableList;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableView;
-
-import java.sql.SQLException;
 
 public class RowDeleteFromTable extends AppEvent{
     private Button but;
@@ -40,7 +36,7 @@ public class RowDeleteFromTable extends AppEvent{
             final ActiveRecord selectedItem = selectionModel.getSelectedItem();
             if (selectedItem != null) {
                 tableWrapper.getItems().remove(selectedItem);
-                tableWrapper.getMediator().wasRemoved(tableWrapper,selectedItem);
+                tableWrapper.getServiceMediator().wasRemoved(tableWrapper,selectedItem);
             }
 
 

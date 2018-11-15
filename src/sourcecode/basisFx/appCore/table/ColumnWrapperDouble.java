@@ -47,7 +47,7 @@ public class ColumnWrapperDouble <T>extends ColumnWrapper{
                     ((WritableValue<Double>)v).setValue(Double.valueOf(event.getNewValue()));
                 }
                 ActiveRecord domain = (ActiveRecord) event.getRowValue();
-                tableWrapper.getMediator().wasChanged(tableWrapper,domain);
+                tableWrapper.getServiceMediator().wasChanged(tableWrapper,domain);
 
         });
     }

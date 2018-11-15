@@ -54,7 +54,7 @@ public class ColumnWrapperDate extends ColumnWrapper{
                     ((WritableValue<LocalDate>)v).setValue(event.getNewValue());
                 }
                 ActiveRecord domain = (ActiveRecord) event.getRowValue();
-                tableWrapper.getMediator().wasChanged(tableWrapper,domain);
+                tableWrapper.getServiceMediator().wasChanged(tableWrapper,domain);
 
             }else {
 

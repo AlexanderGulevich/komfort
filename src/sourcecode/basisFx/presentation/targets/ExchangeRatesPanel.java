@@ -1,7 +1,7 @@
 package basisFx.presentation.targets;
 
 import basisFx.appCore.grid.ButtonsForGridLittle;
-import basisFx.appCore.mediators.MediatorTwoLinkedTable;
+import basisFx.service.ServiceMediatorTwoLinkedTable;
 import basisFx.appCore.elements.TableWrapper;
 import basisFx.appCore.grid.GridOrgTopButSingleTable;
 import basisFx.appCore.grid.GridPaneWrapper;
@@ -17,7 +17,7 @@ import basisFx.presentation.TargetPanel;
 public class ExchangeRatesPanel extends TargetPanel {
 
     private boolean gridVisibility=false;
-    private MediatorTwoLinkedTable mediatorTwoLinkedTable =new MediatorTwoLinkedTable();
+    private ServiceMediatorTwoLinkedTable mediatorTwoLinkedTable =new ServiceMediatorTwoLinkedTable();
     private GridOrgTwoBondGrids gridOrganization =new GridOrgTwoBondGrids();
 
       @Override
@@ -28,7 +28,7 @@ public class ExchangeRatesPanel extends TargetPanel {
                 .setUnitOfWork(unitOfWork)
                 .setIsEditable(true)
                 .setIsSortableColums(false)
-                .setMediator(mediatorTwoLinkedTable)
+                .setServiceMediator(mediatorTwoLinkedTable)
                 .setColumnWrappers(
                         ColumnWrapperString.newBuilder()
                                 .setColumnName("Наименование")
@@ -49,7 +49,7 @@ public class ExchangeRatesPanel extends TargetPanel {
                 .setUnitOfWork(unitOfWork)
                 .setIsEditable(true)
                 .setIsSortableColums(false)
-                .setMediator(mediatorTwoLinkedTable)
+                .setServiceMediator(mediatorTwoLinkedTable)
                 .setColumnWrappers(
                         ColumnWrapperDouble.newBuilder()
                                 .setColumnName("Курс")

@@ -6,7 +6,7 @@ import basisFx.appCore.grid.ButtonsForGridLittle;
 import basisFx.appCore.grid.GridOrgTopButSingleTable;
 import basisFx.appCore.grid.GridOrgTwoBondGrids;
 import basisFx.appCore.grid.GridPaneWrapper;
-import basisFx.appCore.mediators.MediatorTwoLinkedTable;
+import basisFx.service.ServiceMediatorTwoLinkedTable;
 import basisFx.appCore.table.ColumnWrapperComboBox;
 import basisFx.appCore.table.ColumnWrapperDate;
 import basisFx.appCore.table.ColumnWrapperDouble;
@@ -16,7 +16,7 @@ import basisFx.presentation.TargetPanel;
 
 public class SleevePanel  extends TargetPanel {
     private boolean gridVisibility=false;
-    private MediatorTwoLinkedTable mediatorTwoLinkedTable =new MediatorTwoLinkedTable();
+    private ServiceMediatorTwoLinkedTable mediatorTwoLinkedTable =new ServiceMediatorTwoLinkedTable();
     private GridOrgTwoBondGrids gridOrganization =new GridOrgTwoBondGrids();
 
     @Override
@@ -27,7 +27,7 @@ public class SleevePanel  extends TargetPanel {
                 .setUnitOfWork(unitOfWork)
                 .setIsEditable(true)
                 .setIsSortableColums(false)
-                .setMediator(mediatorTwoLinkedTable)
+                .setServiceMediator(mediatorTwoLinkedTable)
                 .setColumnWrappers(
                         ColumnWrapperComboBox.newBuilder(Counterparty.class)
                                 .setColumnName("Поставщик")
@@ -49,7 +49,7 @@ public class SleevePanel  extends TargetPanel {
                 .setUnitOfWork(unitOfWork)
                 .setIsEditable(true)
                 .setIsSortableColums(false)
-                .setMediator(mediatorTwoLinkedTable)
+                .setServiceMediator(mediatorTwoLinkedTable)
                 .setColumnWrappers(
                         ColumnWrapperDouble.newBuilder()
                                 .setColumnName("Цена")
