@@ -2,7 +2,6 @@ package basisFx.appCore.events;
 
 import basisFx.appCore.elements.AppNode;
 
-import java.sql.SQLException;
 
 public abstract class AppEvent {
 
@@ -15,6 +14,6 @@ public abstract class AppEvent {
         return this;
 
     };
-    public abstract void run() throws SQLException;
+    public abstract void run() ;
 
 }

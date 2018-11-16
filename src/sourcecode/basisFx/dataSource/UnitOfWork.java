@@ -98,9 +98,7 @@ public class UnitOfWork {
             ActiveRecord next = iterator.next();
             if (next.isReadyToTransaction()) {
                 isReady=true;
-                System.out.println("UnitOfWork----ReadyToTransaction");
             }else {
-                System.out.println("UnitOfWork----NOT ReadyToTransaction");
                 return false;
             }
         }

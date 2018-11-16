@@ -5,6 +5,7 @@ import basisFx.appCore.settings.CSSID;
 import basisFx.appCore.settings.FontsStore;
 import basisFx.appCore.utils.Coordinate;
 import basisFx.appCore.utils.FontLogic;
+import basisFx.service.ServiceMediator;
 import javafx.geometry.Insets;
 import javafx.scene.Group;
 import javafx.scene.Node;
@@ -27,6 +28,7 @@ public class ButtonWrapper extends AppNode{
     protected String string;
     protected Node graphicNode;
     protected ContentDisplay contentDisplay;
+    protected ServiceMediator serviceMediator;
 
     private ButtonWrapper(Builder builder) {
         element=new Button();
@@ -49,6 +51,7 @@ public class ButtonWrapper extends AppNode{
         string = builder.string;
         graphicNode = builder.graphicNode;
         contentDisplay = builder.contentDisplay;
+        serviceMediator = builder.serviceMediator;
 
 
         setId();
@@ -60,6 +63,10 @@ public class ButtonWrapper extends AppNode{
         bond(this);
         elocateEvents();
 
+    }
+
+    public ServiceMediator getServiceMediator() {
+        return serviceMediator;
     }
 
     public void makeActive() {
@@ -155,6 +162,7 @@ public class ButtonWrapper extends AppNode{
         private String string;
         private Node graphicNode;
         private ContentDisplay contentDisplay;
+        protected ServiceMediator serviceMediator;
 
         private Builder() {
         }
@@ -177,6 +185,10 @@ public class ButtonWrapper extends AppNode{
         public Builder setCSSid(CSSID val) {
             cssid = val;
             return this;
+        }
+
+        public void setServiceMediator(ServiceMediator serviceMediator) {
+            this.serviceMediator = serviceMediator;
         }
 
         public Builder setWidth(Double val) {
