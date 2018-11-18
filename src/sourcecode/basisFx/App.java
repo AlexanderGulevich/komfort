@@ -20,7 +20,7 @@ public class App{
 
     public App(Stage primaryStage) throws ClassNotFoundException, SQLException {
 
-        Application.setUserAgentStylesheet("/res/css/modena/modena.css");
+//        Application.setUserAgentStylesheet("/res/css/modena/modena.css");
 
         CSSHandler.init(StylesPathes.CUSTOM_1);
 
@@ -30,7 +30,7 @@ public class App{
                 GuiStructuraFabric.leftAndTopMenuUndecorated(), primaryStage
         );
 
-        DbFactory.createDbServer();
+        DbFactory.createEmbeded();
 
         MenuFabric.createMenuLeftSideRepresentation( new MainMenuSketch());
 

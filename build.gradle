@@ -40,8 +40,7 @@ version = '0.1'
 
 testResultsDirName="my_testResults"
 testReportDirName="my_testReport"
-libsDirName="output"
-distsDirName="dist"
+distsDirName="distribution"
 docsDirName="my_docs"
 jacocoTestReport.enabled=true
 assemble.enabled = true
@@ -57,7 +56,8 @@ sourceSets {
     main {
         resources {
             srcDirs  'src/res'
-        }}}
+        }
+    }}
 sourceSets{
     test{
         java{
@@ -99,15 +99,26 @@ distributions {
             into ('lib') {
                 from (project.configurations.runtime)
             }
+
             from jar
+
         }
+//        contents{
+//            baseName = 'Komfort'
+//            from (sourceSets.main.resources)
+//            from jar
+//        }
+//        contents{
+//            from {'log'}
+//        }
+
     }
 }
 
 
 dependencies {
 //    runtime files('libs/a.jar', 'libs/b.jar')
-    runtime fileTree(dir: 'res')
+//    runtime fileTree(dir: 'res')
 //    testCompile group: 'junit', name: 'junit', version: '4.12'
 //    testCompile group: 'org.hamcrest', name: 'hamcrest-all', version: '1.3'
 //    testCompile("org.junit.jupiter:junit-jupiter-api:5.0.0-M4")
@@ -145,16 +156,21 @@ jar()   {
     version =  '0.1'
     manifest {
         attributes(
-                "Class-Path": configurations.compile.collect {  "lib/" + it.getName() }.join(" "),
+                "Class-Path":
+                        configurations.compile.collect {  "lib/" + it.getName() }.join(" "),
                 'Main-Class': mainClass,
                 'Manifest-Version': 1.0
         )
     }
+//    exclude { sourceSets.main.resources}
+//    include { project.configurations.runtime}
+
 }
-task copyLib(type: Copy) {
-    into 'build/output/lib'
-    from configurations.compile
-}
+//task copyLib(type: Copy) {
+//    into 'build/output/lib'
+//    from configurations.compile
+//}
+
 task info(type: GradleBuild) {
     buildFile = 'reflect.gradle'
     tasks = ['info']
@@ -164,19 +180,14 @@ task runApp(type: JavaExec) {
    classpath = sourceSets.main.runtimeClasspath
    main = 'basisFx.appCore.EntryPoint'
  }
-uploadArchives {
-    repositories {
-        flatDir {
-            dirs 'repos'
-        }
-    }
-}
 
 distZip.shouldRunAfter(build)
 //build.dependsOn info
 build.dependsOn projectReport
 //build.dependsOn buildDashboard
-build.dependsOn copyLib
+
+//build.dependsOn copyLib
+
 runApp.shouldRunAfter(build)
 runApp.mustRunAfter(build)
 runApp.dependsOn(build)

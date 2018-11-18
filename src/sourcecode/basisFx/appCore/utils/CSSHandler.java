@@ -11,6 +11,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.net.URL;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -40,22 +41,27 @@ public class CSSHandler {
         File folder=null;
         File[] listOfFiles=null;
 //        File folder = new File(stylesPathe.getPath());
-        try {
+//        try {
             Path path = Paths.get(stylesPathe.getPath());
             path.getRoot();
-            uri = getClass().getResource(stylesPathe.getPath()).toURI();
-            folder = new File(uri);
-            listOfFiles = folder.listFiles();
+//            uri = getClass().getResource(stylesPathe.getPath()).toURI();
+//            uri = getClass().getResource("").toURI();
+            URL resource = getClass().getResource("\\");
 
-            boolean directory = folder.isDirectory();
-            boolean absolute = folder.isAbsolute();
-            boolean file = folder.isFile();
-            boolean hidden = folder.isHidden();
+            System.err.println(resource.toExternalForm());
+
+//            folder = new File(uri);
+//            listOfFiles = folder.listFiles();
+//
+//            boolean directory = folder.isDirectory();
+//            boolean absolute = folder.isAbsolute();
+//            boolean file = folder.isFile();
+//            boolean hidden = folder.isHidden();
 
 
-        } catch (URISyntaxException e) {
-            e.printStackTrace();
-        }
+//        } catch (URISyntaxException e) {
+//            e.printStackTrace();
+//        }
 
         ArrayList <String>stylePathes=new ArrayList<>();
 
