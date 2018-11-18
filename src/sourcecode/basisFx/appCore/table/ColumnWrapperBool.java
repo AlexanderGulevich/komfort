@@ -28,6 +28,7 @@ public class ColumnWrapperBool<T> extends ColumnWrapper{
         isEditeble = builder.isEditeble;
         domain = BoolComboBox.getINSTANCE();
         column =  new TableColumn<>(columnName);
+        column.setEditable(isEditeble);
         setCellValueFactory();
         setCellFactory();
         setOnEditCommit();

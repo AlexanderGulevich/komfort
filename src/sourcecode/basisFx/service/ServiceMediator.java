@@ -16,14 +16,10 @@ public abstract class ServiceMediator {
     public abstract void initElements();
 
     protected  void commit(TableWrapper tableWrapper) {
-        try {
             boolean isCommitted = tableWrapper.unitOfWork.commit();
             if (isCommitted) {
                 tableWrapper.getServiceMediator().refresh(tableWrapper);
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
     }
     public  void refreshTable(TableWrapper tableWrapper, ObservableList<ActiveRecord> list ) {
         tableWrapper.setItems(list);

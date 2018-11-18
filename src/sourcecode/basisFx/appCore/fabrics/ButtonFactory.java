@@ -2,11 +2,13 @@ package basisFx.appCore.fabrics;
 
 import basisFx.appCore.elements.ButtonWrapper;
 import basisFx.appCore.elements.TableWrapper;
+import basisFx.appCore.events.MultyPushToDataStore;
 import basisFx.appCore.events.RowAddToTable;
 import basisFx.appCore.events.RowDeleteFromTable;
 import basisFx.appCore.utils.Coordinate;
 import basisFx.appCore.settings.CSSID;
 import basisFx.appCore.settings.FontsStore;
+import basisFx.service.ServiceMediator;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
@@ -26,28 +28,6 @@ public class ButtonFactory {
         return INSTANCE;
     }
 
-
-    public Button littleRowAddButton(TableWrapper tableWrapper, AnchorPane panel, Class c, Coordinate coordinate ){
-
-
-        Button button = ButtonWrapper.newBuilder()
-                .setCSSid(CSSID.Little_PANELS_BUTTON_ADD)
-                .setCoordinate(coordinate)
-                .setParentAnchor(panel)
-                .setName("\uF199")
-                .setFont(FontsStore.FOUNDATION)
-                .setFontSize(littleFontHeight)
-                .setWidth(littleButWidth)
-                .setHeight(littleButHeight)
-                .setEvents(new RowAddToTable(tableWrapper ))
-                .build().getElement();
-
-
-
-        return button;
-
-
-    }
     public Button littleRowAddButton(TableWrapper tableWrapper){
 
         Button button = ButtonWrapper.newBuilder()
@@ -64,26 +44,6 @@ public class ButtonFactory {
         return button;
 
     }
-    public Button littleRowDeleteButton(TableWrapper tableWrapper, AnchorPane panel,  Coordinate coordinate ){
-
-        Button button = ButtonWrapper.newBuilder()
-                .setCSSid(CSSID.Little_PANELS_BUTTON_DEL)
-                .setCoordinate(coordinate)
-                .setParentAnchor(panel)
-                .setName("\uF176")
-                .setFont(FontsStore.FOUNDATION)
-                .setFontSize(littleFontHeight)
-                .setWidth(littleButWidth)
-                .setHeight(littleButHeight)
-                .setEvents( new RowDeleteFromTable(tableWrapper))
-                .build().getElement();
-
-
-        return button;
-
-
-
-    }
     public Button littleRowDeleteButton(TableWrapper tableWrapper ){
 
         Button button = ButtonWrapper.newBuilder()
@@ -98,23 +58,6 @@ public class ButtonFactory {
 
 
         return button;
-
-
-
-    }
-    public Button addRowButton(AnchorPane panel, Coordinate coordinate, TableWrapper tableWrapper){
-
-        return  ButtonWrapper.newBuilder()
-                .setCSSid(CSSID.PANELS_BUTTON)
-                .setParentAnchor(panel)
-                .setCoordinate(coordinate)
-                .setName("ДОБАВИТЬ")
-                .setFontSize(15)
-                .setFont(FontsStore.ROBOTO_LIGHT )
-                .setWidth(bigButWidth)
-                .setHeight(20d)
-                .setEvents(new RowAddToTable(tableWrapper ))
-                .build().getElement();
 
 
 
@@ -136,19 +79,6 @@ public class ButtonFactory {
     }
 
 
-    public Button deleteRowButton(AnchorPane panel, Coordinate coordinate, TableWrapper tableWrapper){
-        return ButtonWrapper.newBuilder()
-                .setCSSid(CSSID.PANELS_BUTTON)
-                .setParentAnchor(panel)
-                .setCoordinate(coordinate)
-                .setName("УДАЛИТЬ")
-                .setFont(FontsStore.ROBOTO_LIGHT)
-                .setFontSize(15)
-                .setWidth(bigButWidth)
-                .setHeight(20d)
-                .setEvents(new RowDeleteFromTable(tableWrapper))
-                .build().getElement();
-    }
     public Button deleteRowButton(  TableWrapper tableWrapper){
         return ButtonWrapper.newBuilder()
                 .setCSSid(CSSID.PANELS_BUTTON)
@@ -164,21 +94,23 @@ public class ButtonFactory {
 
     }
 
-//    public Button submitButton(KindOfSubmitElement mark, AnchorPane panel, Coordinate coordinate, Submitted...submitted){
-//
-//        return ButtonWrapper.newBuilder()
-//                .setCSSid(CSSID.PANELS_BUTTON)
-//                .setParentAnchor(panel)
-//                .setCoordinate(coordinate)
-//                .setName("ОТПРАВИТЬ")
-//                .setFont(FontsStore.ROBOTO_LIGHT)
-//                .setFontSize(15)
-//                .setWidth(130d)
-//                .setHeight(20d)
-//                .build().getElement();
-//
-//
-//    }
+    public ButtonWrapper submitButton(AnchorPane panel, Coordinate coordinate, ServiceMediator mediator){
+
+        return ButtonWrapper.newBuilder()
+                .setCSSid(CSSID.PANELS_BUTTON)
+                .setParentAnchor(panel)
+                .setEvents(new MultyPushToDataStore())
+                .setServiceMediator(mediator)
+                .setCoordinate(coordinate)
+                .setName("ОТПРАВИТЬ")
+                .setFont(FontsStore.ROBOTO_LIGHT)
+                .setFontSize(15)
+                .setWidth(130d)
+                .setHeight(20d)
+                .build();
+
+
+    }
 //    public Button submitButton(KindOfSubmitElement mark, Submitted...submitted){
 //
 //        return (Button)AppNode.NodeBuilder.create()

@@ -1,5 +1,6 @@
 package basisFx.presentation.appStructura;
 
+import basisFx.appCore.ElementsStore;
 import basisFx.appCore.elements.AppNode;
 import basisFx.appCore.windows.Window;
 import javafx.stage.Stage;
@@ -26,5 +27,11 @@ public abstract class GuiStructura{
 
     public Stage getStage() {
         return stage;
+    }
+
+    public void copyToElementsStore(){
+        for (AppNode node : nodes) {
+            ElementsStore.elements.put(node.getName(),node);
+        }
     }
 }

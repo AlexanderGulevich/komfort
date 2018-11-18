@@ -15,6 +15,10 @@ public class GridOrgButtonNonSingleTable extends GridOrganization{
     @Override
     public void organize() {
 
+
+        parentGridWrapper.setColumnComputerWidth();
+
+
         bindHeight(tableWrapper);
 
         parentGridWrapper.addSpanNode(

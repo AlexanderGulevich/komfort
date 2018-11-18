@@ -187,8 +187,9 @@ public class ButtonWrapper extends AppNode{
             return this;
         }
 
-        public void setServiceMediator(ServiceMediator serviceMediator) {
+        public Builder setServiceMediator(ServiceMediator serviceMediator) {
             this.serviceMediator = serviceMediator;
+            return this;
         }
 
         public Builder setWidth(Double val) {

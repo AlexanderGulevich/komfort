@@ -4,32 +4,49 @@ import basisFx.appCore.elements.AppNode;
 import basisFx.appCore.elements.ButtonWrapper;
 import basisFx.appCore.elements.DatePickerWrapper;
 import basisFx.appCore.elements.TableWrapper;
+import basisFx.appCore.interfaces.RecordWithDate;
 import basisFx.dataSource.UnitOfWork;
 import basisFx.domain.ActiveRecord;
-
-import java.sql.SQLException;
-import java.time.LocalDate;
+import javafx.collections.ObservableList;
+import javafx.scene.control.TableColumn;
 
 public class ServiceMediatorTableAndCommonDate extends ServiceMediator {
     private TableWrapper tableWrapper;
     private DatePickerWrapper datePickerWrapper;
     private ButtonWrapper buttonWrapper;
+    private int columsToActiveEditOption[];
+
+    public ServiceMediatorTableAndCommonDate(int ...colums) {
+        if (colums != null) {
+            columsToActiveEditOption=colums;
+        }else throw new NullPointerException();
+
+    }
 
 
     @Override
     public void inform(AppNode node) {
         if (node==datePickerWrapper){
-
+            refresh(tableWrapper);
+            setEditableColums();
+            insertDateInActiveRecords();
         }
-        if (node==tableWrapper){
+        if (node==buttonWrapper)     tableWrapper.unitOfWork.commit();
+    }
 
+    private void insertDateInActiveRecords() {
+        ObservableList<ActiveRecord> items = tableWrapper.getElement().getItems();
+        for (ActiveRecord activeRecord : items) {
+            ((RecordWithDate) activeRecord).setDate(datePickerWrapper.getDate());
         }
+    }
 
-        if (node==buttonWrapper){
-
+    private void setEditableColums() {
+//        tableWrapper.getElement().setEditable(true);
+        ObservableList<TableColumn<ActiveRecord, ?>> columns = tableWrapper.getElement().getColumns();
+        for (int i : columsToActiveEditOption) {
+            columns.get(i).setEditable(true);
         }
-
-
     }
 
     @Override
@@ -42,20 +59,14 @@ public class ServiceMediatorTableAndCommonDate extends ServiceMediator {
         UnitOfWork unitOfWork = ((TableWrapper) node).unitOfWork;
         boolean readyToTransaction = record.isReadyToTransaction();
         if (readyToTransaction) {
-            Boolean isNewDomane = ActiveRecord.isNewDomane(record);
-
-            if (!isNewDomane){
-                unitOfWork.registercDirty(record.entityName,record);
-            }
-
-
-
+                unitOfWork.registerNew(record.entityName,record);
         }
     }
 
     @Override
     public void refresh(AppNode node) {
-
+        tableWrapper.getElement().getItems().clear();
+        initElements();
     }
     @Override
     public void initElements() {
@@ -73,4 +84,5 @@ public class ServiceMediatorTableAndCommonDate extends ServiceMediator {
     public void setButtonWrapper(ButtonWrapper buttonWrapper) {
         this.buttonWrapper = buttonWrapper;
     }
+
 }

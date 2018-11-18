@@ -29,6 +29,7 @@ public class ColumnWrapperDate extends ColumnWrapper{
         isEditeble = builder.isEditeble;
 
         this.column = new TableColumn<>(columnName);
+        column.setEditable(isEditeble);
 
         Callback<TableColumn<ActiveRecord, LocalDate>, TableCell<ActiveRecord, LocalDate>> dateCellFactory
                 = (TableColumn<ActiveRecord, LocalDate> param) -> new ColumnWrapperDate.DateEditingCell();

@@ -12,10 +12,6 @@ import javafx.scene.input.MouseEvent;
 
 import java.sql.SQLException;
 
-/**
- *
- * @author Alek
- */
 public class DbClick  extends AppEvent{
 
     protected Node  node;
@@ -36,25 +32,14 @@ public class DbClick  extends AppEvent{
             @Override 
             public void handle(MouseEvent event) {
                 if (event.isPrimaryButtonDown() && event.getClickCount() == 2) {
-
-                    try {
-                        run();
-                    } catch (SQLException e) {
-                        e.printStackTrace();
-                    }
-
-
+                                      run();
                 }}
             }
         );
-        
-       
-      
-        
 }
 
     @Override
-    public void run() throws SQLException {
+    public void run()   {
         this.innerEvent.setElementNonLogic(nodeWrapper).run();
         
     }

@@ -99,6 +99,8 @@ public class LeftAndTopMenuGuiStructura extends GuiStructura {
 //        nodes.add(titleImageAnchorWrapper);
         nodes.add(companyName);
 
+        copyToElementsStore();
+
     }
 
 

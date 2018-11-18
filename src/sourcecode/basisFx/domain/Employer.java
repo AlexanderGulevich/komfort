@@ -71,13 +71,28 @@ public class Employer extends ActiveRecord {
     }
 
     @Override
-    public ActiveRecord find(int id) {
-        return null;
+    public Employer find(int id) {
+        Employer pojo=new Employer() ;
+        String expression="SELECT  * FROM " +"Employer"+" WHERE ID=?";
+
+        try {
+            PreparedStatement pstmt = Db.connection.prepareStatement(expression);
+            pstmt.setInt(1, id);
+            ResultSet rs = pstmt.executeQuery();
+
+            while (rs.next()){
+                pojo.setId(rs.getInt("id"));
+                pojo.setName(rs.getString("name"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return pojo;
     }
 
     @Override
     public String toString() {
-        return null;
+        return getName();
     }
 
     @Override

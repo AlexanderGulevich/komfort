@@ -31,6 +31,7 @@ public class ColumnWrapperComboBox extends ColumnWrapper{
         domainClass=builder.domainClass;
         createNewInstance();
         column =  new TableColumn<>(columnName);
+        column.setEditable(isEditeble);
         setCellValueFactory();
         setCellFactory();
         setOnEditCommit();

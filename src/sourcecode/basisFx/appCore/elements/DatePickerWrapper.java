@@ -4,6 +4,8 @@ import basisFx.appCore.events.AppEvent;
 import basisFx.service.ServiceMediator;
 import basisFx.appCore.settings.CSSID;
 import basisFx.appCore.utils.Coordinate;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.scene.Group;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.ScrollPane;
@@ -22,6 +24,8 @@ public class DatePickerWrapper  extends AppNode{
     private DatePicker element;
     private ServiceMediator serviceMediator;
     private LocalDate date;
+    private DatePickerWrapper datePickerWrapper;
+
 
     private DatePickerWrapper(Builder builder) {
         events = builder.events;
@@ -36,7 +40,7 @@ public class DatePickerWrapper  extends AppNode{
         name = builder.name;
         stage = builder.stage;
         serviceMediator = builder.serviceMediator;
-
+        datePickerWrapper=this;
         applyWidth();
         createDatePicker();
         bond(this);
@@ -55,10 +59,17 @@ public class DatePickerWrapper  extends AppNode{
         element.setMinWidth(width);
         element.setConverter(new CustomStringConverter());
         element.setPromptText("");
-        element.setOnAction((e) -> {
-               this.date = element.getValue();
-               serviceMediator.inform(this);
-
+//        element.setOnAction((e) -> {
+//               this.date = element.getValue();
+//               serviceMediator.inform(this);
+//
+//        });
+        element.valueProperty().addListener(new ChangeListener<LocalDate>() {
+            @Override
+            public void changed(ObservableValue<? extends LocalDate> observable, LocalDate oldValue, LocalDate newValue) {
+                date = element.getValue();
+                serviceMediator.inform(datePickerWrapper);
+            }
         });
     }
 

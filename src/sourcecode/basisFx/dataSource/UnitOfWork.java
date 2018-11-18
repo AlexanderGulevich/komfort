@@ -56,7 +56,7 @@ public class UnitOfWork {
         }
     }
 
-    public boolean commit() throws SQLException{
+    public boolean commit() {
         if (commitNew() && commitDirty() && commitDeleted()){
             cleardDeleted();
             clearDirty();

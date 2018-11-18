@@ -28,11 +28,7 @@ public class ServiceMediatorSingleTable extends ServiceMediator {
             Boolean isNewDomane = ActiveRecord.isNewDomane(record);
             if (!isNewDomane){
                 unitOfWork.registercDeleted(record.entityName,record);
-                try {
                     unitOfWork.commit();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
             }
         }
     }
@@ -49,12 +45,8 @@ public class ServiceMediatorSingleTable extends ServiceMediator {
             }else {
                 unitOfWork.registerNew(record.entityName,record);
             }
-            try {
                 unitOfWork.commit();
                 ((TableWrapper) node).getServiceMediator().refresh(node);
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
 
         }
     }
