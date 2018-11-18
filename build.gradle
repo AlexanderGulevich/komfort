@@ -108,9 +108,9 @@ distributions {
 //            from (sourceSets.main.resources)
 //            from jar
 //        }
-//        contents{
-//            from {'log'}
-//        }
+        contents{
+            from {sourceSets.main.resources }
+        }
 
     }
 }

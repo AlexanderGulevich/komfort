@@ -46,17 +46,23 @@ public class CSSHandler {
             path.getRoot();
 //            uri = getClass().getResource(stylesPathe.getPath()).toURI();
 //            uri = getClass().getResource("").toURI();
-            URL resource = getClass().getResource("\\");
+            URL resource = getClass().getResource(stylesPathe.getPath());
+        try {
+            URI uri1 = resource.toURI();
+            System.err.println("1111111111111111---"+uri1.toString().toUpperCase());
+            folder = new File(uri1);
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+        }
 
-            System.err.println(resource.toExternalForm());
-
+//            folder = new File(resource);
 //            folder = new File(uri);
-//            listOfFiles = folder.listFiles();
+            listOfFiles = folder.listFiles();
 //
-//            boolean directory = folder.isDirectory();
-//            boolean absolute = folder.isAbsolute();
-//            boolean file = folder.isFile();
-//            boolean hidden = folder.isHidden();
+            boolean directory = folder.isDirectory();
+            boolean absolute = folder.isAbsolute();
+            boolean file = folder.isFile();
+            boolean hidden = folder.isHidden();
 
 
 //        } catch (URISyntaxException e) {
