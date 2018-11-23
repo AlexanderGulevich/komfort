@@ -18,6 +18,7 @@ public class PathesResearch {
         System.err.println("Paths.get(\"res\")-----"+ Paths.get("res"));
 
         Path path = Paths.get("src", "res","res", "css", "custom_1", "windows.css");
+        System.err.println(path);
 
         String stringPaths=null;
         try {

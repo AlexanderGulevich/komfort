@@ -59,8 +59,12 @@ public class AppPreloader extends Preloader {
 
         scene.setFill( Color.TRANSPARENT);
 
-            Path path = Paths.get("src", "res","res", "css", "custom_1", "windows.css");
-
+                    Path path = null;
+                    try {
+                        path = Paths.get("src", "res","res", "css", "custom_1", "windows.css").toRealPath();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
 
 
                     String stringPaths=null;
@@ -70,9 +74,11 @@ public class AppPreloader extends Preloader {
                 e.printStackTrace();
             }
 
-            //todo стили
+
+                    String stringPaths2 = System.getProperty("user.dir") + File.separator + "src\\res\\res\\css\\custom_1\\windows.css";
+                    //todo стили
         scene.getStylesheets().add(
-                "file:/D:/apeiron/komfort/src/res/res/css/custom_1/windows.css"
+                stringPaths2
         );
 //                    scene.setUserAgentStylesheet(
 //                "src/res/res/css/custom_1/windows.css"
