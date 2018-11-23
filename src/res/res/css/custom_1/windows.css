@@ -98,7 +98,7 @@
 
 #TITLE_WINDOW_IMG{
 
- -fx-background-image: url("/res/img/logo3.png");
+ -fx-background-image: url("../../img/logo3.png");
 
 -fx-pref-width:170;
 -fx-pref-height:32;
@@ -112,7 +112,7 @@
    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.9), 10, 0, 0.0, 0.0);
 
       -fx-background-color: transparent;
-   -fx-background-image: url("/res/img/preloader.png");
+   -fx-background-image: url("../../img/preloader.png");
 
 }
 

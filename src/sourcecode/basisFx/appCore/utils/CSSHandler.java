@@ -41,33 +41,16 @@ public class CSSHandler {
         URI uri=null;
         File folder=null;
         File[] listOfFiles=null;
-//        File folder = new File(stylesPathe.getPath());
-//        try {
-            Path path = Paths.get(stylesPathe.getPath());
-            path.getRoot();
-            URL resource = getClass().getResource(stylesPathe.getPath());
-        try {
-            URI uri1 = resource.toURI();
 
-            folder = new File(uri1);
-        } catch (URISyntaxException e) {
-            e.printStackTrace();
-        }
-
-//            folder = new File(resource);
-//            folder = new File(uri);
-            listOfFiles = folder.listFiles();
+        String stringPath = System.getProperty("user.dir") + "/"+stylesPathe.getPath();
+        stringPath=stringPath.replace("\\","/");
+        folder = new File(stringPath);
+        listOfFiles = folder.listFiles();
 //
             boolean directory = folder.isDirectory();
             boolean absolute = folder.isAbsolute();
             boolean file = folder.isFile();
             boolean hidden = folder.isHidden();
-
-
-//        } catch (URISyntaxException e) {
-//            e.printStackTrace();
-//        }
-
 
 
         addtStylesheetsToSceen(scene, listOfFiles);
@@ -81,7 +64,9 @@ public class CSSHandler {
                 String fileName = listOfFile.getName();
                 File parentFolder = listOfFile.getParentFile();
 
-                scene.getStylesheets().addAll("res/css/"+parentFolder.getName()+"/"+fileName);
+                String path = "file:/" + System.getProperty("user.dir") + "/src/res/res/css/"+parentFolder.getName()+"/"+fileName;
+                path=path.replace("\\","/");
+                scene.getStylesheets().addAll(path);
 
             }
         }

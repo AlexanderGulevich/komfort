@@ -14,6 +14,7 @@ import basisFx.appCore.utils.Coordinate;
 import com.sun.javafx.application.LauncherImpl;
 import javafx.application.Platform;
 import javafx.application.Preloader;
+import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
@@ -58,32 +59,9 @@ public class AppPreloader extends Preloader {
 
 
         scene.setFill( Color.TRANSPARENT);
-
-                    Path path = null;
-                    try {
-                        path = Paths.get("src", "res","res", "css", "custom_1", "windows.css").toRealPath();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-
-
-                    String stringPaths=null;
-            try {
-                 stringPaths = path.toUri().toURL().toExternalForm();
-            } catch (MalformedURLException e) {
-                e.printStackTrace();
-            }
-
-
-                    String stringPaths2 = System.getProperty("user.dir") + File.separator + "src\\res\\res\\css\\custom_1\\windows.css";
-                    //todo стили
-        scene.getStylesheets().add(
-                stringPaths2
-        );
-//                    scene.setUserAgentStylesheet(
-//                "src/res/res/css/custom_1/windows.css"
-//        );
-
+                    String path = "file:/" + System.getProperty("user.dir") + "/src/res/res/css/preloader.css";
+                    path=path.replace("\\","/");
+                    scene.getStylesheets().add(path);
             }
         );
 

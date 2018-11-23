@@ -4,7 +4,6 @@ import basisFx.presentation.appStructura.GuiStructura;
 import basisFx.appCore.elements.AnchorWrapper;
 import basisFx.appCore.elements.AppNode;
 import basisFx.appCore.settings.CSSID;
-import basisFx.appCore.settings.IMGpath;
 import basisFx.appCore.utils.Coordinate;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
@@ -104,9 +103,10 @@ public abstract class Window {
     }
 
     private void initIcon() {
+        String path = "file:/" + System.getProperty("user.dir") + "/src/res/res/img/icon.png";
+        path=path.replace("\\","/");
         stage.getIcons().add(
-                new Image(getClass().getResourceAsStream(IMGpath.ICONTOOP.get()
-                )));
+                new Image(path));
     }
 
     public AnchorPane getTopVisibleAnchor() {

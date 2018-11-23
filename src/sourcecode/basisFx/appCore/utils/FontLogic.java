@@ -37,9 +37,9 @@ public class FontLogic {
     public static Font loadFont(FontsStore fs, double size){
 
 
-        InputStream is=FontLogic.class.getResourceAsStream(fs.getPath());
-        
-        Font f=Font.loadFont(is, size);
+        String path = "file:/" + System.getProperty("user.dir") + "/src/res/"+fs.getPath();
+        path=path.replace("\\","/");
+        Font f=Font.loadFont(path, size);
         
         if(f!=null ){
                      return f;
