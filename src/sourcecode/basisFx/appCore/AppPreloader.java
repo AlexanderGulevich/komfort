@@ -21,6 +21,14 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
+import java.io.File;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.nio.file.FileStore;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
 public class AppPreloader extends Preloader {
 
 
@@ -41,20 +49,40 @@ public class AppPreloader extends Preloader {
     public void init() throws Exception {
       
         Platform.runLater(() -> {
-            
+
         setTransparentRoot();
         setVisibleRoot();
 
 
         this.scene= new Scene(root,WIDTH_TRANSPARENT,HEIGHT_TRANSPARENT);
 
-        
+
         scene.setFill( Color.TRANSPARENT);
-        
-        scene.getStylesheets().add(getClass().getResource(
-                "/res/css/custom_1/windows.css"
-      ).toExternalForm());
-        });
+
+            Path path = Paths.get("src", "res","res", "css", "custom_1", "windows.css");
+
+
+
+                    String stringPaths=null;
+            try {
+                 stringPaths = path.toUri().toURL().toExternalForm();
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            }
+
+            //todo стили
+        scene.getStylesheets().add(
+                "file:/D:/apeiron/komfort/src/res/res/css/custom_1/windows.css"
+        );
+//                    scene.setUserAgentStylesheet(
+//                "src/res/res/css/custom_1/windows.css"
+//        );
+
+            }
+        );
+
+
+
     }
 
     @Override
@@ -126,5 +154,5 @@ public class AppPreloader extends Preloader {
                  
                 
      }
-    
+
 }

@@ -53,18 +53,24 @@ sourceSets {main {
         srcDirs  'src/sourcecode'
     } } }
 sourceSets {
-    main {
+    main2 {
         resources {
             srcDirs  'src/res'
         }
     }}
-sourceSets{
-    test{
-        java{
-            srcDirs "src/tests"
-        }resources{
-            srcDirs "src/res"
-        }}}
+//sourceSets {
+//    main2 {
+//        resources {
+//            srcDirs  'src/res'
+//        }
+//    }}
+//sourceSets{
+//    test{
+//        java{
+//            srcDirs "src/tests"
+//        }resources{
+//            srcDirs "src/res"
+//        }}}
 
 test.finalizedBy(project.tasks.jacocoTestReport)
 
@@ -96,24 +102,17 @@ distributions {
     main {
         contents {
             baseName = 'Komfort'
-            into ('lib') {
-                from (project.configurations.runtime)
-            }
-
             from jar
-
+            into('lib') {
+                from(project.configurations.runtime)
+            }
+            into('src/res') {
+                from { sourceSets.main2.resources }
+            }
         }
-//        contents{
-//            baseName = 'Komfort'
-//            from (sourceSets.main.resources)
-//            from jar
-//        }
-        contents{
-            from {sourceSets.main.resources }
-        }
-
     }
 }
+
 
 
 dependencies {
@@ -132,11 +131,10 @@ dependencies {
     compile group : 'org.hsqldb', name: 'hsqldb', version: '2.4.0'
 
     compile group: 'xerces', name: 'xercesImpl', version: '2.11.0'
-
+    compile 'com.google.guava:guava:27.0-jre'
 //    compile group: 'us.fatehi', name: 'schemacrawler-hsqldb', version: '14.17.04'
     
 //    compile 'com.google.code.gson:gson:2.8.2'
-//    compile group: 'com.google.guava', name: 'guava', version: '23.5-jre'
 //    compile group: 'com.google.inject', name: 'guice', version: '4.1.0'
 //    compile group: 'com.google.http-client', name: 'google-http-client', version: '1.23.0'
 
@@ -162,10 +160,8 @@ jar()   {
                 'Manifest-Version': 1.0
         )
     }
-//    exclude { sourceSets.main.resources}
-//    include { project.configurations.runtime}
-
 }
+
 //task copyLib(type: Copy) {
 //    into 'build/output/lib'
 //    from configurations.compile

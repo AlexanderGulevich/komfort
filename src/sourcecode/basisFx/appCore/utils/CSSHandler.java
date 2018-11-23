@@ -37,6 +37,7 @@ public class CSSHandler {
     }
 
     public void loadStylesToScene(Scene scene){
+
         URI uri=null;
         File folder=null;
         File[] listOfFiles=null;
@@ -44,12 +45,10 @@ public class CSSHandler {
 //        try {
             Path path = Paths.get(stylesPathe.getPath());
             path.getRoot();
-//            uri = getClass().getResource(stylesPathe.getPath()).toURI();
-//            uri = getClass().getResource("").toURI();
             URL resource = getClass().getResource(stylesPathe.getPath());
         try {
             URI uri1 = resource.toURI();
-            System.err.println("1111111111111111---"+uri1.toString().toUpperCase());
+
             folder = new File(uri1);
         } catch (URISyntaxException e) {
             e.printStackTrace();
@@ -69,29 +68,24 @@ public class CSSHandler {
 //            e.printStackTrace();
 //        }
 
-        ArrayList <String>stylePathes=new ArrayList<>();
 
 
+        addtStylesheetsToSceen(scene, listOfFiles);
+
+
+    }
+
+    private void addtStylesheetsToSceen(Scene scene, File[] listOfFiles) {
         if (listOfFiles != null) {
             for (File listOfFile : listOfFiles) {
                 String fileName = listOfFile.getName();
                 File parentFolder = listOfFile.getParentFile();
 
-//                scene.getStylesheets().add(getClass().getResource(
-//                        listOfFile.getPath()
-//                ).toExternalForm());
-
-
-                scene.getStylesheets().addAll("/res/css/"+parentFolder.getName()+"/"+fileName);
+                scene.getStylesheets().addAll("res/css/"+parentFolder.getName()+"/"+fileName);
 
             }
         }
-
-
     }
-    
 
-    
- 
-    
+
 }
