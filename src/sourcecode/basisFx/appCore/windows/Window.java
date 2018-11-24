@@ -1,5 +1,6 @@
 package basisFx.appCore.windows;
 
+import basisFx.appCore.utils.TaskPanelIcomToPlatform;
 import basisFx.presentation.appStructura.GuiStructura;
 import basisFx.appCore.elements.AnchorWrapper;
 import basisFx.appCore.elements.AppNode;
@@ -15,10 +16,6 @@ import java.util.HashMap;
 //import org.scenicview.ScenicView;
 
 
-/**
- *
- * @author 62
- */
 public abstract class Window {
 
     protected Stage stage;
@@ -36,7 +33,6 @@ public abstract class Window {
         initRoot();
         initTopVisiblePanel();
         createScene();
-        initIcon();
         initStructuraNods(structura);
         loadWindowNodsToMap(structura);
 
@@ -49,7 +45,6 @@ public abstract class Window {
         initRoot();
         initTopVisiblePanel();
         createScene();
-        initIcon();
         initStructuraNods(structura);
         loadWindowNodsToMap(structura);
 
@@ -100,13 +95,6 @@ public abstract class Window {
 
     public AnchorPane getRoot() {
         return root;
-    }
-
-    private void initIcon() {
-        String path = "file:/" + System.getProperty("user.dir") + "/src/res/res/img/icon.png";
-        path=path.replace("\\","/");
-        stage.getIcons().add(
-                new Image(path));
     }
 
     public AnchorPane getTopVisibleAnchor() {

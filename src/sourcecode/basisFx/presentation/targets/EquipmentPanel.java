@@ -1,5 +1,6 @@
 package basisFx.presentation.targets;
 
+import basisFx.appCore.grid.ButtonsForGridBig;
 import basisFx.appCore.grid.ButtonsForGridLittle;
 import basisFx.service.ServiceMediatorSingleTable;
 import basisFx.appCore.elements.TableWrapper;
@@ -36,7 +37,7 @@ public class EquipmentPanel extends TargetPanel {
 
 
         GridPaneWrapper.newBuilder()
-                .setGridOrganization(new GridOrgTopButSingleTable(tableWrapper,new ButtonsForGridLittle()))
+                .setGridOrganization(new GridOrgTopButSingleTable(tableWrapper,new ButtonsForGridBig()))
                 .setName("Оборудование")
                 .setParentAnchor(innerAnchorPane)
                 .setCoordinate(new Coordinate(0d,10d,10d,0d))
@@ -45,9 +46,6 @@ public class EquipmentPanel extends TargetPanel {
 
         mediatorSingleTable.setTableWrapper(tableWrapper);
         mediatorSingleTable.initElements();
-
-
-
 
     }
 }

@@ -46,7 +46,7 @@ public class LabelPanel  extends TargetPanel {
         GridPaneWrapper labelGridPaneWrapper = GridPaneWrapper.newBuilder()
                 .setGridLinesVisibility(gridVisibility)
                 .setName("Этикетки")
-                .setGridOrganization(new GridOrgTopButSingleTable(labelTableWrapper,new ButtonsForGridBig()))
+                .setGridOrganization(new GridOrgTopButSingleTable(labelTableWrapper,new ButtonsForGridLittle()))
                 .build();
 
         TableWrapper labelPriceTableWrapper = TableWrapper.newBuilder()

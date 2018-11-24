@@ -11,6 +11,7 @@ import basisFx.appCore.settings.CSSID;
 import static basisFx.appCore.settings.Settings.PRELODER_COUNT_LIMIT;
 
 import basisFx.appCore.utils.Coordinate;
+import basisFx.appCore.utils.TaskPanelIcomToPlatform;
 import com.sun.javafx.application.LauncherImpl;
 import javafx.application.Platform;
 import javafx.application.Preloader;
@@ -63,6 +64,7 @@ public class AppPreloader extends Preloader {
                     path=path.replace("\\","/");
                     scene.getStylesheets().add(path);
             }
+
         );
 
 
@@ -72,9 +74,9 @@ public class AppPreloader extends Preloader {
     @Override
     public void start(Stage primaryStage) throws Exception {
 
-        this.stage=primaryStage;
+        stage=primaryStage;
+        new TaskPanelIcomToPlatform(stage);
         stage.setScene(scene);
-       
         stage.initStyle(StageStyle.TRANSPARENT);
         stage.show();
   
