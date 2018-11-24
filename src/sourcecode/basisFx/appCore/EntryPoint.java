@@ -1,6 +1,7 @@
 package basisFx.appCore;
         
 
+import basisFx.appCore.utils.PathToFile;
 import basisFx.appCore.utils.TaskPanelIcomToPlatform;
 import com.sun.javafx.application.LauncherImpl;
 import basisFx.App;
@@ -26,6 +27,7 @@ public class EntryPoint extends Application  {
     @Override
     public void start(Stage primaryStage) throws Exception {
         new TaskPanelIcomToPlatform(primaryStage);
+        Application.setUserAgentStylesheet(PathToFile.getPath("/src/res/res/css/modena/modena.css"));
         new App(primaryStage);
         
 

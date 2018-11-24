@@ -64,9 +64,7 @@ public class CSSHandler {
                 String fileName = listOfFile.getName();
                 File parentFolder = listOfFile.getParentFile();
 
-                String path = "file:/" + System.getProperty("user.dir") + "/src/res/res/css/"+parentFolder.getName()+"/"+fileName;
-                path=path.replace("\\","/");
-                scene.getStylesheets().addAll(path);
+                scene.getStylesheets().addAll(PathToFile.getPath("/src/res/res/css/"+parentFolder.getName()+"/"+fileName));
 
             }
         }
