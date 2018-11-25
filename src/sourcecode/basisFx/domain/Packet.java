@@ -95,6 +95,9 @@ public class Packet extends  ActiveRecord {
 
     @Override
     public String toString() {
+        if (getSize() != null) {
+            return  getSize().getSize();
+        }
         return  null;
     }
 

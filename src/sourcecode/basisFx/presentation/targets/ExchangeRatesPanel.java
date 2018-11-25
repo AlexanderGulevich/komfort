@@ -1,7 +1,7 @@
 package basisFx.presentation.targets;
 
 import basisFx.appCore.grid.ButtonsForGridLittle;
-import basisFx.service.ServiceMediatorTwoLinkedTable;
+import basisFx.service.ServiceTwoLinkedTable;
 import basisFx.appCore.elements.TableWrapper;
 import basisFx.appCore.grid.GridOrgTopButSingleTable;
 import basisFx.appCore.grid.GridPaneWrapper;
@@ -17,7 +17,7 @@ import basisFx.presentation.TargetPanel;
 public class ExchangeRatesPanel extends TargetPanel {
 
     private boolean gridVisibility=false;
-    private ServiceMediatorTwoLinkedTable mediatorTwoLinkedTable =new ServiceMediatorTwoLinkedTable();
+    private ServiceTwoLinkedTable mediatorServiceTwoLinkedTable =new ServiceTwoLinkedTable();
     private GridOrgTwoBondGrids gridOrganization =new GridOrgTwoBondGrids();
 
       @Override
@@ -28,7 +28,7 @@ public class ExchangeRatesPanel extends TargetPanel {
                 .setUnitOfWork(unitOfWork)
                 .setIsEditable(true)
                 .setIsSortableColums(false)
-                .setServiceMediator(mediatorTwoLinkedTable)
+                .setServiceMediator(mediatorServiceTwoLinkedTable)
                 .setColumnWrappers(
                         ColumnWrapperString.newBuilder()
                                 .setColumnName("Наименование")
@@ -49,7 +49,7 @@ public class ExchangeRatesPanel extends TargetPanel {
                 .setUnitOfWork(unitOfWork)
                 .setIsEditable(true)
                 .setIsSortableColums(false)
-                .setServiceMediator(mediatorTwoLinkedTable)
+                .setServiceMediator(mediatorServiceTwoLinkedTable)
                 .setColumnWrappers(
                         ColumnWrapperDouble.newBuilder()
                                 .setColumnName("Курс")
@@ -83,9 +83,9 @@ public class ExchangeRatesPanel extends TargetPanel {
                 .build();
 
 
-        mediatorTwoLinkedTable.setAccessoryTableWrapper(exchangeRatesTableWrapper);
-        mediatorTwoLinkedTable.setPrimaryTableWrapper(currencyTableWrapper);
-        mediatorTwoLinkedTable.initElements();
+        mediatorServiceTwoLinkedTable.setAccessoryTableWrapper(exchangeRatesTableWrapper);
+        mediatorServiceTwoLinkedTable.setPrimaryTableWrapper(currencyTableWrapper);
+        mediatorServiceTwoLinkedTable.initElements();
     }
 
 

@@ -10,15 +10,15 @@ import basisFx.domain.ActiveRecord;
 import javafx.collections.ObservableList;
 import javafx.scene.control.TableColumn;
 
-public class ServiceMediatorTableAndCommonDate extends ServiceMediator {
+public class ServiceTableAndCommonDate extends ServiceMediator {
     private TableWrapper tableWrapper;
     private DatePickerWrapper datePickerWrapper;
     private ButtonWrapper buttonWrapper;
     private int columsToActiveEditOption[];
 
-    public ServiceMediatorTableAndCommonDate(int ...colums) {
-        if (colums != null) {
-            columsToActiveEditOption=colums;
+    public ServiceTableAndCommonDate(int ...editableColumsInTable) {
+        if (editableColumsInTable != null) {
+            columsToActiveEditOption=editableColumsInTable;
         }else throw new NullPointerException();
 
     }

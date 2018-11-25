@@ -5,7 +5,7 @@ import basisFx.appCore.elements.TableWrapper;
 import basisFx.domain.ActiveRecord;
 import javafx.collections.ObservableList;
 
-public class ServiceMediatorTwoLinkedTable extends ServiceMediator {
+public class ServiceTwoLinkedTable extends ServiceMediator {
 
     private TableWrapper primaryTableWrapper;
     private TableWrapper accessoryTableWrapper;
@@ -42,7 +42,7 @@ public class ServiceMediatorTwoLinkedTable extends ServiceMediator {
     @Override
     public void wasRemoved(AppNode node, ActiveRecord record) {
         TableWrapper tableWrapper = (TableWrapper) node;
-        ServiceMediatorTwoLinkedTable mediator = (ServiceMediatorTwoLinkedTable) tableWrapper.getServiceMediator();
+        ServiceTwoLinkedTable mediator = (ServiceTwoLinkedTable) tableWrapper.getServiceMediator();
         Boolean isNewDomane = ActiveRecord.isNewDomane(record);
         boolean readyToTransaction = record.isReadyToTransaction();
         if (readyToTransaction) {
@@ -55,7 +55,7 @@ public class ServiceMediatorTwoLinkedTable extends ServiceMediator {
             }
         }
     }
-    private  void removeAccessoryTableItems(ServiceMediatorTwoLinkedTable mediator) {
+    private  void removeAccessoryTableItems(ServiceTwoLinkedTable mediator) {
         ObservableList<ActiveRecord> items = mediator.getAccessoryTableWrapper().getElement().getItems();
         if (items != null) {
             for (ActiveRecord record:items) {

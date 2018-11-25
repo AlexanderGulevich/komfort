@@ -7,7 +7,7 @@ import basisFx.domain.ActiveRecord;
 
 import java.sql.SQLException;
 
-public class ServiceMediatorSingleTable extends ServiceMediator {
+public class ServiceSingleTable extends ServiceMediator {
 
     private TableWrapper tableWrapper;
 

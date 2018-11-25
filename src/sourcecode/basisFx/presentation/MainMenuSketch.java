@@ -19,10 +19,13 @@ public class MainMenuSketch extends MenuSketch {
                         .setActive(true)
                         .setFontSize(iconSize)
                         .build().add(
-
+                        FontItemLeaf.newBuilder()
+                                .setDescription("Учет выходной продукции")
+                                .setTargetCreator(OutputPanel ::new )
+                                .build(),
                             FontItemLeaf.newBuilder()
                                     .setDescription("Учет сырья")
-//                                    .setTargetCreator(fm.rawMateriaAccountingPanel())
+                                    .setTargetCreator(RawMateriaPanel::new)
                                     .build()
                 ),
 

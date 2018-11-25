@@ -8,19 +8,16 @@ import basisFx.appCore.fabrics.ButtonFactory;
 import basisFx.appCore.grid.GridOrgButtonNonSingleTable;
 import basisFx.appCore.grid.GridPaneWrapper;
 import basisFx.appCore.table.ColumnWrapperComboBox;
-import basisFx.appCore.table.ColumnWrapperDate;
 import basisFx.appCore.table.ColumnWrapperDouble;
-import basisFx.appCore.table.ColumnWrapperString;
 import basisFx.appCore.utils.Coordinate;
 import basisFx.domain.Employer;
-import basisFx.domain.PacketSize;
 import basisFx.domain.TimeRecordingForEmployers;
 import basisFx.presentation.TargetPanel;
-import basisFx.service.ServiceMediatorTableAndCommonDate;
+import basisFx.service.ServiceTableAndCommonDate;
 
 public class TimeRecordingPanel extends TargetPanel {
 
-    ServiceMediatorTableAndCommonDate mediator = new ServiceMediatorTableAndCommonDate(1);
+    ServiceTableAndCommonDate mediator = new ServiceTableAndCommonDate(1);
 
     @Override
     public void init() {

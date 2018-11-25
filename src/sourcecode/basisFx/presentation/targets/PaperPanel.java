@@ -5,7 +5,7 @@ import basisFx.appCore.grid.ButtonsForGridLittle;
 import basisFx.appCore.grid.GridOrgTopButSingleTable;
 import basisFx.appCore.grid.GridOrgTwoBondGrids;
 import basisFx.appCore.grid.GridPaneWrapper;
-import basisFx.service.ServiceMediatorTwoLinkedTable;
+import basisFx.service.ServiceTwoLinkedTable;
 import basisFx.appCore.table.ColumnWrapperComboBox;
 import basisFx.appCore.table.ColumnWrapperDate;
 import basisFx.appCore.table.ColumnWrapperDouble;
@@ -17,7 +17,7 @@ import basisFx.presentation.TargetPanel;
 
 public class PaperPanel  extends TargetPanel {
     private boolean gridVisibility=false;
-    private ServiceMediatorTwoLinkedTable mediatorTwoLinkedTable =new ServiceMediatorTwoLinkedTable();
+    private ServiceTwoLinkedTable mediatorServiceTwoLinkedTable =new ServiceTwoLinkedTable();
     private GridOrgTwoBondGrids gridOrganization =new GridOrgTwoBondGrids();
 
     @Override
@@ -28,7 +28,7 @@ public class PaperPanel  extends TargetPanel {
                 .setUnitOfWork(unitOfWork)
                 .setIsEditable(true)
                 .setIsSortableColums(false)
-                .setServiceMediator(mediatorTwoLinkedTable)
+                .setServiceMediator(mediatorServiceTwoLinkedTable)
                 .setColumnWrappers(
                         ColumnWrapperComboBox.newBuilder(Counterparty.class)
                                 .setColumnName("Поставщик")
@@ -50,7 +50,7 @@ public class PaperPanel  extends TargetPanel {
                 .setUnitOfWork(unitOfWork)
                 .setIsEditable(true)
                 .setIsSortableColums(false)
-                .setServiceMediator(mediatorTwoLinkedTable)
+                .setServiceMediator(mediatorServiceTwoLinkedTable)
                 .setColumnWrappers(
                         ColumnWrapperDouble.newBuilder()
                                 .setColumnName("Цена")
@@ -84,9 +84,9 @@ public class PaperPanel  extends TargetPanel {
                 .build();
 
 
-        mediatorTwoLinkedTable.setAccessoryTableWrapper(labelPriceTableWrapper);
-        mediatorTwoLinkedTable.setPrimaryTableWrapper(labelTableWrapper);
-        mediatorTwoLinkedTable.initElements();
+        mediatorServiceTwoLinkedTable.setAccessoryTableWrapper(labelPriceTableWrapper);
+        mediatorServiceTwoLinkedTable.setPrimaryTableWrapper(labelTableWrapper);
+        mediatorServiceTwoLinkedTable.initElements();
     }
 
 }

@@ -9,7 +9,6 @@ import basisFx.appCore.utils.Coordinate;
 import basisFx.appCore.settings.CSSID;
 import basisFx.appCore.settings.FontsStore;
 import basisFx.service.ServiceMediator;
-import javafx.collections.ObservableList;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 
@@ -77,7 +76,6 @@ public class ButtonFactory {
 
 
     }
-
 
     public Button deleteRowButton(  TableWrapper tableWrapper){
         return ButtonWrapper.newBuilder()

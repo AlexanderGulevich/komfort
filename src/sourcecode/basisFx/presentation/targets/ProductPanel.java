@@ -1,7 +1,7 @@
 package basisFx.presentation.targets;
 
 import basisFx.appCore.grid.ButtonsForGridLittle;
-import basisFx.service.ServiceMediatorTwoLinkedTable;
+import basisFx.service.ServiceTwoLinkedTable;
 import basisFx.appCore.elements.TableWrapper;
 import basisFx.appCore.grid.GridOrgTopButSingleTable;
 import basisFx.appCore.grid.GridOrgTwoBondGrids;
@@ -18,7 +18,7 @@ import basisFx.presentation.TargetPanel;
 public class ProductPanel  extends TargetPanel {
 
     private boolean gridVisibility=false;
-    private ServiceMediatorTwoLinkedTable mediatorTwoLinkedTable =new ServiceMediatorTwoLinkedTable();
+    private ServiceTwoLinkedTable mediatorServiceTwoLinkedTable =new ServiceTwoLinkedTable();
     private GridOrgTwoBondGrids gridOrganization =new GridOrgTwoBondGrids();
 
     @Override
@@ -29,7 +29,7 @@ public class ProductPanel  extends TargetPanel {
                 .setUnitOfWork(unitOfWork)
                 .setIsEditable(true)
                 .setIsSortableColums(false)
-                .setServiceMediator(mediatorTwoLinkedTable)
+                .setServiceMediator(mediatorServiceTwoLinkedTable)
                 .setColumnWrappers(
                         ColumnWrapperString.newBuilder()
                                 .setColumnName("Наименование")
@@ -57,7 +57,7 @@ public class ProductPanel  extends TargetPanel {
                 .setUnitOfWork(unitOfWork)
                 .setIsEditable(true)
                 .setIsSortableColums(false)
-                .setServiceMediator(mediatorTwoLinkedTable)
+                .setServiceMediator(mediatorServiceTwoLinkedTable)
                 .setColumnWrappers(
                         ColumnWrapperDouble.newBuilder()
                                 .setColumnName("Цена")
@@ -91,9 +91,9 @@ public class ProductPanel  extends TargetPanel {
                 .build();
 
 
-        mediatorTwoLinkedTable.setAccessoryTableWrapper(priceTableWrapper);
-        mediatorTwoLinkedTable.setPrimaryTableWrapper(productTableWrapper);
-        mediatorTwoLinkedTable.initElements();
+        mediatorServiceTwoLinkedTable.setAccessoryTableWrapper(priceTableWrapper);
+        mediatorServiceTwoLinkedTable.setPrimaryTableWrapper(productTableWrapper);
+        mediatorServiceTwoLinkedTable.initElements();
     }
 
 

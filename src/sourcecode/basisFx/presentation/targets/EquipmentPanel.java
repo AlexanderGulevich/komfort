@@ -1,8 +1,7 @@
 package basisFx.presentation.targets;
 
 import basisFx.appCore.grid.ButtonsForGridBig;
-import basisFx.appCore.grid.ButtonsForGridLittle;
-import basisFx.service.ServiceMediatorSingleTable;
+import basisFx.service.ServiceSingleTable;
 import basisFx.appCore.elements.TableWrapper;
 import basisFx.appCore.grid.GridOrgTopButSingleTable;
 import basisFx.appCore.grid.GridPaneWrapper;
@@ -17,7 +16,7 @@ public class EquipmentPanel extends TargetPanel {
     @Override
     public void init() {
 
-        ServiceMediatorSingleTable mediatorSingleTable = new ServiceMediatorSingleTable();
+        ServiceSingleTable mediatorSingleTable = new ServiceSingleTable();
 
         TableWrapper tableWrapper = TableWrapper.newBuilder()
                 .setActiveRecordClass(Equipment.class)

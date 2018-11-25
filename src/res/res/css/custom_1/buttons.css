@@ -40,15 +40,15 @@
 }
 #Little_PANELS_BUTTON_DEL{
 
-       /* -fx-text-fill:#ee8061; */
-            -fx-text-fill:#e9a18c;
+       -fx-text-fill:#477a8c;
+            /* -fx-text-fill:#e9a18c; */
 
 }
 
 #Little_PANELS_BUTTON_ADD{
 
-       /* -fx-text-fill:#46c343; */
-            -fx-text-fill:#88d287;
+       -fx-text-fill:#477a8c;
+            /* -fx-text-fill:#88d287; */
 
 }
 

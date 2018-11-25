@@ -7,7 +7,7 @@ import javafx.collections.ObservableList;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableView;
 
-public class RowAddToTable <T> extends AppEvent{
+public class RowAddToTable<T> extends AppEvent{
 
     private Button but;
     private TableWrapper tableWrapper;
