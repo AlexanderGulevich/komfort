@@ -11,6 +11,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.TableColumn;
 
+import java.time.LocalDate;
+
 public class ServiceBlankContentTableAndCommonDate extends ServiceMediator{
     private TableWrapper tableWrapper;
     private DatePickerWrapper datePickerWrapper;
@@ -44,7 +46,8 @@ public class ServiceBlankContentTableAndCommonDate extends ServiceMediator{
     @Override
     public void wasChanged(AppNode node, ActiveRecord record) {
         UnitOfWork unitOfWork = ((TableWrapper) node).unitOfWork;
-        ((RecordWithDate) record).setDate(datePickerWrapper.getDate());
+        LocalDate date = datePickerWrapper.getDate();
+        ((RecordWithDate) record).setDate(date);
         record.setId(0);
         boolean readyToTransaction = record.isReadyToTransaction();
         if (readyToTransaction) {

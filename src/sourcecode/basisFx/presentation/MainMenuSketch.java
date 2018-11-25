@@ -24,8 +24,8 @@ public class MainMenuSketch extends MenuSketch {
                                 .setTargetCreator(OutputPanel ::new )
                                 .build(),
                             FontItemLeaf.newBuilder()
-                                    .setDescription("Учет сырья")
-                                    .setTargetCreator(RawMateriaPanel::new)
+                                    .setDescription("Учет джамбо-ролей")
+                                    .setTargetCreator(JumboAccountingPanel::new)
                                     .build()
                 ),
 
