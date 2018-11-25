@@ -1,7 +1,7 @@
 plugins {
   id 'com.gradle.build-scan' version '1.11'
   id 'java'
-  id "edu.sc.seis.launch4j" version "2.4.2"
+    id 'edu.sc.seis.launch4j' version '2.4.4'
 }
 apply plugin: 'java'
 apply plugin: 'project-report'
@@ -28,6 +28,7 @@ ext {
     author = "Alexander"
     mainClass= 'basisFx.appCore.EntryPoint'
     mainClassName = mainClass
+    mainDir=rootProject.projectDir.toString().replace("\\", "/")
 }
 task wrapper(type: Wrapper) {
    gradleVersion = '4.3.1'
@@ -46,6 +47,7 @@ jacocoTestReport.enabled=true
 assemble.enabled = true
 distTar.enabled = false
 distZip.enabled = true
+
 
 
 sourceSets {main {
@@ -113,8 +115,6 @@ distributions {
     }
 }
 
-
-
 dependencies {
 //    runtime files('libs/a.jar', 'libs/b.jar')
 //    runtime fileTree(dir: 'res')
@@ -145,8 +145,9 @@ dependencies {
 
 //    compile group: 'org.hibernate', name: 'hibernate-core', version: '5.2.12.Final'
 //    compile group: 'org.hibernate', name: 'hibernate-jpamodelgen', version: '5.2.12.Final'
-      
+
       compile files('scenicView.jar');
+
 
 }
 jar()   {
@@ -176,6 +177,14 @@ task runApp(type: JavaExec) {
    classpath = sourceSets.main.runtimeClasspath
    main = 'basisFx.appCore.EntryPoint'
  }
+
+launch4j {
+    mainClassName = 'basisFx.appCore.EntryPoint'
+//    icon = "D:/APEIRON/KOMFORT/src/res/res/icon/panelIcon.ico"
+    icon = mainDir+"/src/res/res/icon/panelIcon.ico"
+}
+
+assemble.dependsOn createAllExecutables
 
 distZip.shouldRunAfter(build)
 //build.dependsOn info

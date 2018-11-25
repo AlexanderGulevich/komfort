@@ -89,8 +89,23 @@ public class Packet extends  ActiveRecord {
     }
 
     @Override
-    public ActiveRecord find(int id) {
-        return null;
+    public Packet find(int id) {
+        Packet pojo=new Packet() ;
+        String expression="SELECT * FROM " +entityName+" WHERE ID=?";
+
+        try {
+            PreparedStatement pstmt = Db.connection.prepareStatement(expression);
+            pstmt.setInt(1, id);
+            ResultSet rs = pstmt.executeQuery();
+
+            while (rs.next()){
+                pojo.setId(rs.getInt("id"));
+                pojo.setSize(PacketSize.getINSTANCE().find(rs.getInt("size")));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return pojo;
     }
 
     @Override

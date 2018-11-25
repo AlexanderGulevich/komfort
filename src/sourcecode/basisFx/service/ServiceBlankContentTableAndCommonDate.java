@@ -21,26 +21,24 @@ public class ServiceBlankContentTableAndCommonDate extends ServiceMediator{
     @Override
     public void inform(AppNode node) {
         if (node==datePickerWrapper){
-            refresh(tableWrapper);
-            insertDateInActiveRecords();
+            refresh();
         }
         if (node==buttonWrapper)    {
             tableWrapper.unitOfWork.commit();
             refresh();
+            datePickerWrapper.getElement().setValue(null);
         }
 
     }
 
-    private void insertDateInActiveRecords() {
-        ObservableList<ActiveRecord> items = tableWrapper.getElement().getItems();
-        for (ActiveRecord activeRecord : items) {
-            ((RecordWithDate) activeRecord).setDate(datePickerWrapper.getDate());
-        }
-    }
 
     @Override
     public void wasRemoved(AppNode node, ActiveRecord record) {
-
+        UnitOfWork unitOfWork = ((TableWrapper) node).unitOfWork;
+        boolean newDomane = ActiveRecord.isNewDomane(record);
+        if (!newDomane) {
+            unitOfWork.registercDeleted(record.entityName,record);
+        }
     }
 
     @Override
@@ -48,10 +46,14 @@ public class ServiceBlankContentTableAndCommonDate extends ServiceMediator{
         UnitOfWork unitOfWork = ((TableWrapper) node).unitOfWork;
         LocalDate date = datePickerWrapper.getDate();
         ((RecordWithDate) record).setDate(date);
-        record.setId(0);
         boolean readyToTransaction = record.isReadyToTransaction();
         if (readyToTransaction) {
-            unitOfWork.registerNew(record.entityName,record);
+            boolean newDomane = ActiveRecord.isNewDomane(record);
+            if (newDomane) {
+                unitOfWork.registerNew(record.entityName,record);
+            }else{
+                unitOfWork.registercDirty(record.entityName,record);
+            }
         }
     }
 
@@ -61,13 +63,20 @@ public class ServiceBlankContentTableAndCommonDate extends ServiceMediator{
     }
 
     public void refresh() {
-        tableWrapper.getElement().getItems().clear();
-        datePickerWrapper.getElement().setValue(null);
+        clearTable();
         initElements();
     }
+
+    private void clearTable() {
+        tableWrapper.getElement().getItems().clear();
+    }
+
     @Override
     public void initElements() {
-        ObservableList <ActiveRecord> list=FXCollections.observableArrayList();
+        ObservableList <ActiveRecord> list=tableWrapper.activeRecord.getAllByDate(datePickerWrapper.getDate());
+        if (list == null) {
+            list=FXCollections.observableArrayList();
+        }
         tableWrapper.setItems(list);
     }
 

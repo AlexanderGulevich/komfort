@@ -3,11 +3,10 @@ package basisFx.domain;
 import basisFx.appCore.interfaces.RecordWithDate;
 import basisFx.dataSource.Db;
 import javafx.beans.property.SimpleObjectProperty;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-import java.sql.Date;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
 import java.time.LocalDate;
 
 public class OutputPerDay extends ActiveRecord implements RecordWithDate {
@@ -151,5 +150,35 @@ public class OutputPerDay extends ActiveRecord implements RecordWithDate {
     @Override
     public ObservableList<ActiveRecord> findAllByOuterId(int id) {
         return null;
+    }
+
+    @Override
+    public ObservableList<ActiveRecord> getAllByDate(LocalDate date) {
+        if (date == null) {
+            return null;
+        }
+        ObservableList <ActiveRecord> list=FXCollections.observableArrayList();
+        String expression="SELECT * FROM " +this.entityName+" where date=? " +" ORDER BY id";
+        try {
+            PreparedStatement pstmt = Db.connection.prepareStatement(expression);
+            pstmt.setDate(1, Date.valueOf(date));
+            ResultSet rs = pstmt.executeQuery();
+
+            while (rs.next()){
+                OutputPerDay pojo=new OutputPerDay();
+                pojo.setId(rs.getInt("id"));
+                pojo.setCounterparty(Counterparty.getINSTANCE().find(rs.getInt("Counterpartyid")));
+                pojo.setDate(rs.getDate("date").toLocalDate());
+                pojo.setEquipment(Equipment.getINSTANCE().find(rs.getInt("Equipmentid")));
+                pojo.setNumberOfRods(rs.getInt("NumberOfRods"));
+                pojo.setPacket(Packet.getINSTANCE().find(rs.getInt("Packetid")));
+                pojo.setProduct(Product.getINSTANCE().find(rs.getInt("Productid")));
+
+                list.add(pojo);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
     }
 }

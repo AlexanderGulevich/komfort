@@ -36,6 +36,7 @@ public abstract class ActiveRecord {
     public void setId(int value) {
         this.id.set(value);
     }
+    public  ObservableList <ActiveRecord>  getAllByDate(LocalDate date){return null;};
     public  ObservableList<ActiveRecord>  createNewActiveRecordList() {
         return FXCollections.<ActiveRecord>observableArrayList();
     }
