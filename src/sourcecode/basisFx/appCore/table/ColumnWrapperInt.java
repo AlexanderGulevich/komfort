@@ -9,10 +9,13 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.util.StringConverter;
 
+import java.text.DecimalFormat;
+
 public class ColumnWrapperInt<T> extends ColumnWrapper{
 
 
     protected TableColumn<T,Integer> column;
+    protected String groupingSeparator ;
 
     private ColumnWrapperInt(Builder builder) {
         tableWrapper = builder.tableWrapper;
@@ -20,6 +23,7 @@ public class ColumnWrapperInt<T> extends ColumnWrapper{
         columnName = builder.columnName;
         columnSize = builder.columnSize;
         isEditeble = builder.isEditeble;
+
 
         column =  new TableColumn<>(columnName);
 
@@ -29,7 +33,9 @@ public class ColumnWrapperInt<T> extends ColumnWrapper{
             @Override
             public String toString(Integer val) {
                 if (val != null) {
-                    String string = val.toString();
+                    DecimalFormat decimalFormat = new DecimalFormat("###,###.###");
+                    groupingSeparator = String.valueOf(decimalFormat.getDecimalFormatSymbols().getGroupingSeparator());
+                    String string = decimalFormat.format(val);
                     return string;
                 }
                 return "";
@@ -39,6 +45,8 @@ public class ColumnWrapperInt<T> extends ColumnWrapper{
             @Override
             public Integer fromString(String val) {
                 val=val.trim();
+                val=val.replaceAll(groupingSeparator,"");
+                val=val.replaceAll(" ","");
                 if (checkValue(val)) {
                     Integer integer = Integer.valueOf(val);
                     return integer;
