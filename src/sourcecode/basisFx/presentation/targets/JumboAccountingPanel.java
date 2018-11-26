@@ -20,11 +20,11 @@ public class JumboAccountingPanel extends TargetPanel {
 
     @Override
     public void init() {
-        ButtonWrapper buttonWrapper = ButtonFactory.getInstance().submitButton(
-                innerAnchorPane,
-                new Coordinate(10d, 13d, null, null),
-                mediator
-        );
+//        ButtonWrapper buttonWrapper = ButtonFactory.getInstance().submitButton(
+//                innerAnchorPane,
+//                new Coordinate(10d, 13d, null, null),
+//                mediator
+//        );
 
 
         DatePickerWrapper datePickerWrapper = DatePickerWrapper.newBuilder()
@@ -66,7 +66,7 @@ public class JumboAccountingPanel extends TargetPanel {
                 .build();
 
         mediator.setTableWrapper(tableWrapper);
-        mediator.setButtonWrapper(buttonWrapper);
+//        mediator.setButtonWrapper(buttonWrapper);
         mediator.setDatePickerWrapper(datePickerWrapper);
         mediator.initElements();
     }

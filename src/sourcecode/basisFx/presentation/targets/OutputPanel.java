@@ -17,11 +17,11 @@ public class OutputPanel  extends TargetPanel {
     ServiceBlankContentTableAndCommonDate mediator = new ServiceBlankContentTableAndCommonDate();
     @Override
     public void init() {
-        ButtonWrapper buttonWrapper = ButtonFactory.getInstance().submitButton(
-                innerAnchorPane,
-                new Coordinate(10d, 13d, null, null),
-                mediator
-        );
+//        ButtonWrapper buttonWrapper = ButtonFactory.getInstance().submitButton(
+//                innerAnchorPane,
+//                new Coordinate(10d, 13d, null, null),
+//                mediator
+//        );
 
 
         DatePickerWrapper datePickerWrapper = DatePickerWrapper.newBuilder()
@@ -73,7 +73,7 @@ public class OutputPanel  extends TargetPanel {
 
 
         GridPaneWrapper.newBuilder()
-                .setGridOrganization(new GridOrgTopButSingleTable(tableWrapper,new ButtonsForSubmitGridLittle()))
+                .setGridOrganization(new GridOrgTopButSingleTable(tableWrapper,new ButtonsForGridLittle()))
                 .setName("Учет выходной продукции")
                 .setParentAnchor(innerAnchorPane)
                 .setCoordinate(new Coordinate(50d,10d,10d,0d))
@@ -81,7 +81,7 @@ public class OutputPanel  extends TargetPanel {
                 .build();
 
         mediator.setTableWrapper(tableWrapper);
-        mediator.setButtonWrapper(buttonWrapper);
+//        mediator.setButtonWrapper(buttonWrapper);
         mediator.setDatePickerWrapper(datePickerWrapper);
         mediator.initElements();
     }

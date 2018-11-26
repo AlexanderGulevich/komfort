@@ -88,7 +88,12 @@ public class ColumnWrapperInt<T> extends ColumnWrapper{
             Integer newValue = Integer.valueOf(s);
             return true;
         }catch (NumberFormatException  e){
+//todo 2147483648 вывод сообщения что слишком большое число
+
+            e.printStackTrace();
+
             return false;
+
         }
     }
 

@@ -16,18 +16,18 @@ import java.time.LocalDate;
 public class ServiceBlankContentTableAndCommonDate extends ServiceMediator{
     private TableWrapper tableWrapper;
     private DatePickerWrapper datePickerWrapper;
-    private ButtonWrapper buttonWrapper;
+//    private ButtonWrapper buttonWrapper;
 
     @Override
     public void inform(AppNode node) {
         if (node==datePickerWrapper){
-            refresh();
+            refresh(tableWrapper);
         }
-        if (node==buttonWrapper)    {
-            tableWrapper.unitOfWork.commit();
-            refresh();
+//        if (node==buttonWrapper)    {
+//            tableWrapper.unitOfWork.commit();
+//            refresh();
 //            datePickerWrapper.getElement().setValue(null);
-        }
+//        }
 
     }
 
@@ -38,6 +38,7 @@ public class ServiceBlankContentTableAndCommonDate extends ServiceMediator{
         boolean newDomane = ActiveRecord.isNewDomane(record);
         if (!newDomane) {
             unitOfWork.registercDeleted(record.entityName,record);
+            commit(tableWrapper);
         }
     }
 
@@ -54,21 +55,14 @@ public class ServiceBlankContentTableAndCommonDate extends ServiceMediator{
             }else{
                 unitOfWork.registercDirty(record.entityName,record);
             }
+
+            commit(tableWrapper);
         }
     }
 
     @Override
     public void refresh(AppNode node) {
-
-    }
-
-    public void refresh() {
-        clearTable();
         initElements();
-    }
-
-    private void clearTable() {
-        tableWrapper.getElement().getItems().clear();
     }
 
     @Override
@@ -88,8 +82,8 @@ public class ServiceBlankContentTableAndCommonDate extends ServiceMediator{
         this.datePickerWrapper = datePickerWrapper;
     }
 
-    public void setButtonWrapper(ButtonWrapper buttonWrapper) {
-        this.buttonWrapper = buttonWrapper;
-    }
+//    public void setButtonWrapper(ButtonWrapper buttonWrapper) {
+//        this.buttonWrapper = buttonWrapper;
+//    }
 
 }
