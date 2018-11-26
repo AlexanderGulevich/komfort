@@ -100,7 +100,7 @@ public class Packet extends  ActiveRecord {
 
             while (rs.next()){
                 pojo.setId(rs.getInt("id"));
-                pojo.setSize(PacketSize.getINSTANCE().find(rs.getInt("size")));
+                pojo.setSize(PacketSize.getINSTANCE().find(rs.getInt("packetSizeId")));
             }
         } catch (SQLException e) {
             e.printStackTrace();

@@ -29,7 +29,8 @@ public class ColumnWrapperInt<T> extends ColumnWrapper{
             @Override
             public String toString(Integer val) {
                 if (val != null) {
-                    return val.toString();
+                    String string = val.toString();
+                    return string;
                 }
                 return "";
 
@@ -39,7 +40,8 @@ public class ColumnWrapperInt<T> extends ColumnWrapper{
             public Integer fromString(String val) {
                 val=val.trim();
                 if (checkValue(val)) {
-                    return Integer.valueOf(val);
+                    Integer integer = Integer.valueOf(val);
+                    return integer;
                 }
                 return null;
             }

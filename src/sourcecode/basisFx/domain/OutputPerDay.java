@@ -14,7 +14,7 @@ public class OutputPerDay extends ActiveRecord implements RecordWithDate {
     private static OutputPerDay INSTANCE = new OutputPerDay();
     private SimpleObjectProperty<Equipment> equipment =new SimpleObjectProperty<>(this, "equipment", null);
     private SimpleObjectProperty<Product> product=new SimpleObjectProperty<>(this, "product", null);
-    private SimpleObjectProperty<Integer> numberOfRods=new SimpleObjectProperty<>(this, "numberOfRods", null);
+    private SimpleObjectProperty<Integer> rodsNumber=new SimpleObjectProperty<>(this, "rodsNumber", null);
     private SimpleObjectProperty<Packet> packet=new SimpleObjectProperty<>(this, "packet", null);
     private SimpleObjectProperty<Counterparty> counterparty=new SimpleObjectProperty<>(this, "counterparty", null);
     private SimpleObjectProperty<LocalDate> date =new SimpleObjectProperty<>(this, "date", null);
@@ -64,16 +64,16 @@ public class OutputPerDay extends ActiveRecord implements RecordWithDate {
         this.product.set(product);
     }
 
-    public Integer getNumberOfRods() {
-        return numberOfRods.get();
+    public Integer getRodsNumber() {
+        return rodsNumber.get();
     }
 
-    public SimpleObjectProperty<Integer> numberOfRodsProperty() {
-        return numberOfRods;
+    public SimpleObjectProperty<Integer> rodsNumberProperty() {
+        return rodsNumber;
     }
 
-    public void setNumberOfRods(Integer numberOfRods) {
-        this.numberOfRods.set(numberOfRods);
+    public void setRodsNumber(Integer rodsNumber) {
+        this.rodsNumber.set(rodsNumber);
     }
 
     public Packet getPacket() {
@@ -107,7 +107,28 @@ public class OutputPerDay extends ActiveRecord implements RecordWithDate {
 
     @Override
     public void update() {
-
+        try {
+            String expression = "UPDATE "+    this.entityName+ " SET  " +
+                      " EquipmentId=? ,  "
+                    + " productId=?  ,  "
+                    + " rodsNumber=?  ,  "
+                    + " packetId=?  ,  "
+                    + " date=?  ,  "
+                    + " CounterpartyId=?  "
+                    +" WHERE id= ?" ;
+            PreparedStatement pstmt = null;
+            pstmt = Db.connection.prepareStatement(expression);
+            pstmt.setInt(1, getEquipment().getId());
+            pstmt.setInt(2, getProduct().getId());
+            pstmt.setInt(3, getRodsNumber());
+            pstmt.setInt(4, getPacket().getId());
+            pstmt.setDate(5, Date.valueOf(getDate()));
+            pstmt.setInt(6, getCounterparty().getId());
+            pstmt.setInt(7, getId());
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -136,7 +157,7 @@ public class OutputPerDay extends ActiveRecord implements RecordWithDate {
             PreparedStatement pstmt = Db.connection.prepareStatement(expression);
             pstmt.setInt(1, getEquipment().getId());
             pstmt.setInt(2, getProduct().getId());
-            pstmt.setInt(3, getNumberOfRods());
+            pstmt.setInt(3, getRodsNumber());
             pstmt.setInt(4, getPacket().getId());
             pstmt.setDate(5, Date.valueOf(getDate()));
             pstmt.setInt(6, getCounterparty().getId());
@@ -170,7 +191,7 @@ public class OutputPerDay extends ActiveRecord implements RecordWithDate {
                 pojo.setCounterparty(Counterparty.getINSTANCE().find(rs.getInt("Counterpartyid")));
                 pojo.setDate(rs.getDate("date").toLocalDate());
                 pojo.setEquipment(Equipment.getINSTANCE().find(rs.getInt("Equipmentid")));
-                pojo.setNumberOfRods(rs.getInt("NumberOfRods"));
+                pojo.setRodsNumber(rs.getInt("rodsNumber"));
                 pojo.setPacket(Packet.getINSTANCE().find(rs.getInt("Packetid")));
                 pojo.setProduct(Product.getINSTANCE().find(rs.getInt("Productid")));
 

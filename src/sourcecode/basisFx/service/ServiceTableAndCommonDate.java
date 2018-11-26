@@ -31,7 +31,10 @@ public class ServiceTableAndCommonDate extends ServiceMediator {
             setEditableColums();
             insertDateInActiveRecords();
         }
-        if (node==buttonWrapper)     tableWrapper.unitOfWork.commit();
+        if (node==buttonWrapper)  {
+            tableWrapper.unitOfWork.commit();
+
+        }
     }
 
     private void insertDateInActiveRecords() {

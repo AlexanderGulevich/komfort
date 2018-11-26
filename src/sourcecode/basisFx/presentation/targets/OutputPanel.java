@@ -4,10 +4,7 @@ import basisFx.appCore.elements.ButtonWrapper;
 import basisFx.appCore.elements.DatePickerWrapper;
 import basisFx.appCore.elements.TableWrapper;
 import basisFx.appCore.fabrics.ButtonFactory;
-import basisFx.appCore.grid.ButtonsForGridBig;
-import basisFx.appCore.grid.ButtonsForGridLittle;
-import basisFx.appCore.grid.GridOrgTopButSingleTable;
-import basisFx.appCore.grid.GridPaneWrapper;
+import basisFx.appCore.grid.*;
 import basisFx.appCore.table.ColumnWrapperComboBox;
 import basisFx.appCore.table.ColumnWrapperInt;
 import basisFx.appCore.utils.Coordinate;
@@ -57,7 +54,7 @@ public class OutputPanel  extends TargetPanel {
                                 .setColumnName("Кол-во стержней")
                                 .setColumnSize(0.2d)
                                 .setIsEditeble(true)
-                                .setPropertyName("numberOfRods")
+                                .setPropertyName("rodsNumber")
                                 .build(),
                         ColumnWrapperComboBox.newBuilder(Packet.class)
                                 .setColumnName("Пакет")
@@ -76,7 +73,7 @@ public class OutputPanel  extends TargetPanel {
 
 
         GridPaneWrapper.newBuilder()
-                .setGridOrganization(new GridOrgTopButSingleTable(tableWrapper,new ButtonsForGridLittle()))
+                .setGridOrganization(new GridOrgTopButSingleTable(tableWrapper,new ButtonsForSubmitGridLittle()))
                 .setName("Учет выходной продукции")
                 .setParentAnchor(innerAnchorPane)
                 .setCoordinate(new Coordinate(50d,10d,10d,0d))

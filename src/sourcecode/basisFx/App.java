@@ -29,8 +29,8 @@ public class App{
                 GuiStructuraFabric.leftAndTopMenuUndecorated(), primaryStage
         );
 
-//        DbFactory.createDbServer();
-        DbFactory.createEmbeded();
+        DbFactory.createDbServer();
+//        DbFactory.createEmbeded();
 
         MenuFabric.createMenuLeftSideRepresentation( new MainMenuSketch());
 

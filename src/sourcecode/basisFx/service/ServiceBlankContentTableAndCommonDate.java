@@ -26,7 +26,7 @@ public class ServiceBlankContentTableAndCommonDate extends ServiceMediator{
         if (node==buttonWrapper)    {
             tableWrapper.unitOfWork.commit();
             refresh();
-            datePickerWrapper.getElement().setValue(null);
+//            datePickerWrapper.getElement().setValue(null);
         }
 
     }

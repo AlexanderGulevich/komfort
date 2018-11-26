@@ -3,6 +3,7 @@ package basisFx.appCore.fabrics;
 import basisFx.appCore.elements.ButtonWrapper;
 import basisFx.appCore.elements.TableWrapper;
 import basisFx.appCore.events.MultyPushToDataStore;
+import basisFx.appCore.events.RowAddToSubmitTable;
 import basisFx.appCore.events.RowAddToTable;
 import basisFx.appCore.events.RowDeleteFromTable;
 import basisFx.appCore.utils.Coordinate;
@@ -59,6 +60,22 @@ public class ButtonFactory {
         return button;
 
 
+
+    }
+    public Button littleRowAddButtonForSubmitTable(TableWrapper tableWrapper){
+
+        Button button = ButtonWrapper.newBuilder()
+                .setCSSid(CSSID.Little_PANELS_BUTTON_ADD)
+                .setName("\uF199")
+                .setFont(FontsStore.FOUNDATION)
+                .setFontSize(littleFontHeight)
+                .setWidth(littleButWidth)
+                .setHeight(littleButHeight)
+                .setEvents(new RowAddToSubmitTable(tableWrapper ))
+                .build().getElement();
+
+
+        return button;
 
     }
     public Button addRowButton(TableWrapper tableWrapper){
