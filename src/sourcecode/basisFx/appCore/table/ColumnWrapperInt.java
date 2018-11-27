@@ -16,6 +16,7 @@ public class ColumnWrapperInt<T> extends ColumnWrapper{
 
     protected TableColumn<T,Integer> column;
     protected String groupingSeparator ;
+    protected DecimalFormat decimalFormat = new DecimalFormat("###,###.###");
 
     private ColumnWrapperInt(Builder builder) {
         tableWrapper = builder.tableWrapper;
@@ -26,6 +27,8 @@ public class ColumnWrapperInt<T> extends ColumnWrapper{
 
 
         column =  new TableColumn<>(columnName);
+        column.setId("rightColumnContentElighment");
+        groupingSeparator = String.valueOf(decimalFormat.getDecimalFormatSymbols().getGroupingSeparator());
 
         column.setEditable(isEditeble);
         column.setCellValueFactory(new PropertyValueFactory<>(propertyName));
@@ -33,8 +36,6 @@ public class ColumnWrapperInt<T> extends ColumnWrapper{
             @Override
             public String toString(Integer val) {
                 if (val != null) {
-                    DecimalFormat decimalFormat = new DecimalFormat("###,###.###");
-                    groupingSeparator = String.valueOf(decimalFormat.getDecimalFormatSymbols().getGroupingSeparator());
                     String string = decimalFormat.format(val);
                     return string;
                 }

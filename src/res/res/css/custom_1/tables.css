@@ -82,6 +82,11 @@
       -fx-font-family: "Roboto Light";
       -fx-font-size: 17;
   }
+  
+  #rightColumnContentElighment  {
+    -fx-alignment: CENTER-RIGHT;
+  }
+
 #TABLE .table-view:focused > .virtual-flow > .clipped-container > .sheet > .table-row-cell .table-cell{
 
           -fx-border-color: red;

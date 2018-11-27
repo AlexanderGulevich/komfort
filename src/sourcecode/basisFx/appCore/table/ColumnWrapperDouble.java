@@ -15,6 +15,7 @@ public class ColumnWrapperDouble <T>extends ColumnWrapper{
 
     protected TableColumn<T,Double> column;
     protected String groupingSeparator ;
+    protected DecimalFormat decimalFormat = new DecimalFormat("###,###.00");
 
     private ColumnWrapperDouble(Builder builder) {
         tableWrapper = builder.tableWrapper;
@@ -24,12 +25,15 @@ public class ColumnWrapperDouble <T>extends ColumnWrapper{
         isEditeble = builder.isEditeble;
 
         column =  new TableColumn<>(columnName);
+        column.setId("rightColumnContentElighment");
+        groupingSeparator = String.valueOf(decimalFormat.getDecimalFormatSymbols().getGroupingSeparator());
 
         column.setEditable(isEditeble);
         column.setCellValueFactory(new PropertyValueFactory<>(propertyName));
         column.setCellFactory(TextFieldTableCell.forTableColumn(new CustomeDoubleStringConverter()));
 
         setOnEditCommit();
+
 
         if (columnSize != null) {
             column.setPrefWidth(columnSize);
@@ -150,14 +154,12 @@ public class ColumnWrapperDouble <T>extends ColumnWrapper{
 
         /** {@inheritDoc} */
         @Override public String toString(Double value) {
-            if (value == null) {
-                return "";
-            }
-            DecimalFormat decimalFormat = new DecimalFormat("###,###.00");
-            groupingSeparator = String.valueOf(decimalFormat.getDecimalFormatSymbols().getGroupingSeparator());
-            String string = decimalFormat.format(value);
 
-            return string;
+            if (value != null) {
+                String string = decimalFormat.format(value);
+                return string;
+            }
+            return "";
         }
     }
 }
