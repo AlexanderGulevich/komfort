@@ -13,11 +13,12 @@ import basisFx.appCore.utils.Coordinate;
 import basisFx.domain.Employer;
 import basisFx.domain.TimeRecordingForEmployers;
 import basisFx.presentation.TargetPanel;
+import basisFx.service.ServiceAutoPushTableAndCommonDate;
 import basisFx.service.ServiceTableAndCommonDate;
 
 public class TimeRecordingPanel extends TargetPanel {
 
-    ServiceTableAndCommonDate mediator = new ServiceTableAndCommonDate(1);
+    ServiceAutoPushTableAndCommonDate mediator = new ServiceAutoPushTableAndCommonDate();
 
     @Override
     public void init() {
@@ -52,7 +53,7 @@ public class TimeRecordingPanel extends TargetPanel {
                         ColumnWrapperDouble.newBuilder()
                                 .setColumnName("Отработанные часы")
                                 .setColumnSize(0.3d)
-                                .setIsEditeble(false)
+                                .setIsEditeble(true)
                                 .setPropertyName("hours")
                                 .build()
                 )

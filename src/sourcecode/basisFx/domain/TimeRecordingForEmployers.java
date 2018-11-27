@@ -61,19 +61,7 @@ public class TimeRecordingForEmployers extends ActiveRecord implements RecordWit
 
     @Override
     public ObservableList<ActiveRecord> getAll() {
-
-        ObservableList <ActiveRecord> list= FXCollections.observableArrayList();
-        ObservableList<ActiveRecord> allEmployers = Employer.getINSTANCE().getAll();
-
-        for (ActiveRecord record : allEmployers) {
-            TimeRecordingForEmployers pojo=new TimeRecordingForEmployers();
-            pojo.setEmployer(((Employer) record));
-            list.add(pojo);
-        }
-
-
-
-        return list;
+        return null;
     }
 
     @Override
@@ -123,7 +111,7 @@ public class TimeRecordingForEmployers extends ActiveRecord implements RecordWit
     @Override
     public ObservableList<ActiveRecord> findAllByOuterId(int id) {
         ObservableList <ActiveRecord> list=createNewActiveRecordList();
-        String expression="SELECT * FROM " + this.entityName+" where employerId= " +id;
+        String expression="SELECT * FROM Employer TimeRecordingForEmployers where employerId= " +id;
 
         try {
             Statement stmt  = Db.connection.createStatement();
@@ -145,5 +133,64 @@ public class TimeRecordingForEmployers extends ActiveRecord implements RecordWit
         return list;
     }
 
+    @Override
+    public ObservableList<ActiveRecord> getAllByDate(LocalDate date) {
+        ObservableList <ActiveRecord> list= FXCollections.observableArrayList();
+        ObservableList<ActiveRecord> allEmployers = Employer.getINSTANCE().getAll();
 
+        for (ActiveRecord record : allEmployers) {
+            TimeRecordingForEmployers pojo=new TimeRecordingForEmployers();
+            Employer employer = (Employer) record;
+            pojo.setEmployer(employer);
+
+            String expression=
+
+
+                    SELECT * FROM
+                            --все сотрудники все даты
+            (SELECT *  FROM Employer AS e
+            left  join TIMERECORDINGFOREMPLOYERS t on t.employerId =e.id
+                    --where date='2018-11-02'
+) AS overall
+            SELECT * FROM
+                    --все уволенные сотрудники все даты
+                    (SELECT
+                            e.id AS EmployerId, e.isfired, e.name,
+
+                            FROM Employer AS e
+                            left  join TIMERECORDINGFOREMPLOYERS t on t.employerId =e.id
+                            WHERE e.ISFIRED=TRUE
+                    ) AS fired
+
+
+
+
+
+            try {
+                PreparedStatement pstmt = Db.connection.prepareStatement(expression);
+                pstmt.setDate(1, Date.valueOf(date));
+                ResultSet rs = pstmt.executeQuery();
+
+                while (rs.next()) {
+
+//                    TimeRecordingForEmployers pojo=new TimeRecordingForEmployers();
+
+                    pojo.setId( rs.getInt("id"));
+                    pojo.setDate(rs.getDate("date").toLocalDate());
+
+                    list.add(pojo);
+
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+//            pojo.setDate();
+//            pojo.setHours();
+//            list.add(pojo);
+        }
+
+
+
+        return list;
+    }
 }
