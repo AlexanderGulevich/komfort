@@ -3,10 +3,12 @@ package basisFx.domain;
 import basisFx.appCore.interfaces.RecordWithDate;
 import basisFx.dataSource.Db;
 import javafx.beans.property.SimpleObjectProperty;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.sql.Date;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 
@@ -73,7 +75,22 @@ public class JumboAccounting extends ActiveRecord implements RecordWithDate {
 
     @Override
     public void update() {
-
+        try {
+            String expression = "UPDATE "+    this.entityName+ " SET  " +
+                    " overallWeight=? ,  "
+                    + " date=?  ,  "
+                    + " CounterpartyId=?    "
+                    +" WHERE id= ?" ;
+            PreparedStatement pstmt = null;
+            pstmt = Db.connection.prepareStatement(expression);
+            pstmt.setDouble(1, getOverallWeight());
+            pstmt.setDate(2, Date.valueOf(getDate()));
+            pstmt.setInt(3, getCounterparty().getId());
+            pstmt.setInt(4, getId());
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -109,5 +126,32 @@ public class JumboAccounting extends ActiveRecord implements RecordWithDate {
     @Override
     public ObservableList<ActiveRecord> findAllByOuterId(int id) {
         return null;
+    }
+
+    @Override
+    public ObservableList<ActiveRecord> getAllByDate(LocalDate date) {
+        if (date == null) {
+            return null;
+        }
+        ObservableList <ActiveRecord> list=FXCollections.observableArrayList();
+        String expression="SELECT * FROM " +this.entityName+" where date=? " +" ORDER BY id";
+        try {
+            PreparedStatement pstmt = Db.connection.prepareStatement(expression);
+            pstmt.setDate(1, Date.valueOf(date));
+            ResultSet rs = pstmt.executeQuery();
+
+            while (rs.next()){
+                JumboAccounting pojo=new JumboAccounting();
+                pojo.setId(rs.getInt("id"));
+                pojo.setCounterparty(Counterparty.getINSTANCE().find(rs.getInt("Counterpartyid")));
+                pojo.setDate(rs.getDate("date").toLocalDate());
+                pojo.setOverallWeight(rs.getDouble("overallWeight"));
+
+                list.add(pojo);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
     }
 }

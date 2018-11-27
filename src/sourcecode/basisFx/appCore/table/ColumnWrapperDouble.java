@@ -9,9 +9,12 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.util.converter.DoubleStringConverter;
 
+import java.text.DecimalFormat;
+
 public class ColumnWrapperDouble <T>extends ColumnWrapper{
 
     protected TableColumn<T,Double> column;
+    protected String groupingSeparator ;
 
     private ColumnWrapperDouble(Builder builder) {
         tableWrapper = builder.tableWrapper;
@@ -128,6 +131,8 @@ public class ColumnWrapperDouble <T>extends ColumnWrapper{
             }
 
             value = value.trim();
+            value=value.replaceAll(groupingSeparator,"");
+            value=value.replaceAll(" ","");
 
             if (value.length() < 1) {
                 return null;
@@ -145,12 +150,14 @@ public class ColumnWrapperDouble <T>extends ColumnWrapper{
 
         /** {@inheritDoc} */
         @Override public String toString(Double value) {
-            // If the specified value is null, return a zero-length String
             if (value == null) {
                 return "";
             }
+            DecimalFormat decimalFormat = new DecimalFormat("###,###.00");
+            groupingSeparator = String.valueOf(decimalFormat.getDecimalFormatSymbols().getGroupingSeparator());
+            String string = decimalFormat.format(value);
 
-            return Double.toString(value.doubleValue());
+            return string;
         }
     }
 }

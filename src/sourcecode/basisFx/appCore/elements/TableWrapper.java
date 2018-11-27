@@ -109,6 +109,7 @@ public  class TableWrapper extends AppNode  {
             list.addListener(tableListener);
         }
     }
+
     public void setItems(ObservableList<ActiveRecord> items){
         list=items;
         applyListener();

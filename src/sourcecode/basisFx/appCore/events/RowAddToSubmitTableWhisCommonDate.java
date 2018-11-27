@@ -3,14 +3,16 @@ package basisFx.appCore.events;
 import basisFx.appCore.elements.AppNode;
 import basisFx.appCore.elements.TableWrapper;
 import basisFx.domain.ActiveRecord;
+import basisFx.service.ServiceAutoPushTableAndCommonDate;
+import basisFx.service.ServiceTableAndCommonDate;
 import javafx.scene.control.Button;
 
-public class RowAddToSubmitTable<T> extends AppEvent{
+public class RowAddToSubmitTableWhisCommonDate<T> extends AppEvent{
 
     private Button but;
     private TableWrapper tableWrapper;
 
-    public RowAddToSubmitTable(TableWrapper tableWrapper ) {
+    public RowAddToSubmitTableWhisCommonDate(TableWrapper tableWrapper ) {
         this.tableWrapper = tableWrapper;
     }
 
@@ -26,7 +28,9 @@ public class RowAddToSubmitTable<T> extends AppEvent{
     public void run() {
         try {
             ActiveRecord newInstance = (ActiveRecord) tableWrapper.activeRecordClass.newInstance();
-            if (tableWrapper.isItemListExist()) {
+            if (tableWrapper.isItemListExist()
+                    && ((ServiceAutoPushTableAndCommonDate) tableWrapper.getServiceMediator()).
+                          getDatePickerWrapper().getDate()!=null) {
                     tableWrapper.getItems().add(newInstance);
                     tableWrapper.scrollToItem(newInstance);
                     tableWrapper.focusItem(newInstance);

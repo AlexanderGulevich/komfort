@@ -1,20 +1,18 @@
 package basisFx.presentation.targets;
 
-import basisFx.appCore.elements.ButtonWrapper;
 import basisFx.appCore.elements.DatePickerWrapper;
 import basisFx.appCore.elements.TableWrapper;
-import basisFx.appCore.fabrics.ButtonFactory;
 import basisFx.appCore.grid.*;
 import basisFx.appCore.table.ColumnWrapperComboBox;
 import basisFx.appCore.table.ColumnWrapperInt;
 import basisFx.appCore.utils.Coordinate;
 import basisFx.domain.*;
 import basisFx.presentation.TargetPanel;
-import basisFx.service.ServiceBlankContentTableAndCommonDate;
+import basisFx.service.ServiceAutoPushTableAndCommonDate;
 
 public class OutputPanel  extends TargetPanel {
 
-    ServiceBlankContentTableAndCommonDate mediator = new ServiceBlankContentTableAndCommonDate();
+    ServiceAutoPushTableAndCommonDate mediator = new ServiceAutoPushTableAndCommonDate();
     @Override
     public void init() {
 //        ButtonWrapper buttonWrapper = ButtonFactory.getInstance().submitButton(
@@ -73,7 +71,7 @@ public class OutputPanel  extends TargetPanel {
 
 
         GridPaneWrapper.newBuilder()
-                .setGridOrganization(new GridOrgTopButSingleTable(tableWrapper,new ButtonsForGridLittle()))
+                .setGridOrganization(new GridOrgTopButSingleTable(tableWrapper,new ButtonsForSubmitGridLittle()))
                 .setName("Учет выходной продукции")
                 .setParentAnchor(innerAnchorPane)
                 .setCoordinate(new Coordinate(50d,10d,10d,0d))

@@ -10,12 +10,12 @@ import java.sql.*;
 import java.time.LocalDate;
 
 public class TimeRecordingForEmployers extends ActiveRecord implements RecordWithDate {
-    private static Employer INSTANCE = new Employer();
+    private static TimeRecordingForEmployers INSTANCE = new TimeRecordingForEmployers();
     private SimpleObjectProperty<Employer> employer =new SimpleObjectProperty<>(this, "employer", null);
     private SimpleObjectProperty<Double> hours =new SimpleObjectProperty<>(this, "hours", null);
     private SimpleObjectProperty<LocalDate> date =new SimpleObjectProperty<>(this, "date", null);
 
-    public static Employer getINSTANCE() {
+    public static TimeRecordingForEmployers getINSTANCE() {
         return INSTANCE;
     }
 

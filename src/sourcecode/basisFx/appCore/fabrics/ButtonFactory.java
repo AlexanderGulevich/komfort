@@ -3,7 +3,7 @@ package basisFx.appCore.fabrics;
 import basisFx.appCore.elements.ButtonWrapper;
 import basisFx.appCore.elements.TableWrapper;
 import basisFx.appCore.events.MultyPushToDataStore;
-import basisFx.appCore.events.RowAddToSubmitTable;
+import basisFx.appCore.events.RowAddToSubmitTableWhisCommonDate;
 import basisFx.appCore.events.RowAddToTable;
 import basisFx.appCore.events.RowDeleteFromTable;
 import basisFx.appCore.utils.Coordinate;
@@ -71,7 +71,7 @@ public class ButtonFactory {
                 .setFontSize(littleFontHeight)
                 .setWidth(littleButWidth)
                 .setHeight(littleButHeight)
-                .setEvents(new RowAddToSubmitTable(tableWrapper ))
+                .setEvents(new RowAddToSubmitTableWhisCommonDate(tableWrapper ))
                 .build().getElement();
 
 

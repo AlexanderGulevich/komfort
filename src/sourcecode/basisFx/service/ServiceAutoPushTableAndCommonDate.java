@@ -13,7 +13,7 @@ import javafx.scene.control.TableColumn;
 
 import java.time.LocalDate;
 
-public class ServiceBlankContentTableAndCommonDate extends ServiceMediator{
+public class ServiceAutoPushTableAndCommonDate extends ServiceMediator{
     private TableWrapper tableWrapper;
     private DatePickerWrapper datePickerWrapper;
 //    private ButtonWrapper buttonWrapper;
@@ -31,6 +31,9 @@ public class ServiceBlankContentTableAndCommonDate extends ServiceMediator{
 
     }
 
+    public DatePickerWrapper getDatePickerWrapper() {
+        return datePickerWrapper;
+    }
 
     @Override
     public void wasRemoved(AppNode node, ActiveRecord record) {
