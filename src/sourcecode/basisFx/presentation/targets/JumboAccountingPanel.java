@@ -26,7 +26,7 @@ public class JumboAccountingPanel extends TargetPanel {
 
 
         DatePickerWrapper datePickerWrapper = DatePickerWrapper.newBuilder()
-                .setCoordinate(new Coordinate(10d, null, null, 8d))
+                .setCoordinate(new Coordinate(10d, null, null, 5d))
                 .setParentAnchor(innerAnchorPane)
                 .setServiceMediator(mediator)
                 .build();
