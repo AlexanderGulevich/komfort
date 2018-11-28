@@ -143,47 +143,42 @@ public class TimeRecordingForEmployers extends ActiveRecord implements RecordWit
             Employer employer = (Employer) record;
             pojo.setEmployer(employer);
 
-            String expression=
+//            String expression=
 
-
-                    SELECT * FROM
-                            --все сотрудники все даты
-            (SELECT *  FROM Employer AS e
-            left  join TIMERECORDINGFOREMPLOYERS t on t.employerId =e.id
-                    --where date='2018-11-02'
-) AS overall
-            SELECT * FROM
-                    --все уволенные сотрудники все даты
-                    (SELECT
-                            e.id AS EmployerId, e.isfired, e.name,
-
-                            FROM Employer AS e
-                            left  join TIMERECORDINGFOREMPLOYERS t on t.employerId =e.id
-                            WHERE e.ISFIRED=TRUE
-                    ) AS fired
+            SELECT * FROM (
+                    SELECT * FROM EMPLOYER e WHERE e.ISFIRED=FALSE) AS allemployers
+            left join
+            (SELECT * FROM(
+                    SELECT * FROM (SELECT e.id AS EmployerId, e.isfired, e.name,t.date,t.hours FROM Employer AS e
+                            left join TIMERECORDINGFOREMPLOYERS t on t.employerId =e.id where date='2018-11-09'
+                    ) AS overall
+                    WHERE overall.isfired=FALSE
+                    OR  overall.isfired=TRUE
+                    and  overall.HOURS IS NOT NULL) )AS byDate
+            on byDate.employerId =allemployers.id
 
 
 
 
 
-            try {
-                PreparedStatement pstmt = Db.connection.prepareStatement(expression);
-                pstmt.setDate(1, Date.valueOf(date));
-                ResultSet rs = pstmt.executeQuery();
-
-                while (rs.next()) {
-
-//                    TimeRecordingForEmployers pojo=new TimeRecordingForEmployers();
-
-                    pojo.setId( rs.getInt("id"));
-                    pojo.setDate(rs.getDate("date").toLocalDate());
-
-                    list.add(pojo);
-
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+//            try {
+//                PreparedStatement pstmt = Db.connection.prepareStatement(expression);
+//                pstmt.setDate(1, Date.valueOf(date));
+//                ResultSet rs = pstmt.executeQuery();
+//
+//                while (rs.next()) {
+//
+////                    TimeRecordingForEmployers pojo=new TimeRecordingForEmployers();
+//
+//                    pojo.setId( rs.getInt("id"));
+//                    pojo.setDate(rs.getDate("date").toLocalDate());
+//
+//                    list.add(pojo);
+//
+//                }
+//            } catch (SQLException e) {
+//                e.printStackTrace();
+//            }
 //            pojo.setDate();
 //            pojo.setHours();
 //            list.add(pojo);
