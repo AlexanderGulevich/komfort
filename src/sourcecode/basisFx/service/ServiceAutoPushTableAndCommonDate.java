@@ -70,11 +70,15 @@ public class ServiceAutoPushTableAndCommonDate extends ServiceMediator{
 
     @Override
     public void initElements() {
-        ObservableList <ActiveRecord> list=tableWrapper.activeRecord.getAllByDate(datePickerWrapper.getDate());
-        if (list == null) {
-            list=FXCollections.observableArrayList();
+        LocalDate date = datePickerWrapper.getDate();
+        if (date != null) {
+            ObservableList <ActiveRecord> list=tableWrapper.activeRecord.getAllByDate(date);
+            if (list == null) {
+                list=FXCollections.observableArrayList();
+            }
+            tableWrapper.setItems(list);
         }
-        tableWrapper.setItems(list);
+
     }
 
     public void setTableWrapper(TableWrapper tableWrapper) {

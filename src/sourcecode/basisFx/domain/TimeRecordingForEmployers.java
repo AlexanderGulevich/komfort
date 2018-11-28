@@ -122,7 +122,7 @@ public class TimeRecordingForEmployers extends ActiveRecord implements RecordWit
                 TimeRecordingForEmployers pojo=new TimeRecordingForEmployers();
 
                 pojo.setId( rs.getInt("id"));
-                pojo.setDate(rs.getDate("date").toLocalDate());
+                pojo.setDate(inspectDate(rs));
 
                 list.add(pojo);
 
@@ -136,56 +136,44 @@ public class TimeRecordingForEmployers extends ActiveRecord implements RecordWit
     @Override
     public ObservableList<ActiveRecord> getAllByDate(LocalDate date) {
         ObservableList <ActiveRecord> list= FXCollections.observableArrayList();
-        ObservableList<ActiveRecord> allEmployers = Employer.getINSTANCE().getAll();
 
-        for (ActiveRecord record : allEmployers) {
             TimeRecordingForEmployers pojo=new TimeRecordingForEmployers();
-            Employer employer = (Employer) record;
-            pojo.setEmployer(employer);
+            String expression=
+                    "   SELECT * FROM (SELECT * FROM EMPLOYER e) AS allemployers\n" +
+                            "        left JOIN  (SELECT * FROM(SELECT * FROM (SELECT e.id AS EmployerId, e.isfired, e.name,t.date,t.hours FROM Employer AS e\n" +
+                            "                      left join TIMERECORDINGFOREMPLOYERS t on t.employerId =e.id where date=? \n" +
+                            "                ) AS overall WHERE overall.isfired=FALSE OR  overall.isfired=TRUE  and  overall.HOURS IS NOT NULL) )AS byDate\n" +
+                            "           on byDate.employerId =allemployers.id";
+             try {
+                PreparedStatement pstmt = Db.connection.prepareStatement(expression);
+                pstmt.setDate(1, Date.valueOf(date));
+                ResultSet rs = pstmt.executeQuery();
 
-//            String expression=
+                while (rs.next()) {
 
-            SELECT * FROM (
-                    SELECT * FROM EMPLOYER e WHERE e.ISFIRED=FALSE) AS allemployers
-            left join
-            (SELECT * FROM(
-                    SELECT * FROM (SELECT e.id AS EmployerId, e.isfired, e.name,t.date,t.hours FROM Employer AS e
-                            left join TIMERECORDINGFOREMPLOYERS t on t.employerId =e.id where date='2018-11-09'
-                    ) AS overall
-                    WHERE overall.isfired=FALSE
-                    OR  overall.isfired=TRUE
-                    and  overall.HOURS IS NOT NULL) )AS byDate
-            on byDate.employerId =allemployers.id
+                    pojo.setId( rs.getInt("employerId"));
+                    pojo.setDate(inspectDate(rs));
+                    pojo.setHours(rs.getDouble("hours"));
+                    pojo.setEmployer(Employer.getINSTANCE().find( rs.getInt("employerId")));
 
+                    list.add(pojo);
 
-
-
-
-//            try {
-//                PreparedStatement pstmt = Db.connection.prepareStatement(expression);
-//                pstmt.setDate(1, Date.valueOf(date));
-//                ResultSet rs = pstmt.executeQuery();
-//
-//                while (rs.next()) {
-//
-////                    TimeRecordingForEmployers pojo=new TimeRecordingForEmployers();
-//
-//                    pojo.setId( rs.getInt("id"));
-//                    pojo.setDate(rs.getDate("date").toLocalDate());
-//
-//                    list.add(pojo);
-//
-//                }
-//            } catch (SQLException e) {
-//                e.printStackTrace();
-//            }
-//            pojo.setDate();
-//            pojo.setHours();
-//            list.add(pojo);
-        }
-
-
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
 
         return list;
+    }
+
+    private LocalDate inspectDate(ResultSet rs) throws SQLException {
+        Date date = rs.getDate("date");
+        if (date != null) {
+            return date.toLocalDate();
+        }
+        return null;
+
+
+
     }
 }

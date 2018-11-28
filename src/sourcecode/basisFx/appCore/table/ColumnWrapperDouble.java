@@ -155,7 +155,7 @@ public class ColumnWrapperDouble <T>extends ColumnWrapper{
         /** {@inheritDoc} */
         @Override public String toString(Double value) {
 
-            if (value != null) {
+            if (value != null && value!=0.0d) {
                 String string = decimalFormat.format(value);
                 return string;
             }
