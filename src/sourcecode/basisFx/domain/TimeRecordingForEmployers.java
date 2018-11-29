@@ -138,12 +138,16 @@ public class TimeRecordingForEmployers extends ActiveRecord implements RecordWit
         ObservableList <ActiveRecord> list= FXCollections.observableArrayList();
 
 
-            String expression=
-                    "   SELECT * FROM (SELECT * FROM EMPLOYER e) AS allemployers\n" +
-                            "        left JOIN  (SELECT * FROM(SELECT * FROM (SELECT e.id AS EmployerId, e.isfired, e.name,t.date,t.hours FROM Employer AS e\n" +
-                            "                      left join TIMERECORDINGFOREMPLOYERS t on t.employerId =e.id where date=? \n" +
-                            "                ) AS overall WHERE overall.isfired=FALSE OR  overall.isfired=TRUE  and  overall.HOURS IS NOT NULL) )AS byDate\n" +
-                            "           on byDate.employerId =allemployers.id";
+            String expression="SELECT * from(\t   \n" +
+                    "\tSELECT  allemplid as employerId, allemplisfired AS ISFIRED, allemplname AS name, date, hours\n" +
+                    "\t  \t FROM (SELECT id AS allemplid , name AS allemplname, ISFIRED AS allemplisfired FROM EMPLOYER) AS allempl\n" +
+                    "\t        left JOIN  (SELECT * FROM(\n" +
+                    "\t        \tSELECT employerId, date, hours FROM TIMERECORDINGFOREMPLOYERS t where date='2018-11-09'\n" +
+                    "\t                ) ) AS byDate\n" +
+                    "\t           on byDate.employerId =allempl.allemplid\n" +
+                    "\t           ) \n" +
+                    "\t           WHERE  NOT(ISFIRED=TRUE and date IS  NULL)";
+
              try {
                 PreparedStatement pstmt = Db.connection.prepareStatement(expression);
                 pstmt.setDate(1, Date.valueOf(date));
