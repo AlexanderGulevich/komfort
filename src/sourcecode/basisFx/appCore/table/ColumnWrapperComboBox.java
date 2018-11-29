@@ -182,16 +182,18 @@ public class ColumnWrapperComboBox extends ColumnWrapper{
             super.updateItem(item, empty);
             if (empty) {
                 setText(null);
-                setGraphic(null);
+//                setGraphic(null);
             } else {
                 if (isEditing()) {
                     if (comboBox != null) {
                         comboBox.setValue(getNamedDomainObject());
                     }
-                    setText(" "+getNamedDomainObject().toString());
+//                    setText(" "+getNamedDomainObject().toString());
+                    setText(getNamedDomainObject().toString());
                     setGraphic(comboBox);
                 } else {
-                    setText(" " +getNamedDomainObject().toString());
+//                    setText(" " +getNamedDomainObject().toString());
+                    setText(getNamedDomainObject().toString());
                     setGraphic(null);
                 }
             }
@@ -228,7 +230,9 @@ public class ColumnWrapperComboBox extends ColumnWrapper{
                     if (comboBoxValue == null || empty) {
                         setText(null);
                     } else {
-                        setText(" "+comboBoxValue.toString());
+                        String s = comboBoxValue.toString();
+//                        setText(" "+comboBoxValue.toString());
+                        setText(s);
                     }
                 }
             });
