@@ -142,7 +142,7 @@ public class TimeRecordingForEmployers extends ActiveRecord implements RecordWit
                     "\tSELECT  allemplid as employerId, allemplisfired AS ISFIRED, allemplname AS name, date, hours\n" +
                     "\t  \t FROM (SELECT id AS allemplid , name AS allemplname, ISFIRED AS allemplisfired FROM EMPLOYER) AS allempl\n" +
                     "\t        left JOIN  (SELECT * FROM(\n" +
-                    "\t        \tSELECT employerId, date, hours FROM TIMERECORDINGFOREMPLOYERS t where date='2018-11-09'\n" +
+                    "\t        \tSELECT employerId, date, hours FROM TIMERECORDINGFOREMPLOYERS t where date=?\n" +
                     "\t                ) ) AS byDate\n" +
                     "\t           on byDate.employerId =allempl.allemplid\n" +
                     "\t           ) \n" +
@@ -157,7 +157,7 @@ public class TimeRecordingForEmployers extends ActiveRecord implements RecordWit
                     TimeRecordingForEmployers pojo=new TimeRecordingForEmployers();
                     pojo.setDate(inspectDate(rs));
                     pojo.setHours(rs.getDouble("hours"));
-                    pojo.setEmployer(Employer.getINSTANCE().find( rs.getInt("id")));
+                    pojo.setEmployer(Employer.getINSTANCE().find( rs.getInt("employerId")));
 
                     list.add(pojo);
 
