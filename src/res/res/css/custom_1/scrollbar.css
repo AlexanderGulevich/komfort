@@ -1,5 +1,5 @@
 .scroll-bar{
--fx-pref-width: 15;
+-fx-pref-width: 10;
 }
 .track-background{}
 .increment-button,.decrement-button{
@@ -17,6 +17,7 @@
   -fx-effect: dropshadow(gaussian ,#605d5d , 1, 0, 0.1, 0.1);
 }
 .scroll-bar:vertical {
+  -fx-insets:30;
     -fx-background-insets: 0, 0;
 }
 .scroll-bar:focused {

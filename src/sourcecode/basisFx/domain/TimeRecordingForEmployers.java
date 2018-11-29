@@ -137,7 +137,7 @@ public class TimeRecordingForEmployers extends ActiveRecord implements RecordWit
     public ObservableList<ActiveRecord> getAllByDate(LocalDate date) {
         ObservableList <ActiveRecord> list= FXCollections.observableArrayList();
 
-            TimeRecordingForEmployers pojo=new TimeRecordingForEmployers();
+
             String expression=
                     "   SELECT * FROM (SELECT * FROM EMPLOYER e) AS allemployers\n" +
                             "        left JOIN  (SELECT * FROM(SELECT * FROM (SELECT e.id AS EmployerId, e.isfired, e.name,t.date,t.hours FROM Employer AS e\n" +
@@ -150,11 +150,10 @@ public class TimeRecordingForEmployers extends ActiveRecord implements RecordWit
                 ResultSet rs = pstmt.executeQuery();
 
                 while (rs.next()) {
-
-                    pojo.setId( rs.getInt("employerId"));
+                    TimeRecordingForEmployers pojo=new TimeRecordingForEmployers();
                     pojo.setDate(inspectDate(rs));
                     pojo.setHours(rs.getDouble("hours"));
-                    pojo.setEmployer(Employer.getINSTANCE().find( rs.getInt("employerId")));
+                    pojo.setEmployer(Employer.getINSTANCE().find( rs.getInt("id")));
 
                     list.add(pojo);
 
