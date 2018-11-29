@@ -3,9 +3,14 @@ package basisFx.appCore.table;
 import basisFx.domain.ActiveRecord;
 import javafx.beans.value.ObservableValue;
 import javafx.beans.value.WritableValue;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.util.Callback;
+import javafx.util.StringConverter;
+import javafx.util.converter.DefaultStringConverter;
+import javafx.util.converter.DoubleStringConverter;
 
 public class ColumnWrapperString<T> extends ColumnWrapper{
     protected TableColumn<T,String> column;
@@ -20,7 +25,8 @@ public class ColumnWrapperString<T> extends ColumnWrapper{
 
         column.setEditable(isEditeble);
         column.setCellValueFactory(new PropertyValueFactory<>(propertyName));
-        column.setCellFactory(TextFieldTableCell.forTableColumn());
+//        column.setCellFactory(TextFieldTableCell.forTableColumn());
+        column.setCellFactory(new CustomeTextFieldTableCell().init());
 
         setOnEditCommit();
 
@@ -75,6 +81,9 @@ public class ColumnWrapperString<T> extends ColumnWrapper{
         return false;
     }
 
+
+
+
     public static final class Builder {
         private String propertyName;
         private String columnName;
@@ -108,4 +117,32 @@ public class ColumnWrapperString<T> extends ColumnWrapper{
             return new ColumnWrapperString(this);
         }
     }
+
+
+    class CustomeStringConverter extends DefaultStringConverter {
+
+        /** {@inheritDoc} */
+        @Override public String toString(String value) {
+            return (value != null) ? "  "+value : "";
+        }
+
+        /** {@inheritDoc} */
+        @Override public String fromString(String value) {
+            return value;
+        }
+
+    }
+
+    class CustomeTextFieldTableCell extends TextFieldTableCell {
+
+
+        public  <S> Callback<TableColumn<S,String>, TableCell<S,String>> init() {
+            return forTableColumn(new CustomeStringConverter());
+        }
+
+
+    }
+
+
+
 }

@@ -77,6 +77,8 @@ public class ServiceAutoPushTableAndCommonDate extends ServiceMediator{
                 list=FXCollections.observableArrayList();
             }
             tableWrapper.setItems(list);
+//            tableWrapper.manageScrollBar();
+
         }
 
     }

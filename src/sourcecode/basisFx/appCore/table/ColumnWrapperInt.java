@@ -36,7 +36,7 @@ public class ColumnWrapperInt<T> extends ColumnWrapper{
             @Override
             public String toString(Integer val) {
                 if (val != null) {
-                    String string = decimalFormat.format(val);
+                    String string = decimalFormat.format(val)+"    ";
                     return string;
                 }
                 return "";

@@ -32,6 +32,16 @@
     -fx-background-insets: 0;
     -fx-padding: 0;
 }
+
+ #TABLE.cell,
+ #TABLE .indexed-cell,
+ #TABLE .table-cell,
+ #TABLE .text-field-table-cell,
+ #TABLE .table-column{
+	   -fx-padding:  0, 10, 0, 0; 
+ }
+ 
+
  #TABLE  .table-column {  -fx-pref-height:25;}
 /* #TABLE .nested-column-header, */
 #TABLE .column-header{/*ЗАГОЛОВОК КОЛОНКИ*/

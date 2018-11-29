@@ -15,6 +15,7 @@ import basisFx.appCore.settings.FontsStore;
 import javafx.beans.property.ReadOnlyDoubleProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
 import javafx.scene.Group;
 import javafx.scene.Node;
@@ -22,6 +23,7 @@ import javafx.scene.control.*;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 
@@ -130,12 +132,42 @@ public  class TableWrapper extends AppNode  {
 
         element.setPlaceholder(wrapper.getElement());
     }
-    private void manageScrollBar(){
+//    public void manageScrollBar() {
 //        ScrollBar verticalBar = (ScrollBar) element.lookup(".scroll-bar:vertical");
-        ScrollBar verticalBar = getVerticalScrollbar();
-        verticalBar.visibleProperty().addListener((observableValue, aBoolean, aBoolean2) ->
-                System.err.println("Scrol Pane visible!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!".toUpperCase()));
-    }
+//        if (verticalBar != null) {
+//
+//
+//            verticalBar.visibleProperty().addListener((observableValue, aBoolean, aBoolean2) ->
+//            {
+//                if (aBoolean2) {
+//                    Node clippedContainer = element.lookup(".clipped-container");
+//                    Region region = (Region) clippedContainer;
+//                    if (region != null) {
+//                        region.setStyle("  -fx-padding:  0, 120, 0, 0; ");
+//                        region.setPadding(new Insets(0d, 50d, 0d, 0d));
+//
+//                        region.setPrefWidth(region.prefWidthProperty().get() - 100d);
+//                    }
+//                }
+//
+//                if (aBoolean2) {
+//                    Node virtual = element.lookup(".virtual-flow");
+//                    Region  region2 = (Region) virtual;
+//                    if (region2 != null) {
+//                        region2.setStyle("  -fx-padding:  0, 120, 0, 0; ");
+//                        region2.setPadding(new Insets(0d,50d,0d,0d));
+//
+//                        region2.setPrefWidth(region2.prefWidthProperty().get()-100d);
+//                    }
+//                }
+//
+//
+//            }  );
+//
+//
+//
+//        }
+//    }
     private void applyColumnResizePolicy(){
         if (columnResizePolicy != null) {
             element.setColumnResizePolicy(columnResizePolicy);
@@ -175,21 +207,7 @@ public  class TableWrapper extends AppNode  {
     public TableView<ActiveRecord> getElement() {
         return element;
     }
-    private ScrollBar getVerticalScrollbar() {
-        ScrollBar result = null;
-        for (Node n : element.lookupAll(".scroll-bar"))
-        {
-            if (n instanceof ScrollBar)
-            {
-                ScrollBar bar = (ScrollBar) n;
-                if (bar.getOrientation().equals(Orientation.VERTICAL))
-                {
-                    result = bar;
-                }
-            }
-        }
-        return result;
-    }
+
     public ObservableList cloneAllPojo()throws CloneNotSupportedException{
         ObservableList<ActiveRecord>  clon=FXCollections.observableArrayList(this.list);
         return clon;
