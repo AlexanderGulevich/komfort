@@ -111,25 +111,25 @@ public class TimeRecordingForEmployers extends ActiveRecord implements RecordWit
     @Override
     public ObservableList<ActiveRecord> findAllByOuterId(int id) {
         ObservableList <ActiveRecord> list=createNewActiveRecordList();
-        String expression="SELECT * FROM Employer TimeRecordingForEmployers where employerId= " +id;
-
-        try {
-            Statement stmt  = Db.connection.createStatement();
-            ResultSet rs    = stmt.executeQuery(expression);
-
-            while (rs.next()) {
-
-                TimeRecordingForEmployers pojo=new TimeRecordingForEmployers();
-
-                pojo.setId( rs.getInt("id"));
-                pojo.setDate(inspectDate(rs));
-
-                list.add(pojo);
-
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+//        String expression="SELECT * FROM Employer TimeRecordingForEmployers where employerId= " +id;
+//
+//        try {
+//            Statement stmt  = Db.connection.createStatement();
+//            ResultSet rs    = stmt.executeQuery(expression);
+//
+//            while (rs.next()) {
+//
+//                TimeRecordingForEmployers pojo=new TimeRecordingForEmployers();
+//
+//                pojo.setId( rs.getInt("id"));
+//                pojo.setDate(inspectDate(rs));
+//
+//                list.add(pojo);
+//
+//            }
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
         return list;
     }
 
