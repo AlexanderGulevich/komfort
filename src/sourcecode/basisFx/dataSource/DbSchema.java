@@ -172,12 +172,20 @@ public class DbSchema {
                 " ORDER BY r.employerId";
 
 
-        String view="SELECT * FROM TIMERECORDINGFOREMPLOYERS AS t\n" +
-        "LEFT JOIN (\n" +
-        "\tSELECT * FROM ( SELECT * FROM EMPLOYEESRATEPERHOUR )\n" +
-        "\t\n" +
-        ") AS r \n" +
-        "ON t.EMPLOYERID=r.EMPLOYERID";
+        String viewTimeRecordingAndSalary="SELECT EMPLOYERID, DATE, HOURS , rate, rate*HOURS AS salary, e.ISFIRED,e.NAME FROM(\n" +
+                "SELECT t.EMPLOYERID, t.DATE,t.HOURS,\n" +
+                "(select RATE from EMPLOYEESRATEPERHOUR where (employerId, startdate)\n" +
+                "in (\n" +
+                "SELECT employerId, startdate FROM (\n" +
+                "select employerId,max(startdate) AS startdate\n" +
+                "from ( SELECT * from EMPLOYEESRATEPERHOUR WHERE startdate <= t.DATE)\n" +
+                "group by employerId\n" +
+                ") AS RATEDADE \n" +
+                "WHERE RATEDADE.employerId=t.EMPLOYERID\n" +
+                ") ) AS rate \n" +
+                "FROM TIMERECORDINGFOREMPLOYERS t\n" +
+                ")AS timerec  left JOIN  EMPLOYER e\n" +
+                "ON timerec.EMPLOYERID=e.id\n";
 
 
         create(
@@ -202,8 +210,8 @@ public class DbSchema {
                 paperPriceStore,
                 outputPerDay,
                 jumboAccounting,
-
-                viewActualRate
+                viewActualRate,
+                viewTimeRecordingAndSalary
 
         );
 
