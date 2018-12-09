@@ -14,7 +14,6 @@ import java.sql.Statement;
 public class PacketProductAccordance extends ActiveRecord {
 
     private static PacketProductAccordance INSTANCE = new PacketProductAccordance();
-    private SimpleObjectProperty<PacketSize> packetSize = new SimpleObjectProperty<>(this, "packetSize", null);
     private SimpleObjectProperty<Product> product = new SimpleObjectProperty<>(this, "product", null);
     private SimpleObjectProperty<Integer> number = new SimpleObjectProperty<>(this, "number", null);
 
@@ -25,18 +24,6 @@ public class PacketProductAccordance extends ActiveRecord {
 
     public static PacketProductAccordance getINSTANCE() {
         return INSTANCE;
-    }
-
-    public PacketSize getPacketSize() {
-        return packetSize.get();
-    }
-
-    public SimpleObjectProperty<PacketSize> packetSizeProperty() {
-        return packetSize;
-    }
-
-    public void setPacketSize(PacketSize packetSize) {
-        this.packetSize.set(packetSize);
     }
 
     public Product getProduct() {
@@ -76,7 +63,6 @@ public class PacketProductAccordance extends ActiveRecord {
                 pojo.setId(rs.getInt("id"));
                 pojo.setNumber(rs.getInt("number"));
                 pojo.setProduct(Product.getINSTANCE().find(rs.getInt("productId")));
-                pojo.setPacketSize(PacketSize.getINSTANCE().find(rs.getInt("packetSizeId")));
                 list.add(pojo);
             }
         } catch (SQLException e) {
@@ -97,7 +83,7 @@ public class PacketProductAccordance extends ActiveRecord {
             pstmt = Db.connection.prepareStatement(expression);
             pstmt.setInt(1, getNumber());
             pstmt.setInt(2, getProduct().id.get());
-            pstmt.setInt(3, getPacketSize().id.get());
+            pstmt.setInt(3, outerId);
             pstmt.setInt(4, id.get());
             pstmt.executeUpdate();
         } catch (SQLException e) {
@@ -118,7 +104,6 @@ public class PacketProductAccordance extends ActiveRecord {
 
             while (rs.next()){
                 pojo.setId(rs.getInt("id"));
-                pojo.setPacketSize(PacketSize.getINSTANCE().find(rs.getInt("packetSizeId")));
                 pojo.setProduct(Product.getINSTANCE().find(rs.getInt("productId")));
                 pojo.setNumber(rs.getInt("number"));
             }
@@ -146,7 +131,7 @@ public class PacketProductAccordance extends ActiveRecord {
 
             PreparedStatement pstmt = Db.connection.prepareStatement(expression);
             pstmt.setInt(1, getNumber());
-            pstmt.setInt(2, getPacketSize().getId());
+            pstmt.setInt(2, outerId);
             pstmt.setInt(3, getProduct().getId());
             pstmt.executeUpdate();
         } catch (SQLException e) {

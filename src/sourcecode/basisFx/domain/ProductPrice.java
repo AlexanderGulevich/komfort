@@ -10,22 +10,22 @@ import java.time.LocalDate;
 public class ProductPrice extends ActiveRecord{
 
     private static ProductPrice INSTANCE = new ProductPrice();
-    private SimpleObjectProperty<String> price =new SimpleObjectProperty<>(this, "price", null);
+    private SimpleObjectProperty<Double> price =new SimpleObjectProperty<>(this, "price", null);
     private SimpleObjectProperty<LocalDate> startingDate =new SimpleObjectProperty<>(this, "startingDate", null);
 
     public static ProductPrice getINSTANCE() {
         return INSTANCE;
     }
 
-    public String getPrice() {
+    public Double getPrice() {
         return price.get();
     }
 
-    public SimpleObjectProperty<String> priceProperty() {
+    public SimpleObjectProperty<Double> priceProperty() {
         return price;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(Double price) {
         this.price.set(price);
     }
 
@@ -85,7 +85,7 @@ public class ProductPrice extends ActiveRecord{
 
     @Override
     public String toString() {
-        return getPrice();
+        return getPrice().toString();
     }
 
     @Override
@@ -104,7 +104,7 @@ public class ProductPrice extends ActiveRecord{
         if (check) {
             try {
                 pstmt = Db.connection.prepareStatement(expression);
-                pstmt.setDouble(1, Double.valueOf(price.get()));
+                pstmt.setDouble(1, price.get());
                 pstmt.setDate(2, Date.valueOf(startingDate.get()));
                 pstmt.setInt(3, outerId);
 
@@ -125,7 +125,7 @@ public class ProductPrice extends ActiveRecord{
         while (rs.next()) {
             ProductPrice pojo=new ProductPrice();
             pojo.setId(rs.getInt("id"));
-            pojo.setPrice( Double.toString(rs.getDouble("price")));
+            pojo.setPrice(rs.getDouble("price"));
             pojo.setStartingDate(rs.getDate("startDate").toLocalDate());
             list.add(pojo);
         }

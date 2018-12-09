@@ -1,29 +1,22 @@
 package basisFx.appCore.grid;
 
+import basisFx.appCore.elements.GridPaneWrapper;
 import basisFx.appCore.elements.LabelWrapper;
 import basisFx.appCore.settings.CSSID;
 import basisFx.appCore.settings.FontsStore;
 import javafx.geometry.HPos;
 import javafx.geometry.VPos;
 
-public class GridOrgTwoBondGrids extends GridOrganization {
+public class GridTwoBondGrids extends GridOrganization {
 
     protected GridPaneWrapper leftGridWrapper;
     protected GridPaneWrapper rightGridWrapper;
 
-    public void setLeftGridWrapper(GridPaneWrapper leftGridWrapper) {
+    public GridTwoBondGrids(GridPaneWrapper leftGridWrapper, GridPaneWrapper rightGridWrapper) {
         this.leftGridWrapper = leftGridWrapper;
-    }
-
-    public void setRightGridWrapper(GridPaneWrapper rightGridWrapper) {
         this.rightGridWrapper = rightGridWrapper;
     }
 
-    public GridOrgTwoBondGrids setGridWrappers(GridPaneWrapper leftGridWrapper, GridPaneWrapper rightGridWrapper){
-        this.leftGridWrapper = leftGridWrapper;
-        this.rightGridWrapper = rightGridWrapper;
-        return this;
-    }
 
     @Override
     public void organize() {

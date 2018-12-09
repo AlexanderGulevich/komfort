@@ -1,6 +1,7 @@
 package basisFx.presentation.targets;
 
 import basisFx.appCore.elements.DatePickerWrapper;
+import basisFx.appCore.elements.GridPaneWrapper;
 import basisFx.appCore.elements.TableWrapper;
 import basisFx.appCore.grid.*;
 import basisFx.appCore.table.ColumnWrapperComboBox;
@@ -15,12 +16,6 @@ public class OutputPanel  extends TargetPanel {
     ServiceAutoPushTableAndCommonDate mediator = new ServiceAutoPushTableAndCommonDate();
     @Override
     public void init() {
-//        ButtonWrapper buttonWrapper = ButtonFactory.getInstance().submitButton(
-//                innerAnchorPane,
-//                new Coordinate(10d, 13d, null, null),
-//                mediator
-//        );
-
 
         DatePickerWrapper datePickerWrapper = DatePickerWrapper.newBuilder()
                 .setCoordinate(new Coordinate(10d, null, null, 5d))
@@ -71,7 +66,7 @@ public class OutputPanel  extends TargetPanel {
 
 
         GridPaneWrapper.newBuilder()
-                .setGridOrganization(new GridOrgTopButSingleTable(tableWrapper,new ButtonsForSubmitGridLittle()))
+                .setGridOrganization(new GridSingleTable(tableWrapper,new ButtonsSizeForGridLittle(),new ButPositionTop()))
                 .setName("Учет выходной продукции")
                 .setParentAnchor(innerAnchorPane)
                 .setCoordinate(new Coordinate(50d,10d,10d,0d))

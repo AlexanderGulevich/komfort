@@ -1,10 +1,11 @@
 package basisFx.presentation.targets;
-import basisFx.appCore.grid.ButtonsForGridLittle;
+import basisFx.appCore.grid.ButPositionTop;
+import basisFx.appCore.grid.ButtonsSizeForGridLittle;
 import basisFx.service.ServiceTwoLinkedTable;
 import basisFx.appCore.elements.TableWrapper;
-import basisFx.appCore.grid.GridOrgTopButSingleTable;
-import basisFx.appCore.grid.GridOrgTwoBondGrids;
-import basisFx.appCore.grid.GridPaneWrapper;
+import basisFx.appCore.grid.GridSingleTable;
+import basisFx.appCore.grid.GridTwoBondGrids;
+import basisFx.appCore.elements.GridPaneWrapper;
 import basisFx.appCore.table.ColumnWrapperDate;
 import basisFx.appCore.table.ColumnWrapperDouble;
 import basisFx.appCore.table.ColumnWrapperString;
@@ -16,12 +17,13 @@ import basisFx.presentation.TargetPanel;
 public class EmployeesPanel extends TargetPanel {
     private boolean gridVisibility=false;
     private ServiceTwoLinkedTable mediatorServiceTwoLinkedTable =new ServiceTwoLinkedTable();
-    private GridOrgTwoBondGrids gridOrganization =new GridOrgTwoBondGrids();
 
     @Override
     public void init() {
 
-        TableWrapper labelTableWrapper = TableWrapper.newBuilder()
+        TableWrapper leftTableWrapper = TableWrapper.newBuilder()
+                .setGridName("Текущий список сотрудников ")
+                .setGridOrganization(new GridSingleTable(new ButtonsSizeForGridLittle(),new ButPositionTop()))
                 .setActiveRecordClass(Employer.class)
                 .setUnitOfWork(unitOfWork)
                 .setIsEditable(true)
@@ -37,13 +39,9 @@ public class EmployeesPanel extends TargetPanel {
                 )
                 .build();
 
-        GridPaneWrapper labelGridPaneWrapper = GridPaneWrapper.newBuilder()
-                .setGridLinesVisibility(gridVisibility)
-                .setName("Текущий список сотрудников ")
-                .setGridOrganization(new GridOrgTopButSingleTable(labelTableWrapper,new ButtonsForGridLittle()))
-                .build();
-
-        TableWrapper labelPriceTableWrapper = TableWrapper.newBuilder()
+        TableWrapper rightTableWrapper = TableWrapper.newBuilder()
+                .setGridName("Реестр тарифных ставок ")
+                .setGridOrganization(new GridSingleTable(new ButtonsSizeForGridLittle(),new ButPositionTop()))
                 .setActiveRecordClass(EmployeesRatePerHour.class)
                 .setUnitOfWork(unitOfWork)
                 .setIsEditable(true)
@@ -65,11 +63,6 @@ public class EmployeesPanel extends TargetPanel {
                 )
                 .build();
 
-        GridPaneWrapper labelPriceGridPaneWrapper = GridPaneWrapper.newBuilder()
-                .setGridLinesVisibility(gridVisibility)
-                .setName("Реестр тарифных ставок")
-                .setGridOrganization(new GridOrgTopButSingleTable(labelPriceTableWrapper,new ButtonsForGridLittle()))
-                .build();
 
         GridPaneWrapper commonGridPaneWrapper = GridPaneWrapper.newBuilder()
                 .setColumnVsPercent(60)
@@ -78,12 +71,17 @@ public class EmployeesPanel extends TargetPanel {
                 .setParentAnchor(innerAnchorPane)
                 .setCoordinate(new Coordinate(0d, 10d, 10d, 0d))
                 .setGridLinesVisibility(gridVisibility)
-                .setGridOrganization(gridOrganization.setGridWrappers(labelGridPaneWrapper,labelPriceGridPaneWrapper))
+                .setGridOrganization(
+                        new GridTwoBondGrids(
+                                leftTableWrapper.getGridPaneWrapper(),
+                                rightTableWrapper.getGridPaneWrapper()
+                        )
+                )
                 .build();
 
 
-        mediatorServiceTwoLinkedTable.setAccessoryTableWrapper(labelPriceTableWrapper);
-        mediatorServiceTwoLinkedTable.setPrimaryTableWrapper(labelTableWrapper);
+        mediatorServiceTwoLinkedTable.setAccessoryTableWrapper(rightTableWrapper);
+        mediatorServiceTwoLinkedTable.setPrimaryTableWrapper(leftTableWrapper);
         mediatorServiceTwoLinkedTable.initElements();
     }
 

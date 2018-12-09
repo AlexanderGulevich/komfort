@@ -1,10 +1,12 @@
 package basisFx.presentation.targets;
 
-import basisFx.appCore.grid.ButtonsForGridBig;
-import basisFx.appCore.grid.GridOrgTopButSingleTable;
+import basisFx.appCore.grid.ButPositionTop;
+import basisFx.appCore.grid.ButtonsSizeForGridBig;
+import basisFx.appCore.grid.ButtonsSizeForGridLittle;
+import basisFx.appCore.grid.GridSingleTable;
 import basisFx.service.ServiceSingleTable;
 import basisFx.appCore.elements.TableWrapper;
-import basisFx.appCore.grid.GridPaneWrapper;
+import basisFx.appCore.elements.GridPaneWrapper;
 import basisFx.appCore.table.ColumnWrapperComboBox;
 import basisFx.appCore.table.ColumnWrapperString;
 import basisFx.appCore.utils.Coordinate;
@@ -41,7 +43,7 @@ public class CounterpartyPanel extends TargetPanel {
                 .build();
 
         GridPaneWrapper.newBuilder()
-                .setGridOrganization(new GridOrgTopButSingleTable(tableWrapper,new ButtonsForGridBig()))
+                .setGridOrganization(new GridSingleTable(tableWrapper,new ButtonsSizeForGridLittle(),new ButPositionTop()))
                 .setName("Список контрагентов")
                 .setParentAnchor(innerAnchorPane)
                 .setCoordinate(new Coordinate(0d,10d,10d,0d))

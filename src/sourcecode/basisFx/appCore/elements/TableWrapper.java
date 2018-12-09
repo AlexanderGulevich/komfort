@@ -1,5 +1,6 @@
 package basisFx.appCore.elements;
 
+import basisFx.appCore.grid.GridOrganization;
 import basisFx.service.ServiceMediator;
 import basisFx.appCore.table.ColumnWrapper;
 import basisFx.appCore.events.AppEvent;
@@ -15,20 +16,17 @@ import basisFx.appCore.settings.FontsStore;
 import javafx.beans.property.ReadOnlyDoubleProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.geometry.Insets;
-import javafx.geometry.Orientation;
 import javafx.scene.Group;
-import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 
 public  class TableWrapper extends AppNode  {
     private boolean isEditable;
+    private GridPaneWrapper gridPaneWrapper;
     private Callback<TableView.ResizeFeatures,Boolean> columnResizePolicy ;
     private boolean isSortableColums;
     private Double widthPercent;
@@ -43,6 +41,9 @@ public  class TableWrapper extends AppNode  {
     public  ActiveRecord clickedDomain;
     public  Class activeRecordClass;
     public  ActiveRecord activeRecord;
+    private boolean gridLinesVisibility;
+    private GridOrganization gridOrganization;
+    private String gridName;
 
     private TableWrapper(Builder builder) {
 
@@ -67,6 +68,9 @@ public  class TableWrapper extends AppNode  {
         widthPercent=builder.widthPercent;
         parentWidthProperty=builder.parentWidthProperty;
         isEditable=builder.isEditable;
+        gridLinesVisibility=builder.gridLinesVisibility;
+        gridOrganization=builder.gridOrganization;
+        gridName=builder.gridName;
 
         createActiveRecord(builder);
         element =new TableView<>();
@@ -79,6 +83,22 @@ public  class TableWrapper extends AppNode  {
         applySortableAllCollums();
         applyTablesWidthProperty();
         setClickedRowDetection();
+        createGrid();
+    }
+
+    public GridPaneWrapper getGridPaneWrapper() {
+        return gridPaneWrapper;
+    }
+
+    private void createGrid() {
+        if (gridOrganization != null) {
+            gridOrganization.setTableWrapper(this);
+              gridPaneWrapper = GridPaneWrapper.newBuilder()
+                    .setGridLinesVisibility(gridLinesVisibility)
+                    .setName(gridName)
+                    .setGridOrganization(gridOrganization)
+                    .build();
+        }
     }
 
     private void applyCSS() {
@@ -290,8 +310,25 @@ public  class TableWrapper extends AppNode  {
         private ColumnWrapper[] columnWrappers;
         private UnitOfWork unitOfWork;
         private ActiveRecord clickedDomain;
+        private boolean gridLinesVisibility=false;
+        private GridOrganization gridOrganization;
+        private String gridName;
+
+        public  Builder setGridName(String val) {
+            gridName = val;
+            return this;
+        }
 
 
+        public  Builder setGridOrganization(GridOrganization gridOrganization) {
+            this.gridOrganization = gridOrganization;
+            return this;
+        }
+
+        public Builder setGridLinesVisibility(boolean gridLinesVisibility) {
+            this.gridLinesVisibility = gridLinesVisibility;
+            return this;
+        }
         public Builder setWidthPercent(double widthPercent) {
             this.widthPercent = widthPercent;
             return this;

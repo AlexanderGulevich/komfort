@@ -5,10 +5,10 @@ import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.VPos;
 
-public class GridOrgButtonNonSingleTable extends GridOrganization{
+public class GridButtonNonSingleTable extends GridOrganization{
     private TableWrapper tableWrapper;
 
-    public GridOrgButtonNonSingleTable(TableWrapper tableWrapper) {
+    public GridButtonNonSingleTable(TableWrapper tableWrapper) {
         this.tableWrapper = tableWrapper;
     }
 

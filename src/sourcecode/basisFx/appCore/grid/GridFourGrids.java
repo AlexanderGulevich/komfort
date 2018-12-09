@@ -1,5 +1,6 @@
 package basisFx.appCore.grid;
 
+import basisFx.appCore.elements.GridPaneWrapper;
 import basisFx.appCore.elements.LabelWrapper;
 import basisFx.appCore.elements.TableWrapper;
 import basisFx.appCore.settings.CSSID;
@@ -7,7 +8,7 @@ import basisFx.appCore.settings.FontsStore;
 import javafx.geometry.HPos;
 import javafx.geometry.VPos;
 
-public class GridOrgFourGrids extends GridOrganization {
+public class GridFourGrids extends GridOrganization {
 
     protected GridPaneWrapper leftGridWrapperTop;
     protected GridPaneWrapper rightGridWrapperTop;
@@ -30,8 +31,8 @@ public class GridOrgFourGrids extends GridOrganization {
         return rightGridWrapperBottom;
     }
 
-    public GridOrgFourGrids setGrids(GridPaneWrapper leftGridWrapperTop, GridPaneWrapper rightGridWrapperTop,
-                                     GridPaneWrapper leftGridWrapperBottom, GridPaneWrapper rightGridWrapperBottom) {
+    public GridFourGrids setGrids(GridPaneWrapper leftGridWrapperTop, GridPaneWrapper rightGridWrapperTop,
+                                  GridPaneWrapper leftGridWrapperBottom, GridPaneWrapper rightGridWrapperBottom) {
         this.leftGridWrapperTop = leftGridWrapperTop;
         this.rightGridWrapperTop = rightGridWrapperTop;
         this.leftGridWrapperBottom = leftGridWrapperBottom;

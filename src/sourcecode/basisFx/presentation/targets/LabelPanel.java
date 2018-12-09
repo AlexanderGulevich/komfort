@@ -1,5 +1,6 @@
 package basisFx.presentation.targets;
 
+import basisFx.appCore.elements.GridPaneWrapper;
 import basisFx.appCore.grid.*;
 import basisFx.service.ServiceTwoLinkedTable;
 import basisFx.appCore.elements.TableWrapper;
@@ -17,12 +18,13 @@ public class LabelPanel  extends TargetPanel {
 
     private boolean gridVisibility=false;
     private ServiceTwoLinkedTable mediatorServiceTwoLinkedTable =new ServiceTwoLinkedTable();
-    private GridOrgTwoBondGrids gridOrganization =new GridOrgTwoBondGrids();
 
     @Override
     public void init() {
 
-        TableWrapper labelTableWrapper = TableWrapper.newBuilder()
+        TableWrapper leftTableWrapper = TableWrapper.newBuilder()
+                .setGridName("Этикетки")
+                .setGridOrganization(new GridSingleTable(new ButtonsSizeForGridLittle(),new ButPositionTop()))
                 .setActiveRecordClass(Label.class)
                 .setUnitOfWork(unitOfWork)
                 .setIsEditable(true)
@@ -43,13 +45,10 @@ public class LabelPanel  extends TargetPanel {
                                 .build())
                 .build();
 
-        GridPaneWrapper labelGridPaneWrapper = GridPaneWrapper.newBuilder()
-                .setGridLinesVisibility(gridVisibility)
-                .setName("Этикетки")
-                .setGridOrganization(new GridOrgTopButSingleTable(labelTableWrapper,new ButtonsForGridLittle()))
-                .build();
 
-        TableWrapper labelPriceTableWrapper = TableWrapper.newBuilder()
+        TableWrapper rightTableWrapper = TableWrapper.newBuilder()
+                .setGridName("Курсы")
+                .setGridOrganization(new GridSingleTable(new ButtonsSizeForGridLittle(),new ButPositionTop()))
                 .setActiveRecordClass(ExchangeRates.class)
                 .setUnitOfWork(unitOfWork)
                 .setIsEditable(true)
@@ -71,12 +70,6 @@ public class LabelPanel  extends TargetPanel {
                 )
                 .build();
 
-        GridPaneWrapper labelPriceGridPaneWrapper = GridPaneWrapper.newBuilder()
-                .setGridLinesVisibility(gridVisibility)
-                .setName("Курсы")
-                .setGridOrganization(new GridOrgTopButSingleTable(labelPriceTableWrapper,new ButtonsForGridLittle()))
-                .build();
-
         GridPaneWrapper commonGridPaneWrapper = GridPaneWrapper.newBuilder()
                 .setColumnVsPercent(60)
                 .setColumnVsPercent(40)
@@ -84,12 +77,18 @@ public class LabelPanel  extends TargetPanel {
                 .setParentAnchor(innerAnchorPane)
                 .setCoordinate(new Coordinate(0d, 10d, 10d, 0d))
                 .setGridLinesVisibility(gridVisibility)
-                .setGridOrganization(gridOrganization.setGridWrappers(labelGridPaneWrapper,labelPriceGridPaneWrapper))
+                .setGridOrganization(
+                        new GridTwoBondGrids(
+                                leftTableWrapper.getGridPaneWrapper(),
+                                rightTableWrapper.getGridPaneWrapper()
+                        )
+
+                )
                 .build();
 
 
-        mediatorServiceTwoLinkedTable.setAccessoryTableWrapper(labelPriceTableWrapper);
-        mediatorServiceTwoLinkedTable.setPrimaryTableWrapper(labelTableWrapper);
+        mediatorServiceTwoLinkedTable.setAccessoryTableWrapper(rightTableWrapper);
+        mediatorServiceTwoLinkedTable.setPrimaryTableWrapper(leftTableWrapper);
         mediatorServiceTwoLinkedTable.initElements();
 
 
@@ -98,3 +97,4 @@ public class LabelPanel  extends TargetPanel {
 
 
 }
+

@@ -125,7 +125,7 @@ public class LabelPrice extends ActiveRecord {
             while (rs.next()) {
                 ProductPrice pojo=new ProductPrice();
                 pojo.setId(rs.getInt("id"));
-                pojo.setPrice( Double.toString(rs.getDouble("price")));
+                pojo.setPrice(rs.getDouble("price"));
                 pojo.setStartingDate(rs.getDate("startDate").toLocalDate());
                 list.add(pojo);
             }

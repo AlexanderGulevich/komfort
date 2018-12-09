@@ -1,5 +1,6 @@
 package basisFx.appCore.grid;
 
+import basisFx.appCore.elements.GridPaneWrapper;
 import basisFx.appCore.elements.TableWrapper;
 import basisFx.appCore.fabrics.ButtonFactory;
 import javafx.geometry.Insets;
@@ -9,15 +10,21 @@ public abstract class GridOrganization {
     protected Insets insets = new Insets(3, 3, 3, 3);
     protected GridPaneWrapper parentGridWrapper;
     protected ButtonFactory buttonFactory = ButtonFactory.getInstance();
+    protected TableWrapper tableWrapper;
+    protected ButtonsPosition buttonsPosition;
 
     public abstract void organize();
 
-    public GridOrgTopButSingleTable setInsets(Insets insets) {
+    public GridSingleTable setInsets(Insets insets) {
         this.insets = insets;
         return null;
     }
     public void setParentGridPaneWrapper(GridPaneWrapper gridPaneWrapper) {
         this.parentGridWrapper = gridPaneWrapper;
+    }
+
+    public GridPaneWrapper getParentGridWrapper() {
+        return parentGridWrapper;
     }
 
     protected void bindHeight(GridPaneWrapper gridPaneWrapper){
@@ -32,6 +39,11 @@ public abstract class GridOrganization {
         });
     }
 
+    public void setButtonsPosition(ButtonsPosition buttonsPosition) {
+        this.buttonsPosition = buttonsPosition;
+    }
 
-
+    public void setTableWrapper(TableWrapper tableWrapper) {
+        this.tableWrapper = tableWrapper;
+    }
 }

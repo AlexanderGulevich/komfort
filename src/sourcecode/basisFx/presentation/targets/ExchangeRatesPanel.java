@@ -1,11 +1,12 @@
 package basisFx.presentation.targets;
 
-import basisFx.appCore.grid.ButtonsForGridLittle;
+import basisFx.appCore.grid.ButPositionTop;
+import basisFx.appCore.grid.ButtonsSizeForGridLittle;
 import basisFx.service.ServiceTwoLinkedTable;
 import basisFx.appCore.elements.TableWrapper;
-import basisFx.appCore.grid.GridOrgTopButSingleTable;
-import basisFx.appCore.grid.GridPaneWrapper;
-import basisFx.appCore.grid.GridOrgTwoBondGrids;
+import basisFx.appCore.grid.GridSingleTable;
+import basisFx.appCore.elements.GridPaneWrapper;
+import basisFx.appCore.grid.GridTwoBondGrids;
 import basisFx.appCore.table.ColumnWrapperDate;
 import basisFx.appCore.table.ColumnWrapperDouble;
 import basisFx.appCore.table.ColumnWrapperString;
@@ -18,12 +19,13 @@ public class ExchangeRatesPanel extends TargetPanel {
 
     private boolean gridVisibility=false;
     private ServiceTwoLinkedTable mediatorServiceTwoLinkedTable =new ServiceTwoLinkedTable();
-    private GridOrgTwoBondGrids gridOrganization =new GridOrgTwoBondGrids();
 
       @Override
     public void init() {
 
-        TableWrapper currencyTableWrapper = TableWrapper.newBuilder()
+        TableWrapper leftTableWrapper = TableWrapper.newBuilder()
+                .setGridName("Валюта ")
+                .setGridOrganization(new GridSingleTable(new ButtonsSizeForGridLittle(),new ButPositionTop()))
                 .setActiveRecordClass(Currency.class)
                 .setUnitOfWork(unitOfWork)
                 .setIsEditable(true)
@@ -38,13 +40,10 @@ public class ExchangeRatesPanel extends TargetPanel {
                                 .build())
                 .build();
 
-        GridPaneWrapper currencyGridPaneWrapper = GridPaneWrapper.newBuilder()
-                .setGridLinesVisibility(gridVisibility)
-                .setName("Валюта")
-                .setGridOrganization(new GridOrgTopButSingleTable(currencyTableWrapper,new ButtonsForGridLittle()))
-                .build();
 
-        TableWrapper exchangeRatesTableWrapper = TableWrapper.newBuilder()
+        TableWrapper rightTableWrapper = TableWrapper.newBuilder()
+                .setGridName("Курсы ")
+                .setGridOrganization(new GridSingleTable(new ButtonsSizeForGridLittle(),new ButPositionTop()))
                 .setActiveRecordClass(ExchangeRates.class)
                 .setUnitOfWork(unitOfWork)
                 .setIsEditable(true)
@@ -66,12 +65,6 @@ public class ExchangeRatesPanel extends TargetPanel {
                 )
                 .build();
 
-        GridPaneWrapper exchangeRatesGridPaneWrapper = GridPaneWrapper.newBuilder()
-                .setGridLinesVisibility(gridVisibility)
-                .setName("Курсы")
-                .setGridOrganization(new GridOrgTopButSingleTable(exchangeRatesTableWrapper,new ButtonsForGridLittle()))
-                .build();
-
         GridPaneWrapper commonGridPaneWrapper = GridPaneWrapper.newBuilder()
                 .setColumnVsPercent(60)
                 .setColumnVsPercent(40)
@@ -79,12 +72,18 @@ public class ExchangeRatesPanel extends TargetPanel {
                 .setParentAnchor(innerAnchorPane)
                 .setCoordinate(new Coordinate(0d, 10d, 10d, 0d))
                 .setGridLinesVisibility(gridVisibility)
-                .setGridOrganization(gridOrganization.setGridWrappers(currencyGridPaneWrapper,exchangeRatesGridPaneWrapper))
+                .setGridOrganization(
+                        new GridTwoBondGrids(
+                                leftTableWrapper.getGridPaneWrapper(),
+                                rightTableWrapper.getGridPaneWrapper()
+                        )
+
+                )
                 .build();
 
 
-        mediatorServiceTwoLinkedTable.setAccessoryTableWrapper(exchangeRatesTableWrapper);
-        mediatorServiceTwoLinkedTable.setPrimaryTableWrapper(currencyTableWrapper);
+        mediatorServiceTwoLinkedTable.setAccessoryTableWrapper(rightTableWrapper);
+        mediatorServiceTwoLinkedTable.setPrimaryTableWrapper(leftTableWrapper);
         mediatorServiceTwoLinkedTable.initElements();
     }
 

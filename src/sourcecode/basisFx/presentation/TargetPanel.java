@@ -1,14 +1,11 @@
 package basisFx.presentation;
 
 import basisFx.appCore.elements.AnchorWrapper;
-import basisFx.appCore.grid.GridPaneWrapper;
 import basisFx.appCore.settings.CSSID;
 import basisFx.appCore.utils.Coordinate;
 import basisFx.appCore.windows.MainWindow;
 import basisFx.dataSource.UnitOfWork;
-import javafx.scene.Node;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.GridPane;
 
 public abstract class TargetPanel {
 

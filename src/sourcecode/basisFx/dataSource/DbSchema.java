@@ -162,7 +162,7 @@ public class DbSchema {
                 + " date Date,  "
                 + " FOREIGN KEY (CounterpartyId) REFERENCES Counterparty(id)  on delete cascade "
                 + ")";
-        String viewActualRate= "Create  view ActualEmployersRate  as" +
+        String viewActualRate= "Create  view ActualEmployersRate  as " +
                 " SELECT  r.employerId, r.rate, r.startDate, e.name, e.isFired"+
                 " from  employer as e,"+
                 " (select * from EMPLOYEESRATEPERHOUR where (employerId, startDate)"+
@@ -172,7 +172,8 @@ public class DbSchema {
                 " ORDER BY r.employerId";
 
 
-        String viewTimeRecordingAndSalary="SELECT EMPLOYERID, DATE, HOURS , rate, rate*HOURS AS salary, e.ISFIRED,e.NAME FROM(\n" +
+        String viewTimeRecordingAndSalary= "Create  view TimeRecordingAndSalary  as " +
+                "SELECT EMPLOYERID, DATE, HOURS , rate, rate*HOURS AS salary, e.ISFIRED,e.NAME FROM(\n" +
                 "SELECT t.EMPLOYERID, t.DATE,t.HOURS,\n" +
                 "(select RATE from EMPLOYEESRATEPERHOUR where (employerId, startdate)\n" +
                 "in (\n" +
@@ -188,32 +189,32 @@ public class DbSchema {
                 "ON timerec.EMPLOYERID=e.id\n";
 
 
-        create(
-                equipment,
-                currency,
-                counterparty,
-                employer,
-                ratePerHourHistory,
-                timeRecordingForEmployers,
-                exchangeRates,
-                product,
-                productPriceStore,
-                packetSize,
-                packet,
-                packetPriceStore,
-                packetProductAccordance,
-                label,
-                labelPriceStore,
-                sleeve,
-                sleevePriceStore,
-                paper,
-                paperPriceStore,
-                outputPerDay,
-                jumboAccounting,
-                viewActualRate,
-                viewTimeRecordingAndSalary
-
-        );
+//        create(
+//                equipment,
+//                currency,
+//                counterparty,
+//                employer,
+//                ratePerHourHistory,
+//                timeRecordingForEmployers,
+//                exchangeRates,
+//                product,
+//                productPriceStore,
+//                packetSize,
+//                packet,
+//                packetPriceStore,
+//                packetProductAccordance,
+//                label,
+//                labelPriceStore,
+//                sleeve,
+//                sleevePriceStore,
+//                paper,
+//                paperPriceStore,
+//                outputPerDay,
+//                jumboAccounting,
+//                viewActualRate,
+//                viewTimeRecordingAndSalary
+//
+//        );
 
     }
     

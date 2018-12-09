@@ -88,15 +88,15 @@ public class Counterparty extends ActiveRecord {
         try {
 
                 String expression = "INSERT INTO " + this.entityName
-                        + "(name ,"
-                        + "currencyId"
+                        + "(name," +
+                        " currencyid "
                         + ") VALUES(?,?)";
 
                 PreparedStatement pstmt = Db.connection.prepareStatement(expression);
                 pstmt.setString(1,name.get());
-                pstmt.setInt(2, currency.get().getId());
+                pstmt.setInt(2,currency.get().getId());
 
-                int i=pstmt.executeUpdate();
+                 pstmt.executeUpdate();
 
         } catch (SQLException e) {
             e.printStackTrace();

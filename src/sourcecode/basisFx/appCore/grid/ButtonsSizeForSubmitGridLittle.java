@@ -1,13 +1,11 @@
 package basisFx.appCore.grid;
 
-
-public class ButtonsForGridLittle extends ButtonsForGrid {
-
+public class ButtonsSizeForSubmitGridLittle extends ButtonsSizeForGrid {
     @Override
     public void init() {
         setColumnWidth(40d);
-        buttonAdd=buttonFactory.littleRowAddButton(tableWrapper);
+        buttonAdd=buttonFactory.littleRowAddButtonForSubmitTable(tableWrapper);
         buttonDel=buttonFactory.littleRowDeleteButton(tableWrapper);
-    }
 
+    }
 }
