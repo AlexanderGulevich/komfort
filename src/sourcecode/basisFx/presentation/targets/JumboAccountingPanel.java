@@ -3,8 +3,8 @@ package basisFx.presentation.targets;
 import basisFx.appCore.elements.DatePickerWrapper;
 import basisFx.appCore.elements.TableWrapper;
 import basisFx.appCore.grid.ButPositionTop;
+import basisFx.appCore.grid.ButtonsSizeForGridBig;
 import basisFx.appCore.grid.ButtonsSizeForGridLittle;
-import basisFx.appCore.grid.ButtonsSizeForSubmitGridLittle;
 import basisFx.appCore.grid.GridSingleTable;
 import basisFx.appCore.elements.GridPaneWrapper;
 import basisFx.appCore.table.ColumnWrapperComboBox;
@@ -51,7 +51,7 @@ public class JumboAccountingPanel extends TargetPanel {
 
 
         GridPaneWrapper.newBuilder()
-                .setGridOrganization(new GridSingleTable(tableWrapper,new ButtonsSizeForGridLittle(),new ButPositionTop()))
+                .setGridOrganization(new GridSingleTable(tableWrapper,new ButtonsSizeForGridBig(),new ButPositionTop()))
                 .setName("Учет джамбо-ролей")
                 .setParentAnchor(innerAnchorPane)
                 .setCoordinate(new Coordinate(50d, 10d, 10d, 0d))

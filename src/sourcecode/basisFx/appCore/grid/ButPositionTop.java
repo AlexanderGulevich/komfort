@@ -10,6 +10,7 @@ import javafx.scene.control.TableView;
 public class ButPositionTop extends ButtonsPosition{
     @Override
     public void organize(Label label, Button addBut, Button delBut, TableView tableView) {
+
         parentGridWrapper.addSpanNode(
                 label,
                 0, 0, 1, 1, HPos.LEFT, VPos.TOP, insets);
@@ -22,5 +23,15 @@ public class ButPositionTop extends ButtonsPosition{
         parentGridWrapper.addSpanNode(
                 tableView,
                 0, 1, 3, 1, HPos.CENTER, VPos.TOP, insets);
+    }
+
+    @Override
+    public void organize(Label label, TableView tableView) {
+
+    }
+
+    @Override
+    public void organize(TableView tableView) {
+
     }
 }

@@ -5,6 +5,7 @@ import basisFx.appCore.elements.DatePickerWrapper;
 import basisFx.appCore.elements.TableWrapper;
 import basisFx.appCore.grid.ButPositionNotExist;
 import basisFx.appCore.elements.GridPaneWrapper;
+import basisFx.appCore.grid.ButtonsSizeNon;
 import basisFx.appCore.grid.GridSingleTable;
 import basisFx.appCore.table.ColumnWrapperComboBox;
 import basisFx.appCore.table.ColumnWrapperDouble;
@@ -59,7 +60,7 @@ public class TimeRecordingPanel extends TargetPanel {
 
 
         GridPaneWrapper.newBuilder()
-                .setGridOrganization(new GridSingleTable(tableWrapper,null,new ButPositionNotExist()))
+                .setGridOrganization(new GridSingleTable(tableWrapper,new ButtonsSizeNon(),new ButPositionNotExist()))
                 .setName("Учет рабочего времени")
                 .setParentAnchor(innerAnchorPane)
                 .setCoordinate(new Coordinate(50d,10d,10d,0d))

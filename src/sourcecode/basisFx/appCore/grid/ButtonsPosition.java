@@ -14,6 +14,8 @@ public abstract class ButtonsPosition {
 
 
     public abstract void organize(Label label, Button addBut, Button delBut, TableView tableView);
+    public abstract void organize(Label label,  TableView tableView);
+    public abstract void organize(TableView tableView);
 
     public void setParentGridWrapper(GridPaneWrapper parentGridWrapper) {
         this.parentGridWrapper = parentGridWrapper;
