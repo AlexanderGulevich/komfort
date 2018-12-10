@@ -15,8 +15,9 @@ public class OutputPerDay extends ActiveRecord implements RecordWithDate {
     private SimpleObjectProperty<Equipment> equipment =new SimpleObjectProperty<>(this, "equipment", null);
     private SimpleObjectProperty<Product> product=new SimpleObjectProperty<>(this, "product", null);
     private SimpleObjectProperty<Integer> rodsNumber=new SimpleObjectProperty<>(this, "rodsNumber", null);
+    private SimpleObjectProperty<Integer> rodsWidth=new SimpleObjectProperty<>(this, "rodsWidth", null);
     private SimpleObjectProperty<Packet> packet=new SimpleObjectProperty<>(this, "packet", null);
-    private SimpleObjectProperty<Counterparty> counterparty=new SimpleObjectProperty<>(this, "counterparty", null);
+    private SimpleObjectProperty<Counterparty> packetCounterparty=new SimpleObjectProperty<>(this, "packetCounterparty", null);
     private SimpleObjectProperty<LocalDate> date =new SimpleObjectProperty<>(this, "date", null);
 
 
@@ -26,18 +27,6 @@ public class OutputPerDay extends ActiveRecord implements RecordWithDate {
 
     public static OutputPerDay getINSTANCE() {
         return INSTANCE;
-    }
-
-    public LocalDate getDate() {
-        return date.get();
-    }
-
-    public SimpleObjectProperty<LocalDate> dateProperty() {
-        return date;
-    }
-
-    public void setDate(LocalDate date) {
-        this.date.set(date);
     }
 
     public Equipment getEquipment() {
@@ -76,6 +65,18 @@ public class OutputPerDay extends ActiveRecord implements RecordWithDate {
         this.rodsNumber.set(rodsNumber);
     }
 
+    public Integer getRodsWidth() {
+        return rodsWidth.get();
+    }
+
+    public SimpleObjectProperty<Integer> rodsWidthProperty() {
+        return rodsWidth;
+    }
+
+    public void setRodsWidth(Integer rodsWidth) {
+        this.rodsWidth.set(rodsWidth);
+    }
+
     public Packet getPacket() {
         return packet.get();
     }
@@ -88,16 +89,28 @@ public class OutputPerDay extends ActiveRecord implements RecordWithDate {
         this.packet.set(packet);
     }
 
-    public Counterparty getCounterparty() {
-        return counterparty.get();
+    public Counterparty getPacketCounterparty() {
+        return packetCounterparty.get();
     }
 
-    public SimpleObjectProperty<Counterparty> counterpartyProperty() {
-        return counterparty;
+    public SimpleObjectProperty<Counterparty> packetCounterpartyProperty() {
+        return packetCounterparty;
     }
 
-    public void setCounterparty(Counterparty counterparty) {
-        this.counterparty.set(counterparty);
+    public void setPacketCounterparty(Counterparty packetCounterparty) {
+        this.packetCounterparty.set(packetCounterparty);
+    }
+
+    public LocalDate getDate() {
+        return date.get();
+    }
+
+    public SimpleObjectProperty<LocalDate> dateProperty() {
+        return date;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date.set(date);
     }
 
     @Override
@@ -123,7 +136,7 @@ public class OutputPerDay extends ActiveRecord implements RecordWithDate {
             pstmt.setInt(3, getRodsNumber());
             pstmt.setInt(4, getPacket().getId());
             pstmt.setDate(5, Date.valueOf(getDate()));
-            pstmt.setInt(6, getCounterparty().getId());
+            pstmt.setInt(6, ge().getId());
             pstmt.setInt(7, getId());
             pstmt.executeUpdate();
         } catch (SQLException e) {

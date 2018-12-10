@@ -60,19 +60,19 @@ public class OutputPanel  extends TargetPanel {
                                 .setColumnName("Поставщик \nпакета")
                                 .setColumnSize(0.15d)
                                 .setIsEditeble(true)
-                                .setPropertyName("counterparty")
+                                .setPropertyName("packetCounterparty")
                                 .build(),
-                        ColumnWrapperComboBox.newBuilder(Packet.class)
+                        ColumnWrapperComboBox.newBuilder(Jumbo.class)
                                 .setColumnName("Ширина\n роля")
                                 .setColumnSize(0.15d)
                                 .setIsEditeble(true)
-                                .setPropertyName("packet")
+                                .setPropertyName("rodsWidth")
                                 .build(),
                         ColumnWrapperComboBox.newBuilder(Counterparty.class)
                                 .setColumnName("Поставщик\n бумаги")
                                 .setColumnSize(0.15d)
                                 .setIsEditeble(true)
-                                .setPropertyName("counterparty")
+                                .setPropertyName("paperCounterparty")
                                 .build()
                 )
                 .build();
