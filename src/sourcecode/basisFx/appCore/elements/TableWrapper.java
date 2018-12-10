@@ -44,6 +44,7 @@ public  class TableWrapper extends AppNode  {
     private boolean gridLinesVisibility;
     private GridOrganization gridOrganization;
     private String gridName;
+    private String className;
 
     private TableWrapper(Builder builder) {
 
@@ -71,6 +72,7 @@ public  class TableWrapper extends AppNode  {
         gridLinesVisibility=builder.gridLinesVisibility;
         gridOrganization=builder.gridOrganization;
         gridName=builder.gridName;
+        className=builder.className;
 
         createActiveRecord(builder);
         element =new TableView<>();
@@ -84,6 +86,13 @@ public  class TableWrapper extends AppNode  {
         applyTablesWidthProperty();
         setClickedRowDetection();
         createGrid();
+        applyClassName();
+    }
+
+    private void applyClassName() {
+        if (className != null) {
+            element.getStyleClass().add(className);
+        }
     }
 
     public GridPaneWrapper getGridPaneWrapper() {
@@ -313,6 +322,7 @@ public  class TableWrapper extends AppNode  {
         private boolean gridLinesVisibility=false;
         private GridOrganization gridOrganization;
         private String gridName;
+        private String className;
 
         public  Builder setGridName(String val) {
             gridName = val;
@@ -442,8 +452,15 @@ public  class TableWrapper extends AppNode  {
             return this;
         }
 
+        public Builder setClass(String s) {
+            this.className=s;
+            return this;
+
+        }
+
         public TableWrapper build() {
             return new TableWrapper(this);
         }
+
     }
 }
