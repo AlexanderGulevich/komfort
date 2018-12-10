@@ -10,7 +10,7 @@ public abstract class GridOrganization {
     protected Insets insets = new Insets(3, 3, 3, 3);
     protected GridPaneWrapper parentGridWrapper;
     protected ButtonFactory buttonFactory = ButtonFactory.getInstance();
-    protected TableWrapper tableWrapper;
+
     protected ButtonsPosition buttonsPosition;
 
     public abstract void organize();
@@ -43,7 +43,6 @@ public abstract class GridOrganization {
         this.buttonsPosition = buttonsPosition;
     }
 
-    public void setTableWrapper(TableWrapper tableWrapper) {
-        this.tableWrapper = tableWrapper;
-    }
+    public  void setTableWrapper(TableWrapper tableWrapper){};
+
 }

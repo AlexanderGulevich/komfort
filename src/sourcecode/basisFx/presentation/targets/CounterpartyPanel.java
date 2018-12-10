@@ -43,7 +43,7 @@ public class CounterpartyPanel extends TargetPanel {
                 .build();
 
         GridPaneWrapper.newBuilder()
-                .setGridOrganization(new GridSingleTable(tableWrapper,new ButtonsSizeForGridLittle(),new ButPositionTop()))
+                .setGridOrganization(new GridSingleTable(tableWrapper,new ButtonsSizeForGridBig(),new ButPositionTop()))
                 .setName("Список контрагентов")
                 .setParentAnchor(innerAnchorPane)
                 .setCoordinate(new Coordinate(0d,10d,10d,0d))

@@ -140,7 +140,25 @@ public class PacketProductAccordance extends ActiveRecord {
     }
 
     @Override
-    public ObservableList<ActiveRecord> findAllByOuterId(int id) {
-        return null;
+    public ObservableList<ActiveRecord> findAllByOuterId(int id){
+
+    ObservableList<ActiveRecord> list = createNewActiveRecordList();
+    String expression = "SELECT * FROM " + this.entityName + " where packetSizeId= " + id;
+        try {
+        Statement stmt = Db.connection.createStatement();
+        ResultSet rs = stmt.executeQuery(expression);
+        while (rs.next()) {
+            PacketProductAccordance pojo = new PacketProductAccordance();
+            pojo.setId(rs.getInt("id"));
+            pojo.setNumber(rs.getInt("number"));
+            pojo.setProduct(Product.getINSTANCE().find(rs.getInt("productId")));
+            list.add(pojo);
+        }
+    } catch (
+    SQLException e) {
+        e.printStackTrace();
+    }
+        return list;
+
     }
 }

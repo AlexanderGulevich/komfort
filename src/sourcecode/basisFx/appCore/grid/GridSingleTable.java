@@ -7,6 +7,7 @@ import javafx.geometry.VPos;
 
 public class GridSingleTable extends GridOrganization{
     private ButtonsSizeForGrid buttonsSizeForGrid;
+    protected TableWrapper tableWrapper=null;
 
     public GridSingleTable(TableWrapper tableWrapper, ButtonsSizeForGrid buttonsSizeForGrid, ButtonsPosition position) {
         this.buttonsPosition=position;
@@ -15,6 +16,10 @@ public class GridSingleTable extends GridOrganization{
         this.buttonsSizeForGrid.setTableWrapper(tableWrapper);
         this.buttonsSizeForGrid.init();
 
+    }
+
+    public void setTableWrapper(TableWrapper tableWrapper) {
+        this.tableWrapper = tableWrapper;
     }
 
     public GridSingleTable(ButtonsSizeForGrid buttonsSizeForGrid, ButtonsPosition position) {

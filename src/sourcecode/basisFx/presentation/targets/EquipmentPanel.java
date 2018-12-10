@@ -38,7 +38,7 @@ public class EquipmentPanel extends TargetPanel {
 
 
         GridPaneWrapper.newBuilder()
-                .setGridOrganization(new GridSingleTable(tableWrapper,new ButtonsSizeForGridLittle(),new ButPositionTop()))
+                .setGridOrganization(new GridSingleTable(tableWrapper,new ButtonsSizeForGridBig(),new ButPositionTop()))
                 .setName("Оборудование")
                 .setParentAnchor(innerAnchorPane)
                 .setCoordinate(new Coordinate(0d,10d,10d,0d))

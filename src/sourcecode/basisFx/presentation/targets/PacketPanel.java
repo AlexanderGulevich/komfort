@@ -55,7 +55,7 @@ public class PacketPanel  extends TargetPanel {
                                 .setColumnName("Тариф")
                                 .setColumnSize(0.3d)
                                 .setIsEditeble(true)
-                                .setPropertyName("rate")
+                                .setPropertyName("price")
                                 .build(),
                         ColumnWrapperDate.newBuilder()
                                 .setColumnName("Действует с")
