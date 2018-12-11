@@ -57,7 +57,7 @@ public class Employer extends ActiveRecord {
     public void update() {
         try {
             String expression = "UPDATE "+    this.entityName+ " SET  " +
-                    " name = ?," +
+                    " name = ?" +
                     " WHERE id= ?" ;
             PreparedStatement pstmt = null;
             pstmt = Db.connection.prepareStatement(expression);

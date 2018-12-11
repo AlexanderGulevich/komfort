@@ -66,7 +66,7 @@ public class OutputPanel  extends TargetPanel {
                                 .setColumnName("Ширина\n роля")
                                 .setColumnSize(0.15d)
                                 .setIsEditeble(true)
-                                .setPropertyName("rodsWidth")
+                                .setPropertyName("Jumbo")
                                 .build(),
                         ColumnWrapperComboBox.newBuilder(Counterparty.class)
                                 .setColumnName("Поставщик\n бумаги")

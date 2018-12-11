@@ -13,7 +13,7 @@ import java.sql.Statement;
 public class Jumbo extends ActiveRecord {
 
     private static Jumbo INSTANCE = new Jumbo();
-    private SimpleObjectProperty<Double> width = new SimpleObjectProperty<>(this, "width", null);
+    private SimpleObjectProperty<Integer> width = new SimpleObjectProperty<>(this, "width", null);
     private SimpleObjectProperty<Integer> numberOfProduct = new SimpleObjectProperty<>(this, "numberOfProduct", null);
 
     public Jumbo() {
@@ -25,15 +25,15 @@ public class Jumbo extends ActiveRecord {
     }
 
 
-    public Double getWidth() {
+    public Integer getWidth() {
         return width.get();
     }
 
-    public SimpleObjectProperty<Double> widthProperty() {
+    public SimpleObjectProperty<Integer> widthProperty() {
         return width;
     }
 
-    public void setWidth(Double width) {
+    public void setWidth(Integer width) {
         this.width.set(width);
     }
 
@@ -61,7 +61,7 @@ public class Jumbo extends ActiveRecord {
             while (rs.next()) {
                 Jumbo pojo = new Jumbo();
                 pojo.setId(rs.getInt("id"));
-                pojo.setWidth(rs.getDouble("width"));
+                pojo.setWidth(rs.getInt("width"));
                 pojo.setNumberOfProduct(rs.getInt("numberOfProduct"));
                 list.add(pojo);
             }
@@ -90,13 +90,32 @@ public class Jumbo extends ActiveRecord {
     }
 
     @Override
-    public ActiveRecord find(int id) {
-        return null;
+    public Jumbo find(int id) {
+
+        Jumbo pojo=new Jumbo() ;
+        String expression="SELECT  * FROM " +this.entityName+" WHERE ID=?";
+
+        try {
+            PreparedStatement pstmt = Db.connection.prepareStatement(expression);
+            pstmt.setInt(1, id);
+            ResultSet rs = pstmt.executeQuery();
+
+            while (rs.next()){
+                pojo.setId(rs.getInt("id"));
+                pojo.setNumberOfProduct(rs.getInt("numberOfProduct"));
+                pojo.setWidth(rs.getInt("width"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return pojo;
+
+
     }
 
     @Override
     public String toString() {
-        return getWidth().toString();
+        return String.valueOf(getWidth());
     }
 
     @Override
@@ -109,7 +128,7 @@ public class Jumbo extends ActiveRecord {
                     + ") VALUES(?,?)";
 
             PreparedStatement pstmt = Db.connection.prepareStatement(expression);
-            pstmt.setDouble(1, getWidth());
+            pstmt.setInt(1, getWidth());
             pstmt.setInt(2, getNumberOfProduct());
             pstmt.executeUpdate();
         } catch (SQLException e) {

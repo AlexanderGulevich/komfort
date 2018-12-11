@@ -107,7 +107,7 @@ public class MainMenuSketch extends MenuSketch {
                                 .build(),
                         FontItemLeaf.newBuilder()
                                 .setDescription("Джамбо")
-                                .setTargetCreator(PaperPanel::new)
+                                .setTargetCreator(JumboPanel::new)
                                 .build()
                 ),
 
