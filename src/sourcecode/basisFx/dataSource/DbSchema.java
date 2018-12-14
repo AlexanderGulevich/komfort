@@ -195,18 +195,16 @@ public class DbSchema {
                 paper,
                 paperPriceStore,
                 outputPerDay,
-<<<<<<< HEAD
                 jumboAccounting
                 ,
 
                 viewActualRate
-
-=======
+,
                 jumboAccounting,
                 Jumbo,
                 viewActualRate,
                 viewTimeRecordingAndSalary
->>>>>>> e91bb1c73a09c39c23552f18e8116ddceab362bf
+
         );
 
     }
