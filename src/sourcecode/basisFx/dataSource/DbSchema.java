@@ -165,8 +165,8 @@ public class DbSchema {
         String viewActualRate= "Create  view ActualEmployersRate  as" +
                 " SELECT  r.employerId, r.rate, r.startDate, e.name, e.isFired"+
                 " from  employer as e,"+
-                " (select * from ratePerHourHistory where (employerId, startDate)"+
-                " in (select employerId, max(startDate) from  ratePerHourHistory group by employerId)) as r"+
+                " (select * from EMPLOYEESRATEPERHOUR where (employerId, startDate)"+
+                " in (select employerId, max(startDate) from  EMPLOYEESRATEPERHOUR group by employerId)) as r"+
                 " where r.employerId=e.id and e.isFired = false"+
                 " ORDER BY r.employerId";
 
@@ -196,8 +196,9 @@ public class DbSchema {
                 paperPriceStore,
                 outputPerDay,
                 jumboAccounting
+                ,
 
-//                viewActualRate
+                viewActualRate
 
         );
 
