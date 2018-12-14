@@ -1,11 +1,8 @@
 package basisFx.presentation.targets;
 
+import basisFx.appCore.elements.GridPaneWrapper;
 import basisFx.appCore.elements.TableWrapper;
-import basisFx.appCore.grid.ButtonsForGridLittle;
-import basisFx.appCore.grid.GridOrgTopButSingleTable;
-import basisFx.appCore.grid.GridOrgFourGrids;
-import basisFx.appCore.grid.GridPaneWrapper;
-import basisFx.service.ServiceSingleTable;
+import basisFx.appCore.grid.*;
 import basisFx.service.ServiceTwoLinkedTable;
 import basisFx.appCore.table.*;
 import basisFx.appCore.utils.Coordinate;
@@ -13,21 +10,21 @@ import basisFx.domain.*;
 import basisFx.presentation.TargetPanel;
 
 public class PacketPanel  extends TargetPanel {
-    private boolean gridVisibility=false;
-    private ServiceTwoLinkedTable mediatorServiceTwoLinkedTable =new ServiceTwoLinkedTable();
-    private ServiceSingleTable mediatorSingleTable1 =new ServiceSingleTable();
-    private ServiceSingleTable mediatorSingleTable2 =new ServiceSingleTable();
-    private GridOrgFourGrids gridOrganization =new GridOrgFourGrids();
-
+    private ServiceTwoLinkedTable mediatorServiceTwoLinkedTable1 =new ServiceTwoLinkedTable();
+    private ServiceTwoLinkedTable mediatorServiceTwoLinkedTable2 =new ServiceTwoLinkedTable();
+    boolean isGridVisibility=false;
     @Override
     public void init() {
 
-        TableWrapper packetTableWrapper = TableWrapper.newBuilder()
+        TableWrapper t1 = TableWrapper.newBuilder()
+                .setGridLinesVisibility(isGridVisibility)
+                .setGridName("Пакеты ")
+                .setGridOrganization(new GridSingleTable(new ButtonsSizeForGridLittle(),new ButPositionTop()))
                 .setActiveRecordClass(Packet.class)
                 .setUnitOfWork(unitOfWork)
                 .setIsEditable(true)
                 .setIsSortableColums(false)
-                .setServiceMediator(mediatorServiceTwoLinkedTable)
+                .setServiceMediator(mediatorServiceTwoLinkedTable1)
                 .setColumnWrappers(
                         ColumnWrapperComboBox.newBuilder(PacketSize.class)
                                 .setColumnName("Размер")
@@ -44,24 +41,21 @@ public class PacketPanel  extends TargetPanel {
                 )
                 .build();
 
-        GridPaneWrapper packetGridPaneWrapper = GridPaneWrapper.newBuilder()
-                .setGridLinesVisibility(gridVisibility)
-                .setName("Пакеты ")
-                .setGridOrganization(new GridOrgTopButSingleTable(packetTableWrapper,new ButtonsForGridLittle()))
-                .build();
-
-        TableWrapper packetPriceTableWrapper = TableWrapper.newBuilder()
+        TableWrapper t2 = TableWrapper.newBuilder()
+                .setGridLinesVisibility(isGridVisibility)
+                .setGridName("Реестр цен")
+                .setGridOrganization(new GridSingleTable(new ButtonsSizeForGridLittle(),new ButPositionTop()))
                 .setActiveRecordClass(PacketPrice.class)
                 .setUnitOfWork(unitOfWork)
                 .setIsEditable(true)
                 .setIsSortableColums(false)
-                .setServiceMediator(mediatorServiceTwoLinkedTable)
+                .setServiceMediator(mediatorServiceTwoLinkedTable1)
                 .setColumnWrappers(
                         ColumnWrapperDouble.newBuilder()
                                 .setColumnName("Тариф")
                                 .setColumnSize(0.3d)
                                 .setIsEditeble(true)
-                                .setPropertyName("rate")
+                                .setPropertyName("price")
                                 .build(),
                         ColumnWrapperDate.newBuilder()
                                 .setColumnName("Действует с")
@@ -72,21 +66,18 @@ public class PacketPanel  extends TargetPanel {
                 )
                 .build();
 
-        GridPaneWrapper packetPriceGridPaneWrapper = GridPaneWrapper.newBuilder()
-                .setGridLinesVisibility(gridVisibility)
-                .setName("Реестр цен")
-                .setGridOrganization(new GridOrgTopButSingleTable(packetPriceTableWrapper,new ButtonsForGridLittle()))
-                .build();
-
-        TableWrapper packetSizeTableWrapper = TableWrapper.newBuilder()
+        TableWrapper t3 = TableWrapper.newBuilder()
+                .setGridLinesVisibility(isGridVisibility)
+                .setGridName("Размеры пакетов ")
+                .setGridOrganization(new GridSingleTable(new ButtonsSizeForGridLittle(),new ButPositionTop()))
                 .setActiveRecordClass(PacketSize.class)
                 .setUnitOfWork(unitOfWork)
                 .setIsEditable(true)
                 .setIsSortableColums(false)
-                .setServiceMediator(mediatorSingleTable1)
+                .setServiceMediator(mediatorServiceTwoLinkedTable2)
                 .setColumnWrappers(
                         ColumnWrapperString.newBuilder()
-                                .setColumnName("Размер")
+                                .setColumnName("Размер пакета")
                                 .setColumnSize(1d)
                                 .setIsEditeble(true)
                                 .setPropertyName("size")
@@ -94,71 +85,56 @@ public class PacketPanel  extends TargetPanel {
                 )
                 .build();
 
-        GridPaneWrapper packetSizeGridWrapper = GridPaneWrapper.newBuilder()
-                .setGridLinesVisibility(gridVisibility)
-                .setName("Размеры пакетов ")
-                .setGridOrganization(new GridOrgTopButSingleTable(packetSizeTableWrapper,new ButtonsForGridLittle()))
-                .build();
-
-
-        TableWrapper packetSizeProductAccordanceTableWrapper = TableWrapper.newBuilder()
+        TableWrapper t4 = TableWrapper.newBuilder()
+                .setGridLinesVisibility(isGridVisibility)
+                .setGridName("Вместимость пакетов")
+                .setGridOrganization(new GridSingleTable(new ButtonsSizeForGridLittle(),new ButPositionTop()))
                 .setActiveRecordClass(PacketProductAccordance.class)
                 .setUnitOfWork(unitOfWork)
                 .setIsEditable(true)
                 .setIsSortableColums(false)
-                .setServiceMediator(mediatorSingleTable2)
+                .setServiceMediator(mediatorServiceTwoLinkedTable2)
                 .setColumnWrappers(
-                        ColumnWrapperComboBox.newBuilder(PacketSize.class)
-                                .setColumnName("Размер")
-                                .setColumnSize(0.4d)
-                                .setIsEditeble(true)
-                                .setPropertyName("packetSize")
-                                .build(),
                         ColumnWrapperComboBox.newBuilder(Product.class)
                                 .setColumnName("Продукция")
-                                .setColumnSize(0.4d)
+                                .setColumnSize(0.7d)
                                 .setIsEditeble(true)
                                 .setPropertyName("product")
                                 .build(),
                         ColumnWrapperInt.newBuilder()
                                 .setColumnName("Вместимость")
-                                .setColumnSize(0.2d)
+                                .setColumnSize(0.3d)
                                 .setIsEditeble(true)
                                 .setPropertyName("number")
                                 .build()
                 )
                 .build();
 
-        GridPaneWrapper packetSizeProductAccordanceGridWrapper = GridPaneWrapper.newBuilder()
-                .setGridLinesVisibility(gridVisibility)
-                .setName("Вместимость пакетов")
-                .setGridOrganization(new GridOrgTopButSingleTable(packetSizeProductAccordanceTableWrapper,new ButtonsForGridLittle()))
-                .build();
 
 
         GridPaneWrapper commonGridPaneWrapper = GridPaneWrapper.newBuilder()
-                .setColumnVsPercent(40)
-                .setColumnVsPercent(60)
+                .setGridLinesVisibility(isGridVisibility)
                 .setName("Управление информацией о пакетах")
                 .setParentAnchor(innerAnchorPane)
                 .setCoordinate(new Coordinate(0d, 10d, 10d, 0d))
-                .setGridLinesVisibility(gridVisibility)
-                .setGridOrganization(gridOrganization.setGrids(
-                        packetGridPaneWrapper,packetPriceGridPaneWrapper,
-                        packetSizeGridWrapper,packetSizeProductAccordanceGridWrapper
-                 ))
+                .setGridOrganization(
+                        new GridTwoVerticaGrids(
+                                new GridTwoBondGrids(t1.getGridPaneWrapper() ,t2.getGridPaneWrapper() ) ,
+                                new GridTwoBondGrids(t3.getGridPaneWrapper() ,t4.getGridPaneWrapper() )
+                        )
+                 )
                 .build();
 
 
-        mediatorServiceTwoLinkedTable.setAccessoryTableWrapper(packetPriceTableWrapper);
-        mediatorServiceTwoLinkedTable.setPrimaryTableWrapper(packetTableWrapper);
-        mediatorServiceTwoLinkedTable.initElements();
+        mediatorServiceTwoLinkedTable1.setAccessoryTableWrapper(t2);
+        mediatorServiceTwoLinkedTable1.setPrimaryTableWrapper(t1);
+        mediatorServiceTwoLinkedTable1.initElements();
+
+        mediatorServiceTwoLinkedTable2.setAccessoryTableWrapper(t4);
+        mediatorServiceTwoLinkedTable2.setPrimaryTableWrapper(t3);
+        mediatorServiceTwoLinkedTable2.initElements();
 
 
-        mediatorSingleTable1.setTableWrapper(packetSizeProductAccordanceTableWrapper);
-        mediatorSingleTable1.initElements();
-        mediatorSingleTable2.setTableWrapper(packetSizeTableWrapper);
-        mediatorSingleTable2.initElements();
     }
 
 

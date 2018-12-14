@@ -4,7 +4,7 @@ import basisFx.appCore.elements.TableWrapper;
 import basisFx.appCore.fabrics.ButtonFactory;
 import javafx.scene.control.Button;
 
-public  abstract class   ButtonsForGrid {
+public  abstract class ButtonsSizeForGrid {
 
     protected TableWrapper tableWrapper;
     protected Button buttonAdd;

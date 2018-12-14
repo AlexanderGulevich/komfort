@@ -1,11 +1,12 @@
 package basisFx.presentation.targets;
 
-import basisFx.appCore.grid.ButtonsForGridLittle;
+import basisFx.appCore.grid.ButPositionTop;
+import basisFx.appCore.grid.ButtonsSizeForGridLittle;
 import basisFx.service.ServiceTwoLinkedTable;
 import basisFx.appCore.elements.TableWrapper;
-import basisFx.appCore.grid.GridOrgTopButSingleTable;
-import basisFx.appCore.grid.GridOrgTwoBondGrids;
-import basisFx.appCore.grid.GridPaneWrapper;
+import basisFx.appCore.grid.GridSingleTable;
+import basisFx.appCore.grid.GridTwoBondGrids;
+import basisFx.appCore.elements.GridPaneWrapper;
 import basisFx.appCore.table.ColumnWrapperBool;
 import basisFx.appCore.table.ColumnWrapperDate;
 import basisFx.appCore.table.ColumnWrapperDouble;
@@ -19,12 +20,13 @@ public class ProductPanel  extends TargetPanel {
 
     private boolean gridVisibility=false;
     private ServiceTwoLinkedTable mediatorServiceTwoLinkedTable =new ServiceTwoLinkedTable();
-    private GridOrgTwoBondGrids gridOrganization =new GridOrgTwoBondGrids();
 
     @Override
     public void init() {
 
-        TableWrapper productTableWrapper = TableWrapper.newBuilder()
+        TableWrapper leftTableWrapper = TableWrapper.newBuilder()
+                .setGridName("Список продукции ")
+                .setGridOrganization(new GridSingleTable(new ButtonsSizeForGridLittle(),new ButPositionTop()))
                 .setActiveRecordClass(Product.class)
                 .setUnitOfWork(unitOfWork)
                 .setIsEditable(true)
@@ -46,13 +48,9 @@ public class ProductPanel  extends TargetPanel {
                         )
                 .build();
 
-        GridPaneWrapper productGridPaneWrapper = GridPaneWrapper.newBuilder()
-                .setGridLinesVisibility(gridVisibility)
-                .setName("Список продукции ")
-                .setGridOrganization(new GridOrgTopButSingleTable(productTableWrapper,new ButtonsForGridLittle()))
-                .build();
-
-        TableWrapper priceTableWrapper = TableWrapper.newBuilder()
+        TableWrapper rightTableWrapper = TableWrapper.newBuilder()
+                .setGridName("Архив цен ")
+                .setGridOrganization(new GridSingleTable(new ButtonsSizeForGridLittle(),new ButPositionTop()))
                 .setActiveRecordClass(ProductPrice.class)
                 .setUnitOfWork(unitOfWork)
                 .setIsEditable(true)
@@ -74,11 +72,6 @@ public class ProductPanel  extends TargetPanel {
                 )
                 .build();
 
-        GridPaneWrapper priceGridPaneWrapper = GridPaneWrapper.newBuilder()
-                .setGridLinesVisibility(gridVisibility)
-                .setName("Архив цен")
-                .setGridOrganization(new GridOrgTopButSingleTable(priceTableWrapper,new ButtonsForGridLittle()))
-                .build();
 
         GridPaneWrapper commonGridPaneWrapper = GridPaneWrapper.newBuilder()
                 .setColumnVsPercent(60)
@@ -87,12 +80,17 @@ public class ProductPanel  extends TargetPanel {
                 .setParentAnchor(innerAnchorPane)
                 .setCoordinate(new Coordinate(0d, 10d, 10d, 0d))
                 .setGridLinesVisibility(gridVisibility)
-                .setGridOrganization(gridOrganization.setGridWrappers(productGridPaneWrapper,priceGridPaneWrapper))
+                .setGridOrganization(
+                        new GridTwoBondGrids(
+                                leftTableWrapper.getGridPaneWrapper(),
+                                rightTableWrapper.getGridPaneWrapper()
+                        )
+                )
                 .build();
 
 
-        mediatorServiceTwoLinkedTable.setAccessoryTableWrapper(priceTableWrapper);
-        mediatorServiceTwoLinkedTable.setPrimaryTableWrapper(productTableWrapper);
+        mediatorServiceTwoLinkedTable.setAccessoryTableWrapper(rightTableWrapper);
+        mediatorServiceTwoLinkedTable.setPrimaryTableWrapper(leftTableWrapper);
         mediatorServiceTwoLinkedTable.initElements();
     }
 

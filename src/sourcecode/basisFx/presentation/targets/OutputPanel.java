@@ -1,6 +1,7 @@
 package basisFx.presentation.targets;
 
 import basisFx.appCore.elements.DatePickerWrapper;
+import basisFx.appCore.elements.GridPaneWrapper;
 import basisFx.appCore.elements.TableWrapper;
 import basisFx.appCore.grid.*;
 import basisFx.appCore.table.ColumnWrapperComboBox;
@@ -15,12 +16,6 @@ public class OutputPanel  extends TargetPanel {
     ServiceAutoPushTableAndCommonDate mediator = new ServiceAutoPushTableAndCommonDate();
     @Override
     public void init() {
-//        ButtonWrapper buttonWrapper = ButtonFactory.getInstance().submitButton(
-//                innerAnchorPane,
-//                new Coordinate(10d, 13d, null, null),
-//                mediator
-//        );
-
 
         DatePickerWrapper datePickerWrapper = DatePickerWrapper.newBuilder()
                 .setCoordinate(new Coordinate(10d, null, null, 5d))
@@ -35,43 +30,56 @@ public class OutputPanel  extends TargetPanel {
                 .setIsEditable(true)
                 .setIsSortableColums(false)
                 .setServiceMediator(mediator)
+                .setClass("wrappedHeaderColumn")
                 .setColumnWrappers(
                         ColumnWrapperComboBox.newBuilder(Equipment.class)
                                 .setColumnName("Станок")
-                                .setColumnSize(0.2d)
+                                .setColumnSize(0.15d)
                                 .setIsEditeble(true)
                                 .setPropertyName("equipment")
                                 .build(),
                         ColumnWrapperComboBox.newBuilder(Product.class)
-                                .setColumnName("Продукция")
-                                .setColumnSize(0.2d)
+                                .setColumnName("Продукт")
+                                .setColumnSize(0.15d)
                                 .setIsEditeble(true)
                                 .setPropertyName("product")
                                 .build(),
                         ColumnWrapperInt.newBuilder()
-                                .setColumnName("Кол-во стержней")
-                                .setColumnSize(0.2d)
+                                .setColumnName("Кол-во\nстержней")
+                                .setColumnSize(0.1d)
                                 .setIsEditeble(true)
                                 .setPropertyName("rodsNumber")
                                 .build(),
                         ColumnWrapperComboBox.newBuilder(Packet.class)
-                                .setColumnName("Пакет")
-                                .setColumnSize(0.2d)
+                                .setColumnName("Размер пакета")
+                                .setColumnSize(0.15d)
                                 .setIsEditeble(true)
                                 .setPropertyName("packet")
                                 .build(),
                         ColumnWrapperComboBox.newBuilder(Counterparty.class)
-                                .setColumnName("Поставщик")
-                                .setColumnSize(0.2d)
+                                .setColumnName("Поставщик \nпакета")
+                                .setColumnSize(0.15d)
                                 .setIsEditeble(true)
-                                .setPropertyName("counterparty")
+                                .setPropertyName("packetCounterparty")
+                                .build(),
+                        ColumnWrapperComboBox.newBuilder(Jumbo.class)
+                                .setColumnName("Ширина\n роля")
+                                .setColumnSize(0.15d)
+                                .setIsEditeble(true)
+                                .setPropertyName("Jumbo")
+                                .build(),
+                        ColumnWrapperComboBox.newBuilder(Counterparty.class)
+                                .setColumnName("Поставщик\n бумаги")
+                                .setColumnSize(0.15d)
+                                .setIsEditeble(true)
+                                .setPropertyName("paperCounterparty")
                                 .build()
                 )
                 .build();
 
 
         GridPaneWrapper.newBuilder()
-                .setGridOrganization(new GridOrgTopButSingleTable(tableWrapper,new ButtonsForSubmitGridLittle()))
+                .setGridOrganization(new GridSingleTable(tableWrapper,new ButtonsSizeForGridBig(),new ButPositionTop()))
                 .setName("Учет выходной продукции")
                 .setParentAnchor(innerAnchorPane)
                 .setCoordinate(new Coordinate(50d,10d,10d,0d))

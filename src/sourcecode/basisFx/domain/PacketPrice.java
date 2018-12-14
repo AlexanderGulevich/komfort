@@ -10,22 +10,22 @@ import java.time.LocalDate;
 public class PacketPrice extends ActiveRecord {
 
     private static PacketPrice INSTANCE = new PacketPrice();
-    private SimpleObjectProperty<String> price = new SimpleObjectProperty<>(this, "price", null);
+    private SimpleObjectProperty<Double> price = new SimpleObjectProperty<>(this, "price", null);
     private SimpleObjectProperty<LocalDate> startingDate = new SimpleObjectProperty<>(this, "startingDate", null);
 
     public static PacketPrice getINSTANCE() {
         return INSTANCE;
     }
 
-    public String getPrice() {
+    public Double getPrice() {
         return price.get();
     }
 
-    public SimpleObjectProperty<String> priceProperty() {
+    public SimpleObjectProperty<Double> priceProperty() {
         return price;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(Double price) {
         this.price.set(price);
     }
 
@@ -67,7 +67,7 @@ public class PacketPrice extends ActiveRecord {
             if (!check) {
                 PreparedStatement pstmt = null;
                 pstmt = Db.connection.prepareStatement(expression);
-                pstmt.setDouble(1, Double.valueOf(price.get()));
+                pstmt.setDouble(1, price.get());
                 pstmt.setDate(2, Date.valueOf(startingDate.get()));
                 pstmt.setInt(3, outerId);
                 pstmt.setInt(4, id.get());
@@ -85,7 +85,7 @@ public class PacketPrice extends ActiveRecord {
 
     @Override
     public String toString() {
-        return getPrice();
+        return getPrice().toString();
     }
 
     @Override
@@ -104,7 +104,7 @@ public class PacketPrice extends ActiveRecord {
         if (check) {
             try {
                 pstmt = Db.connection.prepareStatement(expression);
-                pstmt.setDouble(1, Double.valueOf(price.get()));
+                pstmt.setDouble(1, price.get());
                 pstmt.setDate(2, Date.valueOf(startingDate.get()));
                 pstmt.setInt(3, outerId);
 
@@ -123,9 +123,9 @@ public class PacketPrice extends ActiveRecord {
             Statement stmt = Db.connection.createStatement();
             ResultSet rs = stmt.executeQuery(expression);
             while (rs.next()) {
-                SleevePrice pojo = new SleevePrice();
+                PacketPrice pojo = new PacketPrice();
                 pojo.setId(rs.getInt("id"));
-                pojo.setPrice(Double.toString(rs.getDouble("price")));
+                pojo.setPrice(rs.getDouble("price"));
                 pojo.setStartingDate(rs.getDate("startDate").toLocalDate());
                 list.add(pojo);
             }

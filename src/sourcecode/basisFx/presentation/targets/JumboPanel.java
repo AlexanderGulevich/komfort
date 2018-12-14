@@ -1,42 +1,44 @@
 package basisFx.presentation.targets;
 
+import basisFx.appCore.elements.GridPaneWrapper;
+import basisFx.appCore.elements.TableWrapper;
 import basisFx.appCore.grid.ButPositionTop;
 import basisFx.appCore.grid.ButtonsSizeForGridBig;
-import basisFx.appCore.grid.ButtonsSizeForGridLittle;
 import basisFx.appCore.grid.GridSingleTable;
-import basisFx.service.ServiceSingleTable;
-import basisFx.appCore.elements.TableWrapper;
-import basisFx.appCore.elements.GridPaneWrapper;
 import basisFx.appCore.table.ColumnWrapperComboBox;
+import basisFx.appCore.table.ColumnWrapperDouble;
+import basisFx.appCore.table.ColumnWrapperInt;
 import basisFx.appCore.table.ColumnWrapperString;
 import basisFx.appCore.utils.Coordinate;
 import basisFx.domain.Counterparty;
 import basisFx.domain.Currency;
+import basisFx.domain.Jumbo;
 import basisFx.presentation.TargetPanel;
+import basisFx.service.ServiceSingleTable;
 
-public class CounterpartyPanel extends TargetPanel {
+public class JumboPanel extends TargetPanel {
     @Override
     public void init() {
         ServiceSingleTable mediatorSingleTable = new ServiceSingleTable();
 
         TableWrapper tableWrapper = TableWrapper.newBuilder()
-                .setActiveRecordClass(Counterparty.class)
+                .setActiveRecordClass(Jumbo.class)
                 .setUnitOfWork(unitOfWork)
                 .setIsEditable(true)
                 .setIsSortableColums(false)
                 .setServiceMediator(mediatorSingleTable)
                 .setColumnWrappers(
-                        ColumnWrapperString.newBuilder()
-                                .setColumnName("Наименование")
+                        ColumnWrapperInt.newBuilder()
+                                .setColumnName("Ширина")
                                 .setColumnSize(0.6d)
                                 .setIsEditeble(true)
-                                .setPropertyName("name")
+                                .setPropertyName("width")
                                 .build(),
-                        ColumnWrapperComboBox.newBuilder(Currency.class)
-                                .setColumnName("Валюта ")
+                        ColumnWrapperInt.newBuilder()
+                                .setColumnName("Кол-во продукции на выходе ")
                                 .setIsEditeble(true)
                                 .setColumnSize(0.4d)
-                                .setPropertyName("currency")
+                                .setPropertyName("numberOfProduct")
                                 .build()
 
                 )
@@ -44,7 +46,7 @@ public class CounterpartyPanel extends TargetPanel {
 
         GridPaneWrapper.newBuilder()
                 .setGridOrganization(new GridSingleTable(tableWrapper,new ButtonsSizeForGridBig(),new ButPositionTop()))
-                .setName("Список контрагентов")
+                .setName("Ширины джамбо ролей и выход продукции по ширине")
                 .setParentAnchor(innerAnchorPane)
                 .setCoordinate(new Coordinate(0d,10d,10d,0d))
                 .setGridLinesVisibility(false)

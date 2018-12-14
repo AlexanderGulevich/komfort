@@ -63,12 +63,7 @@
 
 #TABLE .nested-column-header .label {
     -fx-text-fill:#2f4a6f;
-        /* -fx-text-fill:#3f519d; */
-    /* -fx-font-family: "Roboto Bold"; */
--fx-font-family: "Roboto Light";
-/* -fx-font-family: "FiraSans Bold"; */
-/* -fx-font-family: "Margot"; */
-    /* -fx-font-size: 17; */
+	-fx-font-family: "Roboto Light";
     -fx-font-size: 20;
     -fx-background-insets: 0;
     -fx-padding: 0 0 0 0;
@@ -222,4 +217,29 @@ cell indexed-cell table-cell text-field-table-cell table-column
 #TABLE .text-field-table-cell {
 
   /* -fx-border-insets:0 15 0 0; */
+}
+#TABLE .label{
+   -fx-text-alignment: center;	 
+}
+
+#TABLE.wrappedHeaderColumn .column-header{
+	/*ЗАГОЛОВОК КОЛОНКИ с классом wrappedHeaderColumn который позволяет деляать перенос строки с помощью \n в тексте строки*/
+    -fx-background-color:#f7f7c2;
+    -fx-background-color:transparent;
+    -fx-pref-height:45;
+    -fx-border-radius:0;
+    -fx-border-width: 0 1 1 0;
+    -fx-border-style: solid;;
+    -fx-border-color:#DFDFDF;
+    -fx-background-radius: 0;
+    -fx-background-insets: 0;
+    -fx-padding: 0 0 10 0;
+}
+#TABLE.wrappedHeaderColumn .nested-column-header .label {
+    -fx-text-fill:#2f4a6f;
+	-fx-font-family: "Roboto Light";
+    -fx-font-size: 17;
+    -fx-background-insets: 0;
+    -fx-padding: 0 0 0 0;
+    -fx-border-insets:0 0 0 0;
 }

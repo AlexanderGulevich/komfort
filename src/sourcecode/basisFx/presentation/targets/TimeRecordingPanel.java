@@ -1,12 +1,12 @@
 package basisFx.presentation.targets;
 
 
-import basisFx.appCore.elements.ButtonWrapper;
 import basisFx.appCore.elements.DatePickerWrapper;
 import basisFx.appCore.elements.TableWrapper;
-import basisFx.appCore.fabrics.ButtonFactory;
-import basisFx.appCore.grid.GridOrgButtonNonSingleTable;
-import basisFx.appCore.grid.GridPaneWrapper;
+import basisFx.appCore.grid.ButPositionNotExist;
+import basisFx.appCore.elements.GridPaneWrapper;
+import basisFx.appCore.grid.ButtonsSizeNon;
+import basisFx.appCore.grid.GridSingleTable;
 import basisFx.appCore.table.ColumnWrapperComboBox;
 import basisFx.appCore.table.ColumnWrapperDouble;
 import basisFx.appCore.utils.Coordinate;
@@ -14,7 +14,6 @@ import basisFx.domain.Employer;
 import basisFx.domain.TimeRecordingForEmployers;
 import basisFx.presentation.TargetPanel;
 import basisFx.service.ServiceAutoPushTableAndCommonDate;
-import basisFx.service.ServiceTableAndCommonDate;
 
 public class TimeRecordingPanel extends TargetPanel {
 
@@ -61,7 +60,7 @@ public class TimeRecordingPanel extends TargetPanel {
 
 
         GridPaneWrapper.newBuilder()
-                .setGridOrganization(new GridOrgButtonNonSingleTable(tableWrapper))
+                .setGridOrganization(new GridSingleTable(tableWrapper,new ButtonsSizeNon(),new ButPositionNotExist()))
                 .setName("Учет рабочего времени")
                 .setParentAnchor(innerAnchorPane)
                 .setCoordinate(new Coordinate(50d,10d,10d,0d))

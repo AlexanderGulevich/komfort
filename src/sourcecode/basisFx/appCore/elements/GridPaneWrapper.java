@@ -1,7 +1,6 @@
-package basisFx.appCore.grid;
-import basisFx.appCore.elements.AppNode;
-import basisFx.appCore.elements.LabelWrapper;
+package basisFx.appCore.elements;
 import basisFx.appCore.events.AppEvent;
+import basisFx.appCore.grid.GridOrganization;
 import basisFx.appCore.settings.CSSID;
 import basisFx.appCore.settings.FontsStore;
 import basisFx.appCore.utils.Coordinate;

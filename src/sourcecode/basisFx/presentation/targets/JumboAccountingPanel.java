@@ -2,10 +2,11 @@ package basisFx.presentation.targets;
 
 import basisFx.appCore.elements.DatePickerWrapper;
 import basisFx.appCore.elements.TableWrapper;
-import basisFx.appCore.grid.ButtonsForGridLittle;
-import basisFx.appCore.grid.ButtonsForSubmitGridLittle;
-import basisFx.appCore.grid.GridOrgTopButSingleTable;
-import basisFx.appCore.grid.GridPaneWrapper;
+import basisFx.appCore.grid.ButPositionTop;
+import basisFx.appCore.grid.ButtonsSizeForGridBig;
+import basisFx.appCore.grid.ButtonsSizeForGridLittle;
+import basisFx.appCore.grid.GridSingleTable;
+import basisFx.appCore.elements.GridPaneWrapper;
 import basisFx.appCore.table.ColumnWrapperComboBox;
 import basisFx.appCore.table.ColumnWrapperDouble;
 import basisFx.appCore.utils.Coordinate;
@@ -18,12 +19,6 @@ public class JumboAccountingPanel extends TargetPanel {
 
     @Override
     public void init() {
-//        ButtonWrapper buttonWrapper = ButtonFactory.getInstance().submitButton(
-//                innerAnchorPane,
-//                new Coordinate(10d, 13d, null, null),
-//                mediator
-//        );
-
 
         DatePickerWrapper datePickerWrapper = DatePickerWrapper.newBuilder()
                 .setCoordinate(new Coordinate(10d, null, null, 5d))
@@ -56,7 +51,7 @@ public class JumboAccountingPanel extends TargetPanel {
 
 
         GridPaneWrapper.newBuilder()
-                .setGridOrganization(new GridOrgTopButSingleTable(tableWrapper, new ButtonsForSubmitGridLittle()))
+                .setGridOrganization(new GridSingleTable(tableWrapper,new ButtonsSizeForGridBig(),new ButPositionTop()))
                 .setName("Учет джамбо-ролей")
                 .setParentAnchor(innerAnchorPane)
                 .setCoordinate(new Coordinate(50d, 10d, 10d, 0d))
@@ -64,7 +59,6 @@ public class JumboAccountingPanel extends TargetPanel {
                 .build();
 
         mediator.setTableWrapper(tableWrapper);
-//        mediator.setButtonWrapper(buttonWrapper);
         mediator.setDatePickerWrapper(datePickerWrapper);
         mediator.initElements();
     }
