@@ -14,10 +14,6 @@ public class Currency extends ActiveRecord {
     private static Currency INSTANCE = new Currency();
     private SimpleObjectProperty<String> name =new SimpleObjectProperty<>(this, "name", null);
 
-    public Currency() {
-        super("Currency");
-    }
-
     public static Currency getINSTANCE() {
         return INSTANCE;
     }
@@ -36,25 +32,6 @@ public class Currency extends ActiveRecord {
 
     public String toString(){
         return getName();
-    }
-
-    @Override
-    public ObservableList<ActiveRecord> getAll() {
-        ObservableList <ActiveRecord> list=FXCollections.observableArrayList();
-        String expression="SELECT * FROM " +"Currency"+" ORDER BY ID";
-        try {
-            Statement stmt  = Db.connection.createStatement();
-            ResultSet rs    = stmt.executeQuery(expression);
-            while (rs.next()) {
-                Currency pojo=new Currency();
-                pojo.setId(rs.getInt("id"));
-                pojo.setName(rs.getString("name"));
-                list.add(pojo);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return list;
     }
 
     @Override

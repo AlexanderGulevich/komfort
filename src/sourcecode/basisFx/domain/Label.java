@@ -45,10 +45,6 @@ public class Label extends ActiveRecord {
         this.counterparty.set(counterparty);
     }
 
-    public Label() {
-        super("Label");
-    }
-
     @Override
     public ObservableList<ActiveRecord> getAll() {
         ObservableList <ActiveRecord> list=FXCollections.observableArrayList();

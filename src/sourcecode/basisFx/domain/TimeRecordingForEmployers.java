@@ -55,15 +55,6 @@ public class TimeRecordingForEmployers extends ActiveRecord implements RecordWit
         this.employer.set(employer);
     }
 
-    public TimeRecordingForEmployers() {
-        super("TimeRecordingForEmployers");
-    }
-
-    @Override
-    public ObservableList<ActiveRecord> getAll() {
-        return null;
-    }
-
     @Override
     public void update() {
 

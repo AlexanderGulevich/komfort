@@ -16,10 +16,6 @@ public class ExchangeRates extends ActiveRecord{
         return INSTANCE;
     }
 
-    public ExchangeRates() {
-        super("ExchangeRates");
-    }
-
     public LocalDate getStartingDate() {
         return startingDate.get();
     }
@@ -42,11 +38,6 @@ public class ExchangeRates extends ActiveRecord{
 
     public void setExchangeRate(Double exchangeRate) {
         this.exchangeRate.set(exchangeRate);
-    }
-
-    @Override
-    public ObservableList<ActiveRecord> getAll() {
-       return null;
     }
 
     @Override

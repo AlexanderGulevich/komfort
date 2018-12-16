@@ -31,29 +31,6 @@ public class Paper extends ActiveRecord {
         this.counterparty.set(counterparty);
     }
 
-    public Paper() {
-        super("Paper");
-    }
-
-    @Override
-    public ObservableList<ActiveRecord> getAll() {
-        ObservableList <ActiveRecord> list=FXCollections.observableArrayList();
-        String expression="SELECT * FROM " +this.entityName+" ORDER BY ID";
-        try {
-            Statement stmt  = Db.connection.createStatement();
-            ResultSet rs    = stmt.executeQuery(expression);
-            while (rs.next()) {
-                Paper pojo=new Paper();
-                pojo.setId(rs.getInt("id"));
-                pojo.setCounterparty(Counterparty.getINSTANCE().find(rs.getInt("counterpartyId")));
-                list.add(pojo);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return list;
-    }
-
     @Override
     public void update() {
         try {

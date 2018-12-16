@@ -44,10 +44,10 @@
 //
 //
 //        setImage();
-//        setPacketSize();
+//        setSize();
 //    }
 //
-//    private void setPacketSize() {
+//    private void setSize() {
 //        element.setFitHeight(this.height);
 //        element.setFitWidth(this.widthValue);
 //    }

@@ -3,13 +3,11 @@ package basisFx.domain;
 
 import basisFx.dataSource.Db;
 import javafx.beans.property.SimpleObjectProperty;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 public class PacketSize extends ActiveRecord {
 
@@ -32,28 +30,6 @@ public class PacketSize extends ActiveRecord {
         this.size.set(size);
     }
 
-    public PacketSize() {
-        super("PacketSize");
-    }
-
-    @Override
-    public ObservableList<ActiveRecord> getAll() {
-        ObservableList <ActiveRecord> list=FXCollections.observableArrayList();
-        String expression="SELECT * FROM " +this.entityName+" ORDER BY ID";
-        try {
-            Statement stmt  = Db.connection.createStatement();
-            ResultSet rs    = stmt.executeQuery(expression);
-            while (rs.next()) {
-                PacketSize pojo=new PacketSize();
-                pojo.setId(rs.getInt("id"));
-                pojo.setSize(rs.getString("size"));
-                list.add(pojo);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return list;
-    }
 
     @Override
     public void update() {

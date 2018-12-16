@@ -41,15 +41,6 @@ public class PaperPrice extends ActiveRecord {
         this.startingDate.set(startingDate);
     }
 
-    public PaperPrice() {
-        super("PaperPrice");
-    }
-
-    @Override
-    public ObservableList<ActiveRecord> getAll() {
-        return null;
-    }
-
     @Override
     public void update() {
         String expression = "UPDATE " + this.entityName + " SET  " +

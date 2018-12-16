@@ -27,10 +27,6 @@ public class Employer extends ActiveRecord {
         this.name.set(name);
     }
 
-    public Employer() {
-        super("Employer");
-    }
-
     @Override
     public ObservableList<ActiveRecord> getAll() {
 

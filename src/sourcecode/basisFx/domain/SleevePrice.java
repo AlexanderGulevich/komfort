@@ -41,10 +41,6 @@ public class SleevePrice extends ActiveRecord {
         this.startingDate.set(startingDate);
     }
 
-    public SleevePrice() {
-        super("SleevePrice");
-    }
-
     @Override
     public ObservableList<ActiveRecord> getAll() {
         return null;

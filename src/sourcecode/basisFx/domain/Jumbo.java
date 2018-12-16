@@ -16,14 +16,9 @@ public class Jumbo extends ActiveRecord {
     private SimpleObjectProperty<Integer> width = new SimpleObjectProperty<>(this, "width", null);
     private SimpleObjectProperty<Integer> numberOfProduct = new SimpleObjectProperty<>(this, "numberOfProduct", null);
 
-    public Jumbo() {
-        super("Jumbo");
-    }
-
     public static Jumbo getINSTANCE() {
         return INSTANCE;
     }
-
 
     public Integer getWidth() {
         return width.get();

@@ -41,15 +41,6 @@ public class PacketPrice extends ActiveRecord {
         this.startingDate.set(startingDate);
     }
 
-    public PacketPrice() {
-        super("PacketPrice");
-    }
-
-    @Override
-    public ObservableList<ActiveRecord> getAll() {
-        return null;
-    }
-
     @Override
     public void update() {
         String expression = "UPDATE " + this.entityName + " SET  " +

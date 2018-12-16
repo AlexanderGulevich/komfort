@@ -32,10 +32,6 @@ public class Sleeve extends ActiveRecord {
         this.counterparty.set(counterparty);
     }
 
-    public Sleeve() {
-        super("Sleeve");
-    }
-
     @Override
     public ObservableList<ActiveRecord> getAll() {
         ObservableList <ActiveRecord> list=FXCollections.observableArrayList();

@@ -13,7 +13,6 @@ public class EmployeesRatePerHour extends ActiveRecord {
     private SimpleObjectProperty<LocalDate> startingDate =new SimpleObjectProperty<>(this, "startingDate", null);
     private SimpleObjectProperty<Double> rate =new SimpleObjectProperty<>(this, "rate", null);
 
-
     public static EmployeesRatePerHour getINSTANCE() {
         return INSTANCE;
     }
@@ -40,10 +39,6 @@ public class EmployeesRatePerHour extends ActiveRecord {
 
     public void setRate(Double rate) {
         this.rate.set(rate);
-    }
-
-    public EmployeesRatePerHour() {
-        super("EmployeesRatePerHour");
     }
 
     @Override

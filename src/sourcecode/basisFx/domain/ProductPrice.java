@@ -41,10 +41,6 @@ public class ProductPrice extends ActiveRecord{
         this.startingDate.set(startingDate);
     }
 
-    public ProductPrice() {
-        super("ProductPrice");
-    }
-
     @Override
     public ObservableList<ActiveRecord> getAll() {
         return null;

@@ -58,9 +58,10 @@ public class ActiveRecordReflection {
 
         try {
             Method find = propertyGenericClass.getDeclaredMethod("find", int.class);
+            ActiveRecord instanceForPropertyObject = getDomainInstanceFromStaticMethod(propertyGenericClass);
             ActiveRecord InerRecord=null;
             try {
-                InerRecord = (ActiveRecord) find.invoke(rs.getInt(propertyName+"Id"));
+                InerRecord = (ActiveRecord)find.invoke(instanceForPropertyObject,rs.getInt(propertyName+"Id"));
             } catch (IllegalAccessException e) {
                 e.printStackTrace();
             } catch (InvocationTargetException e) {
@@ -82,6 +83,43 @@ public class ActiveRecordReflection {
 
 
     }
+
+    private static ActiveRecord getDomainInstanceFromStaticMethod(Class propertyGenericClass) {
+
+        ActiveRecord record =null;
+        try {
+            Method getINSTANCE = propertyGenericClass.getDeclaredMethod("getINSTANCE");
+             record = (ActiveRecord) getINSTANCE.invoke(null);
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        }
+        return record;
+
+    }
+
+    public static void setPropertyValueBollComboBox(ResultSet rs ,
+                                                      DomainPropertiesMetaInfo propertiesMetaInfo,
+                                                      ActiveRecord activeRecord) {
+     String propertyName = propertiesMetaInfo.getPropertyName();
+     Class propertyGenericClass = propertiesMetaInfo.getGenericClass();
+     try {
+         Method setMethod = activeRecord.getClass().getDeclaredMethod("set" + propertyName, propertyGenericClass);
+         setMethod.invoke(activeRecord, new BoolComboBox(rs.getBoolean(propertyName)));
+     } catch (NoSuchMethodException e) {
+         e.printStackTrace();
+     } catch (IllegalAccessException e) {
+         e.printStackTrace();
+     } catch (InvocationTargetException e) {
+         e.printStackTrace();
+     } catch (SQLException e) {
+         e.printStackTrace();
+     }
+
+ }
 
     public static void setIdToDomain(ActiveRecord activeRecord, ResultSet rs){
         Method methodIdSetter = null;

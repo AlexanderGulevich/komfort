@@ -59,18 +59,8 @@ public class JumboAccounting extends ActiveRecord implements RecordWithDate {
         this.overallWeight.set(overallWeight);
     }
 
-    public JumboAccounting() {
-        super("JumboAccounting");
-    }
-
     public static JumboAccounting getInstance() {
         return INSTANCE;
-    }
-
-
-    @Override
-    public ObservableList<ActiveRecord> getAll() {
-        return null;
     }
 
     @Override

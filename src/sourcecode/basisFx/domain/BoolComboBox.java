@@ -31,15 +31,12 @@ public class BoolComboBox extends ActiveRecord {
     }
 
     public BoolComboBox(boolean val) {
-        super("BoolComboBox");
         setBoolean(val);
     }
     public BoolComboBox(String str) {
-        super("BoolComboBox");
         stringValue.set(str);
     }
     public BoolComboBox() {
-        super("BoolComboBox");
     }
 
     public String toString(){

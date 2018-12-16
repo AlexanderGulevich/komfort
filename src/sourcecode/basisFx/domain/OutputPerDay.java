@@ -21,10 +21,6 @@ public class OutputPerDay extends ActiveRecord implements RecordWithDate {
     private SimpleObjectProperty<Counterparty> paperCounterparty=new SimpleObjectProperty<>(this, "paperCounterparty", null);
     private SimpleObjectProperty<LocalDate> date =new SimpleObjectProperty<>(this, "date", null);
     @Override
-    public ObservableList<ActiveRecord> getAll() {
-        return null;
-    }
-    @Override
     public void update() {
         try {
             String expression = "UPDATE "+    this.entityName+ " SET  " +
@@ -131,9 +127,6 @@ public class OutputPerDay extends ActiveRecord implements RecordWithDate {
 
 
 
-    public OutputPerDay() {
-        super("OutputPerDay");
-    }
     public static OutputPerDay getINSTANCE() {
         return INSTANCE;
     }

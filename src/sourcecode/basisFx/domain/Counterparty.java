@@ -14,9 +14,6 @@ public class Counterparty extends ActiveRecord {
     private SimpleObjectProperty<String> name =new SimpleObjectProperty(this, "name", null);
     private SimpleObjectProperty<Currency> currency =new SimpleObjectProperty<>(this, "currency", null);
 
-    public Counterparty( ) {
-        super("Counterparty");
-    }
 
     public static Counterparty getINSTANCE() {
         return INSTANCE;

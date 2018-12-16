@@ -1,8 +1,6 @@
 package basisFx.domain;
 
 import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -19,14 +17,17 @@ public abstract class ActiveRecord {
     public String entityName;
     public int outerId;
     public ObjectProperty<Integer> id =new SimpleObjectProperty<>(this, "id", null);
-//    public abstract ObservableList <ActiveRecord>  getAll();
     public abstract void update();
     public abstract ActiveRecord find(int id);
     public abstract String toString();
     public abstract void insert();
     public abstract ObservableList<ActiveRecord> findAllByOuterId(int id);
-    public ActiveRecord(String entityName) {
-        this.entityName = entityName;
+    public ActiveRecord( ) {
+        String name = this.getClass().getName();
+        String[] arr = name.split("\\.");
+        name= arr[arr.length - 1];
+        this.entityName =name;
+
     }
     public Integer getId() {
         return id.get();
@@ -48,10 +49,7 @@ public abstract class ActiveRecord {
         }else{
             throw new  NullPointerException();
         }
-
     }
-
-
     public  ObservableList <ActiveRecord>  getAll() {
         ObservableList <ActiveRecord> list= FXCollections.observableArrayList();
         ArrayList<DomainPropertiesMetaInfo> domainPropertiesMetaInfoList = ActiveRecordReflection.inspectDomainProperties(this);
@@ -64,7 +62,11 @@ public abstract class ActiveRecord {
                 for (DomainPropertiesMetaInfo propertiesMetaInfo : domainPropertiesMetaInfoList) {
 
                     if(propertiesMetaInfo.getGenericClass().getSuperclass()  == ActiveRecord.class){
-                        ActiveRecordReflection.setPropertyValueWithDomainType(rs,propertiesMetaInfo,activeRecord);
+                        if(propertiesMetaInfo.getGenericClass()==BoolComboBox.class){
+                            ActiveRecordReflection.setPropertyValueBollComboBox(rs,propertiesMetaInfo,activeRecord);
+                        }else{
+                            ActiveRecordReflection.setPropertyValueWithDomainType(rs,propertiesMetaInfo,activeRecord);
+                        }
                     }else{
                         ActiveRecordReflection.setPropertyValueWithSimpleType(rs,propertiesMetaInfo,activeRecord);
                     }

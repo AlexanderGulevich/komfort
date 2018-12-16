@@ -30,7 +30,7 @@ public class PacketPanel  extends TargetPanel {
                                 .setColumnName("Размер")
                                 .setColumnSize(0.5d)
                                 .setIsEditeble(true)
-                                .setPropertyName("size")
+                                .setPropertyName("packetSize")
                                 .build(),
                         ColumnWrapperComboBox.newBuilder(Counterparty.class)
                                 .setColumnName("Поставщик")

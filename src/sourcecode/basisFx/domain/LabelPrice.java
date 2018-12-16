@@ -41,15 +41,6 @@ public class LabelPrice extends ActiveRecord {
         this.startingDate.set(startingDate);
     }
 
-    public LabelPrice() {
-        super("LabelPrice");
-    }
-
-    @Override
-    public ObservableList<ActiveRecord> getAll() {
-        return null;
-    }
-
     @Override
     public void update() {
         String expression = "UPDATE "+this.entityName+ " SET  " +

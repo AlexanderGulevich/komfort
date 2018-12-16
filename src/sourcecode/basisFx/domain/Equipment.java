@@ -15,10 +15,6 @@ public class Equipment  extends ActiveRecord {
     private static Equipment INSTANCE = new Equipment();
     private SimpleObjectProperty<String> name =new SimpleObjectProperty<>(null, "name", null);
 
-    public Equipment() {
-        super("Equipment");
-    }
-
     public static Equipment getINSTANCE() {
         return INSTANCE;
     }
@@ -32,25 +28,7 @@ public class Equipment  extends ActiveRecord {
     public void setName(String name) {
         this.name.set(name);
     }
-//    @Override
-//    public  ObservableList <ActiveRecord>  getAll() {
-//        ObservableList <ActiveRecord> list=FXCollections.observableArrayList();
-//        String expression="SELECT * FROM " +"Equipment"+" ORDER BY ID";
-//        try {
-//            Statement stmt  = Db.connection.createStatement();
-//            ResultSet rs    = stmt.executeQuery(expression);
-//            while (rs.next()) {
-//                Equipment pojo=new Equipment();
-//                int id=rs.getInt("id");
-//                pojo.setId(id);
-//                pojo.setName(rs.getString("name"));
-//                list.add(pojo);
-//            }
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
-//        return list;
-//    }
+
     @Override
     public void update() {
         try {

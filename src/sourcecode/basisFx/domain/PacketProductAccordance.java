@@ -17,11 +17,6 @@ public class PacketProductAccordance extends ActiveRecord {
     private SimpleObjectProperty<Product> product = new SimpleObjectProperty<>(this, "product", null);
     private SimpleObjectProperty<Integer> number = new SimpleObjectProperty<>(this, "number", null);
 
-    public PacketProductAccordance() {
-        super("PacketProductAccordance");
-    }
-
-
     public static PacketProductAccordance getINSTANCE() {
         return INSTANCE;
     }
@@ -48,27 +43,6 @@ public class PacketProductAccordance extends ActiveRecord {
 
     public void setNumber(Integer number) {
         this.number.set(number);
-    }
-
-    @Override
-    public ObservableList<ActiveRecord> getAll() {
-
-        ObservableList <ActiveRecord> list=FXCollections.observableArrayList();
-        String expression="SELECT * FROM " +this.entityName+" ORDER BY ID";
-        try {
-            Statement stmt  = Db.connection.createStatement();
-            ResultSet rs    = stmt.executeQuery(expression);
-            while (rs.next()) {
-                PacketProductAccordance pojo=new PacketProductAccordance();
-                pojo.setId(rs.getInt("id"));
-                pojo.setNumber(rs.getInt("number"));
-                pojo.setProduct(Product.getINSTANCE().find(rs.getInt("productId")));
-                list.add(pojo);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return list;
     }
 
     @Override

@@ -19,10 +19,6 @@ public class Product  extends ActiveRecord {
         return INSTANCE;
     }
 
-    public Product() {
-        super("Product");
-    }
-
     public String getName() {
         return name.get();
     }
