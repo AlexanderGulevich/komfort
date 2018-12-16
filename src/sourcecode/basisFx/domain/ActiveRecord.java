@@ -1,15 +1,13 @@
 package basisFx.domain;
 
 import java.lang.reflect.Field;
-import java.lang.reflect.ParameterizedType;
-import java.lang.reflect.Type;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 
-import basisFx.appCore.DomainMetaInfo;
+import basisFx.appCore.DomainPropertiesMetaInfo;
 import basisFx.appCore.interfaces.DateGetter;
 import basisFx.dataSource.Db;
 import javafx.beans.property.ObjectProperty;
@@ -21,7 +19,7 @@ public abstract class ActiveRecord {
     public String entityName;
     public int outerId;
     public ObjectProperty<Integer> id =new SimpleObjectProperty<>(this, "id", null);
-    public abstract ObservableList <ActiveRecord>  getAll();
+//    public abstract ObservableList <ActiveRecord>  getAll();
     public abstract void update();
     public abstract ActiveRecord find(int id);
     public abstract String toString();
@@ -54,76 +52,56 @@ public abstract class ActiveRecord {
     }
 
 
-//    public  ObservableList <ActiveRecord>  getAll(){
-//        ArrayList<DomainMetaInfo>  domainMetaInfoList = inspectDomainProperties();
-//        String query="Select * from "+ this.entityName+ " ";
-//        for (DomainMetaInfo info:domainMetaInfoList) {
-//            query=query+info.getTypeName()+ ","
-//        }
-//
-//
-//        return null;
-//
-//
-//    }
-//
-//    private   ArrayList<DomainMetaInfo>   inspectDomainProperties() {
-//      ArrayList<DomainMetaInfo>  domainMetaInfoList=new ArrayList<>();
-//        Field[] declaredFields = getDeclaredFields();
-//        for (Field field : declaredFields) {
-//            field.setAccessible(true);
-//            if (isaStaticField(field)) continue;
-//            Type type = field.getGenericType();
-//            if (type instanceof ParameterizedType) {
-//                String typeName = retrieveGenericTypeName(field, (ParameterizedType) type);
-//                String propertyName = retrievePropertyName(field);
-//                domainMetaInfoList.add(new DomainMetaInfo(typeName,propertyName));
-//            }
-//        }
-//        return domainMetaInfoList;
-//    }
-//
-//    private String retrievePropertyName(Field field) {
-//        SimpleObjectProperty property= getPropertyFromClass(field,this);
-//        return property.getName();
-//    }
-//
-//    private String retrieveGenericTypeName(Field field, ParameterizedType type) {
-//        Type parameterizedType = getParameterizedType(type, field);
-//        String typeName = parameterizedType.getTypeName();
-//        SimpleObjectProperty obj = null;
-//        String[] arr = typeName.split("\\.");
-//        return arr[arr.length - 1];
-//    }
-//
-    private boolean isaStaticField(Field field) {
-        return java.lang.reflect.Modifier.isStatic(field.getModifiers());
-    }
-//
-//    private Type getParameterizedType(ParameterizedType type, Field field) {
-//        ParameterizedType pt = type;
-//        Type rawType = pt.getRawType();
-//        Type ownerType = pt.getOwnerType();
-//        Type[] actualTypeArguments = pt.getActualTypeArguments();
-//        Type argument = actualTypeArguments[0];
-//        SimpleObjectProperty property= getPropertyFromClass(field,this);
-//        return argument ;
-//    }
-//
-    private Field[] getDeclaredFields() {
-        Class<? extends ActiveRecord> aClass = this.getClass();
-        return aClass.getDeclaredFields();
-    };
+    public  ObservableList <ActiveRecord>  getAll() {
+        ObservableList <ActiveRecord> list= FXCollections.observableArrayList();
+        ArrayList<DomainPropertiesMetaInfo> domainPropertiesMetaInfoList = ActiveRecordReflection.inspectDomainProperties(this);
+        ResultSet rs = executeQuery("Select * from " + this.entityName + " order by id ");
+        try {
+            while (rs.next()) {
+                ActiveRecord activeRecord = ActiveRecordReflection.createNewInstance(this);
+                ActiveRecordReflection.setIdToDomain(activeRecord,rs);
 
+                for (DomainPropertiesMetaInfo propertiesMetaInfo : domainPropertiesMetaInfoList) {
+
+                    if(propertiesMetaInfo.getGenericClass().getSuperclass()  == ActiveRecord.class){
+                        ActiveRecordReflection.setPropertyValueWithDomainType(rs,propertiesMetaInfo,activeRecord);
+                    }else{
+                        ActiveRecordReflection.setPropertyValueWithSimpleType(rs,propertiesMetaInfo,activeRecord);
+                    }
+                }
+                list.add(activeRecord);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return list;
+    }
+
+    private ResultSet executeQuery(String expression)   {
+        try (
+                Statement stmt = Db.connection.createStatement()) {
+                ResultSet resultSet;
+            try {
+                resultSet = stmt.executeQuery(expression);
+                return resultSet;
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 
 
     public boolean isReadyToTransaction(){
         boolean isReady=false;
-        Field[] declaredFields = getDeclaredFields();
+        Field[] declaredFields = ActiveRecordReflection.getDeclaredFields(this);
         for (Field declaredField : declaredFields) {
             declaredField.setAccessible(true);
-            if (isaStaticField(declaredField)) continue;
-            SimpleObjectProperty property= getPropertyFromClass(declaredField,this);
+            if (ActiveRecordReflection.isaStaticField(declaredField)) continue;
+            SimpleObjectProperty property= ActiveRecordReflection.getPropertyFromClass(declaredField,this);
             Object obj = property.get();
             if (obj!= null ) {
                 isReady=true;
@@ -260,15 +238,6 @@ public abstract class ActiveRecord {
 
 
 
-    private SimpleObjectProperty getPropertyFromClass(Field declaredField, ActiveRecord record) {
-        try {
-            return (SimpleObjectProperty) declaredField.get(record);
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        }
-        return null;
-
-    }
 
 }
 
