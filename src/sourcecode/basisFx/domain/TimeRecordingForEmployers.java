@@ -61,11 +61,6 @@ public class TimeRecordingForEmployers extends ActiveRecord implements RecordWit
     }
 
     @Override
-    public ActiveRecord find(int id) {
-        return null;
-    }
-
-    @Override
     public String toString() {
         return null;
     }
@@ -148,7 +143,7 @@ public class TimeRecordingForEmployers extends ActiveRecord implements RecordWit
                     TimeRecordingForEmployers pojo=new TimeRecordingForEmployers();
                     pojo.setDate(inspectDate(rs));
                     pojo.setHours(rs.getDouble("hours"));
-                    pojo.setEmployer(Employer.getINSTANCE().find( rs.getInt("employerId")));
+                    pojo.setEmployer((Employer) Employer.getINSTANCE().find( rs.getInt("employerId")));
 
                     list.add(pojo);
 

@@ -84,29 +84,6 @@ public class Jumbo extends ActiveRecord {
         }
     }
 
-    @Override
-    public Jumbo find(int id) {
-
-        Jumbo pojo=new Jumbo() ;
-        String expression="SELECT  * FROM " +this.entityName+" WHERE ID=?";
-
-        try {
-            PreparedStatement pstmt = Db.connection.prepareStatement(expression);
-            pstmt.setInt(1, id);
-            ResultSet rs = pstmt.executeQuery();
-
-            while (rs.next()){
-                pojo.setId(rs.getInt("id"));
-                pojo.setNumberOfProduct(rs.getInt("numberOfProduct"));
-                pojo.setWidth(rs.getInt("width"));
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return pojo;
-
-
-    }
 
     @Override
     public String toString() {

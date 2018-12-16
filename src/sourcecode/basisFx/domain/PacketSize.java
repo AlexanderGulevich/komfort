@@ -48,28 +48,6 @@ public class PacketSize extends ActiveRecord {
     }
 
     @Override
-    public PacketSize find(int id){
-
-    PacketSize pojo=new PacketSize() ;
-    String expression="SELECT * FROM " +this.entityName+" WHERE ID=?";
-
-        try {
-        PreparedStatement pstmt = Db.connection.prepareStatement(expression);
-        pstmt.setInt(1, id);
-        ResultSet rs = pstmt.executeQuery();
-
-        while (rs.next()){
-            pojo.setId(rs.getInt("id"));
-            pojo.setSize(rs.getString("size"));
-        }
-    } catch (SQLException e) {
-        e.printStackTrace();
-    }
-        return pojo;
-    }
-
-
-    @Override
     public String toString() {
         return getSize();
     }

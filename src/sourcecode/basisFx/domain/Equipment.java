@@ -43,26 +43,6 @@ public class Equipment  extends ActiveRecord {
     }
 
     @Override
-    public Equipment find(int id) {
-        Equipment pojo=new Equipment() ;
-        String expression="SELECT  * FROM " +"Equipment"+" WHERE ID=?";
-
-        try {
-            PreparedStatement pstmt = Db.connection.prepareStatement(expression);
-            pstmt.setInt(1, id);
-            ResultSet rs = pstmt.executeQuery();
-
-            while (rs.next()){
-                pojo.setId(rs.getInt("id"));
-                pojo.setName(rs.getString("name"));
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return pojo;
-    }
-
-    @Override
     public String toString() {
         return getName();
     }

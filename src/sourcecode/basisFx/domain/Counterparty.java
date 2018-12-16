@@ -52,7 +52,7 @@ public class Counterparty extends ActiveRecord {
                 Counterparty pojo=new Counterparty();
                 pojo.setId(rs.getInt("id"));
                 pojo.setName(rs.getString("name"));
-                pojo.setCurrency(Currency.getINSTANCE().find(  rs.getInt("currencyId")));
+                pojo.setCurrency((Currency) Currency.getINSTANCE().find(  rs.getInt("currencyId")));
                 list.add(pojo);
             }
         } catch (SQLException e) {
@@ -105,28 +105,6 @@ public class Counterparty extends ActiveRecord {
         return null;
     }
 
-
-    @Override
-    public Counterparty find(int id) {
-        Counterparty pojo=new Counterparty() ;
-        String expression="SELECT * FROM " +"Counterparty"+" WHERE ID=?";
-
-        try {
-            PreparedStatement pstmt = Db.connection.prepareStatement(expression);
-            pstmt.setInt(1, id);
-            ResultSet rs = pstmt.executeQuery();
-
-            while (rs.next()){
-                pojo.setId(rs.getInt("id"));
-                pojo.setName(rs.getString("name"));
-                pojo.setCurrency(Currency.getINSTANCE().find(rs.getInt("currencyId")));
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return pojo;
-
-    }
 
     @Override
     public String toString() {

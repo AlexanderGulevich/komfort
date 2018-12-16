@@ -78,11 +78,6 @@ public class BoolComboBox extends ActiveRecord {
     }
 
     @Override
-    public ActiveRecord find(int id) {
-        return null;
-    }
-
-    @Override
     public void insert() {
 
     }

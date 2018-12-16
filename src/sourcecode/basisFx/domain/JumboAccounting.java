@@ -84,11 +84,6 @@ public class JumboAccounting extends ActiveRecord implements RecordWithDate {
     }
 
     @Override
-    public ActiveRecord find(int id) {
-        return null;
-    }
-
-    @Override
     public String toString() {
         return null;
     }
@@ -133,7 +128,7 @@ public class JumboAccounting extends ActiveRecord implements RecordWithDate {
             while (rs.next()){
                 JumboAccounting pojo=new JumboAccounting();
                 pojo.setId(rs.getInt("id"));
-                pojo.setCounterparty(Counterparty.getINSTANCE().find(rs.getInt("Counterpartyid")));
+                pojo.setCounterparty((Counterparty) Counterparty.getINSTANCE().find(rs.getInt("Counterpartyid")));
                 pojo.setDate(rs.getDate("date").toLocalDate());
                 pojo.setOverallWeight(rs.getDouble("overallWeight"));
 

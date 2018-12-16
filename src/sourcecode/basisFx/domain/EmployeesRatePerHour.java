@@ -41,10 +41,6 @@ public class EmployeesRatePerHour extends ActiveRecord {
         this.rate.set(rate);
     }
 
-    @Override
-    public ObservableList<ActiveRecord> getAll() {
-        return null;
-    }
 
     @Override
     public void update() {
@@ -72,11 +68,6 @@ public class EmployeesRatePerHour extends ActiveRecord {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-    }
-
-    @Override
-    public ActiveRecord find(int id) {
-        return null;
     }
 
     @Override

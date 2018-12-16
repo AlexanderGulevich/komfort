@@ -51,11 +51,6 @@ public class OutputPerDay extends ActiveRecord implements RecordWithDate {
     }
 
     @Override
-    public ActiveRecord find(int id) {
-        return null;
-    }
-
-    @Override
     public String toString() {
         return null;
     }
@@ -110,13 +105,13 @@ public class OutputPerDay extends ActiveRecord implements RecordWithDate {
             while (rs.next()){
                 OutputPerDay pojo=new OutputPerDay();
                 pojo.setId(rs.getInt("id"));
-                pojo.setEquipment(Equipment.getINSTANCE().find( rs.getInt("EquipmentId") ));
-                pojo.setProduct(Product.getINSTANCE().find( rs.getInt("productId") ));
+                pojo.setEquipment((Equipment) Equipment.getINSTANCE().find( rs.getInt("EquipmentId") ));
+                pojo.setProduct((Product) Product.getINSTANCE().find( rs.getInt("productId") ));
                 pojo.setRodsNumber(  rs.getInt("rodsNumber")  );
-                pojo.setJumbo( Jumbo.getINSTANCE().find(rs.getInt("JumboId") )  );
-                pojo.setPacket(Packet.getINSTANCE().find( rs.getInt("packetId") )  );
-                pojo.setPacketCounterparty(Counterparty.getINSTANCE().find( rs.getInt("packetCounterpartyId") )  );
-                pojo.setPaperCounterparty(Counterparty.getINSTANCE().find( rs.getInt("paperCounterpartyId") )  );
+                pojo.setJumbo((Jumbo) Jumbo.getINSTANCE().find(rs.getInt("JumboId") ));
+                pojo.setPacket((Packet) Packet.getINSTANCE().find( rs.getInt("packetId") ));
+                pojo.setPacketCounterparty((Counterparty) Counterparty.getINSTANCE().find( rs.getInt("packetCounterpartyId") ));
+                pojo.setPaperCounterparty((Counterparty) Counterparty.getINSTANCE().find( rs.getInt("paperCounterpartyId") ));
                 list.add(pojo);
             }
         } catch (SQLException e) {

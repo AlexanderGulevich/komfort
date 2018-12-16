@@ -47,27 +47,6 @@ public class Currency extends ActiveRecord {
         }
     }
 
-    @Override
-    public Currency find(int id) {
-        Currency pojo=null;
-        String expression="SELECT * FROM " +"Currency"+" WHERE ID=?";
-
-        try {
-            PreparedStatement pstmt = Db.connection.prepareStatement(expression);
-            pstmt.setInt(1, id);
-            ResultSet rs = pstmt.executeQuery();
-
-            while (rs.next()){
-                pojo=new Currency() ;
-                pojo.setId(rs.getInt("id"));
-                pojo.setName(rs.getString("name"));
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return pojo;
-
-    }
 
     @Override
     public void insert() {

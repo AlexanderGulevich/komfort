@@ -1,6 +1,8 @@
-package basisFx.domain;
+package basisFx.appCore.reflection;
 
 import basisFx.appCore.DomainPropertiesMetaInfo;
+import basisFx.domain.ActiveRecord;
+import basisFx.domain.BoolComboBox;
 import javafx.beans.property.SimpleObjectProperty;
 
 import java.lang.reflect.*;
@@ -57,7 +59,7 @@ public class ActiveRecordReflection {
         Class propertyGenericClass = propertiesMetaInfo.getGenericClass();
 
         try {
-            Method find = propertyGenericClass.getDeclaredMethod("find", int.class);
+            Method find = propertyGenericClass.getSuperclass().getDeclaredMethod("find", int.class);
             ActiveRecord instanceForPropertyObject = getDomainInstanceFromStaticMethod(propertyGenericClass);
             ActiveRecord InerRecord=null;
             try {

@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 import basisFx.appCore.DomainPropertiesMetaInfo;
 import basisFx.appCore.interfaces.DateGetter;
+import basisFx.appCore.reflection.ActiveRecordReflection;
 import basisFx.dataSource.Db;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
@@ -18,7 +19,7 @@ public abstract class ActiveRecord {
     public int outerId;
     public ObjectProperty<Integer> id =new SimpleObjectProperty<>(this, "id", null);
     public abstract void update();
-    public abstract ActiveRecord find(int id);
+//    public abstract ActiveRecord find(int id);
     public abstract String toString();
     public abstract void insert();
     public abstract ObservableList<ActiveRecord> findAllByOuterId(int id);
@@ -78,6 +79,40 @@ public abstract class ActiveRecord {
         }
 
         return list;
+    }
+
+
+    public ActiveRecord find(int id) {
+        ActiveRecord activeRecord = ActiveRecordReflection.createNewInstance(this);
+        ArrayList<DomainPropertiesMetaInfo> domainPropertiesMetaInfoList = ActiveRecordReflection.inspectDomainProperties(this);
+        String expression="SELECT  * FROM " +this.entityName+" WHERE ID=?";
+
+        try {
+            PreparedStatement pstmt = Db.connection.prepareStatement(expression);
+            pstmt.setInt(1, id);
+            ResultSet rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+
+                ActiveRecordReflection.setIdToDomain(activeRecord,rs);
+
+                for (DomainPropertiesMetaInfo propertiesMetaInfo : domainPropertiesMetaInfoList) {
+
+                    if(propertiesMetaInfo.getGenericClass().getSuperclass()  == ActiveRecord.class){
+                        if(propertiesMetaInfo.getGenericClass()==BoolComboBox.class){
+                            ActiveRecordReflection.setPropertyValueBollComboBox(rs,propertiesMetaInfo,activeRecord);
+                        }else{
+                            ActiveRecordReflection.setPropertyValueWithDomainType(rs,propertiesMetaInfo,activeRecord);
+                        }
+                    }else{
+                        ActiveRecordReflection.setPropertyValueWithSimpleType(rs,propertiesMetaInfo,activeRecord);
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return activeRecord;
     }
 
     private ResultSet executeQuery(String expression)   {

@@ -66,29 +66,6 @@ public class PacketProductAccordance extends ActiveRecord {
     }
 
     @Override
-    public ActiveRecord find(int id) {
-
-        PacketProductAccordance pojo=new PacketProductAccordance() ;
-        String expression="SELECT * FROM " +this.entityName+" WHERE ID=?";
-
-        try {
-            PreparedStatement pstmt = Db.connection.prepareStatement(expression);
-            pstmt.setInt(1, id);
-            ResultSet rs = pstmt.executeQuery();
-
-            while (rs.next()){
-                pojo.setId(rs.getInt("id"));
-                pojo.setProduct(Product.getINSTANCE().find(rs.getInt("productId")));
-                pojo.setNumber(rs.getInt("number"));
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return pojo;
-
-    }
-
-    @Override
     public String toString() {
         return null;
     }
@@ -125,7 +102,7 @@ public class PacketProductAccordance extends ActiveRecord {
             PacketProductAccordance pojo = new PacketProductAccordance();
             pojo.setId(rs.getInt("id"));
             pojo.setNumber(rs.getInt("number"));
-            pojo.setProduct(Product.getINSTANCE().find(rs.getInt("productId")));
+            pojo.setProduct((Product) Product.getINSTANCE().find(rs.getInt("productId")));
             list.add(pojo);
         }
     } catch (

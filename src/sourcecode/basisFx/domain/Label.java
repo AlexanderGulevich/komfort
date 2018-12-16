@@ -56,7 +56,7 @@ public class Label extends ActiveRecord {
                 Label pojo=new Label();
                 pojo.setId(rs.getInt("id"));
                 pojo.setName(rs.getString("name"));
-                pojo.setCounterparty(Counterparty.getINSTANCE().find(rs.getInt("counterpartyId")));
+                pojo.setCounterparty((Counterparty) Counterparty.getINSTANCE().find(rs.getInt("counterpartyId")));
                 list.add(pojo);
             }
         } catch (SQLException e) {
@@ -81,11 +81,6 @@ public class Label extends ActiveRecord {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-    }
-
-    @Override
-    public ActiveRecord find(int id) {
-        return null;
     }
 
     @Override

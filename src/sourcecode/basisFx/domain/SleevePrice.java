@@ -42,11 +42,6 @@ public class SleevePrice extends ActiveRecord {
     }
 
     @Override
-    public ObservableList<ActiveRecord> getAll() {
-        return null;
-    }
-
-    @Override
     public void update() {
         String expression = "UPDATE " + this.entityName + " SET  " +
                 " price = ?," +
@@ -72,11 +67,6 @@ public class SleevePrice extends ActiveRecord {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-    }
-
-    @Override
-    public ActiveRecord find(int id) {
-        return null;
     }
 
     @Override

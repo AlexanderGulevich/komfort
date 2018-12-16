@@ -48,11 +48,6 @@ public class Paper extends ActiveRecord {
     }
 
     @Override
-    public ActiveRecord find(int id) {
-        return null;
-    }
-
-    @Override
     public String toString() {
         return null;
     }
