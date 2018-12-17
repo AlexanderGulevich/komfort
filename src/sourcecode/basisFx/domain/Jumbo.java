@@ -46,27 +46,6 @@ public class Jumbo extends ActiveRecord {
 
 
     @Override
-    public ObservableList<ActiveRecord> getAll() {
-
-        ObservableList<ActiveRecord> list = FXCollections.observableArrayList();
-        String expression = "SELECT * FROM " + this.entityName + " ORDER BY ID";
-        try {
-            Statement stmt = Db.connection.createStatement();
-            ResultSet rs = stmt.executeQuery(expression);
-            while (rs.next()) {
-                Jumbo pojo = new Jumbo();
-                pojo.setId(rs.getInt("id"));
-                pojo.setWidth(rs.getInt("width"));
-                pojo.setNumberOfProduct(rs.getInt("numberOfProduct"));
-                list.add(pojo);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return list;
-    }
-
-    @Override
     public void update() {
         try {
             String expression = "UPDATE " + this.entityName + " SET  " +

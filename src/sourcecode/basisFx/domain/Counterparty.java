@@ -41,44 +41,24 @@ public class Counterparty extends ActiveRecord {
         this.name.set(name);
     }
 
-    @Override
-    public ObservableList <ActiveRecord>  getAll( )   {
-        ObservableList <ActiveRecord> list=FXCollections.observableArrayList();
-            String expression="SELECT * FROM " +this.entityName+" ORDER BY ID";
-        try {
-            Statement stmt  = Db.connection.createStatement();
-            ResultSet rs    = stmt.executeQuery(expression);
-            while (rs.next()) {
-                Counterparty pojo=new Counterparty();
-                pojo.setId(rs.getInt("id"));
-                pojo.setName(rs.getString("name"));
-                pojo.setCurrency((Currency) Currency.getINSTANCE().find(  rs.getInt("currencyId")));
-                list.add(pojo);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return list;
-    }
-
-    @Override
-    public void update() {
-            String expression = "UPDATE " + this.entityName + " SET  " +
-                    " name = ?," +
-                    " currencyId = ?" +
-                    " WHERE id= ?";
-            PreparedStatement pstmt = null;
-            try {
-                pstmt = Db.connection.prepareStatement(expression);
-                pstmt.setString(1, name.get());
-                pstmt.setInt(2, currency.get().getId());
-                pstmt.setInt(3, id.get());
-
-                pstmt.executeUpdate();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-    }
+//    @Override
+//    public void update() {
+//            String expression = "UPDATE " + this.entityName + " SET  " +
+//                    " name = ?," +
+//                    " currencyId = ?" +
+//                    " WHERE id= ?";
+//            PreparedStatement pstmt = null;
+//            try {
+//                pstmt = Db.connection.prepareStatement(expression);
+//                pstmt.setString(1, name.get());
+//                pstmt.setInt(2, currency.get().getId());
+//                pstmt.setInt(3, id.get());
+//
+//                pstmt.executeUpdate();
+//            } catch (SQLException e) {
+//                e.printStackTrace();
+//            }
+//    }
 
     @Override
     public void insert() {

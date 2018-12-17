@@ -1,13 +1,15 @@
 package basisFx.domain;
 
-import java.lang.reflect.Field;
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
 import basisFx.appCore.DomainPropertiesMetaInfo;
 import basisFx.appCore.interfaces.DateGetter;
-import basisFx.appCore.reflection.ActiveRecordReflection;
+import basisFx.appCore.reflection.Reflection;
+import basisFx.appCore.reflection.ReflectionGet;
+import basisFx.appCore.reflection.ReflectionInspectDomain;
+import basisFx.appCore.reflection.ReflectionUpdate;
 import basisFx.dataSource.Db;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
@@ -18,8 +20,6 @@ public abstract class ActiveRecord {
     public String entityName;
     public int outerId;
     public ObjectProperty<Integer> id =new SimpleObjectProperty<>(this, "id", null);
-    public abstract void update();
-//    public abstract ActiveRecord find(int id);
     public abstract String toString();
     public abstract void insert();
     public abstract ObservableList<ActiveRecord> findAllByOuterId(int id);
@@ -30,6 +30,10 @@ public abstract class ActiveRecord {
         this.entityName =name;
 
     }
+    public boolean isReadyToTransaction(){
+        return Reflection.isReadyToTransaction(this);
+    }
+
     public Integer getId() {
         return id.get();
     }
@@ -53,23 +57,23 @@ public abstract class ActiveRecord {
     }
     public  ObservableList <ActiveRecord>  getAll() {
         ObservableList <ActiveRecord> list= FXCollections.observableArrayList();
-        ArrayList<DomainPropertiesMetaInfo> domainPropertiesMetaInfoList = ActiveRecordReflection.inspectDomainProperties(this);
+        ArrayList<DomainPropertiesMetaInfo> domainPropertiesMetaInfoList = ReflectionInspectDomain.inspectDomainProperties(this);
         ResultSet rs = executeQuery("Select * from " + this.entityName + " order by id ");
         try {
             while (rs.next()) {
-                ActiveRecord activeRecord = ActiveRecordReflection.createNewInstance(this);
-                ActiveRecordReflection.setIdToDomain(activeRecord,rs);
+                ActiveRecord activeRecord = Reflection.createNewInstance(this);
+                ReflectionGet.setIdToDomain(activeRecord,rs);
 
                 for (DomainPropertiesMetaInfo propertiesMetaInfo : domainPropertiesMetaInfoList) {
 
                     if(propertiesMetaInfo.getGenericClass().getSuperclass()  == ActiveRecord.class){
                         if(propertiesMetaInfo.getGenericClass()==BoolComboBox.class){
-                            ActiveRecordReflection.setPropertyValueBollComboBox(rs,propertiesMetaInfo,activeRecord);
+                            ReflectionGet.setPropertyValueBollComboBox(rs,propertiesMetaInfo,activeRecord);
                         }else{
-                            ActiveRecordReflection.setPropertyValueWithDomainType(rs,propertiesMetaInfo,activeRecord);
+                            ReflectionGet.setPropertyValueWithDomainType(rs,propertiesMetaInfo,activeRecord);
                         }
                     }else{
-                        ActiveRecordReflection.setPropertyValueWithSimpleType(rs,propertiesMetaInfo,activeRecord);
+                        ReflectionGet.setPropertyValueWithSimpleType(rs,propertiesMetaInfo,activeRecord);
                     }
                 }
                 list.add(activeRecord);
@@ -81,10 +85,9 @@ public abstract class ActiveRecord {
         return list;
     }
 
-
     public ActiveRecord find(int id) {
-        ActiveRecord activeRecord = ActiveRecordReflection.createNewInstance(this);
-        ArrayList<DomainPropertiesMetaInfo> domainPropertiesMetaInfoList = ActiveRecordReflection.inspectDomainProperties(this);
+        ActiveRecord activeRecord = Reflection.createNewInstance(this);
+        ArrayList<DomainPropertiesMetaInfo> domainPropertiesMetaInfoList = ReflectionInspectDomain.inspectDomainProperties(this);
         String expression="SELECT  * FROM " +this.entityName+" WHERE ID=?";
 
         try {
@@ -94,18 +97,18 @@ public abstract class ActiveRecord {
 
             while (rs.next()) {
 
-                ActiveRecordReflection.setIdToDomain(activeRecord,rs);
+                ReflectionGet.setIdToDomain(activeRecord,rs);
 
                 for (DomainPropertiesMetaInfo propertiesMetaInfo : domainPropertiesMetaInfoList) {
 
                     if(propertiesMetaInfo.getGenericClass().getSuperclass()  == ActiveRecord.class){
                         if(propertiesMetaInfo.getGenericClass()==BoolComboBox.class){
-                            ActiveRecordReflection.setPropertyValueBollComboBox(rs,propertiesMetaInfo,activeRecord);
+                            ReflectionGet.setPropertyValueBollComboBox(rs,propertiesMetaInfo,activeRecord);
                         }else{
-                            ActiveRecordReflection.setPropertyValueWithDomainType(rs,propertiesMetaInfo,activeRecord);
+                            ReflectionGet.setPropertyValueWithDomainType(rs,propertiesMetaInfo,activeRecord);
                         }
                     }else{
-                        ActiveRecordReflection.setPropertyValueWithSimpleType(rs,propertiesMetaInfo,activeRecord);
+                        ReflectionGet.setPropertyValueWithSimpleType(rs,propertiesMetaInfo,activeRecord);
                     }
                 }
             }
@@ -131,26 +134,6 @@ public abstract class ActiveRecord {
         return null;
     }
 
-
-    public boolean isReadyToTransaction(){
-        boolean isReady=false;
-        Field[] declaredFields = ActiveRecordReflection.getDeclaredFields(this);
-        for (Field declaredField : declaredFields) {
-            declaredField.setAccessible(true);
-            if (ActiveRecordReflection.isaStaticField(declaredField)) continue;
-            SimpleObjectProperty property= ActiveRecordReflection.getPropertyFromClass(declaredField,this);
-            Object obj = property.get();
-            if (obj!= null ) {
-                isReady=true;
-            }else {
-                isReady=false;
-                break;
-            }
-    }
-        return isReady;
-    }
-
-
     public void delete(){
             try {
                 String expression="delete from " +entityName+" where id=? ";
@@ -161,6 +144,13 @@ public abstract class ActiveRecord {
                 e.printStackTrace();
             }
     }
+
+    public void update() {
+        ArrayList<DomainPropertiesMetaInfo> domainPropertiesMetaInfoList = ReflectionInspectDomain.inspectDomainProperties(this);
+        String updateExpression = ReflectionUpdate.createUpdateExpression(this,domainPropertiesMetaInfoList);
+        ReflectionUpdate.executePepareStatement(this,updateExpression,domainPropertiesMetaInfoList);
+    }
+
 
     // getAll(list) записывает в  list значения ReturnSet БД
     // далее идет преобразование каждой строки БД в HashMap, где ключем является id
