@@ -1,12 +1,16 @@
 package basisFx.appCore.reflection;
 
 import basisFx.appCore.DomainPropertiesMetaInfo;
+import basisFx.dataSource.Db;
 import basisFx.domain.ActiveRecord;
 import basisFx.domain.BoolComboBox;
+import javafx.collections.ObservableList;
 
 import java.lang.reflect.*;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class ReflectionGet {
 
@@ -122,6 +126,67 @@ public class ReflectionGet {
             e.printStackTrace();
         }
     }
+
+    public static ActiveRecord findDomain(int id, ActiveRecord activeRecord, ArrayList<DomainPropertiesMetaInfo> domainPropertiesMetaInfoList, String expression) {
+        try {
+            PreparedStatement pstmt = Db.connection.prepareStatement(expression);
+            pstmt.setInt(1, id);
+            ResultSet rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+
+                ReflectionGet.setIdToDomain(activeRecord,rs);
+
+                for (DomainPropertiesMetaInfo propertiesMetaInfo : domainPropertiesMetaInfoList) {
+
+                    if(propertiesMetaInfo.getGenericClass().getSuperclass()  == ActiveRecord.class){
+                        if(propertiesMetaInfo.getGenericClass()==BoolComboBox.class){
+                            ReflectionGet.setPropertyValueBollComboBox(rs,propertiesMetaInfo,activeRecord);
+                        }else{
+                            ReflectionGet.setPropertyValueWithDomainType(rs,propertiesMetaInfo,activeRecord);
+                        }
+                    }else{
+                        ReflectionGet.setPropertyValueWithSimpleType(rs,propertiesMetaInfo,activeRecord);
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return activeRecord;
+    }
+
+    public static ObservableList<ActiveRecord> getAllDomains(
+            ActiveRecord record,
+            ObservableList<ActiveRecord> list,
+            ArrayList<DomainPropertiesMetaInfo> domainPropertiesMetaInfoList,
+            ResultSet rs) {
+        try {
+            while (rs.next()) {
+                ActiveRecord activeRecord = Reflection.createNewInstance(record);
+                ReflectionGet.setIdToDomain(activeRecord,rs);
+
+                for (DomainPropertiesMetaInfo propertiesMetaInfo : domainPropertiesMetaInfoList) {
+
+                    if(propertiesMetaInfo.getGenericClass().getSuperclass()  == ActiveRecord.class){
+                        if(propertiesMetaInfo.getGenericClass()==BoolComboBox.class){
+                            ReflectionGet.setPropertyValueBollComboBox(rs,propertiesMetaInfo,activeRecord);
+                        }else{
+                            ReflectionGet.setPropertyValueWithDomainType(rs,propertiesMetaInfo,activeRecord);
+                        }
+                    }else{
+                        ReflectionGet.setPropertyValueWithSimpleType(rs,propertiesMetaInfo,activeRecord);
+                    }
+                }
+                list.add(activeRecord);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return list;
+    }
+
 
 
 

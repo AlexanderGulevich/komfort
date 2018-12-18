@@ -59,63 +59,15 @@ public abstract class ActiveRecord {
         ObservableList <ActiveRecord> list= FXCollections.observableArrayList();
         ArrayList<DomainPropertiesMetaInfo> domainPropertiesMetaInfoList = ReflectionInspectDomain.inspectDomainProperties(this);
         ResultSet rs = executeQuery("Select * from " + this.entityName + " order by id ");
-        try {
-            while (rs.next()) {
-                ActiveRecord activeRecord = Reflection.createNewInstance(this);
-                ReflectionGet.setIdToDomain(activeRecord,rs);
-
-                for (DomainPropertiesMetaInfo propertiesMetaInfo : domainPropertiesMetaInfoList) {
-
-                    if(propertiesMetaInfo.getGenericClass().getSuperclass()  == ActiveRecord.class){
-                        if(propertiesMetaInfo.getGenericClass()==BoolComboBox.class){
-                            ReflectionGet.setPropertyValueBollComboBox(rs,propertiesMetaInfo,activeRecord);
-                        }else{
-                            ReflectionGet.setPropertyValueWithDomainType(rs,propertiesMetaInfo,activeRecord);
-                        }
-                    }else{
-                        ReflectionGet.setPropertyValueWithSimpleType(rs,propertiesMetaInfo,activeRecord);
-                    }
-                }
-                list.add(activeRecord);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        return list;
+        return ReflectionGet.getAllDomains(this,list, domainPropertiesMetaInfoList, rs);
     }
+
 
     public ActiveRecord find(int id) {
         ActiveRecord activeRecord = Reflection.createNewInstance(this);
         ArrayList<DomainPropertiesMetaInfo> domainPropertiesMetaInfoList = ReflectionInspectDomain.inspectDomainProperties(this);
         String expression="SELECT  * FROM " +this.entityName+" WHERE ID=?";
-
-        try {
-            PreparedStatement pstmt = Db.connection.prepareStatement(expression);
-            pstmt.setInt(1, id);
-            ResultSet rs = pstmt.executeQuery();
-
-            while (rs.next()) {
-
-                ReflectionGet.setIdToDomain(activeRecord,rs);
-
-                for (DomainPropertiesMetaInfo propertiesMetaInfo : domainPropertiesMetaInfoList) {
-
-                    if(propertiesMetaInfo.getGenericClass().getSuperclass()  == ActiveRecord.class){
-                        if(propertiesMetaInfo.getGenericClass()==BoolComboBox.class){
-                            ReflectionGet.setPropertyValueBollComboBox(rs,propertiesMetaInfo,activeRecord);
-                        }else{
-                            ReflectionGet.setPropertyValueWithDomainType(rs,propertiesMetaInfo,activeRecord);
-                        }
-                    }else{
-                        ReflectionGet.setPropertyValueWithSimpleType(rs,propertiesMetaInfo,activeRecord);
-                    }
-                }
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return activeRecord;
+        return ReflectionGet.findDomain(id, activeRecord, domainPropertiesMetaInfoList, expression);
     }
 
     private ResultSet executeQuery(String expression)   {
