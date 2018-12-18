@@ -55,24 +55,6 @@ public class Employer extends ActiveRecord {
     }
 
     @Override
-    public void insert() {
-        try {
-            String expression = "INSERT INTO " +  this.entityName
-                    + " ("
-                    + " name ,  "
-                    + " isFired "
-                    + ") VALUES(?,?)";
-
-            PreparedStatement pstmt = Db.connection.prepareStatement(expression);
-            pstmt.setString(1, getName());
-            pstmt.setBoolean(2, false);
-            pstmt.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
-    @Override
     public ObservableList<ActiveRecord> findAllByOuterId(int id) {
         return null;
     }

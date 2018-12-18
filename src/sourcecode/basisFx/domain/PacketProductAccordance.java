@@ -51,26 +51,6 @@ public class PacketProductAccordance extends ActiveRecord {
     }
 
     @Override
-    public void insert() {
-        try {
-            String expression = "INSERT INTO " + this.entityName
-                    + "("
-                    + " number ,  "
-                    + " packetSizeId ,  "
-                    + " productId "
-                    + ") VALUES(?,?,?)";
-
-            PreparedStatement pstmt = Db.connection.prepareStatement(expression);
-            pstmt.setInt(1, getNumber());
-            pstmt.setInt(2, outerId);
-            pstmt.setInt(3, getProduct().getId());
-            pstmt.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
-    @Override
     public ObservableList<ActiveRecord> findAllByOuterId(int id){
 
     ObservableList<ActiveRecord> list = createNewActiveRecordList();

@@ -37,22 +37,6 @@ public class Paper extends ActiveRecord {
     }
 
     @Override
-    public void insert() {
-        try {
-            String expression = "INSERT INTO " + this.entityName
-                    + "("
-                    + " counterpartyId "
-                    + ") VALUES(?)";
-
-            PreparedStatement pstmt = Db.connection.prepareStatement(expression);
-            pstmt.setInt(1, counterparty.get().getId());
-            pstmt.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
-    @Override
     public ObservableList<ActiveRecord> findAllByOuterId(int id) {
         return null;
     }

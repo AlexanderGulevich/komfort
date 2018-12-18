@@ -26,37 +26,6 @@ public class OutputPerDay extends ActiveRecord implements RecordWithDate {
         return null;
     }
 
-//    @Override
-//    public void insert() {
-//        try {
-//            String expression = "INSERT INTO " + this.entityName
-//                    + "("
-//                    + " EquipmentId=? ,  "
-//                    + " productId=?  ,  "
-//                    + " rodsNumber=?  ,  "
-//                    + " rodsWidth=?  ,  "
-//                    + " packetId=?  ,  "
-//                    + " packetCounterpartyId=?,  "
-//                    + " paperCounterpartyId=?,  "
-//                    + " date=?    "
-//                    + ") VALUES(?,?,?,?,?,?,?)";
-//
-//            PreparedStatement pstmt = Db.connection.prepareStatement(expression);
-//            pstmt.setInt(1, getEquipment().getId());
-//            pstmt.setInt(2, getProduct().getId());
-//            pstmt.setInt(3, getRodsNumber());
-//            pstmt.setInt(4, getJumbo().getId());
-//            pstmt.setInt(5, getPacket().getId());
-//            pstmt.setInt(6, getPacketCounterparty().getId());
-//            pstmt.setInt(7, getPaperCounterparty().getId());
-//            pstmt.setDate(8,Date.valueOf(getDate()));
-//            pstmt.executeUpdate();
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
-//
-//    }
-
     @Override
     public ObservableList<ActiveRecord> findAllByOuterId(int id) {
         return null;

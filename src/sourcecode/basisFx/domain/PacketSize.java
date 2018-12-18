@@ -37,22 +37,6 @@ public class PacketSize extends ActiveRecord {
     }
 
     @Override
-    public void insert() {
-        try {
-            String expression = "INSERT INTO " + this.entityName
-                    + "("
-                    + " size  "
-                    + ") VALUES(?)";
-
-            PreparedStatement pstmt = Db.connection.prepareStatement(expression);
-            pstmt.setString(1, size.get());
-            pstmt.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
-    @Override
     public ObservableList<ActiveRecord> findAllByOuterId(int id) {
         return null;
     }

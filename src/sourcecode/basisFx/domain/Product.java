@@ -69,26 +69,6 @@ public class Product  extends ActiveRecord {
     }
 
     @Override
-    public void insert() {
-        int executeResult;
-        try {
-            String expression = "INSERT INTO " + "Product "
-                    + "("
-                    + " name ,  "
-                    + " havingSleeve "
-                    + ") VALUES(?,?)";
-
-            PreparedStatement pstmt = Db.connection.prepareStatement(expression);
-            pstmt.setString(1, name.get());
-            pstmt.setBoolean(2, havingSleeve.get().getBoolean());
-            executeResult= pstmt.executeUpdate();
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
-    @Override
     public ObservableList<ActiveRecord> findAllByOuterId(int id) {
         return null;
     }

@@ -68,10 +68,6 @@ public class BoolComboBox extends ActiveRecord {
     }
 
     @Override
-    public void insert() {
-
-    }
-    @Override
     public ObservableList<ActiveRecord> findAllByOuterId(int id) {
         return null;
     }

@@ -44,31 +44,12 @@ public class Packet extends  ActiveRecord {
         this.counterparty.set(counterparty);
     }
 
-
     @Override
     public String toString() {
         if (getPacketSize() != null) {
             return  getPacketSize().getSize();
         }
         return  null;
-    }
-
-    @Override
-    public void insert() {
-        try {
-            String expression = "INSERT INTO " + this.entityName
-                    + "("
-                    + " packetSizeId ,  "
-                    + " counterpartyId "
-                    + ") VALUES(?,?)";
-
-            PreparedStatement pstmt = Db.connection.prepareStatement(expression);
-            pstmt.setInt(1, packetSize.get().getId());
-            pstmt.setInt(2, counterparty.get().getId());
-            pstmt.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
     }
 
     @Override

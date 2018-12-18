@@ -44,7 +44,6 @@ public class Jumbo extends ActiveRecord {
         this.numberOfProduct.set(numberOfProduct);
     }
 
-
     @Override
     public String toString() {
         if (getWidth() != null) {
@@ -52,24 +51,6 @@ public class Jumbo extends ActiveRecord {
             return String.valueOf(getWidth());
         }
         return null;
-    }
-
-    @Override
-    public void insert() {
-        try {
-            String expression = "INSERT INTO " + this.entityName
-                    + "("
-                    + " width ,  "
-                    + " numberOfProduct "
-                    + ") VALUES(?,?)";
-
-            PreparedStatement pstmt = Db.connection.prepareStatement(expression);
-            pstmt.setInt(1, getWidth());
-            pstmt.setInt(2, getNumberOfProduct());
-            pstmt.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
     }
 
     @Override

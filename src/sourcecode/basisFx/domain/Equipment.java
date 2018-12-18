@@ -34,26 +34,6 @@ public class Equipment  extends ActiveRecord {
         return getName();
     }
 
-//    @Override
-//    public void insert() {
-//
-//
-//        try {
-//            if (isReadyToTransaction()) {
-//
-//                String expression = "INSERT INTO Equipment (name) VALUES(?)";
-//
-//                PreparedStatement pstmt = Db.connection.prepareStatement(expression);
-//                pstmt.setString(1, name.get());
-//
-//                pstmt.executeUpdate();
-//
-//            }
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
-//    }
-
     @Override
     public ObservableList<ActiveRecord> findAllByOuterId(int id) {
         return null;
