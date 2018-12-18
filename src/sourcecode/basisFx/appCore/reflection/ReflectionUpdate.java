@@ -43,7 +43,7 @@ public class ReflectionUpdate {
                 String genericShortTypeName = propertiesMetaInfo.getGenericShortTypeName();
                 String propertyName = propertiesMetaInfo.getPropertyName();
                 Class propertyGenericClass = propertiesMetaInfo.getGenericClass();
-                Method method = getMethod(propertyName, activeRecord.getClass());
+                Method method = Reflection.getMethod(propertyName, activeRecord.getClass());
 
                 if(propertyGenericClass.getSuperclass()  == ActiveRecord.class){
                     if(propertiesMetaInfo.getGenericClass()== BoolComboBox.class){
@@ -94,7 +94,7 @@ public class ReflectionUpdate {
     private static ActiveRecord invokeDomainGetter(ActiveRecord activeRecord, Method method) {
         ActiveRecord value=null;
         try {
-            value = (BoolComboBox) method.invoke(activeRecord);
+            value = (ActiveRecord) method.invoke(activeRecord);
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         } catch (InvocationTargetException e) {
@@ -148,15 +148,5 @@ public class ReflectionUpdate {
         return value;
     }
 
-    private static Method getMethod(String propertyName, Class activeRecordClass){
-        String name = propertyName.substring(0, 1).toUpperCase() + propertyName.substring(1);
-        Method method = null;
-        try {
-            method = activeRecordClass.getDeclaredMethod("get" + name);
-        } catch (NoSuchMethodException e) {
-            e.printStackTrace();
-        }
-        return method;
-    }
 
 }

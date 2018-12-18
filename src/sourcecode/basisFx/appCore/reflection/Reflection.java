@@ -57,4 +57,15 @@ public class Reflection {
         return isReady;
     }
 
+    public static Method getMethod(String propertyName, Class activeRecordClass){
+        String name = propertyName.substring(0, 1).toUpperCase() + propertyName.substring(1);
+        Method method = null;
+        try {
+            method = activeRecordClass.getDeclaredMethod("get" + name);
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+        }
+        return method;
+    }
+
 }
