@@ -47,7 +47,11 @@ public class Jumbo extends ActiveRecord {
 
     @Override
     public String toString() {
-        return String.valueOf(getWidth());
+        if (getWidth() != null) {
+
+            return String.valueOf(getWidth());
+        }
+        return null;
     }
 
     @Override

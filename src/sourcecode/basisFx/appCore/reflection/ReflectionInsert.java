@@ -4,6 +4,7 @@ import basisFx.appCore.DomainPropertiesMetaInfo;
 import basisFx.dataSource.Db;
 import basisFx.domain.ActiveRecord;
 import basisFx.domain.BoolComboBox;
+
 import java.lang.reflect.Method;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -11,31 +12,39 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public class ReflectionUpdate {
-
-    public static String createUpdateExpression(ActiveRecord activeRecord,ArrayList<DomainPropertiesMetaInfo> domainPropertiesMetaInfoList ){
-        String expression = "UPDATE " + activeRecord.entityName + " SET  ";
+public class ReflectionInsert {
+    public static String createInsertExpression(ActiveRecord activeRecord, ArrayList<DomainPropertiesMetaInfo> domainPropertiesMetaInfoList) {
+        String expression =" INSERT INTO "  + activeRecord.entityName + " (  ";
         for (DomainPropertiesMetaInfo propertiesMetaInfo : domainPropertiesMetaInfoList) {
             if(propertiesMetaInfo.getGenericClass().getSuperclass()  == ActiveRecord.class){
                 if(propertiesMetaInfo.getGenericClass()== BoolComboBox.class){
-                    expression+=" "+propertiesMetaInfo.getPropertyName()+"=?,";
+                    expression+=" "+propertiesMetaInfo.getPropertyName()+",";
                 }else{
-                    expression+=" "+propertiesMetaInfo.getPropertyName()+"Id"+"=?,";
+                    expression+=" "+propertiesMetaInfo.getPropertyName()+"Id"+",";
                 }
             }else{
-                expression+=" "+propertiesMetaInfo.getPropertyName()+"=?,";
+                expression+=" "+propertiesMetaInfo.getPropertyName()+",";
             }
         }
         expression=expression.substring(0,expression.length()-1);
-        expression+=" where id=?";
+        expression+=" ) VALUES(" ;
+
+        int length = domainPropertiesMetaInfoList.toArray().length;
+        for (int i = 0; i < length; i++) {
+            expression+="?,";
+        }
+        expression=expression.substring(0,expression.length()-1);
+        expression=expression+")";
+
+
         return expression;
 
     }
 
-    public static void executePepareStatement(ActiveRecord activeRecord, String updateExpression,ArrayList<DomainPropertiesMetaInfo> domainPropertiesMetaInfoList ){
+    public static void executeInsertStatement(ActiveRecord activeRecord, String insertExpression, ArrayList<DomainPropertiesMetaInfo> domainPropertiesMetaInfoList) {
         PreparedStatement pstmt = null;
         try {
-            pstmt = Db.connection.prepareStatement(updateExpression);
+            pstmt = Db.connection.prepareStatement(insertExpression);
             int counter=1;
             for (DomainPropertiesMetaInfo propertiesMetaInfo : domainPropertiesMetaInfoList) {
 
@@ -72,12 +81,10 @@ public class ReflectionUpdate {
                 }
                 counter++;
             }
-            pstmt.setInt(counter, activeRecord.getId());
             pstmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
     }
-
-
 }

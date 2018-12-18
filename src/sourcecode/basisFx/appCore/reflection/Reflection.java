@@ -1,11 +1,13 @@
 package basisFx.appCore.reflection;
 
 import basisFx.domain.ActiveRecord;
+import basisFx.domain.BoolComboBox;
 import javafx.beans.property.SimpleObjectProperty;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.time.LocalDate;
 
 public class Reflection {
     public static ActiveRecord getDomainInstanceFromStaticMethod(Class propertyGenericClass) {
@@ -67,5 +69,76 @@ public class Reflection {
         }
         return method;
     }
+
+
+
+    public static Boolean invokeBooleanGetter(ActiveRecord activeRecord, Method method) {
+        BoolComboBox value=null;
+        try {
+            value = (BoolComboBox) method.invoke(activeRecord);
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        }
+        return value.getBoolean();
+    }
+    public static ActiveRecord invokeDomainGetter(ActiveRecord activeRecord, Method method) {
+        ActiveRecord value=null;
+        try {
+            value = (ActiveRecord) method.invoke(activeRecord);
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        }
+        return value;
+    }
+    public static String invokeStringGetter(ActiveRecord activeRecord, Method method) {
+        String value=null;
+        try {
+            value = (String) method.invoke(activeRecord);
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        }
+        return value;
+    }
+    public static Integer invokeIntegerGetter(ActiveRecord activeRecord, Method method) {
+        Integer value=null;
+        try {
+            value = (Integer) method.invoke(activeRecord);
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        }
+        return value;
+    }
+    public static Double invokeDoubleGetter(ActiveRecord activeRecord, Method method) {
+        Double value=null;
+        try {
+            value = (Double) method.invoke(activeRecord);
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        }
+        return value;
+    }
+
+    public static LocalDate invokeLocalDateGetter(ActiveRecord activeRecord, Method method) {
+        LocalDate value=null;
+        try {
+            value = (LocalDate) method.invoke(activeRecord);
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        }
+        return value;
+    }
+
 
 }

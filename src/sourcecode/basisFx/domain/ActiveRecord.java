@@ -6,10 +6,7 @@ import java.util.ArrayList;
 
 import basisFx.appCore.DomainPropertiesMetaInfo;
 import basisFx.appCore.interfaces.DateGetter;
-import basisFx.appCore.reflection.Reflection;
-import basisFx.appCore.reflection.ReflectionGet;
-import basisFx.appCore.reflection.ReflectionInspectDomain;
-import basisFx.appCore.reflection.ReflectionUpdate;
+import basisFx.appCore.reflection.*;
 import basisFx.dataSource.Db;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
@@ -20,8 +17,8 @@ public abstract class ActiveRecord {
     public String entityName;
     public int outerId;
     public ObjectProperty<Integer> id =new SimpleObjectProperty<>(this, "id", null);
+    //Method for Combobox
     public abstract String toString();
-    public abstract void insert();
     public abstract ObservableList<ActiveRecord> findAllByOuterId(int id);
     public ActiveRecord( ) {
         String name = this.getClass().getName();
@@ -102,6 +99,15 @@ public abstract class ActiveRecord {
         String updateExpression = ReflectionUpdate.createUpdateExpression(this,domainPropertiesMetaInfoList);
         ReflectionUpdate.executePepareStatement(this,updateExpression,domainPropertiesMetaInfoList);
     }
+
+
+
+    public void insert() {
+        ArrayList<DomainPropertiesMetaInfo> domainPropertiesMetaInfoList = ReflectionInspectDomain.inspectDomainProperties(this);
+        String insertExpression = ReflectionInsert.createInsertExpression(this,domainPropertiesMetaInfoList);
+        ReflectionInsert.executeInsertStatement(this,insertExpression,domainPropertiesMetaInfoList);
+    }
+
 
 
     // getAll(list) записывает в  list значения ReturnSet БД
