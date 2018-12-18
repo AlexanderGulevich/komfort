@@ -32,22 +32,6 @@ public class PacketSize extends ActiveRecord {
 
 
     @Override
-    public void update() {
-        try {
-            String expression = "UPDATE "+    this.entityName+ " SET  " +
-                    " size = ?" +
-                    " WHERE id= ?" ;
-            PreparedStatement pstmt = null;
-            pstmt = Db.connection.prepareStatement(expression);
-            pstmt.setString(1, size.get());
-            pstmt.setInt(3, id.get());
-            pstmt.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
-    @Override
     public String toString() {
         return getSize();
     }

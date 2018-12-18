@@ -46,26 +46,6 @@ public class PacketProductAccordance extends ActiveRecord {
     }
 
     @Override
-    public void update() {
-        try {
-            String expression = "UPDATE "+    this.entityName+ " SET  " +
-                    " number = ?," +
-                    " productId = ?," +
-                    " packetSizeId = ?" +
-                    " WHERE id= ?" ;
-            PreparedStatement pstmt = null;
-            pstmt = Db.connection.prepareStatement(expression);
-            pstmt.setInt(1, getNumber());
-            pstmt.setInt(2, getProduct().id.get());
-            pstmt.setInt(3, outerId);
-            pstmt.setInt(4, id.get());
-            pstmt.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
-    @Override
     public String toString() {
         return null;
     }

@@ -20,35 +20,6 @@ public class OutputPerDay extends ActiveRecord implements RecordWithDate {
     private SimpleObjectProperty<Counterparty> packetCounterparty=new SimpleObjectProperty<>(this, "packetCounterparty", null);
     private SimpleObjectProperty<Counterparty> paperCounterparty=new SimpleObjectProperty<>(this, "paperCounterparty", null);
     private SimpleObjectProperty<LocalDate> date =new SimpleObjectProperty<>(this, "date", null);
-    @Override
-    public void update() {
-        try {
-            String expression = "UPDATE "+    this.entityName+ " SET  " +
-                      " EquipmentId=? ,  "
-                    + " productId=?  ,  "
-                    + " rodsNumber=?  ,  "
-                    + " JumboId=?  ,  "
-                    + " packetId=?  ,  "
-                    + " packetCounterpartyId=?,  "
-                    + " paperCounterpartyId=?,  "
-                    + " date=?    "
-                    +" WHERE id= ?" ;
-            PreparedStatement pstmt = null;
-            pstmt = Db.connection.prepareStatement(expression);
-            pstmt.setInt(1, getEquipment().getId());
-            pstmt.setInt(2, getProduct().getId());
-            pstmt.setInt(3, getRodsNumber());
-            pstmt.setInt(4, getJumbo().getId());
-            pstmt.setInt(5, getPacket().getId());
-            pstmt.setInt(6, getPacketCounterparty().getId());
-            pstmt.setInt(7, getPaperCounterparty().getId());
-            pstmt.setDate(8, Date.valueOf(getDate()));
-            pstmt.setInt(7, getId());
-            pstmt.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
 
     @Override
     public String toString() {

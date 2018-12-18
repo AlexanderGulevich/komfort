@@ -41,25 +41,6 @@ public class Counterparty extends ActiveRecord {
         this.name.set(name);
     }
 
-//    @Override
-//    public void update() {
-//            String expression = "UPDATE " + this.entityName + " SET  " +
-//                    " name = ?," +
-//                    " currencyId = ?" +
-//                    " WHERE id= ?";
-//            PreparedStatement pstmt = null;
-//            try {
-//                pstmt = Db.connection.prepareStatement(expression);
-//                pstmt.setString(1, name.get());
-//                pstmt.setInt(2, currency.get().getId());
-//                pstmt.setInt(3, id.get());
-//
-//                pstmt.executeUpdate();
-//            } catch (SQLException e) {
-//                e.printStackTrace();
-//            }
-//    }
-
     @Override
     public void insert() {
         try {

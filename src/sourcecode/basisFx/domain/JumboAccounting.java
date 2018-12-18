@@ -64,26 +64,6 @@ public class JumboAccounting extends ActiveRecord implements RecordWithDate {
     }
 
     @Override
-    public void update() {
-        try {
-            String expression = "UPDATE "+    this.entityName+ " SET  " +
-                    " overallWeight=? ,  "
-                    + " date=?  ,  "
-                    + " CounterpartyId=?    "
-                    +" WHERE id= ?" ;
-            PreparedStatement pstmt = null;
-            pstmt = Db.connection.prepareStatement(expression);
-            pstmt.setDouble(1, getOverallWeight());
-            pstmt.setDate(2, Date.valueOf(getDate()));
-            pstmt.setInt(3, getCounterparty().getId());
-            pstmt.setInt(4, getId());
-            pstmt.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
-    @Override
     public String toString() {
         return null;
     }

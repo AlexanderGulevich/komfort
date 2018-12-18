@@ -44,23 +44,6 @@ public class Packet extends  ActiveRecord {
         this.counterparty.set(counterparty);
     }
 
-    @Override
-    public void update() {
-        try {
-            String expression = "UPDATE "+    this.entityName+ " SET  " +
-                    " packetSize = ?," +
-                    " counterpartyId = ? " +
-                    " WHERE id= ?" ;
-            PreparedStatement pstmt = null;
-            pstmt = Db.connection.prepareStatement(expression);
-            pstmt.setInt(1, packetSize.get().getId());
-            pstmt.setInt(2, counterparty.get().id.get());
-            pstmt.setInt(3, id.get());
-            pstmt.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
 
     @Override
     public String toString() {

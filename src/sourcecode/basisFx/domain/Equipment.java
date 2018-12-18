@@ -30,19 +30,6 @@ public class Equipment  extends ActiveRecord {
     }
 
     @Override
-    public void update() {
-        try {
-                String expression = "UPDATE Equipment SET  name = ? WHERE id= ?";
-                PreparedStatement pstmt = Db.connection.prepareStatement(expression);
-                pstmt.setString(1, name.get());
-                pstmt.setInt(2,id.get());
-                pstmt.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
-    @Override
     public String toString() {
         return getName();
     }

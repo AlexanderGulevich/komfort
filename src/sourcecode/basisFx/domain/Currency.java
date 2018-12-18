@@ -35,20 +35,6 @@ public class Currency extends ActiveRecord {
     }
 
     @Override
-    public void update() {
-        try {
-                String expression = "UPDATE  Currency SET  name = ? WHERE id= ?";
-                PreparedStatement pstmt = Db.connection.prepareStatement(expression);
-                pstmt.setString(1,name.get());
-                pstmt.setInt(2, id.get());
-                pstmt.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
-
-    @Override
     public void insert() {
         try {
                 String expression = "INSERT INTO  Currency (name) VALUES(?)";

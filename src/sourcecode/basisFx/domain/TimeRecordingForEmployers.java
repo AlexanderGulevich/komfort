@@ -56,11 +56,6 @@ public class TimeRecordingForEmployers extends ActiveRecord implements RecordWit
     }
 
     @Override
-    public void update() {
-
-    }
-
-    @Override
     public String toString() {
         return null;
     }

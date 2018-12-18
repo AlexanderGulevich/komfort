@@ -64,24 +64,6 @@ public class Product  extends ActiveRecord {
     }
 
     @Override
-    public void update() {
-        try {
-            String expression = "UPDATE "+    "Product"+ " SET  " +
-                    " name = ?," +
-                    " havingSleeve = ? " +
-                    " WHERE id= ?" ;
-            PreparedStatement pstmt = null;
-            pstmt = Db.connection.prepareStatement(expression);
-            pstmt.setString(1, name.get());
-            pstmt.setBoolean(2, havingSleeve.get().getBoolean());
-            pstmt.setInt(3, id.get());
-            pstmt.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
-    @Override
     public String toString() {
         return getName();
     }

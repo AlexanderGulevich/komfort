@@ -50,23 +50,6 @@ public class Employer extends ActiveRecord {
     }
 
     @Override
-    public void update() {
-        try {
-            String expression = "UPDATE "+    this.entityName+ " SET  " +
-                    " name = ?" +
-                    " WHERE id= ?" ;
-            PreparedStatement pstmt = null;
-            pstmt = Db.connection.prepareStatement(expression);
-            pstmt.setString(1, name.get());
-            pstmt.setInt(2, id.get());
-            pstmt.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-    }
-
-    @Override
     public String toString() {
         return getName();
     }

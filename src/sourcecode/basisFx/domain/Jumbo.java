@@ -46,25 +46,6 @@ public class Jumbo extends ActiveRecord {
 
 
     @Override
-    public void update() {
-        try {
-            String expression = "UPDATE " + this.entityName + " SET  " +
-                    " width = ?," +
-                    " numberOfProduct = ?" +
-                    " WHERE id= ?";
-            PreparedStatement pstmt = null;
-            pstmt = Db.connection.prepareStatement(expression);
-            pstmt.setDouble(1, getWidth());
-            pstmt.setInt(2, getNumberOfProduct());
-            pstmt.setInt(3, getId());
-            pstmt.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
-
-    @Override
     public String toString() {
         return String.valueOf(getWidth());
     }
