@@ -3,7 +3,7 @@ package basisFx.presentation;
 import basisFx.appCore.elements.AnchorWrapper;
 import basisFx.appCore.settings.CSSID;
 import basisFx.appCore.utils.Coordinate;
-import basisFx.appCore.windows.MainWindow;
+import basisFx.appCore.windows.WindowImplMain;
 import basisFx.dataSource.UnitOfWork;
 import javafx.scene.layout.AnchorPane;
 
@@ -34,7 +34,7 @@ public abstract class TargetPanel {
     }
 
     private void createCommonPane() {
-        AnchorPane  mainContentAnchor = ((AnchorPane ) MainWindow.getInstance()
+        AnchorPane  mainContentAnchor = ((AnchorPane ) WindowImplMain.getInstance()
                 .getWindowNode("contentAnchorPane").getElement());
 
         commonAnchorPane = AnchorWrapper.newBuilder()

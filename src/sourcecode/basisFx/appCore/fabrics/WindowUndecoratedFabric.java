@@ -1,11 +1,10 @@
 package basisFx.appCore.fabrics;
 
+import basisFx.appCore.windows.*;
 import basisFx.presentation.appStructura.GuiStructura;
 import basisFx.appCore.utils.SystemRegistry;
-import basisFx.appCore.windows.MainWindow;
-import basisFx.appCore.windows.Window;
-import basisFx.appCore.windows.WindowKind;
-import basisFx.appCore.windows.WindowUndecorated;
+import basisFx.appCore.windows.WindowAbstraction;
+import basisFx.appCore.windows.WindowAbstractionUndecorated;
 import javafx.stage.Stage;
 
 
@@ -18,30 +17,30 @@ public class WindowUndecoratedFabric  extends WindowFabric{
 
 
     @Override
-    public Window mainWindow(GuiStructura structura,Stage stage) {
-        WindowKind mainWindow = MainWindow.getInstance();
-        WindowUndecorated windowUndecorated=new WindowUndecorated(stage,mainWindow,structura);
+    public WindowAbstraction mainWindow(GuiStructura structura, Stage stage) {
+        WindowImpl mainWindow = WindowImplMain.getInstance();
+        WindowAbstractionUndecorated windowUndecorated=new WindowAbstractionUndecorated(stage,mainWindow,structura);
 
         return windowUndecorated;
     }
 
     @Override
-    public Window errorWindow(GuiStructura guiStructura) {
+    public WindowAbstraction errorWindow(GuiStructura guiStructura) {
         return null;
     }
 
     @Override
-    public Window dialogWindow(GuiStructura guiStructura) {
+    public WindowAbstraction dialogWindow(GuiStructura guiStructura) {
         return null;
     }
 
     @Override
-    public Window popupWindow(GuiStructura guiStructura) {
+    public WindowAbstraction popupWindow(GuiStructura guiStructura) {
         return null;
     }
 
     @Override
-    public Window tooltipWindow(GuiStructura guiStructura) {
+    public WindowAbstraction tooltipWindow(GuiStructura guiStructura) {
         return null;
     }
 }

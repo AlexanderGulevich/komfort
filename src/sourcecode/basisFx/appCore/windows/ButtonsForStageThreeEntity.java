@@ -10,7 +10,7 @@ import basisFx.appCore.utils.Coordinate;
 import javafx.geometry.Insets;
 import javafx.scene.control.ContentDisplay;
 
-public class ButtonsForWindowStageThreeEntity extends ButtonsForWindowStage {
+public class    ButtonsForStageThreeEntity extends ButtonsForStage {
 
     private String closeStr="";
     private String hideStr="";
@@ -22,8 +22,8 @@ public class ButtonsForWindowStageThreeEntity extends ButtonsForWindowStage {
     private Insets padding=new Insets(0d, 0d, 0d, 0d);
     private FontsStore fs=FontsStore.FAWESOME5SOLID;
 
-    public ButtonsForWindowStageThreeEntity(Window window) {
-        super(window);
+    public ButtonsForStageThreeEntity(WindowAbstraction windowAbstraction) {
+        super(windowAbstraction);
         init();
     }
     @Override
@@ -39,7 +39,7 @@ public class ButtonsForWindowStageThreeEntity extends ButtonsForWindowStage {
                         .setCoordinate(new Coordinate(topMatgin, 0d, null, null))
                         .setCSSid(CSSID.TOP_CONTROL_BUTTON)
                         .setParentAnchor(buttonsAnchor)
-                        .setStage(window.getStage())
+                        .setStage(windowAbstraction.getStage())
                         .setEvents(new CloseWindow())
                         .setName(closeStr)
                         .setContentDisplay(ContentDisplay.CENTER)
@@ -56,7 +56,7 @@ public class ButtonsForWindowStageThreeEntity extends ButtonsForWindowStage {
                         .setCoordinate(new Coordinate(topMatgin, width + width, null, null))
                         .setCSSid(CSSID.TOP_CONTROL_BUTTON)
                         .setParentAnchor(buttonsAnchor)
-                        .setStage(window.getStage())
+                        .setStage(windowAbstraction.getStage())
                         .setName(hideStr)
                         .setContentDisplay(ContentDisplay.CENTER)
                         .build();
@@ -72,7 +72,7 @@ public class ButtonsForWindowStageThreeEntity extends ButtonsForWindowStage {
                         .setCoordinate(new Coordinate(topMatgin, width, null, null))
                         .setCSSid(CSSID.TOP_CONTROL_BUTTON)
                         .setParentAnchor(buttonsAnchor)
-                        .setStage(window.getStage())
+                        .setStage(windowAbstraction.getStage())
                         .setName(maximazeStr)
                         .setContentDisplay(ContentDisplay.CENTER)
                         .build();

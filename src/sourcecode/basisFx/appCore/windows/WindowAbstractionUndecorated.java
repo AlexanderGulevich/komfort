@@ -11,25 +11,25 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-public class WindowUndecorated extends Window {
+public class WindowAbstractionUndecorated extends WindowAbstraction {
 
-    public WindowUndecorated(Stage st,WindowKind implimentation,GuiStructura structura) {
+    public WindowAbstractionUndecorated(Stage st, WindowImpl implimentation, GuiStructura structura) {
         super(st,implimentation,structura);
 
         stage.initStyle(StageStyle.TRANSPARENT);
 //        implimentation.getTitleName();
         implimentation.initUndecoratedStageButtons();
-        SystemRegistry.mainWindow=this;
+        SystemRegistry.mainWindowAbstraction =this;
         stage.show();
     }
 
-    public WindowUndecorated(WindowKind implimentation,GuiStructura structura) {
+    public WindowAbstractionUndecorated(WindowImpl implimentation, GuiStructura structura) {
         super(implimentation,structura);
 
         stage=new Stage();
         stage.initStyle(StageStyle.TRANSPARENT);
 //        implimentation.getTitleName();
-        SystemRegistry.mainWindow=this;
+        SystemRegistry.mainWindowAbstraction =this;
         implimentation.initUndecoratedStageButtons();
         stage.show();
     }

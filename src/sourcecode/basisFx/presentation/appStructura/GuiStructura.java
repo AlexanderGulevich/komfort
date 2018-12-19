@@ -2,21 +2,21 @@ package basisFx.presentation.appStructura;
 
 import basisFx.appCore.ElementsStore;
 import basisFx.appCore.elements.AppNode;
-import basisFx.appCore.windows.Window;
+import basisFx.appCore.windows.WindowAbstraction;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
 
 public abstract class GuiStructura{
 
-    protected Window window;
+    protected WindowAbstraction windowAbstraction;
     protected ArrayList <AppNode> nodes = new ArrayList<>();
     private Stage stage;
 
     public ArrayList<AppNode> getNodes() {return nodes;}
 
-    public void setWindow(Window window) {
-        this.window = window;
+    public void setWindowAbstraction(WindowAbstraction windowAbstraction) {
+        this.windowAbstraction = windowAbstraction;
     }
 
     public abstract void init();

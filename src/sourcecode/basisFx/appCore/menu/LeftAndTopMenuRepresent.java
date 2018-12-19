@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import basisFx.appCore.settings.FontsStore;
 import basisFx.appCore.utils.Coordinate;
-import basisFx.appCore.windows.MainWindow;
+import basisFx.appCore.windows.WindowImplMain;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
@@ -18,10 +18,10 @@ import javafx.scene.text.Text;
 
 public class LeftAndTopMenuRepresent extends MenuRepresent {
 
-    protected Text text = ((Text) MainWindow.getInstance().getWindowNode("leftCideMenuCommonText").getElement());
-    protected FlowPane horisontalFlowPane = ((FlowPane) MainWindow.getInstance().getWindowNode("horisontalMenuFlowPane").getElement());
-    protected AnchorPane verticalMenuAnchorPane = (AnchorPane) MainWindow.getInstance().getWindowNode("verticalMenuAnchorWrapper").getElement();
-    protected AnchorPane contentAnchorPane = (AnchorPane) MainWindow.getInstance().getWindowNode("contentAnchorPane").getElement();
+    protected Text text = ((Text) WindowImplMain.getInstance().getWindowNode("leftCideMenuCommonText").getElement());
+    protected FlowPane horisontalFlowPane = ((FlowPane) WindowImplMain.getInstance().getWindowNode("horisontalMenuFlowPane").getElement());
+    protected AnchorPane verticalMenuAnchorPane = (AnchorPane) WindowImplMain.getInstance().getWindowNode("verticalMenuAnchorWrapper").getElement();
+    protected AnchorPane contentAnchorPane = (AnchorPane) WindowImplMain.getInstance().getWindowNode("contentAnchorPane").getElement();
     private double heightCounterForIcon = 0d;
     private ArrayList<ButtonWrapper> buttonWrappers=new ArrayList<>();
 
@@ -79,7 +79,7 @@ public class LeftAndTopMenuRepresent extends MenuRepresent {
                 .setIsActive(composite.isActive)
                 .setFontSize(composite.fontSize)
                 .setEvents(new leftSideMenuIconClick(verticalBut, this))
-                .setParentAnchor((AnchorPane) MainWindow.getInstance().getWindowNode("verticalMenuAnchorWrapper").getElement())
+                .setParentAnchor((AnchorPane) WindowImplMain.getInstance().getWindowNode("verticalMenuAnchorWrapper").getElement())
                 .build();
 
         buttonWrappers.add(wrapper);
@@ -89,7 +89,7 @@ public class LeftAndTopMenuRepresent extends MenuRepresent {
     public void setDefaultStyleHorisontalButtons() {
 
         ObservableList<Node> buttons = (
-                (FlowPane) MainWindow.getInstance().getWindowNode("horisontalMenuFlowPane").getElement()).getChildren();
+                (FlowPane) WindowImplMain.getInstance().getWindowNode("horisontalMenuFlowPane").getElement()).getChildren();
 
         for (Iterator<Node> iterator = buttons.iterator(); iterator.hasNext(); ) {
             Node next = iterator.next();

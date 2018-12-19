@@ -32,7 +32,7 @@ class WindowUndecorated {
 class WindowKind {
    -height : double
    -width : double
-   #window : WindowAbstraction
+   #windowAbstraction : WindowAbstraction
    #titleName : String
    #topButtonsFabric : WindowTopButtonsFabric
    -panelHashMap : HashMap<String,Panel>

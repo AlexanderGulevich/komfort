@@ -10,9 +10,9 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-public  class WindowDecorated extends Window {
+public  class WindowAbstractionDecorated extends WindowAbstraction {
 
-    public WindowDecorated(Stage st,WindowKind implimentation,GuiStructura structura) {
+    public WindowAbstractionDecorated(Stage st, WindowImpl implimentation, GuiStructura structura) {
         super(implimentation,structura);
         stage=st;
         stage.initStyle(StageStyle.DECORATED);
@@ -28,7 +28,7 @@ public  class WindowDecorated extends Window {
         CSSHandler.getInstanse().loadStylesToScene(scene);
     }
 
-    public WindowDecorated(WindowKind implimentation,GuiStructura structura) {
+    public WindowAbstractionDecorated(WindowImpl implimentation, GuiStructura structura) {
         super(implimentation,structura);
         stage=new Stage();
         stage.initStyle(StageStyle.DECORATED);

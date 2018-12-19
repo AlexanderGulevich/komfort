@@ -1,34 +1,30 @@
 package basisFx.appCore.windows;
 
-import basisFx.appCore.utils.TaskPanelIcomToPlatform;
 import basisFx.presentation.appStructura.GuiStructura;
 import basisFx.appCore.elements.AnchorWrapper;
 import basisFx.appCore.elements.AppNode;
 import basisFx.appCore.settings.CSSID;
 import basisFx.appCore.utils.Coordinate;
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-
 import java.util.ArrayList;
 import java.util.HashMap;
-//import org.scenicview.ScenicView;
 
 
-public abstract class Window {
+public abstract class WindowAbstraction {
 
     protected Stage stage;
     protected Scene scene;
     protected AnchorPane root;
     protected AnchorPane topVisiblePanel;
-    protected WindowKind kind;
+    protected WindowImpl kind;
     protected GuiStructura structura;
     private HashMap<String,AppNode> nodesHashMap =new HashMap<>();
 
-    public Window(WindowKind kind,GuiStructura structura) {
+    public WindowAbstraction(WindowImpl kind, GuiStructura structura) {
         this.kind = kind;
-        this.kind.setWindow(this);
+        this.kind.setWindowAbstraction(this);
         this.structura=structura;
         initRoot();
         initTopVisiblePanel();
@@ -37,10 +33,10 @@ public abstract class Window {
         loadWindowNodsToMap(structura);
 
     }
-    public Window(Stage st,WindowKind kind,GuiStructura structura) {
+    public WindowAbstraction(Stage st, WindowImpl kind, GuiStructura structura) {
         stage=st;
         this.kind = kind;
-        this.kind.setWindow(this);
+        this.kind.setWindowAbstraction(this);
         this.structura=structura;
         initRoot();
         initTopVisiblePanel();
@@ -55,7 +51,7 @@ public abstract class Window {
     private void initStructuraNods(GuiStructura structura) {
 
         structura.setStage(stage);
-        structura.setWindow(this);
+        structura.setWindowAbstraction(this);
         structura.init();
     }
 

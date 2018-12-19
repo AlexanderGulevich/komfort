@@ -14,14 +14,14 @@ public class LeftAndTopMenuGuiStructura extends GuiStructura {
 
         AnchorWrapper contentAnchorWrapper = AnchorWrapper.newBuilder()
                 .setCoordinate(new Coordinate(128d, 10d, 0d, 65d))
-                .setParentAnchor(window.getTopVisibleAnchor())
+                .setParentAnchor(windowAbstraction.getTopVisibleAnchor())
                 .setCSSid(CSSID.MAIN_CONTENT_ANCHOR)
                 .setName("contentAnchorPane")
                 .build();
 
         AnchorWrapper titleAnchorWrapper = AnchorWrapper.newBuilder()
                 .setCoordinate(new Coordinate(0d, 0d, null, 0d))
-                .setParentAnchor(window.getTopVisibleAnchor())
+                .setParentAnchor(windowAbstraction.getTopVisibleAnchor())
                 .setHeight(70d)
                 .setStage(getStage())
                 .setCSSid(CSSID.TITLE_PANEL)
@@ -46,7 +46,7 @@ public class LeftAndTopMenuGuiStructura extends GuiStructura {
 //                .build();
 
         AnchorWrapper verticalMenuAnchorWrapper = AnchorWrapper.newBuilder()
-                .setParentAnchor(window.getTopVisibleAnchor())
+                .setParentAnchor(windowAbstraction.getTopVisibleAnchor())
                 .setCoordinate(new Coordinate(0d, null, 0d, 0d))
                 .setWidth(60d)
                 .setName("verticalMenuAnchorWrapper")
@@ -54,7 +54,7 @@ public class LeftAndTopMenuGuiStructura extends GuiStructura {
                 .build();
 
         FlowPaneWrapper horisontalMenuFlowPane = FlowPaneWrapper.newBuilder()
-                .setParentAnchor(window.getTopVisibleAnchor())
+                .setParentAnchor(windowAbstraction.getTopVisibleAnchor())
                 .setHeight(50d)
                 .setCoordinate(new Coordinate(70d, 0d, null, 65d))
                 .setCssid(CSSID.HORIZONTAL_FLOW_MENU_PANEL)

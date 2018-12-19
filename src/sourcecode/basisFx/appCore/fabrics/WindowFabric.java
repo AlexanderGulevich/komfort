@@ -16,11 +16,11 @@ import javafx.stage.Stage;
  */
 public abstract class WindowFabric {
 
-    public abstract Window mainWindow(GuiStructura guiStructura,Stage st);
-    public abstract Window errorWindow(GuiStructura guiStructura);
-    public abstract Window dialogWindow(GuiStructura guiStructura);
-    public abstract Window popupWindow(GuiStructura guiStructura);
-    public abstract Window tooltipWindow(GuiStructura guiStructura);
+    public abstract WindowAbstraction mainWindow(GuiStructura guiStructura, Stage st);
+    public abstract WindowAbstraction errorWindow(GuiStructura guiStructura);
+    public abstract WindowAbstraction dialogWindow(GuiStructura guiStructura);
+    public abstract WindowAbstraction popupWindow(GuiStructura guiStructura);
+    public abstract WindowAbstraction tooltipWindow(GuiStructura guiStructura);
 
     public static WindowFabric WindowDecoratedFabric(){
 
