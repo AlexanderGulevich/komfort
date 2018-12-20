@@ -1,4 +1,4 @@
-package basisFx.appCore;
+package basisFx.appCore.utils;
 
 public enum KindOfSubmitElement {
 

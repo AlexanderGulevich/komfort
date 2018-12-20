@@ -2,7 +2,7 @@ package basisFx.appCore.fabrics;
 
 import basisFx.appCore.windows.*;
 import basisFx.presentation.appStructura.GuiStructura;
-import basisFx.appCore.utils.SystemRegistry;
+import basisFx.appCore.utils.Registry;
 import basisFx.appCore.windows.WindowAbstraction;
 import basisFx.appCore.windows.WindowAbstractionUndecorated;
 import javafx.stage.Stage;
@@ -11,7 +11,7 @@ import javafx.stage.Stage;
 public class WindowUndecoratedFabric  extends WindowFabric{
 
     public WindowUndecoratedFabric() {
-        SystemRegistry.windowFabric=this;
+        Registry.windowFabric=this;
     }
 
 
@@ -35,8 +35,10 @@ public class WindowUndecoratedFabric  extends WindowFabric{
     }
 
     @Override
-    public WindowAbstraction popupWindow(GuiStructura guiStructura) {
-        return null;
+    public WindowAbstraction infoWindow(GuiStructura guiStructura) {
+        WindowImplInfo windowImplInfo = new WindowImplInfo() ;
+        WindowAbstractionUndecorated windowUndecorated=new WindowAbstractionUndecorated(windowImplInfo,guiStructura);
+        return windowUndecorated;
     }
 
     @Override

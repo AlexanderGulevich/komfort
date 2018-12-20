@@ -1,7 +1,7 @@
 package basisFx.appCore.windows;
 
 import basisFx.appCore.utils.CSSHandler;
-import basisFx.appCore.utils.SystemRegistry;
+import basisFx.appCore.utils.Registry;
 import basisFx.presentation.appStructura.GuiStructura;
 import basisFx.appCore.elements.AnchorWrapper;
 import basisFx.appCore.settings.CSSID;
@@ -15,21 +15,17 @@ public class WindowAbstractionUndecorated extends WindowAbstraction {
 
     public WindowAbstractionUndecorated(Stage st, WindowImpl implimentation, GuiStructura structura) {
         super(st,implimentation,structura);
-
         stage.initStyle(StageStyle.TRANSPARENT);
-//        implimentation.getTitleName();
         implimentation.initUndecoratedStageButtons();
-        SystemRegistry.mainWindowAbstraction =this;
+        Registry.mainWindowAbstraction =this;
         stage.show();
     }
 
     public WindowAbstractionUndecorated(WindowImpl implimentation, GuiStructura structura) {
         super(implimentation,structura);
 
-        stage=new Stage();
         stage.initStyle(StageStyle.TRANSPARENT);
-//        implimentation.getTitleName();
-        SystemRegistry.mainWindowAbstraction =this;
+        Registry.mainWindowAbstraction =this;
         implimentation.initUndecoratedStageButtons();
         stage.show();
     }

@@ -46,15 +46,10 @@ public  class TextAreaWrapper extends AppNode{
         font = builder.font;
         fontSize = builder.fontSize;
         text = builder.text;
+    }
 
-
-
-        setEditable();
-        setWrapText();
-        setFont();
-        setText();
-
-
+    public static Builder newBuilder() {
+        return new Builder();
     }
 
     private void setText() {
@@ -77,9 +72,6 @@ public  class TextAreaWrapper extends AppNode{
         }
     }
 
-    public static Builder newBuilder() {
-        return new Builder();
-    }
 
 
 
@@ -98,8 +90,8 @@ public  class TextAreaWrapper extends AppNode{
         }
     }
 
+
     public static final class Builder {
-        private String text;
         private ArrayList<AppEvent> events;
         private CSSID cssid;
         private Double width;
@@ -115,86 +107,88 @@ public  class TextAreaWrapper extends AppNode{
         private Boolean isWrapText;
         private FontsStore font;
         private Double fontSize;
-
-        public void setText(String text) {
-            this.text = text;
-        }
+        private String text;
 
         private Builder() {
         }
 
-        public Builder events(ArrayList<AppEvent> val) {
+        public Builder setEvents(ArrayList<AppEvent> val) {
             events = val;
             return this;
         }
 
-        public Builder cssid(CSSID val) {
+        public Builder setCssid(CSSID val) {
             cssid = val;
             return this;
         }
 
-        public Builder width(Double val) {
+        public Builder setWidth(Double val) {
             width = val;
             return this;
         }
 
-        public Builder height(Double val) {
+        public Builder setHeight(Double val) {
             height = val;
             return this;
         }
 
-        public Builder coordinate(Coordinate val) {
+        public Builder setCoordinate(Coordinate val) {
             coordinate = val;
             return this;
         }
 
-        public Builder parentAnchor(AnchorPane val) {
+        public Builder setParentAnchor(AnchorPane val) {
             parentAnchor = val;
             return this;
         }
 
-        public Builder parentGroup(Group val) {
+        public Builder setParentGroup(Group val) {
             parentGroup = val;
             return this;
         }
 
-        public Builder parentFlowPane(FlowPane val) {
+        public Builder setParentFlowPane(FlowPane val) {
             parentFlowPane = val;
             return this;
         }
 
-        public Builder parentScrollPane(ScrollPane val) {
+        public Builder setParentScrollPane(ScrollPane val) {
             parentScrollPane = val;
             return this;
         }
 
-        public Builder name(String val) {
+        public Builder setName(String val) {
             name = val;
             return this;
         }
 
-        public Builder stage(Stage val) {
+        public Builder setStage(Stage val) {
             stage = val;
             return this;
         }
 
-        public Builder isEditable(Boolean val) {
+        public Builder setIsEditable(Boolean val) {
             isEditable = val;
             return this;
         }
 
-        public Builder isWrapText(Boolean val) {
+        public Builder setIsWrapText(Boolean val) {
             isWrapText = val;
             return this;
         }
 
-        public Builder font(FontsStore val) {
+        public Builder setFont(FontsStore val) {
             font = val;
             return this;
         }
 
-        public Builder fontSize(Double val) {
+        public Builder setFontSize(Double val) {
             fontSize = val;
+            return this;
+        }
+
+        public Builder setText(String val) {
+            text = val;
             return this;
         }
 

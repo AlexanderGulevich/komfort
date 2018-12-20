@@ -4,7 +4,7 @@ import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-import basisFx.appCore.DomainPropertiesMetaInfo;
+import basisFx.appCore.utils.DomainPropertiesMetaInfo;
 import basisFx.appCore.interfaces.DateGetter;
 import basisFx.appCore.reflection.*;
 import basisFx.dataSource.Db;

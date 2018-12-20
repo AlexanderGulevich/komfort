@@ -1,6 +1,6 @@
 package basisFx.presentation.appStructura;
 
-import basisFx.appCore.ElementsStore;
+import basisFx.appCore.utils.ElementsStore;
 import basisFx.appCore.elements.AppNode;
 import basisFx.appCore.windows.WindowAbstraction;
 import javafx.stage.Stage;

@@ -9,17 +9,12 @@ import basisFx.presentation.appStructura.GuiStructura;
 import basisFx.appCore.windows.*;
 import javafx.stage.Stage;
 
-
-/**
- *
- * @author Alek
- */
 public abstract class WindowFabric {
 
     public abstract WindowAbstraction mainWindow(GuiStructura guiStructura, Stage st);
     public abstract WindowAbstraction errorWindow(GuiStructura guiStructura);
     public abstract WindowAbstraction dialogWindow(GuiStructura guiStructura);
-    public abstract WindowAbstraction popupWindow(GuiStructura guiStructura);
+    public abstract WindowAbstraction infoWindow(GuiStructura guiStructura);
     public abstract WindowAbstraction tooltipWindow(GuiStructura guiStructura);
 
     public static WindowFabric WindowDecoratedFabric(){

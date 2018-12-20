@@ -23,6 +23,7 @@ public abstract class WindowAbstraction {
     private HashMap<String,AppNode> nodesHashMap =new HashMap<>();
 
     public WindowAbstraction(WindowImpl kind, GuiStructura structura) {
+        this.stage=new Stage();
         this.kind = kind;
         this.kind.setWindowAbstraction(this);
         this.structura=structura;

@@ -1,6 +1,6 @@
 package basisFx.appCore.reflection;
 
-import basisFx.appCore.DomainPropertiesMetaInfo;
+import basisFx.appCore.utils.DomainPropertiesMetaInfo;
 import basisFx.dataSource.Db;
 import basisFx.domain.ActiveRecord;
 import basisFx.domain.BoolComboBox;

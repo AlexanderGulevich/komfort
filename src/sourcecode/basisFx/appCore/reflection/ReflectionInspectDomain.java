@@ -1,6 +1,6 @@
 package basisFx.appCore.reflection;
 
-import basisFx.appCore.DomainPropertiesMetaInfo;
+import basisFx.appCore.utils.DomainPropertiesMetaInfo;
 import basisFx.domain.ActiveRecord;
 import javafx.beans.property.SimpleObjectProperty;
 

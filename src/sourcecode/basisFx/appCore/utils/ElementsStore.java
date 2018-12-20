@@ -1,4 +1,4 @@
-package basisFx.appCore;
+package basisFx.appCore.utils;
 
 import basisFx.appCore.elements.AppNode;
 

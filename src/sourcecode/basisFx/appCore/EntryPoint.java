@@ -2,6 +2,7 @@ package basisFx.appCore;
         
 
 import basisFx.appCore.utils.PathToFile;
+import basisFx.appCore.utils.PathesResearch;
 import basisFx.appCore.utils.TaskPanelIcomToPlatform;
 import com.sun.javafx.application.LauncherImpl;
 import basisFx.App;

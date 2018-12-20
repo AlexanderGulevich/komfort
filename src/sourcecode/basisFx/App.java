@@ -4,8 +4,9 @@ import basisFx.appCore.fabrics.*;
 import basisFx.appCore.menu.MenuFabric;
 import basisFx.appCore.settings.StylesPathes;
 import basisFx.appCore.utils.CSSHandler;
-import basisFx.appCore.utils.SystemRegistry;
+import basisFx.appCore.utils.Registry;
 import basisFx.presentation.MainMenuSketch;
+import basisFx.presentation.appStructura.InfoWindowStructura;
 import javafx.stage.Stage;
 
 import java.sql.SQLException;
@@ -20,7 +21,7 @@ public class App{
 
         WindowFabric.WindowUndecoratedFabric();
 
-        SystemRegistry.windowFabric.mainWindow(
+        Registry.windowFabric.mainWindow(
                 GuiStructuraFabric.leftAndTopMenuUndecorated(), primaryStage
         );
 
@@ -33,6 +34,9 @@ public class App{
 //      ScenicView.show(WindowImplMain.getInstance().getWindowAbstraction().getScene());
 
 
+        Registry.windowFabric.infoWindow(
+                new InfoWindowStructura()
+        );
     }
     
 }
