@@ -34,9 +34,9 @@ public class App{
 //      ScenicView.show(WindowImplMain.getInstance().getWindowAbstraction().getScene());
 
 
-        Registry.windowFabric.infoWindow(
-                new InfoWindowStructura()
-        );
+//        Registry.windowFabric.infoWindow(
+//                new InfoWindowStructura()
+//        );
     }
     
 }

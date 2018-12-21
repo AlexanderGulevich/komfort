@@ -2,6 +2,7 @@ package basisFx.presentation.appStructura;
 
 import basisFx.appCore.elements.AnchorWrapper;
 import basisFx.appCore.elements.TextAreaWrapper;
+import basisFx.appCore.events.StageDragging;
 import basisFx.appCore.settings.CSSID;
 import basisFx.appCore.settings.FontsStore;
 import basisFx.appCore.utils.Coordinate;
@@ -10,88 +11,28 @@ public class InfoWindowStructura extends GuiStructura {
     @Override
     public void init() {
 
-        TextAreaWrapper textAreaWrapper=TextAreaWrapper.newBuilder()
+//        TextAreaWrapper textAreaWrapper=TextAreaWrapper.newBuilder()
+//                .setParentAnchor(windowAbstraction.getRoot())
+//                .setCoordinate( new Coordinate(10d,80d,10d,10d))
+//                .setFont(FontsStore.ROBOTO_LIGHT)
+//                .setFontSize(25d)
+//                .setText("messagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagev")
+//                .setCssid(CSSID.PopupTextArea)
+//                .build();
+
+        AnchorWrapper titleAnchor = AnchorWrapper.newBuilder()
+                .setHeight(45d)
                 .setParentAnchor(windowAbstraction.getRoot())
-                .setCoordinate( new Coordinate(10d,80d,10d,10d))
-                .setFont(FontsStore.ROBOTO_LIGHT)
-                .setFontSize(25d)
-                .setText("messagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagev")
-                .setCssid(CSSID.PopupTextArea)
+                .setCoordinate(new Coordinate(0d, 0d, null, 0d))
+                .setEvents(new StageDragging())
+                .setStage(windowAbstraction.getStage())
                 .build();
-//
-//
-//        popupTitlePanel = panelFabric.popupTitlePanel(
-//                new AbstractPanel.PanelBuilder()
-//                        .setHeight(45d)
-//                        .setStage(windowUndecorated.getStage())
-//                        .setPanelCoordinate(new Coordinate(0d, 0d, null, 0d))
-//                        .setParent(Layers.getPopupVisibleRoot())
-//
-//        );
-//  panel =  (AnchorPane) AppNode.NodeBuilder.create()
-//                .setId(CSSID.popupTitlePanel)
-//                .setCoordinate(panelCoordinate)
-//                .setHeight(height)
-//                .setStage(stage)
-//                .setEvent(eventFactory.stageDragging())
-//                .setParent(parent)
-//                .createAnchorPanelWrapper().getElement();
-//
-//
-//        AnchorPane popupTransparentRoot=(AnchorPane) AppNode.NodeBuilder.create()
-//                .setId(CSSID.TRANSPARENT_ROOT)
-//                .setInsects(new Insets(3d, 3d, 3d, 3d))
-//                .createAnchorPanelWrapper()
-//                .getElement();
-//
-//
-//        Layers.setPopupTransparentRoot(popupTransparentRoot);
-//
-//
-//
-//        AnchorPane visibleRoot
-//                = (AnchorPane) AppNode.NodeBuilder.create()
-//                .setCoordinate( 0d, 0d, 0d, 0d)
-//                .setId(CSSID.TopVisiblePanel)
-//                .setParent(Layers.getPopupTransparentRoot())
-//                .setStage(windowUndecorated.getStage())
-//                .createAnchorPanelWrapper()
-//                .getElement();
-//
-//        Layers.setPopupVisibleRoot(visibleRoot);
-//
-//
-//
-//
-//
-//
-//        popupContentPanel = panelFabric.popupContentPanel(
-//                new AbstractPanel.PanelBuilder()
-//                        .setHeight(45d)
-//                        .setStage(windowUndecorated.getStage())
-//                        .setPanelCoordinate(new Coordinate(45d, 5d, 5d, 5d))
-//                        .setParent(Layers.getPopupVisibleRoot())
-//        );
-//
-//
-//
-//        panel =  (AnchorPane) AppNode.NodeBuilder.create()
-//                .setId(CSSID.popupContentPanel)
-//                .setCoordinate(panelCoordinate)
-//                .setHeight(height)
-//                .setStage(stage)
-//                .setParent(parent)
-//                .createAnchorPanelWrapper().getElement();
-//
-//
-//
-//
-//        panel =  (AnchorPane) AppNode.NodeBuilder.create()
-//                .setId(CSSID.WindowButtonsPanel)
-//                .setCoordinate(panelCoordinate)
-//                .setHeight(height).setWidth(widthValue)
-//                .setParent(parent)
-//                .createAnchorPanelWrapper().getElement();
+
+        AnchorWrapper contentAnchor = AnchorWrapper.newBuilder()
+                .setHeight(45d)
+                .setParentAnchor(windowAbstraction.getRoot())
+                .setCoordinate(new Coordinate(45d, 5d, 5d, 5d))
+                .build();
 //
 //        popupMessageTextPanel =  (AnchorPane) AppNode.NodeBuilder.create()
 //                .setId(CSSID.popupMessageTextPanel)
@@ -99,9 +40,6 @@ public class InfoWindowStructura extends GuiStructura {
 //                .setHeight(height)
 //                .setParent(popupContentPanel.getPanel())
 //                .createAnchorPanelWrapper().getElement();
-//
-//        windowUndecorated.setPanel(popupTitlePanel);
-//        windowUndecorated.setPanel(popupContentPanel);
 //
 //        textFabric.createLabel(
 //                title,CSSID.PopupTitleText,
@@ -117,17 +55,6 @@ public class InfoWindowStructura extends GuiStructura {
 //                popupContentPanel.getPanel(),
 //                new Coordinate(10d,-10d,null,null)
 //        );
-//
-//        buttonFactory.popupCloseOkButton(
-//                popupContentPanel.getPanel(),
-//                new Coordinate(null,15d,10d,null),
-//                windowUndecorated.getStage()
-//        );
-//        windowUndecorated.windowShow();
-//
-//
-//    }
-
 
 
 
