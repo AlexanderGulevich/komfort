@@ -15,7 +15,7 @@ public class WindowDecoratedFabric extends WindowFabric {
     public WindowAbstraction mainWindow(GuiStructura structura, Stage stage) {
         WindowImpl mainWindow = WindowImplMain.getInstance();
         WindowAbstraction decorated=new WindowAbstractionDecorated(stage,mainWindow,structura);
-        Registry.mainWindowAbstraction =decorated;
+        Registry.mainWindow =decorated;
         return decorated;
     }
 
@@ -30,7 +30,7 @@ public class WindowDecoratedFabric extends WindowFabric {
     }
 
     @Override
-    public WindowAbstraction infoWindow(GuiStructura guiStructura) {
+    public WindowAbstraction infoWindow(String message) {
         return null;
     }
 

@@ -37,7 +37,7 @@ public  class GridPaneWrapper extends AppNode {
         parentGroup = builder.parentGroup;
         parentFlowPane = builder.parentFlowPane;
         parentScrollPane = builder.parentScrollPane;
-        name = builder.name;
+        text = builder.gridName;
         stage = builder.stage;
         column=builder.columns;
         gridLinesVisibility=builder.gridLinesVisibility;
@@ -117,10 +117,10 @@ public  class GridPaneWrapper extends AppNode {
 
     private void applyLabel() {
 
-        if (name != null) {
+        if (text != null) {
             label =LabelWrapper.newBuilder()
                     .setCssid(CSSID.LABEL_TEXT)
-                    .setName(name)
+                    .setText(text)
                     .setFont(FontsStore.ROBOTO_LIGHT)
                     .setAlignment(Pos.BASELINE_LEFT)
                     .setFontSize(25d)
@@ -226,7 +226,7 @@ public  class GridPaneWrapper extends AppNode {
         private Group parentGroup;
         private FlowPane parentFlowPane;
         private ScrollPane parentScrollPane;
-        private String name;
+        private String gridName;
         private Stage stage;
         private ArrayList <ColumnConstraints> columns=new ArrayList<>();
         private ArrayList <RowConstraints> rows=new ArrayList<>();
@@ -291,8 +291,8 @@ public  class GridPaneWrapper extends AppNode {
             return this;
         }
 
-        public Builder setName(String val) {
-            name = val;
+        public Builder setGridName(String val) {
+            gridName = val;
             return this;
         }
 

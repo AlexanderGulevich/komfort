@@ -2,7 +2,6 @@ package basisFx.presentation.targets;
 
 import basisFx.appCore.grid.ButPositionTop;
 import basisFx.appCore.grid.ButtonsSizeForGridBig;
-import basisFx.appCore.grid.ButtonsSizeForGridLittle;
 import basisFx.service.ServiceSingleTable;
 import basisFx.appCore.elements.TableWrapper;
 import basisFx.appCore.grid.GridSingleTable;
@@ -31,7 +30,7 @@ public class EquipmentPanel extends TargetPanel {
                                 .setColumnName("Наименование")
                                 .setColumnSize(1d)
                                 .setIsEditeble(true)
-                                .setPropertyName("name")
+                                .setPropertyName("metaName")
                                 .build()
                 )
                 .build();
@@ -39,7 +38,7 @@ public class EquipmentPanel extends TargetPanel {
 
         GridPaneWrapper.newBuilder()
                 .setGridOrganization(new GridSingleTable(tableWrapper,new ButtonsSizeForGridBig(),new ButPositionTop()))
-                .setName("Оборудование")
+                .setGridName("Оборудование")
                 .setParentAnchor(innerAnchorPane)
                 .setCoordinate(new Coordinate(0d,10d,10d,0d))
                 .setGridLinesVisibility(false)

@@ -80,7 +80,7 @@ public class OutputPanel  extends TargetPanel {
 
         GridPaneWrapper.newBuilder()
                 .setGridOrganization(new GridSingleTable(tableWrapper,new ButtonsSizeForGridBig(),new ButPositionTop()))
-                .setName("Учет выходной продукции")
+                .setGridName("Учет выходной продукции")
                 .setParentAnchor(innerAnchorPane)
                 .setCoordinate(new Coordinate(50d,10d,10d,0d))
                 .setGridLinesVisibility(false)

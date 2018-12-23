@@ -1,6 +1,6 @@
 //package basisFx.presentation.targets;
 //
-//import basisFx.appCore.elements.TableWrapper;
+//import basisFx.appCore.nods.TableWrapper;
 //
 //public class EmployeesFiredPanel extends TargetPanel {
 //

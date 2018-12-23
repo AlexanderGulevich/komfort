@@ -24,7 +24,7 @@ public class GridTwoBondGrids extends GridOrganization {
         bindHeight(leftGridWrapper);
         bindHeight(rightGridWrapper);
 
-        if (parentGridWrapper.getName() != null) {
+        if (parentGridWrapper.getMetaName() != null) {
             createInnerNodsAndCommonName();
         }else{
             createInnerNodsWithoutCommonName();
@@ -66,7 +66,7 @@ public class GridTwoBondGrids extends GridOrganization {
 
     private LabelWrapper createCommonLabel() {
         return LabelWrapper.newBuilder()
-                    .setName(parentGridWrapper.getName())
+                    .setText(parentGridWrapper.getText())
 //                    .setCssid(CSSID.LABEL_TEXT)
                     .setCssid(CSSID.LABEL_COMMON_GRID_TEXT)
                     .setFontSize(25d)

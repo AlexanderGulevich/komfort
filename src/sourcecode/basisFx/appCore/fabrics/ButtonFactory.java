@@ -32,7 +32,7 @@ public class ButtonFactory {
 
         Button button = ButtonWrapper.newBuilder()
                 .setCSSid(CSSID.Little_PANELS_BUTTON_ADD)
-                .setName("\uF199")
+                .setText("\uF199")
                 .setFont(FontsStore.FOUNDATION)
                 .setFontSize(littleFontHeight)
                 .setWidth(littleButWidth)
@@ -48,7 +48,7 @@ public class ButtonFactory {
 
         Button button = ButtonWrapper.newBuilder()
                 .setCSSid(CSSID.Little_PANELS_BUTTON_DEL)
-                .setName("\uF176")
+                .setText("\uF176")
                 .setFont(FontsStore.FOUNDATION)
                 .setFontSize(littleFontHeight)
                 .setWidth(littleButWidth)
@@ -66,7 +66,7 @@ public class ButtonFactory {
 
         Button button = ButtonWrapper.newBuilder()
                 .setCSSid(CSSID.Little_PANELS_BUTTON_ADD)
-                .setName("\uF199")
+                .setText("\uF199")
                 .setFont(FontsStore.FOUNDATION)
                 .setFontSize(littleFontHeight)
                 .setWidth(littleButWidth)
@@ -82,7 +82,7 @@ public class ButtonFactory {
 
         return  ButtonWrapper.newBuilder()
                 .setCSSid(CSSID.PANELS_BUTTON)
-                .setName("ДОБАВИТЬ")
+                .setText("ДОБАВИТЬ")
                 .setFont(FontsStore.ROBOTO_LIGHT)
                 .setFontSize(15)
                 .setWidth(bigButWidth)
@@ -97,7 +97,7 @@ public class ButtonFactory {
     public Button deleteRowButton(  TableWrapper tableWrapper){
         return ButtonWrapper.newBuilder()
                 .setCSSid(CSSID.PANELS_BUTTON)
-                .setName("УДАЛИТЬ")
+                .setText("УДАЛИТЬ")
                 .setFont(FontsStore.ROBOTO_LIGHT)
                 .setFontSize(15)
                 .setWidth(bigButWidth)
@@ -117,7 +117,7 @@ public class ButtonFactory {
                 .setEvents(new MultyPushToDataStore())
                 .setServiceMediator(mediator)
                 .setCoordinate(coordinate)
-                .setName("ОТПРАВИТЬ")
+                .setText("ОТПРАВИТЬ")
                 .setFont(FontsStore.ROBOTO_LIGHT)
                 .setFontSize(15)
                 .setWidth(130d)

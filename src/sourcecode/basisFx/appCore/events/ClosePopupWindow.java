@@ -1,13 +1,15 @@
 package basisFx.appCore.events;
 
-import basisFx.dataSource.Db;
 import basisFx.appCore.elements.AppNode;
+import basisFx.appCore.utils.Registry;
+import basisFx.dataSource.Db;
+import javafx.scene.control.Button;
+
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.scene.control.Button;
 
-public class CloseWindow extends AppEvent{
+public class ClosePopupWindow extends AppEvent{
     protected Button  but;
     @Override
     public void setEventToElement(AppNode n) {
@@ -27,24 +29,13 @@ public class CloseWindow extends AppEvent{
     public void run() {
         try {
 
-//Todo Db.getSonicServer().shutdown();
-            if (Db.sonicServer != null) {
-                Db.sonicServer.shutdown();
-            }
-            if (Db.connection!= null) {
-                Db.connection.close();
-
-            }
-
             Thread.sleep(500);
             nodeWrapper.getStage().close();
-            System.exit(0);
+            Registry.infoWindow=null;
 
             } catch (InterruptedException ex) {
-                Logger.getLogger(CloseWindow.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (SQLException e) {
-            e.printStackTrace();
-        }
+                Logger.getLogger(ClosePopupWindow.class.getName()).log(Level.SEVERE, null, ex);
+            }
 
     }
 

@@ -38,7 +38,7 @@ public class HideWindow extends AppEvent{
                 Thread.sleep(200);
                 nodeWrapper.getStage().setIconified(true);
             } catch (InterruptedException ex) {
-                Logger.getLogger(CloseWindow.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(CloseMainWindow.class.getName()).log(Level.SEVERE, null, ex);
             }
     }
 }

@@ -37,7 +37,7 @@ public class ProductPanel  extends TargetPanel {
                                 .setColumnName("Наименование")
                                 .setColumnSize(0.7d)
                                 .setIsEditeble(true)
-                                .setPropertyName("name")
+                                .setPropertyName("metaName")
                                 .build(),
                         ColumnWrapperBool.newBuilder()
                                 .setColumnName("Втулка")
@@ -76,7 +76,7 @@ public class ProductPanel  extends TargetPanel {
         GridPaneWrapper commonGridPaneWrapper = GridPaneWrapper.newBuilder()
                 .setColumnVsPercent(60)
                 .setColumnVsPercent(40)
-                .setName("Управление продуктами и динамика цен")
+                .setGridName("Управление продуктами и динамика цен")
                 .setParentAnchor(innerAnchorPane)
                 .setCoordinate(new Coordinate(0d, 10d, 10d, 0d))
                 .setGridLinesVisibility(gridVisibility)

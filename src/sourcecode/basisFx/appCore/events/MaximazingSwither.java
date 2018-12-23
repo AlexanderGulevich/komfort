@@ -88,7 +88,7 @@ public class MaximazingSwither extends AppEvent{
 
 
             } catch (InterruptedException ex) {
-                Logger.getLogger(CloseWindow.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(CloseMainWindow.class.getName()).log(Level.SEVERE, null, ex);
             }
     }
 

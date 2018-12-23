@@ -3,8 +3,8 @@
 //import basisFx.appCore.KindOfSubmitElement;
 //import basisFx.appCore.table.ColumnWrapper;
 //import basisFx.domain.ActiveRecord;
-//import basisFx.appCore.elements.AppNode;
-//import basisFx.appCore.elements.TableWrapper;
+//import basisFx.appCore.nods.AppNode;
+//import basisFx.appCore.nods.TableWrapper;
 //import basisFx.appCore.utils.Coordinate;
 //import basisFx.appCore.settings.CSSID;
 //import javafx.scene.layout.AnchorPane;

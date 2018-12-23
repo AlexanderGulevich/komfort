@@ -8,7 +8,7 @@ import basisFx.appCore.utils.Coordinate;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import java.util.ArrayList;
+
 import java.util.HashMap;
 
 
@@ -18,32 +18,32 @@ public abstract class WindowAbstraction {
     protected Scene scene;
     protected AnchorPane root;
     protected AnchorPane topVisiblePanel;
-    protected WindowImpl kind;
+    protected WindowImpl windowImpl;
     protected GuiStructura structura;
     private HashMap<String,AppNode> nodesHashMap =new HashMap<>();
 
-    public WindowAbstraction(WindowImpl kind, GuiStructura structura) {
+    public WindowAbstraction(WindowImpl windowImpl, GuiStructura structura) {
         this.stage=new Stage();
-        this.kind = kind;
-        this.kind.setWindowAbstraction(this);
+        this.windowImpl = windowImpl;
+        this.windowImpl.setWindowAbstraction(this);
         this.structura=structura;
         initRoot();
         initTopVisiblePanel();
         createScene();
         initStructuraNods(structura);
-        loadWindowNodsToMap(structura);
+        windowImpl.init();
 
     }
-    public WindowAbstraction(Stage st, WindowImpl kind, GuiStructura structura) {
+    public WindowAbstraction(Stage st, WindowImpl windowImpl, GuiStructura structura) {
         stage=st;
-        this.kind = kind;
-        this.kind.setWindowAbstraction(this);
+        this.windowImpl = windowImpl;
+        this.windowImpl.setWindowAbstraction(this);
         this.structura=structura;
         initRoot();
         initTopVisiblePanel();
         createScene();
         initStructuraNods(structura);
-        loadWindowNodsToMap(structura);
+        windowImpl.init();
 
     }
 
@@ -56,16 +56,8 @@ public abstract class WindowAbstraction {
         structura.init();
     }
 
-    private void loadWindowNodsToMap(GuiStructura structura) {
-        ArrayList<AppNode> nodes = structura.getNodes();
-//todo   cast
-        for (AppNode node : nodes) {
-            nodesHashMap.put(node.getName(),node);
-        }
-    }
-
-    public  HashMap getNodesHashMap(){
-        return nodesHashMap;
+    public void setNod(AppNode node) {
+            nodesHashMap.put(node.getMetaName(),node);
     }
     public  AppNode getNode(String str){
         return nodesHashMap.get(str);

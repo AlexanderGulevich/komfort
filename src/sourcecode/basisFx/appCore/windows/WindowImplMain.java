@@ -19,9 +19,10 @@ public class WindowImplMain extends WindowImpl {
         super(Settings.WIDTH,Settings.HEIGHT,Settings.TITLE);
 
     }
+
     @Override
-    public void initUndecoratedStageButtons() {
-        new ButtonsForStageThreeEntity(windowAbstraction);
+    public void init() {
+
     }
 
 

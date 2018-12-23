@@ -6,8 +6,9 @@ import basisFx.appCore.settings.StylesPathes;
 import basisFx.appCore.utils.CSSHandler;
 import basisFx.appCore.utils.Registry;
 import basisFx.presentation.MainMenuSketch;
-import basisFx.presentation.appStructura.InfoWindowStructura;
+import basisFx.presentation.appStructura.LeftAndTopMenuGuiStructura;
 import javafx.stage.Stage;
+import org.scenicview.ScenicView;
 
 import java.sql.SQLException;
 
@@ -16,27 +17,21 @@ public class App{
 
 
     public App(Stage primaryStage) throws ClassNotFoundException, SQLException {
-
         CSSHandler.init(StylesPathes.CUSTOM_1);
-
         WindowFabric.WindowUndecoratedFabric();
-
-        Registry.windowFabric.mainWindow(
-                GuiStructuraFabric.leftAndTopMenuUndecorated(), primaryStage
-        );
-
+        Registry.windowFabric.mainWindow(new LeftAndTopMenuGuiStructura(), primaryStage);
         DbFactory.createDbServer();
-//        DbFactory.createEmbeded();
-
         MenuFabric.createMenuLeftSideRepresentation( new MainMenuSketch());
-
-
 //      ScenicView.show(WindowImplMain.getInstance().getWindowAbstraction().getScene());
+        Registry.windowFabric.infoWindow(
+                "В начале декабря российская правозащита потеряла сразу две свои опоры:" +
+                        " Льва Пономарева на 16 дней, пока длился его административный арест, " +
+                        "а Людмилу Алексееву — навсегда. Прощание с Алексеевой, куда пришел " +
+                        " Полухина встретилась с Пономаревым в день его освобождения." );
 
 
-//        Registry.windowFabric.infoWindow(
-//                new InfoWindowStructura()
-//        );
+
+
     }
     
 }

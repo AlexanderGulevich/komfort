@@ -3,8 +3,8 @@
 //import basisFx.appCore.chart.AreaChartBuilder;
 //import basisFx.appCore.chart.NumberAxisValue;
 //import basisFx.appCore.chart.NumberSeries;
-//import basisFx.appCore.elements.AppNode;
-//import basisFx.appCore.elements.AreaChartWrapper;
+//import basisFx.appCore.nods.AppNode;
+//import basisFx.appCore.nods.AreaChartWrapper;
 //import javafx.scene.chart.AreaChart;
 //import org.apache.logging.log4j.LogManager;
 //import org.apache.logging.log4j.Logger;
@@ -14,7 +14,7 @@
 //    static {
 //        System.setProperty("log4j2.xml", "res/log4j/log4j2.xml");
 //    }
-//    static final Logger logger = LogManager.getLogger(ChartFabric.class.getName());
+//    static final Logger logger = LogManager.getLogger(ChartFabric.class.getMetaName());
 //
 //    public AreaChart areaChart(AreaChartBuilder builder){
 //

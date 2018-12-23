@@ -19,10 +19,10 @@ package basisFx.appCore.utils;
 //    protected AnchorPane anchorPane;
 //    protected boolean closeable;
 //    
-//    public AbstractTab(String id, String name, boolean closeable) {
+//    public AbstractTab(String id, String metaName, boolean closeable) {
 //        
 //        this.menuId = id;
-//        this.tabName=name;
+//        this.tabName=metaName;
 //        this.closeable=closeable;
 //        this.anchorPane=new AnchorPane();
 //

@@ -2,8 +2,8 @@
 //
 //import basisFx.appCore.table.ColumnWrapper;
 //import basisFx.appCore.domainScetch.ComboBoxValue;
-//import basisFx.appCore.elements.AppNode;
-//import basisFx.appCore.elements.TableWrapper;
+//import basisFx.appCore.nods.AppNode;
+//import basisFx.appCore.nods.TableWrapper;
 //import basisFx.presentation.TargetPanel;
 //import basisFx.domain.domaine.Country;
 //import basisFx.domain.domaine.Equipment;
@@ -59,7 +59,7 @@
 //                .setColums(
 //                        columnFabric.<Country,String>string(ColumnWrapper.Bulder.create()
 //                                        .setColumnName("Наименование")
-//                                        .setPropertyName("name")
+//                                        .setPropertyName("metaName")
 //                                        .setValueChecking(check.createTextCheck())
 //                                        .setColumnSize(1)
 //                                        .setDomainChanging(

@@ -114,7 +114,7 @@ public class PacketPanel  extends TargetPanel {
 
         GridPaneWrapper commonGridPaneWrapper = GridPaneWrapper.newBuilder()
                 .setGridLinesVisibility(isGridVisibility)
-                .setName("Управление информацией о пакетах")
+                .setGridName("Управление информацией о пакетах")
                 .setParentAnchor(innerAnchorPane)
                 .setCoordinate(new Coordinate(0d, 10d, 10d, 0d))
                 .setGridOrganization(

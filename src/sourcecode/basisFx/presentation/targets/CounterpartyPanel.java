@@ -2,7 +2,6 @@ package basisFx.presentation.targets;
 
 import basisFx.appCore.grid.ButPositionTop;
 import basisFx.appCore.grid.ButtonsSizeForGridBig;
-import basisFx.appCore.grid.ButtonsSizeForGridLittle;
 import basisFx.appCore.grid.GridSingleTable;
 import basisFx.service.ServiceSingleTable;
 import basisFx.appCore.elements.TableWrapper;
@@ -30,7 +29,7 @@ public class CounterpartyPanel extends TargetPanel {
                                 .setColumnName("Наименование")
                                 .setColumnSize(0.6d)
                                 .setIsEditeble(true)
-                                .setPropertyName("name")
+                                .setPropertyName("metaName")
                                 .build(),
                         ColumnWrapperComboBox.newBuilder(Currency.class)
                                 .setColumnName("Валюта ")
@@ -44,7 +43,7 @@ public class CounterpartyPanel extends TargetPanel {
 
         GridPaneWrapper.newBuilder()
                 .setGridOrganization(new GridSingleTable(tableWrapper,new ButtonsSizeForGridBig(),new ButPositionTop()))
-                .setName("Список контрагентов")
+                .setGridName("Список контрагентов")
                 .setParentAnchor(innerAnchorPane)
                 .setCoordinate(new Coordinate(0d,10d,10d,0d))
                 .setGridLinesVisibility(false)

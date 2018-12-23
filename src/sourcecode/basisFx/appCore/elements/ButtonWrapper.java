@@ -16,7 +16,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import javafx.stage.Stage;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class ButtonWrapper extends AppNode{
 
@@ -42,7 +41,7 @@ public class ButtonWrapper extends AppNode{
         parentGroup = builder.parentGroup;
         parentFlowPane = builder.parentFlowPane;
         parentScrollPane = builder.parentScrollPane;
-        name = builder.name;
+        text = builder.text;
         stage = builder.stage;
         isActive = builder.isActive;
         insects = builder.insects;
@@ -52,6 +51,7 @@ public class ButtonWrapper extends AppNode{
         graphicNode = builder.graphicNode;
         contentDisplay = builder.contentDisplay;
         serviceMediator = builder.serviceMediator;
+        metaName=builder.metaName;
 
 
         setId();
@@ -124,10 +124,10 @@ public class ButtonWrapper extends AppNode{
 
     public void setName(){
 
-        if (name != null
+        if (text != null
 //                && contentDisplay!=null
                 ) {
-            element.setText(name);
+            element.setText(text);
 //            element.setContentDisplay(contentDisplay);
         }
 
@@ -144,6 +144,7 @@ public class ButtonWrapper extends AppNode{
 
 
     public static final class Builder {
+        public String text;
         private ArrayList<AppEvent> events;
         private CSSID cssid;
         private Double width;
@@ -163,6 +164,7 @@ public class ButtonWrapper extends AppNode{
         private Node graphicNode;
         private ContentDisplay contentDisplay;
         protected ServiceMediator serviceMediator;
+        private String metaName;
 
         private Builder() {
         }
@@ -227,8 +229,8 @@ public class ButtonWrapper extends AppNode{
             return this;
         }
 
-        public Builder setName(String val) {
-            name = val;
+        public Builder setText(String val) {
+            text = val;
             return this;
         }
 
@@ -269,6 +271,11 @@ public class ButtonWrapper extends AppNode{
 
         public Builder setContentDisplay(ContentDisplay val) {
             contentDisplay = val;
+            return this;
+        }
+
+        public Builder setMetaName(String metaName) {
+            this.metaName = metaName;
             return this;
         }
     }

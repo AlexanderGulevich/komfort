@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package basisFx.appCore.elements;
 
 import basisFx.appCore.events.AppEvent;
@@ -22,9 +17,9 @@ import java.util.ArrayList;
 
 public  class TextAreaWrapper extends AppNode{
 
-    protected TextArea element;
+    protected TextArea element=new TextArea();
     protected Boolean isEditable;
-    protected Boolean isWrapText;
+    protected Boolean isWrapText=true;
     protected FontsStore font;
     protected Double fontSize;
     protected String text;
@@ -39,13 +34,25 @@ public  class TextAreaWrapper extends AppNode{
         parentGroup = builder.parentGroup;
         parentFlowPane = builder.parentFlowPane;
         parentScrollPane = builder.parentScrollPane;
-        name = builder.name;
+        metaName = builder.metaName;
         stage = builder.stage;
         isEditable = builder.isEditable;
         isWrapText = builder.isWrapText;
         font = builder.font;
         fontSize = builder.fontSize;
         text = builder.text;
+
+
+        setText();
+        setEditable();
+        setFont();
+        setWrapText();
+        elocateEvents();
+        applyCssId();
+        bond(this);
+
+
+
     }
 
     public static Builder newBuilder() {
@@ -78,10 +85,7 @@ public  class TextAreaWrapper extends AppNode{
 
     @Override
     public TextArea getElement() {
-        element=new TextArea();
         return element;
-
-
     }
 
     private void setEditable() {
@@ -101,7 +105,7 @@ public  class TextAreaWrapper extends AppNode{
         private Group parentGroup;
         private FlowPane parentFlowPane;
         private ScrollPane parentScrollPane;
-        private String name;
+        private String metaName;
         private Stage stage;
         private Boolean isEditable;
         private Boolean isWrapText;
@@ -157,8 +161,8 @@ public  class TextAreaWrapper extends AppNode{
             return this;
         }
 
-        public Builder setName(String val) {
-            name = val;
+        public Builder setMetaName(String val) {
+            metaName = val;
             return this;
         }
 

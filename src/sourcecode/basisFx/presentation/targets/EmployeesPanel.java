@@ -34,7 +34,7 @@ public class EmployeesPanel extends TargetPanel {
                                 .setColumnName("ФИО")
                                 .setColumnSize(1d)
                                 .setIsEditeble(true)
-                                .setPropertyName("name")
+                                .setPropertyName("metaName")
                                 .build()
                 )
                 .build();
@@ -67,7 +67,7 @@ public class EmployeesPanel extends TargetPanel {
         GridPaneWrapper commonGridPaneWrapper = GridPaneWrapper.newBuilder()
                 .setColumnVsPercent(60)
                 .setColumnVsPercent(40)
-                .setName("Управление сотрудниками и тарифными ставками")
+                .setGridName("Управление сотрудниками и тарифными ставками")
                 .setParentAnchor(innerAnchorPane)
                 .setCoordinate(new Coordinate(0d, 10d, 10d, 0d))
                 .setGridLinesVisibility(gridVisibility)

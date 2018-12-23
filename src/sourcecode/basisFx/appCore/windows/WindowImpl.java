@@ -15,8 +15,10 @@ public abstract class WindowImpl {
         setTitleName(titleName);
 
     }
-
-    public abstract void initUndecoratedStageButtons();
+    public WindowImpl(double width, double height ) {
+        setHeight(height);
+        setWidth(width);
+    }
 
 
     public double getWidth() {
@@ -43,13 +45,9 @@ public abstract class WindowImpl {
         return windowAbstraction;
     }
 
-
     public AppNode getWindowNode(String name) {
         return windowAbstraction.getNode(name);
     }
-
-
-
     public String getTitleName() {
         return titleName;
     }
@@ -57,4 +55,8 @@ public abstract class WindowImpl {
     public void setTitleName(String titleName) {
         this.titleName = titleName;
     }
+
+    //этот метод необходим в случае если необходимо некое конфигурирование из абстракции моста,
+    // после того как абстракция проинициализирована реализацией и реальзация содержит ссылку на абстрацию, хранящую узлы
+    public abstract void init();
 }

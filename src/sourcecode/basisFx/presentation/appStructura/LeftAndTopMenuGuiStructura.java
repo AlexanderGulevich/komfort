@@ -16,7 +16,7 @@ public class LeftAndTopMenuGuiStructura extends GuiStructura {
                 .setCoordinate(new Coordinate(128d, 10d, 0d, 65d))
                 .setParentAnchor(windowAbstraction.getTopVisibleAnchor())
                 .setCSSid(CSSID.MAIN_CONTENT_ANCHOR)
-                .setName("contentAnchorPane")
+                .setMetaName("contentAnchorPane_mainWindow")
                 .build();
 
         AnchorWrapper titleAnchorWrapper = AnchorWrapper.newBuilder()
@@ -26,7 +26,7 @@ public class LeftAndTopMenuGuiStructura extends GuiStructura {
                 .setStage(getStage())
                 .setCSSid(CSSID.TITLE_PANEL)
                 .setEvents(new StageDragging())
-                .setName("titleAnchorWrapper")
+                .setMetaName("titleAnchorWrapper_mainWindow")
                 .build();
 
         TextWrapper companyName = TextWrapper.newBuilder()
@@ -35,21 +35,15 @@ public class LeftAndTopMenuGuiStructura extends GuiStructura {
                 .setCoordinate(new Coordinate(10d, null, null, 70d))
                 .setFont(FontsStore.ROBOTO_BOLD)
                 .setFontSize(50)
+                .setMetaName("companyName_mainWindow")
                 .setText("KOMFORT")
                 .build();
-
-//        AnchorWrapper titleImageAnchorWrapper = AnchorWrapper.newBuilder()
-//                .setParentAnchor(titleAnchorWrapper.getElement())
-//                .setCoordinate(new Coordinate(10d, null, null, 70d))
-//                .setCSSid(CSSID.TITLE_WINDOW_IMG)
-//                .setName("titleImageAnchorWrapper")
-//                .build();
 
         AnchorWrapper verticalMenuAnchorWrapper = AnchorWrapper.newBuilder()
                 .setParentAnchor(windowAbstraction.getTopVisibleAnchor())
                 .setCoordinate(new Coordinate(0d, null, 0d, 0d))
                 .setWidth(60d)
-                .setName("verticalMenuAnchorWrapper")
+                .setMetaName("verticalMenuAnchorWrapper_mainWindow")
                 .setCSSid(CSSID.LEFT_SIDE_MENU_VERTICAL_PANEL)
                 .build();
 
@@ -58,7 +52,7 @@ public class LeftAndTopMenuGuiStructura extends GuiStructura {
                 .setHeight(50d)
                 .setCoordinate(new Coordinate(70d, 0d, null, 65d))
                 .setCssid(CSSID.HORIZONTAL_FLOW_MENU_PANEL)
-                .setName("horisontalMenuFlowPane")
+                .setMetaName("horisontalMenuFlowPane_mainWindow")
                 .build();
 
         AnchorWrapper textAnchorWrapper = AnchorWrapper.newBuilder()
@@ -66,7 +60,7 @@ public class LeftAndTopMenuGuiStructura extends GuiStructura {
                 .setCoordinate(new Coordinate(15d, 120d, 0d, null))
                 .setHeight(35d)
                 .setCSSid(CSSID.LEFT_SIDE_MENU_TEXT_PANEL)
-                .setName("textAnchorWrapper")
+                .setMetaName("textAnchorWrapper_mainWindow")
                 .build();
 
         TextWrapper leftCideMenuCommonText = TextWrapper.newBuilder()
@@ -75,7 +69,7 @@ public class LeftAndTopMenuGuiStructura extends GuiStructura {
                 .setCoordinate(new Coordinate(0d, 0d, 0d, 0d))
                 .setFont(FontsStore.ROBOTO_LIGHT)
                 .setFontSize(20)
-                .setName("leftCideMenuCommonText")
+                .setMetaName("leftCideMenuCommonText_mainWindow")
                 .build();
 
 
@@ -86,20 +80,17 @@ public class LeftAndTopMenuGuiStructura extends GuiStructura {
                 .setFont(FontsStore.ROBOTO_LIGHT)
                 .setFontSize(20)
                 .setCSSid(CSSID.IMG_ICON)
-                .setName("iconAnchorWrapper")
+                .setMetaName("iconAnchorWrapper_mainWindow")
                 .build();
 
-        nodes.add(contentAnchorWrapper);
-        nodes.add(titleAnchorWrapper);
-        nodes.add(verticalMenuAnchorWrapper);
-        nodes.add(horisontalMenuFlowPane);
-        nodes.add(textAnchorWrapper);
-        nodes.add(iconAnchorWrapper);
-        nodes.add(leftCideMenuCommonText);
-//        nodes.add(titleImageAnchorWrapper);
-        nodes.add(companyName);
-
-        copyToElementsStore();
+        windowAbstraction.setNod(contentAnchorWrapper);
+        windowAbstraction.setNod(titleAnchorWrapper);
+        windowAbstraction.setNod(verticalMenuAnchorWrapper);
+        windowAbstraction.setNod(horisontalMenuFlowPane);
+        windowAbstraction.setNod(textAnchorWrapper);
+        windowAbstraction.setNod(iconAnchorWrapper);
+        windowAbstraction.setNod(leftCideMenuCommonText);
+        windowAbstraction.setNod(companyName);
 
     }
 

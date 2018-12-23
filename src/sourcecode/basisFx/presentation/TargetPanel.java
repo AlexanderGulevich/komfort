@@ -35,7 +35,7 @@ public abstract class TargetPanel {
 
     private void createCommonPane() {
         AnchorPane  mainContentAnchor = ((AnchorPane ) WindowImplMain.getInstance()
-                .getWindowNode("contentAnchorPane").getElement());
+                .getWindowNode("contentAnchorPane_mainWindow").getElement());
 
         commonAnchorPane = AnchorWrapper.newBuilder()
                 .setCSSid(CSSID.TARGET_PANEL)

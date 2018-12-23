@@ -24,11 +24,16 @@ public abstract class AppNode <T extends Node> {
     protected Group parentGroup;
     protected FlowPane parentFlowPane;
     protected ScrollPane parentScrollPane;
-    protected String name;
+    protected String metaName;
+    protected String text;
     protected Stage stage;
 
-    public String getName() {
-        return name;
+    public String getMetaName() {
+        return metaName;
+    }
+
+    public String getText() {
+        return text;
     }
 
     public abstract Node getElement();

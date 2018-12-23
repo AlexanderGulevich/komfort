@@ -11,19 +11,19 @@
 //
 //public class ColumnFabric <T,K> {
 //
-//    public ColumnString<T> string(KindOfColumn kindOfColumn, String name, String property, Double size, Boolean isEditable, DomainChanging domainChanging) {
+//    public ColumnString<T> string(KindOfColumn kindOfColumn, String metaName, String property, Double size, Boolean isEditable, DomainChanging domainChanging) {
 //            ColumnWrapper.Bulder bulder =
-//                    ColumnWrapper.Bulder.create(name, property, size)
+//                    ColumnWrapper.Bulder.create(metaName, property, size)
 //                    .setDomainChanging(domainChanging).setEditeble(isEditable)
 //                    .setKindOfColumn(kindOfColumn);
 //
 //            return new ColumnString<T>(bulder);
 //    }
-//    public ColumnStringComboBox<T,K> comboBox(KindOfColumn kindOfColumn, String name, String property, Double size,
+//    public ColumnStringComboBox<T,K> comboBox(KindOfColumn kindOfColumn, String metaName, String property, Double size,
 //                                              Boolean isEditable, DomainChanging domainChanging, DomainsListGetter domainsListGetter){
 //
 //            ColumnWrapper.Bulder bulder =
-//                    ColumnWrapper.Bulder.create(name, property, size)
+//                    ColumnWrapper.Bulder.create(metaName, property, size)
 //                            .setEditeble(isEditable)
 //                            .setDomainsListGetter(domainsListGetter)
 //                            .setDomainChanging(domainChanging)
@@ -32,10 +32,10 @@
 //            return new ColumnStringComboBox<T,K>(bulder);
 //
 //    }
-//    public ColumnLocalDate<T,K> dateColumn(KindOfColumn kindOfColumn, String name, String property, Double size, Boolean isEditable, DomainChanging domainChanging){
+//    public ColumnLocalDate<T,K> dateColumn(KindOfColumn kindOfColumn, String metaName, String property, Double size, Boolean isEditable, DomainChanging domainChanging){
 //
 //                ColumnWrapper.Bulder builder =
-//                        ColumnWrapper.Bulder.create(name, property, size)
+//                        ColumnWrapper.Bulder.create(metaName, property, size)
 //                                .setDomainChanging(domainChanging).setEditeble(isEditable)
 //                                .setKindOfColumn(kindOfColumn);
 //

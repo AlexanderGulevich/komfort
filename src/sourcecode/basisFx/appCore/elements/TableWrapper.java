@@ -55,7 +55,7 @@ public  class TableWrapper extends AppNode  {
         parentGroup = builder.parentGroup;
         parentFlowPane = builder.parentFlowPane;
         parentScrollPane = builder.parentScrollPane;
-        name = builder.name;
+        metaName = builder.name;
         stage = builder.stage;
         isEditable = builder.isEditable;
         columnResizePolicy = builder.columnResizePolicy;
@@ -104,7 +104,7 @@ public  class TableWrapper extends AppNode  {
             gridOrganization.setTableWrapper(this);
               gridPaneWrapper = GridPaneWrapper.newBuilder()
                     .setGridLinesVisibility(gridLinesVisibility)
-                    .setName(gridName)
+                    .setGridName(gridName)
                     .setGridOrganization(gridOrganization)
                     .build();
         }

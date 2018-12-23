@@ -12,7 +12,7 @@ import java.sql.Statement;
 public class Currency extends ActiveRecord {
 
     private static Currency INSTANCE = new Currency();
-    private SimpleObjectProperty<String> name =new SimpleObjectProperty<>(this, "name", null);
+    private SimpleObjectProperty<String> name =new SimpleObjectProperty<>(this, "metaName", null);
 
     public static Currency getINSTANCE() {
         return INSTANCE;

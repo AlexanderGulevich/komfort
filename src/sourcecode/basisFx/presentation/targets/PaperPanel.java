@@ -69,7 +69,7 @@ public class PaperPanel  extends TargetPanel {
         GridPaneWrapper commonGridPaneWrapper = GridPaneWrapper.newBuilder()
                 .setColumnVsPercent(60)
                 .setColumnVsPercent(40)
-                .setName("Поставщики бумаги и цены")
+                .setGridName("Поставщики бумаги и цены")
                 .setParentAnchor(innerAnchorPane)
                 .setCoordinate(new Coordinate(0d, 10d, 10d, 0d))
                 .setGridLinesVisibility(gridVisibility)

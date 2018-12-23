@@ -36,7 +36,7 @@ public class ExchangeRatesPanel extends TargetPanel {
                                 .setColumnName("Наименование")
                                 .setColumnSize(1d)
                                 .setIsEditeble(true)
-                                .setPropertyName("name")
+                                .setPropertyName("metaName")
                                 .build())
                 .build();
 
@@ -68,7 +68,7 @@ public class ExchangeRatesPanel extends TargetPanel {
         GridPaneWrapper commonGridPaneWrapper = GridPaneWrapper.newBuilder()
                 .setColumnVsPercent(60)
                 .setColumnVsPercent(40)
-                .setName("Управление валютами и динамика курсов")
+                .setGridName("Управление валютами и динамика курсов")
                 .setParentAnchor(innerAnchorPane)
                 .setCoordinate(new Coordinate(0d, 10d, 10d, 0d))
                 .setGridLinesVisibility(gridVisibility)

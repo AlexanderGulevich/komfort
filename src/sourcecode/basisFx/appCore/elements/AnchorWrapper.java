@@ -37,7 +37,7 @@ public class AnchorWrapper  extends AppNode  {
         parentGroup = builder.parentGroup;
         parentFlowPane = builder.parentFlowPane;
         parentScrollPane = builder.parentScrollPane;
-        name = builder.name;
+        metaName = builder.metaName;
         insects = builder.insects;
         font = builder.font;
         fontSize = builder.fontSize;
@@ -87,7 +87,7 @@ public class AnchorWrapper  extends AppNode  {
         private Group parentGroup;
         private FlowPane parentFlowPane;
         private ScrollPane parentScrollPane;
-        private String name;
+        private String metaName;
         private Insets insects;
         private FontsStore font;
         private double fontSize;
@@ -147,8 +147,8 @@ public class AnchorWrapper  extends AppNode  {
             return this;
         }
 
-        public Builder setName(String val) {
-            name = val;
+        public Builder setMetaName(String val) {
+            metaName = val;
             return this;
         }
 

@@ -6,5 +6,6 @@ import basisFx.appCore.windows.WindowAbstraction;
 public class Registry {
 
    public static WindowFabric windowFabric;
-   public static WindowAbstraction mainWindowAbstraction;
+   public static WindowAbstraction mainWindow;
+   public static WindowAbstraction infoWindow;
 }

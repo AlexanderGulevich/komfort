@@ -1,14 +1,25 @@
 package basisFx.appCore.windows;
 
+import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
+
 public class WindowImplInfo extends WindowImpl{
-    public WindowImplInfo() {
-        super(400d, 350d, "Внимание!");
+
+    private  String messagge;
+
+    public WindowImplInfo(String messagge) {
+        super(600d, 400d, "Внимание!");
+        this.messagge=messagge;
+
     }
+
 
     @Override
-    public void initUndecoratedStageButtons() {
-        new ButtonsForStageThreeEntity(windowAbstraction);
+    public void init() {
+        Label label = (Label) windowAbstraction.getNode("label").getElement();
+        label.setText(titleName);
+        TextArea textArea = (TextArea) windowAbstraction.getNode("textArea").getElement();
+        textArea.setText(messagge);
+
     }
-
-
 }

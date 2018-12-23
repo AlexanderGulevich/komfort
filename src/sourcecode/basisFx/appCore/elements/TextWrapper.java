@@ -30,10 +30,11 @@ public class TextWrapper extends AppNode{
         parentGroup = builder.parentGroup;
         parentFlowPane = builder.parentFlowPane;
         parentScrollPane = builder.parentScrollPane;
-        name = builder.name;
+        metaName = builder.name;
         font = builder.font;
         fontSize = builder.fontSize;
         text = builder.text;
+        metaName=builder.metaName;
 
 
 
@@ -72,6 +73,7 @@ public class TextWrapper extends AppNode{
 
 
     public static final class Builder {
+        public String metaName;
         private String text;
         private ArrayList<AppEvent> events;
         private CSSID cssid;
@@ -85,6 +87,11 @@ public class TextWrapper extends AppNode{
         private double fontSize;
 
         private Builder() {
+        }
+
+        public Builder setMetaName(String metaName) {
+            this.metaName = metaName;
+            return this;
         }
 
         public Builder setText(String text) {

@@ -14,9 +14,9 @@
   -fx-text-fill: #62929d;
 }
 #ALERT_ICON{
-  -fx-text-fill: #f0d7d1;
-  -fx-color: #f0d7d1;
-  -fx-fill:#f0d7d1;
+  -fx-text-fill: #62929d;
+  -fx-color: #62929d;
+  -fx-fill:#62929d;
 
 }
 #popupMessageTextPanel{
@@ -25,9 +25,7 @@
 }
 #PopupTextArea,
 #PopupTextArea:focused,
-#PopupTextArea:armed
-
-{
+#PopupTextArea:armed{
       -fx-background-color: white;
       -fx-border-width:  0  0.05  0  0.05 ;
       -fx-border-color: #184f77;
@@ -40,17 +38,25 @@
       -fx-padding:0;
 
 }
-
+#TOP_CONTROL_SINGLE_BUTTON{
+  -fx-color: #689099;
+  -fx-fill:#689099;
+  -fx-text-fill:#689099;
+  -fx-background-color:transparent;
+  -fx-border-radius:0;
+  -fx-background-insets: 0, 0, 0, 0;
+  -fx-background-radius: 0;
+}
+#TOP_CONTROL_SINGLE_BUTTON:armed{
+  -fx-color: #a8c4c9;
+    -fx-text-fill:#a8c4c9;
+}
 #PopupTextArea .scroll-pane,
-#PopupTextArea:focused>.scroll-pane
-{
+#PopupTextArea:focused>.scroll-pane{
   -fx-background-color: white;
   -fx-text-fill: #27525c;
   -fx-background-radius: 0 ;
   -fx-background-radius: 0;
-  /* -fx-background-insets: 0; */
-  /* -fx-padding:0; */
-
 }
 #PopupTextArea:focused .content,
 #PopupTextArea .content

@@ -20,11 +20,11 @@ package basisFx.dataSource;
 //   Connection connecttion=Stable.getInstance().getDb().getConnection();
 //           
 //
-//    public void insert(String name, Integer levelId, Integer  rightId , Integer leftId ) throws SQLException {
-//        String sql = "INSERT INTO ordersCategory(name,levelId,rightId,leftId,isExpanded) VALUES(?,?,?,?,?)";
+//    public void insert(String metaName, Integer levelId, Integer  rightId , Integer leftId ) throws SQLException {
+//        String sql = "INSERT INTO ordersCategory(metaName,levelId,rightId,leftId,isExpanded) VALUES(?,?,?,?,?)";
 //
 //        PreparedStatement pstmt = connecttion.prepareStatement(sql);
-//            pstmt.setName(1, name);
+//            pstmt.setMetaName(1, metaName);
 //            pstmt.setInt(2, levelId);
 //            pstmt.setInt(3, rightId);
 //            pstmt.setInt(4, leftId);     
@@ -33,7 +33,7 @@ package basisFx.dataSource;
 //            pstmt.executeUpdate();
 //
 //}
-//    public void insertToRoot(String name) throws SQLException {
+//    public void insertToRoot(String metaName) throws SQLException {
 //        
 //            int maxId=0;
 //        
@@ -56,11 +56,11 @@ package basisFx.dataSource;
 //                stmt.close();
 //            
 ////            
-//            insert(name, 1, maxId+2,maxId+1 );
+//            insert(metaName, 1, maxId+2,maxId+1 );
 //            
 //             
 //}
-//    public void insertToParentNode(String name, Integer parentLevel, Integer parentRightId ) throws SQLException {
+//    public void insertToParentNode(String metaName, Integer parentLevel, Integer parentRightId ) throws SQLException {
 //            
 //         //Обновляем ключи существующего дерева, узлы стоящие за родительским узлом:
 //          String sql_1 = "UPDATE ordersCategory SET leftId =leftId +2,"
@@ -82,10 +82,10 @@ package basisFx.dataSource;
 //          pstmt_2.setInt(2, parentRightId);
 //          pstmt_2.executeUpdate();
 //          
-//          String sql_3 = "INSERT INTO ordersCategory(name,levelId,rightId,leftId,isExpanded) VALUES(?,?,?,?,?)";
+//          String sql_3 = "INSERT INTO ordersCategory(metaName,levelId,rightId,leftId,isExpanded) VALUES(?,?,?,?,?)";
 //
 //            PreparedStatement pstmt_3 = connecttion.prepareStatement(sql_3);
-//            pstmt_3.setName(1, name);
+//            pstmt_3.setMetaName(1, metaName);
 //            pstmt_3.setInt(2, parentLevel+1);
 //            pstmt_3.setInt(3, parentRightId+1);
 //            pstmt_3.setInt(4, parentRightId);     
@@ -109,7 +109,7 @@ package basisFx.dataSource;
 //             domaine.setLeftId(rs.getInt("leftId") );
 //             domaine.setLevelId(rs.getInt("levelId"));
 //             domaine.setRightId(rs.getInt("rightId"));
-//             domaine.setCategoryNameOfTnp(rs.getString("name") );
+//             domaine.setCategoryNameOfTnp(rs.getString("metaName") );
 //             domaine.setIsExpanded(rs.getInt("isExpanded"));
 //             domaine.setShortName(rs.getString("shortName"));
 //             
@@ -122,15 +122,15 @@ package basisFx.dataSource;
 //        return ctc;
 //            
 //}
-//    public void updateCategoryLongName(int id, String name) throws SQLException {
-//        String sql = "UPDATE ordersCategory SET name = ?  "
+//    public void updateCategoryLongName(int id, String metaName) throws SQLException {
+//        String sql = "UPDATE ordersCategory SET metaName = ?  "
 //                + "WHERE ordersCategoryId = ?";
 // 
 //        
 //            PreparedStatement pstmt = connecttion.prepareStatement(sql);
 // 
 //            // set the corresponding param
-//            pstmt.setName(1, name);
+//            pstmt.setMetaName(1, metaName);
 //            pstmt.setInt(2, id);
 //            // update 
 //            pstmt.executeUpdate();
@@ -249,7 +249,7 @@ package basisFx.dataSource;
 //            PreparedStatement pstmt = connecttion.prepareStatement(sql);
 // 
 //            // set the corresponding param
-//            pstmt.setName(1, shortName);
+//            pstmt.setMetaName(1, shortName);
 //            pstmt.setInt(2, id);
 //            // update 
 //            pstmt.executeUpdate();
@@ -378,7 +378,7 @@ package basisFx.dataSource;
 //                 domaine.setLevelId(rs.getInt("levelId"));
 //                 domaine.setRightId(rs.getInt("rightId"));
 //                 domaine.setShortName(rs.getString("shortName"));
-//                 domaine.setCategoryNameOfTnp(rs.getString("name"));
+//                 domaine.setCategoryNameOfTnp(rs.getString("metaName"));
 //                                 
 //            }
 //        return domaine;

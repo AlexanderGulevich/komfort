@@ -9,7 +9,7 @@ import java.sql.*;
 import java.time.LocalDate;
 
 public class Example extends ActiveRecord{
-    private SimpleObjectProperty<String> name =new SimpleObjectProperty(this, "name", null);
+    private SimpleObjectProperty<String> name =new SimpleObjectProperty(this, "metaName", null);
     private SimpleObjectProperty<Currency> currency =new SimpleObjectProperty<>(this, "currency", null);
     private SimpleObjectProperty<PacketSize> packetSize =new SimpleObjectProperty<>(this, "packetSize", null);
     private SimpleObjectProperty<Counterparty> counterparty =new SimpleObjectProperty<>(this, "counterparty", null);
@@ -210,7 +210,7 @@ public class Example extends ActiveRecord{
     @Override
     public void update() {
         String expression = "UPDATE " + this.entityName + " SET  " +
-                " name = ?," +
+                " metaName = ?," +
                 " currencyId = ?" +
                 " WHERE id= ?";
         PreparedStatement pstmt = null;

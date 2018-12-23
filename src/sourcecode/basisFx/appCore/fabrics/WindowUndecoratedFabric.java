@@ -5,6 +5,7 @@ import basisFx.presentation.appStructura.GuiStructura;
 import basisFx.appCore.utils.Registry;
 import basisFx.appCore.windows.WindowAbstraction;
 import basisFx.appCore.windows.WindowAbstractionUndecorated;
+import basisFx.presentation.appStructura.InfoWindowStructura;
 import javafx.stage.Stage;
 
 
@@ -20,7 +21,8 @@ public class WindowUndecoratedFabric  extends WindowFabric{
     public WindowAbstraction mainWindow(GuiStructura structura, Stage stage) {
         WindowImpl mainWindow = WindowImplMain.getInstance();
         WindowAbstractionUndecorated windowUndecorated=new WindowAbstractionUndecorated(stage,mainWindow,structura);
-
+        new ButtonsForStageThreeEntity(windowUndecorated);
+        Registry.mainWindow=windowUndecorated;
         return windowUndecorated;
     }
 
@@ -35,9 +37,12 @@ public class WindowUndecoratedFabric  extends WindowFabric{
     }
 
     @Override
-    public WindowAbstraction infoWindow(GuiStructura guiStructura) {
-        WindowImplInfo windowImplInfo = new WindowImplInfo() ;
-        WindowAbstractionUndecorated windowUndecorated=new WindowAbstractionUndecorated(windowImplInfo,guiStructura);
+    public WindowAbstraction infoWindow(String message) {
+        WindowImplInfo windowImplInfo = new WindowImplInfo(message) ;
+        InfoWindowStructura infoWindowStructura = new InfoWindowStructura();
+        WindowAbstractionUndecorated windowUndecorated=new WindowAbstractionUndecorated(windowImplInfo, infoWindowStructura);
+        new ButtonsForStageSingle(windowUndecorated);
+        Registry.infoWindow=windowUndecorated;
         return windowUndecorated;
     }
 

@@ -37,7 +37,7 @@ public class DatePickerWrapper  extends AppNode{
         parentGroup = builder.parentGroup;
         parentFlowPane = builder.parentFlowPane;
         parentScrollPane = builder.parentScrollPane;
-        name = builder.name;
+        metaName = builder.name;
         stage = builder.stage;
         serviceMediator = builder.serviceMediator;
         datePickerWrapper=this;

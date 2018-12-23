@@ -8,8 +8,9 @@ public class MessageWindow extends WindowImpl {
         super(width, height, titleName);
     }
 
+
     @Override
-    public void initUndecoratedStageButtons() {
+    public void init() {
 
     }
 }

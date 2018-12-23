@@ -5,13 +5,8 @@ import basisFx.appCore.elements.TableWrapper;
 import basisFx.appCore.grid.ButPositionTop;
 import basisFx.appCore.grid.ButtonsSizeForGridBig;
 import basisFx.appCore.grid.GridSingleTable;
-import basisFx.appCore.table.ColumnWrapperComboBox;
-import basisFx.appCore.table.ColumnWrapperDouble;
 import basisFx.appCore.table.ColumnWrapperInt;
-import basisFx.appCore.table.ColumnWrapperString;
 import basisFx.appCore.utils.Coordinate;
-import basisFx.domain.Counterparty;
-import basisFx.domain.Currency;
 import basisFx.domain.Jumbo;
 import basisFx.presentation.TargetPanel;
 import basisFx.service.ServiceSingleTable;
@@ -46,7 +41,7 @@ public class JumboPanel extends TargetPanel {
 
         GridPaneWrapper.newBuilder()
                 .setGridOrganization(new GridSingleTable(tableWrapper,new ButtonsSizeForGridBig(),new ButPositionTop()))
-                .setName("Ширины джамбо ролей и выход продукции по ширине")
+                .setGridName("Ширины джамбо ролей и выход продукции по ширине")
                 .setParentAnchor(innerAnchorPane)
                 .setCoordinate(new Coordinate(0d,10d,10d,0d))
                 .setGridLinesVisibility(false)

@@ -3,7 +3,7 @@
 // * To change this template file, choose Tools | Templates
 // * and open the template in the editor.
 // */
-//package basisFx.appCore.elements;
+//package basisFx.appCore.nods;
 //
 ////import basisFx.appCore.events.AppEvent;
 //import basisFx.appCore.settings.CSSID;
@@ -39,7 +39,7 @@
 //        parentGroup = builder.parentGroup;
 //        parentFlowPane = builder.parentFlowPane;
 //        parentScrollPane = builder.parentScrollPane;
-//        name = builder.name;
+//        metaName = builder.metaName;
 //        path = builder.path;
 //
 //
@@ -77,7 +77,7 @@
 //        private Group parentGroup;
 //        private FlowPaneWrapper parentFlowPane;
 //        private ScrollPane parentScrollPane;
-//        private String name;
+//        private String metaName;
 //        private IMGpath path;
 //
 //        private Builder() {
@@ -128,8 +128,8 @@
 //            return this;
 //        }
 //
-//        public Builder setName(String val) {
-//            name = val;
+//        public Builder setMetaName(String val) {
+//            metaName = val;
 //            return this;
 //        }
 //

@@ -19,19 +19,8 @@ public abstract class ButtonsForStage {
 
     public ButtonsForStage(WindowAbstraction windowAbstraction) {
         this.windowAbstraction = windowAbstraction;
-        createButtonsPanel();
     }
 
-    protected void createButtonsPanel(){
-        buttonsAnchor =
-                AnchorWrapper.newBuilder()
-                .setCSSid(CSSID.WindowButtonsPanel)
-                .setCoordinate( new Coordinate(0d,0d,null,null))
-                .setHeight(25d).setWidth(82d)
-                .setParentAnchor(windowAbstraction.getTopVisibleAnchor())
-                .build().getElement();
-
-    }
 
     protected abstract void init();
 

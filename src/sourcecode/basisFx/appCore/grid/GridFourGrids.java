@@ -50,7 +50,7 @@ public class GridFourGrids extends GridOrganization {
 //        bindHeight(leftGridWrapper);
 //        bindHeight(rightGridWrapper);
 
-        if (parentGridWrapper.getName() != null) {
+        if (parentGridWrapper.getMetaName() != null) {
             createInnerNodsAndCommonName();
         }else{
             createInnerNodsWithoutCommonName();
@@ -100,7 +100,7 @@ public class GridFourGrids extends GridOrganization {
 
     private LabelWrapper createCommonLabel() {
         return LabelWrapper.newBuilder()
-                .setName(parentGridWrapper.getName())
+                .setText(parentGridWrapper.getText())
                 .setCssid(CSSID.LABEL_TEXT)
                 .setFontSize(25d)
                 .setFont(FontsStore.ROBOTO_BOLD)

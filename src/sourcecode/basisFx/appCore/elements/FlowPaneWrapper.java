@@ -30,7 +30,7 @@ public class FlowPaneWrapper extends AppNode{
         parentGroup = builder.parentGroup;
         parentFlowPane = builder.parentFlowPane;
         parentScrollPane = builder.parentScrollPane;
-        name = builder.name;
+        metaName = builder.metaName;
         vGap = builder.vGap;
         hGap = builder.hGap;
         insects = builder.insects;
@@ -94,7 +94,7 @@ public class FlowPaneWrapper extends AppNode{
         private Group parentGroup;
         private javafx.scene.layout.FlowPane parentFlowPane;
         private ScrollPane parentScrollPane;
-        private String name;
+        private String metaName;
         private Double vGap;
         private Double hGap;
         private Insets insects;
@@ -148,8 +148,8 @@ public class FlowPaneWrapper extends AppNode{
             return this;
         }
 
-        public Builder setName(String val) {
-            name = val;
+        public Builder setMetaName(String val) {
+            metaName = val;
             return this;
         }
 

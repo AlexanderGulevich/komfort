@@ -36,7 +36,7 @@ public class PieChartExtraColor extends Application {
 		stage.setTitle("A Pie Chart with over 8 Slices");
 		stage.show();
 
-		// Override the default series color style class-name for slices over 8. 
+		// Override the default series color style class-metaName for slices over 8.
 		// Works only when you set it after the scene is visible
 		this.setSeriesColorStyles(chart);
 	}

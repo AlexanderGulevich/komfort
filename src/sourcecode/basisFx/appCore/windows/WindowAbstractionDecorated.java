@@ -16,13 +16,13 @@ public  class WindowAbstractionDecorated extends WindowAbstraction {
         super(implimentation,structura);
         stage=st;
         stage.initStyle(StageStyle.DECORATED);
-        stage.setTitle(kind.getTitleName());
+        stage.setTitle(windowImpl.getTitleName());
         stage.show();
     }
 
     @Override
     protected void createScene() {
-        scene= new Scene(root, this.kind.getWidth(), this.kind.getHeight());
+        scene= new Scene(root, this.windowImpl.getWidth(), this.windowImpl.getHeight());
         stage.setScene(scene);
         scene.setFill(Color.TRANSPARENT);
         CSSHandler.getInstanse().loadStylesToScene(scene);
@@ -32,7 +32,7 @@ public  class WindowAbstractionDecorated extends WindowAbstraction {
         super(implimentation,structura);
         stage=new Stage();
         stage.initStyle(StageStyle.DECORATED);
-        stage.setTitle(kind.getTitleName());
+        stage.setTitle(windowImpl.getTitleName());
         stage.show();
     }
 

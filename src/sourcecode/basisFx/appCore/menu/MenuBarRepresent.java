@@ -5,8 +5,8 @@
 // */
 //package basisFx.appCore.menu;
 //
-//import basisFx.appCore.elements.AppNode;
-//import basisFx.appCore.elements.NMenuBar;
+//import basisFx.appCore.nods.AppNode;
+//import basisFx.appCore.nods.NMenuBar;
 //import java.util.ArrayList;
 //import java.util.Iterator;
 //import javafx.scene.control.Menu;
@@ -57,7 +57,7 @@
 //
 //            if (next.isComposit){
 //
-//                Menu menu=new Menu (next.getName());
+//                Menu menu=new Menu (next.getMetaName());
 //
 //                menuBar.getMenus().add(menu) ;
 //
@@ -71,7 +71,7 @@
 //                makeStructuredMenuView(next, menu);
 //
 //            }else{
-//                 MenuItem item=new MenuItem (next.getName());
+//                 MenuItem item=new MenuItem (next.getMetaName());
 //
 //
 //                 if(parentMenu!=null) {

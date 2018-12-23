@@ -36,23 +36,24 @@ public  class LabelWrapper extends AppNode{
         parentGroup = builder.parentGroup;
         parentFlowPane = builder.parentFlowPane;
         parentScrollPane = builder.parentScrollPane;
-        name = builder.name;
+        metaName = builder.metaName;
         font = builder.font;
         fontSize = builder.fontSize;
         alignment = builder.alignment;
+        text=builder.text;
 
         setAlignment();
         setFont();
-        appllyName();
+        appllyText();
         elocateEvents();
         applyCssId();
         bond(this);
 
     }
 
-    private void appllyName() {
-        if (name != null) {
-            element.setText(name);
+    private void appllyText() {
+        if (text != null) {
+            element.setText(text);
         }
     }
 
@@ -78,6 +79,7 @@ public  class LabelWrapper extends AppNode{
     }
 
     public static final class Builder {
+        public String metaName;
         private ArrayList<AppEvent> events;
         private CSSID cssid;
         private Double width;
@@ -87,12 +89,15 @@ public  class LabelWrapper extends AppNode{
         private Group parentGroup;
         private FlowPane parentFlowPane;
         private ScrollPane parentScrollPane;
-        private String name;
         private FontsStore font;
         private double fontSize;
         private Pos alignment;
         private String text;
 
+        public Builder setMetaName(String metaName) {
+            this.metaName = metaName;
+            return this;
+        }
 
         private Builder() {
         }
@@ -139,11 +144,6 @@ public  class LabelWrapper extends AppNode{
 
         public Builder setParentScrollPane(ScrollPane val) {
             parentScrollPane = val;
-            return this;
-        }
-
-        public Builder setName(String val) {
-            name = val;
             return this;
         }
 

@@ -11,7 +11,7 @@ import java.sql.Statement;
 public class Counterparty extends ActiveRecord {
 
     private static Counterparty INSTANCE = new Counterparty();
-    private SimpleObjectProperty<String> name =new SimpleObjectProperty(this, "name", null);
+    private SimpleObjectProperty<String> name =new SimpleObjectProperty(this, "metaName", null);
     private SimpleObjectProperty<Currency> currency =new SimpleObjectProperty<>(this, "currency", null);
 
 

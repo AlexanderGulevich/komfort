@@ -13,7 +13,7 @@ import java.sql.Statement;
 public class Equipment  extends ActiveRecord {
 
     private static Equipment INSTANCE = new Equipment();
-    private SimpleObjectProperty<String> name =new SimpleObjectProperty<>(null, "name", null);
+    private SimpleObjectProperty<String> name =new SimpleObjectProperty<>(null, "metaName", null);
 
     public static Equipment getINSTANCE() {
         return INSTANCE;

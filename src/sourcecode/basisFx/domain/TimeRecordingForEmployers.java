@@ -120,8 +120,8 @@ public class TimeRecordingForEmployers extends ActiveRecord implements RecordWit
 
 
             String expression="SELECT * from(\t   \n" +
-                    "\tSELECT  allemplid as employerId, allemplisfired AS ISFIRED, allemplname AS name, date, hours\n" +
-                    "\t  \t FROM (SELECT id AS allemplid , name AS allemplname, ISFIRED AS allemplisfired FROM EMPLOYER) AS allempl\n" +
+                    "\tSELECT  allemplid as employerId, allemplisfired AS ISFIRED, allemplname AS metaName, date, hours\n" +
+                    "\t  \t FROM (SELECT id AS allemplid , metaName AS allemplname, ISFIRED AS allemplisfired FROM EMPLOYER) AS allempl\n" +
                     "\t        left JOIN  (SELECT * FROM(\n" +
                     "\t        \tSELECT employerId, date, hours FROM TIMERECORDINGFOREMPLOYERS t where date=?\n" +
                     "\t                ) ) AS byDate\n" +

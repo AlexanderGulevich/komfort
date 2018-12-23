@@ -1,7 +1,8 @@
 package basisFx.appCore.windows;
 
+import basisFx.appCore.elements.AnchorWrapper;
 import basisFx.appCore.elements.ButtonWrapper;
-import basisFx.appCore.events.CloseWindow;
+import basisFx.appCore.events.CloseMainWindow;
 import basisFx.appCore.events.HideWindow;
 import basisFx.appCore.events.MaximazingSwither;
 import basisFx.appCore.settings.CSSID;
@@ -28,6 +29,16 @@ public class    ButtonsForStageThreeEntity extends ButtonsForStage {
     }
     @Override
     protected void init() {
+
+        buttonsAnchor =
+                AnchorWrapper.newBuilder()
+                        .setCSSid(CSSID.WindowButtonsPanel)
+                        .setCoordinate( new Coordinate(0d,0d,null,null))
+                        .setHeight(25d).setWidth(82d)
+                        .setParentAnchor(windowAbstraction.getTopVisibleAnchor())
+                        .setMetaName("buttonsAnchor")
+                        .build().getElement();
+
         //крестик
         closingButton=
                 ButtonWrapper.newBuilder()
@@ -40,8 +51,8 @@ public class    ButtonsForStageThreeEntity extends ButtonsForStage {
                         .setCSSid(CSSID.TOP_CONTROL_BUTTON)
                         .setParentAnchor(buttonsAnchor)
                         .setStage(windowAbstraction.getStage())
-                        .setEvents(new CloseWindow())
-                        .setName(closeStr)
+                        .setEvents(new CloseMainWindow())
+                        .setText(closeStr)
                         .setContentDisplay(ContentDisplay.CENTER)
                         .build();
 
@@ -57,7 +68,7 @@ public class    ButtonsForStageThreeEntity extends ButtonsForStage {
                         .setCSSid(CSSID.TOP_CONTROL_BUTTON)
                         .setParentAnchor(buttonsAnchor)
                         .setStage(windowAbstraction.getStage())
-                        .setName(hideStr)
+                        .setText(hideStr)
                         .setContentDisplay(ContentDisplay.CENTER)
                         .build();
 
@@ -73,7 +84,7 @@ public class    ButtonsForStageThreeEntity extends ButtonsForStage {
                         .setCSSid(CSSID.TOP_CONTROL_BUTTON)
                         .setParentAnchor(buttonsAnchor)
                         .setStage(windowAbstraction.getStage())
-                        .setName(maximazeStr)
+                        .setText(maximazeStr)
                         .setContentDisplay(ContentDisplay.CENTER)
                         .build();
 

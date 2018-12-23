@@ -1,10 +1,11 @@
 package basisFx.appCore.events;
 
-import basisFx.appCore.utils.ElementsStore;
 import basisFx.appCore.elements.AppNode;
 import basisFx.appCore.menu.FontItemLeaf;
 import basisFx.appCore.menu.LeftAndTopMenuRepresent;
 import basisFx.appCore.settings.CSSID;
+import basisFx.appCore.utils.Registry;
+import basisFx.appCore.windows.WindowImplMain;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 
@@ -44,8 +45,11 @@ public class MenuButtonsClick extends AppEvent{
     }
 
     private void clearChildren() {
-        AppNode contentAnchorPane = ElementsStore.elements.get("contentAnchorPane");
-        AnchorPane element = ((AnchorPane) contentAnchorPane.getElement());
+
+        AppNode node = Registry.mainWindow.getNode("contentAnchorPane_mainWindow");
+        AnchorPane element = ((AnchorPane) node.getElement());
+
+
         element.getChildren().clear();
     }
 
