@@ -75,7 +75,7 @@ public class GridTwoVerticaGrids extends GridOrganization {
 
     private LabelWrapper createCommonLabel() {
         return LabelWrapper.newBuilder()
-                .setText(parentGridWrapper.getMetaName())
+                .setText(parentGridWrapper.getText())
                 .setCssid(CSSID.LABEL_TEXT)
                 .setFontSize(25d)
                 .setFont(FontsStore.ROBOTO_BOLD)

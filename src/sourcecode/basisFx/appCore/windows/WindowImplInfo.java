@@ -8,11 +8,10 @@ public class WindowImplInfo extends WindowImpl{
     private  String messagge;
 
     public WindowImplInfo(String messagge) {
-        super(600d, 400d, "Внимание!");
+        super(550d, 350d, "Внимание!");
         this.messagge=messagge;
 
     }
-
 
     @Override
     public void init() {

@@ -52,6 +52,10 @@ public  class GridPaneWrapper extends AppNode {
         apllyBindingByParentHeight();
     }
 
+    public LabelWrapper getLabel() {
+        return label;
+    }
+
     private void apllyBindingByParentHeight() {
         if (parentAnchor != null) {
             bindGridToParentAnchorHeight();

@@ -24,7 +24,7 @@ public class GridTwoBondGrids extends GridOrganization {
         bindHeight(leftGridWrapper);
         bindHeight(rightGridWrapper);
 
-        if (parentGridWrapper.getMetaName() != null) {
+        if (parentGridWrapper.getText() != null) {
             createInnerNodsAndCommonName();
         }else{
             createInnerNodsWithoutCommonName();

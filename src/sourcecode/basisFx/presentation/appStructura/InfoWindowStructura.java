@@ -66,7 +66,7 @@ public class InfoWindowStructura extends GuiStructura {
                 .setCssid(CSSID.ALERT_ICON)
                 .setFont( FontsStore.FAWESOME5SOLID)
                 .setFontSize(50d)
-                .setCoordinate(new Coordinate(60d, 10d,null,null))
+                .setCoordinate(new Coordinate(60d, 4d,null,null))
                 .setParentAnchor(windowAbstraction.getTopVisibleAnchor())
                 .build();
 

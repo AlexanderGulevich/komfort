@@ -1,11 +1,11 @@
 #popupContentPanel{
-  -fx-border-width: 0 0 0.2 0 ;
+  -fx-border-width: 0 0 0.25 0 ;
     -fx-border-color: #a79090;
         -fx-background-color: #ffffff;
 }
 #popupTitlePanel{
     -fx-background-color: transparent;
-      -fx-border-width: 0 0 0.2 0;
+      -fx-border-width: 0 0 0.25 0;
         -fx-border-color: #a79090;
 }
 #PopupTitleText{
@@ -27,7 +27,7 @@
 #PopupTextArea:focused,
 #PopupTextArea:armed{
       -fx-background-color: white;
-      -fx-border-width:  0  0.05  0  0.05 ;
+      -fx-border-width:  0  0.07  0  0.07 ;
       -fx-border-color: #184f77;
       -fx-color: #27525c;
       -fx-fill:#27525c;
