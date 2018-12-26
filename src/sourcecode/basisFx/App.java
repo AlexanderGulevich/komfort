@@ -23,10 +23,7 @@ public class App{
         DbFactory.createDbServer();
         MenuFabric.createMenuLeftSideRepresentation( new MainMenuSketch());
 //      ScenicView.show(WindowImplMain.getInstance().getWindowAbstraction().getScene());
-        Registry.windowFabric.infoWindow(
-                "В начале декабря российская правозащита потеряла сразу две свои опоры:" +
-                        "  " +
-                        " Полухина встретилась с Пономаревым в день его освобождения." );
+
 
 
 

@@ -1,6 +1,7 @@
 package basisFx.appCore.table;
 
 import basisFx.appCore.elements.TableWrapper;
+import basisFx.appCore.utils.Registry;
 import basisFx.domain.ActiveRecord;
 import javafx.beans.value.ObservableValue;
 import javafx.beans.value.WritableValue;
@@ -79,7 +80,8 @@ public class ColumnWrapperDouble <T>extends ColumnWrapper{
             }
             Double v=Double.parseDouble(s);
         }catch (NumberFormatException   e){
-            //todo вставить всплывающее окно и обработку
+            Registry.windowFabric.infoWindow("Вы ввели в поле ввода неправильное значение!" +
+                    "\n" +"Введенное значение - " +"\" "+s+" \"");
             return false;
         }
         return  true;

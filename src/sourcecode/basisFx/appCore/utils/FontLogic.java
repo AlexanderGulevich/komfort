@@ -9,10 +9,6 @@ import basisFx.appCore.settings.FontsStore;
 import java.io.InputStream;
 import javafx.scene.text.Font;
 
-/**
- *
- * @author Alek
- */
 public class FontLogic {
     
 

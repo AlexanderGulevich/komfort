@@ -3,22 +3,16 @@ package basisFx.appCore.windows;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 
-public class WindowImplInfo extends WindowImpl{
+public class WindowImplInputForm extends WindowImpl{
 
     private  String messagge;
 
-    public WindowImplInfo(String messagge) {
-        super(530d, 300d, "Внимание!");
-        this.messagge=messagge;
-
+    public WindowImplInputForm(Double width, Double height) {
+        super(width, height );
     }
 
     @Override
     public void init() {
-        Label label = (Label) windowAbstraction.getNode("label").getElement();
-        label.setText(titleName);
-        TextArea textArea = (TextArea) windowAbstraction.getNode("textArea").getElement();
-        textArea.setText(messagge);
 
     }
 }

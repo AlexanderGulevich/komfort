@@ -1,6 +1,7 @@
 package basisFx.appCore.table;
 
 import basisFx.appCore.elements.TableWrapper;
+import basisFx.appCore.utils.Registry;
 import basisFx.domain.ActiveRecord;
 import javafx.beans.value.ObservableValue;
 import javafx.beans.value.WritableValue;
@@ -98,9 +99,8 @@ public class ColumnWrapperInt<T> extends ColumnWrapper{
             return true;
         }catch (NumberFormatException  e){
 //todo 2147483648 вывод сообщения что слишком большое число
-
-            e.printStackTrace();
-
+            Registry.windowFabric.infoWindow("Вы ввели в поле ввода неправильное значение!" +
+                    "\n" +"Введенное значение - " +"\" "+s+" \"");
             return false;
 
         }

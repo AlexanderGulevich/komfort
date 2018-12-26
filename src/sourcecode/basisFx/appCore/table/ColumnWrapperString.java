@@ -1,5 +1,6 @@
 package basisFx.appCore.table;
 
+import basisFx.appCore.utils.Registry;
 import basisFx.domain.ActiveRecord;
 import javafx.beans.value.ObservableValue;
 import javafx.beans.value.WritableValue;
@@ -71,6 +72,7 @@ public class ColumnWrapperString<T> extends ColumnWrapper{
 //        ObservableValue<String> observableValue = event.getTableColumn().getCellObservableValue(row);
 //        String value= observableValue.getValue().trim();
         if (value.length()==0){
+            Registry.windowFabric.infoWindow("Вы ввели в поле ввода пустую строку!");
             return false;
         }
         return true;
