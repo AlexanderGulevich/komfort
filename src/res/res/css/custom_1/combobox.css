@@ -1,5 +1,8 @@
 #COMBOBOX .text-input{
 -fx-background-color:#ffffff;
+-fx-text-fill:#2f4a6f;
+-fx-font-family: "Roboto Light";
+
 }
 
 #COMBOBOX .combo-box > .list-cell {
@@ -40,7 +43,7 @@
       -fx-background-radius: 0;
       -fx-background-color:#ffffff;
       -fx-border-width: 0.5;
-      -fx-border-color: #7f7991;
+      -fx-border-color: #9da4a8;
       -fx-background-radius: 0;
       -fx-border-radius:0;
       -fx-background-insets: 0, 0, 0, 0;
@@ -48,7 +51,6 @@
 }
 #COMBOBOX .combo-box-base:editable > .text-field,
 .date-picker > .text-field {
-    -fx-background-color:#ff0000;
     -fx-background-insets:0;
     -fx-background-radius: 0;
       -fx-border-radius:0;
@@ -56,7 +58,6 @@
       -fx-background-radius: 0;
       -fx-background-color:#ffffff;
       -fx-border-width: 0.5;
-      -fx-border-color: #7f7991;
       -fx-background-radius: 0;
       -fx-border-radius:0;
       -fx-background-insets: 0, 0, 0, 0;
@@ -91,6 +92,9 @@
     -fx-border-radius:0;
     -fx-background-insets: 0, 0, 0, 0;
     -fx-background-radius: 0;
+    -fx-text-fill:#2f4a6f;
+  -fx-font-family: "Roboto Light";
+    -fx-font-size: 12;
 }
 #COMBOBOX .combo-box-popup > .list-view > .virtual-flow > .clipped-container > .sheet > .list-cell {
     -fx-padding: 4 0 4 5;
@@ -100,16 +104,18 @@
     -fx-background-insets: 0, 0, 0, 0;
     -fx-background-radius: 0;
     -fx-background-color:#ffffff;
-    -fx-border-width: 0.5;
-    -fx-border-color: #7f7991;
+    -fx-border-width: 0.3;
+    -fx-border-color: #dbdee4;
     -fx-background-radius: 0;
     -fx-border-radius:0;
     -fx-background-insets: 0, 0, 0, 0;
     -fx-background-radius: 0;
+    -fx-text-fill:#2f4a6f;
+  -fx-font-family: "Roboto Light";
 }
 #COMBOBOX .combo-box-popup > .list-view > .virtual-flow > .clipped-container > .sheet > .list-cell:filled:hover {
-    -fx-background: #e7f0f1;
-    -fx-background-color: #e7f0f1;
+    -fx-background: #edf4f4;
+    -fx-background-color: #edf4f4;
     -fx-background-radius: 0;
     -fx-border-radius:0;
     -fx-background-insets: 0, 0, 0, 0;
@@ -118,20 +124,23 @@
     -fx-border-radius:0;
     -fx-background-insets: 0, 0, 0, 0;
     -fx-background-radius: 0;
+    -fx-text-fill:#2f4a6f;
+  -fx-font-family: "Roboto Light";
+  -fx-border-width: 0.4;
+  -fx-border-color: #dbdee4;
 
 }
 #COMBOBOX .combo-box-popup  > .list-view > .virtual-flow > .clipped-container > .sheet > .list-cell:filled:selected,
 .combo-box-popup  > .list-view > .virtual-flow > .clipped-container > .sheet > .list-cell:filled:selected:hover {
-    -fx-background: #d5e5e8;
-    -fx-background-color: #d5e5e8;
-    -fx-background-insets: 0, 1, 2;
-    -fx-background-radius: 0;
+    -fx-background: #f5f7fb;
+    -fx-background-color: #f5f7fb;
     -fx-border-radius:0;
     -fx-background-insets: 0, 0, 0, 0;
     -fx-background-radius: 0;
-    -fx-border-radius:0;
-    -fx-background-insets: 0, 0, 0, 0;
-    -fx-background-radius: 0;
+    -fx-text-fill:#2f4a6f;
+  -fx-font-family: "Roboto Light";
+  -fx-border-width: 0.4;
+  -fx-border-color: #dbdee4;
 
 }
 #COMBOBOX .combo-box-popup > .list-view > .placeholder > .label {
@@ -143,14 +152,29 @@
       -fx-background-color:#ffffff;
       -fx-border-width: 0;
       -fx-border-color: #ffffff;
+      -fx-text-fill:#2f4a6f;
+    -fx-font-family: "Roboto Light";
+    -fx-border-width: 0.4;
+    -fx-border-color: #dbdee4;
 
   }
-  #COMBOBOX{/* правая панелька */
+
+  #COMBOBOX .cell,#COMBOBOX  .indexed-cell,#COMBOBOX .list-cell{
+
+    -fx-text-fill:#2f4a6f;
+    -fx-font-family: "Roboto Light";
+      -fx-font-size: 14;
+  }
+
+  #COMBOBOX, .combo-box-base, .combo-box{
   -fx-background-color:#ffffff;
-  -fx-border-width: 1;
   -fx-border-color: #cfc0c0;
   -fx-background-insets: 0, 0, 0, 0;
+  -fx-border-width: 0.3  0.3  0.3  0.3 ;
+  -fx-border-style: solid;
+  -fx-border-color:#494c50;
   }
+
 
   /* #COMBOBOX .list-cell{
   -fx-border-width: 0.5 0 0.5 0.5;
@@ -163,6 +187,9 @@
   -fx-border-width: 0.5 0 0.5 0.5;
   -fx-border-color: #373232;
   -fx-background-insets: 0, 0, 0, 0;
+  -fx-text-fill:#2f4a6f;
+-fx-font-family: "Roboto Light";
+
   }
 
   /* #COMBOBOX .combo-box-popup{
