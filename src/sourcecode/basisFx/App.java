@@ -5,6 +5,7 @@ import basisFx.appCore.menu.MenuFabric;
 import basisFx.appCore.settings.StylesPathes;
 import basisFx.appCore.utils.CSSHandler;
 import basisFx.appCore.utils.Registry;
+import basisFx.appCore.windows.WindowImplMain;
 import basisFx.presentation.MainMenuSketch;
 import basisFx.presentation.appStructura.LeftAndTopMenuGuiStructura;
 import javafx.stage.Stage;
@@ -22,11 +23,7 @@ public class App{
         Registry.windowFabric.mainWindow(new LeftAndTopMenuGuiStructura(), primaryStage);
         DbFactory.createDbServer();
         MenuFabric.createMenuLeftSideRepresentation( new MainMenuSketch());
-//      ScenicView.show(WindowImplMain.getInstance().getWindowAbstraction().getScene());
-
-
-
-
+//        ScenicView.show(WindowImplMain.getInstance().getWindowAbstraction().getScene());
 
     }
     

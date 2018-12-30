@@ -3,7 +3,7 @@ package basisFx.appCore.windows;
 
 import basisFx.appCore.elements.AnchorWrapper;
 import basisFx.appCore.elements.ButtonWrapper;
-import basisFx.appCore.events.ClosePopupWindow;
+import basisFx.appCore.events.ClosePopupAndSubWindow;
 import basisFx.appCore.settings.CSSID;
 import basisFx.appCore.settings.FontsStore;
 import basisFx.appCore.utils.Coordinate;
@@ -50,7 +50,7 @@ public class ButtonsForStageSingle extends ButtonsForStage {
                         .setCSSid(CSSID.TOP_CONTROL_SINGLE_BUTTON)
                         .setParentAnchor(buttonsAnchor)
                         .setStage(windowAbstraction.getStage())
-                        .setEvents(new ClosePopupWindow())
+                        .setEvents(new ClosePopupAndSubWindow())
                         .setText(closeStr)
                         .setMetaName("closingButton")
                         .setContentDisplay(ContentDisplay.CENTER)
