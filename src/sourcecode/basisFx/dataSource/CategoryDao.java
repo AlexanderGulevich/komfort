@@ -109,9 +109,9 @@ package basisFx.dataSource;
 //             domaine.setLeftId(rs.getInt("leftId") );
 //             domaine.setLevelId(rs.getInt("levelId"));
 //             domaine.setRightId(rs.getInt("rightId"));
-//             domaine.setCategoryNameOfTnp(rs.getString("metaName") );
+//             domaine.setCategoryNameOfTnp(rs.getName("metaName") );
 //             domaine.setIsExpanded(rs.getInt("isExpanded"));
-//             domaine.setShortName(rs.getString("shortName"));
+//             domaine.setShortName(rs.getName("shortName"));
 //             
 //             ctc.setPojo(domaine);
 //                 
@@ -377,8 +377,8 @@ package basisFx.dataSource;
 //                 domaine.setLeftId(rs.getInt("leftId"));
 //                 domaine.setLevelId(rs.getInt("levelId"));
 //                 domaine.setRightId(rs.getInt("rightId"));
-//                 domaine.setShortName(rs.getString("shortName"));
-//                 domaine.setCategoryNameOfTnp(rs.getString("metaName"));
+//                 domaine.setShortName(rs.getName("shortName"));
+//                 domaine.setCategoryNameOfTnp(rs.getName("metaName"));
 //                                 
 //            }
 //        return domaine;

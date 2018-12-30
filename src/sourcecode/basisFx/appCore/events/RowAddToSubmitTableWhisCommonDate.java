@@ -3,8 +3,7 @@ package basisFx.appCore.events;
 import basisFx.appCore.elements.AppNode;
 import basisFx.appCore.elements.TableWrapper;
 import basisFx.domain.ActiveRecord;
-import basisFx.service.ServiceAutoPushTableAndCommonDate;
-import basisFx.service.ServiceTableAndCommonDate;
+import basisFx.service.ServiceAutoCommitTableByCommonDate;
 import javafx.scene.control.Button;
 
 public class RowAddToSubmitTableWhisCommonDate<T> extends AppEvent{
@@ -29,7 +28,7 @@ public class RowAddToSubmitTableWhisCommonDate<T> extends AppEvent{
         try {
             ActiveRecord newInstance = (ActiveRecord) tableWrapper.activeRecordClass.newInstance();
             if (tableWrapper.isItemListExist()
-                    && ((ServiceAutoPushTableAndCommonDate) tableWrapper.getServiceMediator()).
+                    && ((ServiceAutoCommitTableByCommonDate) tableWrapper.getServiceMediator()).
                           getDatePickerWrapper().getDate()!=null) {
                     tableWrapper.getItems().add(newInstance);
                     tableWrapper.scrollToItem(newInstance);

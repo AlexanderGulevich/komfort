@@ -1,6 +1,9 @@
 package basisFx.presentation.targets;
+import basisFx.appCore.elements.ComboBoxWrapper;
 import basisFx.appCore.grid.ButPositionTop;
 import basisFx.appCore.grid.ButtonsSizeForGridLittle;
+import basisFx.appCore.settings.CSSID;
+import basisFx.appCore.utils.RangeForCombobox;
 import basisFx.service.ServiceTwoLinkedTable;
 import basisFx.appCore.elements.TableWrapper;
 import basisFx.appCore.grid.GridSingleTable;
@@ -83,6 +86,25 @@ public class EmployeesPanel extends TargetPanel {
         mediatorServiceTwoLinkedTable.setAccessoryTableWrapper(rightTableWrapper);
         mediatorServiceTwoLinkedTable.setPrimaryTableWrapper(leftTableWrapper);
         mediatorServiceTwoLinkedTable.initElements();
+
+
+
+        ComboBoxWrapper.newBuilder()
+                .setCoordinate(new Coordinate(0d, 15d, null, null))
+                .setCssid(CSSID.COMBOBOX)
+                .setParentAnchor(innerAnchorPane)
+                .setStartRange(RangeForCombobox.DAY30)
+                .setServiceMediator(mediatorServiceTwoLinkedTable)
+                .setComboboxValues(RangeForCombobox.getAsList(
+                        RangeForCombobox.DAY30,
+                        RangeForCombobox.DAY60,
+                        RangeForCombobox.DAY30,
+                        RangeForCombobox.DAY90,
+                        RangeForCombobox.ACTUAL
+                        )
+                )
+
+                .build();
     }
 
 

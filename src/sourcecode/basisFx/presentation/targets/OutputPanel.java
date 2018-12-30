@@ -9,11 +9,11 @@ import basisFx.appCore.table.ColumnWrapperInt;
 import basisFx.appCore.utils.Coordinate;
 import basisFx.domain.*;
 import basisFx.presentation.TargetPanel;
-import basisFx.service.ServiceAutoPushTableAndCommonDate;
+import basisFx.service.ServiceAutoCommitTableByCommonDate;
 
 public class OutputPanel  extends TargetPanel {
 
-    ServiceAutoPushTableAndCommonDate mediator = new ServiceAutoPushTableAndCommonDate();
+    ServiceAutoCommitTableByCommonDate mediator = new ServiceAutoCommitTableByCommonDate();
     @Override
     public void init() {
 

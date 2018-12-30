@@ -13,7 +13,7 @@ import javafx.scene.control.TableColumn;
 
 import java.time.LocalDate;
 
-public class ServiceAutoPushTableAndCommonDate extends ServiceMediator{
+public class ServiceAutoCommitTableByCommonDate extends ServiceMediator{
     private TableWrapper tableWrapper;
     private DatePickerWrapper datePickerWrapper;
 //    private ButtonWrapper buttonWrapper;

@@ -13,11 +13,11 @@ import basisFx.appCore.utils.Coordinate;
 import basisFx.domain.Employer;
 import basisFx.domain.TimeRecordingForEmployers;
 import basisFx.presentation.TargetPanel;
-import basisFx.service.ServiceAutoPushTableAndCommonDate;
+import basisFx.service.ServiceAutoCommitTableByCommonDate;
 
 public class TimeRecordingPanel extends TargetPanel {
 
-    ServiceAutoPushTableAndCommonDate mediator = new ServiceAutoPushTableAndCommonDate();
+    ServiceAutoCommitTableByCommonDate mediator = new ServiceAutoCommitTableByCommonDate();
 
     @Override
     public void init() {
