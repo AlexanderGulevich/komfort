@@ -12,21 +12,26 @@ import javafx.stage.StageStyle;
 
 public class WindowAbstractionUndecorated extends WindowAbstraction {
 
-    public WindowAbstractionUndecorated(Stage st, WindowImpl implimentation, GuiStructura structura) {
-        super(st,implimentation,structura);
-        stage.initStyle(StageStyle.TRANSPARENT);
-        stage.show();
+    public WindowAbstractionUndecorated(Stage primaryStage, WindowImpl implimentation, GuiStructura structura) {
+        super(primaryStage,implimentation,structura);
+        this.primaryStage.initStyle(StageStyle.TRANSPARENT);
+        this.primaryStage.show();
     }
 
     public WindowAbstractionUndecorated(WindowImpl implimentation, GuiStructura structura) {
         super(implimentation,structura);
-        stage.initStyle(StageStyle.TRANSPARENT);
-        stage.show();
+        primaryStage.initStyle(StageStyle.TRANSPARENT);
+        primaryStage.show();
+    }
+    public WindowAbstractionUndecorated(WindowImpl implimentation) {
+        super(implimentation);
+        primaryStage.initStyle(StageStyle.TRANSPARENT);
+        primaryStage.show();
     }
 
     protected void createScene() {
         scene= new Scene(root, this.windowImpl.getWidth(), this.windowImpl.getHeight());
-        stage.setScene(scene);
+        primaryStage.setScene(scene);
         scene.setFill(Color.TRANSPARENT);
         CSSHandler.getInstanse().loadStylesToScene(scene);
     }
@@ -37,6 +42,7 @@ public class WindowAbstractionUndecorated extends WindowAbstraction {
         root= AnchorWrapper.newBuilder()
                 .setCSSid(CSSID.TRANSPARENT_ROOT)
                 .setInsects(new Insets(3d, 3d, 3d, 3d))
+                .setMetaName("Root")
                 .build()
                 .getElement();
     }

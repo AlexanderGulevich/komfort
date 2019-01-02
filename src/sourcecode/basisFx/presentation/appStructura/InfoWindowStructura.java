@@ -9,7 +9,6 @@ import basisFx.appCore.settings.CSSID;
 import basisFx.appCore.settings.FontsStore;
 import basisFx.appCore.utils.Coordinate;
 import javafx.geometry.Pos;
-import org.scenicview.ScenicView;
 
 public class InfoWindowStructura extends GuiStructura {
     @Override
@@ -21,7 +20,7 @@ public class InfoWindowStructura extends GuiStructura {
                 .setParentAnchor(windowAbstraction.getRoot())
                 .setCoordinate(new Coordinate(0d, 0d, null, 0d))
                 .setEvents(new StageDragging())
-                .setStage(windowAbstraction.getStage())
+                .setStage(windowAbstraction.getPrimaryStage())
                 .build();
 
         AnchorWrapper contentAnchor = AnchorWrapper.newBuilder()

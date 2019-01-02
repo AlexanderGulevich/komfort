@@ -1,7 +1,6 @@
 package basisFx.appCore.fabrics;
 
 import basisFx.appCore.windows.*;
-import basisFx.presentation.TargetPanel;
 import basisFx.presentation.appStructura.GuiStructura;
 import basisFx.appCore.utils.Registry;
 import basisFx.appCore.windows.WindowAbstraction;
@@ -46,8 +45,13 @@ public class WindowUndecoratedFabric  extends WindowFabric{
     }
 
     @Override
-    public WindowAbstraction subWindow(TargetPanel target, double width, double height) {
-        return null;
+    public WindowAbstraction subWindow(WindowBuilder builder) {
+
+        WindowImplSubWindow windowImplSubWindow=new WindowImplSubWindow( builder);
+        WindowAbstractionUndecorated windowUndecorated=new WindowAbstractionUndecorated(windowImplSubWindow);
+        new ButtonsForStageSingle(windowUndecorated);
+        Registry.subWindow=windowUndecorated;
+        return windowUndecorated;
     }
 
     @Override

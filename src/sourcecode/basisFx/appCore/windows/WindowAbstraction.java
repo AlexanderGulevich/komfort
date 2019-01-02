@@ -14,7 +14,7 @@ import java.util.HashMap;
 
 public abstract class WindowAbstraction {
 
-    protected Stage stage;
+    protected Stage primaryStage;
     protected Scene scene;
     protected AnchorPane root;
     protected AnchorPane topVisiblePanel;
@@ -23,7 +23,7 @@ public abstract class WindowAbstraction {
     private HashMap<String,AppNode> nodesHashMap =new HashMap<>();
 
     public WindowAbstraction(WindowImpl windowImpl, GuiStructura structura) {
-        this.stage=new Stage();
+        this.primaryStage =new Stage();
         this.windowImpl = windowImpl;
         this.windowImpl.setWindowAbstraction(this);
         this.structura=structura;
@@ -34,8 +34,18 @@ public abstract class WindowAbstraction {
         windowImpl.init();
 
     }
-    public WindowAbstraction(Stage st, WindowImpl windowImpl, GuiStructura structura) {
-        stage=st;
+    public WindowAbstraction(WindowImpl windowImpl ) {
+        this.primaryStage =new Stage();
+        this.windowImpl = windowImpl;
+        this.windowImpl.setWindowAbstraction(this);
+        initRoot();
+        initTopVisiblePanel();
+        createScene();
+        windowImpl.init();
+
+    }
+    public WindowAbstraction(Stage primaryStage, WindowImpl windowImpl, GuiStructura structura) {
+        this.primaryStage =primaryStage;
         this.windowImpl = windowImpl;
         this.windowImpl.setWindowAbstraction(this);
         this.structura=structura;
@@ -51,7 +61,7 @@ public abstract class WindowAbstraction {
 
     private void initStructuraNods(GuiStructura structura) {
 
-        structura.setStage(stage);
+        structura.setStage(primaryStage);
         structura.setWindowAbstraction(this);
         structura.init();
     }
@@ -66,20 +76,27 @@ public abstract class WindowAbstraction {
     protected abstract void initRoot();
 
     private void initTopVisiblePanel() {
-        topVisiblePanel = AnchorWrapper.newBuilder()
+
+        AnchorWrapper anchorWrapper = AnchorWrapper.newBuilder()
                 .setParentAnchor(root)
-                .setCoordinate( new Coordinate(0d, 0d, 0d, 0d) )
+                .setCoordinate(new Coordinate(0d, 0d, 0d, 0d))
                 .setCSSid(CSSID.TopVisiblePanel)
-                .build()
-                .getElement();
+                .setMetaName("TopVisiblePanel")
+                .build();
+
+        setNod(anchorWrapper);
+        topVisiblePanel =anchorWrapper.getElement();
+
     }
+
+
 
     public Scene getScene() {
         return scene;
     }
 
-    public Stage getStage() {
-        return stage;
+    public Stage getPrimaryStage() {
+        return primaryStage;
     }
 
     public AnchorPane getRoot() {

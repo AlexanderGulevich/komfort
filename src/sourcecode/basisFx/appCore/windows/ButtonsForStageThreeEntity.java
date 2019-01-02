@@ -50,7 +50,7 @@ public class    ButtonsForStageThreeEntity extends ButtonsForStage {
                         .setCoordinate(new Coordinate(topMatgin, 0d, null, null))
                         .setCSSid(CSSID.TOP_CONTROL_BUTTON)
                         .setParentAnchor(buttonsAnchor)
-                        .setStage(windowAbstraction.getStage())
+                        .setStage(windowAbstraction.getPrimaryStage())
                         .setEvents(new CloseMainWindow())
                         .setText(closeStr)
                         .setContentDisplay(ContentDisplay.CENTER)
@@ -67,7 +67,7 @@ public class    ButtonsForStageThreeEntity extends ButtonsForStage {
                         .setCoordinate(new Coordinate(topMatgin, width + width, null, null))
                         .setCSSid(CSSID.TOP_CONTROL_BUTTON)
                         .setParentAnchor(buttonsAnchor)
-                        .setStage(windowAbstraction.getStage())
+                        .setStage(windowAbstraction.getPrimaryStage())
                         .setText(hideStr)
                         .setContentDisplay(ContentDisplay.CENTER)
                         .build();
@@ -83,7 +83,7 @@ public class    ButtonsForStageThreeEntity extends ButtonsForStage {
                         .setCoordinate(new Coordinate(topMatgin, width, null, null))
                         .setCSSid(CSSID.TOP_CONTROL_BUTTON)
                         .setParentAnchor(buttonsAnchor)
-                        .setStage(windowAbstraction.getStage())
+                        .setStage(windowAbstraction.getPrimaryStage())
                         .setText(maximazeStr)
                         .setContentDisplay(ContentDisplay.CENTER)
                         .build();

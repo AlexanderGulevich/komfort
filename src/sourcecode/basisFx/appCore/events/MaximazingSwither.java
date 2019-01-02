@@ -41,8 +41,8 @@ public class MaximazingSwither extends AppEvent{
             Stage stage = nodeWrapper.getStage();
             AnchorPane root=(AnchorPane) stage.getScene().getRoot();
 
-//            if (stage.isMaximized()) {
-//                if (stage.isFullScreen()) {
+//            if (primaryStage.isMaximized()) {
+//                if (primaryStage.isFullScreen()) {
             if (max) {
 
                   max=false;
@@ -70,9 +70,9 @@ public class MaximazingSwither extends AppEvent{
 
                  root.setPadding(new Insets(0d, 0d, 0d, 0d));
 
-//                nodeWrapper.getStage().setIconified(true);
-//                nodeWrapper.getStage().setMaximized(true);
-//                nodeWrapper.getStage().setFullScreen(true);
+//                nodeWrapper.getPrimaryStage().setIconified(true);
+//                nodeWrapper.getPrimaryStage().setMaximized(true);
+//                nodeWrapper.getPrimaryStage().setFullScreen(true);
 
 
                 Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();

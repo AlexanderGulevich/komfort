@@ -1,6 +1,6 @@
 //package basisFx.appCore.fabrics;
 //
-//import basisFx.appCore.KindOfSubmitElement;
+//import basisFx.appCore.StandartAnchorsNames;
 //import basisFx.appCore.table.ColumnWrapper;
 //import basisFx.domain.ActiveRecord;
 //import basisFx.appCore.nods.AppNode;
@@ -34,7 +34,7 @@
 //    }
 //
 //
-//    public TableWrapper submitTable(KindOfSubmitElement mark, AnchorPane panel, double width, Coordinate coordinate,
+//    public TableWrapper submitTable(StandartAnchorsNames mark, AnchorPane panel, double width, Coordinate coordinate,
 //                                    ActiveRecord activeRecord,
 //                                    ColumnWrapper...columnWrappers){
 //

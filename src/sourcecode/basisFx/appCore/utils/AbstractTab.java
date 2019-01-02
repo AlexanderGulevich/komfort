@@ -8,7 +8,7 @@ package basisFx.appCore.utils;
 //import javafx.scene.control.Alert;
 //import javafx.scene.control.ButtonType;
 //import javafx.scene.layout.AnchorPane;
-//import javafx.stage.Modality;
+//import javafx.primaryStage.Modality;
 //
 //public abstract class AbstractTab{
 //    

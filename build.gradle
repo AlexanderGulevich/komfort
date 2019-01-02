@@ -2,6 +2,7 @@ plugins {
   id 'com.gradle.build-scan' version '1.11'
   id 'java'
     id 'edu.sc.seis.launch4j' version '2.4.4'
+    id "com.jfrog.bintray" version "1.7"
 }
 apply plugin: 'java'
 apply plugin: 'project-report'
@@ -127,10 +128,15 @@ dependencies {
     compile group: 'org.apache.logging.log4j', name: 'log4j-1.2-api', version: '2.11.0'
     compile group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.11.0'
     compile group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.11.0'
+    compile 'com.jfoenix:jfoenix:8.0.8' // Java 8
+//    compile group: 'org.controlsfx', name: 'controlsfx', version: '9.0.0' // Java 9
+    compile group: 'org.controlsfx', name: 'controlsfx', version: '8.40.14'
 
     compile group : 'org.hsqldb', name: 'hsqldb', version: '2.4.0'
 
     compile group: 'xerces', name: 'xercesImpl', version: '2.11.0'
+
+    compile group: 'de.jensd', name: 'fontawesomefx', version: '8.9'
 //    compile 'com.google.guava:guava:27.0-jre'
 //    compile group: 'us.fatehi', name: 'schemacrawler-hsqldb', version: '14.17.04'
     

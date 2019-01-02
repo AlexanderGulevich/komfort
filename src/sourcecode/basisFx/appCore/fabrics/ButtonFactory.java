@@ -126,7 +126,7 @@ public class ButtonFactory {
 
 
     }
-//    public Button submitButton(KindOfSubmitElement mark, Submitted...submitted){
+//    public Button submitButton(StandartAnchorsNames mark, Submitted...submitted){
 //
 //        return (Button)AppNode.NodeBuilder.create()
 //                .setId(CSSID.PANELS_BUTTON)
@@ -137,13 +137,13 @@ public class ButtonFactory {
 //
 //
 //    }
-//    public Button popupCloseOkButton( AnchorPane panel, Coordinate coordinate, Stage stage){
+//    public Button popupCloseOkButton( AnchorPane panel, Coordinate coordinate, Stage primaryStage){
 //
 //        return (Button)AppNode.NodeBuilder.create()
 //                .setId(CSSID.PANELS_BUTTON)
 //                .setParent(panel)
 //                .setCoordinate(coordinate)
-//                .setStage(stage)
+//                .setStage(primaryStage)
 //                .setText("ОК").setFont(FontsStore.ROBOTO_BOLD, 17)
 //                .setWidth(50d).setHeight(30d)
 //                .setEvent(eventFactory.closingPopup())

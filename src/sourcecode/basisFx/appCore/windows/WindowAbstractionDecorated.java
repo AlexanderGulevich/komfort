@@ -14,26 +14,26 @@ public  class WindowAbstractionDecorated extends WindowAbstraction {
 
     public WindowAbstractionDecorated(Stage st, WindowImpl implimentation, GuiStructura structura) {
         super(implimentation,structura);
-        stage=st;
-        stage.initStyle(StageStyle.DECORATED);
-        stage.setTitle(windowImpl.getTitleName());
-        stage.show();
+        primaryStage =st;
+        primaryStage.initStyle(StageStyle.DECORATED);
+        primaryStage.setTitle(windowImpl.getTitleName());
+        primaryStage.show();
     }
 
     @Override
     protected void createScene() {
         scene= new Scene(root, this.windowImpl.getWidth(), this.windowImpl.getHeight());
-        stage.setScene(scene);
+        primaryStage.setScene(scene);
         scene.setFill(Color.TRANSPARENT);
         CSSHandler.getInstanse().loadStylesToScene(scene);
     }
 
     public WindowAbstractionDecorated(WindowImpl implimentation, GuiStructura structura) {
         super(implimentation,structura);
-        stage=new Stage();
-        stage.initStyle(StageStyle.DECORATED);
-        stage.setTitle(windowImpl.getTitleName());
-        stage.show();
+        primaryStage =new Stage();
+        primaryStage.initStyle(StageStyle.DECORATED);
+        primaryStage.setTitle(windowImpl.getTitleName());
+        primaryStage.show();
     }
 
     @Override

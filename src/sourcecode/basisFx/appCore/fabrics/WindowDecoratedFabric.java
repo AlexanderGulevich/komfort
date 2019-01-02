@@ -1,12 +1,9 @@
 package basisFx.appCore.fabrics;
 
-import basisFx.appCore.windows.WindowAbstraction;
+import basisFx.appCore.windows.*;
 import basisFx.presentation.TargetPanel;
 import basisFx.presentation.appStructura.GuiStructura;
 import basisFx.appCore.utils.Registry;
-import basisFx.appCore.windows.WindowImplMain;
-import basisFx.appCore.windows.WindowAbstractionDecorated;
-import basisFx.appCore.windows.WindowImpl;
 import javafx.stage.Stage;
 
 
@@ -36,7 +33,7 @@ public class WindowDecoratedFabric extends WindowFabric {
     }
 
     @Override
-    public WindowAbstraction subWindow(TargetPanel target, double width, double height) {
+    public WindowAbstraction subWindow(WindowBuilder builder) {
         return null;
     }
 
