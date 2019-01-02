@@ -29,7 +29,7 @@ public class App{
 
         Registry.windowFabric.subWindow(
                 WindowBuilder.newBuilder()
-                .setFxmlFileName("q")
+                .setFxmlFileName("qq")
                 .setHeight(400d)
                 .setWidth(800d)
                 .setTitle("111111111")

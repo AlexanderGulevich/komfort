@@ -38,8 +38,6 @@
       -fx-background-insets: 0, 0, 0, 0;
       -fx-background-radius: 0;
       -fx-border-width: 0 0 0 0.4;
-      -fx-background-color:#ffffff;
-      -fx-border-width: 0.5;
       -fx-border-color: #9da4a8;
       -fx-background-radius: 0;
       -fx-border-radius:0;
@@ -161,13 +159,6 @@
       -fx-font-size: 14;
   }
 
-  #COMBOBOX .cell,#COMBOBOX  .indexed-cell,#COMBOBOX .list-cell{
-
-    -fx-text-fill:#2f4a6f;
-    -fx-font-family: "Roboto Light";
-      -fx-font-size: 14;
-  }
-
   #COMBOBOX, .combo-box-base, .combo-box{
   -fx-background-color:#ffffff;
   -fx-border-color: #cfc0c0;
@@ -197,11 +188,9 @@
   /* #COMBOBOX .combo-box-popup{
   -fx-background-color:#ffffff;
   }
-
   #COMBOBOX .list-view{
   -fx-background-color:#ffffff;
   }
-
   #COMBOBOX .list-cell{
   -fx-background-color:#ffffff;
   }
