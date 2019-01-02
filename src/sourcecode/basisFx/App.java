@@ -26,6 +26,7 @@ public class App{
         MenuFabric.createMenuLeftSideRepresentation( new MainMenuSketch());
 //        ScenicView.show(WindowImplMain.getInstance().getWindowAbstraction().getScene());
 
+
         Registry.windowFabric.subWindow(
                 WindowBuilder.newBuilder()
                 .setFxmlFileName("q")
@@ -34,6 +35,7 @@ public class App{
                 .setTitle("111111111")
                 .build()
         );
+
 
     }
     
