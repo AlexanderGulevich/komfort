@@ -154,7 +154,6 @@
     -fx-font-family: "Roboto Light";
     -fx-border-width: 0.4;
     -fx-border-color: #dbdee4;
-<<<<<<< HEAD
 
   }
 
@@ -172,7 +171,6 @@
       -fx-font-size: 14;
   }
 
->>>>>>> cc4a79f831da4b7c17565c428fae2dd91abf770f
   #COMBOBOX, .combo-box-base, .combo-box{
   -fx-background-color:#ffffff;
   -fx-border-color: #cfc0c0;
