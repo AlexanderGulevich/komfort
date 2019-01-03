@@ -4,6 +4,7 @@ import basisFx.appCore.events.AppEvent;
 import basisFx.appCore.settings.CSSID;
 import basisFx.appCore.settings.FontsStore;
 import basisFx.appCore.utils.Coordinate;
+import basisFx.appCore.windows.WindowAbstraction;
 import javafx.geometry.Insets;
 import javafx.scene.Group;
 import javafx.scene.control.ScrollPane;
@@ -42,8 +43,11 @@ public class AnchorWrapper  extends AppNode  {
         font = builder.font;
         fontSize = builder.fontSize;
         stage=builder.stage;
+        windowAbstraction=builder.windowAbstraction;
+        setElementToWindowRegistry();
 
         bond(this);
+
         applyWidth();
         applyHeight();
         applyCssId();
@@ -77,6 +81,7 @@ public class AnchorWrapper  extends AppNode  {
 
 
     public static final class Builder {
+        public WindowAbstraction windowAbstraction;
         private Stage stage;
         private ArrayList<AppEvent> events;
         private CSSID cssid;
@@ -94,6 +99,11 @@ public class AnchorWrapper  extends AppNode  {
 
 
         private Builder() {
+        }
+
+        public Builder setWindowAbstraction(WindowAbstraction windowAbstraction) {
+            this.windowAbstraction = windowAbstraction;
+            return this;
         }
 
         public Builder setStage(Stage stage) {

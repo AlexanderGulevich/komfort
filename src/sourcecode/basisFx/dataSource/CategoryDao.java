@@ -20,8 +20,8 @@ package basisFx.dataSource;
 //   Connection connecttion=Stable.getInstance().getDb().getConnection();
 //           
 //
-//    public void insert(String metaName, Integer levelId, Integer  rightId , Integer leftId ) throws SQLException {
-//        String sql = "INSERT INTO ordersCategory(metaName,levelId,rightId,leftId,isExpanded) VALUES(?,?,?,?,?)";
+//    public void insert(DefaultPanelsNames metaName, Integer levelId, Integer  rightId , Integer leftId ) throws SQLException {
+//        DefaultPanelsNames sql = "INSERT INTO ordersCategory(metaName,levelId,rightId,leftId,isExpanded) VALUES(?,?,?,?,?)";
 //
 //        PreparedStatement pstmt = connecttion.prepareStatement(sql);
 //            pstmt.setMetaName(1, metaName);
@@ -33,11 +33,11 @@ package basisFx.dataSource;
 //            pstmt.executeUpdate();
 //
 //}
-//    public void insertToRoot(String metaName) throws SQLException {
+//    public void insertToRoot(DefaultPanelsNames metaName) throws SQLException {
 //        
 //            int maxId=0;
 //        
-//            String sql ="SELECT Max(rightId) as maxRightId FROM ordersCategory";
+//            DefaultPanelsNames sql ="SELECT Max(rightId) as maxRightId FROM ordersCategory";
 //            
 //            Statement stmt =connecttion.createStatement();
 //
@@ -60,10 +60,10 @@ package basisFx.dataSource;
 //            
 //             
 //}
-//    public void insertToParentNode(String metaName, Integer parentLevel, Integer parentRightId ) throws SQLException {
+//    public void insertToParentNode(DefaultPanelsNames metaName, Integer parentLevel, Integer parentRightId ) throws SQLException {
 //            
 //         //Обновляем ключи существующего дерева, узлы стоящие за родительским узлом:
-//          String sql_1 = "UPDATE ordersCategory SET leftId =leftId +2,"
+//          DefaultPanelsNames sql_1 = "UPDATE ordersCategory SET leftId =leftId +2,"
 //                  + " rightId=rightId+2 "
 //                + "WHERE leftId > ?";
 //          
@@ -73,7 +73,7 @@ package basisFx.dataSource;
 //          
 //          
 //          //Обновляем родительскую ветку, а не конкретно родительский узел
-//          String sql_2 = "UPDATE ordersCategory SET rightId =rightId +2"
+//          DefaultPanelsNames sql_2 = "UPDATE ordersCategory SET rightId =rightId +2"
 //                + " WHERE rightId >= ? "
 //                  + "AND leftId<?";
 //          
@@ -82,7 +82,7 @@ package basisFx.dataSource;
 //          pstmt_2.setInt(2, parentRightId);
 //          pstmt_2.executeUpdate();
 //          
-//          String sql_3 = "INSERT INTO ordersCategory(metaName,levelId,rightId,leftId,isExpanded) VALUES(?,?,?,?,?)";
+//          DefaultPanelsNames sql_3 = "INSERT INTO ordersCategory(metaName,levelId,rightId,leftId,isExpanded) VALUES(?,?,?,?,?)";
 //
 //            PreparedStatement pstmt_3 = connecttion.prepareStatement(sql_3);
 //            pstmt_3.setMetaName(1, metaName);
@@ -96,7 +96,7 @@ package basisFx.dataSource;
 //        
 //}
 //    public CategoryCommunicator selectAllCategories(CategoryCommunicator ctc) throws SQLException {
-//        String sql = "SELECT * FROM ordersCategory ORDER BY leftId";
+//        DefaultPanelsNames sql = "SELECT * FROM ordersCategory ORDER BY leftId";
 //
 //        Statement stmt  = connecttion.createStatement();
 //        
@@ -122,8 +122,8 @@ package basisFx.dataSource;
 //        return ctc;
 //            
 //}
-//    public void updateCategoryLongName(int id, String metaName) throws SQLException {
-//        String sql = "UPDATE ordersCategory SET metaName = ?  "
+//    public void updateCategoryLongName(int id, DefaultPanelsNames metaName) throws SQLException {
+//        DefaultPanelsNames sql = "UPDATE ordersCategory SET metaName = ?  "
 //                + "WHERE ordersCategoryId = ?";
 // 
 //        
@@ -137,7 +137,7 @@ package basisFx.dataSource;
 //
 //    }
 //    public void delete(int leftKeyOfDelete, int rightKeyOfDelete ) throws SQLException {
-//        String sql_1 = "DELETE FROM ordersCategory "
+//        DefaultPanelsNames sql_1 = "DELETE FROM ordersCategory "
 //                + "WHERE leftId >= ?  "
 //                + "AND rightId <= ? ";
 // 
@@ -149,7 +149,7 @@ package basisFx.dataSource;
 //            pstmt_1.executeUpdate();
 //
 //
-//        String sql_2 = "UPDATE ordersCategory SET "
+//        DefaultPanelsNames sql_2 = "UPDATE ordersCategory SET "
 //                + "  rightId = rightId-(?-?+1)  "
 //                + " WHERE rightId > ? "
 //                + " AND leftId<?";    
@@ -163,7 +163,7 @@ package basisFx.dataSource;
 //            pstmt_2.executeUpdate();
 //        
 //
-//        String sql_3 = "UPDATE ordersCategory SET "
+//        DefaultPanelsNames sql_3 = "UPDATE ordersCategory SET "
 //                + "  leftId = leftId-(?-?+1),"
 //                + "  rightId=rightId-(?-?+1)"
 //                + " WHERE leftId > ? "
@@ -180,7 +180,7 @@ package basisFx.dataSource;
 //        
 //    }
 //    public void closeAllExpandedItems() throws SQLException {
-//       String sql = "UPDATE ordersCategory SET "
+//       DefaultPanelsNames sql = "UPDATE ordersCategory SET "
 //                + "  isExpanded = 0  ";
 //               
 //
@@ -189,7 +189,7 @@ package basisFx.dataSource;
 //            pstmt.executeUpdate();
 //    }
 //    public void setExpandedItem(Integer id) throws SQLException {
-//       String sql = "UPDATE ordersCategory SET "
+//       DefaultPanelsNames sql = "UPDATE ordersCategory SET "
 //                + "  isExpanded = 1  "
 //               + " WHERE ordersCategoryId=?";
 //               
@@ -204,7 +204,7 @@ package basisFx.dataSource;
 //    }
 //    public Integer getParentId(CategoryPojo domaine) throws SQLException {
 //                
-//       String sql = "SELECT ordersCategoryId From ordersCategory "
+//       DefaultPanelsNames sql = "SELECT ordersCategoryId From ordersCategory "
 //               + " WHERE leftId <=  ? "
 //               + " AND rightId >= ?"
 //               + " AND levelId = ? - 1 "
@@ -227,7 +227,7 @@ package basisFx.dataSource;
 //
 //    }
 //    public void setClosedItem(Integer id) throws SQLException {
-//       String sql = "UPDATE ordersCategory SET "
+//       DefaultPanelsNames sql = "UPDATE ordersCategory SET "
 //                + "  isExpanded = 0  "
 //               + " WHERE ordersCategoryId=?";
 //               
@@ -240,9 +240,9 @@ package basisFx.dataSource;
 //       
 //            pstmt.executeUpdate();
 //    }
-//    public void updateCategoryShortName(Integer id, String shortName) throws SQLException {
+//    public void updateCategoryShortName(Integer id, DefaultPanelsNames shortName) throws SQLException {
 //       
-//            String sql = "UPDATE ordersCategory SET shortName = ?  "
+//            DefaultPanelsNames sql = "UPDATE ordersCategory SET shortName = ?  "
 //                + "WHERE ordersCategoryId = ?";
 // 
 //        
@@ -278,7 +278,7 @@ package basisFx.dataSource;
 //        
 //        
 //              //Обновляем правый ключ  targetPojo и родительских узлов 
-//          String sql_1 = "UPDATE ordersCategory SET "
+//          DefaultPanelsNames sql_1 = "UPDATE ordersCategory SET "
 //                  + " rightId=rightId  + 2 "
 //                 + "WHERE ordersCategoryId IN "
 //                  + "(SELECT ordersCategoryId FROM ordersCategory   "
@@ -293,7 +293,7 @@ package basisFx.dataSource;
 //        
 //          
 //    //Уменьшаю правые ключи родительских узлов ветки, из которой происходит изъятие
-//          String sql_4= "UPDATE ordersCategory SET "
+//          DefaultPanelsNames sql_4= "UPDATE ordersCategory SET "
 //                  + "rightId=rightId-2 "
 //                  + "WHERE ordersCategoryId IN "
 //                  + "(SELECT ordersCategoryId FROM ordersCategory   "
@@ -305,7 +305,7 @@ package basisFx.dataSource;
 //          pstmt_4.executeUpdate();
 //
 //     //Уменьшаю ключи правее перемещаемого
-//          String sql_2= "UPDATE ordersCategory SET leftId =leftId -2,"
+//          DefaultPanelsNames sql_2= "UPDATE ordersCategory SET leftId =leftId -2,"
 //                  + " rightId=rightId-2 "
 //                + " WHERE leftId > ?";
 //          
@@ -315,7 +315,7 @@ package basisFx.dataSource;
 //          
 //          
 //    //Увеличивать ключи существующего дерева правее targetPojo
-//          String sql_7= "UPDATE ordersCategory SET leftId =leftId +2,"
+//          DefaultPanelsNames sql_7= "UPDATE ordersCategory SET leftId =leftId +2,"
 //                  + " rightId=rightId+2 "
 //                  + " WHERE leftId > ?";
 //          
@@ -328,7 +328,7 @@ package basisFx.dataSource;
 //          if (!dynamicElements.hasDescendants()) {
 //         
 //        //Увеличиваю правый ключ targetPojo, делая его веткой а не листом
-//          String sql_10 = "UPDATE ordersCategory SET "
+//          DefaultPanelsNames sql_10 = "UPDATE ordersCategory SET "
 //                  + " rightId=rightId  +1 "
 //                + " WHERE ordersCategoryId = ?";
 //          
@@ -341,7 +341,7 @@ package basisFx.dataSource;
 //                
 //                   
 //         //Вставляю ключи для перемещаемого узла
-//          String sql_5 = "UPDATE ordersCategory SET "
+//          DefaultPanelsNames sql_5 = "UPDATE ordersCategory SET "
 //                  + " leftId =? +1,"
 //                  + " rightId=?  +2, "
 //                  + " levelId=? +1"
@@ -360,7 +360,7 @@ package basisFx.dataSource;
 //    }
 //    public  CategoryPojo retrieveSinglePojoesData(Integer id) throws SQLException {
 //       
-//    String sql = "  select * FROM ordersCategory  "
+//    DefaultPanelsNames sql = "  select * FROM ordersCategory  "
 //             
 //                + "  WHERE ordersCategoryId=? ";
 //        

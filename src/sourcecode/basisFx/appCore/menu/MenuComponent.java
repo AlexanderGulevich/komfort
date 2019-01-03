@@ -1,10 +1,10 @@
 package basisFx.appCore.menu;
 
-import basisFx.appCore.interfaces.TargetCreator;
+import basisFx.appCore.interfaces.DynamicContentPanelCreator;
 
 public abstract class MenuComponent {
 
-    protected TargetCreator targetCreator;
+    protected DynamicContentPanelCreator dynamicContentPanelCreator;
     protected MenuComponent parent;
     protected boolean isActive;
     protected boolean hasParent;
@@ -18,8 +18,8 @@ public abstract class MenuComponent {
         this.parent = parent;
     }
 
-    public TargetCreator getDynamicElementsCreator() {
-        return targetCreator;
+    public DynamicContentPanelCreator getDynamicElementsCreator() {
+        return dynamicContentPanelCreator;
     }
 
     public abstract boolean  isComposit();

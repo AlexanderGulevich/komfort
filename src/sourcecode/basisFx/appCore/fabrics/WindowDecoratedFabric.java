@@ -1,29 +1,24 @@
 package basisFx.appCore.fabrics;
 
 import basisFx.appCore.windows.*;
-import basisFx.presentation.TargetPanel;
-import basisFx.presentation.appStructura.GuiStructura;
-import basisFx.appCore.utils.Registry;
 import javafx.stage.Stage;
 
 
 public class WindowDecoratedFabric extends WindowFabric {
 
-    @Override
-    public WindowAbstraction mainWindow(GuiStructura structura, Stage stage) {
-        WindowImpl mainWindow = WindowImplMain.getInstance();
-        WindowAbstraction decorated=new WindowAbstractionDecorated(stage,mainWindow,structura);
-        Registry.mainWindow =decorated;
-        return decorated;
-    }
 
     @Override
-    public WindowAbstraction errorWindow(GuiStructura guiStructura) {
+    public WindowAbstraction mainWindow(Stage st, WindowBuilder builder) {
         return null;
     }
 
     @Override
-    public WindowAbstraction dialogWindow(GuiStructura guiStructura) {
+    public WindowAbstraction errorWindow(String message) {
+        return null;
+    }
+
+    @Override
+    public WindowAbstraction dialogWindow(String message) {
         return null;
     }
 
@@ -33,12 +28,12 @@ public class WindowDecoratedFabric extends WindowFabric {
     }
 
     @Override
-    public WindowAbstraction subWindow(WindowBuilder builder) {
+    public WindowAbstraction customSubWindow(WindowBuilder builder) {
         return null;
     }
 
     @Override
-    public WindowAbstraction tooltipWindow(GuiStructura guiStructura) {
+    public WindowAbstraction tooltipWindow(String message) {
         return null;
     }
 }

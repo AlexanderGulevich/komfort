@@ -1,7 +1,6 @@
 package basisFx.appCore.fabrics;
 
 import basisFx.appCore.windows.*;
-import basisFx.presentation.appStructura.GuiStructura;
 import basisFx.appCore.utils.Registry;
 import basisFx.appCore.windows.WindowAbstraction;
 import basisFx.appCore.windows.WindowAbstractionUndecorated;
@@ -11,51 +10,55 @@ import javafx.stage.Stage;
 
 public class WindowUndecoratedFabric  extends WindowFabric{
 
-    public WindowUndecoratedFabric() {
-        Registry.windowFabric=this;
-    }
-
     @Override
-    public WindowAbstraction mainWindow(GuiStructura structura, Stage stage) {
-        WindowImpl mainWindow = WindowImplMain.getInstance();
-        WindowAbstractionUndecorated windowUndecorated=new WindowAbstractionUndecorated(stage,mainWindow,structura);
-        new ButtonsForStageThreeEntity(windowUndecorated);
+    public WindowAbstraction mainWindow( Stage stage,WindowBuilder builder) {
+        WindowImpl mainWindow = WindowImplMain.getInstance(builder);
+        WindowAbstractionUndecorated windowUndecorated=new WindowAbstractionUndecorated(stage,mainWindow);
         Registry.mainWindow=windowUndecorated;
         return windowUndecorated;
     }
 
     @Override
-    public WindowAbstraction errorWindow(GuiStructura guiStructura) {
+    public WindowAbstraction errorWindow(String message) {
         return null;
     }
 
     @Override
-    public WindowAbstraction dialogWindow(GuiStructura guiStructura) {
+    public WindowAbstraction dialogWindow(String message) {
         return null;
     }
 
     @Override
     public WindowAbstraction infoWindow(String message) {
-        WindowImplInfo windowImplInfo = new WindowImplInfo(message) ;
-        InfoWindowStructura infoWindowStructura = new InfoWindowStructura();
-        WindowAbstractionUndecorated windowUndecorated=new WindowAbstractionUndecorated(windowImplInfo, infoWindowStructura);
-        new ButtonsForStageSingle(windowUndecorated);
+
+        WindowBuilder builder = WindowBuilder.newBuilder()
+                .setButtonsForStage(new ButtonsForStageSingle(InfoWindowStructura.Structura.titleAnchor.name()))
+                .setFxmlFileName(null)
+                .setGUIStructura(new InfoWindowStructura())
+                .setHeight(null)
+                .setWidth(null)
+                .setParentAnchorNameForFXML(null)
+                .setTargetCreater(null)
+                .setTitle("Внимание!")
+                .build();
+
+        WindowImplInfo windowImplInfo = new WindowImplInfo(builder,message) ;
+        WindowAbstractionUndecorated windowUndecorated=new WindowAbstractionUndecorated(windowImplInfo);
         Registry.infoWindow=windowUndecorated;
         return windowUndecorated;
     }
 
     @Override
-    public WindowAbstraction subWindow(WindowBuilder builder) {
+    public WindowAbstraction customSubWindow(WindowBuilder builder) {
 
         WindowImplSubWindow windowImplSubWindow=new WindowImplSubWindow( builder);
         WindowAbstractionUndecorated windowUndecorated=new WindowAbstractionUndecorated(windowImplSubWindow);
-        new ButtonsForStageSingle(windowUndecorated);
         Registry.subWindow=windowUndecorated;
         return windowUndecorated;
     }
 
     @Override
-    public WindowAbstraction tooltipWindow(GuiStructura guiStructura) {
+    public WindowAbstraction tooltipWindow(String message) {
         return null;
     }
 }

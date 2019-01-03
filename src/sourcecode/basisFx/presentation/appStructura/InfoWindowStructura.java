@@ -8,79 +8,82 @@ import basisFx.appCore.events.StageDragging;
 import basisFx.appCore.settings.CSSID;
 import basisFx.appCore.settings.FontsStore;
 import basisFx.appCore.utils.Coordinate;
+import basisFx.appCore.windows.WindowAbstraction;
 import javafx.geometry.Pos;
+import javafx.scene.layout.AnchorPane;
 
-public class InfoWindowStructura extends GuiStructura {
+public class InfoWindowStructura extends GUIStructura {
+    public  enum Structura {
+        titleAnchor,
+        contentAnchor,
+        messageTextAnchor,
+        textArea,
+        label,
+        iconText
+    }
     @Override
-    public void init() {
+    public void init(WindowAbstraction window) {
 
-        AnchorWrapper titleAnchor = AnchorWrapper.newBuilder()
-                .setMetaName("titleAnchor")
+        AnchorWrapper.newBuilder()
+                .setWindowAbstraction(window)
+                .setMetaName(Structura.titleAnchor.name())
                 .setHeight(45d)
-                .setParentAnchor(windowAbstraction.getRoot())
+                .setParentAnchor(window.getRoot())
                 .setCoordinate(new Coordinate(0d, 0d, null, 0d))
                 .setEvents(new StageDragging())
-                .setStage(windowAbstraction.getPrimaryStage())
+                .setStage(window.getStage())
                 .build();
 
-        AnchorWrapper contentAnchor = AnchorWrapper.newBuilder()
-                .setMetaName("contentAnchor")
+         AnchorWrapper.newBuilder()
+                .setWindowAbstraction(window)
+                 .setMetaName(Structura.contentAnchor.name())
                 .setHeight(145d)
-                .setParentAnchor(windowAbstraction.getRoot())
+                .setParentAnchor(window.getRoot())
                 .setCoordinate(new Coordinate(45d, 5d, 5d, 5d))
                 .build();
 
-        AnchorWrapper messageTextAnchor  = AnchorWrapper.newBuilder()
-                .setMetaName("messageTextAnchor")
+         AnchorWrapper.newBuilder()
+                .setWindowAbstraction(window)
+                .setMetaName(Structura.messageTextAnchor.name())
                 .setCSSid(CSSID.popupMessageTextPanel)
                 .setHeight(100d)
-                .setParentAnchor(contentAnchor.getElement())
+                .setParentAnchor(((AnchorPane) window.getNode("contentAnchor").getElement()))
                 .setCoordinate(new Coordinate(10d,80d,10d,10d))
                 .build();
 
-        TextAreaWrapper textArea=TextAreaWrapper.newBuilder()
-                .setParentAnchor(messageTextAnchor.getElement())
+         TextAreaWrapper.newBuilder()
+                .setWindowAbstraction(window)
+                .setParentAnchor(((AnchorPane) window.getNode("messageTextAnchor").getElement()))
                 .setIsWrapText(true)
                 .setCoordinate( new Coordinate(10d,10d,10d,10d))
                 .setFont(FontsStore.ROBOTO_LIGHT)
                 .setFontSize(25d)
                 .setIsEditable(false)
-                .setMetaName("textArea")
+                .setMetaName(Structura.textArea.name())
                 .setCssid(CSSID.PopupTextArea)
                 .build();
 
-        LabelWrapper label=LabelWrapper.newBuilder()
-                .setMetaName("label")
+         LabelWrapper.newBuilder()
+                .setWindowAbstraction(window)
+                .setMetaName(Structura.label.name())
                 .setCssid(CSSID.PopupTitleText)
                 .setFontSize(30d)
                 .setFont(FontsStore.ROBOTO_BOLD)
                 .setAlignment(Pos.CENTER_LEFT)
                 .setCoordinate(new Coordinate(10d,0d,null,10d))
-                .setParentAnchor(titleAnchor.getElement())
+                 .setParentAnchor(((AnchorPane) window.getNode("titleAnchor").getElement()))
                 .build();
 
-        TextWrapper iconText=TextWrapper.newBuilder()
-                .setMetaName("iconText")
+         TextWrapper.newBuilder()
+                .setWindowAbstraction(window)
+                .setMetaName(Structura.iconText.name())
                 .setText( "  \uF06A ")
                 .setCssid(CSSID.ALERT_ICON)
                 .setFont( FontsStore.FAWESOME5SOLID)
                 .setFontSize(50d)
                 .setCoordinate(new Coordinate(60d, 4d,null,null))
-                .setParentAnchor(windowAbstraction.getTopVisibleAnchor())
+                .setParentAnchor(window.getTopVisibleAnchor())
                 .build();
-
-
-        windowAbstraction.setNod(titleAnchor);
-        windowAbstraction.setNod(contentAnchor);
-        windowAbstraction.setNod(messageTextAnchor);
-        windowAbstraction.setNod(textArea);
-        windowAbstraction.setNod(label);
-        windowAbstraction.setNod(iconText);
-
-
-//        ScenicView.show(windowAbstraction.getScene());
-
-
 
     }
 }

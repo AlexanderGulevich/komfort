@@ -1,5 +1,4 @@
-package basisFx.presentation.targets;
-
+package basisFx.presentation.dynamicContents;
 
 import basisFx.appCore.elements.TableWrapper;
 import basisFx.appCore.grid.ButPositionTop;
@@ -7,23 +6,25 @@ import basisFx.appCore.grid.ButtonsSizeForGridLittle;
 import basisFx.appCore.grid.GridSingleTable;
 import basisFx.appCore.grid.GridTwoBondGrids;
 import basisFx.appCore.elements.GridPaneWrapper;
+import basisFx.presentation.DynamicContentPanel;
 import basisFx.service.ServiceTwoLinkedTable;
 import basisFx.appCore.table.ColumnWrapperComboBox;
 import basisFx.appCore.table.ColumnWrapperDate;
 import basisFx.appCore.table.ColumnWrapperDouble;
 import basisFx.appCore.utils.Coordinate;
-import basisFx.domain.*;
-import basisFx.presentation.TargetPanel;
+import basisFx.domain.Counterparty;
+import basisFx.domain.PaperPrice;
+import basisFx.domain.Sleeve;
 
-public class SleevePanel  extends TargetPanel {
+public class PaperPanel  extends DynamicContentPanel {
     private boolean gridVisibility=false;
     private ServiceTwoLinkedTable mediatorServiceTwoLinkedTable =new ServiceTwoLinkedTable();
 
     @Override
-    public void init() {
+    public void customeInit() {
 
         TableWrapper leftTableWrapper = TableWrapper.newBuilder()
-                .setGridName("Втулка ")
+                .setGridName("Бумага ")
                 .setGridOrganization(new GridSingleTable(new ButtonsSizeForGridLittle(),new ButPositionTop()))
                 .setActiveRecordClass(Sleeve.class)
                 .setUnitOfWork(unitOfWork)
@@ -44,7 +45,7 @@ public class SleevePanel  extends TargetPanel {
         TableWrapper rightTableWrapper = TableWrapper.newBuilder()
                 .setGridName("Архив цен ")
                 .setGridOrganization(new GridSingleTable(new ButtonsSizeForGridLittle(),new ButPositionTop()))
-                .setActiveRecordClass(SleevePrice.class)
+                .setActiveRecordClass(PaperPrice.class)
                 .setUnitOfWork(unitOfWork)
                 .setIsEditable(true)
                 .setIsSortableColums(false)
@@ -65,12 +66,11 @@ public class SleevePanel  extends TargetPanel {
                 )
                 .build();
 
-
         GridPaneWrapper commonGridPaneWrapper = GridPaneWrapper.newBuilder()
                 .setColumnVsPercent(60)
                 .setColumnVsPercent(40)
-                .setGridName("Поставщики втулок и цены")
-                .setParentAnchor(innerAnchorPane)
+                .setGridName("Поставщики бумаги и цены")
+                .setParentAnchor(dynamicContentAnchorHolder)
                 .setCoordinate(new Coordinate(0d, 10d, 10d, 0d))
                 .setGridLinesVisibility(gridVisibility)
                 .setGridOrganization(
@@ -86,7 +86,5 @@ public class SleevePanel  extends TargetPanel {
         mediatorServiceTwoLinkedTable.setPrimaryTableWrapper(leftTableWrapper);
         mediatorServiceTwoLinkedTable.initElements();
     }
-
-
 
 }

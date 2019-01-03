@@ -1,30 +1,23 @@
 package basisFx.appCore.windows;
 
-import basisFx.appCore.utils.FXMLFileLoader;
-import javafx.collections.ObservableList;
-import javafx.scene.Node;
-import javafx.scene.layout.AnchorPane;
+import basisFx.appCore.settings.Settings;
+
+import java.math.BigDecimal;
 
 
 public class WindowImplSubWindow extends WindowImpl{
 
-    private  String messagge;
-    private  AnchorPane anchorFromFXML ;
-
     public WindowImplSubWindow(WindowBuilder builder) {
-        super(builder.width, builder.height, builder.title);
-        this.messagge=messagge;
-
-        anchorFromFXML = FXMLFileLoader.load(builder.fxmlFileName);
-
+        super(builder);
     }
-
     @Override
-    public void init() {
-
-        AnchorPane topVisiblePanel = (AnchorPane) windowAbstraction.getNode("TopVisiblePanel").getElement();
-        ObservableList<Node> children = topVisiblePanel.getChildren();
-        children.addAll(anchorFromFXML);
+    protected void setDefaultWidthAndHeight() {
+        width=BigDecimal.valueOf(Settings.WIDTH).multiply(BigDecimal.valueOf(0.7d)).doubleValue();
+        height=BigDecimal.valueOf(Settings.HEIGHT).multiply(BigDecimal.valueOf(0.7d)).doubleValue();
+    }
+    @Override
+    public void customInit(WindowAbstraction windowAbstraction) {
 
     }
+
 }

@@ -69,8 +69,8 @@ public class ColumnWrapperString<T> extends ColumnWrapper{
         value=value.trim();
         value=value;
 //        int row = event.getTablePosition().getRow();
-//        ObservableValue<String> observableValue = event.getTableColumn().getCellObservableValue(row);
-//        String value= observableValue.getValue().trim();
+//        ObservableValue<DefaultPanelsNames> observableValue = event.getTableColumn().getCellObservableValue(row);
+//        DefaultPanelsNames value= observableValue.getValue().trim();
         if (value.length()==0){
             Registry.windowFabric.infoWindow("Вы ввели в поле ввода пустую строку!");
             return false;

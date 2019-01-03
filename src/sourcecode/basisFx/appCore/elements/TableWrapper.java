@@ -1,6 +1,7 @@
 package basisFx.appCore.elements;
 
 import basisFx.appCore.grid.GridOrganization;
+import basisFx.appCore.windows.WindowAbstraction;
 import basisFx.service.ServiceMediator;
 import basisFx.appCore.table.ColumnWrapper;
 import basisFx.appCore.events.AppEvent;
@@ -73,6 +74,8 @@ public  class TableWrapper extends AppNode  {
         gridOrganization=builder.gridOrganization;
         gridName=builder.gridName;
         className=builder.className;
+        windowAbstraction=builder.windowAbstraction;
+        setElementToWindowRegistry();
 
         createActiveRecord(builder);
         element =new TableView<>();
@@ -299,6 +302,7 @@ public  class TableWrapper extends AppNode  {
     }
 
     public static final class Builder {
+        public WindowAbstraction windowAbstraction;
         private Class activeRecordClass;
         private ReadOnlyDoubleProperty parentWidthProperty;
         private double widthPercent;
@@ -329,6 +333,9 @@ public  class TableWrapper extends AppNode  {
             return this;
         }
 
+        public void setWindowAbstraction(WindowAbstraction windowAbstraction) {
+            this.windowAbstraction = windowAbstraction;
+        }
 
         public  Builder setGridOrganization(GridOrganization gridOrganization) {
             this.gridOrganization = gridOrganization;

@@ -1,8 +1,8 @@
-//package basisFx.presentation.targets;
+//package basisFx.presentation.dynamicContents;
 //
 //import basisFx.appCore.nods.TableWrapper;
 //
-//public class EmployeesFiredPanel extends TargetPanel {
+//public class EmployeesFiredPanel extends DynamicContentPanel {
 //
 //    private TableWrapper tableWrapper;
 //

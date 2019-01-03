@@ -1,4 +1,4 @@
-package basisFx.presentation.targets;
+package basisFx.presentation.dynamicContents;
 
 import basisFx.appCore.elements.GridPaneWrapper;
 import basisFx.appCore.elements.TableWrapper;
@@ -7,14 +7,14 @@ import basisFx.service.ServiceTwoLinkedTable;
 import basisFx.appCore.table.*;
 import basisFx.appCore.utils.Coordinate;
 import basisFx.domain.*;
-import basisFx.presentation.TargetPanel;
+import basisFx.presentation.DynamicContentPanel;
 
-public class PacketPanel  extends TargetPanel {
+public class PacketPanel  extends DynamicContentPanel {
     private ServiceTwoLinkedTable mediatorServiceTwoLinkedTable1 =new ServiceTwoLinkedTable();
     private ServiceTwoLinkedTable mediatorServiceTwoLinkedTable2 =new ServiceTwoLinkedTable();
     boolean isGridVisibility=false;
     @Override
-    public void init() {
+    public void customeInit() {
 
         TableWrapper t1 = TableWrapper.newBuilder()
                 .setGridLinesVisibility(isGridVisibility)
@@ -115,7 +115,7 @@ public class PacketPanel  extends TargetPanel {
         GridPaneWrapper commonGridPaneWrapper = GridPaneWrapper.newBuilder()
                 .setGridLinesVisibility(isGridVisibility)
                 .setGridName("Управление информацией о пакетах")
-                .setParentAnchor(innerAnchorPane)
+                .setParentAnchor(dynamicContentAnchorHolder)
                 .setCoordinate(new Coordinate(0d, 10d, 10d, 0d))
                 .setGridOrganization(
                         new GridTwoVerticaGrids(

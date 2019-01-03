@@ -1,7 +1,6 @@
 package basisFx.appCore.windows;
 
 import basisFx.appCore.utils.CSSHandler;
-import basisFx.presentation.appStructura.GuiStructura;
 import basisFx.appCore.elements.AnchorWrapper;
 import basisFx.appCore.settings.CSSID;
 import javafx.geometry.Insets;
@@ -12,28 +11,28 @@ import javafx.stage.StageStyle;
 
 public  class WindowAbstractionDecorated extends WindowAbstraction {
 
-    public WindowAbstractionDecorated(Stage st, WindowImpl implimentation, GuiStructura structura) {
-        super(implimentation,structura);
-        primaryStage =st;
-        primaryStage.initStyle(StageStyle.DECORATED);
-        primaryStage.setTitle(windowImpl.getTitleName());
-        primaryStage.show();
+    public WindowAbstractionDecorated(Stage st, WindowImpl implimentation) {
+        super(implimentation);
+        stage =st;
+        stage.initStyle(StageStyle.DECORATED);
+        stage.setTitle(windowImpl.getTitleName());
+        stage.show();
     }
 
     @Override
     protected void createScene() {
         scene= new Scene(root, this.windowImpl.getWidth(), this.windowImpl.getHeight());
-        primaryStage.setScene(scene);
+        stage.setScene(scene);
         scene.setFill(Color.TRANSPARENT);
         CSSHandler.getInstanse().loadStylesToScene(scene);
     }
 
-    public WindowAbstractionDecorated(WindowImpl implimentation, GuiStructura structura) {
-        super(implimentation,structura);
-        primaryStage =new Stage();
-        primaryStage.initStyle(StageStyle.DECORATED);
-        primaryStage.setTitle(windowImpl.getTitleName());
-        primaryStage.show();
+    public WindowAbstractionDecorated(WindowImpl implimentation) {
+        super(implimentation);
+        stage =new Stage();
+        stage.initStyle(StageStyle.DECORATED);
+        stage.setTitle(windowImpl.getTitleName());
+        stage.show();
     }
 
     @Override

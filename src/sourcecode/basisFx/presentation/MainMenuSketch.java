@@ -2,7 +2,7 @@ package basisFx.presentation;
 
 import basisFx.appCore.menu.*;
 import basisFx.appCore.settings.FontsStore;
-import basisFx.presentation.targets.*;
+import basisFx.presentation.dynamicContents.*;
 
 public class MainMenuSketch extends MenuSketch {
 
@@ -21,15 +21,15 @@ public class MainMenuSketch extends MenuSketch {
                         .build().add(
                             FontItemLeaf.newBuilder()
                                     .setDescription("Учет времени")
-                                    .setTargetCreator(TimeRecordingPanel ::new )
+                                    .setDynamicContentPanelCreator(TimeRecordingPanel ::new )
                                     .build(),
                             FontItemLeaf.newBuilder()
                                     .setDescription("Учет выходной продукции")
-                                    .setTargetCreator(OutputPanel ::new )
+                                    .setDynamicContentPanelCreator(OutputPanel ::new )
                                     .build(),
                             FontItemLeaf.newBuilder()
                                     .setDescription("Учет джамбо-ролей")
-                                    .setTargetCreator(JumboAccountingPanel::new)
+                                    .setDynamicContentPanelCreator(JumboAccountingPanel::new)
                                     .build()
                 ),
 
@@ -40,7 +40,7 @@ public class MainMenuSketch extends MenuSketch {
 //                        .build().add(
 //                              FontItemLeaf.newBuilder()
 //                                      .setDescription("Дневная выработка")
-////                                      .setTargetCreator(fm.dailyOutputPanel())
+////                                      .setDynamicContentPanelCreator(fm.dailyOutputPanel())
 //                                      .build()
 //                ),
 //
@@ -52,19 +52,19 @@ public class MainMenuSketch extends MenuSketch {
                         .build().add(
                                 FontItemLeaf.newBuilder()
                                         .setDescription("Затраты")
-//                                        .setTargetCreator(fm.dailyOutputPanel())
+//                                        .setDynamicContentPanelCreator(fm.dailyOutputPanel())
                                         .build(),
                                 FontItemLeaf.newBuilder()
                                         .setDescription("Валюты")
-//                                        .setTargetCreator(fm.dailyOutputPanel())
+//                                        .setDynamicContentPanelCreator(fm.dailyOutputPanel())
                                         .build(),
                                 FontItemLeaf.newBuilder()
                                         .setDescription("Выход")
-//                                        .setTargetCreator(fm.dailyOutputPanel())
+//                                        .setDynamicContentPanelCreator(fm.dailyOutputPanel())
                                         .build(),
                                 FontItemLeaf.newBuilder()
                                         .setDescription("Рентабельность")
-//                                        .setTargetCreator(fm.dailyOutputPanel())
+//                                        .setDynamicContentPanelCreator(fm.dailyOutputPanel())
                                         .build()
                 ),
 
@@ -76,11 +76,11 @@ public class MainMenuSketch extends MenuSketch {
 
                         FontItemLeaf.newBuilder()
                                 .setDescription("Сотрудники")
-                                .setTargetCreator(EmployeesPanel::new)
+                                .setDynamicContentPanelCreator(EmployeesPanel::new)
                                 .build(),
                         FontItemLeaf.newBuilder()
                                 .setDescription("Уволенные")
-//                                        .setTargetCreator(fm.employeesFiredPanel())
+//                                        .setDynamicContentPanelCreator(fm.employeesFiredPanel())
                                 .build()
                 ),
 
@@ -91,23 +91,23 @@ public class MainMenuSketch extends MenuSketch {
                         .build().add(
                         FontItemLeaf.newBuilder()
                                 .setDescription("Пакеты")
-                                .setTargetCreator(PacketPanel::new)
+                                .setDynamicContentPanelCreator(PacketPanel::new)
                                 .build(),
                         FontItemLeaf.newBuilder()
                                 .setDescription("Этикетки")
-                                .setTargetCreator(LabelPanel::new)
+                                .setDynamicContentPanelCreator(LabelPanel::new)
                                 .build(),
                         FontItemLeaf.newBuilder()
                                 .setDescription("Втулки")
-                                .setTargetCreator(SleevePanel::new)
+                                .setDynamicContentPanelCreator(SleevePanel::new)
                                 .build(),
                         FontItemLeaf.newBuilder()
                                 .setDescription("Бумага")
-                                .setTargetCreator(PaperPanel::new)
+                                .setDynamicContentPanelCreator(PaperPanel::new)
                                 .build(),
                         FontItemLeaf.newBuilder()
                                 .setDescription("Джамбо")
-                                .setTargetCreator(JumboPanel::new)
+                                .setDynamicContentPanelCreator(JumboPanel::new)
                                 .build()
                 ),
 
@@ -118,19 +118,19 @@ public class MainMenuSketch extends MenuSketch {
                         .build().add(
                             FontItemLeaf.newBuilder()
                                     .setDescription("Продукция")
-                                    .setTargetCreator(ProductPanel::new)
+                                    .setDynamicContentPanelCreator(ProductPanel::new)
                                     .build(),
                             FontItemLeaf.newBuilder()
                                     .setDescription("Станки")
-                                    .setTargetCreator(EquipmentPanel::new)
+                                    .setDynamicContentPanelCreator(EquipmentPanel::new)
                                     .build(),
                             FontItemLeaf.newBuilder()
                                     .setDescription("Контрагенты")
-                                    .setTargetCreator(CounterpartyPanel::new)
+                                    .setDynamicContentPanelCreator(CounterpartyPanel::new)
                                     .build(),
                             FontItemLeaf.newBuilder()
                                     .setDescription("Валюты")
-                                    .setTargetCreator(ExchangeRatesPanel::new)
+                                    .setDynamicContentPanelCreator(ExchangeRatesPanel::new)
                                     .build()
 
 

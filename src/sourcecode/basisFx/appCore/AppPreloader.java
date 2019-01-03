@@ -11,25 +11,16 @@ import basisFx.appCore.settings.CSSID;
 import static basisFx.appCore.settings.Settings.PRELODER_COUNT_LIMIT;
 
 import basisFx.appCore.utils.Coordinate;
-import basisFx.appCore.utils.TaskPanelIcomToPlatform;
+import basisFx.appCore.utils.IconToPlatform;
 import com.sun.javafx.application.LauncherImpl;
 import javafx.application.Platform;
 import javafx.application.Preloader;
-import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-
-import java.io.File;
-import java.io.IOException;
-import java.net.MalformedURLException;
-import java.nio.file.FileStore;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 
 public class AppPreloader extends Preloader {
 
@@ -75,7 +66,8 @@ public class AppPreloader extends Preloader {
     public void start(Stage primaryStage) throws Exception {
 
         stage=primaryStage;
-        new TaskPanelIcomToPlatform(stage);
+
+        IconToPlatform.init(stage);
         stage.setScene(scene);
         stage.initStyle(StageStyle.TRANSPARENT);
         stage.show();

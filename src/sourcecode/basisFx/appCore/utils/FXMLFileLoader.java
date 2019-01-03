@@ -11,9 +11,9 @@ import java.net.URL;
 public class FXMLFileLoader {
     public static AnchorPane load (String fxmlName){
 
-        String stringPath = System.getProperty("user.dir") + "/"+"/src/res/res/fxml/"+fxmlName+".fxml";
-        stringPath=stringPath.replace("\\","/");
-        File f = new File(stringPath);
+        String defaultPanelsNamesPath = System.getProperty("user.dir") + "/"+"/src/res/res/fxml/"+fxmlName+".fxml";
+        defaultPanelsNamesPath = defaultPanelsNamesPath.replace("\\","/");
+        File f = new File(defaultPanelsNamesPath);
 //
         boolean directory = f.isDirectory();
         boolean absolute = f.isAbsolute();
@@ -23,7 +23,7 @@ public class FXMLFileLoader {
 
         URL url=null;
         Parent parent=null;
-        File file=new File(stringPath);
+        File file=new File(defaultPanelsNamesPath);
 
 
         try {

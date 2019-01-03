@@ -4,6 +4,7 @@ import basisFx.appCore.grid.GridOrganization;
 import basisFx.appCore.settings.CSSID;
 import basisFx.appCore.settings.FontsStore;
 import basisFx.appCore.utils.Coordinate;
+import basisFx.appCore.windows.WindowAbstraction;
 import javafx.geometry.HPos;
 import javafx.geometry.Pos;
 import javafx.geometry.VPos;
@@ -42,6 +43,8 @@ public  class GridPaneWrapper extends AppNode {
         column=builder.columns;
         gridLinesVisibility=builder.gridLinesVisibility;
         gridOrganization =builder.gridOrganization;
+        windowAbstraction=builder.windowAbstraction;
+        setElementToWindowRegistry();
         applyLabel();
         applyRows();
         applyColums();
@@ -221,6 +224,7 @@ public  class GridPaneWrapper extends AppNode {
 
 
     public static final class Builder {
+        public WindowAbstraction windowAbstraction;
         private ArrayList<AppEvent> events;
         private CSSID cssid;
         private Double width;
@@ -236,6 +240,10 @@ public  class GridPaneWrapper extends AppNode {
         private ArrayList <RowConstraints> rows=new ArrayList<>();
         private boolean gridLinesVisibility;
         private GridOrganization gridOrganization;
+
+        public void setWindowAbstraction(WindowAbstraction windowAbstraction) {
+            this.windowAbstraction = windowAbstraction;
+        }
 
         public Builder setGridLinesVisibility(boolean gridLinesVisibility) {
             this.gridLinesVisibility = gridLinesVisibility;

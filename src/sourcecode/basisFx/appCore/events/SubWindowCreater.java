@@ -2,23 +2,23 @@
 //
 //import basisFx.appCore.elements.AppNode;
 //import basisFx.appCore.utils.Registry;
-//import basisFx.presentation.TargetPanel;
+//import basisFx.presentation.DynamicContentPanel;
 //import javafx.scene.control.Button;
 //
 //public class SubWindowCreater<T> extends AppEvent{
 //
 //    private Button but;
-//    private TargetPanel targetPanel;
+//    private DynamicContentPanel targetPanel;
 //    private double width;
 //    private double height;
 //
-//    public SubWindowCreater(TargetPanel targetPanel, double width, double height) {
+//    public SubWindowCreater(DynamicContentPanel targetPanel, double width, double height) {
 //        this.targetPanel = targetPanel;
 //        this.width = width;
 //        this.height = height;
 //    }
 //
-//    public SubWindowCreater(TargetPanel targetPanel ) {
+//    public SubWindowCreater(DynamicContentPanel targetPanel ) {
 //        this.targetPanel = targetPanel;
 //        this.width = 1000d;
 //        this.height = 700d;
@@ -34,7 +34,7 @@
 //
 //    @Override
 //    public void run() {
-//        Registry.windowFabric.subWindow(targetPanel,width,height);
+//        Registry.windowFabric.customSubWindow(targetPanel,width,height);
 //    }
 //
 //

@@ -1,4 +1,4 @@
-package basisFx.presentation.targets;
+package basisFx.presentation.dynamicContents;
 
 import basisFx.appCore.elements.DatePickerWrapper;
 import basisFx.appCore.elements.TableWrapper;
@@ -10,18 +10,18 @@ import basisFx.appCore.table.ColumnWrapperComboBox;
 import basisFx.appCore.table.ColumnWrapperDouble;
 import basisFx.appCore.utils.Coordinate;
 import basisFx.domain.*;
-import basisFx.presentation.TargetPanel;
+import basisFx.presentation.DynamicContentPanel;
 import basisFx.service.ServiceAutoCommitTableByCommonDate;
 
-public class JumboAccountingPanel extends TargetPanel {
+public class JumboAccountingPanel extends DynamicContentPanel {
     ServiceAutoCommitTableByCommonDate mediator = new ServiceAutoCommitTableByCommonDate();
 
     @Override
-    public void init() {
+    public void customeInit() {
 
         DatePickerWrapper datePickerWrapper = DatePickerWrapper.newBuilder()
                 .setCoordinate(new Coordinate(10d, null, null, 5d))
-                .setParentAnchor(innerAnchorPane)
+                .setParentAnchor(dynamicContentAnchorHolder)
                 .setServiceMediator(mediator)
                 .build();
 
@@ -52,7 +52,7 @@ public class JumboAccountingPanel extends TargetPanel {
         GridPaneWrapper.newBuilder()
                 .setGridOrganization(new GridSingleTable(tableWrapper,new ButtonsSizeForGridBig(),new ButPositionTop()))
                 .setGridName("Учет джамбо-ролей")
-                .setParentAnchor(innerAnchorPane)
+                .setParentAnchor(dynamicContentAnchorHolder)
                 .setCoordinate(new Coordinate(50d, 10d, 10d, 0d))
                 .setGridLinesVisibility(false)
                 .build();

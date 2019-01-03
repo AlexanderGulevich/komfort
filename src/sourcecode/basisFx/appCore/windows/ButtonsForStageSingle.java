@@ -1,6 +1,5 @@
 package basisFx.appCore.windows;
 
-
 import basisFx.appCore.elements.AnchorWrapper;
 import basisFx.appCore.elements.AppNode;
 import basisFx.appCore.elements.ButtonWrapper;
@@ -22,22 +21,12 @@ public class ButtonsForStageSingle extends ButtonsForStage {
     private Insets padding=new Insets(0d, 0d, 0d, 0d);
     private FontsStore fs=FontsStore.FAWESOME5SOLID;
 
-    public ButtonsForStageSingle(WindowAbstraction windowAbstraction) {
-        super(windowAbstraction);
-        init();
+    public ButtonsForStageSingle(String parentAnchorName) {
+        super(parentAnchorName);
     }
 
     @Override
-    protected void init() {
-        AnchorPane parentAnchor;
-        AppNode titleNode = windowAbstraction.getNode("titleAnchor");
-        if (titleNode != null) {
-            parentAnchor = (AnchorPane) titleNode.getElement();
-        }else {
-            parentAnchor=(AnchorPane) windowAbstraction.getTopVisibleAnchor();
-        }
-
-
+    protected void customInit() {
 
         buttonsAnchor =
                 AnchorWrapper.newBuilder()
@@ -60,7 +49,7 @@ public class ButtonsForStageSingle extends ButtonsForStage {
                         .setCoordinate(new Coordinate(topMatgin, 0d, null, null))
                         .setCSSid(CSSID.TOP_CONTROL_SINGLE_BUTTON)
                         .setParentAnchor(buttonsAnchor)
-                        .setStage(windowAbstraction.getPrimaryStage())
+                        .setStage(windowAbstraction.getStage())
                         .setEvents(new ClosePopupAndSubWindow())
                         .setText(closeStr)
                         .setMetaName("closingButton")

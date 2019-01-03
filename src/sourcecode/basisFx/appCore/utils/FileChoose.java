@@ -4,7 +4,7 @@ package basisFx.appCore.utils;
 //
 //import java.io.File;
 //import java.util.List;
-//import javafx.primaryStage.FileChooser;
+//import javafx.stage.FileChooser;
 // 
 //
 //public class FileChoose {
@@ -32,7 +32,7 @@ package basisFx.appCore.utils;
 //
 //    void chooseFile(){
 //        
-//      files =fileDialog.showOpenMultipleDialog(primaryStage);
+//      files =fileDialog.showOpenMultipleDialog(stage);
 //
 //    
 //    

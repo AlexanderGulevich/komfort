@@ -1,11 +1,6 @@
 package basisFx.appCore.windows;
-
-import basisFx.appCore.elements.AnchorWrapper;
 import basisFx.appCore.elements.ButtonWrapper;
-import basisFx.appCore.settings.CSSID;
-import basisFx.appCore.utils.Coordinate;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
 
 public abstract class ButtonsForStage {
 
@@ -13,15 +8,18 @@ public abstract class ButtonsForStage {
     protected ButtonWrapper  maximazeButton;
     protected ButtonWrapper  closingButton;
     protected AnchorPane buttonsAnchor;
-    protected Stage stage;
+    protected String parentAnchorName;
+    protected AnchorPane parentAnchor;
     protected WindowAbstraction windowAbstraction;
 
-
-    public ButtonsForStage(WindowAbstraction windowAbstraction) {
-        this.windowAbstraction = windowAbstraction;
+    public ButtonsForStage(String parentAnchorName) {
+        this.parentAnchorName = parentAnchorName;
     }
 
-
-    protected abstract void init();
-
+    protected abstract void customInit();
+    public  void initTemplateMethod(WindowAbstraction windowAbstraction){
+        this.windowAbstraction=windowAbstraction;
+        parentAnchor= ((AnchorPane) windowAbstraction.getNode(parentAnchorName).getElement());
+        customInit();
+    }
 }

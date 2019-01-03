@@ -1,6 +1,7 @@
 package basisFx.appCore.elements;
 
 import basisFx.appCore.events.AppEvent;
+import basisFx.appCore.windows.WindowAbstraction;
 import basisFx.service.ServiceMediator;
 import basisFx.appCore.settings.CSSID;
 import basisFx.appCore.utils.Coordinate;
@@ -43,6 +44,8 @@ public class DatePickerWrapper  extends AppNode{
         datePickerWrapper=this;
         applyWidth();
         createDatePicker();
+        windowAbstraction=builder.windowAbstraction;
+        setElementToWindowRegistry();
         bond(this);
     }
 
@@ -111,6 +114,7 @@ public class DatePickerWrapper  extends AppNode{
 
 
     public static final class Builder {
+        public WindowAbstraction windowAbstraction;
         private ArrayList<AppEvent> events;
         private CSSID cssid;
         private Double width;
@@ -125,6 +129,10 @@ public class DatePickerWrapper  extends AppNode{
         private ServiceMediator serviceMediator;
 
         private Builder() {
+        }
+
+        public void setWindowAbstraction(WindowAbstraction windowAbstraction) {
+            this.windowAbstraction = windowAbstraction;
         }
 
         public Builder setEvents(ArrayList<AppEvent> val) {

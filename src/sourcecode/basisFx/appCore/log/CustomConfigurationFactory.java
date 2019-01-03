@@ -27,7 +27,7 @@ public class CustomConfigurationFactory extends ConfigurationFactory {
 //                "ThresholdFilter", Filter.Result.ACCEPT, Filter.Result.NEUTRAL).addAttribute("level", Level.DEBUG));
 //
 //        AppenderComponentBuilder consoleBuilder = builder.newAppender("Stdout", "CONSOLE")
-//                .addAttribute("dynamicElements", ConsoleAppender.TargetPanel.SYSTEM_ERR);
+//                .addAttribute("dynamicElements", ConsoleAppender.DynamicContentPanel.SYSTEM_ERR);
 //        consoleBuilder.add(builder.newLayout("PatternLayout")
 //                .addAttribute("pattern", "%d [%t] %-5level: %msg%n%throwable"));
 //        consoleBuilder.add(builder.newFilter("MarkerFilter", Filter.Result.DENY,Filter.Result.NEUTRAL)

@@ -92,7 +92,7 @@ public class TimeRecordingForEmployers extends ActiveRecord implements RecordWit
     @Override
     public ObservableList<ActiveRecord> findAllByOuterId(int id) {
         ObservableList <ActiveRecord> list=createNewActiveRecordList();
-//        String expression="SELECT * FROM Employer TimeRecordingForEmployers where employerId= " +id;
+//        DefaultPanelsNames expression="SELECT * FROM Employer TimeRecordingForEmployers where employerId= " +id;
 //
 //        try {
 //            Statement stmt  = Db.connection.createStatement();

@@ -1,10 +1,8 @@
 package basisFx.appCore.windows;
 
-import basisFx.presentation.appStructura.GuiStructura;
-
 public class WindowImplError {
     private String message;
-//    public WindowImplError(GuiStructura structura) {
+//    public WindowImplError(GUIStructura structura) {
 //        super(structura,500d , 300d,"Ошибка");
 //    }
 //
@@ -13,7 +11,7 @@ public class WindowImplError {
 //
 //    }
 //
-//    public void setMessage(String message) {
+//    public void setMessage(DefaultPanelsNames message) {
 //        this.message = message;
 //    }
 

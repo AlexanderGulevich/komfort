@@ -1,8 +1,7 @@
 package basisFx.appCore.menu;
 
-import basisFx.appCore.interfaces.TargetCreator;
+import basisFx.appCore.interfaces.DynamicContentPanelCreator;
 import basisFx.appCore.settings.FontsStore;
-import basisFx.presentation.TargetPanel;
 
 public class FontItemComposite extends MenuComposite{
     protected String fontSymbol;
@@ -11,7 +10,7 @@ public class FontItemComposite extends MenuComposite{
     protected double fontSize;
 
     private FontItemComposite(Builder builder) {
-        targetCreator = builder.targetCreator;
+        dynamicContentPanelCreator = builder.dynamicContentPanelCreator;
         fontSymbol = builder.fontSymbol;
         fontsStore = builder.fontsStore;
         fontSize = builder.fontSize;
@@ -40,7 +39,7 @@ public class FontItemComposite extends MenuComposite{
     }
 
     public static final class Builder {
-        public TargetCreator targetCreator;
+        public DynamicContentPanelCreator dynamicContentPanelCreator;
         private boolean isActive;
         private String description;
         private String fontSymbol;
@@ -59,8 +58,8 @@ public class FontItemComposite extends MenuComposite{
         }
 
 
-        public Builder setTargetCreator(TargetCreator val) {
-            targetCreator = val;
+        public Builder setDynamicContentPanelCreator(DynamicContentPanelCreator val) {
+            dynamicContentPanelCreator = val;
             return this;
         }
 

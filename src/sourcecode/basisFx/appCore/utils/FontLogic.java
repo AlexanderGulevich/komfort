@@ -6,7 +6,6 @@
 package basisFx.appCore.utils;
 
 import basisFx.appCore.settings.FontsStore;
-import java.io.InputStream;
 import javafx.scene.text.Font;
 
 public class FontLogic {

@@ -182,7 +182,7 @@ public abstract class ActiveRecord {
 //     todo           Platform.runLater(() -> {
 //
 //
-//                    String message="В Базе Данных уже есть значение на дату: "
+//                    DefaultPanelsNames message="В Базе Данных уже есть значение на дату: "
 //                            + date.toString()+
 //                            ". Создать новую запись с такой же датой нельзя." +
 //                            " Вы можете изменить старую, либо удалить ее.";

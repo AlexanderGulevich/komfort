@@ -1,4 +1,4 @@
-package basisFx.presentation.targets;
+package basisFx.presentation.dynamicContents;
 
 
 import basisFx.appCore.elements.DatePickerWrapper;
@@ -12,18 +12,18 @@ import basisFx.appCore.table.ColumnWrapperDouble;
 import basisFx.appCore.utils.Coordinate;
 import basisFx.domain.Employer;
 import basisFx.domain.TimeRecordingForEmployers;
-import basisFx.presentation.TargetPanel;
+import basisFx.presentation.DynamicContentPanel;
 import basisFx.service.ServiceAutoCommitTableByCommonDate;
 
-public class TimeRecordingPanel extends TargetPanel {
+public class TimeRecordingPanel extends DynamicContentPanel {
 
     ServiceAutoCommitTableByCommonDate mediator = new ServiceAutoCommitTableByCommonDate();
 
     @Override
-    public void init() {
+    public void customeInit() {
 
 //        ButtonWrapper buttonWrapper = ButtonFactory.getInstance().submitButton(
-//                innerAnchorPane,
+//                dynamicContentAnchorHolder,
 //                new Coordinate(10d, 13d, null, null),
 //                mediator
 //        );
@@ -31,7 +31,7 @@ public class TimeRecordingPanel extends TargetPanel {
 
         DatePickerWrapper datePickerWrapper = DatePickerWrapper.newBuilder()
                 .setCoordinate(new Coordinate(10d, null, null, 5d))
-                .setParentAnchor(innerAnchorPane)
+                .setParentAnchor(dynamicContentAnchorHolder)
                 .setServiceMediator(mediator)
                 .build();
 
@@ -62,7 +62,7 @@ public class TimeRecordingPanel extends TargetPanel {
         GridPaneWrapper.newBuilder()
                 .setGridOrganization(new GridSingleTable(tableWrapper,new ButtonsSizeNon(),new ButPositionNotExist()))
                 .setGridName("Учет рабочего времени")
-                .setParentAnchor(innerAnchorPane)
+                .setParentAnchor(dynamicContentAnchorHolder)
                 .setCoordinate(new Coordinate(50d,10d,10d,0d))
                 .setGridLinesVisibility(false)
                 .build();

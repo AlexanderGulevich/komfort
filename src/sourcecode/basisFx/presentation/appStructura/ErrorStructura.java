@@ -1,10 +1,12 @@
 package basisFx.presentation.appStructura;
 
-public class ErrorStructura extends GuiStructura{
+import basisFx.appCore.windows.WindowAbstraction;
+
+public class ErrorStructura extends GUIStructura {
 
 
     @Override
-    public void init() {
+    public void init(WindowAbstraction window) {
 
 //        AppNode.NodeBuilder.create()
 //                .setParent(popupContentPanel.getPanel())
@@ -19,7 +21,7 @@ public class ErrorStructura extends GuiStructura{
 //        popupTitlePanel = panelFabric.popupTitlePanel(
 //                new AbstractPanel.PanelBuilder()
 //                        .setHeight(45d)
-//                        .setStage(windowUndecorated.getPrimaryStage())
+//                        .setStage(windowUndecorated.getStage())
 //                        .setPanelCoordinate(new Coordinate(0d, 0d, null, 0d))
 //                        .setParent(Layers.getPopupVisibleRoot())
 //
@@ -28,7 +30,7 @@ public class ErrorStructura extends GuiStructura{
 //                .setId(CSSID.popupTitlePanel)
 //                .setCoordinate(panelCoordinate)
 //                .setHeight(height)
-//                .setStage(primaryStage)
+//                .setStage(stage)
 //                .setEvent(eventFactory.stageDragging())
 //                .setParent(parent)
 //                .createAnchorPanelWrapper().getElement();
@@ -50,7 +52,7 @@ public class ErrorStructura extends GuiStructura{
 //                .setCoordinate( 0d, 0d, 0d, 0d)
 //                .setId(CSSID.TopVisiblePanel)
 //                .setParent(Layers.getPopupTransparentRoot())
-//                .setStage(windowUndecorated.getPrimaryStage())
+//                .setStage(windowUndecorated.getStage())
 //                .createAnchorPanelWrapper()
 //                .getElement();
 //
@@ -64,7 +66,7 @@ public class ErrorStructura extends GuiStructura{
 //        popupContentPanel = panelFabric.popupContentPanel(
 //                new AbstractPanel.PanelBuilder()
 //                        .setHeight(45d)
-//                        .setStage(windowUndecorated.getPrimaryStage())
+//                        .setStage(windowUndecorated.getStage())
 //                        .setPanelCoordinate(new Coordinate(45d, 5d, 5d, 5d))
 //                        .setParent(Layers.getPopupVisibleRoot())
 //        );
@@ -75,7 +77,7 @@ public class ErrorStructura extends GuiStructura{
 //                .setId(CSSID.popupContentPanel)
 //                .setCoordinate(panelCoordinate)
 //                .setHeight(height)
-//                .setStage(primaryStage)
+//                .setStage(stage)
 //                .setParent(parent)
 //                .createAnchorPanelWrapper().getElement();
 
@@ -117,7 +119,7 @@ public class ErrorStructura extends GuiStructura{
 //        buttonFactory.popupCloseOkButton(
 //                popupContentPanel.getPanel(),
 //                new Coordinate(null,15d,10d,null),
-//                windowUndecorated.getPrimaryStage()
+//                windowUndecorated.getStage()
 //        );
 //        windowUndecorated.windowShow();
 //

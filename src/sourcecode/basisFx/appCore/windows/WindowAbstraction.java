@@ -1,6 +1,6 @@
 package basisFx.appCore.windows;
 
-import basisFx.presentation.appStructura.GuiStructura;
+import basisFx.appCore.utils.IconToPlatform;
 import basisFx.appCore.elements.AnchorWrapper;
 import basisFx.appCore.elements.AppNode;
 import basisFx.appCore.settings.CSSID;
@@ -14,100 +14,61 @@ import java.util.HashMap;
 
 public abstract class WindowAbstraction {
 
-    protected Stage primaryStage;
+    protected Stage stage;
     protected Scene scene;
     protected AnchorPane root;
     protected AnchorPane topVisiblePanel;
     protected WindowImpl windowImpl;
-    protected GuiStructura structura;
-    private HashMap<String,AppNode> nodesHashMap =new HashMap<>();
+    public  enum DefaultPanelsNames {rootTransparent, topVisibleAnchor, mainContentAnchor}
+    protected HashMap<String,AppNode> nodesHashMap =new HashMap<>();
 
-    public WindowAbstraction(WindowImpl windowImpl, GuiStructura structura) {
-        this.primaryStage =new Stage();
-        this.windowImpl = windowImpl;
-        this.windowImpl.setWindowAbstraction(this);
-        this.structura=structura;
-        initRoot();
-        initTopVisiblePanel();
-        createScene();
-        initStructuraNods(structura);
-        windowImpl.init();
-
-    }
     public WindowAbstraction(WindowImpl windowImpl ) {
-        this.primaryStage =new Stage();
+        this.stage =new Stage();
+        IconToPlatform.init(stage);
         this.windowImpl = windowImpl;
-        this.windowImpl.setWindowAbstraction(this);
         initRoot();
         initTopVisiblePanel();
         createScene();
-        windowImpl.init();
-
+        windowImpl.initTemplateMethod(this);
     }
-    public WindowAbstraction(Stage primaryStage, WindowImpl windowImpl, GuiStructura structura) {
-        this.primaryStage =primaryStage;
+    public WindowAbstraction(Stage stage, WindowImpl windowImpl) {
+        this.stage = stage;
+        IconToPlatform.init(stage);
         this.windowImpl = windowImpl;
-        this.windowImpl.setWindowAbstraction(this);
-        this.structura=structura;
         initRoot();
         initTopVisiblePanel();
         createScene();
-        initStructuraNods(structura);
-        windowImpl.init();
-
+        windowImpl.initTemplateMethod(this);
     }
-
     protected abstract void createScene();
-
-    private void initStructuraNods(GuiStructura structura) {
-
-        structura.setStage(primaryStage);
-        structura.setWindowAbstraction(this);
-        structura.init();
-    }
-
-    public void setNod(AppNode node) {
+    public void setNodToMap(AppNode node) {
             nodesHashMap.put(node.getMetaName(),node);
     }
     public  AppNode getNode(String str){
         return nodesHashMap.get(str);
     }
-
     protected abstract void initRoot();
-
     private void initTopVisiblePanel() {
-
         AnchorWrapper anchorWrapper = AnchorWrapper.newBuilder()
                 .setParentAnchor(root)
                 .setCoordinate(new Coordinate(0d, 0d, 0d, 0d))
                 .setCSSid(CSSID.TopVisiblePanel)
-                .setMetaName("TopVisiblePanel")
+                .setMetaName(DefaultPanelsNames.topVisibleAnchor.name())
                 .build();
-
-        setNod(anchorWrapper);
+        setNodToMap(anchorWrapper);
         topVisiblePanel =anchorWrapper.getElement();
-
     }
-
-
-
     public Scene getScene() {
         return scene;
     }
-
-    public Stage getPrimaryStage() {
-        return primaryStage;
+    public Stage getStage() {
+        return stage;
     }
-
     public AnchorPane getRoot() {
         return root;
     }
-
     public AnchorPane getTopVisibleAnchor() {
         return topVisiblePanel;
     }
-
-
-
 
 }

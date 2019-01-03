@@ -1,10 +1,10 @@
-//package basisFx.presentation.targets;
+//package basisFx.presentation.dynamicContents;
 //
 //import basisFx.appCore.table.ColumnWrapper;
 //import basisFx.appCore.domainScetch.ComboBoxValue;
 //import basisFx.appCore.nods.AppNode;
 //import basisFx.appCore.nods.TableWrapper;
-//import basisFx.presentation.TargetPanel;
+//import basisFx.presentation.DynamicContentPanel;
 //import basisFx.domain.domaine.Country;
 //import basisFx.domain.domaine.Equipment;
 //import basisFx.appCore.settings.CSSID;
@@ -15,7 +15,7 @@
 // *
 // * @autor AlexanderGulevich
 // */
-//public class ScrollTarget extends TargetPanel {
+//public class ScrollTarget extends DynamicContentPanel {
 //
 //
 //
@@ -57,13 +57,13 @@
 //                .setActiveRecord(this.dataMapperFabric.getNamedDataMapper())
 //                .setDbTableName("Country").refresh()
 //                .setColums(
-//                        columnFabric.<Country,String>string(ColumnWrapper.Bulder.create()
+//                        columnFabric.<Country,DefaultPanelsNames>string(ColumnWrapper.Bulder.create()
 //                                        .setColumnName("Наименование")
 //                                        .setPropertyName("metaName")
 //                                        .setValueChecking(check.createTextCheck())
 //                                        .setColumnSize(1)
 //                                        .setDomainChanging(
-//                                                (obj,val)->{((ComboBoxValue)obj).setRate((String)val);}
+//                                                (obj,val)->{((ComboBoxValue)obj).setRate((DefaultPanelsNames)val);}
 //                                        )
 //                        )
 //                );

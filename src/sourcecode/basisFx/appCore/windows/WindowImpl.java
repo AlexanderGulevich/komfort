@@ -1,62 +1,79 @@
 package basisFx.appCore.windows;
 
 import basisFx.appCore.elements.AppNode;
+import basisFx.appCore.interfaces.DynamicContentPanelCreator;
+import basisFx.appCore.utils.FXMLFileLoader;
+import basisFx.presentation.appStructura.GUIStructura;
+import javafx.scene.layout.AnchorPane;
 
 public abstract class WindowImpl {
-
-    private double width;
-    private double height;
+    protected double width;
+    protected double height;
     protected WindowAbstraction windowAbstraction;
+    protected AnchorPane topLevelAnchorFromFXML;
     protected String titleName;
+    protected ButtonsForStage buttonsForStage;
+    protected GUIStructura GUIStructura;
+    protected DynamicContentPanelCreator dynamicContentPanelCreator;
+    protected String parentAnchorNameForFXML;
 
-    public WindowImpl(double width, double height, String titleName) {
-        setHeight(height);
-        setWidth(width);
-        setTitleName(titleName);
+    public WindowImpl(WindowBuilder builder) {
+        if (builder.fxmlFileName != null) {
+            topLevelAnchorFromFXML = FXMLFileLoader.load(builder.fxmlFileName);
+        }
+        if (builder.height != null && builder.width != null) {
+            height=builder.height;
+            width=builder.width;
+        }else {
+            setDefaultWidthAndHeight();
+        }
+        buttonsForStage=builder.buttonsForStage;
+        GUIStructura =builder.GUIStructura;
+        parentAnchorNameForFXML=builder.parentAnchorNameForFXML;
+        dynamicContentPanelCreator=builder.dynamicContentPanelCreator;
+        titleName=builder.title;
 
     }
-    public WindowImpl(double width, double height ) {
-        setHeight(height);
-        setWidth(width);
+    public WindowAbstraction getWindowAbstraction() {
+        return windowAbstraction;
     }
-
+    public AppNode getWindowNode(java.lang.String name) {
+        return windowAbstraction.getNode(name);
+    }
+    public String getTitleName() {
+        return titleName;
+    }
+    public void setWindowAbstraction(WindowAbstraction windowAbstraction) {
+        this.windowAbstraction = windowAbstraction;
+    }
+    protected abstract void setDefaultWidthAndHeight();
 
     public double getWidth() {
         return width;
-    }
-
-    public void setWidth(double width) {
-        this.width = width;
     }
 
     public double getHeight() {
         return height;
     }
 
-    public void setHeight(double height) {
-        this.height = height;
-    }
-
-    public void setWindowAbstraction(WindowAbstraction windowAbstraction) {
-        this.windowAbstraction = windowAbstraction;
-    }
-
-    public WindowAbstraction getWindowAbstraction() {
-        return windowAbstraction;
-    }
-
-    public AppNode getWindowNode(String name) {
-        return windowAbstraction.getNode(name);
-    }
-    public String getTitleName() {
-        return titleName;
-    }
-
-    public void setTitleName(String titleName) {
-        this.titleName = titleName;
-    }
-
     //этот метод необходим в случае если необходимо некое конфигурирование из абстракции моста,
     // после того как абстракция проинициализирована реализацией и реальзация содержит ссылку на абстрацию, хранящую узлы
-    public abstract void init();
+
+    public abstract void customInit(WindowAbstraction windowAbstraction);
+    public  void initTemplateMethod(WindowAbstraction windowAbstraction){
+
+        if (GUIStructura != null) {
+            GUIStructura.init(windowAbstraction);
+        }
+        if (buttonsForStage != null) {
+            buttonsForStage.initTemplateMethod(windowAbstraction);
+        }
+        if (parentAnchorNameForFXML != null && topLevelAnchorFromFXML != null ) {
+            ((AnchorPane) windowAbstraction.getNode(parentAnchorNameForFXML).getElement()).getChildren().add(topLevelAnchorFromFXML);
+        }
+        if (dynamicContentPanelCreator != null) {
+            dynamicContentPanelCreator.create().initTemplateMethod(windowAbstraction);
+        }
+        customInit(windowAbstraction);
+    }
 }

@@ -77,7 +77,7 @@
 //        private Group parentGroup;
 //        private FlowPaneWrapper parentFlowPane;
 //        private ScrollPane parentScrollPane;
-//        private String metaName;
+//        private DefaultPanelsNames metaName;
 //        private IMGpath path;
 //
 //        private Builder() {
@@ -128,7 +128,7 @@
 //            return this;
 //        }
 //
-//        public Builder setMetaName(String val) {
+//        public Builder setMetaName(DefaultPanelsNames val) {
 //            metaName = val;
 //            return this;
 //        }

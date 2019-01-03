@@ -5,6 +5,8 @@ import basisFx.appCore.events.AppEvent;
 import basisFx.appCore.settings.CSSID;
 import java.util.ArrayList;
 import java.util.Iterator;
+
+import basisFx.appCore.windows.WindowAbstraction;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.control.ScrollPane;
@@ -27,6 +29,7 @@ public abstract class AppNode <T extends Node> {
     protected String metaName;
     protected String text;
     protected Stage stage;
+    protected WindowAbstraction windowAbstraction;
 
     public String getMetaName() {
         return metaName;
@@ -40,6 +43,17 @@ public abstract class AppNode <T extends Node> {
 
     public Stage getStage() {
         return stage;
+    }
+
+
+    public void setElementToWindowRegistry() {
+        if (metaName != null) {
+            if (windowAbstraction != null) {
+                windowAbstraction.setNodToMap(this);
+            }
+        }
+
+
     }
 
 

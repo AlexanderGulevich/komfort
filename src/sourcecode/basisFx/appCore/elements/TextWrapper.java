@@ -5,6 +5,7 @@ import basisFx.appCore.settings.CSSID;
 import basisFx.appCore.settings.FontsStore;
 import basisFx.appCore.utils.Coordinate;
 import basisFx.appCore.utils.FontLogic;
+import basisFx.appCore.windows.WindowAbstraction;
 import javafx.scene.Group;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
@@ -35,6 +36,8 @@ public class TextWrapper extends AppNode{
         fontSize = builder.fontSize;
         text = builder.text;
         metaName=builder.metaName;
+        windowAbstraction=builder.windowAbstraction;
+        setElementToWindowRegistry();
 
 
 
@@ -74,6 +77,7 @@ public class TextWrapper extends AppNode{
 
     public static final class Builder {
         public String metaName;
+        public WindowAbstraction windowAbstraction;
         private String text;
         private ArrayList<AppEvent> events;
         private CSSID cssid;
@@ -87,6 +91,11 @@ public class TextWrapper extends AppNode{
         private double fontSize;
 
         private Builder() {
+        }
+
+        public Builder setWindowAbstraction(WindowAbstraction windowAbstraction) {
+            this.windowAbstraction = windowAbstraction;
+            return this;
         }
 
         public Builder setMetaName(String metaName) {

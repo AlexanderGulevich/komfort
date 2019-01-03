@@ -1,31 +1,32 @@
-package basisFx.presentation.targets;
+package basisFx.presentation.dynamicContents;
 
-import basisFx.appCore.elements.GridPaneWrapper;
-import basisFx.appCore.grid.*;
+import basisFx.appCore.grid.ButPositionTop;
+import basisFx.appCore.grid.ButtonsSizeForGridLittle;
 import basisFx.service.ServiceTwoLinkedTable;
 import basisFx.appCore.elements.TableWrapper;
-import basisFx.appCore.table.ColumnWrapperComboBox;
+import basisFx.appCore.grid.GridSingleTable;
+import basisFx.appCore.elements.GridPaneWrapper;
+import basisFx.appCore.grid.GridTwoBondGrids;
 import basisFx.appCore.table.ColumnWrapperDate;
 import basisFx.appCore.table.ColumnWrapperDouble;
 import basisFx.appCore.table.ColumnWrapperString;
 import basisFx.appCore.utils.Coordinate;
-import basisFx.domain.Counterparty;
+import basisFx.domain.Currency;
 import basisFx.domain.ExchangeRates;
-import basisFx.domain.Label;
-import basisFx.presentation.TargetPanel;
+import basisFx.presentation.DynamicContentPanel;
 
-public class LabelPanel  extends TargetPanel {
+public class ExchangeRatesPanel extends DynamicContentPanel {
 
     private boolean gridVisibility=false;
     private ServiceTwoLinkedTable mediatorServiceTwoLinkedTable =new ServiceTwoLinkedTable();
 
-    @Override
-    public void init() {
+      @Override
+    public void customeInit() {
 
         TableWrapper leftTableWrapper = TableWrapper.newBuilder()
-                .setGridName("Этикетки")
+                .setGridName("Валюта ")
                 .setGridOrganization(new GridSingleTable(new ButtonsSizeForGridLittle(),new ButPositionTop()))
-                .setActiveRecordClass(Label.class)
+                .setActiveRecordClass(Currency.class)
                 .setUnitOfWork(unitOfWork)
                 .setIsEditable(true)
                 .setIsSortableColums(false)
@@ -33,21 +34,15 @@ public class LabelPanel  extends TargetPanel {
                 .setColumnWrappers(
                         ColumnWrapperString.newBuilder()
                                 .setColumnName("Наименование")
-                                .setColumnSize(0.6d)
+                                .setColumnSize(1d)
                                 .setIsEditeble(true)
                                 .setPropertyName("metaName")
-                                .build(),
-                        ColumnWrapperComboBox.newBuilder(Counterparty.class)
-                                .setColumnName("Поставщик")
-                                .setColumnSize(0.4d)
-                                .setIsEditeble(true)
-                                .setPropertyName("counterparty")
                                 .build())
                 .build();
 
 
         TableWrapper rightTableWrapper = TableWrapper.newBuilder()
-                .setGridName("Курсы")
+                .setGridName("Курсы ")
                 .setGridOrganization(new GridSingleTable(new ButtonsSizeForGridLittle(),new ButPositionTop()))
                 .setActiveRecordClass(ExchangeRates.class)
                 .setUnitOfWork(unitOfWork)
@@ -74,7 +69,7 @@ public class LabelPanel  extends TargetPanel {
                 .setColumnVsPercent(60)
                 .setColumnVsPercent(40)
                 .setGridName("Управление валютами и динамика курсов")
-                .setParentAnchor(innerAnchorPane)
+                .setParentAnchor(dynamicContentAnchorHolder)
                 .setCoordinate(new Coordinate(0d, 10d, 10d, 0d))
                 .setGridLinesVisibility(gridVisibility)
                 .setGridOrganization(
@@ -90,11 +85,8 @@ public class LabelPanel  extends TargetPanel {
         mediatorServiceTwoLinkedTable.setAccessoryTableWrapper(rightTableWrapper);
         mediatorServiceTwoLinkedTable.setPrimaryTableWrapper(leftTableWrapper);
         mediatorServiceTwoLinkedTable.initElements();
-
-
     }
 
 
 
 }
-

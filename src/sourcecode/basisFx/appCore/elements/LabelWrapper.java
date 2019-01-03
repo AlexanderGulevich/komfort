@@ -5,6 +5,7 @@ import basisFx.appCore.settings.CSSID;
 import basisFx.appCore.settings.FontsStore;
 import basisFx.appCore.utils.Coordinate;
 import basisFx.appCore.utils.FontLogic;
+import basisFx.appCore.windows.WindowAbstraction;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.control.Label;
@@ -41,6 +42,8 @@ public  class LabelWrapper extends AppNode{
         fontSize = builder.fontSize;
         alignment = builder.alignment;
         text=builder.text;
+        windowAbstraction=builder.windowAbstraction;
+        setElementToWindowRegistry();
 
         setAlignment();
         setFont();
@@ -80,6 +83,7 @@ public  class LabelWrapper extends AppNode{
 
     public static final class Builder {
         public String metaName;
+        public WindowAbstraction windowAbstraction;
         private ArrayList<AppEvent> events;
         private CSSID cssid;
         private Double width;
@@ -96,6 +100,11 @@ public  class LabelWrapper extends AppNode{
 
         public Builder setMetaName(String metaName) {
             this.metaName = metaName;
+            return this;
+        }
+
+        public Builder setWindowAbstraction(WindowAbstraction windowAbstraction) {
+            this.windowAbstraction = windowAbstraction;
             return this;
         }
 

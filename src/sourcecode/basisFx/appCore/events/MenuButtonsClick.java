@@ -5,6 +5,7 @@ import basisFx.appCore.menu.FontItemLeaf;
 import basisFx.appCore.menu.LeftAndTopMenuRepresent;
 import basisFx.appCore.settings.CSSID;
 import basisFx.appCore.utils.Registry;
+import basisFx.appCore.windows.WindowAbstraction;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 
@@ -38,14 +39,14 @@ public class MenuButtonsClick extends AppEvent{
     @Override
     public void run() {
         clearChildren();
-        fontItemLeaf.getDynamicElementsCreator().create().init();
+        fontItemLeaf.getDynamicElementsCreator().create().initTemplateMethod(Registry.mainWindow);
 
 
     }
 
     private void clearChildren() {
 
-        AppNode node = Registry.mainWindow.getNode("contentAnchorPane_mainWindow");
+        AppNode node = Registry.mainWindow.getNode(WindowAbstraction.DefaultPanelsNames.mainContentAnchor.name());
         AnchorPane element = ((AnchorPane) node.getElement());
 
 

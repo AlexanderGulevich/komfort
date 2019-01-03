@@ -20,9 +20,9 @@ public class PathesResearch {
         Path path = Paths.get("src", "res","res", "css", "custom_1", "windows.css");
         System.err.println(path);
 
-        String stringPaths=null;
+        String str =null;
         try {
-            stringPaths = path.toUri().toURL().toExternalForm();
+            str = path.toUri().toURL().toExternalForm();
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
@@ -33,7 +33,7 @@ public class PathesResearch {
             e.printStackTrace();
         }
 
-        System.out.println(stringPaths);
+        System.out.println(path);
 
 
     }

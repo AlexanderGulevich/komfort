@@ -8,7 +8,10 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import basisFx.appCore.settings.FontsStore;
 import basisFx.appCore.utils.Coordinate;
+import basisFx.appCore.utils.Registry;
+import basisFx.appCore.windows.WindowAbstraction;
 import basisFx.appCore.windows.WindowImplMain;
+import basisFx.presentation.appStructura.LeftAndTopMenuGUI;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
@@ -17,10 +20,14 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.text.Text;
 
 public class LeftAndTopMenuRepresent extends MenuRepresent {
-    protected Text text = ((Text) WindowImplMain.getInstance().getWindowNode("leftCideMenuCommonText_mainWindow").getElement());
-    protected FlowPane horisontalFlowPane = ((FlowPane) WindowImplMain.getInstance().getWindowNode("horisontalMenuFlowPane_mainWindow").getElement());
-    protected AnchorPane verticalMenuAnchorPane = (AnchorPane) WindowImplMain.getInstance().getWindowNode("verticalMenuAnchorWrapper_mainWindow").getElement();
-    protected AnchorPane contentAnchorPane = (AnchorPane) WindowImplMain.getInstance().getWindowNode("contentAnchorPane_mainWindow").getElement();
+    protected Text text = ((Text) Registry.mainWindow.getNode(
+            LeftAndTopMenuGUI.Structura.leftCideMenuCommonText.name()).getElement());
+    protected FlowPane horisontalFlowPane = ((FlowPane) Registry.mainWindow.getNode(
+            LeftAndTopMenuGUI.Structura.horisontalMenuFlowPane.name()).getElement());
+    protected AnchorPane verticalMenuAnchorPane = (AnchorPane) Registry.mainWindow.getNode(
+            LeftAndTopMenuGUI.Structura.verticalMenuAnchor.name()).getElement();
+    protected AnchorPane contentAnchorPane = (AnchorPane) Registry.mainWindow.getNode(
+            WindowAbstraction.DefaultPanelsNames.mainContentAnchor.name()).getElement();
     private double heightCounterForIcon = 0d;
     private ArrayList<ButtonWrapper> buttonWrappers=new ArrayList<>();
 
@@ -31,16 +38,13 @@ public class LeftAndTopMenuRepresent extends MenuRepresent {
         setDefaultStyleHorisontalButtons();
         fireActiveMarckedButton();
     }
-
     private void fireActiveMarckedButton() {
         for (ButtonWrapper wrapper:buttonWrappers) {
             if (wrapper.isActive()){
                 wrapper.makeActive();
-
             }
         }
     }
-
     @Override
     protected <T> void makeStructuredMenuView(MenuComponent c, MenuComposite parentMenu) {
         ArrayList<MenuComponent> components = null;
@@ -50,9 +54,7 @@ public class LeftAndTopMenuRepresent extends MenuRepresent {
         } else {
 
         }
-
     }
-
     private void seachVerticalBut(ArrayList<MenuComponent> components) {
         for (Iterator<MenuComponent> iterator = components.iterator(); iterator.hasNext(); ) {
             MenuComponent verticalBut = iterator.next();
@@ -60,15 +62,12 @@ public class LeftAndTopMenuRepresent extends MenuRepresent {
             if (verticalBut.isComposit()) {
                 createVerticalBut((FontItemComposite) verticalBut);
             }
-
         }
     }
 
     private void createVerticalBut(FontItemComposite verticalBut) {
         FontItemComposite composite = verticalBut;
-
         this.heightCounterForIcon += 50d;
-
         //создание кнопок вертикальных
         ButtonWrapper wrapper = ButtonWrapper.newBuilder()
                 .setCSSid(CSSID.LEFT_SIDE_MENU_VERTICAL_BUTTONS)
@@ -78,17 +77,16 @@ public class LeftAndTopMenuRepresent extends MenuRepresent {
                 .setIsActive(composite.isActive)
                 .setFontSize(composite.fontSize)
                 .setEvents(new leftSideMenuIconClick(verticalBut, this))
-                .setParentAnchor((AnchorPane) WindowImplMain.getInstance().getWindowNode("verticalMenuAnchorWrapper_mainWindow").getElement())
+                .setParentAnchor((AnchorPane) Registry.mainWindow.getNode(
+                        LeftAndTopMenuGUI.Structura.verticalMenuAnchor.name()).getElement())
                 .build();
-
         buttonWrappers.add(wrapper);
     }
 
-
     public void setDefaultStyleHorisontalButtons() {
-
         ObservableList<Node> buttons = (
-                (FlowPane) WindowImplMain.getInstance().getWindowNode("horisontalMenuFlowPane_mainWindow").getElement()).getChildren();
+                (FlowPane) Registry.mainWindow.getNode(
+                        LeftAndTopMenuGUI.Structura.horisontalMenuFlowPane.name()).getElement()).getChildren();
 
         for (Iterator<Node> iterator = buttons.iterator(); iterator.hasNext(); ) {
             Node next = iterator.next();
@@ -97,63 +95,38 @@ public class LeftAndTopMenuRepresent extends MenuRepresent {
 
                 next.setId(CSSID.LEFT_SIDE_MENU_HORIZONTAL_BUTTONS.get());
             }
-
         }
     }
-
     public void setDefaultStyleVerticalButtons() {
-
         ObservableList<Node> buttons = verticalMenuAnchorPane.getChildren();
-
         for (Iterator<Node> iterator = buttons.iterator(); iterator.hasNext(); ) {
             Node next = iterator.next();
-
             if (next instanceof Button) {
-
                 next.setId(CSSID.LEFT_SIDE_MENU_VERTICAL_BUTTONS.get());
             }
-
         }
     }
 
     public void setCommonTextName(FontItemComposite itemComposite) {
-
         text.setText(itemComposite.getDescription());
-
     }
-
-
     public void setHorisontalButtons(FontItemComposite itemComposite) {
-
         horisontalFlowPane.getChildren().clear();
-
         if (itemComposite.isComposit()) {
-
             contentAnchorPane.getChildren().clear();
-
             ArrayList<MenuComponent> inerLevelComponents = itemComposite.getChilds();
-//
             for (Iterator<MenuComponent> iterator1 = inerLevelComponents.iterator(); iterator1.hasNext(); ) {
                 FontItemLeaf innerLevelComponent = (FontItemLeaf) iterator1.next();
-
                 //создание кнопок горизонтальных
                 ButtonWrapper.newBuilder()
                         .setCSSid(CSSID.LEFT_SIDE_MENU_HORIZONTAL_BUTTONS)
                         .setText(innerLevelComponent.getDescription())
                         .setFont(FontsStore.ROBOTO_LIGHT)
-//                        .setFontSize( 17d)
                         .setEvents(new MenuButtonsClick(innerLevelComponent,this))
                         .setParentFlowPane(horisontalFlowPane)
                         .build();
-
-//
             }
-//
-
-
         }
-
-
     }
 }
 

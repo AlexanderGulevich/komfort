@@ -5,7 +5,7 @@
 // */
 //package basisFx.appCore.utils;
 //
-//import basisFx.presentation.TargetPanel;
+//import basisFx.presentation.DynamicContentPanel;
 //import java.util.ArrayList;
 //
 ///**
@@ -13,7 +13,7 @@
 // * @author Alek
 // */
 //public class TargetRegistry {
-//    public static ArrayList <TargetPanel> targets=new ArrayList<>();
+//    public static ArrayList <DynamicContentPanel> dynamicContents=new ArrayList<>();
 //
 //
 //}

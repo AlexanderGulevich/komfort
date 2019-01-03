@@ -46,8 +46,8 @@ public class HorizontalBarChart extends Application {
 		ObservableList<XYChart.Series<Number, String>> newData = 
 			FXCollections.observableArrayList();
 
-		// Read (String, Number) from old data and convert it into 
-		// (Nubmer, String) in new data
+		// Read (DefaultPanelsNames, Number) from old data and convert it into
+		// (Nubmer, DefaultPanelsNames) in new data
 		for(XYChart.Series<String, Number> oldSeries: oldData) {
 			XYChart.Series<Number, String> newSeries = new XYChart.Series<>();
 			newSeries.setName(oldSeries.getName());

@@ -1,29 +1,26 @@
 package basisFx.appCore.windows;
 
-import basisFx.appCore.utils.StandartAnchorsNames;
-import basisFx.presentation.TargetPanel;
-import basisFx.presentation.appStructura.GuiStructura;
+import basisFx.appCore.interfaces.DynamicContentPanelCreator;
+import basisFx.presentation.appStructura.GUIStructura;
 
 public class WindowBuilder {
-    public GuiStructura guiStructura;
-    public TargetPanel target;
-    public double width;
-    public double height;
+    public GUIStructura GUIStructura;
+    public DynamicContentPanelCreator dynamicContentPanelCreator;
+    public Double width;
+    public Double height;
     public String fxmlFileName;
     public String title;
-    public String parentAnchor;
-    public StandartAnchorsNames parentAnchorname;
+    public String parentAnchorNameForFXML;
     public ButtonsForStage buttonsForStage;
 
     private WindowBuilder(Builder builder) {
-        guiStructura = builder.guiStructura;
-        target = builder.target;
+        GUIStructura = builder.GUIStructura;
+        dynamicContentPanelCreator = builder.dynamicContentPanelCreator;
         width = builder.width;
         height = builder.height;
         fxmlFileName = builder.fxmlFileName;
         title = builder.title;
-        parentAnchor = builder.parentAnchor;
-        parentAnchorname = builder.parentAnchorname;
+        parentAnchorNameForFXML = builder.parentAnchorname;
         buttonsForStage = builder.buttonsForStage;
     }
 
@@ -32,35 +29,34 @@ public class WindowBuilder {
     }
 
     public static final class Builder {
-        private GuiStructura guiStructura;
-        private TargetPanel target;
+        private GUIStructura GUIStructura;
+        private DynamicContentPanelCreator dynamicContentPanelCreator;
         private double width;
         private double height;
         private String fxmlFileName;
         private String title;
-        private String parentAnchor;
-        private StandartAnchorsNames parentAnchorname;
+        private String parentAnchorname;
         private ButtonsForStage buttonsForStage;
 
         private Builder() {
         }
 
-        public Builder setGuiStructura(GuiStructura val) {
-            guiStructura = val;
+        public Builder setGUIStructura(GUIStructura val) {
+            GUIStructura = val;
             return this;
         }
 
-        public Builder setTarget(TargetPanel val) {
-            target = val;
+        public Builder setTargetCreater(DynamicContentPanelCreator dynamicContentPanelCreator) {
+            this.dynamicContentPanelCreator = dynamicContentPanelCreator;
             return this;
         }
 
-        public Builder setWidth(double val) {
+        public Builder setWidth(Double val) {
             width = val;
             return this;
         }
 
-        public Builder setHeight(double val) {
+        public Builder setHeight(Double val) {
             height = val;
             return this;
         }
@@ -75,12 +71,7 @@ public class WindowBuilder {
             return this;
         }
 
-        public Builder setParentAnchor(String val) {
-            parentAnchor = val;
-            return this;
-        }
-
-        public Builder setParentAnchorname(StandartAnchorsNames val) {
+        public Builder setParentAnchorNameForFXML(String val) {
             parentAnchorname = val;
             return this;
         }

@@ -1,9 +1,10 @@
-package basisFx.presentation.targets;
+package basisFx.presentation.dynamicContents;
 import basisFx.appCore.elements.ComboBoxWrapper;
 import basisFx.appCore.grid.ButPositionTop;
 import basisFx.appCore.grid.ButtonsSizeForGridLittle;
 import basisFx.appCore.settings.CSSID;
 import basisFx.appCore.utils.RangeForCombobox;
+import basisFx.presentation.DynamicContentPanel;
 import basisFx.service.ServiceTwoLinkedTable;
 import basisFx.appCore.elements.TableWrapper;
 import basisFx.appCore.grid.GridSingleTable;
@@ -15,14 +16,13 @@ import basisFx.appCore.table.ColumnWrapperString;
 import basisFx.appCore.utils.Coordinate;
 import basisFx.domain.EmployeesRatePerHour;
 import basisFx.domain.Employer;
-import basisFx.presentation.TargetPanel;
 
-public class EmployeesPanel extends TargetPanel {
+public class EmployeesPanel extends DynamicContentPanel {
     private boolean gridVisibility=false;
     private ServiceTwoLinkedTable mediatorServiceTwoLinkedTable =new ServiceTwoLinkedTable();
 
     @Override
-    public void init() {
+    public void customeInit() {
 
         TableWrapper leftTableWrapper = TableWrapper.newBuilder()
                 .setGridName("Текущий список сотрудников ")
@@ -71,7 +71,7 @@ public class EmployeesPanel extends TargetPanel {
                 .setColumnVsPercent(60)
                 .setColumnVsPercent(40)
                 .setGridName("Управление сотрудниками и тарифными ставками")
-                .setParentAnchor(innerAnchorPane)
+                .setParentAnchor(dynamicContentAnchorHolder)
                 .setCoordinate(new Coordinate(0d, 10d, 10d, 0d))
                 .setGridLinesVisibility(gridVisibility)
                 .setGridOrganization(
@@ -92,7 +92,7 @@ public class EmployeesPanel extends TargetPanel {
         ComboBoxWrapper.newBuilder()
                 .setCoordinate(new Coordinate(0d, 15d, null, null))
                 .setCssid(CSSID.COMBOBOX)
-                .setParentAnchor(innerAnchorPane)
+                .setParentAnchor(dynamicContentAnchorHolder)
                 .setStartRange(RangeForCombobox.DAY30)
                 .setServiceMediator(mediatorServiceTwoLinkedTable)
                 .setComboboxValues(RangeForCombobox.getAsList(

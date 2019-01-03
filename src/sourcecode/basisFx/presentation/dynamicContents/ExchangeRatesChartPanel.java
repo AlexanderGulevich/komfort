@@ -1,10 +1,10 @@
-//package basisFx.presentation.targets;
+//package basisFx.presentation.dynamicContents;
 //
 //import basisFx.appCore.chart.AreaChartBuilder;
 //import basisFx.appCore.utils.Coordinate;
 //
 //
-//public class ExchangeRatesChartPanel extends TargetPanel {
+//public class ExchangeRatesChartPanel extends DynamicContentPanel {
 //
 //    @Override
 //    protected void configurate() {

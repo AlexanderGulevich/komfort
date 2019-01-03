@@ -1,7 +1,6 @@
 package basisFx.appCore.windows;
 
 import basisFx.appCore.utils.CSSHandler;
-import basisFx.presentation.appStructura.GuiStructura;
 import basisFx.appCore.elements.AnchorWrapper;
 import basisFx.appCore.settings.CSSID;
 import javafx.geometry.Insets;
@@ -12,26 +11,21 @@ import javafx.stage.StageStyle;
 
 public class WindowAbstractionUndecorated extends WindowAbstraction {
 
-    public WindowAbstractionUndecorated(Stage primaryStage, WindowImpl implimentation, GuiStructura structura) {
-        super(primaryStage,implimentation,structura);
-        this.primaryStage.initStyle(StageStyle.TRANSPARENT);
-        this.primaryStage.show();
+    public WindowAbstractionUndecorated(Stage primaryStage, WindowImpl implimentation) {
+        super(primaryStage,implimentation);
+        this.stage.initStyle(StageStyle.TRANSPARENT);
+        this.stage.show();
     }
 
-    public WindowAbstractionUndecorated(WindowImpl implimentation, GuiStructura structura) {
-        super(implimentation,structura);
-        primaryStage.initStyle(StageStyle.TRANSPARENT);
-        primaryStage.show();
-    }
     public WindowAbstractionUndecorated(WindowImpl implimentation) {
         super(implimentation);
-        primaryStage.initStyle(StageStyle.TRANSPARENT);
-        primaryStage.show();
+        stage.initStyle(StageStyle.TRANSPARENT);
+        stage.show();
     }
 
     protected void createScene() {
         scene= new Scene(root, this.windowImpl.getWidth(), this.windowImpl.getHeight());
-        primaryStage.setScene(scene);
+        stage.setScene(scene);
         scene.setFill(Color.TRANSPARENT);
         CSSHandler.getInstanse().loadStylesToScene(scene);
     }

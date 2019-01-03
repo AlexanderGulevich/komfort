@@ -4,6 +4,7 @@ import basisFx.appCore.events.AppEvent;
 import basisFx.appCore.settings.CSSID;
 import basisFx.appCore.utils.Coordinate;
 import basisFx.appCore.utils.RangeForCombobox;
+import basisFx.appCore.windows.WindowAbstraction;
 import basisFx.service.ServiceMediator;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
@@ -53,6 +54,8 @@ public class ComboBoxWrapper  extends AppNode {
         element = new ComboBox <>(comboboxValues);
         element.setId(CSSID.COMBOBOX.get());
         element.setEditable(false);
+        windowAbstraction=builder.windowAbstraction;
+        setElementToWindowRegistry();
         setValue();
         setCellFactory();
 
@@ -135,6 +138,7 @@ public class ComboBoxWrapper  extends AppNode {
 
     public static final class Builder {
         public RangeForCombobox startRange;
+        public WindowAbstraction windowAbstraction;
         private ArrayList<AppEvent> events;
         private CSSID cssid;
         private Double width;
@@ -152,6 +156,10 @@ public class ComboBoxWrapper  extends AppNode {
         private ObservableList<RangeForCombobox> comboboxValues;
 
         private Builder() {
+        }
+
+        public void setWindowAbstraction(WindowAbstraction windowAbstraction) {
+            this.windowAbstraction = windowAbstraction;
         }
 
         public Builder setStartRange(RangeForCombobox startRange) {

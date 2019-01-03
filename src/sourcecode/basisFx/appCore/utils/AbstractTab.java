@@ -8,18 +8,18 @@ package basisFx.appCore.utils;
 //import javafx.scene.control.Alert;
 //import javafx.scene.control.ButtonType;
 //import javafx.scene.layout.AnchorPane;
-//import javafx.primaryStage.Modality;
+//import javafx.stage.Modality;
 //
 //public abstract class AbstractTab{
 //    
 //    
 //    public Tab currentTab;
-//    protected String menuId;
-//    protected String tabName;
+//    protected DefaultPanelsNames menuId;
+//    protected DefaultPanelsNames tabName;
 //    protected AnchorPane anchorPane;
 //    protected boolean closeable;
 //    
-//    public AbstractTab(String id, String metaName, boolean closeable) {
+//    public AbstractTab(DefaultPanelsNames id, DefaultPanelsNames metaName, boolean closeable) {
 //        
 //        this.menuId = id;
 //        this.tabName=metaName;

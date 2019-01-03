@@ -26,7 +26,7 @@ public enum RangeForCombobox {
     public String getName() {
         return name;
     }
-    public  String toString() {return getName();}
+    public String toString() {return getName();}
 
     public RangeForCombobox get(String s){
        return  RangeForCombobox.valueOf(s);

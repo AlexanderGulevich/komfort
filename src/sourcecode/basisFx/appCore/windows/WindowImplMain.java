@@ -1,29 +1,25 @@
 package basisFx.appCore.windows;
 
-
-import basisFx.appCore.settings.Settings;
-
 public class WindowImplMain extends WindowImpl {
 
     private static WindowImplMain instance;
 
-    public static WindowImplMain getInstance(){
+    public WindowImplMain(WindowBuilder builder) {
+        super(builder);
+    }
+    public static WindowImplMain getInstance(WindowBuilder builder){
         if (instance == null) {
-           return instance=new WindowImplMain();
+           return instance=new WindowImplMain(builder);
         }else {
            return WindowImplMain.instance;
         }
     }
-
-    private WindowImplMain() {
-        super(Settings.WIDTH,Settings.HEIGHT,Settings.TITLE);
-
-    }
-
     @Override
-    public void init() {
-
+    protected void setDefaultWidthAndHeight() {
+        width=1100d;
+        height=700d;
     }
-
-
+    @Override
+    public void customInit(WindowAbstraction windowAbstraction) {
+    }
 }

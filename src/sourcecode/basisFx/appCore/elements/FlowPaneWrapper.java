@@ -3,6 +3,7 @@ package basisFx.appCore.elements;
 import basisFx.appCore.events.AppEvent;
 import basisFx.appCore.settings.CSSID;
 import basisFx.appCore.utils.Coordinate;
+import basisFx.appCore.windows.WindowAbstraction;
 import javafx.geometry.Insets;
 import javafx.scene.Group;
 import javafx.scene.control.ScrollPane;
@@ -35,6 +36,8 @@ public class FlowPaneWrapper extends AppNode{
         hGap = builder.hGap;
         insects = builder.insects;
         dropShadow = builder.dropShadow;
+        windowAbstraction=builder.windowAbstraction;
+        setElementToWindowRegistry();
 
         bond(this);
         setGap();
@@ -85,6 +88,7 @@ public class FlowPaneWrapper extends AppNode{
     }
 
     public static final class Builder {
+        public WindowAbstraction windowAbstraction;
         private ArrayList<AppEvent> events;
         private CSSID cssid;
         private Double width;
@@ -101,6 +105,11 @@ public class FlowPaneWrapper extends AppNode{
         private DropShadow dropShadow;
 
         private Builder() {
+        }
+
+        public Builder setWindowAbstraction(WindowAbstraction windowAbstraction) {
+            this.windowAbstraction = windowAbstraction;
+            return this;
         }
 
         public Builder setEvents(ArrayList<AppEvent> val) {

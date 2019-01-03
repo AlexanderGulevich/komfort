@@ -1,4 +1,4 @@
-package basisFx.presentation.targets;
+package basisFx.presentation.dynamicContents;
 
 import basisFx.appCore.grid.ButPositionTop;
 import basisFx.appCore.grid.ButtonsSizeForGridLittle;
@@ -14,15 +14,15 @@ import basisFx.appCore.table.ColumnWrapperString;
 import basisFx.appCore.utils.Coordinate;
 import basisFx.domain.ProductPrice;
 import basisFx.domain.Product;
-import basisFx.presentation.TargetPanel;
+import basisFx.presentation.DynamicContentPanel;
 
-public class ProductPanel  extends TargetPanel {
+public class ProductPanel  extends DynamicContentPanel {
 
     private boolean gridVisibility=false;
     private ServiceTwoLinkedTable mediatorServiceTwoLinkedTable =new ServiceTwoLinkedTable();
 
     @Override
-    public void init() {
+    public void customeInit() {
 
         TableWrapper leftTableWrapper = TableWrapper.newBuilder()
                 .setGridName("Список продукции ")
@@ -77,7 +77,7 @@ public class ProductPanel  extends TargetPanel {
                 .setColumnVsPercent(60)
                 .setColumnVsPercent(40)
                 .setGridName("Управление продуктами и динамика цен")
-                .setParentAnchor(innerAnchorPane)
+                .setParentAnchor(dynamicContentAnchorHolder)
                 .setCoordinate(new Coordinate(0d, 10d, 10d, 0d))
                 .setGridLinesVisibility(gridVisibility)
                 .setGridOrganization(

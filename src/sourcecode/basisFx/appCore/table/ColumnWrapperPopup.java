@@ -81,14 +81,14 @@
 //    }
 //
 //    @Override
-//    protected boolean checkValue(String s) {
+//    protected boolean checkValue(DefaultPanelsNames s) {
 //        return false;
 //    }
 //
 //    public static final class Builder {
 //        private TableWrapper tableWrapper;
-//        private String propertyName;
-//        private String columnName;
+//        private DefaultPanelsNames propertyName;
+//        private DefaultPanelsNames columnName;
 //        private double columnSize;
 //        private Boolean isEditeble;
 //
@@ -100,12 +100,12 @@
 //            return this;
 //        }
 //
-//        public Builder setPropertyName(String val) {
+//        public Builder setPropertyName(DefaultPanelsNames val) {
 //            propertyName = val;
 //            return this;
 //        }
 //
-//        public Builder setColumnName(String val) {
+//        public Builder setColumnName(DefaultPanelsNames val) {
 //            columnName = val;
 //            return this;
 //        }
@@ -206,7 +206,7 @@
 //        DateTimeFormatter dateFormatter =//DateTimeFormatter.ofPattern("dd-MM-yyyy");
 //                DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL);
 //        @Override
-//        public String toString(LocalDate date) {
+//        public DefaultPanelsNames toString(LocalDate date) {
 //            if (date != null) {
 //                return dateFormatter.format(date);
 //            } else {
@@ -215,7 +215,7 @@
 //        }
 //
 //        @Override
-//        public LocalDate fromString(String string) {
+//        public LocalDate fromString(DefaultPanelsNames string) {
 //            if (string != null && !string.isEmpty()) {
 //                return LocalDate.parse(string, dateFormatter);
 //            } else {

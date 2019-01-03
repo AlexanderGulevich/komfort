@@ -5,6 +5,7 @@ import basisFx.appCore.settings.CSSID;
 import basisFx.appCore.settings.FontsStore;
 import basisFx.appCore.utils.Coordinate;
 import basisFx.appCore.utils.FontLogic;
+import basisFx.appCore.windows.WindowAbstraction;
 import javafx.scene.Group;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
@@ -41,6 +42,8 @@ public  class TextAreaWrapper extends AppNode{
         font = builder.font;
         fontSize = builder.fontSize;
         text = builder.text;
+        windowAbstraction=builder.windowAbstraction;
+        setElementToWindowRegistry();
 
 
         setText();
@@ -96,6 +99,7 @@ public  class TextAreaWrapper extends AppNode{
 
 
     public static final class Builder {
+        public WindowAbstraction windowAbstraction;
         private ArrayList<AppEvent> events;
         private CSSID cssid;
         private Double width;
@@ -114,6 +118,11 @@ public  class TextAreaWrapper extends AppNode{
         private String text;
 
         private Builder() {
+        }
+
+        public Builder setWindowAbstraction(WindowAbstraction windowAbstraction) {
+            this.windowAbstraction = windowAbstraction;
+            return this;
         }
 
         public Builder setEvents(ArrayList<AppEvent> val) {

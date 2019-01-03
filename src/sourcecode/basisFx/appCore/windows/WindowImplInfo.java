@@ -7,14 +7,20 @@ public class WindowImplInfo extends WindowImpl{
 
     private  String messagge;
 
-    public WindowImplInfo(String messagge) {
-        super(530d, 300d, "Внимание!");
+    public WindowImplInfo(WindowBuilder builder,String messagge) {
+        super(builder);
         this.messagge=messagge;
 
     }
 
     @Override
-    public void init() {
+    protected void setDefaultWidthAndHeight() {
+        width=530d;
+        height=300d;
+    }
+
+    @Override
+    public void customInit(WindowAbstraction windowAbstraction) {
         Label label = (Label) windowAbstraction.getNode("label").getElement();
         label.setText(titleName);
         TextArea textArea = (TextArea) windowAbstraction.getNode("textArea").getElement();

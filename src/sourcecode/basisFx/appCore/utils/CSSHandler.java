@@ -8,13 +8,7 @@ package basisFx.appCore.utils;
 import basisFx.appCore.settings.StylesPathes;
 import javafx.scene.Scene;
 import java.io.File;
-import java.io.IOException;
 import java.net.URI;
-import java.net.URISyntaxException;
-import java.net.URL;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.ArrayList;
 
 public class CSSHandler {
 
@@ -42,9 +36,9 @@ public class CSSHandler {
         File folder=null;
         File[] listOfFiles=null;
 
-        String stringPath = System.getProperty("user.dir") + "/"+stylesPathe.getPath();
-        stringPath=stringPath.replace("\\","/");
-        folder = new File(stringPath);
+        String path = System.getProperty("user.dir") + "/"+stylesPathe.getPath();
+        path = path.replace("\\","/");
+        folder = new File(path);
         listOfFiles = folder.listFiles();
 //
             boolean directory = folder.isDirectory();

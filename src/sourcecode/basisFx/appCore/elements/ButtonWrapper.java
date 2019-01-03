@@ -5,6 +5,7 @@ import basisFx.appCore.settings.CSSID;
 import basisFx.appCore.settings.FontsStore;
 import basisFx.appCore.utils.Coordinate;
 import basisFx.appCore.utils.FontLogic;
+import basisFx.appCore.windows.WindowAbstraction;
 import basisFx.service.ServiceMediator;
 import javafx.geometry.Insets;
 import javafx.scene.Group;
@@ -53,6 +54,8 @@ public class ButtonWrapper extends AppNode{
         serviceMediator = builder.serviceMediator;
         metaName=builder.metaName;
 
+        windowAbstraction=builder.windowAbstraction;
+        setElementToWindowRegistry();
 
         setId();
         setName();
@@ -145,6 +148,9 @@ public class ButtonWrapper extends AppNode{
 
     public static final class Builder {
         public String text;
+
+
+        public WindowAbstraction windowAbstraction;
         private ArrayList<AppEvent> events;
         private CSSID cssid;
         private Double width;
@@ -169,6 +175,9 @@ public class ButtonWrapper extends AppNode{
         private Builder() {
         }
 
+        public void setWindowAbstraction(WindowAbstraction windowAbstraction) {
+            this.windowAbstraction = windowAbstraction;
+        }
 
         public Builder setEvents(AppEvent ...val) {
             events=new ArrayList<>();

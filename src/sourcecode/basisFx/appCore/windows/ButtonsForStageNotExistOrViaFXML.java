@@ -2,11 +2,12 @@ package basisFx.appCore.windows;
 
 public class ButtonsForStageNotExistOrViaFXML extends ButtonsForStage {
 
-    public ButtonsForStageNotExistOrViaFXML(WindowAbstraction windowAbstraction) {
-        super(windowAbstraction);
-        init();
+    public ButtonsForStageNotExistOrViaFXML(String parentAnchorName) {
+        super(parentAnchorName);
     }
+
     @Override
-    protected void init() {
+    protected void customInit(   ) {
+
     }
 }

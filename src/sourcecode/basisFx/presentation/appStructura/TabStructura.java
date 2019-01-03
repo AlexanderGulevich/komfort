@@ -1,10 +1,11 @@
 package basisFx.presentation.appStructura;
 
-public class TabStructura extends GuiStructura {
+import basisFx.appCore.windows.WindowAbstraction;
 
+public class TabStructura extends GUIStructura {
 
     @Override
-    public void init() {
+    public void init(WindowAbstraction windowAbstraction) {
 
     }
 }
