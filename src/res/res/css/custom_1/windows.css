@@ -85,14 +85,9 @@
 }
 #TITLE_PANEL{
 /*-fx-pref-height:40;*/
-
-/* -fx-background-color:  #0f3840; */
     -fx-background-color:  #436271;
-
-
  -fx-border-width: 0 0 1 0;
  -fx-border-color: darkgoldenrod darkgoldenrod #dce0e1 darkgoldenrod;
- /*-fx-effect: dropshadow(three-pass-box, #1F4D5C,  3, 0.05, 0.0, 0.0);*/
 
 }
 

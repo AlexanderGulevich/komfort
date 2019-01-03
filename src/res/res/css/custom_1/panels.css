@@ -3,16 +3,12 @@
          -fx-padding:0 0 0 0;
 }
 #INNER_PANE{
-  /* -fx-background-color: red; */
 
 }
 #WindowButtonsPanel{
-
   -fx-background-color: transparent;
     -fx-border-width: 0 0 0.2 0;
       -fx-border-color: #a79090;
-
-
 }
 #LABEL_COMMON_GRID_TEXT{
 
@@ -24,40 +20,19 @@
   -fx-text-fill:-fx-common;
 }
 #LABEL_TEXT{
-      /* -fx-text-fill: #003641;
-      -fx-color: #003641;
-      -fx-fill:#22515B;
-      -fx-fill:#6e969e;
-      -fx-text-fill:#6e969e; */
       -fx-label:#697886;
             -fx-text-fill:  -fx-label;
             -fx-color:      -fx-label;
             -fx-fill:       -fx-label;
             -fx-fill:       -fx-label;
             -fx-text-fill:  -fx-label;
-
-
 }
-
 
 #HORIZONTAL_FLOW_MENU_PANEL{
-     /* -fx-padding:0 0 0 0; */
-     /*-fx-pref-height: 35;*/
-      /* -fx-background-color: white; */
        -fx-background-color: #ffffff;
--fx-padding: 0  0 0 0.5;
-     /*-fx-border-color:#57b75733;*/
-     /*-fx-border-color:derive(#003641,120%);*/
-     /*-fx-border-width: 0.5 0.5 0.5 0.5;*/
-     /* -fx-effect: dropshadow(gaussian ,#555555 , 2, 0, 0.5, 0.5); */
-
-   -fx-border-width: 0   0   0.1    0.1;
-   /* -fx-border-insets:0  0  0.1    0.1; */
-   -fx-border-color: #28385e;
-
-}
-#LEFT_SIDE_MENU_VERTICAL_PANEL{
-         -fx-background-color: #003641;
+        -fx-padding: 0  0 0 0.5;
+       -fx-border-width: 0   0   0.1    0.1;
+         -fx-border-color: #28385e;
 }
 #TILE_PANE_ANCHOR{
     -fx-background-color:white;

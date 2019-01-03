@@ -4,6 +4,7 @@ import basisFx.appCore.elements.AppNode;
 import basisFx.appCore.elements.TableWrapper;
 import basisFx.domain.ActiveRecord;
 import basisFx.service.ServiceAutoCommitTableByCommonDate;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 
 public class RowAddToSubmitTableWhisCommonDate<T> extends AppEvent{
@@ -21,6 +22,11 @@ public class RowAddToSubmitTableWhisCommonDate<T> extends AppEvent{
         but.setOnMouseClicked((event) -> {
             run();
         });
+    }
+
+    @Override
+    public void setEventToElement(Node node) {
+
     }
 
     @Override

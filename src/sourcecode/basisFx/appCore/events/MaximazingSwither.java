@@ -32,6 +32,17 @@ public class MaximazingSwither extends AppEvent{
 }
 
     @Override
+    public void setEventToElement(Node node) {
+
+        node.setOnMouseClicked( (event) -> {
+
+                    run();
+                }
+
+        ) ;
+    }
+
+    @Override
     public void run() {
         try {
 

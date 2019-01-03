@@ -39,17 +39,20 @@ public class App{
                 );
         DbFactory.createDbServer();
         MenuFabric.createMenuLeftSideRepresentation( new MainMenuSketch());
+
 //        ScenicView.show(WindowImplMain.getInstance().getWindowAbstraction().getScene());
 
 
-        Registry.windowFabric.customSubWindow(
-                WindowBuilder.newBuilder()
-                .setFxmlFileName("q")
-                .setHeight(400d)
-                .setWidth(800d)
-                .setTitle("111111111")
-                .build()
-        );
+//        Registry.windowFabric.customSubWindow(
+//                WindowBuilder.newBuilder()
+//                        .setFxmlFileName("q")
+//                        .setParentAnchorNameForFXML(WindowAbstraction.DefaultPanelsNames.topVisibleAnchor.name())
+//                        .setHeight(400d)
+//                        .setWidth(800d)
+//                        .setTitle("111111111")
+//                        .build()
+//        );
+//        Registry.windowFabric.infoWindow(  "FFFFFFFFFFFFFFFFFF  FFFFFFFFFFFFFFFFFF  FFFFFFFFFFFFFFFFFF  FFFFFFFFFFFFFFFFFF  FFFFFFFFFFFFFFFFFF  FFFFFFFFFFFFFFFFFF  FFFFFFFFFFFFFFFFFF  ");
 
 
     }

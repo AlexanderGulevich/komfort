@@ -4,6 +4,7 @@ import basisFx.appCore.elements.AppNode;
 import basisFx.appCore.elements.TableWrapper;
 import basisFx.domain.ActiveRecord;
 import javafx.collections.ObservableList;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableView;
 
@@ -22,6 +23,11 @@ public class RowAddToTable<T> extends AppEvent{
         but.setOnMouseClicked((event) -> {
             run();
         });
+    }
+
+    @Override
+    public void setEventToElement(Node node) {
+
     }
 
     @Override

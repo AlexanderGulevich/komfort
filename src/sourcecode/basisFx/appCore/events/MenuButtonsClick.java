@@ -6,6 +6,7 @@ import basisFx.appCore.menu.LeftAndTopMenuRepresent;
 import basisFx.appCore.settings.CSSID;
 import basisFx.appCore.utils.Registry;
 import basisFx.appCore.windows.WindowAbstraction;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 
@@ -33,6 +34,11 @@ public class MenuButtonsClick extends AppEvent{
 
             run();
         });
+
+    }
+
+    @Override
+    public void setEventToElement(Node node) {
 
     }
 

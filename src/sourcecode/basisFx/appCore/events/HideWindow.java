@@ -1,19 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package basisFx.appCore.events;
 
 import basisFx.appCore.elements.AppNode;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 
-/**
- *
- * @author Alek
- */
 public class HideWindow extends AppEvent{
     protected Button  but;
     @Override
@@ -31,6 +24,19 @@ public class HideWindow extends AppEvent{
 
 
 }
+
+    @Override
+    public void setEventToElement(Node node) {
+        this.but=(Button) node;
+
+
+        but.setOnMouseClicked( (event) -> {
+                    run();
+
+                }
+
+        ) ;
+    }
 
     @Override
     public void run() {

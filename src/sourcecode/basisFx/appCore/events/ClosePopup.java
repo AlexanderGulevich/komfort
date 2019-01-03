@@ -1,6 +1,7 @@
 package basisFx.appCore.events;
 
 import basisFx.appCore.elements.AppNode;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 
 public class ClosePopup extends AppEvent{
@@ -21,6 +22,19 @@ public class ClosePopup extends AppEvent{
 
 
 
+    }
+
+    @Override
+    public void setEventToElement(Node node) {
+        this.but=(Button) node;
+
+
+        but.setOnMouseClicked((event) -> {
+
+                    run();
+                }
+
+        ) ;
     }
 
     @Override

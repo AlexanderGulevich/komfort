@@ -2,6 +2,7 @@ package basisFx.appCore.events;
 
 import basisFx.appCore.elements.AppNode;
 import basisFx.appCore.utils.Registry;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 
 import java.util.logging.Level;
@@ -18,6 +19,16 @@ public class ClosePopupAndSubWindow extends AppEvent{
         }
         ) ;
     }
+
+    @Override
+    public void setEventToElement(Node node) {
+        this.but=(Button) node;
+        but.setOnMouseClicked((event) -> {
+                    run();
+                }
+        ) ;
+    }
+
     @Override
     public void run() {
         try {

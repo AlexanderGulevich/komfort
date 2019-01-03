@@ -4,14 +4,14 @@ import basisFx.appCore.interfaces.DynamicContentPanelCreator;
 import basisFx.presentation.appStructura.GUIStructura;
 
 public class WindowBuilder {
-    public GUIStructura GUIStructura;
-    public DynamicContentPanelCreator dynamicContentPanelCreator;
-    public Double width;
-    public Double height;
-    public String fxmlFileName;
-    public String title;
-    public String parentAnchorNameForFXML;
-    public ButtonsForStage buttonsForStage;
+    public GUIStructura GUIStructura=null;
+    public DynamicContentPanelCreator dynamicContentPanelCreator=null;
+    public Double width=null;
+    public Double height=null;
+    public String fxmlFileName=null;
+    public String title=null;
+    public String parentAnchorNameForFXML=null;
+    public ButtonsForStage buttonsForStage=null;
 
     private WindowBuilder(Builder builder) {
         GUIStructura = builder.GUIStructura;
@@ -31,8 +31,8 @@ public class WindowBuilder {
     public static final class Builder {
         private GUIStructura GUIStructura;
         private DynamicContentPanelCreator dynamicContentPanelCreator;
-        private double width;
-        private double height;
+        private Double width;
+        private Double height;
         private String fxmlFileName;
         private String title;
         private String parentAnchorname;
@@ -52,12 +52,17 @@ public class WindowBuilder {
         }
 
         public Builder setWidth(Double val) {
-            width = val;
+            if (val != null) {
+                width = val;
+            }
             return this;
         }
 
         public Builder setHeight(Double val) {
-            height = val;
+            if (val != null) {
+                height = val;
+            }
+
             return this;
         }
 

@@ -3,6 +3,7 @@ package basisFx.appCore.events;
 import basisFx.appCore.elements.AppNode;
 import basisFx.appCore.elements.TableWrapper;
 import basisFx.domain.ActiveRecord;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableView;
 
@@ -22,6 +23,11 @@ public class RowDeleteFromTable extends AppEvent{
                 run();
 
         });
+
+    }
+
+    @Override
+    public void setEventToElement(Node node) {
 
     }
 

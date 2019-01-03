@@ -1,18 +1,9 @@
 #LEFT_SIDE_MENU_ROOT{
-         /*-fx-background-color: white;*/
-     /*-fx-pref-width: 60;*/
-
 }
-
 #LEFT_SIDE_MENU_TEXT{
-
          -fx-background-color: #c84164;
-
 }
-
 #LEFT_SIDE_MENU_VERTICAL_BUTTONS{
-
-     /*-fx-text-fill:#5f7d8b;*/
      -fx-text-fill:white;
     -fx-background-color:#003641;
     -fx-background-radius: 0;
@@ -27,25 +18,17 @@
 }
 #LEFT_SIDE_MENU_VERTICAL_BUTTONS:armed,
 #LEFT_SIDE_MENU_VERTICAL_BUTTONS_CLICKED{
-
-     /*-fx-text-fill:#5f7d8b;*/
      -fx-text-fill:white;
-    /*-fx-background-color:#14e715;*/
     -fx-background-color:#ff3d00;
-    /*-fx-background-color:red;*/
     -fx-background-radius: 0;
     -fx-border-radius:0;
     -fx-background-insets: 0, 0, 0, 0;
     -fx-background-radius: 0;
-    /*-fx-color:yellowgreen;*/
      -fx-pref-width: 60;
      -fx-pref-height:50;
 }
 #LEFT_SIDE_MENU_VERTICAL_BUTTONS:focused{
-
-     /*-fx-text-fill:#5f7d8b;*/
      -fx-text-fill:white;
-    /*-fx-background-color:transparent;*/
     -fx-background-radius: 0;
     -fx-border-radius:0;
     -fx-background-insets: 0, 0, 0, 0;
@@ -54,20 +37,16 @@
      -fx-pref-width: 60;
      -fx-pref-height:50;
 }
-
 #LEFT_SIDE_MENU_COMMON_TEXT{
-
-      /* -fx-fill:#22515B; */
           -fx-fill:#f1f1f1;
-
     -fx-opacity:0.6;
 }
 #LEFT_SIDE_MENU_ICON_TEXT_PANEL{
-    /*-fx-pref-width: 110;*/
-
 }
 
-
+#LEFT_SIDE_MENU_VERTICAL_PANEL{
+    -fx-background-color:#003641;
+}
 #LEFT_SIDE_MENU_HORIZONTAL_BUTTONS{
     -fx-background-radius: 0;
     -fx-border-radius:0;
@@ -78,31 +57,18 @@
     -fx-text-fill:#22515B;
     -fx-pref-height: 50;
   -fx-border-width: 0.1  0.1   0    0.1;
-    /*-fx-border-insets:0.5  0.5   0    0.5;*/
     -fx-border-color: white white  white white;
     -fx-border-style:solid ;
     -fx-font-size: 17;
-    /* -fx-border-insets:1  0.2   0    1; */
-
 }
 #LEFT_SIDE_MENU_HORIZONTAL_BUTTONS:armed,
 #LEFT_SIDE_MENU_HORIZONTAL_BUTTONS_CLICKED{
-      /*-fx-background-color:derive(#E9FFFC,50%);*/
       -fx-background-color:#ffffff;
-      /* -fx-background-color:#FFC5B3; */
       -fx-font-size: 17;
       -fx-text-fill: #d96844;
       -fx-border-style:solid ;
       -fx-padding:3 10 3 10;
       -fx-pref-height: 50;
-      /*-fx-background-insets:-0.5 -0.5 -0.5  -0.5;*/
- /* -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.9), 3, 0.05, 0.0, 0.0); */
-      /* -fx-border-color: #8ab0d1 white  white white; */
     -fx-border-width: 0.1  0.1   0    0.1;
-    /* -fx-border-insets:1  0.2   0    1; */
-
     -fx-border-color: #28385e;
-
-
-
 }

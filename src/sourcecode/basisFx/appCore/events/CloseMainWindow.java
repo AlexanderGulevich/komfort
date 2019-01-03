@@ -5,6 +5,8 @@ import basisFx.appCore.elements.AppNode;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 
 public class CloseMainWindow extends AppEvent{
@@ -21,6 +23,16 @@ public class CloseMainWindow extends AppEvent{
         }
         ) ;
 
+    }
+
+    @Override
+    public void setEventToElement(Node node) {
+        this.but=(Button) node;
+
+        but.setOnMouseClicked((event) -> {
+                    run();
+                }
+        ) ;
     }
 
     @Override

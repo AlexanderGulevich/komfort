@@ -6,6 +6,7 @@ import javafx.scene.Node;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 
 public class StageDragging extends AppEvent{
 protected Node  node;
@@ -20,8 +21,15 @@ protected Stage stage;
         stage=appNode.getStage();
         run();
 
-
 }
+
+    @Override
+    public void setEventToElement(Node node) {
+        this.node= node;
+
+
+        run();
+    }
 
     @Override
     public void run() {
@@ -30,6 +38,9 @@ protected Stage stage;
          node.setOnMousePressed(event -> {
 
               if (event.isPrimaryButtonDown() && event.getClickCount() == 1) {
+
+                  Window window = node.getScene().getWindow();
+                  stage= ((Stage) window);
 
                   if(!stage.isMaximized()){
                      xOffset = stage.getX() - event.getScreenX();
@@ -43,6 +54,10 @@ protected Stage stage;
          });
 
          node.setOnMouseDragged(event -> {
+
+             Window window = node.getScene().getWindow();
+             stage= ((Stage) window);
+
               if(!stage.isMaximized()){
                      stage.setX(event.getScreenX() + xOffset);
                      stage.setY(event.getScreenY() + yOffset);

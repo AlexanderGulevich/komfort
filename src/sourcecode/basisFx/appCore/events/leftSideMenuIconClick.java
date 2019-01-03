@@ -5,6 +5,7 @@ import basisFx.appCore.menu.FontItemComposite;
 import basisFx.appCore.menu.LeftAndTopMenuRepresent;
 import basisFx.appCore.menu.MenuComponent;
 import basisFx.appCore.settings.CSSID;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 
 public class leftSideMenuIconClick extends AppEvent{
@@ -26,6 +27,11 @@ public class leftSideMenuIconClick extends AppEvent{
             run();
         });
 
+
+    }
+
+    @Override
+    public void setEventToElement(Node node) {
 
     }
 

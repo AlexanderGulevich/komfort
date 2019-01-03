@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package basisFx.appCore.events;
 
 import basisFx.appCore.elements.AppNode;
@@ -37,6 +32,12 @@ public class DbClick  extends AppEvent{
             }
         );
 }
+
+    @Override
+    public void setEventToElement(Node node) {
+
+
+    }
 
     @Override
     public void run()   {
