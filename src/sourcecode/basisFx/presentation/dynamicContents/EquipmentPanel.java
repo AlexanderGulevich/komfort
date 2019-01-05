@@ -2,6 +2,9 @@ package basisFx.presentation.dynamicContents;
 
 import basisFx.appCore.grid.ButPositionTop;
 import basisFx.appCore.grid.ButtonsSizeForGridBig;
+import basisFx.appCore.table.ColumnWrapperSubWindow;
+import basisFx.appCore.windows.WindowAbstraction;
+import basisFx.appCore.windows.WindowBuilder;
 import basisFx.presentation.DynamicContentPanel;
 import basisFx.service.ServiceSingleTable;
 import basisFx.appCore.elements.TableWrapper;
@@ -32,6 +35,8 @@ public class EquipmentPanel extends DynamicContentPanel {
                                 .setIsEditeble(true)
                                 .setPropertyName("metaName")
                                 .build()
+
+
                 )
                 .build();
 

@@ -64,7 +64,7 @@ public class DatePickerWrapper  extends AppNode{
         element.setPromptText("");
 //        element.setOnAction((e) -> {
 //               this.date = element.getValue();
-//               serviceMediator.inform(this);
+//               serviceMediator.informParentWindow(this);
 //
 //        });
         element.valueProperty().addListener(new ChangeListener<LocalDate>() {

@@ -1,7 +1,9 @@
 package basisFx.appCore.elements;
 
 import basisFx.appCore.grid.GridOrganization;
+import basisFx.appCore.utils.ActiveRecordDTO;
 import basisFx.appCore.windows.WindowAbstraction;
+import basisFx.presentation.DynamicContentPanel;
 import basisFx.service.ServiceMediator;
 import basisFx.appCore.table.ColumnWrapper;
 import basisFx.appCore.events.AppEvent;
@@ -20,6 +22,7 @@ import javafx.collections.ObservableList;
 import javafx.scene.Group;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import javafx.stage.Stage;
@@ -27,6 +30,7 @@ import javafx.util.Callback;
 
 public  class TableWrapper extends AppNode  {
     private boolean isEditable;
+    private DynamicContentPanel dynamicContentPanel;
     private GridPaneWrapper gridPaneWrapper;
     private Callback<TableView.ResizeFeatures,Boolean> columnResizePolicy ;
     private boolean isSortableColums;
@@ -50,6 +54,7 @@ public  class TableWrapper extends AppNode  {
     private TableWrapper(Builder builder) {
 
         events = builder.events;
+        dynamicContentPanel = builder.dynamicContentPanel;
         width = builder.width;
         height = builder.height;
         parentAnchor = builder.parentAnchor;
@@ -76,7 +81,6 @@ public  class TableWrapper extends AppNode  {
         className=builder.className;
         windowAbstraction=builder.windowAbstraction;
         setElementToWindowRegistry();
-
         createActiveRecord(builder);
         element =new TableView<>();
         applyCSS();
@@ -164,42 +168,6 @@ public  class TableWrapper extends AppNode  {
 
         element.setPlaceholder(wrapper.getElement());
     }
-//    public void manageScrollBar() {
-//        ScrollBar verticalBar = (ScrollBar) element.lookup(".scroll-bar:vertical");
-//        if (verticalBar != null) {
-//
-//
-//            verticalBar.visibleProperty().addListener((observableValue, aBoolean, aBoolean2) ->
-//            {
-//                if (aBoolean2) {
-//                    Node clippedContainer = element.lookup(".clipped-container");
-//                    Region region = (Region) clippedContainer;
-//                    if (region != null) {
-//                        region.setStyle("  -fx-padding:  0, 120, 0, 0; ");
-//                        region.setPadding(new Insets(0d, 50d, 0d, 0d));
-//
-//                        region.setPrefWidth(region.prefWidthProperty().get() - 100d);
-//                    }
-//                }
-//
-//                if (aBoolean2) {
-//                    Node virtual = element.lookup(".virtual-flow");
-//                    Region  region2 = (Region) virtual;
-//                    if (region2 != null) {
-//                        region2.setStyle("  -fx-padding:  0, 120, 0, 0; ");
-//                        region2.setPadding(new Insets(0d,50d,0d,0d));
-//
-//                        region2.setPrefWidth(region2.prefWidthProperty().get()-100d);
-//                    }
-//                }
-//
-//
-//            }  );
-//
-//
-//
-//        }
-//    }
     private void applyColumnResizePolicy(){
         if (columnResizePolicy != null) {
             element.setColumnResizePolicy(columnResizePolicy);
@@ -248,18 +216,42 @@ public  class TableWrapper extends AppNode  {
         element.setRowFactory(tv -> {
             TableRow<ActiveRecord> row = new TableRow<>();
             row.setOnMouseClicked(event -> {
-                if (! row.isEmpty() && event.getButton()== MouseButton.PRIMARY
-                        && event.getClickCount() == 1) {
-                   clickedDomain=row.getItem();
-                    if (serviceMediator != null) {
-                        serviceMediator.inform(this);
+                        singleClickHandler(row, event);
+                        doubleClickHandler(row, event);
                     }
-                }
-            }
             );
             return row ;
         });
     }
+
+    private void doubleClickHandler(TableRow<ActiveRecord> row, MouseEvent event) {
+        if (! row.isEmpty() && event.getButton()== MouseButton.PRIMARY
+                && event.getClickCount() == 2) {
+            clickedDomain=row.getItem();
+
+            if (windowAbstraction != null) {
+                if (windowAbstraction.hasParentWindow()) {
+                    if (windowAbstraction.getCrossWindowMediator() != null) {
+                        windowAbstraction.getCrossWindowMediator().informParentWindow(new ActiveRecordDTO(clickedDomain));
+                    }
+
+
+                }
+            }
+
+        }
+    }
+
+    private void singleClickHandler(TableRow<ActiveRecord> row, MouseEvent event) {
+        if (! row.isEmpty() && event.getButton()== MouseButton.PRIMARY
+                && event.getClickCount() == 1) {
+           clickedDomain=row.getItem();
+            if (serviceMediator != null) {
+                serviceMediator.inform(this);
+            }
+        }
+    }
+
     public void scrollToItem(ActiveRecord domainObject) {
         int newPojoIndex = element.getItems().indexOf(domainObject);
         element.scrollTo(newPojoIndex);
@@ -303,6 +295,7 @@ public  class TableWrapper extends AppNode  {
 
     public static final class Builder {
         public WindowAbstraction windowAbstraction;
+        public DynamicContentPanel dynamicContentPanel;
         private Class activeRecordClass;
         private ReadOnlyDoubleProperty parentWidthProperty;
         private double widthPercent;
@@ -333,8 +326,13 @@ public  class TableWrapper extends AppNode  {
             return this;
         }
 
-        public void setWindowAbstraction(WindowAbstraction windowAbstraction) {
+        public Builder setWindowAbstraction(WindowAbstraction windowAbstraction) {
             this.windowAbstraction = windowAbstraction;
+            return this;
+        }
+
+        public void setDynamicContentPanel(DynamicContentPanel dynamicContentPanel) {
+            this.dynamicContentPanel = dynamicContentPanel;
         }
 
         public  Builder setGridOrganization(GridOrganization gridOrganization) {

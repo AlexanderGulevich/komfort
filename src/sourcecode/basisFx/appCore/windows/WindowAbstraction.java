@@ -5,20 +5,23 @@ import basisFx.appCore.elements.AnchorWrapper;
 import basisFx.appCore.elements.AppNode;
 import basisFx.appCore.settings.CSSID;
 import basisFx.appCore.utils.Coordinate;
+import basisFx.presentation.DynamicContentPanel;
+import basisFx.service.CrossWindowMediator;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-
 import java.util.HashMap;
-
 
 public abstract class WindowAbstraction {
 
     protected Stage stage;
     protected Scene scene;
+    protected DynamicContentPanel currentDynamicContent;
     protected AnchorPane root;
     protected AnchorPane topVisiblePanel;
     protected WindowImpl windowImpl;
+    protected WindowAbstraction parentWindow;
+    protected CrossWindowMediator crossWindowMediator=new CrossWindowMediator(this);
     public  enum DefaultPanelsNames {rootTransparent, topVisibleAnchor, mainContentAnchor}
     protected HashMap<String,AppNode> nodesHashMap =new HashMap<>();
 
@@ -39,6 +42,25 @@ public abstract class WindowAbstraction {
         initTopVisiblePanel();
         createScene();
         windowImpl.initTemplateMethod(this);
+    }
+
+    public void clearSubWindow() {
+        crossWindowMediator.clearSubWindow();
+    }
+    public boolean hasParentWindow(){
+        if ( parentWindow != null) {
+            return true;
+        }
+        return false;
+    }
+    public void setCurrentDynamicContent(DynamicContentPanel currentDynamicContent) {
+        this.currentDynamicContent = currentDynamicContent;
+    }
+    public CrossWindowMediator getCrossWindowMediator() {
+        return crossWindowMediator;
+    }
+    public void clearCurrentDynamicContentPanel() {
+        this.currentDynamicContent = null;
     }
     protected abstract void createScene();
     public void setNodToMap(AppNode node) {

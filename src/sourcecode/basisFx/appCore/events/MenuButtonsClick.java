@@ -44,19 +44,17 @@ public class MenuButtonsClick extends AppEvent{
 
     @Override
     public void run() {
-        clearChildren();
+        clearContent();
         fontItemLeaf.getDynamicElementsCreator().create().initTemplateMethod(Registry.mainWindow);
 
 
     }
 
-    private void clearChildren() {
-
+    private void clearContent() {
         AppNode node = Registry.mainWindow.getNode(WindowAbstraction.DefaultPanelsNames.mainContentAnchor.name());
-        AnchorPane element = ((AnchorPane) node.getElement());
-
-
-        element.getChildren().clear();
+        AnchorPane mainContentAnchor = ((AnchorPane) node.getElement());
+        mainContentAnchor.getChildren().clear();
+        Registry.mainWindow.clearCurrentDynamicContentPanel();
     }
 
 }

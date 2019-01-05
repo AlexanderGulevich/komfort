@@ -8,6 +8,7 @@ import basisFx.appCore.utils.CSSHandler;
 import basisFx.appCore.utils.IconToPlatform;
 import basisFx.appCore.utils.Registry;
 import basisFx.appCore.windows.ButtonsForStageThreeEntity;
+import basisFx.appCore.windows.WindowAbstraction;
 import basisFx.appCore.windows.WindowBuilder;
 import basisFx.presentation.MainMenuSketch;
 import basisFx.presentation.appStructura.LeftAndTopMenuGUI;
@@ -52,9 +53,29 @@ public class App{
 //                        .setTitle("111111111")
 //                        .build()
 //        );
-//        Registry.windowFabric.infoWindow(  "FFFFFFFFFFFFFFFFFF  FFFFFFFFFFFFFFFFFF  FFFFFFFFFFFFFFFFFF  FFFFFFFFFFFFFFFFFF  FFFFFFFFFFFFFFFFFF  FFFFFFFFFFFFFFFFFF  FFFFFFFFFFFFFFFFFF  ");
+//        Registry.windowFabric.infoWindow(
+//                "FFFFFFFFFFFFFFFFFF" +
+//                "  FFFFFFFFFFFFFFFFFF  FFFFFFFFFFFFFFFFFF  " +
+//                "FFFFFFFFFFFFFFFFFF  FFFFFFFFFFFFFFFFFF  " +
+//                "FFFFFFFFFFFFFFFFFF  FFFFFFFFFFFFFFFFFF  "
+//        );
 
 
     }
     
 }
+// ColumnWrapperSubWindow.newBuilder()
+//         .setColumnSize(1d)
+//         .setPropertyName("ftgnfrg")
+//         .setCurrentWindow(window)
+//         .setIsEditeble(true)
+//         .setWindowBuilder(
+//         WindowBuilder.newBuilder()
+//         .setFxmlFileName("q")
+//         .setParentAnchorNameForFXML(
+//         WindowAbstraction.DefaultPanelsNames.topVisibleAnchor.name())
+//         .setHeight(400d)
+//         .setWidth(800d)
+//         .setTitle("111111111")
+//         .build()
+//         ).build()

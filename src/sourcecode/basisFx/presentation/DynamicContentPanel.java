@@ -18,6 +18,7 @@ public abstract class DynamicContentPanel {
 
     public  void initTemplateMethod(WindowAbstraction windowAbstraction){
         window=windowAbstraction;
+        windowAbstraction.setCurrentDynamicContent(this);
         mainContentAnchor =((AnchorPane ) window.getNode(WindowAbstraction.DefaultPanelsNames.mainContentAnchor.name()).getElement());
         createDynamicContentAnchorHolder();
         customeInit();

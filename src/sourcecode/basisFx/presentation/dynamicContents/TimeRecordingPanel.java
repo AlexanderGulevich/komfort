@@ -9,7 +9,11 @@ import basisFx.appCore.grid.ButtonsSizeNon;
 import basisFx.appCore.grid.GridSingleTable;
 import basisFx.appCore.table.ColumnWrapperComboBox;
 import basisFx.appCore.table.ColumnWrapperDouble;
+import basisFx.appCore.table.ColumnWrapperSubWindow;
 import basisFx.appCore.utils.Coordinate;
+import basisFx.appCore.utils.Registry;
+import basisFx.appCore.windows.WindowAbstraction;
+import basisFx.appCore.windows.WindowBuilder;
 import basisFx.domain.Employer;
 import basisFx.domain.TimeRecordingForEmployers;
 import basisFx.presentation.DynamicContentPanel;
@@ -48,7 +52,8 @@ public class TimeRecordingPanel extends DynamicContentPanel {
                                 .setColumnSize(0.7d)
                                 .setIsEditeble(false)
                                 .setPropertyName("employer")
-                                .build(),
+                                .build()
+                                ,
                         ColumnWrapperDouble.newBuilder()
                                 .setColumnName("Отработанные часы")
                                 .setColumnSize(0.3d)
