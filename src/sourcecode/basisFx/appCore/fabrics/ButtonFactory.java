@@ -55,26 +55,6 @@ public class ButtonFactory {
                 .setHeight(littleButHeight)
                 .setEvents(new RowDeleteFromTable(tableWrapper))
                 .build().getElement();
-
-
-        return button;
-
-
-
-    }
-    public Button littleRowAddButtonForSubmitTable(TableWrapper tableWrapper){
-
-        Button button = ButtonWrapper.newBuilder()
-                .setCSSid(CSSID.Little_PANELS_BUTTON_ADD)
-                .setText("\uF199")
-                .setFont(FontsStore.FOUNDATION)
-                .setFontSize(littleFontHeight)
-                .setWidth(littleButWidth)
-                .setHeight(littleButHeight)
-                .setEvents(new RowAddToSubmitTableWhisCommonDate(tableWrapper ))
-                .build().getElement();
-
-
         return button;
 
     }
@@ -83,22 +63,19 @@ public class ButtonFactory {
         return  ButtonWrapper.newBuilder()
                 .setCSSid(CSSID.PANELS_BUTTON)
                 .setText("ДОБАВИТЬ")
-                .setFont(FontsStore.ROBOTO_LIGHT)
+//                .setFont(FontsStore.ROBOTO_LIGHT)
                 .setFontSize(15)
                 .setWidth(bigButWidth)
                 .setHeight(20d)
                 .setEvents(new RowAddToTable(tableWrapper ))
                 .build().getElement();
-
-
-
     }
 
     public Button deleteRowButton(  TableWrapper tableWrapper){
         return ButtonWrapper.newBuilder()
                 .setCSSid(CSSID.PANELS_BUTTON)
                 .setText("УДАЛИТЬ")
-                .setFont(FontsStore.ROBOTO_LIGHT)
+//                .setFont(FontsStore.ROBOTO_LIGHT)
                 .setFontSize(15)
                 .setWidth(bigButWidth)
                 .setHeight(20d)
@@ -109,46 +86,4 @@ public class ButtonFactory {
 
     }
 
-    public ButtonWrapper submitButton(AnchorPane panel, Coordinate coordinate, ServiceMediator mediator){
-
-        return ButtonWrapper.newBuilder()
-                .setCSSid(CSSID.PANELS_BUTTON)
-                .setParentAnchor(panel)
-                .setEvents(new MultyPushToDataStore())
-                .setServiceMediator(mediator)
-                .setCoordinate(coordinate)
-                .setText("ОТПРАВИТЬ")
-                .setFont(FontsStore.ROBOTO_LIGHT)
-                .setFontSize(15)
-                .setWidth(130d)
-                .setHeight(20d)
-                .build();
-
-
-    }
-//    public Button submitButton(DefaultPanelsNames mark, Submitted...submitted){
-//
-//        return (Button)AppNode.NodeBuilder.create()
-//                .setId(CSSID.PANELS_BUTTON)
-//                .setKindOfSubmitElement(mark)
-//                .setText("ОТПРАВИТЬ").setFont(FontsStore.ROBOTO_LIGHT, 15)
-//                .setWidth(130d).setHeight(20d)
-//                .createNButton().getElement();
-//
-//
-//    }
-//    public Button popupCloseOkButton( AnchorPane panel, Coordinate coordinate, Stage stage){
-//
-//        return (Button)AppNode.NodeBuilder.create()
-//                .setId(CSSID.PANELS_BUTTON)
-//                .setParent(panel)
-//                .setCoordinate(coordinate)
-//                .setStage(stage)
-//                .setText("ОК").setFont(FontsStore.ROBOTO_BOLD, 17)
-//                .setWidth(50d).setHeight(30d)
-//                .setEvent(eventFactory.closingPopup())
-//                .createNButton().getElement();
-//
-//
-//    }
 }

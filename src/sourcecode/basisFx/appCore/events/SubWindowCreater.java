@@ -1,41 +1,45 @@
-//package basisFx.appCore.events;
-//
-//import basisFx.appCore.elements.AppNode;
-//import basisFx.appCore.utils.Registry;
-//import basisFx.presentation.DynamicContentPanel;
-//import javafx.scene.control.Button;
-//
-//public class SubWindowCreater<T> extends AppEvent{
-//
-//    private Button but;
-//    private DynamicContentPanel targetPanel;
-//    private double width;
-//    private double height;
-//
-//    public SubWindowCreater(DynamicContentPanel targetPanel, double width, double height) {
-//        this.targetPanel = targetPanel;
-//        this.width = width;
-//        this.height = height;
-//    }
-//
-//    public SubWindowCreater(DynamicContentPanel targetPanel ) {
-//        this.targetPanel = targetPanel;
-//        this.width = 1000d;
-//        this.height = 700d;
-//    }
-//
-//    @Override
-//    public void setEventToElement(AppNode node) {
-//        but=(Button) node.getElement();
-//        but.setOnMouseClicked((event) -> {
-//            run();
-//        });
-//    }
-//
-//    @Override
-//    public void run() {
-//        Registry.windowFabric.customSubWindow(targetPanel,width,height);
-//    }
-//
-//
-//}
+package basisFx.appCore.events;
+
+import basisFx.appCore.elements.AppNode;
+import basisFx.appCore.interfaces.CallBack;
+import basisFx.appCore.utils.Registry;
+import basisFx.appCore.windows.WindowAbstraction;
+import basisFx.appCore.windows.WindowBuilder;
+import javafx.scene.Node;
+
+
+public class SubWindowCreater extends AppEvent{
+    protected Node  node;
+    protected WindowBuilder windowBuilder;
+    protected WindowAbstraction currentWindow;
+    protected CallBack callBackSubWindowClosing;
+
+    public SubWindowCreater(WindowAbstraction currentWindow, CallBack callBackSubWindowClosing, WindowBuilder windowBuilder ) {
+        this.windowBuilder = windowBuilder;
+        this.currentWindow = currentWindow;
+        this.callBackSubWindowClosing = callBackSubWindowClosing;
+
+    }
+
+    @Override
+    public void setEventToElement(AppNode appNode) {
+        this.nodeWrapper =appNode;
+        this.node= appNode.getElement();
+        run();
+    }
+    @Override
+    public void setEventToElement(Node node) {
+        this.node= node;
+        run();
+    }
+    @Override
+    public void run() {
+        node.setOnMousePressed(event -> {
+            if (event.isPrimaryButtonDown() && event.getClickCount() == 1) {
+                WindowAbstraction subWindow = Registry.windowFabric.customSubWindow(windowBuilder);
+                currentWindow.getCrossWindowMediator().setSubWindow(subWindow);
+                currentWindow.getCrossWindowMediator().setCallBackSubWindowClosing(callBackSubWindowClosing);
+            }
+        });
+    }
+}
