@@ -1,6 +1,6 @@
 package basisFx.appCore.settings;
 
-public enum CSSID {
+public enum CSSid {
     
     TOP_CONTROL_BUTTON("TOP_CONTROL_BUTTON"),
     TOP_CONTROL_SINGLE_BUTTON("TOP_CONTROL_SINGLE_BUTTON"),
@@ -64,7 +64,7 @@ public enum CSSID {
 
     private final String id;
 
-    private CSSID(String id) {
+    private CSSid(String id) {
         this.id = id;
     }
 

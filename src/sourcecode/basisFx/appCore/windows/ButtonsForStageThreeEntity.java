@@ -5,12 +5,11 @@ import basisFx.appCore.elements.ButtonWrapper;
 import basisFx.appCore.events.CloseMainWindow;
 import basisFx.appCore.events.HideWindow;
 import basisFx.appCore.events.MaximazingSwither;
-import basisFx.appCore.settings.CSSID;
+import basisFx.appCore.settings.CSSid;
 import basisFx.appCore.settings.FontsStore;
 import basisFx.appCore.utils.Coordinate;
 import javafx.geometry.Insets;
 import javafx.scene.control.ContentDisplay;
-import javafx.scene.layout.AnchorPane;
 
 public class    ButtonsForStageThreeEntity extends ButtonsForStage {
 
@@ -33,7 +32,7 @@ public class    ButtonsForStageThreeEntity extends ButtonsForStage {
 
         buttonsAnchor =
                 AnchorWrapper.newBuilder()
-                        .setCSSid(CSSID.WindowButtonsPanel)
+                        .setCSSid(CSSid.WindowButtonsPanel)
                         .setWindowAbstraction(windowAbstraction)
                         .setCoordinate( new Coordinate(0d,0d,null,null))
                         .setHeight(25d).setWidth(82d)
@@ -50,7 +49,7 @@ public class    ButtonsForStageThreeEntity extends ButtonsForStage {
                         .setHeight(height)
                         .setInsects(padding)
                         .setCoordinate(new Coordinate(topMatgin, 0d, null, null))
-                        .setCSSid(CSSID.TOP_CONTROL_BUTTON)
+                        .setCSSid(CSSid.TOP_CONTROL_BUTTON)
                         .setParentAnchor(buttonsAnchor)
                         .setStage(windowAbstraction.getStage())
                         .setEvents(new CloseMainWindow())
@@ -67,7 +66,7 @@ public class    ButtonsForStageThreeEntity extends ButtonsForStage {
                         .setHeight(height)
                         .setInsects(padding)
                         .setCoordinate(new Coordinate(topMatgin, width + width, null, null))
-                        .setCSSid(CSSID.TOP_CONTROL_BUTTON)
+                        .setCSSid(CSSid.TOP_CONTROL_BUTTON)
                         .setParentAnchor(buttonsAnchor)
                         .setStage(windowAbstraction.getStage())
                         .setText(hideStr)
@@ -83,7 +82,7 @@ public class    ButtonsForStageThreeEntity extends ButtonsForStage {
                         .setHeight(height)
                         .setInsects(padding)
                         .setCoordinate(new Coordinate(topMatgin, width, null, null))
-                        .setCSSid(CSSID.TOP_CONTROL_BUTTON)
+                        .setCSSid(CSSid.TOP_CONTROL_BUTTON)
                         .setParentAnchor(buttonsAnchor)
                         .setStage(windowAbstraction.getStage())
                         .setText(maximazeStr)

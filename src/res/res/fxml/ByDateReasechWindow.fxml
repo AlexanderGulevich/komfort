@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXRadioButton?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import java.net.URL?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="500.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="basisFx.service.ServiceFXML">
+   <children>
+      <AnchorPane layoutX="700.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #436271; -fx-border-color: #009191; -fx-border-width: 0 0 0 0.5;" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <DatePicker layoutX="11.0" layoutY="106.0">
+               <stylesheets>
+                  <URL value="@dataPicker.css" />
+                  <URL value="@../css/custom_1/dataPicker.css" />
+               </stylesheets></DatePicker>
+            <DatePicker layoutX="13.0" layoutY="173.0">
+               <stylesheets>
+                  <URL value="@dataPicker.css" />
+                  <URL value="@../css/custom_1/dataPicker.css" />
+               </stylesheets></DatePicker>
+            <JFXComboBox focusColor="WHITE" layoutX="17.0" layoutY="419.0" prefHeight="27.0" prefWidth="167.0" unFocusColor="#9ea4a8" />
+            <ComboBox id="COMBOBOX" layoutX="17.0" layoutY="337.0" prefHeight="30.0" prefWidth="167.0">
+               <stylesheets>
+                  <URL value="@combobox.css" />
+                  <URL value="@../css/custom_1/combobox.css" />
+               </stylesheets></ComboBox>
+            <Label layoutX="11.0" layoutY="78.0" text="Начало периода" textFill="#e8e5ca">
+               <font>
+                  <Font name="Roboto Light" size="14.0" />
+               </font></Label>
+            <Label layoutX="13.0" layoutY="142.0" text="Конец периода" textFill="#e8e5ca">
+               <font>
+                  <Font name="Roboto Light" size="14.0" />
+               </font>
+            </Label>
+            <JFXRadioButton layoutX="21.0" layoutY="242.0" style="-fx-fill: white;" text="За весь период" textFill="WHITE">
+               <font>
+                  <Font name="Roboto Light" size="14.0" />
+               </font></JFXRadioButton>
+            <Label layoutX="16.0" layoutY="307.0" text="Фильтры по умолчанию" textFill="#e8e5ca">
+               <font>
+                  <Font name="Roboto Light" size="14.0" />
+               </font>
+            </Label>
+            <AnchorPane layoutX="-1.0" layoutY="1.0" opacity="0.27" prefHeight="70.0" prefWidth="201.0" style="-fx-background-color: #01111D;">
+               <children>
+                  <JFXButton layoutX="170.0" layoutY="3.0" style="-fx-padding: 2 5 2 5;" text="" textFill="WHITE">
+                     <font>
+                        <Font name="Font Awesome 5 Free Solid" size="18.0" />
+                     </font>
+                  </JFXButton>
+                  <Label layoutX="101.0" layoutY="35.0" prefHeight="20.0" prefWidth="88.0" text="ФИЛЬТРЫ" textFill="WHITE">
+                     <font>
+                        <Font name="Roboto Black" size="17.0" />
+                     </font>
+                  </Label>
+                  <FontAwesomeIconView fill="#a5b0b8" layoutX="7.0" layoutY="53.0" rotate="90.0" size="45" text="" />
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="12.0" prefHeight="70.0" prefWidth="900.0" style="-fx-border-width: 0 0 0.3 0; -fx-border-color: #697886; -fx-border-color: #FFFFFF;" AnchorPane.bottomAnchor="430.0" AnchorPane.leftAnchor="12.0" AnchorPane.rightAnchor="188.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <FontAwesomeIconView fill="#a5b0b8" layoutX="29.0" layoutY="39.0" size="35" text="" />
+            <Label layoutX="93.0" layoutY="13.0" text="Архив цен" textFill="#3f6890eb">
+               <font>
+                  <Font name="Roboto Black" size="36.0" />
+               </font>
+            </Label>
+            <FontAwesomeIconView fill="#a5b0b8" layoutX="44.0" layoutY="57.0" size="35" text="" />
+         </children>
+      </AnchorPane>
+      <TableView id="TABLE" layoutX="39.0" layoutY="88.0" prefHeight="382.0" prefWidth="624.0" stylesheets="@../css/custom_1/tables.css">
+        <columns>
+          <TableColumn prefWidth="75.0" text="C1" />
+          <TableColumn prefWidth="117.0" text="C2" />
+            <TableColumn prefWidth="117.0" text="Column X" />
+            <TableColumn prefWidth="372.0" text="Column X" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>

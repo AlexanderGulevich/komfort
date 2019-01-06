@@ -1,7 +1,8 @@
 package basisFx.appCore.elements;
 
 import basisFx.appCore.events.AppEvent;
-import basisFx.appCore.settings.CSSID;
+import basisFx.appCore.settings.CSSclasses;
+import basisFx.appCore.settings.CSSid;
 import basisFx.appCore.settings.FontsStore;
 import basisFx.appCore.utils.Coordinate;
 import basisFx.appCore.utils.FontLogic;
@@ -25,7 +26,7 @@ public class TextWrapper extends AppNode{
         element=new Text();
 
         events = builder.events;
-        cssid = builder.cssid;
+        CSSid = builder.CSSid;
         coordinate = builder.coordinate;
         parentAnchor = builder.parentAnchor;
         parentGroup = builder.parentGroup;
@@ -39,7 +40,9 @@ public class TextWrapper extends AppNode{
         windowAbstraction=builder.windowAbstraction;
         setElementToWindowRegistry();
 
-
+        cssClassesStrings=builder.cssClassesStrings;
+        cssClasses=builder.cssClasses;
+        applyCssClasses();
 
         bond(this);
         elocateEvents();
@@ -61,8 +64,8 @@ public class TextWrapper extends AppNode{
     }
 
     private void setId() {
-        if (cssid != null) {
-            element.setId(cssid.get());
+        if (CSSid != null) {
+            element.setId(CSSid.get());
         }
     }
     public static Builder newBuilder() {
@@ -80,7 +83,7 @@ public class TextWrapper extends AppNode{
         public WindowAbstraction windowAbstraction;
         private String text;
         private ArrayList<AppEvent> events;
-        private CSSID cssid;
+        private CSSid CSSid;
         private Coordinate coordinate;
         private AnchorPane parentAnchor;
         private Group parentGroup;
@@ -89,6 +92,17 @@ public class TextWrapper extends AppNode{
         private String name;
         private FontsStore font;
         private double fontSize;
+        protected CSSclasses[] cssClasses;
+        protected String[] cssClassesStrings;
+
+
+        public void setCssClasses(CSSclasses...  cssClasses) {
+            this.cssClasses = cssClasses;
+        }
+
+        public void setCssClassesStrings(String... cssClassesStrings) {
+            this.cssClassesStrings = cssClassesStrings;
+        }
 
         private Builder() {
         }
@@ -113,8 +127,8 @@ public class TextWrapper extends AppNode{
             return this;
         }
 
-        public Builder setCssid(CSSID val) {
-            cssid = val;
+        public Builder setCSSid(CSSid val) {
+            CSSid = val;
             return this;
         }
 

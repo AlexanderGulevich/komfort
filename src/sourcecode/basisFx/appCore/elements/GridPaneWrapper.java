@@ -1,7 +1,8 @@
 package basisFx.appCore.elements;
 import basisFx.appCore.events.AppEvent;
 import basisFx.appCore.grid.GridOrganization;
-import basisFx.appCore.settings.CSSID;
+import basisFx.appCore.settings.CSSclasses;
+import basisFx.appCore.settings.CSSid;
 import basisFx.appCore.settings.FontsStore;
 import basisFx.appCore.utils.Coordinate;
 import basisFx.appCore.windows.WindowAbstraction;
@@ -30,7 +31,7 @@ public  class GridPaneWrapper extends AppNode {
         element=new GridPane();
 
         events = builder.events;
-        cssid = builder.cssid;
+        CSSid = builder.CSSid;
         width = builder.width;
         height = builder.height;
         coordinate = builder.coordinate;
@@ -44,6 +45,11 @@ public  class GridPaneWrapper extends AppNode {
         gridLinesVisibility=builder.gridLinesVisibility;
         gridOrganization =builder.gridOrganization;
         windowAbstraction=builder.windowAbstraction;
+
+        cssClassesStrings=builder.cssClassesStrings;
+        cssClasses=builder.cssClasses;
+        applyCssClasses();
+
         setElementToWindowRegistry();
         applyLabel();
         applyRows();
@@ -126,7 +132,7 @@ public  class GridPaneWrapper extends AppNode {
 
         if (text != null) {
             label =LabelWrapper.newBuilder()
-                    .setCssid(CSSID.LABEL_TEXT)
+                    .setCSSid(CSSid.LABEL_TEXT)
                     .setText(text)
                     .setFont(FontsStore.ROBOTO_LIGHT)
                     .setAlignment(Pos.BASELINE_LEFT)
@@ -226,7 +232,7 @@ public  class GridPaneWrapper extends AppNode {
     public static final class Builder {
         public WindowAbstraction windowAbstraction;
         private ArrayList<AppEvent> events;
-        private CSSID cssid;
+        private CSSid CSSid;
         private Double width;
         private Double height;
         private Coordinate coordinate;
@@ -240,6 +246,17 @@ public  class GridPaneWrapper extends AppNode {
         private ArrayList <RowConstraints> rows=new ArrayList<>();
         private boolean gridLinesVisibility;
         private GridOrganization gridOrganization;
+        protected CSSclasses[] cssClasses;
+        protected String[] cssClassesStrings;
+
+
+        public void setCssClasses(CSSclasses...  cssClasses) {
+            this.cssClasses = cssClasses;
+        }
+
+        public void setCssClassesStrings(String... cssClassesStrings) {
+            this.cssClassesStrings = cssClassesStrings;
+        }
 
         public void setWindowAbstraction(WindowAbstraction windowAbstraction) {
             this.windowAbstraction = windowAbstraction;
@@ -263,8 +280,8 @@ public  class GridPaneWrapper extends AppNode {
             return this;
         }
 
-        public Builder setCssid(CSSID val) {
-            cssid = val;
+        public Builder setCSSid(CSSid val) {
+            CSSid = val;
             return this;
         }
 

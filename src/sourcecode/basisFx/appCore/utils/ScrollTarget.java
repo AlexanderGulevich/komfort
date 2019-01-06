@@ -7,7 +7,7 @@
 //import basisFx.presentation.DynamicContentPanel;
 //import basisFx.domain.domaine.Country;
 //import basisFx.domain.domaine.Equipment;
-//import basisFx.appCore.settings.CSSID;
+//import basisFx.appCore.settings.CSSid;
 //import javafx.scene.layout.AnchorPane;
 //
 ///**
@@ -25,7 +25,7 @@
 //
 //
 //     AppNode.NodeBuilder.create()
-//             .setId(CSSID.TILE_PANE).setParent(panel)
+//             .setId(CSSid.TILE_PANE).setParent(panel)
 //             .setCoordinate(80d , 0d, 0d, 0d)
 //             .createTilePaneWrapper()
 //             .setChildrenAnchorSize(0.3d,30d)
@@ -52,7 +52,7 @@
 //    private void setCountryTable(AnchorPane pane){
 //
 //        TableWrapper countryTableWrapper = AppNode.NodeBuilder.create()
-//                .setId(CSSID.TABLE).setCoordinate(pane,50d, 40d, 10d, 10d)
+//                .setId(CSSid.TABLE).setCoordinate(pane,50d, 40d, 10d, 10d)
 //                .<Equipment>createTableViewWrapper().setTablesWidthProperty(0.4, pane.widthProperty()).setTablesHeight(200d)
 //                .setActiveRecord(this.dataMapperFabric.getNamedDataMapper())
 //                .setDbTableName("Country").refresh()

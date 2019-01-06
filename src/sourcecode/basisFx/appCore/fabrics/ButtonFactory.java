@@ -2,16 +2,11 @@ package basisFx.appCore.fabrics;
 
 import basisFx.appCore.elements.ButtonWrapper;
 import basisFx.appCore.elements.TableWrapper;
-import basisFx.appCore.events.MultyPushToDataStore;
-import basisFx.appCore.events.RowAddToSubmitTableWhisCommonDate;
 import basisFx.appCore.events.RowAddToTable;
 import basisFx.appCore.events.RowDeleteFromTable;
-import basisFx.appCore.utils.Coordinate;
-import basisFx.appCore.settings.CSSID;
+import basisFx.appCore.settings.CSSid;
 import basisFx.appCore.settings.FontsStore;
-import basisFx.service.ServiceMediator;
 import javafx.scene.control.Button;
-import javafx.scene.layout.AnchorPane;
 
 public class ButtonFactory {
 
@@ -31,7 +26,7 @@ public class ButtonFactory {
     public Button littleRowAddButton(TableWrapper tableWrapper){
 
         Button button = ButtonWrapper.newBuilder()
-                .setCSSid(CSSID.Little_PANELS_BUTTON_ADD)
+                .setCSSid(CSSid.Little_PANELS_BUTTON_ADD)
                 .setText("\uF199")
                 .setFont(FontsStore.FOUNDATION)
                 .setFontSize(littleFontHeight)
@@ -47,7 +42,7 @@ public class ButtonFactory {
     public Button littleRowDeleteButton(TableWrapper tableWrapper ){
 
         Button button = ButtonWrapper.newBuilder()
-                .setCSSid(CSSID.Little_PANELS_BUTTON_DEL)
+                .setCSSid(CSSid.Little_PANELS_BUTTON_DEL)
                 .setText("\uF176")
                 .setFont(FontsStore.FOUNDATION)
                 .setFontSize(littleFontHeight)
@@ -61,10 +56,10 @@ public class ButtonFactory {
     public Button addRowButton(TableWrapper tableWrapper){
 
         return  ButtonWrapper.newBuilder()
-                .setCSSid(CSSID.PANELS_BUTTON)
+                .setCSSid(CSSid.PANELS_BUTTON)
                 .setText("ДОБАВИТЬ")
-//                .setFont(FontsStore.ROBOTO_LIGHT)
-                .setFontSize(15)
+                .setFont(FontsStore.ROBOTO_LIGHT)
+                .setFontSize(17)
                 .setWidth(bigButWidth)
                 .setHeight(20d)
                 .setEvents(new RowAddToTable(tableWrapper ))
@@ -73,10 +68,10 @@ public class ButtonFactory {
 
     public Button deleteRowButton(  TableWrapper tableWrapper){
         return ButtonWrapper.newBuilder()
-                .setCSSid(CSSID.PANELS_BUTTON)
+                .setCSSid(CSSid.PANELS_BUTTON)
                 .setText("УДАЛИТЬ")
 //                .setFont(FontsStore.ROBOTO_LIGHT)
-                .setFontSize(15)
+                .setFontSize(17)
                 .setWidth(bigButWidth)
                 .setHeight(20d)
                 .setEvents(new RowDeleteFromTable(tableWrapper))

@@ -1,7 +1,8 @@
 package basisFx.appCore.elements;
 
 import basisFx.appCore.events.AppEvent;
-import basisFx.appCore.settings.CSSID;
+import basisFx.appCore.settings.CSSclasses;
+import basisFx.appCore.settings.CSSid;
 import basisFx.appCore.utils.Coordinate;
 import basisFx.appCore.windows.WindowAbstraction;
 import javafx.geometry.Insets;
@@ -23,7 +24,7 @@ public class FlowPaneWrapper extends AppNode{
 
     private FlowPaneWrapper(Builder builder) {
         events = builder.events;
-        cssid = builder.cssid;
+        CSSid = builder.CSSid;
         width = builder.width;
         height = builder.height;
         coordinate = builder.coordinate;
@@ -38,6 +39,11 @@ public class FlowPaneWrapper extends AppNode{
         dropShadow = builder.dropShadow;
         windowAbstraction=builder.windowAbstraction;
         setElementToWindowRegistry();
+
+        cssClassesStrings=builder.cssClassesStrings;
+        cssClasses=builder.cssClasses;
+        applyCssClasses();
+
 
         bond(this);
         setGap();
@@ -90,7 +96,7 @@ public class FlowPaneWrapper extends AppNode{
     public static final class Builder {
         public WindowAbstraction windowAbstraction;
         private ArrayList<AppEvent> events;
-        private CSSID cssid;
+        private CSSid CSSid;
         private Double width;
         private Double height;
         private Coordinate coordinate;
@@ -103,6 +109,17 @@ public class FlowPaneWrapper extends AppNode{
         private Double hGap;
         private Insets insects;
         private DropShadow dropShadow;
+        protected CSSclasses[] cssClasses;
+        protected String[] cssClassesStrings;
+
+
+        public void setCssClasses(CSSclasses...  cssClasses) {
+            this.cssClasses = cssClasses;
+        }
+
+        public void setCssClassesStrings(String... cssClassesStrings) {
+            this.cssClassesStrings = cssClassesStrings;
+        }
 
         private Builder() {
         }
@@ -117,8 +134,8 @@ public class FlowPaneWrapper extends AppNode{
             return this;
         }
 
-        public Builder setCssid(CSSID val) {
-            cssid = val;
+        public Builder setCSSid(CSSid val) {
+            CSSid = val;
             return this;
         }
 

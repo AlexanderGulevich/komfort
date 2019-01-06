@@ -1,12 +1,12 @@
 package basisFx.appCore.elements;
 
 import basisFx.appCore.events.AppEvent;
-import basisFx.appCore.settings.CSSID;
+import basisFx.appCore.settings.CSSclasses;
+import basisFx.appCore.settings.CSSid;
 import basisFx.appCore.utils.Coordinate;
 import basisFx.appCore.utils.RangeForCombobox;
 import basisFx.appCore.windows.WindowAbstraction;
 import basisFx.service.ServiceMediator;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.scene.Group;
 import javafx.scene.Node;
@@ -36,7 +36,7 @@ public class ComboBoxWrapper  extends AppNode {
         events = builder.events;
         startRange=builder.startRange;
         events = builder.events;
-        cssid = builder.cssid;
+        CSSid = builder.CSSid;
         width = builder.width;
         height = builder.height;
         coordinate = builder.coordinate;
@@ -52,12 +52,16 @@ public class ComboBoxWrapper  extends AppNode {
         serviceMediator = builder.serviceMediator;
         comboboxValues=builder.comboboxValues;
         element = new ComboBox <>(comboboxValues);
-        element.setId(CSSID.COMBOBOX.get());
+        element.setId(CSSid.COMBOBOX.get());
         element.setEditable(false);
         windowAbstraction=builder.windowAbstraction;
         setElementToWindowRegistry();
         setValue();
         setCellFactory();
+
+        cssClassesStrings=builder.cssClassesStrings;
+        cssClasses=builder.cssClasses;
+        applyCssClasses();
 
 
         element.setOnAction((e) -> {
@@ -122,8 +126,8 @@ public class ComboBoxWrapper  extends AppNode {
 
 
     private void setId() {
-        if (cssid != null) {
-            element.setId(cssid.get());
+        if (CSSid != null) {
+            element.setId(CSSid.get());
         }
     }
     public static Builder newBuilder() {
@@ -140,7 +144,7 @@ public class ComboBoxWrapper  extends AppNode {
         public RangeForCombobox startRange;
         public WindowAbstraction windowAbstraction;
         private ArrayList<AppEvent> events;
-        private CSSID cssid;
+        private CSSid CSSid;
         private Double width;
         private Double height;
         private Coordinate coordinate;
@@ -154,6 +158,17 @@ public class ComboBoxWrapper  extends AppNode {
         private String string;
         private ServiceMediator serviceMediator;
         private ObservableList<RangeForCombobox> comboboxValues;
+        protected CSSclasses[] cssClasses;
+        protected String[] cssClassesStrings;
+
+
+        public void setCssClasses(CSSclasses...  cssClasses) {
+            this.cssClasses = cssClasses;
+        }
+
+        public void setCssClassesStrings(String... cssClassesStrings) {
+            this.cssClassesStrings = cssClassesStrings;
+        }
 
         private Builder() {
         }
@@ -177,8 +192,8 @@ public class ComboBoxWrapper  extends AppNode {
             return this;
         }
 
-        public Builder setCssid(CSSID val) {
-            cssid = val;
+        public Builder setCSSid(CSSid val) {
+            CSSid = val;
             return this;
         }
 

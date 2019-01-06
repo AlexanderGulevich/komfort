@@ -1,7 +1,7 @@
 package basisFx.appCore.table;
 
 import basisFx.appCore.elements.TableWrapper;
-import basisFx.appCore.settings.CSSID;
+import basisFx.appCore.settings.CSSid;
 import basisFx.domain.ActiveRecord;
 import basisFx.domain.BoolComboBox;
 import javafx.beans.value.ObservableValue;
@@ -172,7 +172,7 @@ public class ColumnWrapperBool<T> extends ColumnWrapper{
             ObservableList<BoolComboBox> comboBoxValues = BoolComboBox.getComboBoxes();
 
             comboBox = new ComboBox<>(comboBoxValues);
-            comboBox.setId(CSSID.COMBOBOX.get());
+            comboBox.setId(CSSid.COMBOBOX.get());
             comboBox.setEditable(false);
 //            comboBox.setPromptText("fgfg");
             comboBoxConverter(comboBox);

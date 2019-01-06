@@ -2,7 +2,7 @@ package basisFx.appCore.grid;
 
 import basisFx.appCore.elements.GridPaneWrapper;
 import basisFx.appCore.elements.LabelWrapper;
-import basisFx.appCore.settings.CSSID;
+import basisFx.appCore.settings.CSSid;
 import basisFx.appCore.settings.FontsStore;
 import javafx.geometry.HPos;
 import javafx.geometry.VPos;
@@ -76,7 +76,7 @@ public class GridTwoVerticaGrids extends GridOrganization {
     private LabelWrapper createCommonLabel() {
         return LabelWrapper.newBuilder()
                 .setText(parentGridWrapper.getText())
-                .setCssid(CSSID.LABEL_TEXT)
+                .setCSSid(CSSid.LABEL_TEXT)
                 .setFontSize(25d)
                 .setFont(FontsStore.ROBOTO_BOLD)
                 .build();

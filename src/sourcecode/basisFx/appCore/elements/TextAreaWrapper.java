@@ -1,7 +1,8 @@
 package basisFx.appCore.elements;
 
 import basisFx.appCore.events.AppEvent;
-import basisFx.appCore.settings.CSSID;
+import basisFx.appCore.settings.CSSclasses;
+import basisFx.appCore.settings.CSSid;
 import basisFx.appCore.settings.FontsStore;
 import basisFx.appCore.utils.Coordinate;
 import basisFx.appCore.utils.FontLogic;
@@ -27,7 +28,7 @@ public  class TextAreaWrapper extends AppNode{
 
     private TextAreaWrapper(Builder builder) {
         events = builder.events;
-        cssid = builder.cssid;
+        CSSid = builder.CSSid;
         width = builder.width;
         height = builder.height;
         coordinate = builder.coordinate;
@@ -44,6 +45,11 @@ public  class TextAreaWrapper extends AppNode{
         text = builder.text;
         windowAbstraction=builder.windowAbstraction;
         setElementToWindowRegistry();
+
+        cssClassesStrings=builder.cssClassesStrings;
+        cssClasses=builder.cssClasses;
+        applyCssClasses();
+
 
 
         setText();
@@ -101,7 +107,7 @@ public  class TextAreaWrapper extends AppNode{
     public static final class Builder {
         public WindowAbstraction windowAbstraction;
         private ArrayList<AppEvent> events;
-        private CSSID cssid;
+        private CSSid CSSid;
         private Double width;
         private Double height;
         private Coordinate coordinate;
@@ -116,6 +122,17 @@ public  class TextAreaWrapper extends AppNode{
         private FontsStore font;
         private Double fontSize;
         private String text;
+        protected CSSclasses[] cssClasses;
+        protected String[] cssClassesStrings;
+
+
+        public void setCssClasses(CSSclasses...  cssClasses) {
+            this.cssClasses = cssClasses;
+        }
+
+        public void setCssClassesStrings(String... cssClassesStrings) {
+            this.cssClassesStrings = cssClassesStrings;
+        }
 
         private Builder() {
         }
@@ -130,8 +147,8 @@ public  class TextAreaWrapper extends AppNode{
             return this;
         }
 
-        public Builder setCssid(CSSID val) {
-            cssid = val;
+        public Builder setCSSid(CSSid val) {
+            CSSid = val;
             return this;
         }
 

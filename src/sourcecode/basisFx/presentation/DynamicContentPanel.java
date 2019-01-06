@@ -1,7 +1,7 @@
 package basisFx.presentation;
 
 import basisFx.appCore.elements.AnchorWrapper;
-import basisFx.appCore.settings.CSSID;
+import basisFx.appCore.settings.CSSid;
 import basisFx.appCore.utils.Coordinate;
 import basisFx.appCore.windows.WindowAbstraction;
 import basisFx.dataSource.UnitOfWork;
@@ -27,7 +27,7 @@ public abstract class DynamicContentPanel {
         dynamicContentAnchorHolder = AnchorWrapper.newBuilder()
                 .setWindowAbstraction(window)
                 .setMetaName("dynamicContentAnchorHolder")
-                .setCSSid(CSSID.TARGET_PANEL)
+                .setCSSid(CSSid.TARGET_PANEL)
                 .setCoordinate(new Coordinate(0d, 10d, 10d, 10d))
                 .setParentAnchor(mainContentAnchor)
                 .build().getElement();

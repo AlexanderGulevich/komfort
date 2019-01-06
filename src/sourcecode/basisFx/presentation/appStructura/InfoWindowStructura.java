@@ -5,7 +5,7 @@ import basisFx.appCore.elements.LabelWrapper;
 import basisFx.appCore.elements.TextAreaWrapper;
 import basisFx.appCore.elements.TextWrapper;
 import basisFx.appCore.events.StageDragging;
-import basisFx.appCore.settings.CSSID;
+import basisFx.appCore.settings.CSSid;
 import basisFx.appCore.settings.FontsStore;
 import basisFx.appCore.utils.Coordinate;
 import basisFx.appCore.windows.WindowAbstraction;
@@ -45,7 +45,7 @@ public class InfoWindowStructura extends GUIStructura {
          AnchorWrapper.newBuilder()
                 .setWindowAbstraction(window)
                 .setMetaName(Structura.messageTextAnchor.name())
-                .setCSSid(CSSID.popupMessageTextPanel)
+                .setCSSid(CSSid.popupMessageTextPanel)
                 .setHeight(100d)
                 .setParentAnchor(((AnchorPane) window.getNode("contentAnchor").getElement()))
                 .setCoordinate(new Coordinate(10d,80d,10d,10d))
@@ -60,13 +60,13 @@ public class InfoWindowStructura extends GUIStructura {
                 .setFontSize(25d)
                 .setIsEditable(false)
                 .setMetaName(Structura.textArea.name())
-                .setCssid(CSSID.PopupTextArea)
+                .setCSSid(CSSid.PopupTextArea)
                 .build();
 
          LabelWrapper.newBuilder()
                 .setWindowAbstraction(window)
                 .setMetaName(Structura.label.name())
-                .setCssid(CSSID.PopupTitleText)
+                .setCSSid(CSSid.PopupTitleText)
                 .setFontSize(30d)
                 .setFont(FontsStore.ROBOTO_BOLD)
                 .setAlignment(Pos.CENTER_LEFT)
@@ -78,7 +78,7 @@ public class InfoWindowStructura extends GUIStructura {
                 .setWindowAbstraction(window)
                 .setMetaName(Structura.iconText.name())
                 .setText( "  \uF06A ")
-                .setCssid(CSSID.ALERT_ICON)
+                .setCSSid(CSSid.ALERT_ICON)
                 .setFont( FontsStore.FAWESOME5SOLID)
                 .setFontSize(50d)
                 .setCoordinate(new Coordinate(60d, 4d,null,null))

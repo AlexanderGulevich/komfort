@@ -1,7 +1,7 @@
 package basisFx.appCore.table;
 
 import basisFx.appCore.elements.TableWrapper;
-import basisFx.appCore.settings.CSSID;
+import basisFx.appCore.settings.CSSid;
 import basisFx.domain.ActiveRecord;
 import javafx.beans.value.ObservableValue;
 import javafx.beans.value.WritableValue;
@@ -185,7 +185,7 @@ public class ColumnWrapperDate extends ColumnWrapper{
 
         private void createDatePicker() {
             datePicker = new DatePicker(getDate());
-            datePicker.setId(CSSID.DATEPICKER_IN_COLUMN.get());
+            datePicker.setId(CSSid.DATEPICKER_IN_COLUMN.get());
             datePicker.setMinWidth(this.getWidth() - this.getGraphicTextGap() * 7);
 //            datePicker.setMinWidth(this.getWidth() - this.getGraphicTextGap() * 2);
             datePicker.setConverter(new CustomStringConverter());

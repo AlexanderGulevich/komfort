@@ -1,9 +1,10 @@
 package basisFx.appCore.elements;
 
 import basisFx.appCore.events.AppEvent;
+import basisFx.appCore.settings.CSSclasses;
+import basisFx.appCore.settings.CSSid;
 import basisFx.appCore.windows.WindowAbstraction;
 import basisFx.service.ServiceMediator;
-import basisFx.appCore.settings.CSSID;
 import basisFx.appCore.utils.Coordinate;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -30,7 +31,7 @@ public class DatePickerWrapper  extends AppNode{
 
     private DatePickerWrapper(Builder builder) {
         events = builder.events;
-        cssid = builder.cssid;
+        CSSid = builder.CSSid;
         width = builder.width;
         height = builder.height;
         coordinate = builder.coordinate;
@@ -47,6 +48,11 @@ public class DatePickerWrapper  extends AppNode{
         windowAbstraction=builder.windowAbstraction;
         setElementToWindowRegistry();
         bond(this);
+
+        cssClassesStrings=builder.cssClassesStrings;
+        cssClasses=builder.cssClasses;
+        applyCssClasses();
+
     }
 
     private void applyWidth() {
@@ -58,7 +64,7 @@ public class DatePickerWrapper  extends AppNode{
     private void createDatePicker() {
         element=new DatePicker();
 
-        element.setId(CSSID.DATEPICKER_IN_COLUMN.get());
+        element.setId(CSSid.DATEPICKER_IN_COLUMN.get());
         element.setMinWidth(width);
         element.setConverter(new CustomStringConverter());
         element.setPromptText("");
@@ -116,7 +122,7 @@ public class DatePickerWrapper  extends AppNode{
     public static final class Builder {
         public WindowAbstraction windowAbstraction;
         private ArrayList<AppEvent> events;
-        private CSSID cssid;
+        private CSSid CSSid;
         private Double width;
         private Double height;
         private Coordinate coordinate;
@@ -127,6 +133,17 @@ public class DatePickerWrapper  extends AppNode{
         private String name;
         private Stage stage;
         private ServiceMediator serviceMediator;
+        protected CSSclasses[] cssClasses;
+        protected String[] cssClassesStrings;
+
+
+        public void setCssClasses(CSSclasses...  cssClasses) {
+            this.cssClasses = cssClasses;
+        }
+
+        public void setCssClassesStrings(String... cssClassesStrings) {
+            this.cssClassesStrings = cssClassesStrings;
+        }
 
         private Builder() {
         }
@@ -140,8 +157,8 @@ public class DatePickerWrapper  extends AppNode{
             return this;
         }
 
-        public Builder setCssid(CSSID val) {
-            cssid = val;
+        public Builder setCSSid(CSSid val) {
+            CSSid = val;
             return this;
         }
 

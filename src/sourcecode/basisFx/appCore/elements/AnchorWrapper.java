@@ -1,7 +1,8 @@
 package basisFx.appCore.elements;
 
 import basisFx.appCore.events.AppEvent;
-import basisFx.appCore.settings.CSSID;
+import basisFx.appCore.settings.CSSclasses;
+import basisFx.appCore.settings.CSSid;
 import basisFx.appCore.settings.FontsStore;
 import basisFx.appCore.utils.Coordinate;
 import basisFx.appCore.windows.WindowAbstraction;
@@ -30,7 +31,7 @@ public class AnchorWrapper  extends AppNode  {
         element=new AnchorPane();
 
         events = builder.events;
-        cssid = builder.cssid;
+        CSSid = builder.CSSid;
         width = builder.width;
         height = builder.height;
         coordinate = builder.coordinate;
@@ -45,6 +46,9 @@ public class AnchorWrapper  extends AppNode  {
         stage=builder.stage;
         windowAbstraction=builder.windowAbstraction;
         setElementToWindowRegistry();
+        cssClassesStrings=builder.cssClassesStrings;
+        cssClasses=builder.cssClasses;
+        applyCssClasses();
 
         bond(this);
 
@@ -84,7 +88,7 @@ public class AnchorWrapper  extends AppNode  {
         public WindowAbstraction windowAbstraction;
         private Stage stage;
         private ArrayList<AppEvent> events;
-        private CSSID cssid;
+        private CSSid CSSid;
         private Double width;
         private Double height;
         private Coordinate coordinate;
@@ -96,7 +100,17 @@ public class AnchorWrapper  extends AppNode  {
         private Insets insects;
         private FontsStore font;
         private double fontSize;
+        protected CSSclasses[] cssClasses;
+        protected String[] cssClassesStrings;
 
+
+        public void setCssClasses(CSSclasses...  cssClasses) {
+            this.cssClasses = cssClasses;
+        }
+
+        public void setCssClassesStrings(String... cssClassesStrings) {
+            this.cssClassesStrings = cssClassesStrings;
+        }
 
         private Builder() {
         }
@@ -117,8 +131,8 @@ public class AnchorWrapper  extends AppNode  {
             return this;
         }
 
-        public Builder setCSSid(CSSID val) {
-            cssid = val;
+        public Builder setCSSid(CSSid val) {
+            CSSid = val;
             return this;
         }
 

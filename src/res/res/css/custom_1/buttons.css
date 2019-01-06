@@ -16,13 +16,10 @@
    -fx-border-radius:0;
    -fx-background-insets: 0, 0, 0, 0;
   -fx-effect: dropshadow(gaussian ,#555555 , 2, 0, 0.5, 0.5);
+  -fx-text-fill:#477a8c;
+  -fx-font-family: "fontcustom";
+  -fx-font-size: 17;
 
-}
-#Little_PANELS_BUTTON_DEL{
-       -fx-text-fill:#477a8c;
-}
-#Little_PANELS_BUTTON_ADD{
-       -fx-text-fill:#477a8c;
 }
 #PANELS_BUTTON{
     -fx-padding: 4 5;
@@ -33,6 +30,7 @@
     -fx-effect: dropshadow(gaussian ,#555555 , 2, 0, 0.5, 0.5);
     -fx-text-fill:#003641;
     -fx-font-family: "Roboto Light";
+    -fx-font-size: 15;
 }
 #PANELS_BUTTON:armed, #Little_PANELS_BUTTON_ADD:armed, #Little_PANELS_BUTTON_DEL:armed{
     -fx-background-color:#FF8964;
@@ -42,7 +40,7 @@
     -fx-font-weigh:bold ;
      -fx-effect: dropshadow(gaussian ,#555555 , 3, 0, 0.5, 0.5);
      -fx-text-fill:white;
-     -fx-font-family: "Roboto Light";
+
 }
 #PANELS_BUTTON:hover, #Little_PANELS_BUTTON_ADD:hover, #Little_PANELS_BUTTON_DEL:hover{
     -fx-background-radius: 0;
@@ -51,5 +49,4 @@
     -fx-background-radius: 0;
     -fx-effect: dropshadow(gaussian ,#555555 , 3, 0, 0.5, 0.5);
     -fx-font-weigh:bold ;
-    -fx-font-family: "Roboto Light";
 }

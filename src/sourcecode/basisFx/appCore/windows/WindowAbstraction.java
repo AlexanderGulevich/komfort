@@ -3,7 +3,7 @@ package basisFx.appCore.windows;
 import basisFx.appCore.utils.IconToPlatform;
 import basisFx.appCore.elements.AnchorWrapper;
 import basisFx.appCore.elements.AppNode;
-import basisFx.appCore.settings.CSSID;
+import basisFx.appCore.settings.CSSid;
 import basisFx.appCore.utils.Coordinate;
 import basisFx.presentation.DynamicContentPanel;
 import basisFx.service.CrossWindowMediator;
@@ -74,7 +74,7 @@ public abstract class WindowAbstraction {
         AnchorWrapper anchorWrapper = AnchorWrapper.newBuilder()
                 .setParentAnchor(root)
                 .setCoordinate(new Coordinate(0d, 0d, 0d, 0d))
-                .setCSSid(CSSID.TopVisiblePanel)
+                .setCSSid(CSSid.TopVisiblePanel)
                 .setMetaName(DefaultPanelsNames.topVisibleAnchor.name())
                 .build();
         setNodToMap(anchorWrapper);

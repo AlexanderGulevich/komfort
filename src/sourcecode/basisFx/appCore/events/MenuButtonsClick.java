@@ -3,7 +3,7 @@ package basisFx.appCore.events;
 import basisFx.appCore.elements.AppNode;
 import basisFx.appCore.menu.FontItemLeaf;
 import basisFx.appCore.menu.LeftAndTopMenuRepresent;
-import basisFx.appCore.settings.CSSID;
+import basisFx.appCore.settings.CSSid;
 import basisFx.appCore.utils.Registry;
 import basisFx.appCore.windows.WindowAbstraction;
 import javafx.scene.Node;
@@ -30,7 +30,7 @@ public class MenuButtonsClick extends AppEvent{
         but.setOnMouseClicked((event) -> {
 
             represent.setDefaultStyleHorisontalButtons();
-            but.setId(CSSID.LEFT_SIDE_MENU_HORIZONTAL_BUTTONS_CLICKED.get());
+            but.setId(CSSid.LEFT_SIDE_MENU_HORIZONTAL_BUTTONS_CLICKED.get());
 
             run();
         });

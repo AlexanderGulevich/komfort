@@ -4,7 +4,7 @@ import basisFx.appCore.elements.AppNode;
 import basisFx.appCore.menu.FontItemComposite;
 import basisFx.appCore.menu.LeftAndTopMenuRepresent;
 import basisFx.appCore.menu.MenuComponent;
-import basisFx.appCore.settings.CSSID;
+import basisFx.appCore.settings.CSSid;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 
@@ -41,7 +41,7 @@ public class leftSideMenuIconClick extends AppEvent{
         represent.setDefaultStyleVerticalButtons();
         represent.setCommonTextName(component);
         represent.setHorisontalButtons(component);
-        but.setId(CSSID.LEFT_SIDE_MENU_VERTICAL_BUTTONS_CLICKED.get());
+        but.setId(CSSid.LEFT_SIDE_MENU_VERTICAL_BUTTONS_CLICKED.get());
 
 
 

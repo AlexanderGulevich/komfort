@@ -3,14 +3,14 @@ package basisFx.appCore.menu;
 import basisFx.appCore.elements.ButtonWrapper;
 import basisFx.appCore.events.MenuButtonsClick;
 import basisFx.appCore.events.leftSideMenuIconClick;
-import basisFx.appCore.settings.CSSID;
+import basisFx.appCore.settings.CSSid;
 import java.util.ArrayList;
 import java.util.Iterator;
+
 import basisFx.appCore.settings.FontsStore;
 import basisFx.appCore.utils.Coordinate;
 import basisFx.appCore.utils.Registry;
 import basisFx.appCore.windows.WindowAbstraction;
-import basisFx.appCore.windows.WindowImplMain;
 import basisFx.presentation.appStructura.LeftAndTopMenuGUI;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
@@ -70,7 +70,7 @@ public class LeftAndTopMenuRepresent extends MenuRepresent {
         this.heightCounterForIcon += 50d;
         //создание кнопок вертикальных
         ButtonWrapper wrapper = ButtonWrapper.newBuilder()
-                .setCSSid(CSSID.LEFT_SIDE_MENU_VERTICAL_BUTTONS)
+                .setCSSid(CSSid.LEFT_SIDE_MENU_VERTICAL_BUTTONS)
                 .setCoordinate(new Coordinate(heightCounterForIcon, 0d, null, 0d))
                 .setText(composite.fontSymbol)
                 .setFont(composite.fontsStore)
@@ -93,7 +93,7 @@ public class LeftAndTopMenuRepresent extends MenuRepresent {
 
             if (next instanceof Button) {
 
-                next.setId(CSSID.LEFT_SIDE_MENU_HORIZONTAL_BUTTONS.get());
+                next.setId(CSSid.LEFT_SIDE_MENU_HORIZONTAL_BUTTONS.get());
             }
         }
     }
@@ -102,7 +102,7 @@ public class LeftAndTopMenuRepresent extends MenuRepresent {
         for (Iterator<Node> iterator = buttons.iterator(); iterator.hasNext(); ) {
             Node next = iterator.next();
             if (next instanceof Button) {
-                next.setId(CSSID.LEFT_SIDE_MENU_VERTICAL_BUTTONS.get());
+                next.setId(CSSid.LEFT_SIDE_MENU_VERTICAL_BUTTONS.get());
             }
         }
     }
@@ -119,7 +119,7 @@ public class LeftAndTopMenuRepresent extends MenuRepresent {
                 FontItemLeaf innerLevelComponent = (FontItemLeaf) iterator1.next();
                 //создание кнопок горизонтальных
                 ButtonWrapper.newBuilder()
-                        .setCSSid(CSSID.LEFT_SIDE_MENU_HORIZONTAL_BUTTONS)
+                        .setCSSid(CSSid.LEFT_SIDE_MENU_HORIZONTAL_BUTTONS)
                         .setText(innerLevelComponent.getDescription())
                         .setFont(FontsStore.ROBOTO_LIGHT)
                         .setEvents(new MenuButtonsClick(innerLevelComponent,this))

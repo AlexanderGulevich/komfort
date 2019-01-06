@@ -1,6 +1,7 @@
 package basisFx.appCore.elements;
 
 import basisFx.appCore.grid.GridOrganization;
+import basisFx.appCore.settings.CSSclasses;
 import basisFx.appCore.utils.ActiveRecordDTO;
 import basisFx.appCore.windows.WindowAbstraction;
 import basisFx.presentation.DynamicContentPanel;
@@ -14,7 +15,6 @@ import basisFx.appCore.table.TableListener;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-import basisFx.appCore.settings.CSSID;
 import basisFx.appCore.settings.FontsStore;
 import javafx.beans.property.ReadOnlyDoubleProperty;
 import javafx.collections.FXCollections;
@@ -83,7 +83,12 @@ public  class TableWrapper extends AppNode  {
         setElementToWindowRegistry();
         createActiveRecord(builder);
         element =new TableView<>();
-        applyCSS();
+
+        cssClassesStrings=builder.cssClassesStrings;
+        cssClasses=builder.cssClasses;
+        applyCssClasses();
+
+        applyCSSid();
         applyColumnResizePolicy();
         applyColums();
         applyEditable();
@@ -117,8 +122,8 @@ public  class TableWrapper extends AppNode  {
         }
     }
 
-    private void applyCSS() {
-        element.setId(CSSID.TABLE.get());
+    private void applyCSSid() {
+        element.setId(CSSid.TABLE.get());
     }
 
     public ServiceMediator getServiceMediator() {
@@ -163,7 +168,7 @@ public  class TableWrapper extends AppNode  {
                 .setText("Контент отсутствует".toLowerCase())
                 .setFont(FontsStore.ROBOTO_LIGHT)
                 .setFontSize(25d)
-                .setCssid(CSSID.PLACEHOLDER)
+                .setCSSid(CSSid.PLACEHOLDER)
                 .build();
 
         element.setPlaceholder(wrapper.getElement());
@@ -320,6 +325,17 @@ public  class TableWrapper extends AppNode  {
         private GridOrganization gridOrganization;
         private String gridName;
         private String className;
+        protected CSSclasses[] cssClasses;
+        protected String[] cssClassesStrings;
+
+
+        public void setCssClasses(CSSclasses...  cssClasses) {
+            this.cssClasses = cssClasses;
+        }
+
+        public void setCssClassesStrings(String... cssClassesStrings) {
+            this.cssClassesStrings = cssClassesStrings;
+        }
 
         public  Builder setGridName(String val) {
             gridName = val;

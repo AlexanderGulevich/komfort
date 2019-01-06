@@ -5,13 +5,13 @@
  */
 package basisFx.appCore.menu;
 
+import basisFx.appCore.settings.CSSid;
 import basisFx.appCore.utils.Coordinate;
-import basisFx.appCore.settings.CSSID;
 import javafx.scene.layout.AnchorPane;
 
 public abstract class MenuRepresent {
 
-    protected CSSID css;
+    protected CSSid css;
     protected MenuComponent component;
     protected AnchorPane ap;
     protected Coordinate c;
@@ -20,7 +20,7 @@ public abstract class MenuRepresent {
 
     protected abstract <T> void   makeStructuredMenuView(MenuComponent c, MenuComposite parentMenu );
 
-    public void setCss(CSSID id) {
+    public void setCss(CSSid id) {
         this.css = id;
          }
 

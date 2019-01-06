@@ -6,7 +6,7 @@
 package basisFx.appCore;
 
 import basisFx.appCore.elements.AnchorWrapper;
-import basisFx.appCore.settings.CSSID;
+import basisFx.appCore.settings.CSSid;
 
 import static basisFx.appCore.settings.Settings.PRELODER_COUNT_LIMIT;
 
@@ -112,7 +112,7 @@ public class AppPreloader extends Preloader {
     
      protected void setTransparentRoot(){
                  this.root=AnchorWrapper.newBuilder()
-                         .setCSSid(CSSID.PRELOADER_TRANSPARENT_ROOT)
+                         .setCSSid(CSSid.PRELOADER_TRANSPARENT_ROOT)
                          .setInsects(new Insets(5d, 5d, 5d, 5d))
                          .build().getElement();
               
@@ -122,7 +122,7 @@ public class AppPreloader extends Preloader {
      protected void setVisibleRoot(){
                  this.visibleRoot=AnchorWrapper.newBuilder()
                          .setParentAnchor(root)
-                         .setCSSid(CSSID.PRELOADER_VISIBLE_ROOT)
+                         .setCSSid(CSSid.PRELOADER_VISIBLE_ROOT)
                          .setCoordinate( new Coordinate(0d, 0d, 0d, 0d))
                          .build().getElement();
                  

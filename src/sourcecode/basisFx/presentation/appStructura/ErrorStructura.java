@@ -13,7 +13,7 @@ public class ErrorStructura extends GUIStructura {
 //                .setCoordinate( new Coordinate(10d,80d,10d,10d))
 //                .setFont(FontsStore.ROBOTO_LIGHT,25d)
 //                .setText(message)
-//                .setId(CSSID.PopupTextArea)
+//                .setId(CSSid.PopupTextArea)
 //                .createTextAreaWrapper();
 //
 //
@@ -27,7 +27,7 @@ public class ErrorStructura extends GUIStructura {
 //
 //        );
 //  panel =  (AnchorPane) AppNode.NodeBuilder.create()
-//                .setId(CSSID.popupTitlePanel)
+//                .setId(CSSid.popupTitlePanel)
 //                .setCoordinate(panelCoordinate)
 //                .setHeight(height)
 //                .setStage(stage)
@@ -37,7 +37,7 @@ public class ErrorStructura extends GUIStructura {
 //
 //
 //        AnchorPane popupTransparentRoot=(AnchorPane) AppNode.NodeBuilder.create()
-//                .setId(CSSID.TRANSPARENT_ROOT)
+//                .setId(CSSid.TRANSPARENT_ROOT)
 //                .setInsects(new Insets(3d, 3d, 3d, 3d))
 //                .createAnchorPanelWrapper()
 //                .getElement();
@@ -50,7 +50,7 @@ public class ErrorStructura extends GUIStructura {
 //        AnchorPane visibleRoot
 //                = (AnchorPane) AppNode.NodeBuilder.create()
 //                .setCoordinate( 0d, 0d, 0d, 0d)
-//                .setId(CSSID.TopVisiblePanel)
+//                .setId(CSSid.TopVisiblePanel)
 //                .setParent(Layers.getPopupTransparentRoot())
 //                .setStage(windowUndecorated.getStage())
 //                .createAnchorPanelWrapper()
@@ -74,7 +74,7 @@ public class ErrorStructura extends GUIStructura {
 
 //
 //        panel =  (AnchorPane) AppNode.NodeBuilder.create()
-//                .setId(CSSID.popupContentPanel)
+//                .setId(CSSid.popupContentPanel)
 //                .setCoordinate(panelCoordinate)
 //                .setHeight(height)
 //                .setStage(stage)
@@ -85,14 +85,14 @@ public class ErrorStructura extends GUIStructura {
 
 
 //        panel =  (AnchorPane) AppNode.NodeBuilder.create()
-//                .setId(CSSID.WindowButtonsPanel)
+//                .setId(CSSid.WindowButtonsPanel)
 //                .setCoordinate(panelCoordinate)
 //                .setHeight(height).setWidth(widthValue)
 //                .setParent(parent)
 //                .createAnchorPanelWrapper().getElement();
 //
 //        popupMessageTextPanel =  (AnchorPane) AppNode.NodeBuilder.create()
-//                .setId(CSSID.popupMessageTextPanel)
+//                .setId(CSSid.popupMessageTextPanel)
 //                .setCoordinate(new Coordinate(10d,40d,10d,10d))
 //                .setHeight(height)
 //                .setParent(popupContentPanel.getPanel())
@@ -102,7 +102,7 @@ public class ErrorStructura extends GUIStructura {
 //        windowUndecorated.setPanel(popupContentPanel);
 //
 //        textFabric.createLabel(
-//                title,CSSID.PopupTitleText,
+//                title,CSSid.PopupTitleText,
 //                FontsStore.ROBOTO_BOLD,  Pos.CENTER_LEFT,23d,
 //                popupTitlePanel.getPanel(),
 //                new Coordinate(10d,0d,null,10d)
@@ -110,7 +110,7 @@ public class ErrorStructura extends GUIStructura {
 //
 //        // icon
 //        textFabric.createText(
-//                "  \uF06A ", CSSID.ALERT_ICON,
+//                "  \uF06A ", CSSid.ALERT_ICON,
 //                FontsStore.FAWESOME5SOLID,50d,
 //                popupContentPanel.getPanel(),
 //                new Coordinate(10d,-10d,null,null)

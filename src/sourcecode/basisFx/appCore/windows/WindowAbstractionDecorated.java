@@ -1,8 +1,8 @@
 package basisFx.appCore.windows;
 
+import basisFx.appCore.settings.CSSid;
 import basisFx.appCore.utils.CSSHandler;
 import basisFx.appCore.elements.AnchorWrapper;
-import basisFx.appCore.settings.CSSID;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.paint.Color;
@@ -38,7 +38,7 @@ public  class WindowAbstractionDecorated extends WindowAbstraction {
     @Override
     protected void initRoot() {
         root= AnchorWrapper.newBuilder()
-                .setCSSid(CSSID.TRANSPARENT_ROOT)
+                .setCSSid(CSSid.TRANSPARENT_ROOT)
                 .setInsects(new Insets(0d, 0d, 0d, 0d))
                 .build().getElement();
     }

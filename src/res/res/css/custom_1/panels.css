@@ -20,6 +20,10 @@
   -fx-text-fill:-fx-common;
 }
 #LABEL_TEXT{
+  /*
+#8a98a4
+
+  */
       -fx-label:#697886;
             -fx-text-fill:  -fx-label;
             -fx-color:      -fx-label;
