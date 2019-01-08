@@ -9,7 +9,6 @@
     -fx-background-radius: 0;
     -fx-border-radius:0;
     -fx-background-insets: 0, 0, 0, 0;
-    -fx-background-radius: 0;
     -fx-color:yellowgreen;
      -fx-pref-width: 60;
      -fx-pref-height:50;
@@ -27,6 +26,10 @@
      -fx-pref-width: 60;
      -fx-pref-height:50;
 }
+#MAIN_MENU{
+     -fx-background-color: #0096C9;
+      -fx-fill:  #57b75733;
+}
 #LEFT_SIDE_MENU_VERTICAL_BUTTONS:focused{
      -fx-text-fill:white;
     -fx-background-radius: 0;
@@ -38,7 +41,7 @@
      -fx-pref-height:50;
 }
 #LEFT_SIDE_MENU_COMMON_TEXT{
-          -fx-fill:#f1f1f1;
+    -fx-fill:#f1f1f1;
     -fx-opacity:0.6;
 }
 #LEFT_SIDE_MENU_ICON_TEXT_PANEL{

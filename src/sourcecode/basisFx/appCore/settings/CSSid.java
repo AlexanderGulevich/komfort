@@ -10,12 +10,8 @@ public enum CSSid {
     MENUS("MENUS"),
 
     PopupTextArea("PopupTextArea"),
-    TABLE("TABLE"),
     popupTitlePanel("popupTitlePanel"),
 
-    DATEPICKER_IN_COLUMN("DATEPICKER_IN_COLUMN"),
-
-    COMBOBOX("COMBOBOX"),
     WindowButtonsPanel("WindowButtonsPanel"),
 
     PANELS_BUTTON("PANELS_BUTTON"),

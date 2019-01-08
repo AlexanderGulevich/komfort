@@ -1,3 +1,17 @@
+#TOP_CONTROL_SINGLE_BUTTON{
+  -fx-color: #689099;
+  -fx-fill:#689099;
+  -fx-text-fill:#689099;
+  -fx-background-color:transparent;
+  -fx-border-radius:0;
+  -fx-background-insets: 0, 0, 0, 0;
+  -fx-background-radius: 0;
+}
+#TOP_CONTROL_SINGLE_BUTTON:armed{
+  -fx-color: #a8c4c9;
+    -fx-text-fill:#a8c4c9;
+}
+
 #TOP_CONTROL_BUTTON:armed{
     -fx-text-fill:#688694;
 }
@@ -9,7 +23,8 @@
     -fx-background-radius: 0;
     -fx-color:yellowgreen;
 }
-#Little_PANELS_BUTTON_DEL,#Little_PANELS_BUTTON_ADD{
+#Little_PANELS_BUTTON_DEL,
+#Little_PANELS_BUTTON_ADD{
    -fx-text-fill:#d9b9a9;
    -fx-background-color:white;
    -fx-background-radius: 0;
@@ -19,6 +34,8 @@
   -fx-text-fill:#477a8c;
   -fx-font-family: "fontcustom";
   -fx-font-size: 17;
+  -fx-pref-height: 17;
+  -fx-pref-width:25;
 
 }
 #PANELS_BUTTON{
@@ -30,7 +47,9 @@
     -fx-effect: dropshadow(gaussian ,#555555 , 2, 0, 0.5, 0.5);
     -fx-text-fill:#003641;
     -fx-font-family: "Roboto Light";
-    -fx-font-size: 15;
+    -fx-font-size: 17;
+    -fx-pref-height: 20;
+    -fx-pref-width:  130;
 }
 #PANELS_BUTTON:armed, #Little_PANELS_BUTTON_ADD:armed, #Little_PANELS_BUTTON_DEL:armed{
     -fx-background-color:#FF8964;

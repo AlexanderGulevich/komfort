@@ -48,17 +48,59 @@ public class App{
                 WindowBuilder.newBuilder()
                         .setFxmlFileName("ByDateReasechWindow")
                         .setParentAnchorNameForFXML(WindowAbstraction.DefaultPanelsNames.topVisibleAnchor.name())
-                        .setHeight(506d)
-                        .setWidth(906d)
+                        .setHeight(500d)
+                        .setWidth(900d)
                         .setTitle("111111111")
                         .build()
         );
-//        Registry.windowFabric.infoWindow(
-//                "FFFFFFFFFFFFFFFFFF" +
-//                "  FFFFFFFFFFFFFFFFFF  FFFFFFFFFFFFFFFFFF  " +
-//                "FFFFFFFFFFFFFFFFFF  FFFFFFFFFFFFFFFFFF  " +
-//                "FFFFFFFFFFFFFFFFFF  FFFFFFFFFFFFFFFFFF  "
-//        );
+        Registry.windowFabric.customSubWindow(
+                WindowBuilder.newBuilder()
+                        .setFxmlFileName("EmployerHire")
+                        .setParentAnchorNameForFXML(WindowAbstraction.DefaultPanelsNames.topVisibleAnchor.name())
+                        .setHeight(350d)
+                        .setWidth(530d)
+                        .setTitle("111111111")
+                        .build()
+        );
+        Registry.windowFabric.customSubWindow(
+                WindowBuilder.newBuilder()
+                        .setFxmlFileName("AddDellPopupTable")
+                        .setParentAnchorNameForFXML(WindowAbstraction.DefaultPanelsNames.topVisibleAnchor.name())
+                        .setHeight(500d)
+                        .setWidth(720d)
+                        .setTitle("111111111")
+                        .build()
+        );
+
+
+
+        Registry.windowFabric.customSubWindow(
+                WindowBuilder.newBuilder()
+                        .setFxmlFileName("Info")
+                        .setParentAnchorNameForFXML(WindowAbstraction.DefaultPanelsNames.topVisibleAnchor.name())
+                        .setHeight(280d)
+                        .setWidth(500d)
+                        .setTitle("111111111")
+                        .build()
+        );
+        Registry.windowFabric.customSubWindow(
+                WindowBuilder.newBuilder()
+                        .setFxmlFileName("YN")
+                        .setParentAnchorNameForFXML(WindowAbstraction.DefaultPanelsNames.topVisibleAnchor.name())
+                        .setHeight(230d)
+                        .setWidth(500d)
+                        .setTitle("111111111")
+                        .build()
+        );
+
+
+
+        Registry.windowFabric.infoWindow(
+                "FFFFFFFFFFFFFFFFFF" +
+                "  FFFFFFFFFFFFFFFFFF  FFFFFFFFFFFFFFFFFF  " +
+                "FFFFFFFFFFFFFFFFFF  FFFFFFFFFFFFFFFFFF  " +
+                "FFFFFFFFFFFFFFFFFF  FFFFFFFFFFFFFFFFFF  "
+        );
 
 
     }

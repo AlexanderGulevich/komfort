@@ -11,11 +11,6 @@ import javafx.scene.control.Button;
 public class ButtonFactory {
 
     private static ButtonFactory INSTANCE = new ButtonFactory();
-    private double bigButWidth=130;
-    private double littleButWidth=25d;
-    private double littleButHeight=17d;
-    private double littleFontHeight=17d;
-
     private ButtonFactory() {
     }
 
@@ -28,10 +23,7 @@ public class ButtonFactory {
         Button button = ButtonWrapper.newBuilder()
                 .setCSSid(CSSid.Little_PANELS_BUTTON_ADD)
                 .setText("\uF199")
-                .setFont(FontsStore.FOUNDATION)
-                .setFontSize(littleFontHeight)
-                .setWidth(littleButWidth)
-                .setHeight(littleButHeight)
+                .setFont(FontsStore.fontcustom)
                 .setEvents(new RowAddToTable(tableWrapper ))
                 .build().getElement();
 
@@ -44,10 +36,7 @@ public class ButtonFactory {
         Button button = ButtonWrapper.newBuilder()
                 .setCSSid(CSSid.Little_PANELS_BUTTON_DEL)
                 .setText("\uF176")
-                .setFont(FontsStore.FOUNDATION)
-                .setFontSize(littleFontHeight)
-                .setWidth(littleButWidth)
-                .setHeight(littleButHeight)
+                .setFont(FontsStore.fontcustom)
                 .setEvents(new RowDeleteFromTable(tableWrapper))
                 .build().getElement();
         return button;
@@ -59,9 +48,6 @@ public class ButtonFactory {
                 .setCSSid(CSSid.PANELS_BUTTON)
                 .setText("ДОБАВИТЬ")
                 .setFont(FontsStore.ROBOTO_LIGHT)
-                .setFontSize(17)
-                .setWidth(bigButWidth)
-                .setHeight(20d)
                 .setEvents(new RowAddToTable(tableWrapper ))
                 .build().getElement();
     }
@@ -70,10 +56,6 @@ public class ButtonFactory {
         return ButtonWrapper.newBuilder()
                 .setCSSid(CSSid.PANELS_BUTTON)
                 .setText("УДАЛИТЬ")
-//                .setFont(FontsStore.ROBOTO_LIGHT)
-                .setFontSize(17)
-                .setWidth(bigButWidth)
-                .setHeight(20d)
                 .setEvents(new RowDeleteFromTable(tableWrapper))
                 .build().getElement();
 

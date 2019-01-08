@@ -139,7 +139,7 @@ public class MainMenuSketch extends MenuSketch {
 //                ,
 //
 //                FontItemComposite.newBuilder().setDescription("Настройки")
-//                        .setFontsStore(FontsStore.FOUNDATION)
+//                        .setFontsStore(FontsStore.fontcustom)
 //                        .setFontSymbol("\uF214")
 //                        .setFontSize(iconSize)
 //                        .build().add()

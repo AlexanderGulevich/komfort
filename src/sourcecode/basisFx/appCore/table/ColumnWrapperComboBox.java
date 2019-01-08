@@ -1,6 +1,7 @@
 package basisFx.appCore.table;
 
 import basisFx.appCore.elements.TableWrapper;
+import basisFx.appCore.settings.CSSclasses;
 import basisFx.appCore.settings.CSSid;
 import basisFx.domain.ActiveRecord;
 import javafx.beans.value.ObservableValue;
@@ -213,7 +214,7 @@ public class ColumnWrapperComboBox extends ColumnWrapper{
             ObservableList<ActiveRecord> comboBoxValues = domain.getAll();
 
             comboBox = new ComboBox<>(comboBoxValues);
-            comboBox.setId(CSSid.COMBOBOX.get());
+            comboBox.getStyleClass().add(CSSclasses.COMBOBOX_BFx.get());
             comboBox.setEditable(false);
 //            comboBox.setPromptText("fgfg");
             comboBoxConverter(comboBox);

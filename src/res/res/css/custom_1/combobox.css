@@ -1,11 +1,9 @@
-#COMBOBOX .text-input{
+.COMBOBOX_BFx .text-input{
 -fx-background-color:#ffffff;
 -fx-text-fill:#2f4a6f;
 -fx-font-family: "Roboto Light";
-
 }
-
-#COMBOBOX .combo-box > .list-cell {
+.COMBOBOX_BFx .combo-box > .list-cell {
     -fx-background:#ffffff ;
     -fx-background-color:#ffffff ;
     -fx-text-fill:#003641 ;
@@ -21,7 +19,7 @@
           -fx-border-width: 0;
           -fx-border-color: #7f7991;
 }
-#COMBOBOX .combo-box-base > .arrow-button {
+.COMBOBOX_BFx .combo-box-base > .arrow-button {
     -fx-padding: 0.5em 0.667em 0.5em 0.833333em; /* 6 8 6 10 */
       -fx-background-insets: 0, 0, 0, 0;
       -fx-background:#ffffff ;
@@ -29,10 +27,8 @@
         -fx-border-width: 0 0 0 0.4;
       -fx-border-color: #7f7991;
       -fx-background-radius: 0;
-
 }
-#COMBOBOX .combo-box-base:editable > .arrow-button,
-.date-picker > .arrow-button {
+.COMBOBOX_BFx .combo-box-base:editable > .arrow-button {
     -fx-background-color: #ffffff;
      -fx-border-radius:0;
       -fx-background-insets: 0, 0, 0, 0;
@@ -42,8 +38,7 @@
       -fx-background-radius: 0;
       -fx-border-radius:0;
 }
-#COMBOBOX .combo-box-base:editable > .text-field,
-.date-picker > .text-field {
+.COMBOBOX_BFx .combo-box-base:editable > .text-field{
     -fx-background-insets:0;
     -fx-background-radius: 0;
       -fx-border-radius:0;
@@ -56,8 +51,7 @@
       -fx-background-insets: 0, 0, 0, 0;
       -fx-background-radius: 0;
 }
-#COMBOBOX .combo-box-popup .text{
-
+.COMBOBOX_BFx .combo-box-popup .text{
   -fx-background-radius: 0;
   -fx-border-radius:0;
   -fx-background-insets: 0, 0, 0, 0;
@@ -71,9 +65,7 @@
       -fx-background-insets: 0, 0, 0, 0;
       -fx-background-radius: 0;
 }
-
-#COMBOBOX .combo-box-popup > .list-view {
-
+.COMBOBOX_BFx .combo-box-popup > .list-view {
     -fx-background-color:#ffffff;
     -fx-background-insets: 0, 1;
     -fx-effect: dropshadow(gaussian ,#605d5d , 2, 0, 0.5, 0.5);
@@ -89,7 +81,7 @@
   -fx-font-family: "Roboto Light";
     -fx-font-size: 12;
 }
-#COMBOBOX .combo-box-popup > .list-view > .virtual-flow > .clipped-container > .sheet > .list-cell {
+.COMBOBOX_BFx .combo-box-popup > .list-view > .virtual-flow > .clipped-container > .sheet > .list-cell {
     -fx-padding: 4 0 4 5;
     -fx-background:#ffffff ;
     -fx-background-radius: 0;
@@ -106,7 +98,7 @@
     -fx-text-fill:#2f4a6f;
   -fx-font-family: "Roboto Light";
 }
-#COMBOBOX .combo-box-popup > .list-view > .virtual-flow > .clipped-container > .sheet > .list-cell:filled:hover {
+.COMBOBOX_BFx .combo-box-popup > .list-view > .virtual-flow > .clipped-container > .sheet > .list-cell:filled:hover {
     -fx-background: #edf4f4;
     -fx-background-color: #edf4f4;
     -fx-background-radius: 0;
@@ -121,9 +113,8 @@
   -fx-font-family: "Roboto Light";
   -fx-border-width: 0.4;
   -fx-border-color: #dbdee4;
-
 }
-#COMBOBOX .combo-box-popup  > .list-view > .virtual-flow > .clipped-container > .sheet > .list-cell:filled:selected,
+.COMBOBOX_BFx .combo-box-popup  > .list-view > .virtual-flow > .clipped-container > .sheet > .list-cell:filled:selected,
 .combo-box-popup  > .list-view > .virtual-flow > .clipped-container > .sheet > .list-cell:filled:selected:hover {
     -fx-background: #f5f7fb;
     -fx-background-color: #f5f7fb;
@@ -134,9 +125,8 @@
   -fx-font-family: "Roboto Light";
   -fx-border-width: 0.4;
   -fx-border-color: #dbdee4;
-
 }
-#COMBOBOX .combo-box-popup > .list-view > .placeholder > .label {
+.COMBOBOX_BFx .combo-box-popup > .list-view > .placeholder > .label {
     -fx-text-fill: derive(-fx-control-inner-background,-30%);
     -fx-background:#ffffff ;
       -fx-background-radius: 0;
@@ -149,17 +139,13 @@
     -fx-font-family: "Roboto Light";
     -fx-border-width: 0.4;
     -fx-border-color: #dbdee4;
-
   }
-
-  #COMBOBOX .cell,#COMBOBOX  .indexed-cell,#COMBOBOX .list-cell{
-
+  .COMBOBOX_BFx .cell,.COMBOBOX_BFx  .indexed-cell,.COMBOBOX_BFx .list-cell{
     -fx-text-fill:#2f4a6f;
     -fx-font-family: "Roboto Light";
       -fx-font-size: 14;
   }
-
-  #COMBOBOX, .combo-box-base, .combo-box{
+  .COMBOBOX_BFx  {
   -fx-background-color:#ffffff;
   -fx-border-color: #cfc0c0;
   -fx-background-insets: 0, 0, 0, 0;
@@ -167,42 +153,11 @@
   -fx-border-style: solid;
   -fx-border-color:#494c50;
   }
-
-
-  /* #COMBOBOX .list-cell{
-  -fx-border-width: 0.5 0 0.5 0.5;
-  -fx-border-color: #cfc0c0;
-  -fx-background-insets: 0, 0, 0, 0;
-  } */
-
-  #COMBOBOX .text-input{
+  .COMBOBOX_BFx .text-input{
   -fx-background-color:red#ffffff;
   -fx-border-width: 0.5 0 0.5 0.5;
   -fx-border-color: #373232;
   -fx-background-insets: 0, 0, 0, 0;
   -fx-text-fill:#2f4a6f;
--fx-font-family: "Roboto Light";
-
+  -fx-font-family: "Roboto Light";
   }
-
-  /* #COMBOBOX .combo-box-popup{
-  -fx-background-color:#ffffff;
-  }
-  #COMBOBOX .list-view{
-  -fx-background-color:#ffffff;
-  }
-  #COMBOBOX .list-cell{
-  -fx-background-color:#ffffff;
-  }
-  #COMBOBOX .combo-box-popup  .popup{
-  -fx-background-color:#17dcff;
-  }
-  #COMBOBOX .combo-box-popup{
-  -fx-background-color:#ff5d17;
-  }
-  #COMBOBOX .combo-box-popup .list-view{
-  -fx-background-color:#ffffff;
-  }
-  #COMBOBOX .combo-box-popup .list-cell{
-  -fx-background-color:#f50000;
-  } */

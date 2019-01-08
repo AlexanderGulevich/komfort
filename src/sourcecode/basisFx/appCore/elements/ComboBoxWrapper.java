@@ -52,7 +52,8 @@ public class ComboBoxWrapper  extends AppNode {
         serviceMediator = builder.serviceMediator;
         comboboxValues=builder.comboboxValues;
         element = new ComboBox <>(comboboxValues);
-        element.setId(CSSid.COMBOBOX.get());
+
+        getElement().getStyleClass().add(CSSclasses.COMBOBOX_BFx.get());
         element.setEditable(false);
         windowAbstraction=builder.windowAbstraction;
         setElementToWindowRegistry();
@@ -162,12 +163,16 @@ public class ComboBoxWrapper  extends AppNode {
         protected String[] cssClassesStrings;
 
 
-        public void setCssClasses(CSSclasses...  cssClasses) {
+        public Builder setCssClasses(CSSclasses...  cssClasses) {
             this.cssClasses = cssClasses;
+            return this;
         }
 
-        public void setCssClassesStrings(String... cssClassesStrings) {
+        public Builder setCssClassesStrings(String... cssClassesStrings) {
+
             this.cssClassesStrings = cssClassesStrings;
+
+            return this;
         }
 
         private Builder() {

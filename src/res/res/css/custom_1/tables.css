@@ -1,50 +1,45 @@
 .root {
-/* -fx-table-cell-border-color: #FFEACF; */
 -fx-table-cell-border-color: red;
 }
-#TABLE,#TABLE:focused,#TABLE:armed,#TABLE:selected{
-    /* -fx-effect: dropshadow(gaussian ,#555555 , 2, 0, 0.5, 0.5); */
+.TABLE_BFx,#TABLE_BFx:focused,.TABLE_BFx:armed,.TABLE_BFx:selected{
     -fx-background-insets: 0;
     -fx-padding: 0;
-}
-#TABLE {
-  -fx-border-width: 0.3  0.3  0.3  0.3 ;
-  -fx-border-style: solid;
-  -fx-border-color:#494c50;
-}
+    /* -fx-border-style: solid; */
+    /* -fx-border-color:#494c50; */
+    /* -fx-border-width: 0.4  0.4  0.4  0.4 ; */
+    /* -fx-border-color:#494c50; */
 
-#TABLE .column-resize-line{
+    -fx-effect: dropshadow(gaussian ,#555555 , 2, 0, 0.5, 0.5);
+}
+.TABLE_BFx .column-resize-line{
     -fx-pref-width:0;
     -fx-background-insets: 0;
     -fx-padding: 0;
 }
-#TABLE .column-overlay {/*при перетягивании колонки появляется оверлэй*/
+.TABLE_BFx .column-overlay {/*при перетягивании колонки появляется оверлэй*/
     -fx-background-insets: 0;
     -fx-padding: 0;
 }
-#TABLE .placeholder {/*когда таблица пуста рамка*/
+.TABLE_BFx .placeholder {/*когда таблица пуста рамка*/
 -fx-border-color: transparent;
 
 }
-#TABLE .column-header-background {/*ЭТО самая нижняя подложка заголовка*/
+.TABLE_BFx .column-header-background {/*ЭТО самая нижняя подложка заголовка*/
     -fx-background-color:transparent;
     -fx-pref-height:45;
     -fx-background-insets: 0;
     -fx-padding: 0;
 }
-
- #TABLE.cell,
- #TABLE .indexed-cell,
- #TABLE .table-cell,
- #TABLE .text-field-table-cell,
- #TABLE .table-column{
-	   -fx-padding:  0, 10, 0, 0; 
+ .TABLE_BFx.cell,
+ .TABLE_BFx .indexed-cell,
+ .TABLE_BFx .table-cell,
+ .TABLE_BFx .text-field-table-cell,
+ .TABLE_BFx .table-column{
+	   -fx-padding:  0, 10, 0, 0;
  }
- 
-
- #TABLE  .table-column {  -fx-pref-height:25;}
-/* #TABLE .nested-column-header, */
-#TABLE .column-header{/*ЗАГОЛОВОК КОЛОНКИ*/
+.TABLE_BFx  .table-column {  -fx-pref-height:25;}
+/* #.TABLE_BFx .nested-column-header, */
+.TABLE_BFx .column-header{/*ЗАГОЛОВОК КОЛОНКИ*/
     -fx-background-color:#f7f7c2;
     -fx-background-color:transparent;
     -fx-pref-height:45;
@@ -56,12 +51,11 @@
     -fx-background-insets: 0;
     -fx-padding: 0 0 10 0;
 }
-#TABLE .filler {/*ЭТО children самой нижней подложки заголовка*/
+.TABLE_BFx .filler {/*ЭТО children самой нижней подложки заголовка*/
     -fx-background-color:derive(#d7e1e3,40%);
 }
-#TABLE .column-drag-header {}
-
-#TABLE .nested-column-header .label {
+.TABLE_BFx .column-drag-header {}
+.TABLE_BFx .nested-column-header .label {
     -fx-text-fill:#2f4a6f;
 	-fx-font-family: "Roboto Light";
     -fx-font-size: 20;
@@ -69,78 +63,69 @@
     -fx-padding: 0 0 0 0;
     -fx-border-insets:0 0 0 0;
 }
-#TABLE .virtual-flow,
-#TABLE .clipped-container{
+.TABLE_BFx .virtual-flow,
+.TABLE_BFx .clipped-container{
     -fx-padding: 20 20 50 20;
-
 }
-#TABLE .table-row-cell{}
-#TABLE .table-row-cell:selected,.table-row-cell:focused{}
-#TABLE .table-row-cell:odd{/* focused    filled    odd    selected*/}
-#TABLE .cell:focused:selected > .choice-box > .label {}
-#TABLE .text{}
-#TABLE .sheet{-fx-padding: 0 20 0 20;}
+.TABLE_BFx .table-row-cell{}
+.TABLE_BFx .table-row-cell:selected,.table-row-cell:focused{}
+.TABLE_BFx .table-row-cell:odd{/* focused    filled    odd    selected*/}
+.TABLE_BFx .cell:focused:selected > .choice-box > .label {}
+.TABLE_BFx .text{}
 
-
-  #TABLE .cell{
+.TABLE_BFx .sheet{
+  -fx-padding: 0 20 0 20;
+}
+.TABLE_BFx .cell{
       -fx-text-fill:#074f5d;
       -fx-font-family: "Roboto Light";
       -fx-font-size: 17;
   }
-
   #rightColumnContentElighment  {
     -fx-alignment: CENTER-RIGHT;
-    /* -fx-padding:  0, 10, 0, 0; */
   }
-  #TABLE .table-row-cell,   #TABLE .cell,  #TABLE .table-cell,  #TABLE .table-column , #TABLE .text-field{
+  .TABLE_BFx .table-row-cell,
+  .TABLE_BFx .cell,
+  .TABLE_BFx .table-cell,
+  .TABLE_BFx .table-column ,
+  .TABLE_BFx .text-field{
   -fx-padding:  0, 20, 0, 0;
     -fx-insets: 0, 20, 0, 0;
-
   }
-
-#TABLE .table-view:focused > .virtual-flow > .clipped-container > .sheet > .table-row-cell .table-cell{
+.TABLE_BFx .table-view:focused > .virtual-flow > .clipped-container > .sheet > .table-row-cell .table-cell{
 
           -fx-border-color: red;
           -fx-border-width: 0 1 0 0;
   }
 /* Selected rows */
-#TABLE .list-view:focused > .virtual-flow > .clipped-container > .sheet > .list-cell:filled:selected,
-#TABLE .tree-view:focused > .virtual-flow > .clipped-container > .sheet > .tree-cell:filled:selected,
-#TABLE .table-view:focused > .virtual-flow > .clipped-container > .sheet > .table-row-cell:filled:selected,
-#TABLE .tree-table-view:focused > .virtual-flow > .clipped-container > .sheet > .tree-table-row-cell:filled:selected,
-#TABLE .table-view:focused > .virtual-flow > .clipped-container > .sheet > .table-row-cell .table-cell:selected,
-#TABLE .tree-table-view:focused > .virtual-flow > .clipped-container > .sheet > .tree-table-row-cell .tree-table-cell:selected {
+.TABLE_BFx .list-view:focused > .virtual-flow > .clipped-container > .sheet > .list-cell:filled:selected,
+.TABLE_BFx .tree-view:focused > .virtual-flow > .clipped-container > .sheet > .tree-cell:filled:selected,
+.TABLE_BFx .table-view:focused > .virtual-flow > .clipped-container > .sheet > .table-row-cell:filled:selected,
+.TABLE_BFx .tree-table-view:focused > .virtual-flow > .clipped-container > .sheet > .tree-table-row-cell:filled:selected,
+.TABLE_BFx .table-view:focused > .virtual-flow > .clipped-container > .sheet > .table-row-cell .table-cell:selected,
+.TABLE_BFx .tree-table-view:focused > .virtual-flow > .clipped-container > .sheet > .tree-table-row-cell .tree-table-cell:selected {
     -fx-background-radius: 0;
     -fx-border-radius:3;
     -fx-background-insets: 1, 1, 1, 1;
     -fx-border-width: 1;
     -fx-border-insets:0;
-
 }
-
 /* Selected when control is not focused */
-#TABLE .list-cell:filled:selected,
-#TABLE .tree-cell:filled:selected,
-#TABLE .table-row-cell:filled:selected,
-#TABLE .tree-table-row-cell:filled:selected,
-#TABLE .table-row-cell:filled > .table-cell:selected,
-#TABLE .tree-table-row-cell:filled > .tree-table-cell:selected {
+.TABLE_BFx .list-cell:filled:selected,
+.TABLE_BFx .tree-cell:filled:selected,
+.TABLE_BFx .table-row-cell:filled:selected,
+.TABLE_BFx .tree-table-row-cell:filled:selected,
+.TABLE_BFx .table-row-cell:filled > .table-cell:selected,
+.TABLE_BFx .tree-table-row-cell:filled > .tree-table-cell:selected {
      -fx-background-radius: 0;
     -fx-border-radius:3;
     -fx-background-insets: 1, 1, 1, 1;
     -fx-border-width: 1;
     -fx-border-insets:0;
-    /* -fx-table-cell-border-color: #FFEACF;
-    -fx-background: #FFEACF;
-    -fx-background: #f2f5de; */
-    /* ряд таблицы */
     -fx-table-cell-border-color:  #dae0d1;
     -fx-background:  #dae0d1;
-    -fx-padding: 0 0 0 0;
     -fx-padding: 0;
-
 }
-
 .table-view:focused > .virtual-flow > .clipped-container > .sheet > .table-row-cell:filled > .check-box-table-cell:selected > .check-box > .box,
 .tree-table-view:focused > .virtual-flow > .clipped-container > .sheet > .tree-table-row-cell:filled > .check-box-table-cell:selected > .check-box > .box,
 .table-view:focused > .virtual-flow > .clipped-container > .sheet > .table-row-cell:filled:selected > .check-box-table-cell > .check-box > .box,
@@ -149,13 +134,13 @@
   }
 
 /* focused cell (keyboard navigation) */
-#TABLE .text-field:focused, #TABLE .text:focused,
-#TABLE .list-view:focused > .virtual-flow > .clipped-container > .sheet > .list-cell:focused,
-#TABLE .tree-view:focused > .virtual-flow > .clipped-container > .sheet > .tree-cell:focused,
-#TABLE .table-view:focused:row-selection > .virtual-flow > .clipped-container > .sheet > .table-row-cell:focused,
-#TABLE .tree-table-view:focused:row-selection > .virtual-flow > .clipped-container > .sheet > .tree-table-row-cell:focused,
-#TABLE .table-view:focused:cell-selection > .virtual-flow > .clipped-container > .sheet > .table-row-cell > .table-cell:focused,
-#TABLE .tree-table-view:focused:cell-selection > .virtual-flow > .clipped-container > .sheet > .tree-table-row-cell > .tree-table-cell:focused {
+.TABLE_BFx .text-field:focused, .TABLE_BFx .text:focused,
+.TABLE_BFx .list-view:focused > .virtual-flow > .clipped-container > .sheet > .list-cell:focused,
+.TABLE_BFx .tree-view:focused > .virtual-flow > .clipped-container > .sheet > .tree-cell:focused,
+.TABLE_BFx .table-view:focused:row-selection > .virtual-flow > .clipped-container > .sheet > .table-row-cell:focused,
+.TABLE_BFx .tree-table-view:focused:row-selection > .virtual-flow > .clipped-container > .sheet > .tree-table-row-cell:focused,
+.TABLE_BFx .table-view:focused:cell-selection > .virtual-flow > .clipped-container > .sheet > .table-row-cell > .table-cell:focused,
+.TABLE_BFx .tree-table-view:focused:cell-selection > .virtual-flow > .clipped-container > .sheet > .tree-table-row-cell > .tree-table-cell:focused {
     -fx-table-cell-border-color: #FFEACF;
     -fx-background-radius: 1;
     -fx-border-radius:3;
@@ -165,16 +150,15 @@
     -fx-border-insets:0;
     -fx-padding: 3 5 3 5;
     -fx-background-color:white;
-
 }
 /*selected  */
-#TABLE .text-field, #TABLE .text,
-#TABLE .list-view > .virtual-flow > .clipped-container > .sheet > .list-cell,
-#TABLE .tree-view > .virtual-flow > .clipped-container > .sheet > .tree-cell,
-#TABLE .table-view:row-selection > .virtual-flow > .clipped-container > .sheet > .table-row-cell,
-#TABLE .tree-table-view:row-selection > .virtual-flow > .clipped-container > .sheet > .tree-table-row-cell,
-#TABLE .table-view:cell-selection > .virtual-flow > .clipped-container > .sheet > .table-row-cell > .table-cell,
-#TABLE .tree-table-view:cell-selection > .virtual-flow > .clipped-container > .sheet > .tree-table-row-cell > .tree-table-cell {
+.TABLE_BFx .text-field, .TABLE_BFx .text,
+.TABLE_BFx .list-view > .virtual-flow > .clipped-container > .sheet > .list-cell,
+.TABLE_BFx .tree-view > .virtual-flow > .clipped-container > .sheet > .tree-cell,
+.TABLE_BFx .table-view:row-selection > .virtual-flow > .clipped-container > .sheet > .table-row-cell,
+.TABLE_BFx .tree-table-view:row-selection > .virtual-flow > .clipped-container > .sheet > .tree-table-row-cell,
+.TABLE_BFx .table-view:cell-selection > .virtual-flow > .clipped-container > .sheet > .table-row-cell > .table-cell,
+.TABLE_BFx .tree-table-view:cell-selection > .virtual-flow > .clipped-container > .sheet > .tree-table-row-cell > .tree-table-cell {
     -fx-table-cell-border-color: #FFEACF;
     -fx-background-radius: 1;
     -fx-border-radius:3;
@@ -187,42 +171,28 @@
 
 }
 /* Selected rows */
-#TABLE .text-input:filled:selected,
-#TABLE .list-view:focused > .virtual-flow > .clipped-container > .sheet > .list-cell:filled:selected,
-#TABLE .tree-view:focused > .virtual-flow > .clipped-container > .sheet > .tree-cell:filled:selected,
-#TABLE .table-view:focused > .virtual-flow > .clipped-container > .sheet > .table-row-cell:filled:selected,
-#TABLE .tree-table-view:focused > .virtual-flow > .clipped-container > .sheet > .tree-table-row-cell:filled:selected,
-#TABLE .table-view:focused > .virtual-flow > .clipped-container > .sheet > .table-row-cell .table-cell:selected,
-#TABLE .tree-table-view:focused > .virtual-flow > .clipped-container > .sheet > .tree-table-row-cell .tree-table-cell:selected {
-
+.TABLE_BFx .text-input:filled:selected,
+.TABLE_BFx .list-view:focused > .virtual-flow > .clipped-container > .sheet > .list-cell:filled:selected,
+.TABLE_BFx .tree-view:focused > .virtual-flow > .clipped-container > .sheet > .tree-cell:filled:selected,
+.TABLE_BFx .table-view:focused > .virtual-flow > .clipped-container > .sheet > .table-row-cell:filled:selected,
+.TABLE_BFx .tree-table-view:focused > .virtual-flow > .clipped-container > .sheet > .tree-table-row-cell:filled:selected,
+.TABLE_BFx .table-view:focused > .virtual-flow > .clipped-container > .sheet > .table-row-cell .table-cell:selected,
+.TABLE_BFx .tree-table-view:focused > .virtual-flow > .clipped-container > .sheet > .tree-table-row-cell .tree-table-cell:selected {
     -fx-background-radius: 0;
     -fx-border-radius:0;
     -fx-background-insets: 1, 1, 1, 1;
     -fx-padding: 3 5 3 5;
-
 }
 #PLACEHOLDER{
-
   -fx-text-fill: #acb9bb;
   -fx-color: #acb9bb;
   -fx-fill:#acb9bb;
   -fx-text-fill:#acb9bb;
-
-
 }
-/*
-cell indexed-cell table-cell text-field-table-cell table-column
-*/
-
-#TABLE .text-field-table-cell {
-
-  /* -fx-border-insets:0 15 0 0; */
+.TABLE_BFx .label{
+   -fx-text-alignment: center;
 }
-#TABLE .label{
-   -fx-text-alignment: center;	 
-}
-
-#TABLE.wrappedHeaderColumn .column-header{
+ .wrappedHeaderColumn .column-header{
 	/*ЗАГОЛОВОК КОЛОНКИ с классом wrappedHeaderColumn который позволяет деляать перенос строки с помощью \n в тексте строки*/
     -fx-background-color:#f7f7c2;
     -fx-background-color:transparent;
@@ -235,10 +205,13 @@ cell indexed-cell table-cell text-field-table-cell table-column
     -fx-background-insets: 0;
     -fx-padding: 0 0 10 0;
 }
-#TABLE.wrappedHeaderColumn .nested-column-header .label {
+ .wrappedHeaderColumn .nested-column-header .label {
     -fx-text-fill:#2f4a6f;
-	-fx-font-family: "Roboto Light";
-    -fx-font-size: 17;
+       -fx-text-fill:#8f9bac;
+	  -fx-font-family: "Roboto Light";
+    -fx-font-size: 15;
+	  -fx-font-family: "Roboto Black";
+    -fx-font-size: 12;
     -fx-background-insets: 0;
     -fx-padding: 0 0 0 0;
     -fx-border-insets:0 0 0 0;

@@ -1,6 +1,7 @@
 package basisFx.appCore.table;
 
 import basisFx.appCore.elements.TableWrapper;
+import basisFx.appCore.settings.CSSclasses;
 import basisFx.appCore.settings.CSSid;
 import basisFx.domain.ActiveRecord;
 import basisFx.domain.BoolComboBox;
@@ -172,7 +173,8 @@ public class ColumnWrapperBool<T> extends ColumnWrapper{
             ObservableList<BoolComboBox> comboBoxValues = BoolComboBox.getComboBoxes();
 
             comboBox = new ComboBox<>(comboBoxValues);
-            comboBox.setId(CSSid.COMBOBOX.get());
+
+            comboBox.getStyleClass().add(CSSclasses.COMBOBOX_BFx.get());
             comboBox.setEditable(false);
 //            comboBox.setPromptText("fgfg");
             comboBoxConverter(comboBox);

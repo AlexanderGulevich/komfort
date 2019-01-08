@@ -15,7 +15,7 @@ public enum FontsStore {
     FAWESOME5REGULAR("/res/fonts/Font-Awesome-5-Free-Regular-400.ttf"),
     FAWESOME5SOLID("/res/fonts/Font-Awesome-5-Free-Solid-900.ttf"),
     WEBHOSTINGHUB("/res/fonts/webhostinghub-glyphs.ttf"),
-    FOUNDATION("/res/fonts/foundation-icons.ttf"),
+    fontcustom("/res/fonts/foundation-icons.ttf"),
     IONICONS("/res/fonts/ionicons.ttf"),
     THEMIFY("/res/fonts/themify.ttf"),
     BATCH("/res/fonts/batch-icons-webfont.ttf"),

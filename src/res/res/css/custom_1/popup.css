@@ -38,19 +38,7 @@
       -fx-padding:0;
 
 }
-#TOP_CONTROL_SINGLE_BUTTON{
-  -fx-color: #689099;
-  -fx-fill:#689099;
-  -fx-text-fill:#689099;
-  -fx-background-color:transparent;
-  -fx-border-radius:0;
-  -fx-background-insets: 0, 0, 0, 0;
-  -fx-background-radius: 0;
-}
-#TOP_CONTROL_SINGLE_BUTTON:armed{
-  -fx-color: #a8c4c9;
-    -fx-text-fill:#a8c4c9;
-}
+
 #PopupTextArea .scroll-pane,
 #PopupTextArea:focused>.scroll-pane{
   -fx-background-color: white;

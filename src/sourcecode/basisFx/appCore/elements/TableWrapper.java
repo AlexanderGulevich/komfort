@@ -88,7 +88,7 @@ public  class TableWrapper extends AppNode  {
         cssClasses=builder.cssClasses;
         applyCssClasses();
 
-        applyCSSid();
+        element.getStyleClass().add(CSSclasses.TABLE_BFx.get());
         applyColumnResizePolicy();
         applyColums();
         applyEditable();
@@ -120,10 +120,6 @@ public  class TableWrapper extends AppNode  {
                     .setGridOrganization(gridOrganization)
                     .build();
         }
-    }
-
-    private void applyCSSid() {
-        element.setId(CSSid.TABLE.get());
     }
 
     public ServiceMediator getServiceMediator() {

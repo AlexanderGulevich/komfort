@@ -3,7 +3,6 @@
          -fx-padding:0 0 0 0;
 }
 #INNER_PANE{
-
 }
 #WindowButtonsPanel{
   -fx-background-color: transparent;
@@ -11,7 +10,6 @@
       -fx-border-color: #a79090;
 }
 #LABEL_COMMON_GRID_TEXT{
-
   -fx-common:#697886;
   -fx-text-fill: -fx-common;
   -fx-color: -fx-common;
@@ -20,10 +18,6 @@
   -fx-text-fill:-fx-common;
 }
 #LABEL_TEXT{
-  /*
-#8a98a4
-
-  */
       -fx-label:#697886;
             -fx-text-fill:  -fx-label;
             -fx-color:      -fx-label;
@@ -31,7 +25,6 @@
             -fx-fill:       -fx-label;
             -fx-text-fill:  -fx-label;
 }
-
 #HORIZONTAL_FLOW_MENU_PANEL{
        -fx-background-color: #ffffff;
         -fx-padding: 0  0 0 0.5;
@@ -44,6 +37,4 @@
     -fx-border-radius:0;
     -fx-background-insets: 0, 0, 0, 0;
     -fx-effect: dropshadow(gaussian ,#555555 , 2, 0, 0.5, 0.5);
-
-
 }

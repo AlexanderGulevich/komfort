@@ -2,6 +2,7 @@ package basisFx.presentation.dynamicContents;
 import basisFx.appCore.elements.ComboBoxWrapper;
 import basisFx.appCore.grid.ButPositionTop;
 import basisFx.appCore.grid.ButtonsSizeForGridLittle;
+import basisFx.appCore.settings.CSSclasses;
 import basisFx.appCore.settings.CSSid;
 import basisFx.appCore.utils.RangeForCombobox;
 import basisFx.presentation.DynamicContentPanel;
@@ -91,7 +92,7 @@ public class EmployeesPanel extends DynamicContentPanel {
 
         ComboBoxWrapper.newBuilder()
                 .setCoordinate(new Coordinate(0d, 15d, null, null))
-                .setCSSid(CSSid.COMBOBOX)
+                .setCssClasses(CSSclasses.COMBOBOX_BFx)
                 .setParentAnchor(dynamicContentAnchorHolder)
                 .setStartRange(RangeForCombobox.DAY30)
                 .setServiceMediator(mediatorServiceTwoLinkedTable)

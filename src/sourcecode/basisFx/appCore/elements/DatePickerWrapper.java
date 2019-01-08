@@ -63,8 +63,7 @@ public class DatePickerWrapper  extends AppNode{
 
     private void createDatePicker() {
         element=new DatePicker();
-
-        element.setId(CSSid.DATEPICKER_IN_COLUMN.get());
+        getElement().getStyleClass().add(CSSclasses.DATEPICKER_BFx.get());
         element.setMinWidth(width);
         element.setConverter(new CustomStringConverter());
         element.setPromptText("");

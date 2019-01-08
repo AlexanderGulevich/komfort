@@ -26,13 +26,6 @@ public class TimeRecordingPanel extends DynamicContentPanel {
     @Override
     public void customeInit() {
 
-//        ButtonWrapper buttonWrapper = ButtonFactory.getInstance().submitButton(
-//                dynamicContentAnchorHolder,
-//                new Coordinate(10d, 13d, null, null),
-//                mediator
-//        );
-
-
         DatePickerWrapper datePickerWrapper = DatePickerWrapper.newBuilder()
                 .setCoordinate(new Coordinate(10d, null, null, 5d))
                 .setParentAnchor(dynamicContentAnchorHolder)
