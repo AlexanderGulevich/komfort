@@ -35,7 +35,7 @@ public class App{
                         .setMessage(null)
                         .build()
                 );
-        DbFactory.createEmbeded();
+        DbFactory.createDbServer();
         MenuFabric.createMenuLeftSideRepresentation( new MainMenuSketch());
 
 //        ScenicView.show(WindowImplMain.getInstance().getWindowAbstraction().getScene());

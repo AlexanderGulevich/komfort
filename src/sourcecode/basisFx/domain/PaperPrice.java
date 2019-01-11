@@ -49,13 +49,7 @@ public class PaperPrice extends ActiveRecord {
                 " paperId = ? " +
                 " where id =?";
 
-        boolean check = isUniquenessStartingDate(
-                findAllByOuterId(outerId),
-                activeRecord -> ((PaperPrice) activeRecord).getStartingDate(),
-                getStartingDate());
-
         try {
-            if (!check) {
                 PreparedStatement pstmt = null;
                 pstmt = Db.connection.prepareStatement(expression);
                 pstmt.setDouble(1, Double.valueOf(price.get()));
@@ -63,7 +57,6 @@ public class PaperPrice extends ActiveRecord {
                 pstmt.setInt(3, outerId);
                 pstmt.setInt(4, id.get());
                 pstmt.executeUpdate();
-            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -81,23 +74,17 @@ public class PaperPrice extends ActiveRecord {
                 + " startDate,  "
                 + " paperId        "
                 + ") VALUES(?,?,?)";
-        boolean check = isUniquenessStartingDate(
-                findAllByOuterId(outerId),
-                activeRecord -> ((PaperPrice) activeRecord).getStartingDate(),
-                getStartingDate());
 
         PreparedStatement pstmt;
-        if (check) {
             try {
                 pstmt = Db.connection.prepareStatement(expression);
                 pstmt.setDouble(1, Double.valueOf(price.get()));
                 pstmt.setDate(2, Date.valueOf(startingDate.get()));
                 pstmt.setInt(3, outerId);
 
-                pstmt.executeUpdate();
+                int i = pstmt.executeUpdate();
             } catch (SQLException e) {
                 e.printStackTrace();
-            }
         }
     }
 
@@ -111,8 +98,8 @@ public class PaperPrice extends ActiveRecord {
             while (rs.next()) {
                 SleevePrice pojo = new SleevePrice();
                 pojo.setId(rs.getInt("id"));
-                pojo.setPrice(Double.toString(rs.getDouble("price")));
-                pojo.setStartingDate(rs.getDate("startDate").toLocalDate());
+                pojo.setPrice(rs.getDouble("price"));
+                pojo.setStartDate(rs.getDate("startDate").toLocalDate());
                 list.add(pojo);
             }
         } catch (

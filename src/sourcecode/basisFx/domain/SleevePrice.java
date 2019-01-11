@@ -10,95 +10,40 @@ import java.time.LocalDate;
 public class SleevePrice extends ActiveRecord {
 
     private static SleevePrice INSTANCE = new SleevePrice();
-    private SimpleObjectProperty<String> price = new SimpleObjectProperty<>(this, "price", null);
-    private SimpleObjectProperty<LocalDate> startingDate = new SimpleObjectProperty<>(this, "startingDate", null);
+    private SimpleObjectProperty<Double> price = new SimpleObjectProperty<>(this, "price", null);
+    private SimpleObjectProperty<LocalDate> startDate = new SimpleObjectProperty<>(this, "startDate", null);
 
     public static SleevePrice getINSTANCE() {
         return INSTANCE;
     }
 
-    public String getPrice() {
+    public Double getPrice() {
         return price.get();
     }
 
-    public SimpleObjectProperty<String> priceProperty() {
+    public SimpleObjectProperty<Double> priceProperty() {
         return price;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(Double price) {
         this.price.set(price);
     }
 
-    public LocalDate getStartingDate() {
-        return startingDate.get();
+    public LocalDate getStartDate() {
+        return startDate.get();
     }
 
-    public SimpleObjectProperty<LocalDate> startingDateProperty() {
-        return startingDate;
+    public SimpleObjectProperty<LocalDate> startDateProperty() {
+        return startDate;
     }
 
-    public void setStartingDate(LocalDate startingDate) {
-        this.startingDate.set(startingDate);
-    }
-
-    @Override
-    public void update() {
-        String expression = "UPDATE " + this.entityName + " SET  " +
-                " price = ?," +
-                " startDate = ?," +
-                " sleeveId = ? " +
-                " where id =?";
-
-        boolean check = isUniquenessStartingDate(
-                findAllByOuterId(outerId),
-                activeRecord -> ((SleevePrice) activeRecord).getStartingDate(),
-                getStartingDate());
-
-        try {
-            if (!check) {
-                PreparedStatement pstmt = null;
-                pstmt = Db.connection.prepareStatement(expression);
-                pstmt.setDouble(1, Double.valueOf(price.get()));
-                pstmt.setDate(2, Date.valueOf(startingDate.get()));
-                pstmt.setInt(3, outerId);
-                pstmt.setInt(4, id.get());
-                pstmt.executeUpdate();
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+    public void setStartDate(LocalDate startDate) {
+        this.startDate.set(startDate);
     }
 
     @Override
     public String toString() {
-        return getPrice();
-    }
-
-    @Override
-    public void insert() {
-        String expression = "INSERT INTO " + this.entityName + "("
-                + " price ,  "
-                + " startDate,  "
-                + " sleeveId        "
-                + ") VALUES(?,?,?)";
-        boolean check = isUniquenessStartingDate(
-                findAllByOuterId(outerId),
-                activeRecord -> ((SleevePrice) activeRecord).getStartingDate(),
-                getStartingDate());
-
-        PreparedStatement pstmt;
-        if (check) {
-            try {
-                pstmt = Db.connection.prepareStatement(expression);
-                pstmt.setDouble(1, Double.valueOf(price.get()));
-                pstmt.setDate(2, Date.valueOf(startingDate.get()));
-                pstmt.setInt(3, outerId);
-
-                pstmt.executeUpdate();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
+        return getPrice().toString();
     }
 
     @Override
@@ -111,8 +56,8 @@ public class SleevePrice extends ActiveRecord {
             while (rs.next()) {
                 SleevePrice pojo = new SleevePrice();
                 pojo.setId(rs.getInt("id"));
-                pojo.setPrice(Double.toString(rs.getDouble("price")));
-                pojo.setStartingDate(rs.getDate("startDate").toLocalDate());
+                pojo.setPrice(rs.getDouble("price"));
+                pojo.setStartDate(rs.getDate("startDate").toLocalDate());
                 list.add(pojo);
             }
         } catch (

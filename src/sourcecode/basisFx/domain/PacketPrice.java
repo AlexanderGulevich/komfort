@@ -41,65 +41,12 @@ public class PacketPrice extends ActiveRecord {
         this.startingDate.set(startingDate);
     }
 
-    @Override
-    public void update() {
-        String expression = "UPDATE " + this.entityName + " SET  " +
-                " price = ?," +
-                " startDate = ?," +
-                " packetId = ? " +
-                " where id =?";
-
-        boolean check = isUniquenessStartingDate(
-                findAllByOuterId(outerId),
-                activeRecord -> ((PacketPrice) activeRecord).getStartingDate(),
-                getStartingDate());
-
-        try {
-            if (!check) {
-                PreparedStatement pstmt = null;
-                pstmt = Db.connection.prepareStatement(expression);
-                pstmt.setDouble(1, price.get());
-                pstmt.setDate(2, Date.valueOf(startingDate.get()));
-                pstmt.setInt(3, outerId);
-                pstmt.setInt(4, id.get());
-                pstmt.executeUpdate();
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
 
     @Override
     public String toString() {
         return getPrice().toString();
     }
 
-    @Override
-    public void insert() {
-        String expression = "INSERT INTO " + this.entityName + "("
-                + " price ,  "
-                + " startDate,  "
-                + " packetId        "
-                + ") VALUES(?,?,?)";
-        boolean check = isUniquenessStartingDate(
-                findAllByOuterId(outerId),
-                activeRecord -> ((PacketPrice) activeRecord).getStartingDate(),
-                getStartingDate());
-
-        PreparedStatement pstmt;
-        if (check) {
-            try {
-                pstmt = Db.connection.prepareStatement(expression);
-                pstmt.setDouble(1, price.get());
-                pstmt.setDate(2, Date.valueOf(startingDate.get()));
-                pstmt.setInt(3, outerId);
-
-                pstmt.executeUpdate();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-    }
 
     @Override
     public ObservableList<ActiveRecord> findAllByOuterId(int id) {

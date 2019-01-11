@@ -110,33 +110,6 @@ public abstract class ActiveRecord {
         ReflectionInsert.executeInsertStatement(this,insertExpression,domainPropertiesMetaInfoList);
     }
 
-
-
-
-
-    /**
-     * Эта функция неоходима для того, чтобы не допустить в связанных таблицах попадание тарифа или цены или курса в базу данных
-     * с одной и той же датой. Дата в разрезе одного конкретного одентификатора, например сотрудника или продукта должна быть уникальной в БД
-     * Должна использоваться в insert и update методах отображателей
-     * @return Возвращает TRUE если в БД есть значение на данную дату по данной сущности
-     */
-    public boolean isUniquenessStartingDate(ObservableList<ActiveRecord>  records, DateGetter dateGetter , LocalDate testedDate ){
-//todo сделать вывод сцены
-        long count = records.stream().filter(activeRecord -> dateGetter.getDate(activeRecord).isEqual(testedDate)).count();
-
-        if (count>0) {
-            return false;
-
-        }
-        return true;
-    }
-
-
-
-
-
-
-
 }
 
 

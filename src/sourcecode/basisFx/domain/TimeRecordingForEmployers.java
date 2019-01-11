@@ -62,13 +62,13 @@ public class TimeRecordingForEmployers extends ActiveRecord implements RecordWit
 
     @Override
     public void insert() {
-        boolean check = isUniquenessStartingDate(
-            findAllByOuterId(getEmployer().id.get()),
-            activeRecord -> ((TimeRecordingForEmployers) activeRecord).getDate(),
-            getDate());
+//        boolean check = isUniquenessStartingDate(
+//            findAllByOuterId(getEmployer().id.get()),
+//            activeRecord -> ((TimeRecordingForEmployers) activeRecord).getDate(),
+//            getDate());
 
 
-        if (check) {
+//        if (check) {
 
             try {
                 String expression = "INSERT INTO " + this.entityName
@@ -86,7 +86,7 @@ public class TimeRecordingForEmployers extends ActiveRecord implements RecordWit
             } catch (SQLException e) {
                 e.printStackTrace();
             }
-        }
+//        }
     }
 
     @Override

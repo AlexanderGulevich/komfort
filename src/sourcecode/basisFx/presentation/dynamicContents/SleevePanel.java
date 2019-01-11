@@ -54,13 +54,13 @@ public class SleevePanel  extends DynamicContentPanel {
                                 .setColumnName("Цена")
                                 .setColumnSize(0.3d)
                                 .setIsEditeble(true)
-                                .setPropertyName("rate")
+                                .setPropertyName("price")
                                 .build(),
                         ColumnWrapperDate.newBuilder()
                                 .setColumnName("Действует с")
                                 .setColumnSize(0.7d)
                                 .setIsEditeble(true)
-                                .setPropertyName("startingDate")
+                                .setPropertyName("startDate")
                                 .build()
                 )
                 .build();
