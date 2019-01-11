@@ -14,7 +14,7 @@
 //    static {
 //        System.setProperty("log4j2.xml", "res/log4j/log4j2.xml");
 //    }
-//    static final Logger logger = LogManager.getLogger(ChartFabric.class.getMetaName());
+//    static final Logger logger = LogManager.getLogger(ChartFabric.class.getName());
 //
 //    public AreaChart areaChart(AreaChartBuilder builder){
 //

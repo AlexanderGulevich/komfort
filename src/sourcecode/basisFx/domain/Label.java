@@ -14,7 +14,7 @@ import java.time.LocalDate;
 public class Label extends ActiveRecord {
 
     private static Label INSTANCE = new Label();
-    private SimpleObjectProperty<String> name =new SimpleObjectProperty<>(this, "metaName", null);
+    private SimpleObjectProperty<String> name =new SimpleObjectProperty<>(this, "name", null);
     private SimpleObjectProperty<Counterparty> counterparty =new SimpleObjectProperty<>(this, "counterparty", null);
 
     public static Label getINSTANCE() {

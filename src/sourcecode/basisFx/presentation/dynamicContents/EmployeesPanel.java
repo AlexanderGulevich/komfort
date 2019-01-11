@@ -37,7 +37,7 @@ public class EmployeesPanel extends DynamicContentPanel {
                                 .setColumnName("ФИО")
                                 .setColumnSize(1d)
                                 .setIsEditeble(true)
-                                .setPropertyName("metaName")
+                                .setPropertyName("name")
                                 .build()
                 )
                 .build();

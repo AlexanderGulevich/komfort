@@ -39,7 +39,7 @@ public class DatePickerWrapper  extends AppNode{
         parentGroup = builder.parentGroup;
         parentFlowPane = builder.parentFlowPane;
         parentScrollPane = builder.parentScrollPane;
-        metaName = builder.name;
+        metaName = builder.metaName;
         stage = builder.stage;
         serviceMediator = builder.serviceMediator;
         datePickerWrapper=this;
@@ -129,7 +129,7 @@ public class DatePickerWrapper  extends AppNode{
         private Group parentGroup;
         private FlowPane parentFlowPane;
         private ScrollPane parentScrollPane;
-        private String name;
+        private String metaName;
         private Stage stage;
         private ServiceMediator serviceMediator;
         protected CSSclasses[] cssClasses;
@@ -196,8 +196,8 @@ public class DatePickerWrapper  extends AppNode{
             return this;
         }
 
-        public Builder setName(String val) {
-            name = val;
+        public Builder setMetaName(String val) {
+            metaName = val;
             return this;
         }
 

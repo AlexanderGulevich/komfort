@@ -35,65 +35,65 @@ public class App{
                         .setMessage(null)
                         .build()
                 );
-        DbFactory.createDbServer();
+        DbFactory.createEmbeded();
         MenuFabric.createMenuLeftSideRepresentation( new MainMenuSketch());
 
 //        ScenicView.show(WindowImplMain.getInstance().getWindowAbstraction().getScene());
 
-        Registry.windowFabric.customSubWindow(
-                WindowBuilder.newBuilder()
-                        .setGUIStructura(null)
-                        .setButtonsForStage(null)
-                        .setFxmlFileName("ByDateReasechWindow")
-                        .setParentAnchorNameForFXML(WindowAbstraction.DefaultPanelsNames.topVisibleAnchor.name())
-                        .setWidth(900d)
-                        .setHeight(600d)
-                        .setDynamicContentPanelCreator(null)
-                        .setTitle(null)
-                        .setMessage(null)
-                        .build()
-        );
-        Registry.windowFabric.customSubWindow(
-                WindowBuilder.newBuilder()
-                        .setGUIStructura(null)
-                        .setButtonsForStage(null)
-                        .setFxmlFileName("EmployerHire")
-                        .setParentAnchorNameForFXML(WindowAbstraction.DefaultPanelsNames.topVisibleAnchor.name())
-                        .setWidth(530d)
-                        .setHeight(350d)
-                        .setDynamicContentPanelCreator(null)
-                        .setTitle(null)
-                        .setMessage(null)
-                        .build()
-        );
-        Registry.windowFabric.customSubWindow(
-                WindowBuilder.newBuilder()
-                        .setGUIStructura(null)
-                        .setButtonsForStage(null)
-                        .setFxmlFileName("AddDellPopupTable")
-                        .setParentAnchorNameForFXML(WindowAbstraction.DefaultPanelsNames.topVisibleAnchor.name())
-                        .setWidth(720d)
-                        .setHeight(500d)
-                        .setDynamicContentPanelCreator(null)
-                        .setTitle(null)
-                        .setMessage(null)
-                        .build()
-        );
-        Registry.windowFabric.infoWindow("yhyntyn");
-
-        Registry.windowFabric.customSubWindow(
-                WindowBuilder.newBuilder()
-                        .setGUIStructura(null)
-                        .setButtonsForStage(null)
-                        .setFxmlFileName("YN")
-                        .setParentAnchorNameForFXML(WindowAbstraction.DefaultPanelsNames.topVisibleAnchor.name())
-                        .setHeight(230d)
-                        .setWidth(500d)
-                        .setDynamicContentPanelCreator(null)
-                        .setTitle(null)
-                        .setMessage(null)
-                        .build()
-        );
+//        Registry.windowFabric.customSubWindow(
+//                WindowBuilder.newBuilder()
+//                        .setGUIStructura(null)
+//                        .setButtonsForStage(null)
+//                        .setFxmlFileName("ByDateReasechWindow")
+//                        .setParentAnchorNameForFXML(WindowAbstraction.DefaultPanelsNames.topVisibleAnchor.name())
+//                        .setWidth(900d)
+//                        .setHeight(600d)
+//                        .setDynamicContentPanelCreator(null)
+//                        .setTitle(null)
+//                        .setMessage(null)
+//                        .build()
+//        );
+//        Registry.windowFabric.customSubWindow(
+//                WindowBuilder.newBuilder()
+//                        .setGUIStructura(null)
+//                        .setButtonsForStage(null)
+//                        .setFxmlFileName("EmployerHire")
+//                        .setParentAnchorNameForFXML(WindowAbstraction.DefaultPanelsNames.topVisibleAnchor.name())
+//                        .setWidth(530d)
+//                        .setHeight(350d)
+//                        .setDynamicContentPanelCreator(null)
+//                        .setTitle(null)
+//                        .setMessage(null)
+//                        .build()
+//        );
+//        Registry.windowFabric.customSubWindow(
+//                WindowBuilder.newBuilder()
+//                        .setGUIStructura(null)
+//                        .setButtonsForStage(null)
+//                        .setFxmlFileName("AddDellPopupTable")
+//                        .setParentAnchorNameForFXML(WindowAbstraction.DefaultPanelsNames.topVisibleAnchor.name())
+//                        .setWidth(720d)
+//                        .setHeight(500d)
+//                        .setDynamicContentPanelCreator(null)
+//                        .setTitle(null)
+//                        .setMessage(null)
+//                        .build()
+//        );
+//        Registry.windowFabric.infoWindow("yhyntyn");
+//
+//        Registry.windowFabric.customSubWindow(
+//                WindowBuilder.newBuilder()
+//                        .setGUIStructura(null)
+//                        .setButtonsForStage(null)
+//                        .setFxmlFileName("YN")
+//                        .setParentAnchorNameForFXML(WindowAbstraction.DefaultPanelsNames.topVisibleAnchor.name())
+//                        .setHeight(230d)
+//                        .setWidth(500d)
+//                        .setDynamicContentPanelCreator(null)
+//                        .setTitle(null)
+//                        .setMessage(null)
+//                        .build()
+//        );
 
 
 

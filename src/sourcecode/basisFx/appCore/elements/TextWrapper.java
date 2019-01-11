@@ -32,7 +32,6 @@ public class TextWrapper extends AppNode{
         parentGroup = builder.parentGroup;
         parentFlowPane = builder.parentFlowPane;
         parentScrollPane = builder.parentScrollPane;
-        metaName = builder.name;
         font = builder.font;
         fontSize = builder.fontSize;
         text = builder.text;
@@ -157,10 +156,7 @@ public class TextWrapper extends AppNode{
             return this;
         }
 
-        public Builder setName(String val) {
-            name = val;
-            return this;
-        }
+
 
         public Builder setFont(FontsStore val) {
             font = val;

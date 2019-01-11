@@ -35,7 +35,7 @@ public class LabelPanel  extends DynamicContentPanel {
                                 .setColumnName("Наименование")
                                 .setColumnSize(0.6d)
                                 .setIsEditeble(true)
-                                .setPropertyName("metaName")
+                                .setPropertyName("name")
                                 .build(),
                         ColumnWrapperComboBox.newBuilder(Counterparty.class)
                                 .setColumnName("Поставщик")

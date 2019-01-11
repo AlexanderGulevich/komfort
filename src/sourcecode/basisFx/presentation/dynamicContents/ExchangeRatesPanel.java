@@ -36,7 +36,7 @@ public class ExchangeRatesPanel extends DynamicContentPanel {
                                 .setColumnName("Наименование")
                                 .setColumnSize(1d)
                                 .setIsEditeble(true)
-                                .setPropertyName("metaName")
+                                .setPropertyName("name")
                                 .build())
                 .build();
 

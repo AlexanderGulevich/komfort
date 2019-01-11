@@ -11,7 +11,7 @@ import java.time.LocalDate;
 public class Employer extends ActiveRecord {
 
     private static Employer INSTANCE = new Employer();
-    private SimpleObjectProperty<String> name =new SimpleObjectProperty<>(this, "metaName", null);
+    private SimpleObjectProperty<String> name =new SimpleObjectProperty<>(this, "name", null);
 
     public static Employer getINSTANCE() {
         return INSTANCE;
@@ -39,7 +39,7 @@ public class Employer extends ActiveRecord {
             while (rs.next()) {
                 Employer pojo=new Employer();
                 pojo.setId(rs.getInt("id"));
-                pojo.setName(rs.getString("metaName"));
+                pojo.setName(rs.getString("name"));
 
                 list.add(pojo);
             }

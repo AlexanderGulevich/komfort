@@ -20,11 +20,11 @@ package basisFx.dataSource;
 //   Connection connecttion=Stable.getInstance().getDb().getConnection();
 //           
 //
-//    public void insert(DefaultPanelsNames metaName, Integer levelId, Integer  rightId , Integer leftId ) throws SQLException {
-//        DefaultPanelsNames sql = "INSERT INTO ordersCategory(metaName,levelId,rightId,leftId,isExpanded) VALUES(?,?,?,?,?)";
+//    public void insert(DefaultPanelsNames name, Integer levelId, Integer  rightId , Integer leftId ) throws SQLException {
+//        DefaultPanelsNames sql = "INSERT INTO ordersCategory(name,levelId,rightId,leftId,isExpanded) VALUES(?,?,?,?,?)";
 //
 //        PreparedStatement pstmt = connecttion.prepareStatement(sql);
-//            pstmt.setMetaName(1, metaName);
+//            pstmt.setname(1, name);
 //            pstmt.setInt(2, levelId);
 //            pstmt.setInt(3, rightId);
 //            pstmt.setInt(4, leftId);     
@@ -33,7 +33,7 @@ package basisFx.dataSource;
 //            pstmt.executeUpdate();
 //
 //}
-//    public void insertToRoot(DefaultPanelsNames metaName) throws SQLException {
+//    public void insertToRoot(DefaultPanelsNames name) throws SQLException {
 //        
 //            int maxId=0;
 //        
@@ -56,11 +56,11 @@ package basisFx.dataSource;
 //                stmt.close();
 //            
 ////            
-//            insert(metaName, 1, maxId+2,maxId+1 );
+//            insert(name, 1, maxId+2,maxId+1 );
 //            
 //             
 //}
-//    public void insertToParentNode(DefaultPanelsNames metaName, Integer parentLevel, Integer parentRightId ) throws SQLException {
+//    public void insertToParentNode(DefaultPanelsNames name, Integer parentLevel, Integer parentRightId ) throws SQLException {
 //            
 //         //Обновляем ключи существующего дерева, узлы стоящие за родительским узлом:
 //          DefaultPanelsNames sql_1 = "UPDATE ordersCategory SET leftId =leftId +2,"
@@ -82,10 +82,10 @@ package basisFx.dataSource;
 //          pstmt_2.setInt(2, parentRightId);
 //          pstmt_2.executeUpdate();
 //          
-//          DefaultPanelsNames sql_3 = "INSERT INTO ordersCategory(metaName,levelId,rightId,leftId,isExpanded) VALUES(?,?,?,?,?)";
+//          DefaultPanelsNames sql_3 = "INSERT INTO ordersCategory(name,levelId,rightId,leftId,isExpanded) VALUES(?,?,?,?,?)";
 //
 //            PreparedStatement pstmt_3 = connecttion.prepareStatement(sql_3);
-//            pstmt_3.setMetaName(1, metaName);
+//            pstmt_3.setname(1, name);
 //            pstmt_3.setInt(2, parentLevel+1);
 //            pstmt_3.setInt(3, parentRightId+1);
 //            pstmt_3.setInt(4, parentRightId);     
@@ -109,7 +109,7 @@ package basisFx.dataSource;
 //             domaine.setLeftId(rs.getInt("leftId") );
 //             domaine.setLevelId(rs.getInt("levelId"));
 //             domaine.setRightId(rs.getInt("rightId"));
-//             domaine.setCategoryNameOfTnp(rs.getName("metaName") );
+//             domaine.setCategoryNameOfTnp(rs.getName("name") );
 //             domaine.setIsExpanded(rs.getInt("isExpanded"));
 //             domaine.setShortName(rs.getName("shortName"));
 //             
@@ -122,15 +122,15 @@ package basisFx.dataSource;
 //        return ctc;
 //            
 //}
-//    public void updateCategoryLongName(int id, DefaultPanelsNames metaName) throws SQLException {
-//        DefaultPanelsNames sql = "UPDATE ordersCategory SET metaName = ?  "
+//    public void updateCategoryLongName(int id, DefaultPanelsNames name) throws SQLException {
+//        DefaultPanelsNames sql = "UPDATE ordersCategory SET name = ?  "
 //                + "WHERE ordersCategoryId = ?";
 // 
 //        
 //            PreparedStatement pstmt = connecttion.prepareStatement(sql);
 // 
 //            // set the corresponding param
-//            pstmt.setMetaName(1, metaName);
+//            pstmt.setname(1, name);
 //            pstmt.setInt(2, id);
 //            // update 
 //            pstmt.executeUpdate();
@@ -249,7 +249,7 @@ package basisFx.dataSource;
 //            PreparedStatement pstmt = connecttion.prepareStatement(sql);
 // 
 //            // set the corresponding param
-//            pstmt.setMetaName(1, shortName);
+//            pstmt.setname(1, shortName);
 //            pstmt.setInt(2, id);
 //            // update 
 //            pstmt.executeUpdate();
@@ -378,7 +378,7 @@ package basisFx.dataSource;
 //                 domaine.setLevelId(rs.getInt("levelId"));
 //                 domaine.setRightId(rs.getInt("rightId"));
 //                 domaine.setShortName(rs.getName("shortName"));
-//                 domaine.setCategoryNameOfTnp(rs.getName("metaName"));
+//                 domaine.setCategoryNameOfTnp(rs.getName("name"));
 //                                 
 //            }
 //        return domaine;

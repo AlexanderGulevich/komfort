@@ -30,7 +30,7 @@ public class EquipmentPanel extends DynamicContentPanel {
                                 .setColumnName("Наименование")
                                 .setColumnSize(1d)
                                 .setIsEditeble(true)
-                                .setPropertyName("metaName")
+                                .setPropertyName("name")
                                 .build()
 
 

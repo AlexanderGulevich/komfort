@@ -61,7 +61,7 @@ public  class TableWrapper extends AppNode  {
         parentGroup = builder.parentGroup;
         parentFlowPane = builder.parentFlowPane;
         parentScrollPane = builder.parentScrollPane;
-        metaName = builder.name;
+        metaName = builder.metaName;
         stage = builder.stage;
         isEditable = builder.isEditable;
         columnResizePolicy = builder.columnResizePolicy;
@@ -307,7 +307,7 @@ public  class TableWrapper extends AppNode  {
         private Group parentGroup;
         private FlowPane parentFlowPane;
         private ScrollPane parentScrollPane;
-        private String name;
+        private String metaName;
         private Stage stage;
         private boolean isEditable;
         private Callback<TableView.ResizeFeatures, Boolean> columnResizePolicy;
@@ -414,8 +414,8 @@ public  class TableWrapper extends AppNode  {
             return this;
         }
 
-        public Builder setName(String val) {
-            name = val;
+        public Builder setMetaName(String val) {
+            metaName = val;
             return this;
         }
 

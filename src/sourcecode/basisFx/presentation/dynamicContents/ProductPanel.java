@@ -37,7 +37,7 @@ public class ProductPanel  extends DynamicContentPanel {
                                 .setColumnName("Наименование")
                                 .setColumnSize(0.7d)
                                 .setIsEditeble(true)
-                                .setPropertyName("metaName")
+                                .setPropertyName("name")
                                 .build(),
                         ColumnWrapperBool.newBuilder()
                                 .setColumnName("Втулка")

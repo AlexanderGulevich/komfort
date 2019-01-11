@@ -30,7 +30,7 @@ public class CounterpartyPanel extends DynamicContentPanel {
                                 .setColumnName("Наименование")
                                 .setColumnSize(0.6d)
                                 .setIsEditeble(true)
-                                .setPropertyName("metaName")
+                                .setPropertyName("name")
                                 .build(),
                         ColumnWrapperComboBox.newBuilder(Currency.class)
                                 .setColumnName("Валюта ")

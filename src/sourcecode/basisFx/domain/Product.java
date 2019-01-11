@@ -12,7 +12,7 @@ import java.sql.Statement;
 public class Product  extends ActiveRecord {
 
     private static Product INSTANCE = new Product();
-    private SimpleObjectProperty<String> name =new SimpleObjectProperty<>(this, "metaName", null);
+    private SimpleObjectProperty<String> name =new SimpleObjectProperty<>(this, "name", null);
     private SimpleObjectProperty<BoolComboBox> havingSleeve =new SimpleObjectProperty<>(this, "havingSleeve", null);
 
     public static Product getINSTANCE() {
@@ -53,7 +53,7 @@ public class Product  extends ActiveRecord {
             while (rs.next()) {
                 Product pojo=new Product();
                 pojo.setId(rs.getInt("id"));
-                pojo.setName(rs.getString("metaName"));
+                pojo.setName(rs.getString("name"));
                 pojo.setHavingSleeve(new BoolComboBox(rs.getBoolean("havingSleeve") )  );
                 list.add(pojo);
             }
