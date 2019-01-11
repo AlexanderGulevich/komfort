@@ -1,14 +1,11 @@
 package basisFx.presentation.dynamicContents;
 
-import basisFx.appCore.grid.ButPositionTop;
-import basisFx.appCore.grid.ButtonsSizeForGridBig;
-import basisFx.appCore.table.ColumnWrapperSubWindow;
-import basisFx.appCore.windows.WindowAbstraction;
-import basisFx.appCore.windows.WindowBuilder;
+import basisFx.appCore.grid.ButPosTop;
+import basisFx.appCore.grid.ButSizeBig;
 import basisFx.presentation.DynamicContentPanel;
 import basisFx.service.ServiceSingleTable;
 import basisFx.appCore.elements.TableWrapper;
-import basisFx.appCore.grid.GridSingleTable;
+import basisFx.appCore.grid.SingleTable;
 import basisFx.appCore.elements.GridPaneWrapper;
 import basisFx.appCore.table.ColumnWrapperString;
 import basisFx.appCore.utils.Coordinate;
@@ -42,7 +39,7 @@ public class EquipmentPanel extends DynamicContentPanel {
 
 
         GridPaneWrapper.newBuilder()
-                .setGridOrganization(new GridSingleTable(tableWrapper,new ButtonsSizeForGridBig(),new ButPositionTop()))
+                .setOrganization(new SingleTable(tableWrapper,new ButSizeBig(),new ButPosTop()))
                 .setGridName("Оборудование")
                 .setParentAnchor(dynamicContentAnchorHolder)
                 .setCoordinate(new Coordinate(0d,10d,10d,0d))

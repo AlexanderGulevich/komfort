@@ -6,7 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 
-public class ButPositionNotExist extends ButtonsPosition {
+public class ButPosTop extends ButPosition {
     @Override
     public void organize(Label label, Button addBut, Button delBut, TableView tableView) {
 
@@ -14,29 +14,23 @@ public class ButPositionNotExist extends ButtonsPosition {
                 label,
                 0, 0, 1, 1, HPos.LEFT, VPos.TOP, insets);
         parentGridWrapper.addSpanNode(
+                addBut,
+                2, 0, 1, 1, HPos.RIGHT, VPos.TOP, insets);
+        parentGridWrapper.addSpanNode(
+                delBut,
+                1, 0, 1, 1, HPos.RIGHT, VPos.TOP, insets);
+        parentGridWrapper.addSpanNode(
                 tableView,
-                0, 1, 1, 1, HPos.CENTER, VPos.TOP, insets);
-
+                0, 1, 3, 1, HPos.CENTER, VPos.TOP, insets);
     }
 
     @Override
     public void organize(Label label, TableView tableView) {
 
-
-        parentGridWrapper.addSpanNode(
-                label,
-                0, 0, 1, 1, HPos.LEFT, VPos.TOP, insets);
-        parentGridWrapper.addSpanNode(
-                tableView,
-                0, 1, 1, 1, HPos.CENTER, VPos.TOP, insets);
     }
 
     @Override
     public void organize(TableView tableView) {
 
-
-        parentGridWrapper.addSpanNode(
-                tableView,
-                0, 0, 1, 1, HPos.CENTER, VPos.TOP, insets);
     }
 }

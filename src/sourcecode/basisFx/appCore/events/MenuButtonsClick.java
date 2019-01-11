@@ -51,7 +51,7 @@ public class MenuButtonsClick extends AppEvent{
     }
 
     private void clearContent() {
-        AppNode node = Registry.mainWindow.getNode(WindowAbstraction.DefaultPanelsNames.mainContentAnchor.name());
+        AppNode node = Registry.mainWindow.getAppNode(WindowAbstraction.DefaultPanelsNames.mainContentAnchor.name());
         AnchorPane mainContentAnchor = ((AnchorPane) node.getElement());
         mainContentAnchor.getChildren().clear();
         Registry.mainWindow.clearCurrentDynamicContentPanel();

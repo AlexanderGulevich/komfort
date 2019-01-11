@@ -31,7 +31,7 @@
       </AnchorPane>
       <AnchorPane layoutX="-25.0" layoutY="129.0" prefHeight="50.0" styleClass="darckBlue" stylesheets="@../css/custom_1/colors.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
-            <JFXButton id="PANELS_BUTTON" layoutX="406.0" layoutY="26.0" prefHeight="36.0" prefWidth="69.0" style="-fx-padding: 7 9; -fx-text-fill: #00364; -fx-background-color: #FFFFFF; -fx-max-width: 80;" styleClass="all_side" text="ДА" textFill="WHITE" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="8.0">
+            <JFXButton id="PANELS_BUTTON" layoutX="406.0" layoutY="26.0" prefHeight="36.0" prefWidth="69.0" style="-fx-padding: 7 9; -fx-background-color: #FFFFFF; -fx-max-width: 80;" styleClass="all_side" text="ДА"  AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="8.0">
                <font>
                   <Font name="Font Awesome 5 Free Solid" size="11.0" />
                </font>
@@ -41,7 +41,7 @@
                   <URL value="@../css/custom_1/borders.css" />
                </stylesheets>
             </JFXButton>
-            <JFXButton id="PANELS_BUTTON" layoutX="315.0" layoutY="7.0" prefHeight="36.0" prefWidth="69.0" style="-fx-padding: 7 9; -fx-text-fill: #00364; -fx-background-color: #FFFFFF; -fx-max-width: 80;" styleClass="all_side" text="НЕТ" textFill="WHITE" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="8.0">
+            <JFXButton id="PANELS_BUTTON" layoutX="315.0" layoutY="7.0" prefHeight="36.0" prefWidth="69.0" style="-fx-padding: 7 9; -fx-background-color: #FFFFFF; -fx-max-width: 80;" styleClass="all_side" text="НЕТ"  AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="8.0">
                <font>
                   <Font name="Font Awesome 5 Free Solid" size="11.0" />
                </font>

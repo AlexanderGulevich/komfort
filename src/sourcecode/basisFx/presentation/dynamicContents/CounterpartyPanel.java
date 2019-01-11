@@ -1,8 +1,8 @@
 package basisFx.presentation.dynamicContents;
 
-import basisFx.appCore.grid.ButPositionTop;
-import basisFx.appCore.grid.ButtonsSizeForGridBig;
-import basisFx.appCore.grid.GridSingleTable;
+import basisFx.appCore.grid.ButPosTop;
+import basisFx.appCore.grid.ButSizeBig;
+import basisFx.appCore.grid.SingleTable;
 import basisFx.service.ServiceSingleTable;
 import basisFx.appCore.elements.TableWrapper;
 import basisFx.appCore.elements.GridPaneWrapper;
@@ -43,7 +43,7 @@ public class CounterpartyPanel extends DynamicContentPanel {
                 .build();
 
         GridPaneWrapper.newBuilder()
-                .setGridOrganization(new GridSingleTable(tableWrapper,new ButtonsSizeForGridBig(),new ButPositionTop()))
+                .setOrganization(new SingleTable(tableWrapper,new ButSizeBig(),new ButPosTop()))
                 .setGridName("Список контрагентов")
                 .setParentAnchor(dynamicContentAnchorHolder)
                 .setCoordinate(new Coordinate(0d,10d,10d,0d))

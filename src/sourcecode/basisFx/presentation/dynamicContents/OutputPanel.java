@@ -79,7 +79,7 @@ public class OutputPanel  extends DynamicContentPanel {
 
 
         GridPaneWrapper.newBuilder()
-                .setGridOrganization(new GridSingleTable(tableWrapper,new ButtonsSizeForGridBig(),new ButPositionTop()))
+                .setOrganization(new SingleTable(tableWrapper,new ButSizeBig(),new ButPosTop()))
                 .setGridName("Учет выходной продукции")
                 .setParentAnchor(dynamicContentAnchorHolder)
                 .setCoordinate(new Coordinate(50d,10d,10d,0d))

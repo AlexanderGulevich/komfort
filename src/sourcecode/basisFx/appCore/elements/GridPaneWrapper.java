@@ -267,7 +267,7 @@ public  class GridPaneWrapper extends AppNode {
             return this;
         }
 
-        public Builder setGridOrganization(GridOrganization gridOrganization) {
+        public Builder setOrganization(GridOrganization gridOrganization) {
             this.gridOrganization = gridOrganization;
             return this;
         }

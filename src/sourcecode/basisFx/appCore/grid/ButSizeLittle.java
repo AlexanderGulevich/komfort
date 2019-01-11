@@ -1,7 +1,7 @@
 package basisFx.appCore.grid;
 
 
-public class ButtonsSizeForGridLittle extends ButtonsSizeForGrid {
+public class ButSizeLittle extends ButSizeForGrid {
 
     @Override
     public void init() {

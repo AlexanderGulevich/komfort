@@ -3,17 +3,13 @@ package basisFx.presentation.dynamicContents;
 
 import basisFx.appCore.elements.DatePickerWrapper;
 import basisFx.appCore.elements.TableWrapper;
-import basisFx.appCore.grid.ButPositionNotExist;
+import basisFx.appCore.grid.ButPosNotExist;
 import basisFx.appCore.elements.GridPaneWrapper;
-import basisFx.appCore.grid.ButtonsSizeNon;
-import basisFx.appCore.grid.GridSingleTable;
+import basisFx.appCore.grid.ButSizeNon;
+import basisFx.appCore.grid.SingleTable;
 import basisFx.appCore.table.ColumnWrapperComboBox;
 import basisFx.appCore.table.ColumnWrapperDouble;
-import basisFx.appCore.table.ColumnWrapperSubWindow;
 import basisFx.appCore.utils.Coordinate;
-import basisFx.appCore.utils.Registry;
-import basisFx.appCore.windows.WindowAbstraction;
-import basisFx.appCore.windows.WindowBuilder;
 import basisFx.domain.Employer;
 import basisFx.domain.TimeRecordingForEmployers;
 import basisFx.presentation.DynamicContentPanel;
@@ -58,7 +54,7 @@ public class TimeRecordingPanel extends DynamicContentPanel {
 
 
         GridPaneWrapper.newBuilder()
-                .setGridOrganization(new GridSingleTable(tableWrapper,new ButtonsSizeNon(),new ButPositionNotExist()))
+                .setOrganization(new SingleTable(tableWrapper,new ButSizeNon(),new ButPosNotExist()))
                 .setGridName("Учет рабочего времени")
                 .setParentAnchor(dynamicContentAnchorHolder)
                 .setCoordinate(new Coordinate(50d,10d,10d,0d))

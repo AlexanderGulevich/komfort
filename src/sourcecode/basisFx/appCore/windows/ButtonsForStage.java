@@ -19,7 +19,7 @@ public abstract class ButtonsForStage {
     protected abstract void customInit();
     public  void initTemplateMethod(WindowAbstraction windowAbstraction){
         this.windowAbstraction=windowAbstraction;
-        parentAnchor= ((AnchorPane) windowAbstraction.getNode(parentAnchorName).getElement());
+        parentAnchor= ((AnchorPane) windowAbstraction.getAppNode(parentAnchorName).getElement());
         customInit();
     }
 }

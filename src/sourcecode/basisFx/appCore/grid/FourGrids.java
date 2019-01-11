@@ -8,7 +8,7 @@ import basisFx.appCore.settings.FontsStore;
 import javafx.geometry.HPos;
 import javafx.geometry.VPos;
 
-public class GridFourGrids extends GridOrganization {
+public class FourGrids extends GridOrganization {
 
     protected GridPaneWrapper leftGridWrapperTop;
     protected GridPaneWrapper rightGridWrapperTop;
@@ -31,8 +31,8 @@ public class GridFourGrids extends GridOrganization {
         return rightGridWrapperBottom;
     }
 
-    public GridFourGrids setGrids(GridPaneWrapper leftGridWrapperTop, GridPaneWrapper rightGridWrapperTop,
-                                  GridPaneWrapper leftGridWrapperBottom, GridPaneWrapper rightGridWrapperBottom) {
+    public FourGrids setGrids(GridPaneWrapper leftGridWrapperTop, GridPaneWrapper rightGridWrapperTop,
+                              GridPaneWrapper leftGridWrapperBottom, GridPaneWrapper rightGridWrapperBottom) {
         this.leftGridWrapperTop = leftGridWrapperTop;
         this.rightGridWrapperTop = rightGridWrapperTop;
         this.leftGridWrapperBottom = leftGridWrapperBottom;

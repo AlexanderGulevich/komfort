@@ -117,7 +117,7 @@ public  class TableWrapper extends AppNode  {
               gridPaneWrapper = GridPaneWrapper.newBuilder()
                     .setGridLinesVisibility(gridLinesVisibility)
                     .setGridName(gridName)
-                    .setGridOrganization(gridOrganization)
+                    .setOrganization(gridOrganization)
                     .build();
         }
     }
@@ -347,7 +347,7 @@ public  class TableWrapper extends AppNode  {
             this.dynamicContentPanel = dynamicContentPanel;
         }
 
-        public  Builder setGridOrganization(GridOrganization gridOrganization) {
+        public  Builder setOrganization(GridOrganization gridOrganization) {
             this.gridOrganization = gridOrganization;
             return this;
         }

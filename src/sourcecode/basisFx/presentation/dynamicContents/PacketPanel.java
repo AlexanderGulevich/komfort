@@ -19,7 +19,7 @@ public class PacketPanel  extends DynamicContentPanel {
         TableWrapper t1 = TableWrapper.newBuilder()
                 .setGridLinesVisibility(isGridVisibility)
                 .setGridName("Пакеты ")
-                .setGridOrganization(new GridSingleTable(new ButtonsSizeForGridLittle(),new ButPositionTop()))
+                .setOrganization(new SingleTable(new ButSizeLittle(),new ButPosTop()))
                 .setActiveRecordClass(Packet.class)
                 .setUnitOfWork(unitOfWork)
                 .setIsEditable(true)
@@ -44,7 +44,7 @@ public class PacketPanel  extends DynamicContentPanel {
         TableWrapper t2 = TableWrapper.newBuilder()
                 .setGridLinesVisibility(isGridVisibility)
                 .setGridName("Реестр цен")
-                .setGridOrganization(new GridSingleTable(new ButtonsSizeForGridLittle(),new ButPositionTop()))
+                .setOrganization(new SingleTable(new ButSizeLittle(),new ButPosTop()))
                 .setActiveRecordClass(PacketPrice.class)
                 .setUnitOfWork(unitOfWork)
                 .setIsEditable(true)
@@ -69,7 +69,7 @@ public class PacketPanel  extends DynamicContentPanel {
         TableWrapper t3 = TableWrapper.newBuilder()
                 .setGridLinesVisibility(isGridVisibility)
                 .setGridName("Размеры пакетов ")
-                .setGridOrganization(new GridSingleTable(new ButtonsSizeForGridLittle(),new ButPositionTop()))
+                .setOrganization(new SingleTable(new ButSizeLittle(),new ButPosTop()))
                 .setActiveRecordClass(PacketSize.class)
                 .setUnitOfWork(unitOfWork)
                 .setIsEditable(true)
@@ -88,7 +88,7 @@ public class PacketPanel  extends DynamicContentPanel {
         TableWrapper t4 = TableWrapper.newBuilder()
                 .setGridLinesVisibility(isGridVisibility)
                 .setGridName("Вместимость пакетов")
-                .setGridOrganization(new GridSingleTable(new ButtonsSizeForGridLittle(),new ButPositionTop()))
+                .setOrganization(new SingleTable(new ButSizeLittle(),new ButPosTop()))
                 .setActiveRecordClass(PacketProductAccordance.class)
                 .setUnitOfWork(unitOfWork)
                 .setIsEditable(true)
@@ -117,10 +117,10 @@ public class PacketPanel  extends DynamicContentPanel {
                 .setGridName("Управление информацией о пакетах")
                 .setParentAnchor(dynamicContentAnchorHolder)
                 .setCoordinate(new Coordinate(0d, 10d, 10d, 0d))
-                .setGridOrganization(
-                        new GridTwoVerticaGrids(
-                                new GridTwoBondGrids(t1.getGridPaneWrapper() ,t2.getGridPaneWrapper() ) ,
-                                new GridTwoBondGrids(t3.getGridPaneWrapper() ,t4.getGridPaneWrapper() )
+                .setOrganization(
+                        new TwoVerticaGrids(
+                                new TwoBondGrids(t1.getGridPaneWrapper() ,t2.getGridPaneWrapper() ) ,
+                                new TwoBondGrids(t3.getGridPaneWrapper() ,t4.getGridPaneWrapper() )
                         )
                  )
                 .build();

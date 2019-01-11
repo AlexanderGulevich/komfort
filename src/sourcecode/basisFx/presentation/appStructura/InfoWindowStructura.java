@@ -47,13 +47,13 @@ public class InfoWindowStructura extends GUIStructura {
                 .setMetaName(Structura.messageTextAnchor.name())
                 .setCSSid(CSSid.popupMessageTextPanel)
                 .setHeight(100d)
-                .setParentAnchor(((AnchorPane) window.getNode("contentAnchor").getElement()))
+                .setParentAnchor(((AnchorPane) window.getAppNode("contentAnchor").getElement()))
                 .setCoordinate(new Coordinate(10d,80d,10d,10d))
                 .build();
 
          TextAreaWrapper.newBuilder()
                 .setWindowAbstraction(window)
-                .setParentAnchor(((AnchorPane) window.getNode("messageTextAnchor").getElement()))
+                .setParentAnchor(((AnchorPane) window.getAppNode("messageTextAnchor").getElement()))
                 .setIsWrapText(true)
                 .setCoordinate( new Coordinate(10d,10d,10d,10d))
                 .setFont(FontsStore.ROBOTO_LIGHT)
@@ -71,7 +71,7 @@ public class InfoWindowStructura extends GUIStructura {
                 .setFont(FontsStore.ROBOTO_BOLD)
                 .setAlignment(Pos.CENTER_LEFT)
                 .setCoordinate(new Coordinate(10d,0d,null,10d))
-                 .setParentAnchor(((AnchorPane) window.getNode("titleAnchor").getElement()))
+                 .setParentAnchor(((AnchorPane) window.getAppNode("titleAnchor").getElement()))
                 .build();
 
          TextWrapper.newBuilder()

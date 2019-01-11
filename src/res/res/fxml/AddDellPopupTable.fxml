@@ -42,7 +42,7 @@
                </font>
             </Label>
             <FontAwesomeIconView fill="#42606e93" layoutY="38.0" size="45" text="" />
-            <JFXButton id="TOP_CONTROL_SINGLE_BUTTON" layoutX="670.0" layoutY="6.0" style="-fx-padding: 7 9; -fx-text-fill: #00364; -fx-background-color: #FFFFFF;" styleClass="all_side" text="" textFill="WHITE" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="6.0">
+            <JFXButton id="TOP_CONTROL_SINGLE_BUTTON" layoutX="670.0" layoutY="6.0" style="-fx-padding: 7 9;  -fx-background-color: #FFFFFF;" styleClass="all_side" text="" textFill="WHITE" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="6.0">
                <font>
                   <Font name="Font Awesome 5 Free Solid" size="11.0" />
                </font>

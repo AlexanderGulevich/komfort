@@ -15,11 +15,13 @@ import javafx.collections.ObservableList;
 
 public abstract class ActiveRecord {
     public String entityName;
-    public int outerId;
+    public ActiveRecord outerRecord;
     public ObjectProperty<Integer> id =new SimpleObjectProperty<>(this, "id", null);
-    //Method for Combobox
-    public abstract String toString();
+    public int outerId;
+
+    public abstract String toString();  //Method for Combobox
     public abstract ObservableList<ActiveRecord> findAllByOuterId(int id);
+//    public abstract ObservableList<ActiveRecord> findAllByOuterId(ActiveRecord record);
     public ActiveRecord( ) {
         String name = this.getClass().getName();
         String[] arr = name.split("\\.");
@@ -110,52 +112,6 @@ public abstract class ActiveRecord {
 
 
 
-    // getAll(list) записывает в  list значения ReturnSet БД
-    // далее идет преобразование каждой строки БД в HashMap, где ключем является id
-//    public HashMap<Integer,ActiveRecord> toHashMapByCommonRawId(ObservableList<ActiveRecord> list){
-//        list.clear();
-//        getAll();
-//
-//        HashMap<Integer,ActiveRecord> hm=new HashMap<>();
-//
-//        for (ActiveRecord domainObject : list) {
-//
-//            Integer id = domainObject.getId();
-//            hm.put(id,domainObject);
-//        }
-//
-//        return hm;
-//
-//    }
-
-
-    // getAll(list) записывает в  list значения ReturnSet БД
-    // далее идет преобразование каждой строки БД в HashMap, где ключем является id
-    // а значение ComboBoxValue для вставки в ComboBox
-//    public HashMap<Integer,ComboBoxValue> toComboBoxValHashMap(ObservableList<ActiveRecord> list, StringGetterFromDomain stringGetterFromDomain){
-//        list.clear();
-//        getAll();
-//
-//        HashMap<Integer,ComboBoxValue> hm=new HashMap<>();
-//
-//        for (ActiveRecord domainObject : list) {
-//
-//            Integer id = domainObject.getId();
-//
-//            ComboBoxValue comboBoxValue = new ComboBoxValue(
-//                    stringGetterFromDomain.get(domainObject),
-//                    domainObject.getId()
-//            );
-//
-//            hm.put(id,comboBoxValue);
-//
-//
-//        }
-//
-//        return hm;
-//
-//    }
-
 
 
     /**
@@ -177,49 +133,6 @@ public abstract class ActiveRecord {
 
 
 
-
-//
-//     todo           Platform.runLater(() -> {
-//
-//
-//                    DefaultPanelsNames message="В Базе Данных уже есть значение на дату: "
-//                            + date.toString()+
-//                            ". Создать новую запись с такой же датой нельзя." +
-//                            " Вы можете изменить старую, либо удалить ее.";
-//                });
-//
-
-
-
-
-
-//    private EmployeesRatePerHour getNewest(Integer id){
-//
-//        EmployeesRatePerHour newestRate=null;
-//
-//        ArrayList<EmployeesRatePerHour> ratePerHoursList = ratesMapById.get(id);
-//
-//        if (ratePerHoursList != null) {
-//            for (EmployeesRatePerHour rate:ratePerHoursList) {
-//
-//                if (newestRate == null) {
-//
-//                    newestRate=rate;
-//
-//                }
-//
-//                if (rate.getStartingDate().isAfter(newestRate.getStartingDate())){
-//                    newestRate=rate;
-//                }
-//            }
-//        }
-//
-//
-//        return newestRate;
-//
-//
-//
-//    }
 
 
 

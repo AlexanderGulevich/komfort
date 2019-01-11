@@ -2,12 +2,11 @@ package basisFx.appCore.grid;
 
 import javafx.geometry.HPos;
 import javafx.geometry.VPos;
-import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 
-public class ButPositionMiddle extends ButtonsPosition{
+public class ButPosMiddle extends ButPosition {
     @Override
     public void organize(Label label, Button addBut, Button delBut, TableView tableView) {
 

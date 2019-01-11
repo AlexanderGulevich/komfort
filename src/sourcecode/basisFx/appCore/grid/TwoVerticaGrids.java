@@ -7,25 +7,25 @@ import basisFx.appCore.settings.FontsStore;
 import javafx.geometry.HPos;
 import javafx.geometry.VPos;
 
-public class GridTwoVerticaGrids extends GridOrganization {
+public class TwoVerticaGrids extends GridOrganization {
 
     protected GridPaneWrapper gridWrapperTop;
     protected GridPaneWrapper gridWrapperBottom;
 
 
-    public GridTwoVerticaGrids(GridOrganization organizationTop, GridOrganization organizationBottom) {
+    public TwoVerticaGrids(GridOrganization organizationTop, GridOrganization organizationBottom) {
 
         gridWrapperTop = GridPaneWrapper.newBuilder()
                 .setGridLinesVisibility(false)
                 .setColumnVsPercent(40)
                 .setColumnVsPercent(60)
-                .setGridOrganization(organizationTop).build();
+                .setOrganization(organizationTop).build();
 
         gridWrapperBottom = GridPaneWrapper.newBuilder()
                 .setGridLinesVisibility(false)
                 .setColumnVsPercent(40)
                 .setColumnVsPercent(60)
-                .setGridOrganization(organizationBottom).build();
+                .setOrganization(organizationBottom).build();
 
     }
     private void applyWidth() {

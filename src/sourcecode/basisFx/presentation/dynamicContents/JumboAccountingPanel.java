@@ -2,9 +2,9 @@ package basisFx.presentation.dynamicContents;
 
 import basisFx.appCore.elements.DatePickerWrapper;
 import basisFx.appCore.elements.TableWrapper;
-import basisFx.appCore.grid.ButPositionTop;
-import basisFx.appCore.grid.ButtonsSizeForGridBig;
-import basisFx.appCore.grid.GridSingleTable;
+import basisFx.appCore.grid.ButPosTop;
+import basisFx.appCore.grid.ButSizeBig;
+import basisFx.appCore.grid.SingleTable;
 import basisFx.appCore.elements.GridPaneWrapper;
 import basisFx.appCore.table.ColumnWrapperComboBox;
 import basisFx.appCore.table.ColumnWrapperDouble;
@@ -50,7 +50,7 @@ public class JumboAccountingPanel extends DynamicContentPanel {
 
 
         GridPaneWrapper.newBuilder()
-                .setGridOrganization(new GridSingleTable(tableWrapper,new ButtonsSizeForGridBig(),new ButPositionTop()))
+                .setOrganization(new SingleTable(tableWrapper,new ButSizeBig(),new ButPosTop()))
                 .setGridName("Учет джамбо-ролей")
                 .setParentAnchor(dynamicContentAnchorHolder)
                 .setCoordinate(new Coordinate(50d, 10d, 10d, 0d))

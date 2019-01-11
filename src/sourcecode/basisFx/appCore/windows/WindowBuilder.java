@@ -12,6 +12,7 @@ public class WindowBuilder {
     public String title=null;
     public String parentAnchorNameForFXML=null;
     public ButtonsForStage buttonsForStage=null;
+    public String message;
 
     private WindowBuilder(Builder builder) {
         GUIStructura = builder.GUIStructura;
@@ -22,6 +23,7 @@ public class WindowBuilder {
         title = builder.title;
         parentAnchorNameForFXML = builder.parentAnchorname;
         buttonsForStage = builder.buttonsForStage;
+        message=builder.message;
     }
 
     public static Builder newBuilder() {
@@ -37,8 +39,15 @@ public class WindowBuilder {
         private String title;
         private String parentAnchorname;
         private ButtonsForStage buttonsForStage;
+        private String message;
+
 
         private Builder() {
+        }
+
+        public Builder setMessage(String message) {
+            this.message = message;
+            return  this;
         }
 
         public Builder setGUIStructura(GUIStructura val) {
@@ -46,7 +55,7 @@ public class WindowBuilder {
             return this;
         }
 
-        public Builder setTargetCreater(DynamicContentPanelCreator dynamicContentPanelCreator) {
+        public Builder setDynamicContentPanelCreator(DynamicContentPanelCreator dynamicContentPanelCreator) {
             this.dynamicContentPanelCreator = dynamicContentPanelCreator;
             return this;
         }

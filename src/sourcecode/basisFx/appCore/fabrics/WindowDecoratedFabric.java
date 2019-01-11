@@ -13,12 +13,7 @@ public class WindowDecoratedFabric extends WindowFabric {
     }
 
     @Override
-    public WindowAbstraction errorWindow(String message) {
-        return null;
-    }
-
-    @Override
-    public WindowAbstraction dialogWindow(String message) {
+    public WindowAbstraction dialogWindow(WindowBuilder builder) {
         return null;
     }
 
@@ -29,11 +24,6 @@ public class WindowDecoratedFabric extends WindowFabric {
 
     @Override
     public WindowAbstraction customSubWindow(WindowBuilder builder) {
-        return null;
-    }
-
-    @Override
-    public WindowAbstraction tooltipWindow(String message) {
         return null;
     }
 }

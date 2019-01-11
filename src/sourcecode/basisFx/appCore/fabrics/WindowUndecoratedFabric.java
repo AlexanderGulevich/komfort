@@ -4,7 +4,6 @@ import basisFx.appCore.windows.*;
 import basisFx.appCore.utils.Registry;
 import basisFx.appCore.windows.WindowAbstraction;
 import basisFx.appCore.windows.WindowAbstractionUndecorated;
-import basisFx.presentation.appStructura.InfoWindowStructura;
 import javafx.stage.Stage;
 
 
@@ -19,12 +18,7 @@ public class WindowUndecoratedFabric  extends WindowFabric{
     }
 
     @Override
-    public WindowAbstraction errorWindow(String message) {
-        return null;
-    }
-
-    @Override
-    public WindowAbstraction dialogWindow(String message) {
+    public WindowAbstraction dialogWindow(WindowBuilder builder) {
         return null;
     }
 
@@ -32,17 +26,18 @@ public class WindowUndecoratedFabric  extends WindowFabric{
     public WindowAbstraction infoWindow(String message) {
 
         WindowBuilder builder = WindowBuilder.newBuilder()
-                .setButtonsForStage(new ButtonsForStageSingle(InfoWindowStructura.Structura.titleAnchor.name()))
-                .setFxmlFileName(null)
-                .setGUIStructura(new InfoWindowStructura())
-                .setHeight(null)
-                .setWidth(null)
-                .setParentAnchorNameForFXML(null)
-                .setTargetCreater(null)
-                .setTitle("Внимание!")
+                .setGUIStructura(null)
+                .setButtonsForStage(null)
+                .setFxmlFileName("Info")
+                .setParentAnchorNameForFXML(WindowAbstraction.DefaultPanelsNames.topVisibleAnchor.name())
+                .setHeight(280d)
+                .setWidth(500d)
+                .setDynamicContentPanelCreator(null)
+                .setTitle(null)
+                .setMessage(message)
                 .build();
 
-        WindowImplInfo windowImplInfo = new WindowImplInfo(builder,message) ;
+        WindowImplInfo windowImplInfo = new WindowImplInfo(builder) ;
         WindowAbstractionUndecorated windowUndecorated=new WindowAbstractionUndecorated(windowImplInfo);
         Registry.infoWindow=windowUndecorated;
         return windowUndecorated;
@@ -57,8 +52,4 @@ public class WindowUndecoratedFabric  extends WindowFabric{
         return windowUndecorated;
     }
 
-    @Override
-    public WindowAbstraction tooltipWindow(String message) {
-        return null;
-    }
 }

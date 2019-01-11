@@ -6,12 +6,9 @@ import javafx.stage.Stage;
 
 public abstract class WindowFabric {
     public abstract WindowAbstraction mainWindow(Stage st,WindowBuilder builder);
-    public abstract WindowAbstraction errorWindow(String message);
-    public abstract WindowAbstraction dialogWindow(String message  );
-    public abstract WindowAbstraction infoWindow( String message);
+    public abstract WindowAbstraction dialogWindow(WindowBuilder builder );
+    public abstract WindowAbstraction infoWindow(String message);
     public abstract WindowAbstraction customSubWindow(WindowBuilder builder);
-    public abstract WindowAbstraction tooltipWindow(String message);
-
 
 
     public static WindowFabric WindowDecorated(){

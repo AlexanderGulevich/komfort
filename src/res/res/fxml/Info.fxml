@@ -32,7 +32,7 @@
       <AnchorPane fx:id="tableHolderAnchor1" layoutX="400.0" layoutY="7.0" prefWidth="100.0" styleClass="darckBlue" stylesheets="@../css/custom_1/colors.css" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <FontAwesomeIconView fill="WHITE" layoutX="17.0" layoutY="82.0" size="80" text="" />
-            <JFXButton id="PANELS_BUTTON" layoutX="10.0" layoutY="234.0" prefHeight="36.0" prefWidth="69.0" style="-fx-padding: 7 9; -fx-text-fill: #00364; -fx-background-color: #FFFFFF; -fx-max-width: 80;" styleClass="all_side" text="ОК" textFill="WHITE" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0">
+            <JFXButton id="PANELS_BUTTON" layoutX="10.0" layoutY="234.0" prefHeight="36.0" prefWidth="69.0" style="-fx-padding: 7 9;  -fx-background-color: #FFFFFF; -fx-max-width: 80;" styleClass="all_side" text="ОК"  AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0">
                <font>
                   <Font name="Font Awesome 5 Free Solid" size="11.0" />
                </font>

@@ -20,13 +20,13 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.text.Text;
 
 public class LeftAndTopMenuRepresent extends MenuRepresent {
-    protected Text text = ((Text) Registry.mainWindow.getNode(
+    protected Text text = ((Text) Registry.mainWindow.getAppNode(
             LeftAndTopMenuGUI.Structura.leftCideMenuCommonText.name()).getElement());
-    protected FlowPane horisontalFlowPane = ((FlowPane) Registry.mainWindow.getNode(
+    protected FlowPane horisontalFlowPane = ((FlowPane) Registry.mainWindow.getAppNode(
             LeftAndTopMenuGUI.Structura.horisontalMenuFlowPane.name()).getElement());
-    protected AnchorPane verticalMenuAnchorPane = (AnchorPane) Registry.mainWindow.getNode(
+    protected AnchorPane verticalMenuAnchorPane = (AnchorPane) Registry.mainWindow.getAppNode(
             LeftAndTopMenuGUI.Structura.verticalMenuAnchor.name()).getElement();
-    protected AnchorPane contentAnchorPane = (AnchorPane) Registry.mainWindow.getNode(
+    protected AnchorPane contentAnchorPane = (AnchorPane) Registry.mainWindow.getAppNode(
             WindowAbstraction.DefaultPanelsNames.mainContentAnchor.name()).getElement();
     private double heightCounterForIcon = 0d;
     private ArrayList<ButtonWrapper> buttonWrappers=new ArrayList<>();
@@ -77,7 +77,7 @@ public class LeftAndTopMenuRepresent extends MenuRepresent {
                 .setIsActive(composite.isActive)
                 .setFontSize(composite.fontSize)
                 .setEvents(new leftSideMenuIconClick(verticalBut, this))
-                .setParentAnchor((AnchorPane) Registry.mainWindow.getNode(
+                .setParentAnchor((AnchorPane) Registry.mainWindow.getAppNode(
                         LeftAndTopMenuGUI.Structura.verticalMenuAnchor.name()).getElement())
                 .build();
         buttonWrappers.add(wrapper);
@@ -85,7 +85,7 @@ public class LeftAndTopMenuRepresent extends MenuRepresent {
 
     public void setDefaultStyleHorisontalButtons() {
         ObservableList<Node> buttons = (
-                (FlowPane) Registry.mainWindow.getNode(
+                (FlowPane) Registry.mainWindow.getAppNode(
                         LeftAndTopMenuGUI.Structura.horisontalMenuFlowPane.name()).getElement()).getChildren();
 
         for (Iterator<Node> iterator = buttons.iterator(); iterator.hasNext(); ) {

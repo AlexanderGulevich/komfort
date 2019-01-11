@@ -24,7 +24,7 @@ public class LabelPanel  extends DynamicContentPanel {
 
         TableWrapper leftTableWrapper = TableWrapper.newBuilder()
                 .setGridName("Этикетки")
-                .setGridOrganization(new GridSingleTable(new ButtonsSizeForGridLittle(),new ButPositionTop()))
+                .setOrganization(new SingleTable(new ButSizeLittle(),new ButPosTop()))
                 .setActiveRecordClass(Label.class)
                 .setUnitOfWork(unitOfWork)
                 .setIsEditable(true)
@@ -48,7 +48,7 @@ public class LabelPanel  extends DynamicContentPanel {
 
         TableWrapper rightTableWrapper = TableWrapper.newBuilder()
                 .setGridName("Курсы")
-                .setGridOrganization(new GridSingleTable(new ButtonsSizeForGridLittle(),new ButPositionTop()))
+                .setOrganization(new SingleTable(new ButSizeLittle(),new ButPosTop()))
                 .setActiveRecordClass(ExchangeRates.class)
                 .setUnitOfWork(unitOfWork)
                 .setIsEditable(true)
@@ -77,13 +77,7 @@ public class LabelPanel  extends DynamicContentPanel {
                 .setParentAnchor(dynamicContentAnchorHolder)
                 .setCoordinate(new Coordinate(0d, 10d, 10d, 0d))
                 .setGridLinesVisibility(gridVisibility)
-                .setGridOrganization(
-                        new GridTwoBondGrids(
-                                leftTableWrapper.getGridPaneWrapper(),
-                                rightTableWrapper.getGridPaneWrapper()
-                        )
-
-                )
+                .setOrganization(new TwoBondGrids(leftTableWrapper,rightTableWrapper))
                 .build();
 
 

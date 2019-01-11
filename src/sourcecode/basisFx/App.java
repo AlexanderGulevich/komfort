@@ -13,9 +13,7 @@ import basisFx.appCore.windows.WindowBuilder;
 import basisFx.presentation.MainMenuSketch;
 import basisFx.presentation.appStructura.LeftAndTopMenuGUI;
 import javafx.stage.Stage;
-
 import java.sql.SQLException;
-
 
 public class App{
 
@@ -26,16 +24,15 @@ public class App{
 
         Registry.windowFabric.mainWindow(primaryStage,
                 WindowBuilder.newBuilder()
-                        .setButtonsForStage(new ButtonsForStageThreeEntity(
-                                LeftAndTopMenuGUI.Structura.titleAnchor.name()
-                        ))
-                        .setFxmlFileName(null)
                         .setGUIStructura(new LeftAndTopMenuGUI())
-                        .setHeight(Settings.HEIGHT)
-                        .setWidth(Settings.WIDTH)
+                        .setButtonsForStage(new ButtonsForStageThreeEntity(LeftAndTopMenuGUI.Structura.titleAnchor.name()))
+                        .setFxmlFileName(null)
                         .setParentAnchorNameForFXML(null)
-                        .setTargetCreater(null)
+                        .setWidth(Settings.WIDTH)
+                        .setHeight(Settings.HEIGHT)
+                        .setDynamicContentPanelCreator(null)
                         .setTitle(Settings.TITLE)
+                        .setMessage(null)
                         .build()
                 );
         DbFactory.createDbServer();
@@ -43,64 +40,64 @@ public class App{
 
 //        ScenicView.show(WindowImplMain.getInstance().getWindowAbstraction().getScene());
 
-
         Registry.windowFabric.customSubWindow(
                 WindowBuilder.newBuilder()
+                        .setGUIStructura(null)
+                        .setButtonsForStage(null)
                         .setFxmlFileName("ByDateReasechWindow")
                         .setParentAnchorNameForFXML(WindowAbstraction.DefaultPanelsNames.topVisibleAnchor.name())
-                        .setHeight(500d)
                         .setWidth(900d)
-                        .setTitle("111111111")
+                        .setHeight(600d)
+                        .setDynamicContentPanelCreator(null)
+                        .setTitle(null)
+                        .setMessage(null)
                         .build()
         );
         Registry.windowFabric.customSubWindow(
                 WindowBuilder.newBuilder()
+                        .setGUIStructura(null)
+                        .setButtonsForStage(null)
                         .setFxmlFileName("EmployerHire")
                         .setParentAnchorNameForFXML(WindowAbstraction.DefaultPanelsNames.topVisibleAnchor.name())
-                        .setHeight(350d)
                         .setWidth(530d)
-                        .setTitle("111111111")
+                        .setHeight(350d)
+                        .setDynamicContentPanelCreator(null)
+                        .setTitle(null)
+                        .setMessage(null)
                         .build()
         );
         Registry.windowFabric.customSubWindow(
                 WindowBuilder.newBuilder()
+                        .setGUIStructura(null)
+                        .setButtonsForStage(null)
                         .setFxmlFileName("AddDellPopupTable")
                         .setParentAnchorNameForFXML(WindowAbstraction.DefaultPanelsNames.topVisibleAnchor.name())
-                        .setHeight(500d)
                         .setWidth(720d)
-                        .setTitle("111111111")
+                        .setHeight(500d)
+                        .setDynamicContentPanelCreator(null)
+                        .setTitle(null)
+                        .setMessage(null)
                         .build()
         );
-
-
+        Registry.windowFabric.infoWindow("yhyntyn");
 
         Registry.windowFabric.customSubWindow(
                 WindowBuilder.newBuilder()
-                        .setFxmlFileName("Info")
-                        .setParentAnchorNameForFXML(WindowAbstraction.DefaultPanelsNames.topVisibleAnchor.name())
-                        .setHeight(280d)
-                        .setWidth(500d)
-                        .setTitle("111111111")
-                        .build()
-        );
-        Registry.windowFabric.customSubWindow(
-                WindowBuilder.newBuilder()
+                        .setGUIStructura(null)
+                        .setButtonsForStage(null)
                         .setFxmlFileName("YN")
                         .setParentAnchorNameForFXML(WindowAbstraction.DefaultPanelsNames.topVisibleAnchor.name())
                         .setHeight(230d)
                         .setWidth(500d)
-                        .setTitle("111111111")
+                        .setDynamicContentPanelCreator(null)
+                        .setTitle(null)
+                        .setMessage(null)
                         .build()
         );
 
 
 
-        Registry.windowFabric.infoWindow(
-                "FFFFFFFFFFFFFFFFFF" +
-                "  FFFFFFFFFFFFFFFFFF  FFFFFFFFFFFFFFFFFF  " +
-                "FFFFFFFFFFFFFFFFFF  FFFFFFFFFFFFFFFFFF  " +
-                "FFFFFFFFFFFFFFFFFF  FFFFFFFFFFFFFFFFFF  "
-        );
+
 
 
     }
@@ -121,3 +118,39 @@ public class App{
 //         .setTitle("111111111")
 //         .build()
 //         ).build()
+
+//todo
+//todo
+//todo
+//todo
+//todo
+//todo
+//todo
+//todo
+//todo
+//todo
+//todo
+//todo
+//todo
+//todo
+//todo
+//todo
+//todo
+//todo
+//todo
+//todo
+//todo
+//todo
+
+
+//     todo           Platform.runLater(() -> {
+//
+//
+//                    DefaultPanelsNames message="В Базе Данных уже есть значение на дату: "
+//                            + date.toString()+
+//                            ". Создать новую запись с такой же датой нельзя." +
+//                            " Вы можете изменить старую, либо удалить ее.";
+//                });
+//
+
+

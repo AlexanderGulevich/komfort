@@ -7,9 +7,9 @@ public class WindowImplInfo extends WindowImpl{
 
     private  String messagge;
 
-    public WindowImplInfo(WindowBuilder builder,String messagge) {
+    public WindowImplInfo(WindowBuilder builder) {
         super(builder);
-        this.messagge=messagge;
+        this.messagge=builder.message;
 
     }
 
@@ -21,10 +21,10 @@ public class WindowImplInfo extends WindowImpl{
 
     @Override
     public void customInit(WindowAbstraction windowAbstraction) {
-        Label label = (Label) windowAbstraction.getNode("label").getElement();
-        label.setText(titleName);
-        TextArea textArea = (TextArea) windowAbstraction.getNode("textArea").getElement();
-        textArea.setText(messagge);
+//        Label label = (Label) windowAbstraction.getAppNode("label").getElement();
+//        label.setText(titleName);
+//        TextArea textArea = (TextArea) windowAbstraction.getAppNode("textArea").getElement();
+//        textArea.setText(messagge);
 
     }
 }

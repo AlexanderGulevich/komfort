@@ -2,10 +2,10 @@ package basisFx.presentation.dynamicContents;
 
 
 import basisFx.appCore.elements.TableWrapper;
-import basisFx.appCore.grid.ButPositionTop;
-import basisFx.appCore.grid.ButtonsSizeForGridLittle;
-import basisFx.appCore.grid.GridSingleTable;
-import basisFx.appCore.grid.GridTwoBondGrids;
+import basisFx.appCore.grid.ButPosTop;
+import basisFx.appCore.grid.ButSizeLittle;
+import basisFx.appCore.grid.SingleTable;
+import basisFx.appCore.grid.TwoBondGrids;
 import basisFx.appCore.elements.GridPaneWrapper;
 import basisFx.presentation.DynamicContentPanel;
 import basisFx.service.ServiceTwoLinkedTable;
@@ -24,7 +24,7 @@ public class SleevePanel  extends DynamicContentPanel {
 
         TableWrapper leftTableWrapper = TableWrapper.newBuilder()
                 .setGridName("Втулка ")
-                .setGridOrganization(new GridSingleTable(new ButtonsSizeForGridLittle(),new ButPositionTop()))
+                .setOrganization(new SingleTable(new ButSizeLittle(),new ButPosTop()))
                 .setActiveRecordClass(Sleeve.class)
                 .setUnitOfWork(unitOfWork)
                 .setIsEditable(true)
@@ -43,7 +43,7 @@ public class SleevePanel  extends DynamicContentPanel {
 
         TableWrapper rightTableWrapper = TableWrapper.newBuilder()
                 .setGridName("Архив цен ")
-                .setGridOrganization(new GridSingleTable(new ButtonsSizeForGridLittle(),new ButPositionTop()))
+                .setOrganization(new SingleTable(new ButSizeLittle(),new ButPosTop()))
                 .setActiveRecordClass(SleevePrice.class)
                 .setUnitOfWork(unitOfWork)
                 .setIsEditable(true)
@@ -73,8 +73,8 @@ public class SleevePanel  extends DynamicContentPanel {
                 .setParentAnchor(dynamicContentAnchorHolder)
                 .setCoordinate(new Coordinate(0d, 10d, 10d, 0d))
                 .setGridLinesVisibility(gridVisibility)
-                .setGridOrganization(
-                        new GridTwoBondGrids(
+                .setOrganization(
+                        new TwoBondGrids(
                                 leftTableWrapper.getGridPaneWrapper(),
                                 rightTableWrapper.getGridPaneWrapper()
                         )

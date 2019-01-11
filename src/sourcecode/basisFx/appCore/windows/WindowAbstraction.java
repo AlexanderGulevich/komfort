@@ -7,6 +7,7 @@ import basisFx.appCore.settings.CSSid;
 import basisFx.appCore.utils.Coordinate;
 import basisFx.presentation.DynamicContentPanel;
 import basisFx.service.CrossWindowMediator;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -23,7 +24,8 @@ public abstract class WindowAbstraction {
     protected WindowAbstraction parentWindow;
     protected CrossWindowMediator crossWindowMediator=new CrossWindowMediator(this);
     public  enum DefaultPanelsNames {rootTransparent, topVisibleAnchor, mainContentAnchor}
-    protected HashMap<String,AppNode> nodesHashMap =new HashMap<>();
+    protected HashMap<String,AppNode> appNodMap =new HashMap<>();
+    protected HashMap<String,Node> nodMap =new HashMap<>();
 
     public WindowAbstraction(WindowImpl windowImpl ) {
         this.stage =new Stage();
@@ -64,10 +66,16 @@ public abstract class WindowAbstraction {
     }
     protected abstract void createScene();
     public void setNodToMap(AppNode node) {
-            nodesHashMap.put(node.getMetaName(),node);
+            appNodMap.put(node.getMetaName(),node);
     }
-    public  AppNode getNode(String str){
-        return nodesHashMap.get(str);
+    public void setNodToMap(Node node, String name) {
+            nodMap.put(name,node);
+    }
+    public  AppNode getAppNode(String str){
+        return appNodMap.get(str);
+    }
+    public  Node getNode(String str){
+        return nodMap.get(str);
     }
     protected abstract void initRoot();
     private void initTopVisiblePanel() {

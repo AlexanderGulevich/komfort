@@ -2,19 +2,24 @@ package basisFx.appCore.grid;
 
 import basisFx.appCore.elements.GridPaneWrapper;
 import basisFx.appCore.elements.LabelWrapper;
+import basisFx.appCore.elements.TableWrapper;
 import basisFx.appCore.settings.CSSid;
 import basisFx.appCore.settings.FontsStore;
 import javafx.geometry.HPos;
 import javafx.geometry.VPos;
 
-public class GridTwoBondGrids extends GridOrganization {
+public class TwoBondGrids extends GridOrganization {
 
     protected GridPaneWrapper leftGridWrapper;
     protected GridPaneWrapper rightGridWrapper;
 
-    public GridTwoBondGrids(GridPaneWrapper leftGridWrapper, GridPaneWrapper rightGridWrapper) {
+    public TwoBondGrids(GridPaneWrapper leftGridWrapper, GridPaneWrapper rightGridWrapper) {
         this.leftGridWrapper = leftGridWrapper;
         this.rightGridWrapper = rightGridWrapper;
+    }
+    public TwoBondGrids(TableWrapper tableWrapperLEFT, TableWrapper tableWrapperRIGHT) {
+        this.leftGridWrapper = tableWrapperLEFT.getGridPaneWrapper();
+        this.rightGridWrapper = tableWrapperRIGHT.getGridPaneWrapper();
     }
 
 
