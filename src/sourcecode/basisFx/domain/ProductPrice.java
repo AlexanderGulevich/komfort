@@ -8,7 +8,7 @@ import java.time.LocalDate;
 public class ProductPrice extends ActiveRecord{
 
     private static ProductPrice INSTANCE = new ProductPrice();
-    private SimpleObjectProperty<Integer> price =new SimpleObjectProperty<>(this, "price", null);
+    private SimpleObjectProperty<Double> price =new SimpleObjectProperty<>(this, "price", null);
     @DataStore (AS_OUTER_ID = true) private SimpleObjectProperty<Integer> productId =new SimpleObjectProperty<>(this, "productId", null);
     @DataStore(SORTING = Sorting.DESC) private SimpleObjectProperty<LocalDate> startDate =new SimpleObjectProperty<>(this, "startDate", null);
 
@@ -20,15 +20,15 @@ public class ProductPrice extends ActiveRecord{
     public String toString() {
         return getPrice().toString();
     }
-    public Integer getPrice() {
+    public Double getPrice() {
         return price.get();
     }
 
-    public SimpleObjectProperty<Integer> priceProperty() {
+    public SimpleObjectProperty<Double> priceProperty() {
         return price;
     }
 
-    public void setPrice(Integer price) {
+    public void setPrice(Double price) {
         this.price.set(price);
     }
 
