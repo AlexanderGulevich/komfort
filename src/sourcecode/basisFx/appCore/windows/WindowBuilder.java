@@ -1,7 +1,7 @@
 package basisFx.appCore.windows;
 
 import basisFx.appCore.interfaces.DynamicContentPanelCreator;
-import basisFx.presentation.appStructura.GUIStructura;
+import basisFx.appCore.guiStructura.GUIStructura;
 
 public class WindowBuilder {
     public GUIStructura GUIStructura=null;

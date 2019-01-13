@@ -1,7 +1,6 @@
-package basisFx.presentation.appStructura;
+package basisFx.appCore.guiStructura;
 
 import basisFx.appCore.windows.WindowAbstraction;
-import javafx.stage.Stage;
 
 public abstract class GUIStructura {
     public abstract void init(WindowAbstraction windowAbstraction);

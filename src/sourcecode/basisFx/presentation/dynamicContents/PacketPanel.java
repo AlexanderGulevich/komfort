@@ -10,14 +10,24 @@ import basisFx.domain.*;
 import basisFx.presentation.DynamicContentPanel;
 
 public class PacketPanel  extends DynamicContentPanel {
-    private ServiceTwoLinkedTable mediatorServiceTwoLinkedTable1 =new ServiceTwoLinkedTable();
-    private ServiceTwoLinkedTable mediatorServiceTwoLinkedTable2 =new ServiceTwoLinkedTable();
-    boolean isGridVisibility=false;
-    @Override
-    public void customeInit() {
+    private ServiceTwoLinkedTable mediatorServiceTwoLinkedTable1;
+    private ServiceTwoLinkedTable mediatorServiceTwoLinkedTable2;
+    private TableWrapper t1;
+    private TableWrapper t2;
+    private TableWrapper t3;
+    private TableWrapper t4;
 
-        TableWrapper t1 = TableWrapper.newBuilder()
-                .setGridLinesVisibility(isGridVisibility)
+    @Override
+    public void createServices() {
+            mediatorServiceTwoLinkedTable1 =new ServiceTwoLinkedTable();
+            mediatorServiceTwoLinkedTable2 =new ServiceTwoLinkedTable();
+    }
+
+    @Override
+    public void customDynamicElementsInit() {
+
+          t1 = TableWrapper.newBuilder()
+                .setGridLinesVisibility(gridVisibility)
                 .setGridName("Пакеты ")
                 .setOrganization(new SingleTable(new ButSizeLittle(),new ButPosTop()))
                 .setActiveRecordClass(Packet.class)
@@ -41,8 +51,8 @@ public class PacketPanel  extends DynamicContentPanel {
                 )
                 .build();
 
-        TableWrapper t2 = TableWrapper.newBuilder()
-                .setGridLinesVisibility(isGridVisibility)
+          t2 = TableWrapper.newBuilder()
+                .setGridLinesVisibility(gridVisibility)
                 .setGridName("Реестр цен")
                 .setOrganization(new SingleTable(new ButSizeLittle(),new ButPosTop()))
                 .setActiveRecordClass(PacketPrice.class)
@@ -66,8 +76,8 @@ public class PacketPanel  extends DynamicContentPanel {
                 )
                 .build();
 
-        TableWrapper t3 = TableWrapper.newBuilder()
-                .setGridLinesVisibility(isGridVisibility)
+          t3 = TableWrapper.newBuilder()
+                .setGridLinesVisibility(gridVisibility)
                 .setGridName("Размеры пакетов ")
                 .setOrganization(new SingleTable(new ButSizeLittle(),new ButPosTop()))
                 .setActiveRecordClass(PacketSize.class)
@@ -85,8 +95,8 @@ public class PacketPanel  extends DynamicContentPanel {
                 )
                 .build();
 
-        TableWrapper t4 = TableWrapper.newBuilder()
-                .setGridLinesVisibility(isGridVisibility)
+          t4 = TableWrapper.newBuilder()
+                .setGridLinesVisibility(gridVisibility)
                 .setGridName("Вместимость пакетов")
                 .setOrganization(new SingleTable(new ButSizeLittle(),new ButPosTop()))
                 .setActiveRecordClass(PacketProductAccordance.class)
@@ -113,19 +123,22 @@ public class PacketPanel  extends DynamicContentPanel {
 
 
         GridPaneWrapper commonGridPaneWrapper = GridPaneWrapper.newBuilder()
-                .setGridLinesVisibility(isGridVisibility)
+                .setGridLinesVisibility(gridVisibility)
                 .setGridName("Управление информацией о пакетах")
                 .setParentAnchor(dynamicContentAnchorHolder)
                 .setCoordinate(new Coordinate(0d, 10d, 10d, 0d))
                 .setOrganization(
                         new TwoVerticaGrids(
-                                new TwoBondGrids(t1.getGridPaneWrapper() ,t2.getGridPaneWrapper() ) ,
-                                new TwoBondGrids(t3.getGridPaneWrapper() ,t4.getGridPaneWrapper() )
+                                new TwoHorisontalBondGrids(t1.getGridPaneWrapper() ,t2.getGridPaneWrapper() ) ,
+                                new TwoHorisontalBondGrids(t3.getGridPaneWrapper() ,t4.getGridPaneWrapper() )
                         )
                  )
                 .build();
 
+    }
 
+    @Override
+    public void initServices() {
         mediatorServiceTwoLinkedTable1.setAccessoryTableWrapper(t2);
         mediatorServiceTwoLinkedTable1.setPrimaryTableWrapper(t1);
         mediatorServiceTwoLinkedTable1.initElements();
@@ -133,8 +146,6 @@ public class PacketPanel  extends DynamicContentPanel {
         mediatorServiceTwoLinkedTable2.setAccessoryTableWrapper(t4);
         mediatorServiceTwoLinkedTable2.setPrimaryTableWrapper(t3);
         mediatorServiceTwoLinkedTable2.initElements();
-
-
     }
 
 

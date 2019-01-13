@@ -8,8 +8,6 @@ MenuComponent     <|-- MenuComposite
 MenuComponent     <|-- MenuLeaf
 
 
-
-
 class MenuComponent {
  #name : String
  #fontSymbol : String

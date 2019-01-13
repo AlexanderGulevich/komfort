@@ -13,15 +13,20 @@ public abstract class DynamicContentPanel {
     protected UnitOfWork unitOfWork=new UnitOfWork();
     protected AnchorPane  mainContentAnchor;
     protected WindowAbstraction window;
+    protected boolean gridVisibility =false;
 
-    public abstract void customeInit();
+    public abstract void createServices();
+    public abstract void customDynamicElementsInit();
+    public abstract void initServices();
 
     public  void initTemplateMethod(WindowAbstraction windowAbstraction){
         window=windowAbstraction;
         windowAbstraction.setCurrentDynamicContent(this);
         mainContentAnchor =((AnchorPane ) window.getNodeFromMap(WindowAbstraction.DefaultPanelsNames.mainContentAnchor.name()));
         createDynamicContentAnchorHolder();
-        customeInit();
+        createServices();
+        customDynamicElementsInit();
+        initServices();
     }
     private void createDynamicContentAnchorHolder() {
         dynamicContentAnchorHolder = AnchorWrapper.newBuilder()

@@ -11,7 +11,7 @@ import basisFx.appCore.settings.FontsStore;
 import basisFx.appCore.utils.Coordinate;
 import basisFx.appCore.utils.Registry;
 import basisFx.appCore.windows.WindowAbstraction;
-import basisFx.presentation.appStructura.LeftAndTopMenuGUI;
+import basisFx.appCore.guiStructura.LeftAndTopMenuGUI;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
@@ -19,7 +19,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.text.Text;
 
-public class LeftAndTopMenuRepresent extends MenuRepresent {
+public class MenuRepresentLeftAndTopBarViaFontItem extends MenuRepresent {
     protected Text text = ((Text) Registry.mainWindow.getNodeFromMap(
             LeftAndTopMenuGUI.Structura.leftCideMenuCommonText.name())  );
     protected FlowPane horisontalFlowPane = ((FlowPane) Registry.mainWindow.getNodeFromMap(
@@ -31,7 +31,7 @@ public class LeftAndTopMenuRepresent extends MenuRepresent {
     private double heightCounterForIcon = 0d;
     private ArrayList<ButtonWrapper> buttonWrappers=new ArrayList<>();
 
-    public LeftAndTopMenuRepresent(MenuSketch sketch) {
+    public MenuRepresentLeftAndTopBarViaFontItem(MenuSketch sketch) {
         text.setText("");
         makeStructuredMenuView(sketch.getComponents(), null);
         setDefaultStyleVerticalButtons();

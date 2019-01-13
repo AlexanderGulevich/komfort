@@ -6,7 +6,7 @@ import basisFx.service.ServiceTwoLinkedTable;
 import basisFx.appCore.elements.TableWrapper;
 import basisFx.appCore.grid.SingleTable;
 import basisFx.appCore.elements.GridPaneWrapper;
-import basisFx.appCore.grid.TwoBondGrids;
+import basisFx.appCore.grid.TwoHorisontalBondGrids;
 import basisFx.appCore.table.ColumnWrapperDate;
 import basisFx.appCore.table.ColumnWrapperDouble;
 import basisFx.appCore.table.ColumnWrapperString;
@@ -17,13 +17,19 @@ import basisFx.presentation.DynamicContentPanel;
 
 public class ExchangeRatesPanel extends DynamicContentPanel {
 
-    private boolean gridVisibility=false;
-    private ServiceTwoLinkedTable mediatorServiceTwoLinkedTable =new ServiceTwoLinkedTable();
+    private ServiceTwoLinkedTable mediatorServiceTwoLinkedTable;
+    private TableWrapper leftTableWrapper;
+    private TableWrapper rightTableWrapper;
 
-      @Override
-    public void customeInit() {
+    @Override
+    public void createServices() {
+        mediatorServiceTwoLinkedTable =new ServiceTwoLinkedTable();
+    }
 
-        TableWrapper leftTableWrapper = TableWrapper.newBuilder()
+    @Override
+    public void customDynamicElementsInit() {
+
+        leftTableWrapper = TableWrapper.newBuilder()
                 .setGridName("Валюта ")
                 .setOrganization(new SingleTable(new ButSizeLittle(),new ButPosTop()))
                 .setActiveRecordClass(Currency.class)
@@ -41,7 +47,7 @@ public class ExchangeRatesPanel extends DynamicContentPanel {
                 .build();
 
 
-        TableWrapper rightTableWrapper = TableWrapper.newBuilder()
+        rightTableWrapper = TableWrapper.newBuilder()
                 .setGridName("Курсы ")
                 .setOrganization(new SingleTable(new ButSizeLittle(),new ButPosTop()))
                 .setActiveRecordClass(ExchangeRates.class)
@@ -73,7 +79,7 @@ public class ExchangeRatesPanel extends DynamicContentPanel {
                 .setCoordinate(new Coordinate(0d, 10d, 10d, 0d))
                 .setGridLinesVisibility(gridVisibility)
                 .setOrganization(
-                        new TwoBondGrids(
+                        new TwoHorisontalBondGrids(
                                 leftTableWrapper.getGridPaneWrapper(),
                                 rightTableWrapper.getGridPaneWrapper()
                         )
@@ -82,11 +88,15 @@ public class ExchangeRatesPanel extends DynamicContentPanel {
                 .build();
 
 
+
+    }
+
+    @Override
+    public void initServices() {
         mediatorServiceTwoLinkedTable.setAccessoryTableWrapper(rightTableWrapper);
         mediatorServiceTwoLinkedTable.setPrimaryTableWrapper(leftTableWrapper);
         mediatorServiceTwoLinkedTable.initElements();
     }
-
 
 
 }

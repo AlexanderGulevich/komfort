@@ -10,7 +10,7 @@ import basisFx.appCore.utils.Registry;
 import basisFx.appCore.windows.ButtonsForStageThreeEntity;
 import basisFx.appCore.windows.WindowBuilder;
 import basisFx.presentation.MainMenuSketch;
-import basisFx.presentation.appStructura.LeftAndTopMenuGUI;
+import basisFx.appCore.guiStructura.LeftAndTopMenuGUI;
 import javafx.stage.Stage;
 import java.sql.SQLException;
 
@@ -35,7 +35,7 @@ public class App{
                         .build()
                 );
         DbFactory.createDbServer();
-        MenuFabric.createMenuLeftSideRepresentation( new MainMenuSketch());
+        MenuFabric.menuLeftAndTopRepresentation( new MainMenuSketch());
 
 
 //        ScenicView.show(WindowImplMain.getInstance().getWindowAbstraction().getScene());

@@ -13,18 +13,26 @@ import basisFx.service.ServiceAutoCommitTableByCommonDate;
 
 public class OutputPanel  extends DynamicContentPanel {
 
-    ServiceAutoCommitTableByCommonDate mediator = new ServiceAutoCommitTableByCommonDate();
-    @Override
-    public void customeInit() {
+    private ServiceAutoCommitTableByCommonDate mediator;
+    private DatePickerWrapper datePickerWrapper;
+    private TableWrapper tableWrapper ;
 
-        DatePickerWrapper datePickerWrapper = DatePickerWrapper.newBuilder()
+    @Override
+    public void createServices() {
+        mediator = new ServiceAutoCommitTableByCommonDate();
+    }
+
+    @Override
+    public void customDynamicElementsInit() {
+
+          datePickerWrapper = DatePickerWrapper.newBuilder()
                 .setCoordinate(new Coordinate(10d, null, null, 5d))
                 .setParentAnchor(dynamicContentAnchorHolder)
                 .setServiceMediator(mediator)
                 .build();
 
 
-        TableWrapper tableWrapper = TableWrapper.newBuilder()
+          tableWrapper = TableWrapper.newBuilder()
                 .setActiveRecordClass(OutputPerDay.class)
                 .setUnitOfWork(unitOfWork)
                 .setIsEditable(true)
@@ -86,8 +94,11 @@ public class OutputPanel  extends DynamicContentPanel {
                 .setGridLinesVisibility(false)
                 .build();
 
+    }
+
+    @Override
+    public void initServices() {
         mediator.setTableWrapper(tableWrapper);
-//        mediator.setButtonWrapper(buttonWrapper);
         mediator.setDatePickerWrapper(datePickerWrapper);
         mediator.initElements();
     }

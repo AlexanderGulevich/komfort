@@ -14,12 +14,17 @@ import basisFx.domain.Currency;
 import basisFx.presentation.DynamicContentPanel;
 
 public class CounterpartyPanel extends DynamicContentPanel {
+    private   ServiceSingleTable mediatorSingleTable;
+    private   TableWrapper tableWrapper;
+    @Override
+    public void createServices() {
+        mediatorSingleTable = new ServiceSingleTable();
+    }
 
     @Override
-    public void customeInit() {
-        ServiceSingleTable mediatorSingleTable = new ServiceSingleTable();
+    public void customDynamicElementsInit() {
 
-        TableWrapper tableWrapper = TableWrapper.newBuilder()
+          tableWrapper = TableWrapper.newBuilder()
                 .setActiveRecordClass(Counterparty.class)
                 .setUnitOfWork(unitOfWork)
                 .setIsEditable(true)
@@ -50,13 +55,14 @@ public class CounterpartyPanel extends DynamicContentPanel {
                 .setGridLinesVisibility(false)
                 .build();
 
+
+    }
+
+    @Override
+    public void initServices() {
         mediatorSingleTable.setTableWrapper(tableWrapper);
         mediatorSingleTable.initElements();
     }
-
-
-
-
 
 
 }

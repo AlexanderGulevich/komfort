@@ -8,16 +8,16 @@ import basisFx.appCore.settings.FontsStore;
 import javafx.geometry.HPos;
 import javafx.geometry.VPos;
 
-public class TwoBondGrids extends GridOrganization {
+public class TwoHorisontalBondGrids extends GridOrganization {
 
     protected GridPaneWrapper leftGridWrapper;
     protected GridPaneWrapper rightGridWrapper;
 
-    public TwoBondGrids(GridPaneWrapper leftGridWrapper, GridPaneWrapper rightGridWrapper) {
+    public TwoHorisontalBondGrids(GridPaneWrapper leftGridWrapper, GridPaneWrapper rightGridWrapper) {
         this.leftGridWrapper = leftGridWrapper;
         this.rightGridWrapper = rightGridWrapper;
     }
-    public TwoBondGrids(TableWrapper tableWrapperLEFT, TableWrapper tableWrapperRIGHT) {
+    public TwoHorisontalBondGrids(TableWrapper tableWrapperLEFT, TableWrapper tableWrapperRIGHT) {
         this.leftGridWrapper = tableWrapperLEFT.getGridPaneWrapper();
         this.rightGridWrapper = tableWrapperRIGHT.getGridPaneWrapper();
     }

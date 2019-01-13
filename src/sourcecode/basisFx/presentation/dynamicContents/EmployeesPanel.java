@@ -8,7 +8,7 @@ import basisFx.presentation.DynamicContentPanel;
 import basisFx.service.ServiceTwoLinkedTable;
 import basisFx.appCore.elements.TableWrapper;
 import basisFx.appCore.grid.SingleTable;
-import basisFx.appCore.grid.TwoBondGrids;
+import basisFx.appCore.grid.TwoHorisontalBondGrids;
 import basisFx.appCore.elements.GridPaneWrapper;
 import basisFx.appCore.table.ColumnWrapperDate;
 import basisFx.appCore.table.ColumnWrapperDouble;
@@ -18,13 +18,19 @@ import basisFx.domain.EmployeesRatePerHour;
 import basisFx.domain.Employer;
 
 public class EmployeesPanel extends DynamicContentPanel {
-    private boolean gridVisibility=false;
-    private ServiceTwoLinkedTable mediatorServiceTwoLinkedTable =new ServiceTwoLinkedTable();
+    private ServiceTwoLinkedTable mediatorServiceTwoLinkedTable;
+    private TableWrapper leftTableWrapper ;
+    private TableWrapper rightTableWrapper ;
 
     @Override
-    public void customeInit() {
+    public void createServices() {
+        mediatorServiceTwoLinkedTable =new ServiceTwoLinkedTable();
+    }
 
-        TableWrapper leftTableWrapper = TableWrapper.newBuilder()
+    @Override
+    public void customDynamicElementsInit() {
+
+          leftTableWrapper = TableWrapper.newBuilder()
                 .setGridName("Текущий список сотрудников ")
                 .setOrganization(new SingleTable(new ButSizeLittle(),new ButPosTop()))
                 .setActiveRecordClass(Employer.class)
@@ -42,7 +48,7 @@ public class EmployeesPanel extends DynamicContentPanel {
                 )
                 .build();
 
-        TableWrapper rightTableWrapper = TableWrapper.newBuilder()
+          rightTableWrapper = TableWrapper.newBuilder()
                 .setGridName("Реестр тарифных ставок ")
                 .setOrganization(new SingleTable(new ButSizeLittle(),new ButPosTop()))
                 .setActiveRecordClass(EmployeesRatePerHour.class)
@@ -75,17 +81,13 @@ public class EmployeesPanel extends DynamicContentPanel {
                 .setCoordinate(new Coordinate(0d, 10d, 10d, 0d))
                 .setGridLinesVisibility(gridVisibility)
                 .setOrganization(
-                        new TwoBondGrids(
+                        new TwoHorisontalBondGrids(
                                 leftTableWrapper.getGridPaneWrapper(),
                                 rightTableWrapper.getGridPaneWrapper()
                         )
                 )
                 .build();
 
-
-        mediatorServiceTwoLinkedTable.setAccessoryTableWrapper(rightTableWrapper);
-        mediatorServiceTwoLinkedTable.setPrimaryTableWrapper(leftTableWrapper);
-        mediatorServiceTwoLinkedTable.initElements();
 
 
 
@@ -107,6 +109,12 @@ public class EmployeesPanel extends DynamicContentPanel {
                 .build();
     }
 
+    @Override
+    public void initServices() {
+        mediatorServiceTwoLinkedTable.setAccessoryTableWrapper(rightTableWrapper);
+        mediatorServiceTwoLinkedTable.setPrimaryTableWrapper(leftTableWrapper);
+        mediatorServiceTwoLinkedTable.initElements();
+    }
 
 
 }

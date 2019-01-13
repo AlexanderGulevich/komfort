@@ -1,9 +1,8 @@
 package basisFx.appCore.windows;
 
-import basisFx.appCore.elements.AppNode;
 import basisFx.appCore.interfaces.DynamicContentPanelCreator;
 import basisFx.appCore.utils.FXMLFileLoader;
-import basisFx.presentation.appStructura.GUIStructura;
+import basisFx.appCore.guiStructura.GUIStructura;
 import javafx.scene.layout.AnchorPane;
 
 public abstract class WindowImpl {

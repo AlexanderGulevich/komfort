@@ -2,7 +2,7 @@ package basisFx.appCore.events;
 
 import basisFx.appCore.elements.AppNode;
 import basisFx.appCore.menu.FontItemComposite;
-import basisFx.appCore.menu.LeftAndTopMenuRepresent;
+import basisFx.appCore.menu.MenuRepresentLeftAndTopBarViaFontItem;
 import basisFx.appCore.menu.MenuComponent;
 import basisFx.appCore.settings.CSSid;
 import javafx.scene.Node;
@@ -10,11 +10,11 @@ import javafx.scene.control.Button;
 
 public class leftSideMenuIconClick extends AppEvent{
     protected FontItemComposite component;
-    protected LeftAndTopMenuRepresent represent;
+    protected MenuRepresentLeftAndTopBarViaFontItem represent;
     protected Button  but;
 
 
-    public leftSideMenuIconClick(MenuComponent component,LeftAndTopMenuRepresent represent) {
+    public leftSideMenuIconClick(MenuComponent component,MenuRepresentLeftAndTopBarViaFontItem represent) {
         this.represent=represent;
         this.component = (FontItemComposite) component;
     }

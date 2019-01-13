@@ -16,13 +16,19 @@ import basisFx.presentation.DynamicContentPanel;
 
 public class LabelPanel  extends DynamicContentPanel {
 
-    private boolean gridVisibility=false;
-    private ServiceTwoLinkedTable mediatorServiceTwoLinkedTable =new ServiceTwoLinkedTable();
+    private ServiceTwoLinkedTable mediatorServiceTwoLinkedTable ;
+    private  TableWrapper leftTableWrapper ;
+    private  TableWrapper rightTableWrapper ;
 
     @Override
-    public void customeInit() {
+    public void createServices() {
+        mediatorServiceTwoLinkedTable =new ServiceTwoLinkedTable();
+    }
 
-        TableWrapper leftTableWrapper = TableWrapper.newBuilder()
+    @Override
+    public void customDynamicElementsInit() {
+
+          leftTableWrapper = TableWrapper.newBuilder()
                 .setGridName("Этикетки")
                 .setOrganization(new SingleTable(new ButSizeLittle(),new ButPosTop()))
                 .setActiveRecordClass(Label.class)
@@ -46,7 +52,7 @@ public class LabelPanel  extends DynamicContentPanel {
                 .build();
 
 
-        TableWrapper rightTableWrapper = TableWrapper.newBuilder()
+          rightTableWrapper = TableWrapper.newBuilder()
                 .setGridName("Курсы")
                 .setOrganization(new SingleTable(new ButSizeLittle(),new ButPosTop()))
                 .setActiveRecordClass(ExchangeRates.class)
@@ -77,17 +83,21 @@ public class LabelPanel  extends DynamicContentPanel {
                 .setParentAnchor(dynamicContentAnchorHolder)
                 .setCoordinate(new Coordinate(0d, 10d, 10d, 0d))
                 .setGridLinesVisibility(gridVisibility)
-                .setOrganization(new TwoBondGrids(leftTableWrapper,rightTableWrapper))
+                .setOrganization(new TwoHorisontalBondGrids(leftTableWrapper,rightTableWrapper))
                 .build();
 
 
-        mediatorServiceTwoLinkedTable.setAccessoryTableWrapper(rightTableWrapper);
-        mediatorServiceTwoLinkedTable.setPrimaryTableWrapper(leftTableWrapper);
-        mediatorServiceTwoLinkedTable.initElements();
 
 
     }
 
+    @Override
+    public void initServices() {
+        mediatorServiceTwoLinkedTable.setAccessoryTableWrapper(rightTableWrapper);
+        mediatorServiceTwoLinkedTable.setPrimaryTableWrapper(leftTableWrapper);
+        mediatorServiceTwoLinkedTable.initElements();
+
+    }
 
 
 }

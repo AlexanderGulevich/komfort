@@ -1,4 +1,4 @@
-package basisFx.presentation.appStructura;
+package basisFx.appCore.guiStructura;
 
 import basisFx.appCore.elements.AnchorWrapper;
 import basisFx.appCore.elements.FlowPaneWrapper;

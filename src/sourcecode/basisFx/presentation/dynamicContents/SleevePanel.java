@@ -5,7 +5,7 @@ import basisFx.appCore.elements.TableWrapper;
 import basisFx.appCore.grid.ButPosTop;
 import basisFx.appCore.grid.ButSizeLittle;
 import basisFx.appCore.grid.SingleTable;
-import basisFx.appCore.grid.TwoBondGrids;
+import basisFx.appCore.grid.TwoHorisontalBondGrids;
 import basisFx.appCore.elements.GridPaneWrapper;
 import basisFx.presentation.DynamicContentPanel;
 import basisFx.service.ServiceTwoLinkedTable;
@@ -16,13 +16,19 @@ import basisFx.appCore.utils.Coordinate;
 import basisFx.domain.*;
 
 public class SleevePanel  extends DynamicContentPanel {
-    private boolean gridVisibility=false;
-    private ServiceTwoLinkedTable mediatorServiceTwoLinkedTable =new ServiceTwoLinkedTable();
+    private ServiceTwoLinkedTable mediatorServiceTwoLinkedTable;
+    private TableWrapper leftTableWrapper ;
+    private TableWrapper rightTableWrapper ;
 
     @Override
-    public void customeInit() {
+    public void createServices() {
+        mediatorServiceTwoLinkedTable =new ServiceTwoLinkedTable();
+    }
 
-        TableWrapper leftTableWrapper = TableWrapper.newBuilder()
+    @Override
+    public void customDynamicElementsInit() {
+
+          leftTableWrapper = TableWrapper.newBuilder()
                 .setGridName("Втулка ")
                 .setOrganization(new SingleTable(new ButSizeLittle(),new ButPosTop()))
                 .setActiveRecordClass(Sleeve.class)
@@ -41,7 +47,7 @@ public class SleevePanel  extends DynamicContentPanel {
                 .build();
 
 
-        TableWrapper rightTableWrapper = TableWrapper.newBuilder()
+          rightTableWrapper = TableWrapper.newBuilder()
                 .setGridName("Архив цен ")
                 .setOrganization(new SingleTable(new ButSizeLittle(),new ButPosTop()))
                 .setActiveRecordClass(SleevePrice.class)
@@ -74,7 +80,7 @@ public class SleevePanel  extends DynamicContentPanel {
                 .setCoordinate(new Coordinate(0d, 10d, 10d, 0d))
                 .setGridLinesVisibility(gridVisibility)
                 .setOrganization(
-                        new TwoBondGrids(
+                        new TwoHorisontalBondGrids(
                                 leftTableWrapper.getGridPaneWrapper(),
                                 rightTableWrapper.getGridPaneWrapper()
                         )
@@ -82,11 +88,15 @@ public class SleevePanel  extends DynamicContentPanel {
                 .build();
 
 
+
+    }
+
+    @Override
+    public void initServices() {
         mediatorServiceTwoLinkedTable.setAccessoryTableWrapper(rightTableWrapper);
         mediatorServiceTwoLinkedTable.setPrimaryTableWrapper(leftTableWrapper);
         mediatorServiceTwoLinkedTable.initElements();
     }
-
 
 
 }

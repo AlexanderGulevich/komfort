@@ -12,14 +12,17 @@ import basisFx.appCore.utils.Coordinate;
 import basisFx.domain.Equipment;
 
 public class EquipmentPanel extends DynamicContentPanel {
-
+    private ServiceSingleTable mediatorSingleTable;
+    private TableWrapper tableWrapper;
+    @Override
+    public void createServices() {
+        mediatorSingleTable = new ServiceSingleTable();
+    }
 
     @Override
-    public void customeInit() {
+    public void customDynamicElementsInit() {
 
-        ServiceSingleTable mediatorSingleTable = new ServiceSingleTable();
-
-        TableWrapper tableWrapper = TableWrapper.newBuilder()
+         tableWrapper = TableWrapper.newBuilder()
                 .setActiveRecordClass(Equipment.class)
                 .setUnitOfWork(unitOfWork)
                 .setIsEditable(true)
@@ -32,10 +35,7 @@ public class EquipmentPanel extends DynamicContentPanel {
                                 .setIsEditeble(true)
                                 .setPropertyName("name")
                                 .build()
-
-
-                )
-                .build();
+                ).build();
 
 
         GridPaneWrapper.newBuilder()
@@ -46,8 +46,12 @@ public class EquipmentPanel extends DynamicContentPanel {
                 .setGridLinesVisibility(false)
                 .build();
 
+    }
+
+    @Override
+    public void initServices() {
         mediatorSingleTable.setTableWrapper(tableWrapper);
         mediatorSingleTable.initElements();
-
     }
+
 }

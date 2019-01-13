@@ -2,7 +2,7 @@ package basisFx.appCore.events;
 
 import basisFx.appCore.elements.AppNode;
 import basisFx.appCore.menu.FontItemLeaf;
-import basisFx.appCore.menu.LeftAndTopMenuRepresent;
+import basisFx.appCore.menu.MenuRepresentLeftAndTopBarViaFontItem;
 import basisFx.appCore.settings.CSSid;
 import basisFx.appCore.utils.Registry;
 import basisFx.appCore.windows.WindowAbstraction;
@@ -13,11 +13,11 @@ import javafx.scene.layout.AnchorPane;
 public class MenuButtonsClick extends AppEvent{
 
     protected FontItemLeaf fontItemLeaf;
-    protected LeftAndTopMenuRepresent represent;
+    protected MenuRepresentLeftAndTopBarViaFontItem represent;
 
     protected  Button  but;
 
-    public MenuButtonsClick(FontItemLeaf component,LeftAndTopMenuRepresent represent ) {
+    public MenuButtonsClick(FontItemLeaf component,MenuRepresentLeftAndTopBarViaFontItem represent ) {
         this.fontItemLeaf = component;
         this.represent=represent;
 

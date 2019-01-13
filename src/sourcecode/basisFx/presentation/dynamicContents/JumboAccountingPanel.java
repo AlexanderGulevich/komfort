@@ -14,19 +14,26 @@ import basisFx.presentation.DynamicContentPanel;
 import basisFx.service.ServiceAutoCommitTableByCommonDate;
 
 public class JumboAccountingPanel extends DynamicContentPanel {
-    ServiceAutoCommitTableByCommonDate mediator = new ServiceAutoCommitTableByCommonDate();
+    private ServiceAutoCommitTableByCommonDate mediator;
+    private DatePickerWrapper datePickerWrapper;
+    private TableWrapper tableWrapper;
 
     @Override
-    public void customeInit() {
+    public void createServices() {
+        mediator = new ServiceAutoCommitTableByCommonDate();
+    }
 
-        DatePickerWrapper datePickerWrapper = DatePickerWrapper.newBuilder()
+    @Override
+    public void customDynamicElementsInit() {
+
+        datePickerWrapper = DatePickerWrapper.newBuilder()
                 .setCoordinate(new Coordinate(10d, null, null, 5d))
                 .setParentAnchor(dynamicContentAnchorHolder)
                 .setServiceMediator(mediator)
                 .build();
 
 
-        TableWrapper tableWrapper = TableWrapper.newBuilder()
+        tableWrapper = TableWrapper.newBuilder()
                 .setActiveRecordClass(JumboAccounting.class)
                 .setUnitOfWork(unitOfWork)
                 .setIsEditable(true)
@@ -57,6 +64,11 @@ public class JumboAccountingPanel extends DynamicContentPanel {
                 .setGridLinesVisibility(false)
                 .build();
 
+
+    }
+
+    @Override
+    public void initServices() {
         mediator.setTableWrapper(tableWrapper);
         mediator.setDatePickerWrapper(datePickerWrapper);
         mediator.initElements();

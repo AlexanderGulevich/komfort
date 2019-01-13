@@ -12,11 +12,16 @@ import basisFx.presentation.DynamicContentPanel;
 import basisFx.service.ServiceSingleTable;
 
 public class JumboPanel extends DynamicContentPanel {
+    private    ServiceSingleTable mediatorSingleTable;
+    private      TableWrapper tableWrapper ;
     @Override
-    public void customeInit() {
-        ServiceSingleTable mediatorSingleTable = new ServiceSingleTable();
+    public void createServices() {
+        mediatorSingleTable = new ServiceSingleTable();
+    }
 
-        TableWrapper tableWrapper = TableWrapper.newBuilder()
+    @Override
+    public void customDynamicElementsInit() {
+            tableWrapper = TableWrapper.newBuilder()
                 .setActiveRecordClass(Jumbo.class)
                 .setUnitOfWork(unitOfWork)
                 .setIsEditable(true)
@@ -47,13 +52,14 @@ public class JumboPanel extends DynamicContentPanel {
                 .setGridLinesVisibility(false)
                 .build();
 
+
+    }
+
+    @Override
+    public void initServices() {
         mediatorSingleTable.setTableWrapper(tableWrapper);
         mediatorSingleTable.initElements();
     }
-
-
-
-
 
 
 }
