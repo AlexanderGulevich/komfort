@@ -37,9 +37,6 @@ public abstract class WindowImpl {
     public WindowAbstraction getWindowAbstraction() {
         return windowAbstraction;
     }
-    public AppNode getWindowNode(java.lang.String name) {
-        return windowAbstraction.getAppNode(name);
-    }
     public String getTitleName() {
         return titleName;
     }
@@ -69,7 +66,7 @@ public abstract class WindowImpl {
             buttonsForStage.initTemplateMethod(windowAbstraction);
         }
         if (parentAnchorNameForFXML != null && topLevelAnchorFromFXML != null ) {
-            ((AnchorPane) windowAbstraction.getAppNode(parentAnchorNameForFXML).getElement()).getChildren().add(topLevelAnchorFromFXML);
+            ((AnchorPane) windowAbstraction.getNodeFromMap(parentAnchorNameForFXML)).getChildren().add(topLevelAnchorFromFXML);
         }
         if (dynamicContentPanelCreator != null) {
             dynamicContentPanelCreator.create().initTemplateMethod(windowAbstraction);

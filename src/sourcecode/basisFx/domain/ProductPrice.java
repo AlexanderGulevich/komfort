@@ -1,72 +1,59 @@
 package basisFx.domain;
 
-import basisFx.dataSource.Db;
+import basisFx.appCore.annotation.DataStore;
+import basisFx.appCore.annotation.Sorting;
 import javafx.beans.property.SimpleObjectProperty;
-import javafx.collections.ObservableList;
-
-import java.sql.*;
 import java.time.LocalDate;
 
 public class ProductPrice extends ActiveRecord{
 
     private static ProductPrice INSTANCE = new ProductPrice();
-    private SimpleObjectProperty<Double> price =new SimpleObjectProperty<>(this, "price", null);
-    private SimpleObjectProperty<LocalDate> startingDate =new SimpleObjectProperty<>(this, "startingDate", null);
+    private SimpleObjectProperty<Integer> price =new SimpleObjectProperty<>(this, "price", null);
+    @DataStore (AS_OUTER_ID = true) private SimpleObjectProperty<Integer> productId =new SimpleObjectProperty<>(this, "productId", null);
+    @DataStore(SORTING = Sorting.DESC) private SimpleObjectProperty<LocalDate> startDate =new SimpleObjectProperty<>(this, "startDate", null);
 
     public static ProductPrice getINSTANCE() {
         return INSTANCE;
     }
 
-    public Double getPrice() {
-        return price.get();
-    }
-
-    public SimpleObjectProperty<Double> priceProperty() {
-        return price;
-    }
-
-    public void setPrice(Double price) {
-        this.price.set(price);
-    }
-
-    public LocalDate getStartingDate() {
-        return startingDate.get();
-    }
-
-    public SimpleObjectProperty<LocalDate> startingDateProperty() {
-        return startingDate;
-    }
-
-    public void setStartingDate(LocalDate startingDate) {
-        this.startingDate.set(startingDate);
-    }
-
-
     @Override
     public String toString() {
         return getPrice().toString();
     }
-
-
-    @Override
-    public ObservableList<ActiveRecord> findAllByOuterId(int id) {
-        ObservableList <ActiveRecord> list=createNewActiveRecordList();
-        String expression="SELECT * FROM " +this.entityName+" where productId= " +id+" ORDER BY startDate desc";
-        try{
-        Statement stmt  = Db.connection.createStatement();
-        ResultSet rs    = stmt.executeQuery(expression);
-        while (rs.next()) {
-            ProductPrice pojo=new ProductPrice();
-            pojo.setId(rs.getInt("id"));
-            pojo.setPrice(rs.getDouble("price"));
-            pojo.setStartingDate(rs.getDate("startDate").toLocalDate());
-            list.add(pojo);
-        }
-    } catch (
-    SQLException e) {
-        e.printStackTrace();
+    public Integer getPrice() {
+        return price.get();
     }
-    return list;
 
+    public SimpleObjectProperty<Integer> priceProperty() {
+        return price;
     }
+
+    public void setPrice(Integer price) {
+        this.price.set(price);
+    }
+
+    public Integer getProductId() {
+        return productId.get();
+    }
+
+    public SimpleObjectProperty<Integer> productIdProperty() {
+        return productId;
+    }
+
+    public void setProductId(Integer productId) {
+        this.productId.set(productId);
+    }
+
+    public LocalDate getStartDate() {
+        return startDate.get();
+    }
+
+    public SimpleObjectProperty<LocalDate> startDateProperty() {
+        return startDate;
+    }
+
+    public void setStartDate(LocalDate startDate) {
+        this.startDate.set(startDate);
+    }
+
 }

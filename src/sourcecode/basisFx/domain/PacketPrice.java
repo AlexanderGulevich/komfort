@@ -1,5 +1,7 @@
 package basisFx.domain;
 
+import basisFx.appCore.annotation.DataStore;
+import basisFx.appCore.annotation.Sorting;
 import basisFx.dataSource.Db;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.ObservableList;
@@ -11,10 +13,16 @@ public class PacketPrice extends ActiveRecord {
 
     private static PacketPrice INSTANCE = new PacketPrice();
     private SimpleObjectProperty<Double> price = new SimpleObjectProperty<>(this, "price", null);
-    private SimpleObjectProperty<LocalDate> startingDate = new SimpleObjectProperty<>(this, "startingDate", null);
+    @DataStore(SORTING = Sorting.DESC)  private SimpleObjectProperty<LocalDate> startDate = new SimpleObjectProperty<>(this, "startDate", null);
+    @DataStore (AS_OUTER_ID = true) private SimpleObjectProperty<Integer> packetId = new SimpleObjectProperty<>(this, "packetId", null);
 
     public static PacketPrice getINSTANCE() {
         return INSTANCE;
+    }
+
+    @Override
+    public String toString() {
+        return getPrice().toString();
     }
 
     public Double getPrice() {
@@ -29,44 +37,27 @@ public class PacketPrice extends ActiveRecord {
         this.price.set(price);
     }
 
-    public LocalDate getStartingDate() {
-        return startingDate.get();
+    public LocalDate getStartDate() {
+        return startDate.get();
     }
 
-    public SimpleObjectProperty<LocalDate> startingDateProperty() {
-        return startingDate;
+    public SimpleObjectProperty<LocalDate> startDateProperty() {
+        return startDate;
     }
 
-    public void setStartingDate(LocalDate startingDate) {
-        this.startingDate.set(startingDate);
+    public void setStartDate(LocalDate startDate) {
+        this.startDate.set(startDate);
     }
 
-
-    @Override
-    public String toString() {
-        return getPrice().toString();
+    public Integer getPacketId() {
+        return packetId.get();
     }
 
+    public SimpleObjectProperty<Integer> packetIdProperty() {
+        return packetId;
+    }
 
-    @Override
-    public ObservableList<ActiveRecord> findAllByOuterId(int id) {
-        ObservableList<ActiveRecord> list = createNewActiveRecordList();
-        String expression = "SELECT * FROM " + this.entityName + " where packetId= " + id + " ORDER BY startDate desc";
-        try {
-            Statement stmt = Db.connection.createStatement();
-            ResultSet rs = stmt.executeQuery(expression);
-            while (rs.next()) {
-                PacketPrice pojo = new PacketPrice();
-                pojo.setId(rs.getInt("id"));
-                pojo.setPrice(rs.getDouble("price"));
-                pojo.setStartingDate(rs.getDate("startDate").toLocalDate());
-                list.add(pojo);
-            }
-        } catch (
-                SQLException e) {
-            e.printStackTrace();
-        }
-        return list;
-
+    public void setPacketId(Integer packetId) {
+        this.packetId.set(packetId);
     }
 }

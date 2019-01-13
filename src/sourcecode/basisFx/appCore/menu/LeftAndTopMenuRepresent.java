@@ -20,14 +20,14 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.text.Text;
 
 public class LeftAndTopMenuRepresent extends MenuRepresent {
-    protected Text text = ((Text) Registry.mainWindow.getAppNode(
-            LeftAndTopMenuGUI.Structura.leftCideMenuCommonText.name()).getElement());
-    protected FlowPane horisontalFlowPane = ((FlowPane) Registry.mainWindow.getAppNode(
-            LeftAndTopMenuGUI.Structura.horisontalMenuFlowPane.name()).getElement());
-    protected AnchorPane verticalMenuAnchorPane = (AnchorPane) Registry.mainWindow.getAppNode(
-            LeftAndTopMenuGUI.Structura.verticalMenuAnchor.name()).getElement();
-    protected AnchorPane contentAnchorPane = (AnchorPane) Registry.mainWindow.getAppNode(
-            WindowAbstraction.DefaultPanelsNames.mainContentAnchor.name()).getElement();
+    protected Text text = ((Text) Registry.mainWindow.getNodeFromMap(
+            LeftAndTopMenuGUI.Structura.leftCideMenuCommonText.name())  );
+    protected FlowPane horisontalFlowPane = ((FlowPane) Registry.mainWindow.getNodeFromMap(
+            LeftAndTopMenuGUI.Structura.horisontalMenuFlowPane.name())  );
+    protected AnchorPane verticalMenuAnchorPane = (AnchorPane) Registry.mainWindow.getNodeFromMap(
+            LeftAndTopMenuGUI.Structura.verticalMenuAnchor.name())  ;
+    protected AnchorPane contentAnchorPane = (AnchorPane) Registry.mainWindow.getNodeFromMap(
+            WindowAbstraction.DefaultPanelsNames.mainContentAnchor.name())  ;
     private double heightCounterForIcon = 0d;
     private ArrayList<ButtonWrapper> buttonWrappers=new ArrayList<>();
 
@@ -77,16 +77,16 @@ public class LeftAndTopMenuRepresent extends MenuRepresent {
                 .setIsActive(composite.isActive)
                 .setFontSize(composite.fontSize)
                 .setEvents(new leftSideMenuIconClick(verticalBut, this))
-                .setParentAnchor((AnchorPane) Registry.mainWindow.getAppNode(
-                        LeftAndTopMenuGUI.Structura.verticalMenuAnchor.name()).getElement())
+                .setParentAnchor((AnchorPane) Registry.mainWindow.getNodeFromMap(
+                        LeftAndTopMenuGUI.Structura.verticalMenuAnchor.name())  )
                 .build();
         buttonWrappers.add(wrapper);
     }
 
     public void setDefaultStyleHorisontalButtons() {
         ObservableList<Node> buttons = (
-                (FlowPane) Registry.mainWindow.getAppNode(
-                        LeftAndTopMenuGUI.Structura.horisontalMenuFlowPane.name()).getElement()).getChildren();
+                (FlowPane) Registry.mainWindow.getNodeFromMap(
+                        LeftAndTopMenuGUI.Structura.horisontalMenuFlowPane.name())  ).getChildren();
 
         for (Iterator<Node> iterator = buttons.iterator(); iterator.hasNext(); ) {
             Node next = iterator.next();

@@ -3,6 +3,8 @@ plugins {
   id 'java'
     id 'edu.sc.seis.launch4j' version '2.4.4'
     id "com.jfrog.bintray" version "1.7"
+    id 'net.ltgt.apt' version '0.10'
+
 }
 apply plugin: 'java'
 apply plugin: 'project-report'
@@ -96,10 +98,6 @@ jacocoTestReport {
 //        classDumpDir = file("$buildDir/jacoco/classpathdumps")
 //    }
 //}
-repositories {
-    mavenCentral()
-    jcenter()
-}
 
 distributions {
     main {
@@ -114,6 +112,11 @@ distributions {
             }
         }
     }
+}
+
+repositories {
+    mavenCentral()
+    jcenter()
 }
 
 dependencies {
@@ -132,11 +135,15 @@ dependencies {
 //    compile group: 'org.controlsfx', name: 'controlsfx', version: '9.0.0' // Java 9
     compile group: 'org.controlsfx', name: 'controlsfx', version: '8.40.14'
 
+    compileOnly 'org.projectlombok:lombok:1.18.4'
+    apt 'org.projectlombok:lombok:1.18.4'
+
     compile group : 'org.hsqldb', name: 'hsqldb', version: '2.4.0'
 
     compile group: 'xerces', name: 'xercesImpl', version: '2.11.0'
 
     compile group: 'de.jensd', name: 'fontawesomefx', version: '8.9'
+
 //    compile 'com.google.guava:guava:27.0-jre'
 //    compile group: 'us.fatehi', name: 'schemacrawler-hsqldb', version: '14.17.04'
     

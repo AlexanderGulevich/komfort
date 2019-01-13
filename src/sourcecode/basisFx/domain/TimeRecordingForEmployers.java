@@ -61,60 +61,6 @@ public class TimeRecordingForEmployers extends ActiveRecord implements RecordWit
     }
 
     @Override
-    public void insert() {
-//        boolean check = isUniquenessStartingDate(
-//            findAllByOuterId(getEmployer().id.get()),
-//            activeRecord -> ((TimeRecordingForEmployers) activeRecord).getDate(),
-//            getDate());
-
-
-//        if (check) {
-
-            try {
-                String expression = "INSERT INTO " + this.entityName
-                        + " ("
-                        + " employerId ,  "
-                        + " date, "
-                        + " hours "
-                        + ") VALUES(?,?,?)";
-
-                PreparedStatement pstmt = Db.connection.prepareStatement(expression);
-                pstmt.setInt(1, getEmployer().id.get());
-                pstmt.setDate(2, Date.valueOf(getDate()));
-                pstmt.setDouble(3, getHours());
-                pstmt.executeUpdate();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-//        }
-    }
-
-    @Override
-    public ObservableList<ActiveRecord> findAllByOuterId(int id) {
-        ObservableList <ActiveRecord> list=createNewActiveRecordList();
-//        DefaultPanelsNames expression="SELECT * FROM Employer TimeRecordingForEmployers where employerId= " +id;
-//
-//        try {
-//            Statement stmt  = Db.connection.createStatement();
-//            ResultSet rs    = stmt.executeQuery(expression);
-//
-//            while (rs.next()) {
-//
-//                TimeRecordingForEmployers pojo=new TimeRecordingForEmployers();
-//
-//                pojo.setId( rs.getInt("id"));
-//                pojo.setDate(inspectDate(rs));
-//
-//                list.add(pojo);
-//
-//            }
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
-        return list;
-    }
-
-    @Override
     public ObservableList<ActiveRecord> getAllByDate(LocalDate date) {
         ObservableList <ActiveRecord> list= FXCollections.observableArrayList();
 

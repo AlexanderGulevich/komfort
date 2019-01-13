@@ -1,9 +1,14 @@
 package basisFx.appCore.reflection;
 
+import basisFx.appCore.annotation.DataStore;
+import basisFx.appCore.settings.Settings;
 import basisFx.appCore.utils.DomainPropertiesMetaInfo;
+import basisFx.appCore.utils.Registry;
 import basisFx.dataSource.Db;
 import basisFx.domain.ActiveRecord;
 import basisFx.domain.BoolComboBox;
+import javafx.application.Platform;
+
 import java.lang.reflect.Method;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -37,15 +42,26 @@ public class ReflectionUpdate {
         try {
             pstmt = Db.connection.prepareStatement(updateExpression);
             int counter=1;
-            for (DomainPropertiesMetaInfo propertiesMetaInfo : domainPropertiesMetaInfoList) {
+            for (DomainPropertiesMetaInfo info : domainPropertiesMetaInfoList) {
 
-                String genericShortTypeName = propertiesMetaInfo.getGenericShortTypeName();
-                String propertyName = propertiesMetaInfo.getPropertyName();
-                Class propertyGenericClass = propertiesMetaInfo.getGenericClass();
+                DataStore dataStoreAnnotation = info.getDataStoreAnnotation();
+
+                if (dataStoreAnnotation != null) {
+                    if (dataStoreAnnotation.AS_OUTER_ID()) {
+                        Integer val = activeRecord.outerId;
+                        pstmt.setInt(counter, val);
+                        counter++;
+                        continue;
+                    }
+                }
+
+                String genericShortTypeName = info.getGenericShortTypeName();
+                String propertyName = info.getPropertyName();
+                Class propertyGenericClass = info.getGenericClass();
                 Method method = Reflection.getMethod(propertyName, activeRecord.getClass());
 
                 if(propertyGenericClass.getSuperclass()  == ActiveRecord.class){
-                    if(propertiesMetaInfo.getGenericClass()== BoolComboBox.class){
+                    if(info.getGenericClass()== BoolComboBox.class){
                         Boolean val = Reflection.invokeBooleanGetter(activeRecord, method);
                         pstmt.setBoolean(counter, val);
                     }else{
@@ -75,7 +91,10 @@ public class ReflectionUpdate {
             pstmt.setInt(counter, activeRecord.getId());
             pstmt.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+
+            Platform.runLater(() -> {
+                Registry.windowFabric.infoWindow(Settings.COMMON_ERROR_MESSAGE);
+            });
         }
     }
 

@@ -1,5 +1,7 @@
 package basisFx.domain;
 
+import basisFx.appCore.annotation.DataStore;
+import basisFx.appCore.annotation.Sorting;
 import basisFx.dataSource.Db;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.ObservableList;
@@ -10,103 +12,51 @@ import java.time.LocalDate;
 public class PaperPrice extends ActiveRecord {
 
     private static PaperPrice INSTANCE = new PaperPrice();
-    private SimpleObjectProperty<String> price = new SimpleObjectProperty<>(this, "price", null);
-    private SimpleObjectProperty<LocalDate> startingDate = new SimpleObjectProperty<>(this, "startingDate", null);
+    private SimpleObjectProperty<Double> price = new SimpleObjectProperty<>(this, "price", null);
+    @DataStore(SORTING = Sorting.DESC) private SimpleObjectProperty<LocalDate> startDate = new SimpleObjectProperty<>(this, "startDate", null);
+    @DataStore (AS_OUTER_ID = true) private SimpleObjectProperty<Integer> packetId = new SimpleObjectProperty<>(this, "packetId", null);
 
     public static PaperPrice getINSTANCE() {
         return INSTANCE;
     }
+    @Override
+    public String toString() {
+        return getPrice().toString();
+    }
 
-    public String getPrice() {
+    public Double getPrice() {
         return price.get();
     }
 
-    public SimpleObjectProperty<String> priceProperty() {
+    public SimpleObjectProperty<Double> priceProperty() {
         return price;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(Double price) {
         this.price.set(price);
     }
 
-    public LocalDate getStartingDate() {
-        return startingDate.get();
+    public LocalDate getStartDate() {
+        return startDate.get();
     }
 
-    public SimpleObjectProperty<LocalDate> startingDateProperty() {
-        return startingDate;
+    public SimpleObjectProperty<LocalDate> startDateProperty() {
+        return startDate;
     }
 
-    public void setStartingDate(LocalDate startingDate) {
-        this.startingDate.set(startingDate);
+    public void setStartDate(LocalDate startDate) {
+        this.startDate.set(startDate);
     }
 
-    @Override
-    public void update() {
-        String expression = "UPDATE " + this.entityName + " SET  " +
-                " price = ?," +
-                " startDate = ?," +
-                " paperId = ? " +
-                " where id =?";
-
-        try {
-                PreparedStatement pstmt = null;
-                pstmt = Db.connection.prepareStatement(expression);
-                pstmt.setDouble(1, Double.valueOf(price.get()));
-                pstmt.setDate(2, Date.valueOf(startingDate.get()));
-                pstmt.setInt(3, outerId);
-                pstmt.setInt(4, id.get());
-                pstmt.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+    public Integer getPacketId() {
+        return packetId.get();
     }
 
-    @Override
-    public String toString() {
-        return getPrice();
+    public SimpleObjectProperty<Integer> packetIdProperty() {
+        return packetId;
     }
 
-    @Override
-    public void insert() {
-        String expression = "INSERT INTO " + this.entityName + "("
-                + " price ,  "
-                + " startDate,  "
-                + " paperId        "
-                + ") VALUES(?,?,?)";
-
-        PreparedStatement pstmt;
-            try {
-                pstmt = Db.connection.prepareStatement(expression);
-                pstmt.setDouble(1, Double.valueOf(price.get()));
-                pstmt.setDate(2, Date.valueOf(startingDate.get()));
-                pstmt.setInt(3, outerId);
-
-                int i = pstmt.executeUpdate();
-            } catch (SQLException e) {
-                e.printStackTrace();
-        }
-    }
-
-    @Override
-    public ObservableList<ActiveRecord> findAllByOuterId(int id) {
-        ObservableList<ActiveRecord> list = createNewActiveRecordList();
-        String expression = "SELECT * FROM " + this.entityName + " where paperId= " + id + " ORDER BY startDate desc";
-        try {
-            Statement stmt = Db.connection.createStatement();
-            ResultSet rs = stmt.executeQuery(expression);
-            while (rs.next()) {
-                SleevePrice pojo = new SleevePrice();
-                pojo.setId(rs.getInt("id"));
-                pojo.setPrice(rs.getDouble("price"));
-                pojo.setStartDate(rs.getDate("startDate").toLocalDate());
-                list.add(pojo);
-            }
-        } catch (
-                SQLException e) {
-            e.printStackTrace();
-        }
-        return list;
-
+    public void setPacketId(Integer packetId) {
+        this.packetId.set(packetId);
     }
 }

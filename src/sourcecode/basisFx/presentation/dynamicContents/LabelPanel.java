@@ -65,7 +65,7 @@ public class LabelPanel  extends DynamicContentPanel {
                                 .setColumnName("Дата")
                                 .setColumnSize(0.4d)
                                 .setIsEditeble(true)
-                                .setPropertyName("startingDate")
+                                .setPropertyName("startDate")
                                 .build()
                 )
                 .build();

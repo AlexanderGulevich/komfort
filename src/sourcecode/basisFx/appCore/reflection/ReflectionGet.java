@@ -1,5 +1,7 @@
 package basisFx.appCore.reflection;
 
+import basisFx.appCore.annotation.DataStore;
+import basisFx.appCore.annotation.Sorting;
 import basisFx.appCore.utils.DomainPropertiesMetaInfo;
 import basisFx.dataSource.Db;
 import basisFx.domain.ActiveRecord;
@@ -188,8 +190,36 @@ public class ReflectionGet {
     }
 
 
+    public static String createfindAllByOuterIdExpression(ActiveRecord record,
+                                                          ArrayList<DomainPropertiesMetaInfo> domainPropertiesMetaInfoList,
+                                                          int id) {
+
+        String expression = "Select * from " + record.entityName + " ";
+
+        String sorting=null;
+
+        for (DomainPropertiesMetaInfo info : domainPropertiesMetaInfoList) {
+
+            DataStore dataStoreAnnotation = info.getDataStoreAnnotation();
+
+            if (dataStoreAnnotation != null) {
+                if (dataStoreAnnotation.SORTING()==Sorting.ASK) {
+                    sorting=" "+" ORDER BY "  + info.getPropertyName()+" "+"ASK";
+                }
+                if (dataStoreAnnotation.SORTING()==Sorting.DESC) {
+                    sorting=" "+" ORDER BY "  + info.getPropertyName()+" "+"DESC";
+                }
+
+                if (dataStoreAnnotation.AS_OUTER_ID()) {
+                    expression+= " "+ "where "+info.getPropertyName()+"="+id;
+                }
+            }
 
 
 
+        }
 
+        return expression+=sorting;
+
+    }
 }

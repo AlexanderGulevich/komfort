@@ -1,31 +1,36 @@
 package basisFx.domain;
 
-import basisFx.dataSource.Db;
+import basisFx.appCore.annotation.DataStore;
+import basisFx.appCore.annotation.Sorting;
 import javafx.beans.property.SimpleObjectProperty;
-import javafx.collections.ObservableList;
-import java.sql.*;
 import java.time.LocalDate;
 
 public class ExchangeRates extends ActiveRecord{
 
     private static ExchangeRates INSTANCE = new ExchangeRates();
-    private SimpleObjectProperty<LocalDate> startingDate =new SimpleObjectProperty<>(this, "startingDate", null);
+    @DataStore(SORTING = Sorting.DESC) private SimpleObjectProperty<LocalDate> startDate =new SimpleObjectProperty<>(this, "startDate", null);
     private SimpleObjectProperty<Double> exchangeRate =new SimpleObjectProperty<>(this, "exchangeRate", null);
+    @DataStore (AS_OUTER_ID = true) private SimpleObjectProperty<Integer> currencyId =new SimpleObjectProperty<>(this, "currencyId", null);
 
     public static ExchangeRates getINSTANCE() {
         return INSTANCE;
     }
 
-    public LocalDate getStartingDate() {
-        return startingDate.get();
+    @Override
+    public String toString() {
+        return getExchangeRate().toString();
     }
 
-    public SimpleObjectProperty<LocalDate> startingDateProperty() {
-        return startingDate;
+    public LocalDate getStartDate() {
+        return startDate.get();
     }
 
-    public void setStartingDate(LocalDate startingDate) {
-        this.startingDate.set(startingDate);
+    public SimpleObjectProperty<LocalDate> startDateProperty() {
+        return startDate;
+    }
+
+    public void setStartDate(LocalDate startDate) {
+        this.startDate.set(startDate);
     }
 
     public Double getExchangeRate() {
@@ -40,36 +45,16 @@ public class ExchangeRates extends ActiveRecord{
         this.exchangeRate.set(exchangeRate);
     }
 
-    @Override
-    public String toString() {
-        return getExchangeRate().toString();
+    public Integer getCurrencyId() {
+        return currencyId.get();
     }
 
-    @Override
-    public ObservableList<ActiveRecord> findAllByOuterId(int id)   {
-        ObservableList <ActiveRecord> list=createNewActiveRecordList();
-        String expression="SELECT * FROM " +"ExchangeRates "+" where currencyId= " +id+" ORDER BY startDate Desc";
-
-        try {
-            Statement stmt  = Db.connection.createStatement();
-            ResultSet rs    = stmt.executeQuery(expression);
-
-            while (rs.next()) {
-
-                ExchangeRates pojo=new ExchangeRates();
-
-                pojo.setId( rs.getInt("id"));
-                pojo.setExchangeRate(rs.getDouble("rate"));
-                pojo.setStartingDate(rs.getDate("startDate").toLocalDate());
-
-                list.add(pojo);
-
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    return list;
+    public SimpleObjectProperty<Integer> currencyIdProperty() {
+        return currencyId;
     }
 
+    public void setCurrencyId(Integer currencyId) {
+        this.currencyId.set(currencyId);
     }
+}
 

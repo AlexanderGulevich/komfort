@@ -65,18 +65,17 @@ public abstract class WindowAbstraction {
         this.currentDynamicContent = null;
     }
     protected abstract void createScene();
-    public void setNodToMap(AppNode node) {
-            appNodMap.put(node.getMetaName(),node);
+
+    public void setNodeToMap(AppNode node) {
+        nodMap.put(node.getMetaName(),node.getElement());
     }
-    public void setNodToMap(Node node, String name) {
+    public void setNodeToMap(Node node, String name) {
             nodMap.put(name,node);
     }
-    public  AppNode getAppNode(String str){
-        return appNodMap.get(str);
-    }
-    public  Node getNode(String str){
+    public  Node getNodeFromMap(String str){
         return nodMap.get(str);
     }
+
     protected abstract void initRoot();
     private void initTopVisiblePanel() {
         AnchorWrapper anchorWrapper = AnchorWrapper.newBuilder()
@@ -85,7 +84,7 @@ public abstract class WindowAbstraction {
                 .setCSSid(CSSid.TopVisiblePanel)
                 .setMetaName(DefaultPanelsNames.topVisibleAnchor.name())
                 .build();
-        setNodToMap(anchorWrapper);
+        setNodeToMap(anchorWrapper);
         topVisiblePanel =anchorWrapper.getElement();
     }
     public Scene getScene() {

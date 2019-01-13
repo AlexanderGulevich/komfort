@@ -1,20 +1,29 @@
 package basisFx.domain;
 
-import basisFx.dataSource.Db;
+import basisFx.appCore.annotation.DataStore;
+import basisFx.appCore.annotation.Sorting;
 import javafx.beans.property.SimpleObjectProperty;
-import javafx.collections.ObservableList;
-
-import java.sql.*;
+import org.hsqldb.index.Index;
 import java.time.LocalDate;
 
 public class SleevePrice extends ActiveRecord {
+    private static SleevePrice INSTANCE =
+            new SleevePrice();
+    private SimpleObjectProperty<Double> price =
+            new SimpleObjectProperty<>(this, "price", null);
+    @DataStore (SORTING = Sorting.DESC) private SimpleObjectProperty<LocalDate> startDate =
+            new SimpleObjectProperty<>(this, "startDate", null);
+    @DataStore (AS_OUTER_ID = true)private SimpleObjectProperty<Index> sleeveId =
+            new SimpleObjectProperty<>(this, "sleeveId", null);
 
-    private static SleevePrice INSTANCE = new SleevePrice();
-    private SimpleObjectProperty<Double> price = new SimpleObjectProperty<>(this, "price", null);
-    private SimpleObjectProperty<LocalDate> startDate = new SimpleObjectProperty<>(this, "startDate", null);
 
     public static SleevePrice getINSTANCE() {
         return INSTANCE;
+    }
+
+    @Override
+    public String toString() {
+        return getPrice().toString();
     }
 
     public Double getPrice() {
@@ -41,30 +50,15 @@ public class SleevePrice extends ActiveRecord {
         this.startDate.set(startDate);
     }
 
-    @Override
-    public String toString() {
-        return getPrice().toString();
+    public Index getSleeveId() {
+        return sleeveId.get();
     }
 
-    @Override
-    public ObservableList<ActiveRecord> findAllByOuterId(int id) {
-        ObservableList<ActiveRecord> list = createNewActiveRecordList();
-        String expression = "SELECT * FROM " + this.entityName + " where sleeveId= " + id + " ORDER BY startDate desc";
-        try {
-            Statement stmt = Db.connection.createStatement();
-            ResultSet rs = stmt.executeQuery(expression);
-            while (rs.next()) {
-                SleevePrice pojo = new SleevePrice();
-                pojo.setId(rs.getInt("id"));
-                pojo.setPrice(rs.getDouble("price"));
-                pojo.setStartDate(rs.getDate("startDate").toLocalDate());
-                list.add(pojo);
-            }
-        } catch (
-                SQLException e) {
-            e.printStackTrace();
-        }
-        return list;
+    public SimpleObjectProperty<Index> sleeveIdProperty() {
+        return sleeveId;
+    }
 
+    public void setSleeveId(Index sleeveId) {
+        this.sleeveId.set(sleeveId);
     }
 }

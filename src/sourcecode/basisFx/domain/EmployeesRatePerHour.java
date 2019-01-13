@@ -1,8 +1,11 @@
 package basisFx.domain;
 
+import basisFx.appCore.annotation.DataStore;
+import basisFx.appCore.annotation.Sorting;
 import basisFx.dataSource.Db;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.ObservableList;
+import org.hsqldb.index.Index;
 
 import java.sql.*;
 import java.time.LocalDate;
@@ -10,23 +13,29 @@ import java.time.LocalDate;
 public class EmployeesRatePerHour extends ActiveRecord {
 
     private static EmployeesRatePerHour INSTANCE = new EmployeesRatePerHour();
-    private SimpleObjectProperty<LocalDate> startingDate =new SimpleObjectProperty<>(this, "startingDate", null);
+    @DataStore(SORTING = Sorting.DESC) private SimpleObjectProperty<LocalDate> startDate =new SimpleObjectProperty<>(this, "startDate", null);
     private SimpleObjectProperty<Double> rate =new SimpleObjectProperty<>(this, "rate", null);
+    @DataStore (AS_OUTER_ID = true) private SimpleObjectProperty<Integer> employerId =new SimpleObjectProperty<>(this, "employerId", null);
 
     public static EmployeesRatePerHour getINSTANCE() {
         return INSTANCE;
     }
 
-    public LocalDate getStartingDate() {
-        return startingDate.get();
+    @Override
+    public String toString() {
+        return null;
     }
 
-    public SimpleObjectProperty<LocalDate> startingDateProperty() {
-        return startingDate;
+    public LocalDate getStartDate() {
+        return startDate.get();
     }
 
-    public void setStartingDate(LocalDate startingDate) {
-        this.startingDate.set(startingDate);
+    public SimpleObjectProperty<LocalDate> startDateProperty() {
+        return startDate;
+    }
+
+    public void setStartDate(LocalDate startDate) {
+        this.startDate.set(startDate);
     }
 
     public Double getRate() {
@@ -41,36 +50,16 @@ public class EmployeesRatePerHour extends ActiveRecord {
         this.rate.set(rate);
     }
 
-
-
-    @Override
-    public String toString() {
-        return null;
+    public Integer getEmployerId() {
+        return employerId.get();
     }
 
-
-    @Override
-    public ObservableList<ActiveRecord> findAllByOuterId(int id) {
-
-        ObservableList <ActiveRecord> list=createNewActiveRecordList();
-        String expression="SELECT * FROM " +this.entityName+" where employerId= " +id+" ORDER BY startDate desc";
-        try{
-            Statement stmt  = Db.connection.createStatement();
-            ResultSet rs    = stmt.executeQuery(expression);
-            while (rs.next()) {
-                EmployeesRatePerHour pojo=new EmployeesRatePerHour();
-                pojo.setId(rs.getInt("id"));
-                pojo.setRate( rs.getDouble("rate"));
-                pojo.setStartingDate(rs.getDate("startDate").toLocalDate());
-                list.add(pojo);
-            }
-        } catch (
-                SQLException e) {
-            e.printStackTrace();
-        }
-        return list;
-
+    public SimpleObjectProperty<Integer> employerIdProperty() {
+        return employerId;
     }
 
+    public void setEmployerId(Integer employerId) {
+        this.employerId.set(employerId);
     }
+}
 

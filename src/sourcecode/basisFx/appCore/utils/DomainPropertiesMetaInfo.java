@@ -1,9 +1,14 @@
 package basisFx.appCore.utils;
 
+import basisFx.appCore.annotation.DataStore;
+
+
 public class DomainPropertiesMetaInfo {
     String propertyName;
     String genericShortTypeName;
     String genericFullTypeName;
+    Class genericClass;
+    DataStore dataStoreAnnotation;
 
     public Class getGenericClass() {
         return genericClass;
@@ -13,7 +18,13 @@ public class DomainPropertiesMetaInfo {
         this.genericClass = genericClass;
     }
 
-    Class genericClass;
+    public DataStore getDataStoreAnnotation() {
+        return dataStoreAnnotation;
+    }
+
+    public void setDataStoreAnnotation(DataStore dataStoreAnnotation) {
+        this.dataStoreAnnotation = dataStoreAnnotation;
+    }
 
     public String getGenericFullTypeName() {
         return genericFullTypeName;
@@ -38,4 +49,5 @@ public class DomainPropertiesMetaInfo {
     public void setGenericShortTypeName(String genericShortTypeName) {
         this.genericShortTypeName = genericShortTypeName;
     }
+
 }

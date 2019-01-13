@@ -1,5 +1,6 @@
 package basisFx.appCore.reflection;
 
+import basisFx.appCore.annotation.DataStore;
 import basisFx.appCore.utils.DomainPropertiesMetaInfo;
 import basisFx.domain.ActiveRecord;
 import javafx.beans.property.SimpleObjectProperty;
@@ -83,12 +84,14 @@ public class ReflectionInspectDomain {
                 String fullGenericTypeName = retrieveFullGenericTypeName(record,field, (ParameterizedType) type);
                 String propertyName = retrievePropertyName(record,field);
                 Class genericClass = retrievGenericClass(record, field,(ParameterizedType) type);
+                DataStore dataStoreAnnotation = field.getAnnotation(DataStore.class);
 
                 DomainPropertiesMetaInfo info = new DomainPropertiesMetaInfo();
                 info.setGenericFullTypeName(fullGenericTypeName);
                 info.setGenericShortTypeName(shortGenericTypeName);
                 info.setPropertyName(propertyName);
                 info.setGenericClass(genericClass);
+                info.setDataStoreAnnotation(dataStoreAnnotation);
 
 
 

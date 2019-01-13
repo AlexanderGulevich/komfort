@@ -47,7 +47,7 @@ public abstract class AppNode <T extends Node> {
     public void setElementToWindowRegistry() {
         if (metaName != null) {
             if (windowAbstraction != null) {
-                windowAbstraction.setNodToMap(this);
+                windowAbstraction.setNodeToMap(this);
             }
         }
     }

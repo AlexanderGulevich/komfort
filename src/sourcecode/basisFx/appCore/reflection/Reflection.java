@@ -1,5 +1,7 @@
 package basisFx.appCore.reflection;
 
+import basisFx.appCore.annotation.DataStore;
+import basisFx.dataSource.Db;
 import basisFx.domain.ActiveRecord;
 import basisFx.domain.BoolComboBox;
 import javafx.beans.property.SimpleObjectProperty;
@@ -7,9 +9,31 @@ import javafx.beans.property.SimpleObjectProperty;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.time.LocalDate;
 
 public class Reflection {
+
+
+    public static ResultSet executeQuery(String expression)   {
+        try (
+                Statement stmt = Db.connection.createStatement()) {
+            ResultSet resultSet;
+            try {
+                resultSet = stmt.executeQuery(expression);
+                return resultSet;
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+
     public static ActiveRecord getDomainInstanceFromStaticMethod(Class propertyGenericClass) {
 
         ActiveRecord record =null;
@@ -47,6 +71,12 @@ public class Reflection {
         for (Field declaredField : declaredFields) {
             declaredField.setAccessible(true);
             if (ReflectionInspectDomain.isaStaticField(declaredField)) continue;
+
+            DataStore dataStore = declaredField.getAnnotation(DataStore.class);
+            if (dataStore != null) {
+                if (dataStore.AS_OUTER_ID())  continue;
+            }
+
             SimpleObjectProperty property= ReflectionInspectDomain.getPropertyFromClass(declaredField,activeRecord);
             Object obj = property.get();
             if (obj!= null ) {

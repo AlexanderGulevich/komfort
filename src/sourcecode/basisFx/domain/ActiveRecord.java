@@ -18,10 +18,7 @@ public abstract class ActiveRecord {
     public ActiveRecord outerRecord;
     public ObjectProperty<Integer> id =new SimpleObjectProperty<>(this, "id", null);
     public int outerId;
-
     public abstract String toString();  //Method for Combobox
-    public abstract ObservableList<ActiveRecord> findAllByOuterId(int id);
-//    public abstract ObservableList<ActiveRecord> findAllByOuterId(ActiveRecord record);
     public ActiveRecord( ) {
         String name = this.getClass().getName();
         String[] arr = name.split("\\.");
@@ -57,10 +54,17 @@ public abstract class ActiveRecord {
     public  ObservableList <ActiveRecord>  getAll() {
         ObservableList <ActiveRecord> list= FXCollections.observableArrayList();
         ArrayList<DomainPropertiesMetaInfo> domainPropertiesMetaInfoList = ReflectionInspectDomain.inspectDomainProperties(this);
-        ResultSet rs = executeQuery("Select * from " + this.entityName + " order by id ");
+        ResultSet rs = Reflection.executeQuery("Select * from " + this.entityName + " order by id ");
         return ReflectionGet.getAllDomains(this,list, domainPropertiesMetaInfoList, rs);
     }
 
+    public ObservableList<ActiveRecord> findAllByOuterId(int id){
+        ObservableList <ActiveRecord> list= FXCollections.observableArrayList();
+        ArrayList<DomainPropertiesMetaInfo> domainPropertiesMetaInfoList = ReflectionInspectDomain.inspectDomainProperties(this);
+        String exp = ReflectionGet.createfindAllByOuterIdExpression(this,domainPropertiesMetaInfoList, id);
+        ResultSet rs = Reflection.executeQuery(exp);
+        return ReflectionGet.getAllDomains(this,list, domainPropertiesMetaInfoList, rs);
+    }
 
     public ActiveRecord find(int id) {
         ActiveRecord activeRecord = Reflection.createNewInstance(this);
@@ -69,21 +73,6 @@ public abstract class ActiveRecord {
         return ReflectionGet.findDomain(id, activeRecord, domainPropertiesMetaInfoList, expression);
     }
 
-    private ResultSet executeQuery(String expression)   {
-        try (
-                Statement stmt = Db.connection.createStatement()) {
-                ResultSet resultSet;
-            try {
-                resultSet = stmt.executeQuery(expression);
-                return resultSet;
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
 
     public void delete(){
             try {

@@ -61,7 +61,7 @@ public class PaperPanel  extends DynamicContentPanel {
                                 .setColumnName("Действует с")
                                 .setColumnSize(0.7d)
                                 .setIsEditeble(true)
-                                .setPropertyName("startingDate")
+                                .setPropertyName("startDate")
                                 .build()
                 )
                 .build();
