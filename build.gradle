@@ -1,5 +1,6 @@
 plugins {
-  id 'com.gradle.build-scan' version '1.11'
+//  id 'com.gradle.build-scan' version '1.11'
+//  id 'com.gradle.build-scan' version '2.1'
   id 'java'
     id 'edu.sc.seis.launch4j' version '2.4.4'
     id "com.jfrog.bintray" version "1.7"
@@ -17,11 +18,11 @@ distributions {
     custom {}
 }
 version = '1.2'
-buildScan {
-    licenseAgreementUrl = 'https://gradle.com/terms-of-service'
-    licenseAgree = 'yes'
-    publishAlways()
-}
+//buildScan {
+//    licenseAgreementUrl = 'https://gradle.com/terms-of-service'
+//    licenseAgree = 'yes'
+//    publishAlways()
+//}
 jacoco {
     toolVersion = "0.8.1"
     reportsDir = file("$buildDir/customJacocoReportDir")
@@ -34,10 +35,12 @@ ext {
     mainDir=rootProject.projectDir.toString().replace("\\", "/")
 }
 task wrapper(type: Wrapper) {
+//   gradleVersion = '5.1.1'
    gradleVersion = '4.3.1'
+//   gradleVersion = '4.9'
 }
-sourceCompatibility = '1.8'
-//sourceCompatibility = '10.0.1'
+targetCompatibility = '9'
+sourceCompatibility = '9'
 [compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
 description = 'An app build'
 version = '0.1'
@@ -132,17 +135,35 @@ dependencies {
     compile group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.11.0'
     compile group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.11.0'
     compile 'com.jfoenix:jfoenix:8.0.8' // Java 8
-//    compile group: 'org.controlsfx', name: 'controlsfx', version: '9.0.0' // Java 9
+//    compile group: 'org.controlsfx', name: 'controlsfx', version: '9.0.0'
     compile group: 'org.controlsfx', name: 'controlsfx', version: '8.40.14'
 
-    compileOnly 'org.projectlombok:lombok:1.18.4'
-    apt 'org.projectlombok:lombok:1.18.4'
+//    compileOnly 'org.projectlombok:lombok:1.18.4'
+//    apt 'org.projectlombok:lombok:1.18.4'
 
     compile group : 'org.hsqldb', name: 'hsqldb', version: '2.4.0'
 
     compile group: 'xerces', name: 'xercesImpl', version: '2.11.0'
 
+
+    compile 'org.controlsfx:controlsfx:9.0.0'
+//    compile 'de.jensd:fontawesomefx-commons:9.0.0'
+//    compile group: 'de.jensd', name: 'fontawesomefx', version: '8.4'
+//    compile group: 'de.jensd', name: 'fontawesomefx', version: '8.4'
+//    compile group: 'de.jensd', name: 'fontawesomefx-controls', version: '9.1.2'
     compile group: 'de.jensd', name: 'fontawesomefx', version: '8.9'
+//    compile group: 'de.jensd', name: 'fontawesomefx', version: '9.1.2'
+    compile 'de.jensd:fontawesomefx-commons:9.1.2'
+    compile 'de.jensd:fontawesomefx-controls:9.1.2'
+    compile 'de.jensd:fontawesomefx-emojione:3.1.1-9.1.2'
+    compile 'de.jensd:fontawesomefx-fontawesome:4.7.0-9.1.2'
+    compile 'de.jensd:fontawesomefx-icons525:4.2.0-9.1.2'
+    compile 'de.jensd:fontawesomefx-materialdesignfont:2.0.26-9.1.2'
+    compile 'de.jensd:fontawesomefx-materialicons:2.2.0-9.1.2'
+    compile 'de.jensd:fontawesomefx-octicons:4.3.0-9.1.2'
+    compile 'de.jensd:fontawesomefx-weathericons:2.0.10-9.1.2'
+
+
 
 //    compile 'com.google.guava:guava:27.0-jre'
 //    compile group: 'us.fatehi', name: 'schemacrawler-hsqldb', version: '14.17.04'
@@ -193,7 +214,6 @@ task runApp(type: JavaExec) {
 
 launch4j {
     mainClassName = 'basisFx.appCore.EntryPoint'
-//    icon = "D:/APEIRON/KOMFORT/src/res/res/icon/panelIcon.ico"
     icon = mainDir+"/src/res/res/icon/panelIcon.ico"
 }
 

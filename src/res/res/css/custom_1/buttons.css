@@ -69,3 +69,35 @@
     -fx-effect: dropshadow(gaussian ,#555555 , 3, 0, 0.5, 0.5);
     -fx-font-weigh:bold ;
 }
+
+.REGISTRY_BUTTONS_BFx{
+      -fx-padding: 4 5;
+      -fx-background-color:white;
+      -fx-background-radius: 0;
+      -fx-border-radius:0;
+      -fx-background-insets: 0, 0, 0, 0;
+      -fx-effect: dropshadow(gaussian ,#555555 , 2, 0, 0.5, 0.5);
+      -fx-text-fill:#003641;
+      -fx-font-family: "Roboto Light";
+      -fx-font-size: 22;
+      -fx-pref-height: 20;
+      -fx-pref-width:  150;
+}
+.REGISTRY_BUTTONS_BFx:armed {
+    -fx-background-color:#FF8964;
+    -fx-background-radius: 0;
+    -fx-border-radius:0;
+    -fx-background-insets: 0, 0, 0, 0;
+    -fx-font-weigh:bold ;
+     -fx-effect: dropshadow(gaussian ,#555555 , 3, 0, 0.5, 0.5);
+     -fx-text-fill:white;
+
+}
+.REGISTRY_BUTTONS_BFx:hover{
+    -fx-background-radius: 0;
+    -fx-border-radius:0;
+    -fx-background-insets: 0, 0, 0, 0;
+    -fx-background-radius: 0;
+    -fx-effect: dropshadow(gaussian ,#555555 , 3, 0, 0.5, 0.5);
+    -fx-font-weigh:bold ;
+}

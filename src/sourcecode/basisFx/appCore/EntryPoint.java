@@ -1,11 +1,9 @@
 package basisFx.appCore;
-        
 
+import basisFx.App;
 import basisFx.appCore.utils.PathToFile;
 import basisFx.appCore.utils.PathesResearch;
-import basisFx.appCore.utils.IconToPlatform;
 import com.sun.javafx.application.LauncherImpl;
-import basisFx.App;
 import javafx.application.Application;
 import javafx.stage.Stage;
 

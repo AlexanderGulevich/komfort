@@ -8,6 +8,7 @@ import basisFx.appCore.utils.CSSHandler;
 import basisFx.appCore.utils.IconToPlatform;
 import basisFx.appCore.utils.Registry;
 import basisFx.appCore.windows.ButtonsForStageThreeEntity;
+import basisFx.appCore.windows.WindowAbstraction;
 import basisFx.appCore.windows.WindowBuilder;
 import basisFx.presentation.MainMenuSketch;
 import basisFx.appCore.guiStructura.LeftAndTopMenuGUI;

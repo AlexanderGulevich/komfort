@@ -1,12 +1,19 @@
 package basisFx.presentation.dynamicContents;
 
 
+import basisFx.appCore.elements.ButtonWrapper;
 import basisFx.appCore.elements.TableWrapper;
+import basisFx.appCore.events.SubWindowCreater;
 import basisFx.appCore.grid.ButPosTop;
 import basisFx.appCore.grid.ButSizeLittle;
 import basisFx.appCore.grid.SingleTable;
 import basisFx.appCore.grid.TwoHorisontalBondGrids;
 import basisFx.appCore.elements.GridPaneWrapper;
+import basisFx.appCore.settings.CSSclasses;
+import basisFx.appCore.settings.FontsStore;
+import basisFx.appCore.utils.Registry;
+import basisFx.appCore.windows.WindowAbstraction;
+import basisFx.appCore.windows.WindowBuilder;
 import basisFx.presentation.DynamicContentPanel;
 import basisFx.service.ServiceTwoLinkedTable;
 import basisFx.appCore.table.ColumnWrapperComboBox;
@@ -27,6 +34,10 @@ public class SleevePanel  extends DynamicContentPanel {
 
     @Override
     public void customDynamicElementsInit() {
+
+
+
+
 
           leftTableWrapper = TableWrapper.newBuilder()
                 .setGridName("Втулка ")
@@ -85,6 +96,29 @@ public class SleevePanel  extends DynamicContentPanel {
                                 rightTableWrapper.getGridPaneWrapper()
                         )
                 )
+                .build();
+
+        ButtonWrapper.newBuilder()
+                .setParentAnchor(dynamicContentAnchorHolder)
+                .setCoordinate(new Coordinate(10d,20d,null,null))
+                .setText("РЕЕСТР ЦЕН")
+                .setCssClasses(CSSclasses.REGISTRY_BUTTONS_BFx)
+                .setEvents(new SubWindowCreater(
+                        window,
+                        ()->{return true;},
+                        WindowBuilder.newBuilder()
+                                .setGUIStructura(null)
+                                .setButtonsForStage(null)
+                                .setFxmlFileName("ByDateReasechWindow")
+                                .setParentAnchorNameForFXML(WindowAbstraction.DefaultPanelsNames.topVisibleAnchor.name())
+                                .setWidth(900d)
+                                .setHeight(600d)
+                                .setDynamicContentPanelCreator(null)
+                                .setTitle(null)
+                                .setMessage(null)
+                                .build()
+
+                ))
                 .build();
 
 

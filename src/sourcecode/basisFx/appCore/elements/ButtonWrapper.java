@@ -152,10 +152,8 @@ public class ButtonWrapper extends AppNode{
 
 
     public static final class Builder {
-        public String text;
-
-
-        public WindowAbstraction windowAbstraction;
+        private String text;
+        private WindowAbstraction windowAbstraction;
         private ArrayList<AppEvent> events;
         private CSSid CSSid;
         private Double width;
@@ -174,25 +172,28 @@ public class ButtonWrapper extends AppNode{
         private String string;
         private Node graphicNode;
         private ContentDisplay contentDisplay;
-        protected ServiceMediator serviceMediator;
+        private ServiceMediator serviceMediator;
         private String metaName;
-        protected CSSclasses[] cssClasses;
-        protected String[] cssClassesStrings;
+        private CSSclasses[] cssClasses;
+        private String[] cssClassesStrings;
 
 
-        public void setCssClasses(CSSclasses...  cssClasses) {
+        public Builder setCssClasses(CSSclasses...  cssClasses) {
             this.cssClasses = cssClasses;
+            return this;
         }
 
-        public void setCssClassesStrings(String... cssClassesStrings) {
+        public Builder setCssClassesStrings(String... cssClassesStrings) {
             this.cssClassesStrings = cssClassesStrings;
+            return this;
         }
 
         private Builder() {
         }
 
-        public void setWindowAbstraction(WindowAbstraction windowAbstraction) {
+        public Builder setWindowAbstraction(WindowAbstraction windowAbstraction) {
             this.windowAbstraction = windowAbstraction;
+            return this;
         }
 
         public Builder setEvents(AppEvent ...val) {
