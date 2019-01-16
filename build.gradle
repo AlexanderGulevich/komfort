@@ -1,97 +1,104 @@
 plugins {
-//  id 'com.gradle.build-scan' version '1.11'
-//  id 'com.gradle.build-scan' version '2.1'
-  id 'java'
+    id 'com.gradle.build-scan' version '1.11'
+    id 'java'
     id 'edu.sc.seis.launch4j' version '2.4.4'
     id "com.jfrog.bintray" version "1.7"
     id 'net.ltgt.apt' version '0.10'
-
+    id 'build-dashboard'
+    id 'jacoco'
+    id 'distribution'
 }
-apply plugin: 'java'
-apply plugin: 'project-report'
-apply plugin: 'build-dashboard'
-apply plugin: "jacoco"
-apply plugin: 'distribution'
+//JDK SETTINGS
+targetCompatibility = '1.8'
+sourceCompatibility = '1.8'
+[compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
 
-
-distributions {
-    custom {}
-}
-version = '1.2'
-//buildScan {
-//    licenseAgreementUrl = 'https://gradle.com/terms-of-service'
-//    licenseAgree = 'yes'
-//    publishAlways()
-//}
-jacoco {
-    toolVersion = "0.8.1"
-    reportsDir = file("$buildDir/customJacocoReportDir")
-}
+//GRADLE
+task wrapper(type: Wrapper) { gradleVersion = '4.3.1' }
 
 ext {
-    author = "Alexander"
-    mainClass= 'basisFx.appCore.EntryPoint'
-    mainClassName = mainClass
+    author = "Alexander Gulevich"
+    mainClassName = 'basisFx.appCore.EntryPoint'
     mainDir=rootProject.projectDir.toString().replace("\\", "/")
+    version = '8x'
+    description = 'An app build'
+    testResultsDirName="my_testResults"
+    testReportDirName="my_testReport"
+    distsDirName="distribution"
+    docsDirName="my_docs"
 }
-task wrapper(type: Wrapper) {
-//   gradleVersion = '5.1.1'
-   gradleVersion = '4.3.1'
-//   gradleVersion = '4.9'
-}
-targetCompatibility = '9'
-sourceCompatibility = '9'
-[compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
-description = 'An app build'
-version = '0.1'
 
-testResultsDirName="my_testResults"
-testReportDirName="my_testReport"
-distsDirName="distribution"
-docsDirName="my_docs"
+//SOURCE 
+sourceSets { main { java { srcDirs  'src/sourcecode' } } }
+sourceSets { res { resources { srcDirs  'src/res' } }}
+sourceSets{ test{ java{ srcDirs "src/tests" }}}
+//sourceSets{ test{ resources{srcDirs "src/res"}}}
+
+//PLUGIN SETTINGS 
 jacocoTestReport.enabled=true
 assemble.enabled = true
 distTar.enabled = false
 distZip.enabled = true
 
 
+//DEPENDENCIES
+repositories {
+    mavenCentral() 
+    jcenter()
+}
+dependencies {
+//    runtime files('libs/a.jar', 'libs/b.jar')
+//    runtime fileTree(dir: 'res')
+//    compile files('scenicView.jar');
 
-sourceSets {main {
-    java {
-        srcDirs  'src/sourcecode'
-    } } }
-sourceSets {
-    main2 {
-        resources {
-            srcDirs  'src/res'
-        }
-    }}
-//sourceSets {
-//    main2 {
-//        resources {
-//            srcDirs  'src/res'
-//        }
-//    }}
-//sourceSets{
-//    test{
-//        java{
-//            srcDirs "src/tests"
-//        }resources{
-//            srcDirs "src/res"
-//        }}}
+    //TEST
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+    testCompile group: 'org.hamcrest', name: 'hamcrest-all', version: '1.3'
+    testCompile("org.junit.jupiter:junit-jupiter-api:5.0.0-M4")
+    testRuntime("org.junit.vintage:junit-vintage-engine:4.12.0-M4")
+    testRuntime("org.junit.jupiter:junit-jupiter-engine:5.0.0-M4")
+    testCompile("org.junit.platform:junit-platform-runner:1.0.0-M4")
 
-test.finalizedBy(project.tasks.jacocoTestReport)
+    //LOGGING
+    compile group: 'org.apache.logging.log4j', name: 'log4j-1.2-api', version: '2.11.0'
+    compile group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.11.0'
+    compile group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.11.0'
 
-jacocoTestReport {
-   additionalSourceDirs = files(sourceSets.main.allJava.srcDirs)
+    //BOILERPlATE
+    compileOnly 'org.projectlombok:lombok:1.18.4'
+    apt 'org.projectlombok:lombok:1.18.4'
 
-    reports {
-        xml.enabled false
-        html.enabled true
-        csv.enabled false
-        html.destination file("${buildDir}/reports/jacoco")
-    }
-    executionData = files('build/jacoco/test.exec')
+    //DATABASE
+    compile group : 'org.hsqldb', name: 'hsqldb', version: '2.4.0'
+    compile group: 'xerces', name: 'xercesImpl', version: '2.11.0'
+
+    //CONTROLS AND VIEW
+    compile 'com.jfoenix:jfoenix:8.0.8'
+    compile group: 'org.controlsfx', name: 'controlsfx', version: '8.40.14'
+    compile group: 'xerces', name: 'xercesImpl', version: '2.11.0'
+    compile group: 'de.jensd', name: 'fontawesomefx', version: '8.9'
+
+    //REPORTS
+//    compile group: 'net.sf.jasperreports', name: 'jasperreports', version: '6.7.0'
+
+    //POI
+    compile group: 'org.apache.poi', name: 'poi', version: '3.16'
+    compile group: 'org.apache.poi', name: 'poi-ooxml', version: '3.16'
+    compile group: 'org.apache.poi', name: 'poi-ooxml-schemas', version: '3.16'
+    compile group: 'org.apache.poi', name: 'poi-scratchpad', version: '3.16'
+
+    //REPORTS
+    compile 'com.google.guava:guava:27.0-jre'
+
+    //GOOGLE
+    compile 'com.google.code.gson:gson:2.8.2'
+    compile group: 'com.google.inject', name: 'guice', version: '4.1.0'
+    compile group: 'com.google.http-client', name: 'google-http-client', version: '1.23.0'
+
+    //HIBERNATE
+    compile group: 'org.hibernate', name: 'hibernate-core', version: '5.2.12.Final'
+    compile group: 'org.hibernate', name: 'hibernate-jpamodelgen', version: '5.2.12.Final'
+
 }
 
 //test {
@@ -102,6 +109,29 @@ jacocoTestReport {
 //    }
 //}
 
+distributions { custom {} }
+//buildScan {
+//    licenseAgreementUrl = 'https://gradle.com/terms-of-service'
+//    licenseAgree = 'yes'
+//    publishAlways()
+//}
+jacoco {
+    toolVersion = "0.8.1"
+    reportsDir = file("$buildDir/customJacocoReportDir")
+}
+
+jar()   {
+    baseName = 'Komfort'
+    version =  '0.1'
+    manifest {
+        attributes(
+                "Class-Path":
+                        configurations.compile.collect {  "lib/" + it.getName() }.join(" "),
+                'Main-Class': mainClassName,
+                'Manifest-Version': 1.0
+        )
+    }
+}
 distributions {
     main {
         contents {
@@ -111,91 +141,24 @@ distributions {
                 from(project.configurations.runtime)
             }
             into('src/res') {
-                from { sourceSets.main2.resources }
+                from { sourceSets.res.resources }
             }
         }
     }
 }
 
-repositories {
-    mavenCentral()
-    jcenter()
-}
+jacocoTestReport {
+    additionalSourceDirs = files(sourceSets.main.allJava.srcDirs)
 
-dependencies {
-//    runtime files('libs/a.jar', 'libs/b.jar')
-//    runtime fileTree(dir: 'res')
-//    testCompile group: 'junit', name: 'junit', version: '4.12'
-//    testCompile group: 'org.hamcrest', name: 'hamcrest-all', version: '1.3'
-//    testCompile("org.junit.jupiter:junit-jupiter-api:5.0.0-M4")
-//    testRuntime("org.junit.vintage:junit-vintage-engine:4.12.0-M4")
-//    testRuntime("org.junit.jupiter:junit-jupiter-engine:5.0.0-M4")
-//    testCompile("org.junit.platform:junit-platform-runner:1.0.0-M4")
-    compile group: 'org.apache.logging.log4j', name: 'log4j-1.2-api', version: '2.11.0'
-    compile group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.11.0'
-    compile group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.11.0'
-    compile 'com.jfoenix:jfoenix:8.0.8' // Java 8
-//    compile group: 'org.controlsfx', name: 'controlsfx', version: '9.0.0'
-    compile group: 'org.controlsfx', name: 'controlsfx', version: '8.40.14'
-
-//    compileOnly 'org.projectlombok:lombok:1.18.4'
-//    apt 'org.projectlombok:lombok:1.18.4'
-
-    compile group : 'org.hsqldb', name: 'hsqldb', version: '2.4.0'
-
-    compile group: 'xerces', name: 'xercesImpl', version: '2.11.0'
-
-
-    compile 'org.controlsfx:controlsfx:9.0.0'
-//    compile 'de.jensd:fontawesomefx-commons:9.0.0'
-//    compile group: 'de.jensd', name: 'fontawesomefx', version: '8.4'
-//    compile group: 'de.jensd', name: 'fontawesomefx', version: '8.4'
-//    compile group: 'de.jensd', name: 'fontawesomefx-controls', version: '9.1.2'
-    compile group: 'de.jensd', name: 'fontawesomefx', version: '8.9'
-//    compile group: 'de.jensd', name: 'fontawesomefx', version: '9.1.2'
-    compile 'de.jensd:fontawesomefx-commons:9.1.2'
-    compile 'de.jensd:fontawesomefx-controls:9.1.2'
-    compile 'de.jensd:fontawesomefx-emojione:3.1.1-9.1.2'
-    compile 'de.jensd:fontawesomefx-fontawesome:4.7.0-9.1.2'
-    compile 'de.jensd:fontawesomefx-icons525:4.2.0-9.1.2'
-    compile 'de.jensd:fontawesomefx-materialdesignfont:2.0.26-9.1.2'
-    compile 'de.jensd:fontawesomefx-materialicons:2.2.0-9.1.2'
-    compile 'de.jensd:fontawesomefx-octicons:4.3.0-9.1.2'
-    compile 'de.jensd:fontawesomefx-weathericons:2.0.10-9.1.2'
-
-
-
-//    compile 'com.google.guava:guava:27.0-jre'
-//    compile group: 'us.fatehi', name: 'schemacrawler-hsqldb', version: '14.17.04'
-    
-//    compile 'com.google.code.gson:gson:2.8.2'
-//    compile group: 'com.google.inject', name: 'guice', version: '4.1.0'
-//    compile group: 'com.google.http-client', name: 'google-http-client', version: '1.23.0'
-
-//    compile group: 'org.apache.poi', name: 'poi', version: '3.16'
-//    compile group: 'org.apache.poi', name: 'poi-ooxml', version: '3.16'
-//    compile group: 'org.apache.poi', name: 'poi-ooxml-schemas', version: '3.16'
-//    compile group: 'org.apache.poi', name: 'poi-scratchpad', version: '3.16'
-
-//    compile group: 'org.hibernate', name: 'hibernate-core', version: '5.2.12.Final'
-//    compile group: 'org.hibernate', name: 'hibernate-jpamodelgen', version: '5.2.12.Final'
-
-      compile files('scenicView.jar');
-
-
-}
-jar()   {
-    baseName = 'Komfort'
-    version =  '0.1'
-    manifest {
-        attributes(
-                "Class-Path":
-                        configurations.compile.collect {  "lib/" + it.getName() }.join(" "),
-                'Main-Class': mainClass,
-                'Manifest-Version': 1.0
-        )
+    reports {
+        xml.enabled false
+        html.enabled true
+        csv.enabled false
+        html.destination file("${buildDir}/reports/jacoco")
     }
+    executionData = files('build/jacoco/test.exec')
 }
+
 
 //task copyLib(type: Copy) {
 //    into 'build/output/lib'
@@ -217,16 +180,13 @@ launch4j {
     icon = mainDir+"/src/res/res/icon/panelIcon.ico"
 }
 
+////////////////////////////////////////////////////////////////////////////////
+
+//TASK DEPENDENCIES
 assemble.dependsOn createAllExecutables
-
 distZip.shouldRunAfter(build)
-//build.dependsOn info
-build.dependsOn projectReport
-//build.dependsOn buildDashboard
-
-//build.dependsOn copyLib
-
 runApp.shouldRunAfter(build)
 runApp.mustRunAfter(build)
 runApp.dependsOn(build)
 jacocoTestReport.dependsOn build
+test.finalizedBy(project.tasks.jacocoTestReport)

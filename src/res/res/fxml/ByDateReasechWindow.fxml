@@ -23,12 +23,12 @@
                   <AnchorPane fx:id="tableHolderAnchor" layoutX="-2.0" layoutY="8.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="10.0">
                      <children>
                         <TableView layoutX="2.0" layoutY="2.0" prefHeight="163.0" prefWidth="324.0" stylesheets="@../css/custom_1/tables.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                          <columns>
-                            <TableColumn prefWidth="177.0" styleClass="wrappedHeaderColumn" text="Поле 1" />
-                            <TableColumn prefWidth="134.0" styleClass="wrappedHeaderColumn" text="Наименование" />
+                           <columns>
+                              <TableColumn prefWidth="177.0" styleClass="wrappedHeaderColumn" text="Поле 1" />
+                              <TableColumn prefWidth="134.0" styleClass="wrappedHeaderColumn" text="Наименование" />
                               <TableColumn prefWidth="139.0" styleClass="wrappedHeaderColumn" text="Column X" />
                               <TableColumn prefWidth="430.0" styleClass="wrappedHeaderColumn" text="Column X" />
-                          </columns>
+                           </columns>
                            <styleClass>
                               <String fx:value="TABLE_BFx" />
                               <String fx:value="wrappedHeaderColumn" />
