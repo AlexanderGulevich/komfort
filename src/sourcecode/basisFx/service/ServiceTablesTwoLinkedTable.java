@@ -5,7 +5,7 @@ import basisFx.appCore.elements.TableWrapper;
 import basisFx.domain.ActiveRecord;
 import javafx.collections.ObservableList;
 
-public class ServiceTwoLinkedTable extends ServiceMediator {
+public class ServiceTablesTwoLinkedTable extends ServiceTables {
 
     private TableWrapper primaryTableWrapper;
     private TableWrapper accessoryTableWrapper;
@@ -28,7 +28,7 @@ public class ServiceTwoLinkedTable extends ServiceMediator {
     }
 
     @Override
-    public void inform(AppNode node) {
+    public void inform(Object node) {
         if (node == primaryTableWrapper) {
             if (!ActiveRecord.isNewDomane(primaryTableWrapper.clickedDomain)) {
                 idFromPrimeTable = primaryTableWrapper.clickedDomain.id.get();
@@ -42,7 +42,7 @@ public class ServiceTwoLinkedTable extends ServiceMediator {
     @Override
     public void wasRemoved(AppNode node, ActiveRecord record) {
         TableWrapper tableWrapper = (TableWrapper) node;
-        ServiceTwoLinkedTable mediator = (ServiceTwoLinkedTable) tableWrapper.getServiceMediator();
+        ServiceTablesTwoLinkedTable mediator = (ServiceTablesTwoLinkedTable) tableWrapper.getServiceTables();
         Boolean isNewDomane = ActiveRecord.isNewDomane(record);
         boolean readyToTransaction = record.isReadyToTransaction();
         if (readyToTransaction) {
@@ -55,7 +55,7 @@ public class ServiceTwoLinkedTable extends ServiceMediator {
             }
         }
     }
-    private  void removeAccessoryTableItems(ServiceTwoLinkedTable mediator) {
+    private  void removeAccessoryTableItems(ServiceTablesTwoLinkedTable mediator) {
         ObservableList<ActiveRecord> items = mediator.getAccessoryTableWrapper().getElement().getItems();
         if (items != null) {
             for (ActiveRecord record:items) {

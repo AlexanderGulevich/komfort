@@ -27,7 +27,10 @@ public class RowAddToTable<T> extends AppEvent{
 
     @Override
     public void setEventToElement(Node node) {
-
+        but=(Button) node;
+        but.setOnMouseClicked((event) -> {
+            run();
+        });
     }
 
     @Override

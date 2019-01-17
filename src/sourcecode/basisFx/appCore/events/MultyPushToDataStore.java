@@ -28,6 +28,6 @@ public class MultyPushToDataStore  extends AppEvent{
 
     @Override
     public void run()  {
-        buttonWrapper.getServiceMediator().inform(buttonWrapper);
+        buttonWrapper.getServiceTables().inform(buttonWrapper);
     }
 }

@@ -3,24 +3,18 @@ package basisFx.appCore.events;
 import basisFx.appCore.elements.AppNode;
 import basisFx.appCore.interfaces.CallBack;
 import basisFx.appCore.utils.Registry;
-import basisFx.appCore.windows.WindowAbstraction;
 import basisFx.appCore.windows.WindowBuilder;
+import basisFx.service.ServiceCrossWindow;
 import javafx.scene.Node;
 
 
 public class SubWindowCreater extends AppEvent{
-    protected Node  node;
+    protected Node node;
     protected WindowBuilder windowBuilder;
-    protected WindowAbstraction currentWindow;
-    protected CallBack callBackSubWindowClosing;
 
-    public SubWindowCreater(WindowAbstraction currentWindow, CallBack callBackSubWindowClosing, WindowBuilder windowBuilder ) {
+    public SubWindowCreater( WindowBuilder windowBuilder ) {
         this.windowBuilder = windowBuilder;
-        this.currentWindow = currentWindow;
-        this.callBackSubWindowClosing = callBackSubWindowClosing;
-
     }
-
     @Override
     public void setEventToElement(AppNode appNode) {
         this.nodeWrapper =appNode;
@@ -35,10 +29,8 @@ public class SubWindowCreater extends AppEvent{
     @Override
     public void run() {
         node.setOnMousePressed(event -> {
-            if (event.isPrimaryButtonDown() && event.getClickCount() == 1) {
-                WindowAbstraction subWindow = Registry.windowFabric.customSubWindow(windowBuilder);
-                currentWindow.getCrossWindowMediator().setSubWindow(subWindow);
-                currentWindow.getCrossWindowMediator().setCallBackSubWindowClosing(callBackSubWindowClosing);
+            if (event.isPrimaryButtonDown() && event.getClickCount() == 1 ||  event.getClickCount() ==2 ) {
+                Registry.windowFabric.customSubWindow(windowBuilder);
             }
         });
     }

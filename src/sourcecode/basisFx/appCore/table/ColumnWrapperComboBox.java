@@ -2,7 +2,6 @@ package basisFx.appCore.table;
 
 import basisFx.appCore.elements.TableWrapper;
 import basisFx.appCore.settings.CSSclasses;
-import basisFx.appCore.settings.CSSid;
 import basisFx.domain.ActiveRecord;
 import javafx.beans.value.ObservableValue;
 import javafx.beans.value.WritableValue;
@@ -86,7 +85,7 @@ public class ColumnWrapperComboBox extends ColumnWrapper{
                     if (value instanceof WritableValue) {
                         ((WritableValue<ActiveRecord>)value).setValue(event.getNewValue());
                         ActiveRecord domain = (ActiveRecord) event.getRowValue();
-                        tableWrapper.getServiceMediator().wasChanged(tableWrapper,domain);
+                        tableWrapper.getServiceTables().wasChanged(tableWrapper,domain);
                     }
                 }
             };
@@ -223,7 +222,7 @@ public class ColumnWrapperComboBox extends ColumnWrapper{
             comboBox.setOnAction((e) -> {
 //                System.err.println("Committed: " + comboBox.getSelectionModel().getSelectedItem());
                 commitEdit(comboBox.getSelectionModel().getSelectedItem());
-//                tableWrapper.getServiceMediator().wasChanged(tableWrapper,domain);
+//                tableWrapper.getServiceTables().wasChanged(tableWrapper,domain);
             });
             comboBox.focusedProperty().addListener((ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) -> {
                 if (!newValue) {

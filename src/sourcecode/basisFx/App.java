@@ -45,7 +45,7 @@ public class App{
 //                WindowBuilder.newBuilder()
 //                        .setGUIStructura(null)
 //                        .setButtonsForStage(null)
-//                        .setFxmlFileName("ByDateReasechWindow")
+//                        .setFxmlFileName("ByDateResearchWindow")
 //                        .setParentAnchorNameForFXML(WindowAbstraction.DefaultPanelsNames.topVisibleAnchor.name())
 //                        .setWidth(900d)
 //                        .setHeight(600d)

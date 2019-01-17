@@ -4,6 +4,8 @@ import basisFx.appCore.elements.AppNode;
 import basisFx.appCore.utils.Registry;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.stage.Stage;
+import javafx.stage.Window;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -32,9 +34,14 @@ public class ClosePopupAndSubWindow extends AppEvent{
     @Override
     public void run() {
         try {
-            Thread.sleep(500);
-            nodeWrapper.getStage().close();
-            Registry.infoWindow=null;
+            Thread.sleep(1);
+
+            if (mediator != null) {
+                mediator.inform(but);
+            }
+            Window window = but.getScene().getWindow();
+            Stage stage= ((Stage) window);
+            stage.close();
             } catch (InterruptedException ex) {
                 Logger.getLogger(ClosePopupAndSubWindow.class.getName()).log(Level.SEVERE, null, ex);
             }

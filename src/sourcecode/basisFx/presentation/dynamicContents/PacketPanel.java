@@ -3,15 +3,15 @@ package basisFx.presentation.dynamicContents;
 import basisFx.appCore.elements.GridPaneWrapper;
 import basisFx.appCore.elements.TableWrapper;
 import basisFx.appCore.grid.*;
-import basisFx.service.ServiceTwoLinkedTable;
+import basisFx.service.ServiceTablesTwoLinkedTable;
 import basisFx.appCore.table.*;
 import basisFx.appCore.utils.Coordinate;
 import basisFx.domain.*;
 import basisFx.presentation.DynamicContentPanel;
 
 public class PacketPanel  extends DynamicContentPanel {
-    private ServiceTwoLinkedTable mediatorServiceTwoLinkedTable1;
-    private ServiceTwoLinkedTable mediatorServiceTwoLinkedTable2;
+    private ServiceTablesTwoLinkedTable mediatorServiceTwoLinkedTable1;
+    private ServiceTablesTwoLinkedTable mediatorServiceTwoLinkedTable2;
     private TableWrapper t1;
     private TableWrapper t2;
     private TableWrapper t3;
@@ -19,8 +19,8 @@ public class PacketPanel  extends DynamicContentPanel {
 
     @Override
     public void createServices() {
-            mediatorServiceTwoLinkedTable1 =new ServiceTwoLinkedTable();
-            mediatorServiceTwoLinkedTable2 =new ServiceTwoLinkedTable();
+            mediatorServiceTwoLinkedTable1 =new ServiceTablesTwoLinkedTable();
+            mediatorServiceTwoLinkedTable2 =new ServiceTablesTwoLinkedTable();
     }
 
     @Override
@@ -34,7 +34,7 @@ public class PacketPanel  extends DynamicContentPanel {
                 .setUnitOfWork(unitOfWork)
                 .setIsEditable(true)
                 .setIsSortableColums(false)
-                .setServiceMediator(mediatorServiceTwoLinkedTable1)
+                .setServiceTables(mediatorServiceTwoLinkedTable1)
                 .setColumnWrappers(
                         ColumnWrapperComboBox.newBuilder(PacketSize.class)
                                 .setColumnName("Размер")
@@ -59,7 +59,7 @@ public class PacketPanel  extends DynamicContentPanel {
                 .setUnitOfWork(unitOfWork)
                 .setIsEditable(true)
                 .setIsSortableColums(false)
-                .setServiceMediator(mediatorServiceTwoLinkedTable1)
+                .setServiceTables(mediatorServiceTwoLinkedTable1)
                 .setColumnWrappers(
                         ColumnWrapperDouble.newBuilder()
                                 .setColumnName("Тариф")
@@ -84,7 +84,7 @@ public class PacketPanel  extends DynamicContentPanel {
                 .setUnitOfWork(unitOfWork)
                 .setIsEditable(true)
                 .setIsSortableColums(false)
-                .setServiceMediator(mediatorServiceTwoLinkedTable2)
+                .setServiceTables(mediatorServiceTwoLinkedTable2)
                 .setColumnWrappers(
                         ColumnWrapperString.newBuilder()
                                 .setColumnName("Размер пакета")
@@ -103,7 +103,7 @@ public class PacketPanel  extends DynamicContentPanel {
                 .setUnitOfWork(unitOfWork)
                 .setIsEditable(true)
                 .setIsSortableColums(false)
-                .setServiceMediator(mediatorServiceTwoLinkedTable2)
+                .setServiceTables(mediatorServiceTwoLinkedTable2)
                 .setColumnWrappers(
                         ColumnWrapperComboBox.newBuilder(Product.class)
                                 .setColumnName("Продукция")

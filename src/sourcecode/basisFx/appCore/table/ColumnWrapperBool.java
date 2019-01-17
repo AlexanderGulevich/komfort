@@ -2,7 +2,6 @@ package basisFx.appCore.table;
 
 import basisFx.appCore.elements.TableWrapper;
 import basisFx.appCore.settings.CSSclasses;
-import basisFx.appCore.settings.CSSid;
 import basisFx.domain.ActiveRecord;
 import basisFx.domain.BoolComboBox;
 import javafx.beans.value.ObservableValue;
@@ -44,7 +43,7 @@ public class ColumnWrapperBool<T> extends ColumnWrapper{
                     ((WritableValue<BoolComboBox>)value).setValue(event.getNewValue());
                 }
                 ActiveRecord domain = (ActiveRecord) event.getRowValue();
-                tableWrapper.getServiceMediator().wasChanged(tableWrapper,domain);
+                tableWrapper.getServiceTables().wasChanged(tableWrapper,domain);
 
             };
         });
@@ -182,7 +181,7 @@ public class ColumnWrapperBool<T> extends ColumnWrapper{
             comboBox.setMinWidth(this.getWidth() - this.getGraphicTextGap() * 2);
             comboBox.setOnAction((e) -> {
                 commitEdit(comboBox.getSelectionModel().getSelectedItem());
-//                tableWrapper.getServiceMediator().wasChanged(tableWrapper,comboBox.getSelectionModel().getSelectedItem());
+//                tableWrapper.getServiceTables().wasChanged(tableWrapper,comboBox.getSelectionModel().getSelectedItem());
 
 
 

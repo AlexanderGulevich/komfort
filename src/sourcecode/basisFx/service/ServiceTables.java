@@ -5,9 +5,8 @@ import basisFx.appCore.elements.TableWrapper;
 import basisFx.domain.ActiveRecord;
 import javafx.collections.ObservableList;
 
-public abstract class ServiceMediator {
+public abstract class ServiceTables implements Mediator{
 
-    public abstract void inform(AppNode node);
     public abstract void wasRemoved(AppNode node, ActiveRecord record);
     public abstract void wasChanged(AppNode node, ActiveRecord record);
     public abstract void refresh(AppNode node);
@@ -16,7 +15,7 @@ public abstract class ServiceMediator {
     protected void commit(TableWrapper tableWrapper) {
             boolean isCommitted = tableWrapper.unitOfWork.commit();
             if (isCommitted) {
-                tableWrapper.getServiceMediator().refresh(tableWrapper);
+                tableWrapper.getServiceTables().refresh(tableWrapper);
             }
     }
     public  void refreshTable(TableWrapper tableWrapper, ObservableList<ActiveRecord> list ) {

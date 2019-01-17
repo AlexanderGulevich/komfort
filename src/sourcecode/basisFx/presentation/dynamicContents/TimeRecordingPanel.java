@@ -13,17 +13,17 @@ import basisFx.appCore.utils.Coordinate;
 import basisFx.domain.Employer;
 import basisFx.domain.TimeRecordingForEmployers;
 import basisFx.presentation.DynamicContentPanel;
-import basisFx.service.ServiceAutoCommitTableByCommonDate;
+import basisFx.service.ServiceTablesAutoCommitByDate;
 
 public class TimeRecordingPanel extends DynamicContentPanel {
 
-    private ServiceAutoCommitTableByCommonDate mediator;
+    private ServiceTablesAutoCommitByDate mediator;
     private DatePickerWrapper datePickerWrapper ;
     private TableWrapper tableWrapper;
 
     @Override
     public void createServices() {
-        mediator = new ServiceAutoCommitTableByCommonDate();
+        mediator = new ServiceTablesAutoCommitByDate();
     }
 
     @Override
@@ -32,7 +32,7 @@ public class TimeRecordingPanel extends DynamicContentPanel {
           datePickerWrapper = DatePickerWrapper.newBuilder()
                 .setCoordinate(new Coordinate(10d, null, null, 5d))
                 .setParentAnchor(dynamicContentAnchorHolder)
-                .setServiceMediator(mediator)
+                .setServiceTables(mediator)
                 .build();
 
 
@@ -41,7 +41,7 @@ public class TimeRecordingPanel extends DynamicContentPanel {
                 .setUnitOfWork(unitOfWork)
                 .setIsEditable(true)
                 .setIsSortableColums(false)
-                .setServiceMediator(mediator)
+                .setServiceTables(mediator)
                 .setColumnWrappers(
                         ColumnWrapperComboBox.newBuilder(Employer.class)
                                 .setColumnName("Работник")

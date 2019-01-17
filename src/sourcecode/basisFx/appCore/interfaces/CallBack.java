@@ -1,5 +1,5 @@
 package basisFx.appCore.interfaces;
 
 public interface CallBack {
-    public boolean call();
+    public void call();
 }

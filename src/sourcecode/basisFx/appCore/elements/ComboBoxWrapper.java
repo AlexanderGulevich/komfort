@@ -6,7 +6,7 @@ import basisFx.appCore.settings.CSSid;
 import basisFx.appCore.utils.Coordinate;
 import basisFx.appCore.utils.RangeForCombobox;
 import basisFx.appCore.windows.WindowAbstraction;
-import basisFx.service.ServiceMediator;
+import basisFx.service.ServiceTables;
 import javafx.collections.ObservableList;
 import javafx.scene.Group;
 import javafx.scene.Node;
@@ -26,7 +26,7 @@ public class ComboBoxWrapper  extends AppNode {
     protected ComboBox <RangeForCombobox> element;
     protected RangeForCombobox startRange;
     protected String string;
-    protected ServiceMediator serviceMediator;
+    protected ServiceTables serviceTables;
     private ObservableList<RangeForCombobox> comboboxValues;
     private RangeForCombobox selectedRange;
 
@@ -49,7 +49,7 @@ public class ComboBoxWrapper  extends AppNode {
         stage = builder.stage;
         string = builder.string;
         startRange = builder.startRange;
-        serviceMediator = builder.serviceMediator;
+        serviceTables = builder.serviceTables;
         comboboxValues=builder.comboboxValues;
         element = new ComboBox <>(comboboxValues);
 
@@ -67,7 +67,7 @@ public class ComboBoxWrapper  extends AppNode {
 
         element.setOnAction((e) -> {
             selectedRange=element.getSelectionModel().getSelectedItem();
-            serviceMediator.inform(this);
+            serviceTables.inform(this);
         });
 
         setId();
@@ -157,7 +157,7 @@ public class ComboBoxWrapper  extends AppNode {
         private String text;
         private Stage stage;
         private String string;
-        private ServiceMediator serviceMediator;
+        private ServiceTables serviceTables;
         private ObservableList<RangeForCombobox> comboboxValues;
         protected CSSclasses[] cssClasses;
         protected String[] cssClassesStrings;
@@ -257,8 +257,8 @@ public class ComboBoxWrapper  extends AppNode {
             return this;
         }
 
-        public Builder setServiceMediator(ServiceMediator val) {
-            serviceMediator = val;
+        public Builder setServiceTables(ServiceTables val) {
+            serviceTables = val;
             return this;
         }
 

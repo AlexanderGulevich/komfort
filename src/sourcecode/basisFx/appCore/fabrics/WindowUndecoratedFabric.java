@@ -39,7 +39,6 @@ public class WindowUndecoratedFabric  extends WindowFabric{
 
         WindowImplInfo windowImplInfo = new WindowImplInfo(builder) ;
         WindowAbstractionUndecorated windowUndecorated=new WindowAbstractionUndecorated(windowImplInfo);
-        Registry.infoWindow=windowUndecorated;
         return windowUndecorated;
     }
 
@@ -48,7 +47,6 @@ public class WindowUndecoratedFabric  extends WindowFabric{
 
         WindowImplSubWindow windowImplSubWindow=new WindowImplSubWindow( builder);
         WindowAbstractionUndecorated windowUndecorated=new WindowAbstractionUndecorated(windowImplSubWindow);
-        Registry.subWindow=windowUndecorated;
         return windowUndecorated;
     }
 

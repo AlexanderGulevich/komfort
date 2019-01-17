@@ -5,7 +5,7 @@ import basisFx.appCore.grid.ButSizeLittle;
 import basisFx.appCore.settings.CSSclasses;
 import basisFx.appCore.utils.RangeForCombobox;
 import basisFx.presentation.DynamicContentPanel;
-import basisFx.service.ServiceTwoLinkedTable;
+import basisFx.service.ServiceTablesTwoLinkedTable;
 import basisFx.appCore.elements.TableWrapper;
 import basisFx.appCore.grid.SingleTable;
 import basisFx.appCore.grid.TwoHorisontalBondGrids;
@@ -18,13 +18,13 @@ import basisFx.domain.EmployeesRatePerHour;
 import basisFx.domain.Employer;
 
 public class EmployeesPanel extends DynamicContentPanel {
-    private ServiceTwoLinkedTable mediatorServiceTwoLinkedTable;
+    private ServiceTablesTwoLinkedTable mediatorServiceTwoLinkedTable;
     private TableWrapper leftTableWrapper ;
     private TableWrapper rightTableWrapper ;
 
     @Override
     public void createServices() {
-        mediatorServiceTwoLinkedTable =new ServiceTwoLinkedTable();
+        mediatorServiceTwoLinkedTable =new ServiceTablesTwoLinkedTable();
     }
 
     @Override
@@ -37,7 +37,7 @@ public class EmployeesPanel extends DynamicContentPanel {
                 .setUnitOfWork(unitOfWork)
                 .setIsEditable(true)
                 .setIsSortableColums(false)
-                .setServiceMediator(mediatorServiceTwoLinkedTable)
+                .setServiceTables(mediatorServiceTwoLinkedTable)
                 .setColumnWrappers(
                         ColumnWrapperString.newBuilder()
                                 .setColumnName("ФИО")
@@ -55,7 +55,7 @@ public class EmployeesPanel extends DynamicContentPanel {
                 .setUnitOfWork(unitOfWork)
                 .setIsEditable(true)
                 .setIsSortableColums(false)
-                .setServiceMediator(mediatorServiceTwoLinkedTable)
+                .setServiceTables(mediatorServiceTwoLinkedTable)
                 .setColumnWrappers(
                         ColumnWrapperDouble.newBuilder()
                                 .setColumnName("Тариф")
@@ -96,8 +96,8 @@ public class EmployeesPanel extends DynamicContentPanel {
                 .setCssClasses(CSSclasses.COMBOBOX_BFx)
                 .setParentAnchor(dynamicContentAnchorHolder)
                 .setStartRange(RangeForCombobox.DAY30)
-                .setServiceMediator(mediatorServiceTwoLinkedTable)
-                .setComboboxValues(RangeForCombobox.getAsList(
+                .setServiceTables(mediatorServiceTwoLinkedTable)
+                .setComboboxValues(RangeForCombobox.getParticular(
                         RangeForCombobox.DAY30,
                         RangeForCombobox.DAY60,
                         RangeForCombobox.DAY30,

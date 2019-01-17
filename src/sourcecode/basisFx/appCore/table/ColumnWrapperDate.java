@@ -2,7 +2,6 @@ package basisFx.appCore.table;
 
 import basisFx.appCore.elements.TableWrapper;
 import basisFx.appCore.settings.CSSclasses;
-import basisFx.appCore.settings.CSSid;
 import basisFx.domain.ActiveRecord;
 import javafx.beans.value.ObservableValue;
 import javafx.beans.value.WritableValue;
@@ -56,7 +55,7 @@ public class ColumnWrapperDate extends ColumnWrapper{
                     ((WritableValue<LocalDate>)v).setValue(event.getNewValue());
                 }
                 ActiveRecord domain = (ActiveRecord) event.getRowValue();
-                tableWrapper.getServiceMediator().wasChanged(tableWrapper,domain);
+                tableWrapper.getServiceTables().wasChanged(tableWrapper,domain);
 
             }else {
 

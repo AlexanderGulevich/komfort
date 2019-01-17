@@ -4,7 +4,7 @@ import basisFx.appCore.events.AppEvent;
 import basisFx.appCore.settings.CSSclasses;
 import basisFx.appCore.settings.CSSid;
 import basisFx.appCore.windows.WindowAbstraction;
-import basisFx.service.ServiceMediator;
+import basisFx.service.ServiceTables;
 import basisFx.appCore.utils.Coordinate;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -24,7 +24,7 @@ import java.util.ArrayList;
 public class DatePickerWrapper  extends AppNode{
 
     private DatePicker element;
-    private ServiceMediator serviceMediator;
+    private ServiceTables serviceTables;
     private LocalDate date;
     private DatePickerWrapper datePickerWrapper;
 
@@ -41,7 +41,7 @@ public class DatePickerWrapper  extends AppNode{
         parentScrollPane = builder.parentScrollPane;
         metaName = builder.metaName;
         stage = builder.stage;
-        serviceMediator = builder.serviceMediator;
+        serviceTables = builder.serviceTables;
         datePickerWrapper=this;
         applyWidth();
         createDatePicker();
@@ -69,14 +69,14 @@ public class DatePickerWrapper  extends AppNode{
         element.setPromptText("");
 //        element.setOnAction((e) -> {
 //               this.date = element.getValue();
-//               serviceMediator.informParentWindow(this);
+//               serviceTables.informParentWindow(this);
 //
 //        });
         element.valueProperty().addListener(new ChangeListener<LocalDate>() {
             @Override
             public void changed(ObservableValue<? extends LocalDate> observable, LocalDate oldValue, LocalDate newValue) {
                 date = element.getValue();
-                serviceMediator.inform(datePickerWrapper);
+                serviceTables.inform(datePickerWrapper);
             }
         });
     }
@@ -131,7 +131,7 @@ public class DatePickerWrapper  extends AppNode{
         private ScrollPane parentScrollPane;
         private String metaName;
         private Stage stage;
-        private ServiceMediator serviceMediator;
+        private ServiceTables serviceTables;
         protected CSSclasses[] cssClasses;
         protected String[] cssClassesStrings;
 
@@ -206,8 +206,8 @@ public class DatePickerWrapper  extends AppNode{
             return this;
         }
 
-        public Builder setServiceMediator(ServiceMediator val) {
-            serviceMediator = val;
+        public Builder setServiceTables(ServiceTables val) {
+            serviceTables = val;
             return this;
         }
 

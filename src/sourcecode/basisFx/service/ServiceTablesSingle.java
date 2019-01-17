@@ -5,19 +5,15 @@ import basisFx.appCore.elements.TableWrapper;
 import basisFx.dataSource.UnitOfWork;
 import basisFx.domain.ActiveRecord;
 
-import java.sql.SQLException;
-
-public class ServiceSingleTable extends ServiceMediator {
+public class ServiceTablesSingle extends ServiceTables {
 
     private TableWrapper tableWrapper;
-
     public void setTableWrapper(TableWrapper tableWrapper) {
         this.tableWrapper = tableWrapper;
     }
 
     @Override
-    public void inform(AppNode node) {
-
+    public void inform(Object node) {
     }
 
     @Override
@@ -32,7 +28,6 @@ public class ServiceSingleTable extends ServiceMediator {
             }
         }
     }
-
     @Override
     public void wasChanged(AppNode node, ActiveRecord record) {
         UnitOfWork unitOfWork = ((TableWrapper) node).unitOfWork;
@@ -46,8 +41,7 @@ public class ServiceSingleTable extends ServiceMediator {
                 unitOfWork.registerNew(record.entityName,record);
             }
                 unitOfWork.commit();
-                ((TableWrapper) node).getServiceMediator().refresh(node);
-
+                ((TableWrapper) node).getServiceTables().refresh(node);
         }
     }
 

@@ -9,9 +9,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.util.Callback;
-import javafx.util.StringConverter;
 import javafx.util.converter.DefaultStringConverter;
-import javafx.util.converter.DoubleStringConverter;
 
 public class ColumnWrapperString<T> extends ColumnWrapper{
     protected TableColumn<T,String> column;
@@ -51,7 +49,7 @@ public class ColumnWrapperString<T> extends ColumnWrapper{
                     ((WritableValue<String>)value).setValue(event.getNewValue());
                 }
                 ActiveRecord domain = (ActiveRecord) event.getRowValue();
-                tableWrapper.getServiceMediator().wasChanged(tableWrapper,domain);
+                tableWrapper.getServiceTables().wasChanged(tableWrapper,domain);
 
             };
         });

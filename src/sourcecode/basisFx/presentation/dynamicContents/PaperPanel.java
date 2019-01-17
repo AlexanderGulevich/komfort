@@ -7,7 +7,7 @@ import basisFx.appCore.grid.SingleTable;
 import basisFx.appCore.grid.TwoHorisontalBondGrids;
 import basisFx.appCore.elements.GridPaneWrapper;
 import basisFx.presentation.DynamicContentPanel;
-import basisFx.service.ServiceTwoLinkedTable;
+import basisFx.service.ServiceTablesTwoLinkedTable;
 import basisFx.appCore.table.ColumnWrapperComboBox;
 import basisFx.appCore.table.ColumnWrapperDate;
 import basisFx.appCore.table.ColumnWrapperDouble;
@@ -17,13 +17,13 @@ import basisFx.domain.PaperPrice;
 import basisFx.domain.Sleeve;
 
 public class PaperPanel  extends DynamicContentPanel {
-    private ServiceTwoLinkedTable mediatorServiceTwoLinkedTable;
+    private ServiceTablesTwoLinkedTable mediatorServiceTwoLinkedTable;
     private TableWrapper leftTableWrapper ;
     private TableWrapper rightTableWrapper ;
 
     @Override
     public void createServices() {
-        mediatorServiceTwoLinkedTable =new ServiceTwoLinkedTable();
+        mediatorServiceTwoLinkedTable =new ServiceTablesTwoLinkedTable();
     }
 
     @Override
@@ -36,7 +36,7 @@ public class PaperPanel  extends DynamicContentPanel {
                 .setUnitOfWork(unitOfWork)
                 .setIsEditable(true)
                 .setIsSortableColums(false)
-                .setServiceMediator(mediatorServiceTwoLinkedTable)
+                .setServiceTables(mediatorServiceTwoLinkedTable)
                 .setColumnWrappers(
                         ColumnWrapperComboBox.newBuilder(Counterparty.class)
                                 .setColumnName("Поставщик")
@@ -55,7 +55,7 @@ public class PaperPanel  extends DynamicContentPanel {
                 .setUnitOfWork(unitOfWork)
                 .setIsEditable(true)
                 .setIsSortableColums(false)
-                .setServiceMediator(mediatorServiceTwoLinkedTable)
+                .setServiceTables(mediatorServiceTwoLinkedTable)
                 .setColumnWrappers(
                         ColumnWrapperDouble.newBuilder()
                                 .setColumnName("Цена")

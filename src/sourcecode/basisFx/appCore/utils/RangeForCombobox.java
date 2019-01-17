@@ -2,6 +2,7 @@ package basisFx.appCore.utils;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public enum RangeForCombobox {
@@ -32,11 +33,17 @@ public enum RangeForCombobox {
        return  RangeForCombobox.valueOf(s);
     }
 
-    public static  ObservableList<RangeForCombobox> getAsList(RangeForCombobox ... active){
-        List<RangeForCombobox> list = Arrays.asList(active);
+    public static  ObservableList<RangeForCombobox> getParticular(RangeForCombobox first, RangeForCombobox ... subsequent){
+        List<RangeForCombobox> list = Arrays.asList(subsequent);
+        Collections.reverse(list);
+        list.add(first);
+        Collections.reverse(list);
         return  FXCollections.observableList(list);
     }
-
+    public static  ObservableList<RangeForCombobox> getAll(){
+        List<RangeForCombobox> list = Arrays.asList(RangeForCombobox.values());
+        return  FXCollections.observableList(list);
+    }
     public RangeForCombobox getMain() {
         return main;
     }

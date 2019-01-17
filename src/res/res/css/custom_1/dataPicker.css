@@ -210,11 +210,21 @@
     -fx-background-insets:0;
     -fx-background-radius:  0;
     -fx-border-radius:  0;
+
+      -fx-text-fill:#2f4a6f;
+      -fx-font-family: "Roboto Light";
+      -fx-font-size: 14;
 }
 .DATEPICKER_BFx{
       -fx-border-width: 0.3  0.3  0.3  0.2 ;
       -fx-border-style: solid;
       -fx-border-color:#494c50;
+
+      -fx-background-insets:0;
+
+        -fx-text-fill:#2f4a6f;
+        -fx-font-family: "Roboto Light";
+        -fx-font-size: 14;
 }
 
 .DATEPICKER_BFx:editable .date-picker-display-node .text,

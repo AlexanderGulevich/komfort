@@ -7,6 +7,7 @@ public enum CSSclasses {
     RADIO_BFx("RADIO_BFx"),
     DATEPICKER_BFx("DATEPICKER_BFx"),
     TEXTFIELD_BFx("TEXTFIELD_BFx"),
+    wrappedHeaderColumn("wrappedHeaderColumn"),
     COMBOBOX_BFx("COMBOBOX_BFx");
 
 

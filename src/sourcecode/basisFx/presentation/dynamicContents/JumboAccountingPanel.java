@@ -11,16 +11,16 @@ import basisFx.appCore.table.ColumnWrapperDouble;
 import basisFx.appCore.utils.Coordinate;
 import basisFx.domain.*;
 import basisFx.presentation.DynamicContentPanel;
-import basisFx.service.ServiceAutoCommitTableByCommonDate;
+import basisFx.service.ServiceTablesAutoCommitByDate;
 
 public class JumboAccountingPanel extends DynamicContentPanel {
-    private ServiceAutoCommitTableByCommonDate mediator;
+    private ServiceTablesAutoCommitByDate mediator;
     private DatePickerWrapper datePickerWrapper;
     private TableWrapper tableWrapper;
 
     @Override
     public void createServices() {
-        mediator = new ServiceAutoCommitTableByCommonDate();
+        mediator = new ServiceTablesAutoCommitByDate();
     }
 
     @Override
@@ -29,7 +29,7 @@ public class JumboAccountingPanel extends DynamicContentPanel {
         datePickerWrapper = DatePickerWrapper.newBuilder()
                 .setCoordinate(new Coordinate(10d, null, null, 5d))
                 .setParentAnchor(dynamicContentAnchorHolder)
-                .setServiceMediator(mediator)
+                .setServiceTables(mediator)
                 .build();
 
 
@@ -38,7 +38,7 @@ public class JumboAccountingPanel extends DynamicContentPanel {
                 .setUnitOfWork(unitOfWork)
                 .setIsEditable(true)
                 .setIsSortableColums(false)
-                .setServiceMediator(mediator)
+                .setServiceTables(mediator)
                 .setColumnWrappers(
                         ColumnWrapperComboBox.newBuilder(Counterparty.class)
                                 .setColumnName("Контрагент")

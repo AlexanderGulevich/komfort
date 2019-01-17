@@ -3,7 +3,7 @@ package basisFx.presentation.dynamicContents;
 import basisFx.appCore.grid.ButPosTop;
 import basisFx.appCore.grid.ButSizeBig;
 import basisFx.appCore.grid.SingleTable;
-import basisFx.service.ServiceSingleTable;
+import basisFx.service.ServiceTablesSingle;
 import basisFx.appCore.elements.TableWrapper;
 import basisFx.appCore.elements.GridPaneWrapper;
 import basisFx.appCore.table.ColumnWrapperComboBox;
@@ -14,11 +14,11 @@ import basisFx.domain.Currency;
 import basisFx.presentation.DynamicContentPanel;
 
 public class CounterpartyPanel extends DynamicContentPanel {
-    private   ServiceSingleTable mediatorSingleTable;
+    private ServiceTablesSingle mediatorSingleTable;
     private   TableWrapper tableWrapper;
     @Override
     public void createServices() {
-        mediatorSingleTable = new ServiceSingleTable();
+        mediatorSingleTable = new ServiceTablesSingle();
     }
 
     @Override
@@ -29,7 +29,7 @@ public class CounterpartyPanel extends DynamicContentPanel {
                 .setUnitOfWork(unitOfWork)
                 .setIsEditable(true)
                 .setIsSortableColums(false)
-                .setServiceMediator(mediatorSingleTable)
+                .setServiceTables(mediatorSingleTable)
                 .setColumnWrappers(
                         ColumnWrapperString.newBuilder()
                                 .setColumnName("Наименование")

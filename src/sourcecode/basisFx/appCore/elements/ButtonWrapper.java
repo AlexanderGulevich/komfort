@@ -7,7 +7,7 @@ import basisFx.appCore.settings.FontsStore;
 import basisFx.appCore.utils.Coordinate;
 import basisFx.appCore.utils.FontLogic;
 import basisFx.appCore.windows.WindowAbstraction;
-import basisFx.service.ServiceMediator;
+import basisFx.service.ServiceTables;
 import javafx.geometry.Insets;
 import javafx.scene.Group;
 import javafx.scene.Node;
@@ -29,7 +29,7 @@ public class ButtonWrapper extends AppNode{
     protected String string;
     protected Node graphicNode;
     protected ContentDisplay contentDisplay;
-    protected ServiceMediator serviceMediator;
+    protected ServiceTables serviceTables;
 
     private ButtonWrapper(Builder builder) {
         element=new Button();
@@ -52,7 +52,7 @@ public class ButtonWrapper extends AppNode{
         string = builder.string;
         graphicNode = builder.graphicNode;
         contentDisplay = builder.contentDisplay;
-        serviceMediator = builder.serviceMediator;
+        serviceTables = builder.serviceTables;
         metaName=builder.metaName;
 
         cssClassesStrings=builder.cssClassesStrings;
@@ -73,8 +73,8 @@ public class ButtonWrapper extends AppNode{
 
     }
 
-    public ServiceMediator getServiceMediator() {
-        return serviceMediator;
+    public ServiceTables getServiceTables() {
+        return serviceTables;
     }
 
     public void makeActive() {
@@ -172,7 +172,7 @@ public class ButtonWrapper extends AppNode{
         private String string;
         private Node graphicNode;
         private ContentDisplay contentDisplay;
-        private ServiceMediator serviceMediator;
+        private ServiceTables serviceTables;
         private String metaName;
         private CSSclasses[] cssClasses;
         private String[] cssClassesStrings;
@@ -215,8 +215,8 @@ public class ButtonWrapper extends AppNode{
             return this;
         }
 
-        public Builder setServiceMediator(ServiceMediator serviceMediator) {
-            this.serviceMediator = serviceMediator;
+        public Builder setServiceTables(ServiceTables serviceTables) {
+            this.serviceTables = serviceTables;
             return this;
         }
 

@@ -58,11 +58,11 @@ public class ColumnWrapperSubWindow extends  ColumnWrapper{
     }
 
     private void subWindowHandler(SubWindowCell tableCell) {
-        WindowAbstraction subWindow = Registry.windowFabric.customSubWindow(windowBuilder);
-        currentWindow.getCrossWindowMediator().setSubWindow(subWindow);
-        currentWindow.getCrossWindowMediator().setReceiverDataFromSubWindow(
-                (dto)-> tableCell.updateItem(((ActiveRecordDTO) dto).getActiveRecord(),false)
-        );
+//        WindowAbstraction subWindow = Registry.windowFabric.customSubWindow(windowBuilder);
+//        currentWindow.getCrossWindowMediator().setSubWindow(subWindow);
+//        currentWindow.getCrossWindowMediator().setReceiverDataFromSubWindow(
+//                (dto)-> tableCell.updateItem(((ActiveRecordDTO) dto).getActiveRecord(),false)
+//        );
     }
 
     private void setCellValueFactory() {
@@ -79,7 +79,7 @@ public class ColumnWrapperSubWindow extends  ColumnWrapper{
                     if (value instanceof WritableValue) {
                         ((WritableValue<ActiveRecord>)value).setValue(event.getNewValue());
                         ActiveRecord domain = (ActiveRecord) event.getRowValue();
-                        tableWrapper.getServiceMediator().wasChanged(tableWrapper,domain);
+                        tableWrapper.getServiceTables().wasChanged(tableWrapper,domain);
                     }
                 }
             };

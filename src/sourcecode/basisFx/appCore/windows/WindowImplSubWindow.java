@@ -1,11 +1,14 @@
 package basisFx.appCore.windows;
 
 import basisFx.appCore.settings.Settings;
+import basisFx.appCore.utils.Registry;
+import basisFx.service.ServiceCrossWindow;
 
 import java.math.BigDecimal;
 
 
 public class WindowImplSubWindow extends WindowImpl{
+
 
     public WindowImplSubWindow(WindowBuilder builder) {
         super(builder);
@@ -17,7 +20,9 @@ public class WindowImplSubWindow extends WindowImpl{
     }
     @Override
     public void customInit(WindowAbstraction windowAbstraction) {
-
+        ServiceCrossWindow serviceCrossWindow = Registry.serviceCrossWindowMap.get(builder.fxmlFileName);
+        serviceCrossWindow.setCurrentWindow(windowAbstraction);
+        serviceCrossWindow.init();
     }
 
 }

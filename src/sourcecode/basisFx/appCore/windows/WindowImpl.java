@@ -1,6 +1,8 @@
 package basisFx.appCore.windows;
 
+import basisFx.appCore.interfaces.CallBack;
 import basisFx.appCore.interfaces.DynamicContentPanelCreator;
+import basisFx.appCore.utils.Coordinate;
 import basisFx.appCore.utils.FXMLFileLoader;
 import basisFx.appCore.guiStructura.GUIStructura;
 import javafx.scene.layout.AnchorPane;
@@ -11,12 +13,16 @@ public abstract class WindowImpl {
     protected WindowAbstraction windowAbstraction;
     protected AnchorPane topLevelAnchorFromFXML;
     protected String titleName;
+    protected String message;
     protected ButtonsForStage buttonsForStage;
     protected GUIStructura GUIStructura;
     protected DynamicContentPanelCreator dynamicContentPanelCreator;
     protected String parentAnchorNameForFXML;
+    protected WindowBuilder builder;
+    protected CallBack callBackSubWindowClosing;
 
     public WindowImpl(WindowBuilder builder) {
+        this.builder=builder;
         if (builder.fxmlFileName != null) {
             topLevelAnchorFromFXML = FXMLFileLoader.load(builder.fxmlFileName);
         }
@@ -31,6 +37,8 @@ public abstract class WindowImpl {
         parentAnchorNameForFXML=builder.parentAnchorNameForFXML;
         dynamicContentPanelCreator=builder.dynamicContentPanelCreator;
         titleName=builder.title;
+        message=builder.message;
+        callBackSubWindowClosing=builder.callBackSubWindowClosing;
 
     }
     public WindowAbstraction getWindowAbstraction() {
@@ -65,11 +73,35 @@ public abstract class WindowImpl {
             buttonsForStage.initTemplateMethod(windowAbstraction);
         }
         if (parentAnchorNameForFXML != null && topLevelAnchorFromFXML != null ) {
-            ((AnchorPane) windowAbstraction.getNodeFromMap(parentAnchorNameForFXML)).getChildren().add(topLevelAnchorFromFXML);
+
+            AnchorPane parentAnchorHolder = (AnchorPane) windowAbstraction.getNodeFromMap(parentAnchorNameForFXML);
+
+            Coordinate coordinate = new Coordinate(0d, 0d, 0d, 0d);
+            coordinate.setChildNode(topLevelAnchorFromFXML);
+            coordinate.setParentAnchorPane(parentAnchorHolder);
+            coordinate.bonding();
+
         }
         if (dynamicContentPanelCreator != null) {
             dynamicContentPanelCreator.create().initTemplateMethod(windowAbstraction);
         }
         customInit(windowAbstraction);
+    }
+
+
+    public String getMessage() {
+        return message;
+    }
+
+    public ButtonsForStage getButtonsForStage() {
+        return buttonsForStage;
+    }
+
+    public DynamicContentPanelCreator getDynamicContentPanelCreator() {
+        return dynamicContentPanelCreator;
+    }
+
+    public CallBack getCallBackSubWindowClosing() {
+        return callBackSubWindowClosing;
     }
 }

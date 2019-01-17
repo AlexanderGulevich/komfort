@@ -15,9 +15,9 @@ public abstract class DynamicContentPanel {
     protected WindowAbstraction window;
     protected boolean gridVisibility =false;
 
-    public abstract void createServices();
-    public abstract void customDynamicElementsInit();
-    public abstract void initServices();
+    protected abstract void createServices();
+    protected abstract void customDynamicElementsInit();
+    protected abstract void initServices();
 
     public  void initTemplateMethod(WindowAbstraction windowAbstraction){
         window=windowAbstraction;
@@ -38,5 +38,7 @@ public abstract class DynamicContentPanel {
                 .build().getElement();
     }
 
-
+    public AnchorPane getDynamicContentAnchor() {
+        return dynamicContentAnchorHolder;
+    }
 }

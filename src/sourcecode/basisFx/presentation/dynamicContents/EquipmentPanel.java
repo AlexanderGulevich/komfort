@@ -2,8 +2,9 @@ package basisFx.presentation.dynamicContents;
 
 import basisFx.appCore.grid.ButPosTop;
 import basisFx.appCore.grid.ButSizeBig;
+import basisFx.appCore.settings.CSSclasses;
 import basisFx.presentation.DynamicContentPanel;
-import basisFx.service.ServiceSingleTable;
+import basisFx.service.ServiceTablesSingle;
 import basisFx.appCore.elements.TableWrapper;
 import basisFx.appCore.grid.SingleTable;
 import basisFx.appCore.elements.GridPaneWrapper;
@@ -12,30 +13,31 @@ import basisFx.appCore.utils.Coordinate;
 import basisFx.domain.Equipment;
 
 public class EquipmentPanel extends DynamicContentPanel {
-    private ServiceSingleTable mediatorSingleTable;
+    private ServiceTablesSingle mediatorSingleTable;
     private TableWrapper tableWrapper;
     @Override
     public void createServices() {
-        mediatorSingleTable = new ServiceSingleTable();
+        mediatorSingleTable = new ServiceTablesSingle();
     }
 
     @Override
     public void customDynamicElementsInit() {
 
          tableWrapper = TableWrapper.newBuilder()
-                .setActiveRecordClass(Equipment.class)
-                .setUnitOfWork(unitOfWork)
-                .setIsEditable(true)
-                .setIsSortableColums(false)
-                .setServiceMediator(mediatorSingleTable)
-                .setColumnWrappers(
-                        ColumnWrapperString.newBuilder()
-                                .setColumnName("Наименование")
-                                .setColumnSize(1d)
-                                .setIsEditeble(true)
-                                .setPropertyName("name")
-                                .build()
-                ).build();
+                 .setActiveRecordClass(Equipment.class)
+                 .setUnitOfWork(unitOfWork)
+                 .setIsEditable(true)
+                 .setCssClasses(CSSclasses.wrappedHeaderColumn)
+                 .setIsSortableColums(false)
+                 .setServiceTables(mediatorSingleTable)
+                 .setColumnWrappers(
+                         ColumnWrapperString.newBuilder()
+                                 .setColumnName("Наименование")
+                                 .setColumnSize(1d)
+                                 .setIsEditeble(true)
+                                 .setPropertyName("name")
+                                 .build()
+                 ).build();
 
 
         GridPaneWrapper.newBuilder()

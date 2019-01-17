@@ -9,14 +9,14 @@ import basisFx.appCore.table.ColumnWrapperInt;
 import basisFx.appCore.utils.Coordinate;
 import basisFx.domain.Jumbo;
 import basisFx.presentation.DynamicContentPanel;
-import basisFx.service.ServiceSingleTable;
+import basisFx.service.ServiceTablesSingle;
 
 public class JumboPanel extends DynamicContentPanel {
-    private    ServiceSingleTable mediatorSingleTable;
+    private ServiceTablesSingle mediatorSingleTable;
     private      TableWrapper tableWrapper ;
     @Override
     public void createServices() {
-        mediatorSingleTable = new ServiceSingleTable();
+        mediatorSingleTable = new ServiceTablesSingle();
     }
 
     @Override
@@ -26,7 +26,7 @@ public class JumboPanel extends DynamicContentPanel {
                 .setUnitOfWork(unitOfWork)
                 .setIsEditable(true)
                 .setIsSortableColums(false)
-                .setServiceMediator(mediatorSingleTable)
+                .setServiceTables(mediatorSingleTable)
                 .setColumnWrappers(
                         ColumnWrapperInt.newBuilder()
                                 .setColumnName("Ширина")

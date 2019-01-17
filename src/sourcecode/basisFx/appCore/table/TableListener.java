@@ -19,7 +19,7 @@ public class TableListener  implements ListChangeListener  {
 
             if (change.wasRemoved()) {
                 ActiveRecord domainObject = (ActiveRecord) change.getRemoved().get(0);
-                tableWrapper.getServiceMediator().wasRemoved(tableWrapper,domainObject);
+                tableWrapper.getServiceTables().wasRemoved(tableWrapper,domainObject);
 
             }
         }

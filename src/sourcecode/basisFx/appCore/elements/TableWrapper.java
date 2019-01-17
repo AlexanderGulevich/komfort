@@ -3,9 +3,10 @@ package basisFx.appCore.elements;
 import basisFx.appCore.grid.GridOrganization;
 import basisFx.appCore.settings.CSSclasses;
 import basisFx.appCore.utils.ActiveRecordDTO;
+import basisFx.appCore.utils.Coordinate;
 import basisFx.appCore.windows.WindowAbstraction;
 import basisFx.presentation.DynamicContentPanel;
-import basisFx.service.ServiceMediator;
+import basisFx.service.ServiceTables;
 import basisFx.appCore.table.ColumnWrapper;
 import basisFx.appCore.events.AppEvent;
 import basisFx.domain.ActiveRecord;
@@ -37,7 +38,7 @@ public  class TableWrapper extends AppNode  {
     private Double widthPercent;
     private ReadOnlyDoubleProperty parentWidthProperty;
     private double prefHeight;
-    private ServiceMediator serviceMediator;
+    private ServiceTables serviceTables;
     private ColumnWrapper [] columnWrappers;
     private TableView<ActiveRecord> element;
     public ObservableList<ActiveRecord>  list;
@@ -67,7 +68,7 @@ public  class TableWrapper extends AppNode  {
         columnResizePolicy = builder.columnResizePolicy;
         isSortableColums = builder.isSortableColums;
         prefHeight = builder.prefHeight;
-        setServiceMediator(builder.serviceMediator);
+        setServiceTables(builder.serviceTables);
         columnWrappers = builder.columnWrappers;
         unitOfWork = builder.unitOfWork;
         clickedDomain = builder.clickedDomain;
@@ -79,6 +80,7 @@ public  class TableWrapper extends AppNode  {
         gridOrganization=builder.gridOrganization;
         gridName=builder.gridName;
         className=builder.className;
+        coordinate=builder.coordinate;
         windowAbstraction=builder.windowAbstraction;
         setElementToWindowRegistry();
         createActiveRecord(builder);
@@ -86,9 +88,11 @@ public  class TableWrapper extends AppNode  {
 
         cssClassesStrings=builder.cssClassesStrings;
         cssClasses=builder.cssClasses;
-        applyCssClasses();
 
         element.getStyleClass().add(CSSclasses.TABLE_BFx.get());
+
+        applyCssClasses();
+
         applyColumnResizePolicy();
         applyColums();
         applyEditable();
@@ -99,6 +103,7 @@ public  class TableWrapper extends AppNode  {
         setClickedRowDetection();
         createGrid();
         applyClassName();
+        bond(this);
     }
 
     private void applyClassName() {
@@ -122,8 +127,8 @@ public  class TableWrapper extends AppNode  {
         }
     }
 
-    public ServiceMediator getServiceMediator() {
-        return serviceMediator;
+    public ServiceTables getServiceTables() {
+        return serviceTables;
     }
 
     private void createActiveRecord(Builder builder) {
@@ -218,37 +223,37 @@ public  class TableWrapper extends AppNode  {
             TableRow<ActiveRecord> row = new TableRow<>();
             row.setOnMouseClicked(event -> {
                         singleClickHandler(row, event);
-                        doubleClickHandler(row, event);
+//                        doubleClickHandler(row, event);
                     }
             );
             return row ;
         });
     }
 
-    private void doubleClickHandler(TableRow<ActiveRecord> row, MouseEvent event) {
-        if (! row.isEmpty() && event.getButton()== MouseButton.PRIMARY
-                && event.getClickCount() == 2) {
-            clickedDomain=row.getItem();
-
-            if (windowAbstraction != null) {
-                if (windowAbstraction.hasParentWindow()) {
-                    if (windowAbstraction.getCrossWindowMediator() != null) {
-                        windowAbstraction.getCrossWindowMediator().informParentWindow(new ActiveRecordDTO(clickedDomain));
-                    }
-
-
-                }
-            }
-
-        }
-    }
+//    private void doubleClickHandler(TableRow<ActiveRecord> row, MouseEvent event) {
+//        if (! row.isEmpty() && event.getButton()== MouseButton.PRIMARY
+//                && event.getClickCount() == 2) {
+//            clickedDomain=row.getItem();
+//
+//            if (windowAbstraction != null) {
+//                if (windowAbstraction.hasParentWindow()) {
+//                    if (windowAbstraction.getCrossWindowMediator() != null) {
+//                        windowAbstraction.getCrossWindowMediator().informParentWindow(new ActiveRecordDTO(clickedDomain));
+//                    }
+//
+//
+//                }
+//            }
+//
+//        }
+//    }
 
     private void singleClickHandler(TableRow<ActiveRecord> row, MouseEvent event) {
         if (! row.isEmpty() && event.getButton()== MouseButton.PRIMARY
                 && event.getClickCount() == 1) {
            clickedDomain=row.getItem();
-            if (serviceMediator != null) {
-                serviceMediator.inform(this);
+            if (serviceTables != null) {
+                serviceTables.inform(this);
             }
         }
     }
@@ -290,11 +295,13 @@ public  class TableWrapper extends AppNode  {
         return false;
     }
 
-    public void setServiceMediator(ServiceMediator serviceMediator) {
-        this.serviceMediator = serviceMediator;
+    public void setServiceTables(ServiceTables serviceTables) {
+        this.serviceTables = serviceTables;
     }
 
     public static final class Builder {
+
+        public Coordinate coordinate;
         public WindowAbstraction windowAbstraction;
         public DynamicContentPanel dynamicContentPanel;
         private Class activeRecordClass;
@@ -313,7 +320,7 @@ public  class TableWrapper extends AppNode  {
         private Callback<TableView.ResizeFeatures, Boolean> columnResizePolicy;
         private boolean isSortableColums;
         private double prefHeight;
-        private ServiceMediator serviceMediator;
+        private ServiceTables serviceTables;
         private ColumnWrapper[] columnWrappers;
         private UnitOfWork unitOfWork;
         private ActiveRecord clickedDomain;
@@ -324,13 +331,19 @@ public  class TableWrapper extends AppNode  {
         protected CSSclasses[] cssClasses;
         protected String[] cssClassesStrings;
 
-
-        public void setCssClasses(CSSclasses...  cssClasses) {
-            this.cssClasses = cssClasses;
+        public Builder setCoordinate(Coordinate coordinate) {
+            this.coordinate = coordinate;
+            return this;
         }
 
-        public void setCssClassesStrings(String... cssClassesStrings) {
+        public Builder setCssClasses(CSSclasses...  cssClasses) {
+            this.cssClasses = cssClasses;
+            return this;
+        }
+
+        public Builder setCssClassesStrings(String... cssClassesStrings) {
             this.cssClassesStrings = cssClassesStrings;
+            return this;
         }
 
         public  Builder setGridName(String val) {
@@ -444,8 +457,8 @@ public  class TableWrapper extends AppNode  {
             return this;
         }
 
-        public Builder setServiceMediator(ServiceMediator val) {
-            serviceMediator = val;
+        public Builder setServiceTables(ServiceTables val) {
+            serviceTables = val;
             return this;
         }
 

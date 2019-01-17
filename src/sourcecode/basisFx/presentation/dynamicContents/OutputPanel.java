@@ -9,17 +9,17 @@ import basisFx.appCore.table.ColumnWrapperInt;
 import basisFx.appCore.utils.Coordinate;
 import basisFx.domain.*;
 import basisFx.presentation.DynamicContentPanel;
-import basisFx.service.ServiceAutoCommitTableByCommonDate;
+import basisFx.service.ServiceTablesAutoCommitByDate;
 
 public class OutputPanel  extends DynamicContentPanel {
 
-    private ServiceAutoCommitTableByCommonDate mediator;
+    private ServiceTablesAutoCommitByDate mediator;
     private DatePickerWrapper datePickerWrapper;
     private TableWrapper tableWrapper ;
 
     @Override
     public void createServices() {
-        mediator = new ServiceAutoCommitTableByCommonDate();
+        mediator = new ServiceTablesAutoCommitByDate();
     }
 
     @Override
@@ -28,7 +28,7 @@ public class OutputPanel  extends DynamicContentPanel {
           datePickerWrapper = DatePickerWrapper.newBuilder()
                 .setCoordinate(new Coordinate(10d, null, null, 5d))
                 .setParentAnchor(dynamicContentAnchorHolder)
-                .setServiceMediator(mediator)
+                .setServiceTables(mediator)
                 .build();
 
 
@@ -37,7 +37,7 @@ public class OutputPanel  extends DynamicContentPanel {
                 .setUnitOfWork(unitOfWork)
                 .setIsEditable(true)
                 .setIsSortableColums(false)
-                .setServiceMediator(mediator)
+                .setServiceTables(mediator)
                 .setClass("wrappedHeaderColumn")
                 .setColumnWrappers(
                         ColumnWrapperComboBox.newBuilder(Equipment.class)

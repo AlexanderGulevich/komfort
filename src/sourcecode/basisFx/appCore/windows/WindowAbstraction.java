@@ -2,18 +2,16 @@ package basisFx.appCore.windows;
 
 import basisFx.appCore.utils.IconToPlatform;
 import basisFx.appCore.elements.AnchorWrapper;
-import basisFx.appCore.elements.AppNode;
 import basisFx.appCore.settings.CSSid;
 import basisFx.appCore.utils.Coordinate;
 import basisFx.presentation.DynamicContentPanel;
-import basisFx.service.CrossWindowMediator;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+
 import java.util.HashMap;
 
-public abstract class WindowAbstraction {
+public    abstract  class  WindowAbstraction<T extends  Object> {
 
     protected Stage stage;
     protected Scene scene;
@@ -21,11 +19,8 @@ public abstract class WindowAbstraction {
     protected AnchorPane root;
     protected AnchorPane topVisiblePanel;
     protected WindowImpl windowImpl;
-    protected WindowAbstraction parentWindow;
-    protected CrossWindowMediator crossWindowMediator=new CrossWindowMediator(this);
     public  enum DefaultPanelsNames {rootTransparent, topVisibleAnchor, mainContentAnchor}
-    protected HashMap<String,AppNode> appNodMap =new HashMap<>();
-    protected HashMap<String,Node> nodMap =new HashMap<>();
+    protected HashMap<String, T> nodMap =new HashMap<>();
 
     public WindowAbstraction(WindowImpl windowImpl ) {
         this.stage =new Stage();
@@ -46,33 +41,24 @@ public abstract class WindowAbstraction {
         windowImpl.initTemplateMethod(this);
     }
 
-    public void clearSubWindow() {
-        crossWindowMediator.clearSubWindow();
-    }
-    public boolean hasParentWindow(){
-        if ( parentWindow != null) {
-            return true;
-        }
-        return false;
-    }
+
     public void setCurrentDynamicContent(DynamicContentPanel currentDynamicContent) {
         this.currentDynamicContent = currentDynamicContent;
-    }
-    public CrossWindowMediator getCrossWindowMediator() {
-        return crossWindowMediator;
     }
     public void clearCurrentDynamicContentPanel() {
         this.currentDynamicContent = null;
     }
+
+    public DynamicContentPanel getCurrentDynamicContent() {
+        return currentDynamicContent;
+    }
+
     protected abstract void createScene();
 
-    public void setNodeToMap(AppNode node) {
-        nodMap.put(node.getMetaName(),node.getElement());
+    public void setNodeToMap(T  node, String name) {
+        nodMap.put(name,node);
     }
-    public void setNodeToMap(Node node, String name) {
-            nodMap.put(name,node);
-    }
-    public  Node getNodeFromMap(String str){
+    public T getNodeFromMap(String str){
         return nodMap.get(str);
     }
 
@@ -84,8 +70,9 @@ public abstract class WindowAbstraction {
                 .setCSSid(CSSid.TopVisiblePanel)
                 .setMetaName(DefaultPanelsNames.topVisibleAnchor.name())
                 .build();
-        setNodeToMap(anchorWrapper);
         topVisiblePanel =anchorWrapper.getElement();
+
+        setNodeToMap((T) topVisiblePanel,anchorWrapper.getMetaName());
     }
     public Scene getScene() {
         return scene;
@@ -100,4 +87,7 @@ public abstract class WindowAbstraction {
         return topVisiblePanel;
     }
 
+    public WindowImpl getWindowImpl() {
+        return windowImpl;
+    }
 }

@@ -2,7 +2,7 @@ package basisFx.presentation.dynamicContents;
 
 import basisFx.appCore.grid.ButPosTop;
 import basisFx.appCore.grid.ButSizeLittle;
-import basisFx.service.ServiceTwoLinkedTable;
+import basisFx.service.ServiceTablesTwoLinkedTable;
 import basisFx.appCore.elements.TableWrapper;
 import basisFx.appCore.grid.SingleTable;
 import basisFx.appCore.grid.TwoHorisontalBondGrids;
@@ -17,13 +17,13 @@ import basisFx.domain.Product;
 import basisFx.presentation.DynamicContentPanel;
 
 public class ProductPanel  extends DynamicContentPanel {
-    private ServiceTwoLinkedTable mediatorServiceTwoLinkedTable;
+    private ServiceTablesTwoLinkedTable mediatorServiceTwoLinkedTable;
     private TableWrapper leftTableWrapper;
     private TableWrapper rightTableWrapper;
 
     @Override
     public void createServices() {
-        mediatorServiceTwoLinkedTable =new ServiceTwoLinkedTable();
+        mediatorServiceTwoLinkedTable =new ServiceTablesTwoLinkedTable();
     }
 
     @Override
@@ -36,7 +36,7 @@ public class ProductPanel  extends DynamicContentPanel {
                 .setUnitOfWork(unitOfWork)
                 .setIsEditable(true)
                 .setIsSortableColums(false)
-                .setServiceMediator(mediatorServiceTwoLinkedTable)
+                .setServiceTables(mediatorServiceTwoLinkedTable)
                 .setColumnWrappers(
                         ColumnWrapperString.newBuilder()
                                 .setColumnName("Наименование")
@@ -60,7 +60,7 @@ public class ProductPanel  extends DynamicContentPanel {
                 .setUnitOfWork(unitOfWork)
                 .setIsEditable(true)
                 .setIsSortableColums(false)
-                .setServiceMediator(mediatorServiceTwoLinkedTable)
+                .setServiceTables(mediatorServiceTwoLinkedTable)
                 .setColumnWrappers(
                         ColumnWrapperDouble.newBuilder()
                                 .setColumnName("Цена")

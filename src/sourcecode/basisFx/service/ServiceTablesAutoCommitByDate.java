@@ -1,7 +1,6 @@
 package basisFx.service;
 
 import basisFx.appCore.elements.AppNode;
-import basisFx.appCore.elements.ButtonWrapper;
 import basisFx.appCore.elements.DatePickerWrapper;
 import basisFx.appCore.elements.TableWrapper;
 import basisFx.appCore.interfaces.RecordWithDate;
@@ -9,17 +8,16 @@ import basisFx.dataSource.UnitOfWork;
 import basisFx.domain.ActiveRecord;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.control.TableColumn;
 
 import java.time.LocalDate;
 
-public class ServiceAutoCommitTableByCommonDate extends ServiceMediator{
+public class ServiceTablesAutoCommitByDate extends ServiceTables {
     private TableWrapper tableWrapper;
     private DatePickerWrapper datePickerWrapper;
 //    private ButtonWrapper buttonWrapper;
 
     @Override
-    public void inform(AppNode node) {
+    public void inform(Object node) {
         if (node==datePickerWrapper){
             refresh(tableWrapper);
         }
