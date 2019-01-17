@@ -11,6 +11,9 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.util.Callback;
 import javafx.util.StringConverter;
+
+import java.io.PrintStream;
+import java.io.UnsupportedEncodingException;
 import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -36,6 +39,9 @@ public class ColumnWrapperDate extends ColumnWrapper{
 
         column.setCellValueFactory(new PropertyValueFactory<>(propertyName));
         column.setCellFactory(dateCellFactory);
+
+
+
 
         setOnEditCommit();
     }
@@ -177,7 +183,9 @@ public class ColumnWrapperDate extends ColumnWrapper{
                     setText(null);
                     setGraphic(datePicker);
                 } else {
-                    setText(getDate().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL)));
+                    setText(
+                            ("  "+ getDate().format(DateTimeFormatter.ofPattern("dd.MM.yyyy")) + " г."
+                    ));
                     setGraphic(null);
                 }
             }
@@ -211,11 +219,29 @@ public class ColumnWrapperDate extends ColumnWrapper{
 
 
     class CustomStringConverter extends StringConverter<LocalDate> {
-        DateTimeFormatter dateFormatter =//DateTimeFormatter.ofPattern("dd-MM-yyyy");
-                DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL);
+        DateTimeFormatter dateFormatter =
+                DateTimeFormatter.ofPattern("dd.MM.yyyy");
+        //                DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL);
+//                DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT);
+//        DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG);
+//                DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM);
         @Override
         public String toString(LocalDate date) {
             if (date != null) {
+
+//                PrintStream ps=null;
+//
+//                try {
+//                    ps = new PrintStream(System.out, true, "UTF-8");
+//                } catch (UnsupportedEncodingException e) {
+//                    e.printStackTrace();
+//                }
+//
+//                ps.println(dateFormatter.format(LocalDate.of(2019,11,8)));
+
+
+
+
                 return dateFormatter.format(date);
             } else {
                 return "";
