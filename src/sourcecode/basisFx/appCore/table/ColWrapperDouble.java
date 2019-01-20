@@ -12,13 +12,13 @@ import javafx.util.converter.DoubleStringConverter;
 
 import java.text.DecimalFormat;
 
-public class ColumnWrapperDouble <T>extends ColumnWrapper{
+public class ColWrapperDouble<T>extends ColWrapper {
 
     protected TableColumn<T,Double> column;
     protected String groupingSeparator ;
     protected DecimalFormat decimalFormat = new DecimalFormat("###,###.00");
 
-    private ColumnWrapperDouble(Builder builder) {
+    private ColWrapperDouble(Builder builder) {
         tableWrapper = builder.tableWrapper;
         propertyName = builder.propertyName;
         columnName = builder.columnName;
@@ -29,6 +29,7 @@ public class ColumnWrapperDouble <T>extends ColumnWrapper{
         column.setId("rightColumnContentElighment");
         groupingSeparator = String.valueOf(decimalFormat.getDecimalFormatSymbols().getGroupingSeparator());
 
+        column.setResizable(false);
         column.setEditable(isEditeble);
         column.setCellValueFactory(new PropertyValueFactory<>(propertyName));
         column.setCellFactory(TextFieldTableCell.forTableColumn(new CustomeDoubleStringConverter()));
@@ -122,8 +123,8 @@ public class ColumnWrapperDouble <T>extends ColumnWrapper{
             return this;
         }
 
-        public ColumnWrapperDouble build() {
-            return new ColumnWrapperDouble(this);
+        public ColWrapperDouble build() {
+            return new ColWrapperDouble(this);
         }
     }
 

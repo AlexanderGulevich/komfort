@@ -7,7 +7,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 
-public abstract class ButPosition {
+public abstract class CtrlPosition {
 
     protected Insets insets = new Insets(3, 3, 3, 3);
     protected GridPaneWrapper parentGridWrapper;

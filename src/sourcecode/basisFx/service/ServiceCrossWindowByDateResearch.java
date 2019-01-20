@@ -1,6 +1,6 @@
 package basisFx.service;
 
-import basisFx.appCore.elements.ComboboxHandler;
+import basisFx.appCore.elements.RangeDirector;
 import basisFx.appCore.elements.DatePickerHandler;
 import basisFx.appCore.elements.TableWrapper;
 import basisFx.appCore.events.ClosePopupAndSubWindow;
@@ -8,7 +8,7 @@ import basisFx.appCore.events.RowAddToTable;
 import basisFx.appCore.events.RowDeleteFromTable;
 import basisFx.appCore.events.StageDragging;
 import basisFx.appCore.utils.Coordinate;
-import basisFx.appCore.utils.RangeForCombobox;
+import basisFx.appCore.utils.Range;
 import basisFx.appCore.utils.Registry;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -19,7 +19,7 @@ import javafx.scene.layout.AnchorPane;
 
 public  class ServiceCrossWindowByDateResearch  extends ServiceCrossWindow   {
 
-    private ComboboxHandler comboboxHandler;
+    private RangeDirector rangeDirector;
     private DatePickerHandler datePickerHandlerSTART;
     private DatePickerHandler datePickerHandlerEND;
     private TableWrapper  table_wrapper;
@@ -62,11 +62,11 @@ public  class ServiceCrossWindowByDateResearch  extends ServiceCrossWindow   {
     }
 
     private void initComboboxHandler() {
-        comboboxHandler=new ComboboxHandler(
+        rangeDirector =new RangeDirector(
                 combobox,
                 this,
-                RangeForCombobox.LAST10,
-                RangeForCombobox.getAll()
+                Range.LAST10,
+                Range.getAll()
         );
     }
 
@@ -103,8 +103,8 @@ public  class ServiceCrossWindowByDateResearch  extends ServiceCrossWindow   {
         if (node == okBut) {
             informParentWindowAboutClosing();
         }
-        if (node == comboboxHandler) {
-            System.out.println("=========="+comboboxHandler.getSelectedRange());
+        if (node == rangeDirector) {
+            System.out.println("=========="+ rangeDirector.getSelectedRange());
         }
         if (node == datePickerHandlerSTART) {
             System.out.println("=========="+datePickerHandlerSTART.getSelectedDate());

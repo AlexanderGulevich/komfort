@@ -11,10 +11,10 @@ public class SingleTable extends GridOrganization{
     private Button del;
     protected TableWrapper tableWrapper=null;
 
-    public SingleTable(TableWrapper tableWrapper, ButSizeForGrid butSizeForGrid, ButPosition position) {
+    public SingleTable(TableWrapper tableWrapper, ButSizeForGrid butSizeForGrid, CtrlPosition position) {
 
             this.tableWrapper = tableWrapper;
-            this.butPosition =position;
+            this.ctrlPosition =position;
             this.butSizeForGrid = butSizeForGrid;
             this.butSizeForGrid.setTableWrapper(tableWrapper);
             this.butSizeForGrid.init();
@@ -25,8 +25,8 @@ public class SingleTable extends GridOrganization{
         this.tableWrapper = tableWrapper;
     }
 
-    public SingleTable(ButSizeForGrid butSizeForGrid, ButPosition position) {
-        this.butPosition =position;
+    public SingleTable(ButSizeForGrid butSizeForGrid, CtrlPosition position) {
+        this.ctrlPosition =position;
         this.butSizeForGrid = butSizeForGrid;
 
     }
@@ -42,7 +42,7 @@ public class SingleTable extends GridOrganization{
     public void organize() {
 
             if (butSizeForGrid instanceof ButSizeNon &&
-                    butPosition instanceof ButPosNotExist
+                    ctrlPosition instanceof CtrlPosNotExist
             ){
                 organizeNonButtons();
             }else{
@@ -55,10 +55,10 @@ public class SingleTable extends GridOrganization{
 
     private void organizeNonButtons() {
         parentGridWrapper.setColumnComputerWidth();
-        butPosition.setParentGridWrapper(parentGridWrapper);
+        ctrlPosition.setParentGridWrapper(parentGridWrapper);
         label= parentGridWrapper.label.getElement();
         bindHeight(tableWrapper);
-        butPosition.organize(label, tableWrapper.getElement()  );
+        ctrlPosition.organize(label, tableWrapper.getElement()  );
     }
 
     private void organizeWithButtons() {
@@ -69,12 +69,10 @@ public class SingleTable extends GridOrganization{
         parentGridWrapper.setColumnFixed(butSizeForGrid.getColumnWidth());
         parentGridWrapper.setColumnFixed(butSizeForGrid.getColumnWidth());
 
-        butPosition.setParentGridWrapper(parentGridWrapper);
-
-
+        ctrlPosition.setParentGridWrapper(parentGridWrapper);
         bindHeight(tableWrapper);
 
-        butPosition.organize(
+        ctrlPosition.organize(
                 parentGridWrapper.label.getElement(),
                 butSizeForGrid.buttonAdd,
                 butSizeForGrid.buttonDel,

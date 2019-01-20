@@ -3,12 +3,12 @@ package basisFx.presentation.dynamicContents;
 
 import basisFx.appCore.elements.DatePickerWrapper;
 import basisFx.appCore.elements.TableWrapper;
-import basisFx.appCore.grid.ButPosNotExist;
+import basisFx.appCore.grid.CtrlPosNotExist;
 import basisFx.appCore.elements.GridPaneWrapper;
 import basisFx.appCore.grid.ButSizeNon;
 import basisFx.appCore.grid.SingleTable;
-import basisFx.appCore.table.ColumnWrapperComboBox;
-import basisFx.appCore.table.ColumnWrapperDouble;
+import basisFx.appCore.table.ColWrapperComboBox;
+import basisFx.appCore.table.ColWrapperDouble;
 import basisFx.appCore.utils.Coordinate;
 import basisFx.domain.Employer;
 import basisFx.domain.TimeRecordingForEmployers;
@@ -42,15 +42,15 @@ public class TimeRecordingPanel extends DynamicContentPanel {
                 .setIsEditable(true)
                 .setIsSortableColums(false)
                 .setServiceTables(mediator)
-                .setColumnWrappers(
-                        ColumnWrapperComboBox.newBuilder(Employer.class)
+                .setColWrappers(
+                        ColWrapperComboBox.newBuilder(Employer.class)
                                 .setColumnName("Работник")
                                 .setColumnSize(0.7d)
                                 .setIsEditeble(false)
                                 .setPropertyName("employer")
                                 .build()
                                 ,
-                        ColumnWrapperDouble.newBuilder()
+                        ColWrapperDouble.newBuilder()
                                 .setColumnName("Отработанные часы")
                                 .setColumnSize(0.3d)
                                 .setIsEditeble(true)
@@ -61,7 +61,7 @@ public class TimeRecordingPanel extends DynamicContentPanel {
 
 
         GridPaneWrapper.newBuilder()
-                .setOrganization(new SingleTable(tableWrapper,new ButSizeNon(),new ButPosNotExist()))
+                .setOrganization(new SingleTable(tableWrapper,new ButSizeNon(),new CtrlPosNotExist()))
                 .setGridName("Учет рабочего времени")
                 .setParentAnchor(dynamicContentAnchorHolder)
                 .setCoordinate(new Coordinate(50d,10d,10d,0d))

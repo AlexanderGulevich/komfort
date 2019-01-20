@@ -49,7 +49,7 @@ repositories {
 dependencies {
 //    runtime files('libs/a.jar', 'libs/b.jar')
 //    runtime fileTree(dir: 'res')
-//    compile files('scenicView.jar');
+    compile files('scenicView.jar');
 
     //TEST
     testCompile group: 'junit', name: 'junit', version: '4.12'

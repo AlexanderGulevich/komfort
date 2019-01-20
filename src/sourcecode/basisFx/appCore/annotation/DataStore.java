@@ -10,4 +10,5 @@ import java.lang.annotation.Target;
 public @interface DataStore {
     Sorting SORTING () default Sorting.NONE ;
     boolean AS_OUTER_ID() default   false;
+    boolean ANALIZED_DATE() default   false;
 }

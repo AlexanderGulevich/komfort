@@ -2,12 +2,12 @@ package basisFx.presentation.dynamicContents;
 
 import basisFx.appCore.elements.DatePickerWrapper;
 import basisFx.appCore.elements.TableWrapper;
-import basisFx.appCore.grid.ButPosTop;
+import basisFx.appCore.grid.CtrlPosTop;
 import basisFx.appCore.grid.ButSizeBig;
 import basisFx.appCore.grid.SingleTable;
 import basisFx.appCore.elements.GridPaneWrapper;
-import basisFx.appCore.table.ColumnWrapperComboBox;
-import basisFx.appCore.table.ColumnWrapperDouble;
+import basisFx.appCore.table.ColWrapperComboBox;
+import basisFx.appCore.table.ColWrapperDouble;
 import basisFx.appCore.utils.Coordinate;
 import basisFx.domain.*;
 import basisFx.presentation.DynamicContentPanel;
@@ -39,14 +39,14 @@ public class JumboAccountingPanel extends DynamicContentPanel {
                 .setIsEditable(true)
                 .setIsSortableColums(false)
                 .setServiceTables(mediator)
-                .setColumnWrappers(
-                        ColumnWrapperComboBox.newBuilder(Counterparty.class)
+                .setColWrappers(
+                        ColWrapperComboBox.newBuilder(Counterparty.class)
                                 .setColumnName("Контрагент")
                                 .setColumnSize(0.7d)
                                 .setIsEditeble(true)
                                 .setPropertyName("counterparty")
                                 .build(),
-                        ColumnWrapperDouble.newBuilder()
+                        ColWrapperDouble.newBuilder()
                                 .setColumnName("Общий вес ролей")
                                 .setColumnSize(0.3d)
                                 .setIsEditeble(true)
@@ -57,7 +57,7 @@ public class JumboAccountingPanel extends DynamicContentPanel {
 
 
         GridPaneWrapper.newBuilder()
-                .setOrganization(new SingleTable(tableWrapper,new ButSizeBig(),new ButPosTop()))
+                .setOrganization(new SingleTable(tableWrapper,new ButSizeBig(),new CtrlPosTop()))
                 .setGridName("Учет джамбо-ролей")
                 .setParentAnchor(dynamicContentAnchorHolder)
                 .setCoordinate(new Coordinate(50d, 10d, 10d, 0d))

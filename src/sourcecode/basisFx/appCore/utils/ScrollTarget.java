@@ -1,6 +1,6 @@
 //package basisFx.presentation.dynamicContents;
 //
-//import basisFx.appCore.table.ColumnWrapper;
+//import basisFx.appCore.table.ColWrapper;
 //import basisFx.appCore.domainScetch.ComboBoxValue;
 //import basisFx.appCore.nods.AppNode;
 //import basisFx.appCore.nods.TableWrapper;
@@ -57,7 +57,7 @@
 //                .setActiveRecord(this.dataMapperFabric.getNamedDataMapper())
 //                .setDbTableName("Country").refresh()
 //                .setColums(
-//                        columnFabric.<Country,DefaultPanelsNames>string(ColumnWrapper.Bulder.create()
+//                        columnFabric.<Country,DefaultPanelsNames>string(ColWrapper.Bulder.create()
 //                                        .setColumnName("Наименование")
 //                                        .setPropertyName("name")
 //                                        .setValueChecking(check.createTextCheck())

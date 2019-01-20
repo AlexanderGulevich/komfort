@@ -11,10 +11,10 @@ import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.util.Callback;
 import javafx.util.converter.DefaultStringConverter;
 
-public class ColumnWrapperString<T> extends ColumnWrapper{
+public class ColWrapperString<T> extends ColWrapper {
     protected TableColumn<T,String> column;
 
-    private ColumnWrapperString(Builder builder) {
+    private ColWrapperString(Builder builder) {
         propertyName = builder.propertyName;
         columnName = builder.columnName;
         columnSize = builder.columnSize;
@@ -22,6 +22,7 @@ public class ColumnWrapperString<T> extends ColumnWrapper{
 
         column =  new TableColumn<>(columnName);
 
+        column.setResizable(false);
         column.setEditable(isEditeble);
         column.setCellValueFactory(new PropertyValueFactory<>(propertyName));
 //        column.setCellFactory(TextFieldTableCell.forTableColumn());
@@ -113,8 +114,8 @@ public class ColumnWrapperString<T> extends ColumnWrapper{
             return this;
         }
 
-        public ColumnWrapperString build() {
-            return new ColumnWrapperString(this);
+        public ColWrapperString build() {
+            return new ColWrapperString(this);
         }
     }
 

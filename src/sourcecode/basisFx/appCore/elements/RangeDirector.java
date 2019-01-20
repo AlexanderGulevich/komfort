@@ -1,23 +1,27 @@
 package basisFx.appCore.elements;
 
-import basisFx.appCore.utils.RangeForCombobox;
+import basisFx.appCore.settings.CSSclasses;
+import basisFx.appCore.utils.Range;
 import basisFx.service.Mediator;
 import javafx.collections.ObservableList;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.util.Callback;
+import lombok.Getter;
 
-public class ComboboxHandler {
+public class RangeDirector {
 
-    protected ComboBox<RangeForCombobox> comboBox;
-    private RangeForCombobox selectedRange;
+    @Getter protected ComboBox<Range> comboBox;
+    @Getter private Range selectedRange;
 
-    public ComboboxHandler(ComboBox<RangeForCombobox> comboBox,
-                           Mediator mediator,
-                           RangeForCombobox startRange,
-                           ObservableList<RangeForCombobox> range) {
+    public RangeDirector(ComboBox<Range> comboBox,
+                         Mediator mediator,
+                         Range startRange,
+                         ObservableList<Range> range) {
         this.comboBox = comboBox;
+        comboBox.getStyleClass().add(CSSclasses.COMBOBOX_BFx.name());
+        comboBox.getStyleClass().add("COMBOBOX_BFx_forGrid");
 
         comboBox.setOnAction((e) -> {
             selectedRange=comboBox.getSelectionModel().getSelectedItem();
@@ -25,6 +29,7 @@ public class ComboboxHandler {
         });
 
         comboBox.setValue(startRange);
+        selectedRange=startRange;
 
         comboBox.setItems(range);
 
@@ -33,20 +38,16 @@ public class ComboboxHandler {
 
 
 
-    public RangeForCombobox getSelectedRange() {
-        return selectedRange;
-    }
-
     private void setCellFactory() {
         comboBox.setCellFactory(
-                new Callback<ListView<RangeForCombobox>, ListCell<RangeForCombobox>>() {
-                    @Override public ListCell<RangeForCombobox> call(ListView<RangeForCombobox> param) {
-                        final ListCell<RangeForCombobox> cell = new ListCell<RangeForCombobox>() {
+                new Callback<ListView<Range>, ListCell<Range>>() {
+                    @Override public ListCell<Range> call(ListView<Range> param) {
+                        final ListCell<Range> cell = new ListCell<Range>() {
                             {
                                 super.setPrefWidth(200);
                             }
                             @Override
-                            public void updateItem(RangeForCombobox item, boolean empty) {
+                            public void updateItem(Range item, boolean empty) {
                                 super.updateItem(item, empty);
 
                                 if (item == null || empty) {
@@ -75,4 +76,5 @@ public class ComboboxHandler {
                         return cell;
                     }});
     }
+
 }

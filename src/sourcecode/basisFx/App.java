@@ -10,9 +10,12 @@ import basisFx.appCore.utils.Registry;
 import basisFx.appCore.windows.ButtonsForStageThreeEntity;
 import basisFx.appCore.windows.WindowAbstraction;
 import basisFx.appCore.windows.WindowBuilder;
+import basisFx.appCore.windows.WindowImplMain;
 import basisFx.presentation.MainMenuSketch;
 import basisFx.appCore.guiStructura.LeftAndTopMenuGUI;
 import javafx.stage.Stage;
+import org.scenicview.ScenicView;
+
 import java.sql.SQLException;
 
 public class App{
@@ -39,7 +42,7 @@ public class App{
         MenuFabric.menuLeftAndTopRepresentation( new MainMenuSketch());
 
 
-//        ScenicView.show(WindowImplMain.getInstance().getWindowAbstraction().getScene());
+//        ScenicView.show(Registry.mainWindow.getScene());
 
 //        Registry.windowFabric.customSubWindow(
 //                WindowBuilder.newBuilder()
@@ -104,7 +107,7 @@ public class App{
     }
     
 }
-// ColumnWrapperSubWindow.newBuilder()
+// ColWrapperPopup.newBuilder()
 //         .setColumnSize(1d)
 //         .setPropertyName("ftgnfrg")
 //         .setCurrentWindow(window)

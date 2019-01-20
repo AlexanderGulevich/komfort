@@ -4,7 +4,7 @@ import basisFx.appCore.events.AppEvent;
 import basisFx.appCore.settings.CSSclasses;
 import basisFx.appCore.settings.CSSid;
 import basisFx.appCore.utils.Coordinate;
-import basisFx.appCore.utils.RangeForCombobox;
+import basisFx.appCore.utils.Range;
 import basisFx.appCore.windows.WindowAbstraction;
 import basisFx.service.ServiceTables;
 import javafx.collections.ObservableList;
@@ -23,12 +23,12 @@ import java.util.ArrayList;
 
 public class ComboBoxWrapper  extends AppNode {
 
-    protected ComboBox <RangeForCombobox> element;
-    protected RangeForCombobox startRange;
+    protected ComboBox <Range> element;
+    protected Range startRange;
     protected String string;
     protected ServiceTables serviceTables;
-    private ObservableList<RangeForCombobox> comboboxValues;
-    private RangeForCombobox selectedRange;
+    private ObservableList<Range> comboboxValues;
+    private Range selectedRange;
 
 
     private ComboBoxWrapper(Builder builder) {
@@ -76,7 +76,7 @@ public class ComboBoxWrapper  extends AppNode {
 
     }
 
-    public RangeForCombobox getSelectedRange() {
+    public Range getSelectedRange() {
         return selectedRange;
     }
 
@@ -88,14 +88,14 @@ public class ComboBoxWrapper  extends AppNode {
 
     private void setCellFactory() {
         element.setCellFactory(
-                new Callback<ListView<RangeForCombobox>, ListCell<RangeForCombobox>>() {
-                    @Override public ListCell<RangeForCombobox> call(ListView<RangeForCombobox> param) {
-                        final ListCell<RangeForCombobox> cell = new ListCell<RangeForCombobox>() {
+                new Callback<ListView<Range>, ListCell<Range>>() {
+                    @Override public ListCell<Range> call(ListView<Range> param) {
+                        final ListCell<Range> cell = new ListCell<Range>() {
                             {
                                 super.setPrefWidth(200);
                             }
                             @Override
-                            public void updateItem(RangeForCombobox item, boolean empty) {
+                            public void updateItem(Range item, boolean empty) {
                                 super.updateItem(item, empty);
 
                                 if (item == null || empty) {
@@ -142,7 +142,7 @@ public class ComboBoxWrapper  extends AppNode {
 
 
     public static final class Builder {
-        public RangeForCombobox startRange;
+        public Range startRange;
         public WindowAbstraction windowAbstraction;
         private ArrayList<AppEvent> events;
         private CSSid CSSid;
@@ -158,7 +158,7 @@ public class ComboBoxWrapper  extends AppNode {
         private Stage stage;
         private String string;
         private ServiceTables serviceTables;
-        private ObservableList<RangeForCombobox> comboboxValues;
+        private ObservableList<Range> comboboxValues;
         protected CSSclasses[] cssClasses;
         protected String[] cssClassesStrings;
 
@@ -182,12 +182,12 @@ public class ComboBoxWrapper  extends AppNode {
             this.windowAbstraction = windowAbstraction;
         }
 
-        public Builder setStartRange(RangeForCombobox startRange) {
+        public Builder setStartRange(Range startRange) {
             this.startRange = startRange;
             return this;
         }
 
-        public Builder setComboboxValues(ObservableList<RangeForCombobox> comboboxValues) {
+        public Builder setComboboxValues(ObservableList<Range> comboboxValues) {
             this.comboboxValues = comboboxValues;
             return this;
         }

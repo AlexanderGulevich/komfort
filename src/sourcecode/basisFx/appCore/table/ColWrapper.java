@@ -2,7 +2,7 @@ package basisFx.appCore.table;
 
 import basisFx.appCore.elements.TableWrapper;
 import javafx.scene.control.TableColumn;
-public  abstract class ColumnWrapper<T,K> {
+public  abstract class ColWrapper<T,K> {
 
     public TableWrapper tableWrapper;
     public String propertyName;

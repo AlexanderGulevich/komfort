@@ -5,8 +5,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 import basisFx.appCore.utils.DomainPropertiesMetaInfo;
-import basisFx.appCore.interfaces.DateGetter;
 import basisFx.appCore.reflection.*;
+import basisFx.appCore.utils.Range;
 import basisFx.dataSource.Db;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
@@ -62,6 +62,14 @@ public abstract class ActiveRecord {
         ObservableList <ActiveRecord> list= FXCollections.observableArrayList();
         ArrayList<DomainPropertiesMetaInfo> domainPropertiesMetaInfoList = ReflectionInspectDomain.inspectDomainProperties(this);
         String exp = ReflectionGet.createfindAllByOuterIdExpression(this,domainPropertiesMetaInfoList, id);
+        ResultSet rs = Reflection.executeQuery(exp);
+        return ReflectionGet.getAllDomains(this,list, domainPropertiesMetaInfoList, rs);
+    }
+
+    public ObservableList<ActiveRecord> findAllByOuterIdAndRange(int id, Range   range){
+        ObservableList <ActiveRecord> list= FXCollections.observableArrayList();
+        ArrayList<DomainPropertiesMetaInfo> domainPropertiesMetaInfoList = ReflectionInspectDomain.inspectDomainProperties(this);
+        String exp = ReflectionGet.createfindAllByOuterIdAndRangeExpression(this,domainPropertiesMetaInfoList, id,range);
         ResultSet rs = Reflection.executeQuery(exp);
         return ReflectionGet.getAllDomains(this,list, domainPropertiesMetaInfoList, rs);
     }

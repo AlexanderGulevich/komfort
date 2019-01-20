@@ -13,7 +13,7 @@ public abstract class GridOrganization {
     protected ButtonFactory buttonFactory = ButtonFactory.getInstance();
     protected Label label;
 
-    protected ButPosition butPosition;
+    protected CtrlPosition ctrlPosition;
 
     public abstract void organize();
 
@@ -41,8 +41,8 @@ public abstract class GridOrganization {
         });
     }
 
-    public void setButPosition(ButPosition butPosition) {
-        this.butPosition = butPosition;
+    public void setCtrlPosition(CtrlPosition ctrlPosition) {
+        this.ctrlPosition = ctrlPosition;
     }
 
     public  void setTableWrapper(TableWrapper tableWrapper){};

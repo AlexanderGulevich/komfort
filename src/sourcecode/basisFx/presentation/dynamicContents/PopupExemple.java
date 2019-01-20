@@ -2,7 +2,7 @@ package basisFx.presentation.dynamicContents;
 
 import basisFx.appCore.elements.TableWrapper;
 import basisFx.appCore.settings.CSSclasses;
-import basisFx.appCore.table.ColumnWrapperString;
+import basisFx.appCore.table.ColWrapperString;
 import basisFx.appCore.utils.Coordinate;
 import basisFx.domain.Equipment;
 import basisFx.presentation.DynamicContentPanel;
@@ -28,8 +28,8 @@ public class PopupExemple extends DynamicContentPanel {
                 .setCssClasses(CSSclasses.wrappedHeaderColumn)
                 .setIsSortableColums(false)
                 .setServiceTables(mediatorSingleTable)
-                .setColumnWrappers(
-                        ColumnWrapperString.newBuilder()
+                .setColWrappers(
+                        ColWrapperString.newBuilder()
                                 .setColumnName("Наименование")
                                 .setColumnSize(1d)
                                 .setIsEditeble(true)

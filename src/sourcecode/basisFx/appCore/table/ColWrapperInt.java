@@ -12,14 +12,14 @@ import javafx.util.StringConverter;
 
 import java.text.DecimalFormat;
 
-public class ColumnWrapperInt<T> extends ColumnWrapper{
+public class ColWrapperInt<T> extends ColWrapper {
 
 
     protected TableColumn<T,Integer> column;
     protected String groupingSeparator ;
     protected DecimalFormat decimalFormat = new DecimalFormat("###,###.###");
 
-    private ColumnWrapperInt(Builder builder) {
+    private ColWrapperInt(Builder builder) {
         tableWrapper = builder.tableWrapper;
         propertyName = builder.propertyName;
         columnName = builder.columnName;
@@ -28,6 +28,7 @@ public class ColumnWrapperInt<T> extends ColumnWrapper{
 
 
         column =  new TableColumn<>(columnName);
+        column.setResizable(false);
         column.setId("rightColumnContentElighment");
         groupingSeparator = String.valueOf(decimalFormat.getDecimalFormatSymbols().getGroupingSeparator());
 
@@ -141,8 +142,8 @@ public class ColumnWrapperInt<T> extends ColumnWrapper{
             return this;
         }
 
-        public ColumnWrapperInt build() {
-            return new ColumnWrapperInt(this);
+        public ColWrapperInt build() {
+            return new ColWrapperInt(this);
         }
     }
 }

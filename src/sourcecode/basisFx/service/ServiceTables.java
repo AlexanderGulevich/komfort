@@ -18,7 +18,7 @@ public abstract class ServiceTables implements Mediator{
                 tableWrapper.getServiceTables().refresh(tableWrapper);
             }
     }
-    public  void refreshTable(TableWrapper tableWrapper, ObservableList<ActiveRecord> list ) {
+    public  void setItems(TableWrapper tableWrapper, ObservableList<ActiveRecord> list ) {
         tableWrapper.setItems(list);
     }
 

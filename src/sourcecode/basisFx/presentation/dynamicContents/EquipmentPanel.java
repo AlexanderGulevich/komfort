@@ -1,14 +1,14 @@
 package basisFx.presentation.dynamicContents;
 
-import basisFx.appCore.grid.ButPosTop;
+import basisFx.appCore.grid.CtrlPosTop;
 import basisFx.appCore.grid.ButSizeBig;
 import basisFx.appCore.settings.CSSclasses;
+import basisFx.appCore.table.ColWrapperString;
 import basisFx.presentation.DynamicContentPanel;
 import basisFx.service.ServiceTablesSingle;
 import basisFx.appCore.elements.TableWrapper;
 import basisFx.appCore.grid.SingleTable;
 import basisFx.appCore.elements.GridPaneWrapper;
-import basisFx.appCore.table.ColumnWrapperString;
 import basisFx.appCore.utils.Coordinate;
 import basisFx.domain.Equipment;
 
@@ -30,8 +30,8 @@ public class EquipmentPanel extends DynamicContentPanel {
                  .setCssClasses(CSSclasses.wrappedHeaderColumn)
                  .setIsSortableColums(false)
                  .setServiceTables(mediatorSingleTable)
-                 .setColumnWrappers(
-                         ColumnWrapperString.newBuilder()
+                 .setColWrappers(
+                         ColWrapperString.newBuilder()
                                  .setColumnName("Наименование")
                                  .setColumnSize(1d)
                                  .setIsEditeble(true)
@@ -41,7 +41,7 @@ public class EquipmentPanel extends DynamicContentPanel {
 
 
         GridPaneWrapper.newBuilder()
-                .setOrganization(new SingleTable(tableWrapper,new ButSizeBig(),new ButPosTop()))
+                .setOrganization(new SingleTable(tableWrapper,new ButSizeBig(),new CtrlPosTop()))
                 .setGridName("Оборудование")
                 .setParentAnchor(dynamicContentAnchorHolder)
                 .setCoordinate(new Coordinate(0d,10d,10d,0d))

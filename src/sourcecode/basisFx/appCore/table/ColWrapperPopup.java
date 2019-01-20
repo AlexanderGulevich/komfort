@@ -1,8 +1,6 @@
 package basisFx.appCore.table;
 
 import basisFx.appCore.elements.TableWrapper;
-import basisFx.appCore.utils.ActiveRecordDTO;
-import basisFx.appCore.utils.Registry;
 import basisFx.appCore.windows.WindowAbstraction;
 import basisFx.appCore.windows.WindowBuilder;
 import basisFx.domain.ActiveRecord;
@@ -13,7 +11,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseButton;
 
-public class ColumnWrapperSubWindow extends  ColumnWrapper{
+public class ColWrapperPopup extends ColWrapper {
 
     protected TableColumn<ActiveRecord, ActiveRecord> column;
     protected ActiveRecord domain;
@@ -21,7 +19,7 @@ public class ColumnWrapperSubWindow extends  ColumnWrapper{
     protected WindowAbstraction currentWindow;
     protected WindowBuilder windowBuilder;
 
-    private ColumnWrapperSubWindow(Builder builder) {
+    private ColWrapperPopup(Builder builder) {
         tableWrapper = builder.tableWrapper;
         propertyName = builder.propertyName;
         columnName = builder.columnName;
@@ -33,6 +31,7 @@ public class ColumnWrapperSubWindow extends  ColumnWrapper{
         currentWindow = builder.currentWindow;
         column =  new TableColumn<>(columnName);
         column.setEditable(isEditeble);
+        column.setResizable(false);
         setCellValueFactory();
         setCellFactory();
         setOnEditCommit();
@@ -205,8 +204,8 @@ public class ColumnWrapperSubWindow extends  ColumnWrapper{
             return this;
         }
 
-        public ColumnWrapperSubWindow build() {
-            return new ColumnWrapperSubWindow(this);
+        public ColWrapperPopup build() {
+            return new ColWrapperPopup(this);
         }
     }
 }

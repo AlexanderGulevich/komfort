@@ -2,12 +2,11 @@ package basisFx.appCore.elements;
 
 import basisFx.appCore.grid.GridOrganization;
 import basisFx.appCore.settings.CSSclasses;
-import basisFx.appCore.utils.ActiveRecordDTO;
+import basisFx.appCore.table.ColWrapper;
 import basisFx.appCore.utils.Coordinate;
 import basisFx.appCore.windows.WindowAbstraction;
 import basisFx.presentation.DynamicContentPanel;
 import basisFx.service.ServiceTables;
-import basisFx.appCore.table.ColumnWrapper;
 import basisFx.appCore.events.AppEvent;
 import basisFx.domain.ActiveRecord;
 import basisFx.dataSource.UnitOfWork;
@@ -39,7 +38,7 @@ public  class TableWrapper extends AppNode  {
     private ReadOnlyDoubleProperty parentWidthProperty;
     private double prefHeight;
     private ServiceTables serviceTables;
-    private ColumnWrapper [] columnWrappers;
+    private ColWrapper[] colWrappers;
     private TableView<ActiveRecord> element;
     public ObservableList<ActiveRecord>  list;
     public UnitOfWork unitOfWork;
@@ -69,7 +68,7 @@ public  class TableWrapper extends AppNode  {
         isSortableColums = builder.isSortableColums;
         prefHeight = builder.prefHeight;
         setServiceTables(builder.serviceTables);
-        columnWrappers = builder.columnWrappers;
+        colWrappers = builder.colWrappers;
         unitOfWork = builder.unitOfWork;
         clickedDomain = builder.clickedDomain;
         activeRecordClass = builder.activeRecordClass;
@@ -90,6 +89,7 @@ public  class TableWrapper extends AppNode  {
         cssClasses=builder.cssClasses;
 
         element.getStyleClass().add(CSSclasses.TABLE_BFx.get());
+//        element.setId("first_child_Red");
 
         applyCssClasses();
 
@@ -159,6 +159,9 @@ public  class TableWrapper extends AppNode  {
         applyListener();
         element.setItems(list);
         element.refresh();
+        element.getSelectionModel().focus(0);
+
+
 
     }
     private void applyEditable() {
@@ -180,8 +183,8 @@ public  class TableWrapper extends AppNode  {
         }
     }
     private void applyColums(){
-        if (columnWrappers != null) {
-            for (ColumnWrapper cw : columnWrappers) {
+        if (colWrappers != null) {
+            for (ColWrapper cw : colWrappers) {
                 element.getColumns().add(cw.getColumn());
                 applyColumsSize(cw);
                 cw.tableWrapper=this;
@@ -195,11 +198,11 @@ public  class TableWrapper extends AppNode  {
             next.setSortable(isSortableColums);
         }
     }
-    private void applyColumsSize(ColumnWrapper columnWrapper) {
-        TableColumn column = columnWrapper.getColumn();
+    private void applyColumsSize(ColWrapper colWrapper) {
+        TableColumn column = colWrapper.getColumn();
         column.prefWidthProperty()
                 .bind(this.element.widthProperty().multiply(
-                        columnWrapper.columnSize
+                        colWrapper.columnSize
                 ));
     }
     private void applyTablesWidthProperty() {
@@ -321,7 +324,7 @@ public  class TableWrapper extends AppNode  {
         private boolean isSortableColums;
         private double prefHeight;
         private ServiceTables serviceTables;
-        private ColumnWrapper[] columnWrappers;
+        private ColWrapper[] colWrappers;
         private UnitOfWork unitOfWork;
         private ActiveRecord clickedDomain;
         private boolean gridLinesVisibility=false;
@@ -462,8 +465,8 @@ public  class TableWrapper extends AppNode  {
             return this;
         }
 
-        public Builder setColumnWrappers(ColumnWrapper... val) {
-            columnWrappers = val;
+        public Builder setColWrappers(ColWrapper... val) {
+            colWrappers = val;
             return this;
         }
 

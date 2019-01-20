@@ -3,15 +3,15 @@ package basisFx.presentation.dynamicContents;
 import basisFx.appCore.elements.GridPaneWrapper;
 import basisFx.appCore.elements.TableWrapper;
 import basisFx.appCore.grid.*;
-import basisFx.service.ServiceTablesTwoLinkedTable;
+import basisFx.service.ServiceTablesTwoLinked;
 import basisFx.appCore.table.*;
 import basisFx.appCore.utils.Coordinate;
 import basisFx.domain.*;
 import basisFx.presentation.DynamicContentPanel;
 
 public class PacketPanel  extends DynamicContentPanel {
-    private ServiceTablesTwoLinkedTable mediatorServiceTwoLinkedTable1;
-    private ServiceTablesTwoLinkedTable mediatorServiceTwoLinkedTable2;
+    private ServiceTablesTwoLinked mediatorServiceTwoLinkedTable1;
+    private ServiceTablesTwoLinked mediatorServiceTwoLinkedTable2;
     private TableWrapper t1;
     private TableWrapper t2;
     private TableWrapper t3;
@@ -19,8 +19,8 @@ public class PacketPanel  extends DynamicContentPanel {
 
     @Override
     public void createServices() {
-            mediatorServiceTwoLinkedTable1 =new ServiceTablesTwoLinkedTable();
-            mediatorServiceTwoLinkedTable2 =new ServiceTablesTwoLinkedTable();
+            mediatorServiceTwoLinkedTable1 =new ServiceTablesTwoLinked();
+            mediatorServiceTwoLinkedTable2 =new ServiceTablesTwoLinked();
     }
 
     @Override
@@ -29,20 +29,20 @@ public class PacketPanel  extends DynamicContentPanel {
           t1 = TableWrapper.newBuilder()
                 .setGridLinesVisibility(gridVisibility)
                 .setGridName("Пакеты ")
-                .setOrganization(new SingleTable(new ButSizeLittle(),new ButPosTop()))
+                .setOrganization(new SingleTable(new ButSizeLittle(),new CtrlPosTop()))
                 .setActiveRecordClass(Packet.class)
                 .setUnitOfWork(unitOfWork)
                 .setIsEditable(true)
                 .setIsSortableColums(false)
                 .setServiceTables(mediatorServiceTwoLinkedTable1)
-                .setColumnWrappers(
-                        ColumnWrapperComboBox.newBuilder(PacketSize.class)
+                .setColWrappers(
+                        ColWrapperComboBox.newBuilder(PacketSize.class)
                                 .setColumnName("Размер")
                                 .setColumnSize(0.5d)
                                 .setIsEditeble(true)
                                 .setPropertyName("packetSize")
                                 .build(),
-                        ColumnWrapperComboBox.newBuilder(Counterparty.class)
+                        ColWrapperComboBox.newBuilder(Counterparty.class)
                                 .setColumnName("Поставщик")
                                 .setColumnSize(0.5d)
                                 .setIsEditeble(true)
@@ -54,20 +54,20 @@ public class PacketPanel  extends DynamicContentPanel {
           t2 = TableWrapper.newBuilder()
                 .setGridLinesVisibility(gridVisibility)
                 .setGridName("Реестр цен")
-                .setOrganization(new SingleTable(new ButSizeLittle(),new ButPosTop()))
+                .setOrganization(new SingleTable(new ButSizeLittle(),new CtrlPosTop()))
                 .setActiveRecordClass(PacketPrice.class)
                 .setUnitOfWork(unitOfWork)
                 .setIsEditable(true)
                 .setIsSortableColums(false)
                 .setServiceTables(mediatorServiceTwoLinkedTable1)
-                .setColumnWrappers(
-                        ColumnWrapperDouble.newBuilder()
+                .setColWrappers(
+                        ColWrapperDouble.newBuilder()
                                 .setColumnName("Тариф")
                                 .setColumnSize(0.3d)
                                 .setIsEditeble(true)
                                 .setPropertyName("price")
                                 .build(),
-                        ColumnWrapperDate.newBuilder()
+                        ColWrapperDate.newBuilder()
                                 .setColumnName("Действует с")
                                 .setColumnSize(0.7d)
                                 .setIsEditeble(true)
@@ -79,14 +79,14 @@ public class PacketPanel  extends DynamicContentPanel {
           t3 = TableWrapper.newBuilder()
                 .setGridLinesVisibility(gridVisibility)
                 .setGridName("Размеры пакетов ")
-                .setOrganization(new SingleTable(new ButSizeLittle(),new ButPosTop()))
+                .setOrganization(new SingleTable(new ButSizeLittle(),new CtrlPosTop()))
                 .setActiveRecordClass(PacketSize.class)
                 .setUnitOfWork(unitOfWork)
                 .setIsEditable(true)
                 .setIsSortableColums(false)
                 .setServiceTables(mediatorServiceTwoLinkedTable2)
-                .setColumnWrappers(
-                        ColumnWrapperString.newBuilder()
+                .setColWrappers(
+                        ColWrapperString.newBuilder()
                                 .setColumnName("Размер пакета")
                                 .setColumnSize(1d)
                                 .setIsEditeble(true)
@@ -98,20 +98,20 @@ public class PacketPanel  extends DynamicContentPanel {
           t4 = TableWrapper.newBuilder()
                 .setGridLinesVisibility(gridVisibility)
                 .setGridName("Вместимость пакетов")
-                .setOrganization(new SingleTable(new ButSizeLittle(),new ButPosTop()))
+                .setOrganization(new SingleTable(new ButSizeLittle(),new CtrlPosTop()))
                 .setActiveRecordClass(PacketProductAccordance.class)
                 .setUnitOfWork(unitOfWork)
                 .setIsEditable(true)
                 .setIsSortableColums(false)
                 .setServiceTables(mediatorServiceTwoLinkedTable2)
-                .setColumnWrappers(
-                        ColumnWrapperComboBox.newBuilder(Product.class)
+                .setColWrappers(
+                        ColWrapperComboBox.newBuilder(Product.class)
                                 .setColumnName("Продукция")
                                 .setColumnSize(0.7d)
                                 .setIsEditeble(true)
                                 .setPropertyName("product")
                                 .build(),
-                        ColumnWrapperInt.newBuilder()
+                        ColWrapperInt.newBuilder()
                                 .setColumnName("Вместимость")
                                 .setColumnSize(0.3d)
                                 .setIsEditeble(true)

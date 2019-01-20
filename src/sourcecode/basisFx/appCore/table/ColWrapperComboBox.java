@@ -16,13 +16,14 @@ import javafx.util.Callback;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
-public class ColumnWrapperComboBox extends ColumnWrapper{
+public class ColWrapperComboBox extends ColWrapper {
 
     protected TableColumn<ActiveRecord, ActiveRecord> column;
     protected ActiveRecord domain;
     protected Class <? extends ActiveRecord> domainClass;
+    protected String space= "  ";
 
-    private ColumnWrapperComboBox(Builder builder) {
+    private ColWrapperComboBox(Builder builder) {
         tableWrapper = builder.tableWrapper;
         propertyName = builder.propertyName;
         columnName = builder.columnName;
@@ -31,6 +32,7 @@ public class ColumnWrapperComboBox extends ColumnWrapper{
         domainClass=builder.domainClass;
         createNewInstance();
         column =  new TableColumn<>(columnName);
+        column.setResizable(false);
         column.setEditable(isEditeble);
         setCellValueFactory();
         setCellFactory();
@@ -150,8 +152,8 @@ public class ColumnWrapperComboBox extends ColumnWrapper{
             return this;
         }
 
-        public ColumnWrapperComboBox build() {
-            return new ColumnWrapperComboBox(this);
+        public ColWrapperComboBox build() {
+            return new ColWrapperComboBox(this);
         }
     }
 
@@ -173,7 +175,8 @@ public class ColumnWrapperComboBox extends ColumnWrapper{
         @Override
         public void cancelEdit() {
             super.cancelEdit();
-            setText(getNamedDomainObject().toString());
+            String s = space + getNamedDomainObject().toString();
+            setText(s);
             setGraphic(null);
         }
 
@@ -190,19 +193,15 @@ public class ColumnWrapperComboBox extends ColumnWrapper{
                     }
                     String s = getNamedDomainObject().toString();
                     if (s != null) {
-                        s=" "+s;
+                        s=space+s;
                     }
-//                    setText(" "+getNamedDomainObject().toString());
-//                    setText(getNamedDomainObject().toString());
                     setText(s);
                     setGraphic(comboBox);
                 } else {
                     String s = getNamedDomainObject().toString();
                     if (s != null) {
-                        s=" "+s;
+                        s=space+s;
                     }
-//                    setText(" " +getNamedDomainObject().toString());
-//                    setText(getNamedDomainObject().toString());
                     setText(s);
                     setGraphic(null);
                 }
@@ -215,14 +214,11 @@ public class ColumnWrapperComboBox extends ColumnWrapper{
             comboBox = new ComboBox<>(comboBoxValues);
             comboBox.getStyleClass().add(CSSclasses.COMBOBOX_BFx.get());
             comboBox.setEditable(false);
-//            comboBox.setPromptText("fgfg");
             comboBoxConverter(comboBox);
             comboBox.valueProperty().set(getNamedDomainObject());
             comboBox.setMinWidth(this.getWidth() - this.getGraphicTextGap() * 2);
             comboBox.setOnAction((e) -> {
-//                System.err.println("Committed: " + comboBox.getSelectionModel().getSelectedItem());
                 commitEdit(comboBox.getSelectionModel().getSelectedItem());
-//                tableWrapper.getServiceTables().wasChanged(tableWrapper,domain);
             });
             comboBox.focusedProperty().addListener((ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) -> {
                 if (!newValue) {
@@ -232,7 +228,6 @@ public class ColumnWrapperComboBox extends ColumnWrapper{
         }
 
         private void comboBoxConverter(ComboBox<ActiveRecord> comboBox) {
-//             Define rendering of the list of values in ComboBox drop down.
             comboBox.setCellFactory((c) -> new ListCell<ActiveRecord>() {
                 @Override
                 protected void updateItem(ActiveRecord comboBoxValue, boolean empty) {
@@ -242,9 +237,8 @@ public class ColumnWrapperComboBox extends ColumnWrapper{
                     } else {
                         String s = comboBoxValue.toString();
                         if (s != null) {
-                            s=" "+s;
+                            s=space+s;
                         }
-//                        setText(" "+comboBoxValue.toString());
                         setText(s);
                     }
                 }

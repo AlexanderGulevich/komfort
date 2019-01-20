@@ -11,7 +11,7 @@ public class SleevePrice extends ActiveRecord {
             new SleevePrice();
     private SimpleObjectProperty<Double> price =
             new SimpleObjectProperty<>(this, "price", null);
-    @DataStore (SORTING = Sorting.DESC) private SimpleObjectProperty<LocalDate> startDate =
+    @DataStore (SORTING = Sorting.DESC, ANALIZED_DATE = true) private SimpleObjectProperty<LocalDate> startDate =
             new SimpleObjectProperty<>(this, "startDate", null);
     @DataStore (AS_OUTER_ID = true)private SimpleObjectProperty<Index> sleeveId =
             new SimpleObjectProperty<>(this, "sleeveId", null);

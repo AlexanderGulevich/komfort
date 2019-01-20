@@ -1,14 +1,6 @@
-.root {
--fx-table-cell-border-color: red;
-}
-.TABLE_BFx,#TABLE_BFx:focused,.TABLE_BFx:armed,.TABLE_BFx:selected{
+ .TABLE_BFx,#TABLE_BFx:focused,.TABLE_BFx:armed,.TABLE_BFx:selected{
     -fx-background-insets: 0;
     -fx-padding: 0;
-    /* -fx-border-style: solid; */
-    /* -fx-border-color:#494c50; */
-    /* -fx-border-width: 0.4  0.4  0.4  0.4 ; */
-    /* -fx-border-color:#494c50; */
-
     -fx-effect: dropshadow(gaussian ,#555555 , 2, 0, 0.5, 0.5);
 }
 .TABLE_BFx .column-resize-line{
@@ -22,7 +14,6 @@
 }
 .TABLE_BFx .placeholder {/*когда таблица пуста рамка*/
 -fx-border-color: transparent;
-
 }
 .TABLE_BFx .column-header-background {/*ЭТО самая нижняя подложка заголовка*/
     -fx-background-color:transparent;
@@ -73,14 +64,20 @@
 .TABLE_BFx .cell:focused:selected > .choice-box > .label {}
 .TABLE_BFx .text{}
 
+
 .TABLE_BFx .sheet{
   -fx-padding: 0 20 0 20;
 }
-.TABLE_BFx .cell{
+
+
+.TABLE_BFx .table-cell{
       -fx-text-fill:#074f5d;
       -fx-font-family: "Roboto Light";
       -fx-font-size: 17;
   }
+
+
+
   #rightColumnContentElighment  {
     -fx-alignment: CENTER-RIGHT;
   }
@@ -207,12 +204,15 @@
 }
  .wrappedHeaderColumn .nested-column-header .label {
     -fx-text-fill:#2f4a6f;
-       -fx-text-fill:#8f9bac;
+    -fx-text-fill:#8f9bac;
 	  -fx-font-family: "Roboto Light";
     -fx-font-size: 15;
-	  -fx-font-family: "Roboto Black";
     -fx-font-size: 12;
     -fx-background-insets: 0;
     -fx-padding: 0 0 0 0;
     -fx-border-insets:0 0 0 0;
+}
+
+.DateCol{
+    -fx-alignment: baseline-right;
 }

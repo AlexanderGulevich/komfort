@@ -12,30 +12,31 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.util.Callback;
 import javafx.util.StringConverter;
 
-import java.io.PrintStream;
-import java.io.UnsupportedEncodingException;
 import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 
-public class ColumnWrapperDate extends ColumnWrapper{
+public class ColWrapperDate extends ColWrapper {
 
 
     protected TableColumn<ActiveRecord, LocalDate> column;
 
-    private ColumnWrapperDate(Builder builder) {
+    private ColWrapperDate(Builder builder) {
         tableWrapper = builder.tableWrapper;
         propertyName = builder.propertyName;
         columnName = builder.columnName;
         columnSize = builder.columnSize;
         isEditeble = builder.isEditeble;
 
+
         this.column = new TableColumn<>(columnName);
         column.setEditable(isEditeble);
+        column.setResizable(false);
+        column.getStyleClass().add("DateCol");
 
         Callback<TableColumn<ActiveRecord, LocalDate>, TableCell<ActiveRecord, LocalDate>> dateCellFactory
-                = (TableColumn<ActiveRecord, LocalDate> param) -> new ColumnWrapperDate.DateEditingCell();
+                = (TableColumn<ActiveRecord, LocalDate> param) -> new ColWrapperDate.DateEditingCell();
 
         column.setCellValueFactory(new PropertyValueFactory<>(propertyName));
         column.setCellFactory(dateCellFactory);
@@ -126,8 +127,8 @@ public class ColumnWrapperDate extends ColumnWrapper{
             return this;
         }
 
-        public ColumnWrapperDate build() {
-            return new ColumnWrapperDate(this);
+        public ColWrapperDate build() {
+            return new ColWrapperDate(this);
         }
     }
 
@@ -161,10 +162,9 @@ public class ColumnWrapperDate extends ColumnWrapper{
         @Override
         public void cancelEdit() {
             super.cancelEdit();
-
-//            setText(getDate().toString());
-//            setText(getDate().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL)));
-            setText(null);
+            setText(
+                    ("  "+ getDate().format(DateTimeFormatter.ofPattern("dd.MM.yyyy")) + " г.  ")
+            );
             setGraphic(null);
         }
 
@@ -180,11 +180,13 @@ public class ColumnWrapperDate extends ColumnWrapper{
                     if (datePicker != null) {
                         datePicker.setValue(getDate());
                     }
-                    setText(null);
+                    setText(
+                            ("  "+ getDate().format(DateTimeFormatter.ofPattern("dd.MM.yyyy")) + " г.  "
+                            ));
                     setGraphic(datePicker);
                 } else {
                     setText(
-                            ("  "+ getDate().format(DateTimeFormatter.ofPattern("dd.MM.yyyy")) + " г."
+                            ("  "+ getDate().format(DateTimeFormatter.ofPattern("dd.MM.yyyy")) + " г.  "
                     ));
                     setGraphic(null);
                 }

@@ -8,17 +8,19 @@ import basisFx.presentation.DynamicContentPanel;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.HashMap;
 
 public    abstract  class  WindowAbstraction<T extends  Object> {
 
-    protected Stage stage;
-    protected Scene scene;
-    protected DynamicContentPanel currentDynamicContent;
-    protected AnchorPane root;
-    protected AnchorPane topVisiblePanel;
-    protected WindowImpl windowImpl;
+    @Getter protected Stage stage;
+    @Getter protected Scene scene;
+    @Getter @Setter protected DynamicContentPanel currentDynamicContent;
+    @Getter protected AnchorPane root;
+    @Getter protected AnchorPane topVisibleAnchor;
+    @Getter protected WindowImpl windowImpl;
     public  enum DefaultPanelsNames {rootTransparent, topVisibleAnchor, mainContentAnchor}
     protected HashMap<String, T> nodMap =new HashMap<>();
 
@@ -40,19 +42,9 @@ public    abstract  class  WindowAbstraction<T extends  Object> {
         createScene();
         windowImpl.initTemplateMethod(this);
     }
-
-
-    public void setCurrentDynamicContent(DynamicContentPanel currentDynamicContent) {
-        this.currentDynamicContent = currentDynamicContent;
-    }
     public void clearCurrentDynamicContentPanel() {
         this.currentDynamicContent = null;
     }
-
-    public DynamicContentPanel getCurrentDynamicContent() {
-        return currentDynamicContent;
-    }
-
     protected abstract void createScene();
 
     public void setNodeToMap(T  node, String name) {
@@ -70,24 +62,8 @@ public    abstract  class  WindowAbstraction<T extends  Object> {
                 .setCSSid(CSSid.TopVisiblePanel)
                 .setMetaName(DefaultPanelsNames.topVisibleAnchor.name())
                 .build();
-        topVisiblePanel =anchorWrapper.getElement();
+        topVisibleAnchor =anchorWrapper.getElement();
 
-        setNodeToMap((T) topVisiblePanel,anchorWrapper.getMetaName());
-    }
-    public Scene getScene() {
-        return scene;
-    }
-    public Stage getStage() {
-        return stage;
-    }
-    public AnchorPane getRoot() {
-        return root;
-    }
-    public AnchorPane getTopVisibleAnchor() {
-        return topVisiblePanel;
-    }
-
-    public WindowImpl getWindowImpl() {
-        return windowImpl;
+        setNodeToMap((T) topVisibleAnchor,anchorWrapper.getMetaName());
     }
 }

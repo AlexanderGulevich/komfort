@@ -1,30 +1,30 @@
 package basisFx.presentation.dynamicContents;
 import basisFx.appCore.elements.ComboBoxWrapper;
-import basisFx.appCore.grid.ButPosTop;
+import basisFx.appCore.grid.CtrlPosTop;
 import basisFx.appCore.grid.ButSizeLittle;
 import basisFx.appCore.settings.CSSclasses;
-import basisFx.appCore.utils.RangeForCombobox;
+import basisFx.appCore.utils.Range;
 import basisFx.presentation.DynamicContentPanel;
-import basisFx.service.ServiceTablesTwoLinkedTable;
+import basisFx.service.ServiceTablesTwoLinked;
 import basisFx.appCore.elements.TableWrapper;
 import basisFx.appCore.grid.SingleTable;
 import basisFx.appCore.grid.TwoHorisontalBondGrids;
 import basisFx.appCore.elements.GridPaneWrapper;
-import basisFx.appCore.table.ColumnWrapperDate;
-import basisFx.appCore.table.ColumnWrapperDouble;
-import basisFx.appCore.table.ColumnWrapperString;
+import basisFx.appCore.table.ColWrapperDate;
+import basisFx.appCore.table.ColWrapperDouble;
+import basisFx.appCore.table.ColWrapperString;
 import basisFx.appCore.utils.Coordinate;
 import basisFx.domain.EmployeesRatePerHour;
 import basisFx.domain.Employer;
 
 public class EmployeesPanel extends DynamicContentPanel {
-    private ServiceTablesTwoLinkedTable mediatorServiceTwoLinkedTable;
+    private ServiceTablesTwoLinked mediatorServiceTwoLinkedTable;
     private TableWrapper leftTableWrapper ;
     private TableWrapper rightTableWrapper ;
 
     @Override
     public void createServices() {
-        mediatorServiceTwoLinkedTable =new ServiceTablesTwoLinkedTable();
+        mediatorServiceTwoLinkedTable =new ServiceTablesTwoLinked();
     }
 
     @Override
@@ -32,14 +32,14 @@ public class EmployeesPanel extends DynamicContentPanel {
 
           leftTableWrapper = TableWrapper.newBuilder()
                 .setGridName("Текущий список сотрудников ")
-                .setOrganization(new SingleTable(new ButSizeLittle(),new ButPosTop()))
+                .setOrganization(new SingleTable(new ButSizeLittle(),new CtrlPosTop()))
                 .setActiveRecordClass(Employer.class)
                 .setUnitOfWork(unitOfWork)
                 .setIsEditable(true)
                 .setIsSortableColums(false)
                 .setServiceTables(mediatorServiceTwoLinkedTable)
-                .setColumnWrappers(
-                        ColumnWrapperString.newBuilder()
+                .setColWrappers(
+                        ColWrapperString.newBuilder()
                                 .setColumnName("ФИО")
                                 .setColumnSize(1d)
                                 .setIsEditeble(true)
@@ -50,20 +50,20 @@ public class EmployeesPanel extends DynamicContentPanel {
 
           rightTableWrapper = TableWrapper.newBuilder()
                 .setGridName("Реестр тарифных ставок ")
-                .setOrganization(new SingleTable(new ButSizeLittle(),new ButPosTop()))
+                .setOrganization(new SingleTable(new ButSizeLittle(),new CtrlPosTop()))
                 .setActiveRecordClass(EmployeesRatePerHour.class)
                 .setUnitOfWork(unitOfWork)
                 .setIsEditable(true)
                 .setIsSortableColums(false)
                 .setServiceTables(mediatorServiceTwoLinkedTable)
-                .setColumnWrappers(
-                        ColumnWrapperDouble.newBuilder()
+                .setColWrappers(
+                        ColWrapperDouble.newBuilder()
                                 .setColumnName("Тариф")
                                 .setColumnSize(0.3d)
                                 .setIsEditeble(true)
                                 .setPropertyName("rate")
                                 .build(),
-                        ColumnWrapperDate.newBuilder()
+                        ColWrapperDate.newBuilder()
                                 .setColumnName("Действует с")
                                 .setColumnSize(0.7d)
                                 .setIsEditeble(true)
@@ -95,14 +95,14 @@ public class EmployeesPanel extends DynamicContentPanel {
                 .setCoordinate(new Coordinate(0d, 15d, null, null))
                 .setCssClasses(CSSclasses.COMBOBOX_BFx)
                 .setParentAnchor(dynamicContentAnchorHolder)
-                .setStartRange(RangeForCombobox.DAY30)
+                .setStartRange(Range.DAY30)
                 .setServiceTables(mediatorServiceTwoLinkedTable)
-                .setComboboxValues(RangeForCombobox.getParticular(
-                        RangeForCombobox.DAY30,
-                        RangeForCombobox.DAY60,
-                        RangeForCombobox.DAY30,
-                        RangeForCombobox.DAY90,
-                        RangeForCombobox.ACTUAL
+                .setComboboxValues(Range.getParticular(
+                        Range.DAY30,
+                        Range.DAY60,
+                        Range.DAY30,
+                        Range.DAY90,
+                        Range.ACTUAL
                         )
                 )
 

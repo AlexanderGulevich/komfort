@@ -48,7 +48,7 @@ public class ServiceTablesSingle extends ServiceTables {
     @Override
     public void refresh(AppNode node) {
         TableWrapper tableWrapper = (TableWrapper) node;
-        refreshTable(tableWrapper,tableWrapper.activeRecord.getAll());
+        setItems(tableWrapper,tableWrapper.activeRecord.getAll());
     }
 
     @Override

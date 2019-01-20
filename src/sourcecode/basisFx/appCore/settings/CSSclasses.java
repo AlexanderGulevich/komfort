@@ -8,6 +8,8 @@ public enum CSSclasses {
     DATEPICKER_BFx("DATEPICKER_BFx"),
     TEXTFIELD_BFx("TEXTFIELD_BFx"),
     wrappedHeaderColumn("wrappedHeaderColumn"),
+    first_child_Red("first_child_Red"),
+    COMBOBOX_BFx_forGrid("COMBOBOX_BFx_forGrid"),
     COMBOBOX_BFx("COMBOBOX_BFx");
 
 

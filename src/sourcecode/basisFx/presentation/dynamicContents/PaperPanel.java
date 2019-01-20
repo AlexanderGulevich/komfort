@@ -1,29 +1,29 @@
 package basisFx.presentation.dynamicContents;
 
 import basisFx.appCore.elements.TableWrapper;
-import basisFx.appCore.grid.ButPosTop;
+import basisFx.appCore.grid.CtrlPosTop;
 import basisFx.appCore.grid.ButSizeLittle;
 import basisFx.appCore.grid.SingleTable;
 import basisFx.appCore.grid.TwoHorisontalBondGrids;
 import basisFx.appCore.elements.GridPaneWrapper;
 import basisFx.presentation.DynamicContentPanel;
-import basisFx.service.ServiceTablesTwoLinkedTable;
-import basisFx.appCore.table.ColumnWrapperComboBox;
-import basisFx.appCore.table.ColumnWrapperDate;
-import basisFx.appCore.table.ColumnWrapperDouble;
+import basisFx.service.ServiceTablesTwoLinked;
+import basisFx.appCore.table.ColWrapperComboBox;
+import basisFx.appCore.table.ColWrapperDate;
+import basisFx.appCore.table.ColWrapperDouble;
 import basisFx.appCore.utils.Coordinate;
 import basisFx.domain.Counterparty;
 import basisFx.domain.PaperPrice;
 import basisFx.domain.Sleeve;
 
 public class PaperPanel  extends DynamicContentPanel {
-    private ServiceTablesTwoLinkedTable mediatorServiceTwoLinkedTable;
+    private ServiceTablesTwoLinked mediatorServiceTwoLinkedTable;
     private TableWrapper leftTableWrapper ;
     private TableWrapper rightTableWrapper ;
 
     @Override
     public void createServices() {
-        mediatorServiceTwoLinkedTable =new ServiceTablesTwoLinkedTable();
+        mediatorServiceTwoLinkedTable =new ServiceTablesTwoLinked();
     }
 
     @Override
@@ -31,14 +31,14 @@ public class PaperPanel  extends DynamicContentPanel {
 
           leftTableWrapper = TableWrapper.newBuilder()
                 .setGridName("Бумага ")
-                .setOrganization(new SingleTable(new ButSizeLittle(),new ButPosTop()))
+                .setOrganization(new SingleTable(new ButSizeLittle(),new CtrlPosTop()))
                 .setActiveRecordClass(Sleeve.class)
                 .setUnitOfWork(unitOfWork)
                 .setIsEditable(true)
                 .setIsSortableColums(false)
                 .setServiceTables(mediatorServiceTwoLinkedTable)
-                .setColumnWrappers(
-                        ColumnWrapperComboBox.newBuilder(Counterparty.class)
+                .setColWrappers(
+                        ColWrapperComboBox.newBuilder(Counterparty.class)
                                 .setColumnName("Поставщик")
                                 .setColumnSize(1d)
                                 .setIsEditeble(true)
@@ -50,20 +50,20 @@ public class PaperPanel  extends DynamicContentPanel {
 
           rightTableWrapper = TableWrapper.newBuilder()
                 .setGridName("Архив цен ")
-                .setOrganization(new SingleTable(new ButSizeLittle(),new ButPosTop()))
+                .setOrganization(new SingleTable(new ButSizeLittle(),new CtrlPosTop()))
                 .setActiveRecordClass(PaperPrice.class)
                 .setUnitOfWork(unitOfWork)
                 .setIsEditable(true)
                 .setIsSortableColums(false)
                 .setServiceTables(mediatorServiceTwoLinkedTable)
-                .setColumnWrappers(
-                        ColumnWrapperDouble.newBuilder()
+                .setColWrappers(
+                        ColWrapperDouble.newBuilder()
                                 .setColumnName("Цена")
                                 .setColumnSize(0.3d)
                                 .setIsEditeble(true)
                                 .setPropertyName("rate")
                                 .build(),
-                        ColumnWrapperDate.newBuilder()
+                        ColWrapperDate.newBuilder()
                                 .setColumnName("Действует с")
                                 .setColumnSize(0.7d)
                                 .setIsEditeble(true)

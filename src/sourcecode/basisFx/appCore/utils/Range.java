@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-public enum RangeForCombobox {
+public enum Range {
 
     ACTUAL("Актуальное значение"),
     LAST10("Последние 10 записей"),
@@ -15,12 +15,13 @@ public enum RangeForCombobox {
     DAY90("За 90 дней"),
     DAY180("За 180 дней"),
     YEAR("За текущий год"),
+    MONTH("За текущий месяц"),
     ALLTIME("Все время");
 
     private final String name;
-    private RangeForCombobox main;
+    private Range main;
 
-    RangeForCombobox(String path) {
+    Range(String path) {
         this.name = path;
     }
 
@@ -29,22 +30,22 @@ public enum RangeForCombobox {
     }
     public String toString() {return getName();}
 
-    public RangeForCombobox get(String s){
-       return  RangeForCombobox.valueOf(s);
+    public Range get(String s){
+       return  Range.valueOf(s);
     }
 
-    public static  ObservableList<RangeForCombobox> getParticular(RangeForCombobox first, RangeForCombobox ... subsequent){
-        List<RangeForCombobox> list = Arrays.asList(subsequent);
+    public static  ObservableList<Range> getParticular(Range first, Range... subsequent){
+        List<Range> list = Arrays.asList(subsequent);
         Collections.reverse(list);
         list.add(first);
         Collections.reverse(list);
         return  FXCollections.observableList(list);
     }
-    public static  ObservableList<RangeForCombobox> getAll(){
-        List<RangeForCombobox> list = Arrays.asList(RangeForCombobox.values());
+    public static  ObservableList<Range> getAll(){
+        List<Range> list = Arrays.asList(Range.values());
         return  FXCollections.observableList(list);
     }
-    public RangeForCombobox getMain() {
+    public Range getMain() {
         return main;
     }
 

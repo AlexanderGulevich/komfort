@@ -1,48 +1,49 @@
 package basisFx.presentation.dynamicContents;
 
-import basisFx.appCore.elements.ButtonWrapper;
-import basisFx.appCore.elements.TableWrapper;
-import basisFx.appCore.events.SubWindowCreater;
-import basisFx.appCore.grid.ButPosTop;
-import basisFx.appCore.grid.ButSizeLittle;
-import basisFx.appCore.grid.SingleTable;
-import basisFx.appCore.grid.TwoHorisontalBondGrids;
-import basisFx.appCore.elements.GridPaneWrapper;
+import basisFx.appCore.elements.*;
+import basisFx.appCore.grid.*;
 import basisFx.appCore.settings.CSSclasses;
-import basisFx.appCore.windows.WindowAbstraction;
-import basisFx.appCore.windows.WindowBuilder;
+import basisFx.appCore.table.ColWrapperDate;
+import basisFx.appCore.table.ColWrapperDouble;
+import basisFx.appCore.utils.Range;
 import basisFx.presentation.DynamicContentPanel;
-import basisFx.service.ServiceTablesTwoLinkedTable;
-import basisFx.appCore.table.ColumnWrapperComboBox;
-import basisFx.appCore.table.ColumnWrapperDate;
-import basisFx.appCore.table.ColumnWrapperDouble;
+import basisFx.service.ServiceTablesTwoLinked;
+import basisFx.appCore.table.ColWrapperComboBox;
 import basisFx.appCore.utils.Coordinate;
 import basisFx.domain.*;
+import javafx.scene.control.ComboBox;
 
 public class SleevePanel  extends DynamicContentPanel {
-    private ServiceTablesTwoLinkedTable mediatorServiceTwoLinkedTable;
+    private ServiceTablesTwoLinked mediatorServiceTwoLinkedTable;
     private TableWrapper leftTableWrapper ;
     private TableWrapper rightTableWrapper ;
+    private RangeDirector rangeDirector ;
 
     @Override
     public void createServices() {
-        mediatorServiceTwoLinkedTable =new ServiceTablesTwoLinkedTable();
+        mediatorServiceTwoLinkedTable =new ServiceTablesTwoLinked();
     }
 
     @Override
     public void customDynamicElementsInit() {
 
+        rangeDirector=new RangeDirector(
+                new ComboBox<>(),
+                mediatorServiceTwoLinkedTable,
+                Range.DAY30,
+                Range.getAll()
+        );
 
           leftTableWrapper = TableWrapper.newBuilder()
                 .setGridName("Втулка ")
-                .setOrganization(new SingleTable(new ButSizeLittle(),new ButPosTop()))
+                .setOrganization(new SingleTable(new ButSizeLittle(),new CtrlPosTop()))
                 .setActiveRecordClass(Sleeve.class)
                 .setUnitOfWork(unitOfWork)
                 .setIsEditable(true)
                 .setIsSortableColums(false)
                 .setServiceTables(mediatorServiceTwoLinkedTable)
-                .setColumnWrappers(
-                        ColumnWrapperComboBox.newBuilder(Counterparty.class)
+                .setColWrappers(
+                        ColWrapperComboBox.newBuilder(Counterparty.class)
                                 .setColumnName("Поставщик")
                                 .setColumnSize(1d)
                                 .setIsEditeble(true)
@@ -52,24 +53,29 @@ public class SleevePanel  extends DynamicContentPanel {
                 .build();
 
 
-          rightTableWrapper = TableWrapper.newBuilder()
+
+
+
+        rightTableWrapper = TableWrapper.newBuilder()
                 .setGridName("Архив цен ")
-                .setOrganization(new SingleTable(new ButSizeLittle(),new ButPosTop()))
+                .setCssClasses(CSSclasses.first_child_Red)
+                .setOrganization( new SingleTable(new ButSizeLittle(),new CtrlPosButAndCombobox(rangeDirector.getComboBox())))
+//                .setOrganization( new SingleTable(new ButSizeLittle(),new CtrlPosTop()))
                 .setActiveRecordClass(SleevePrice.class)
                 .setUnitOfWork(unitOfWork)
                 .setIsEditable(true)
                 .setIsSortableColums(false)
                 .setServiceTables(mediatorServiceTwoLinkedTable)
-                .setColumnWrappers(
-                        ColumnWrapperDouble.newBuilder()
+                .setColWrappers(
+                        ColWrapperDouble.newBuilder()
                                 .setColumnName("Цена")
-                                .setColumnSize(0.3d)
+                                .setColumnSize(0.4d)
                                 .setIsEditeble(true)
                                 .setPropertyName("price")
                                 .build(),
-                        ColumnWrapperDate.newBuilder()
+                        ColWrapperDate.newBuilder()
                                 .setColumnName("Действует с")
-                                .setColumnSize(0.7d)
+                                .setColumnSize(0.6d)
                                 .setIsEditeble(true)
                                 .setPropertyName("startDate")
                                 .build()
@@ -78,8 +84,8 @@ public class SleevePanel  extends DynamicContentPanel {
 
 
         GridPaneWrapper commonGridPaneWrapper = GridPaneWrapper.newBuilder()
-                .setColumnVsPercent(60)
-                .setColumnVsPercent(40)
+                .setColumnVsPercent(70)
+                .setColumnVsPercent(30)
                 .setGridName("Поставщики втулок и цены")
                 .setParentAnchor(dynamicContentAnchorHolder)
                 .setCoordinate(new Coordinate(0d, 10d, 10d, 0d))
@@ -92,37 +98,56 @@ public class SleevePanel  extends DynamicContentPanel {
                 )
                 .build();
 
-        ButtonWrapper.newBuilder()
-                .setParentAnchor(dynamicContentAnchorHolder)
-                .setCoordinate(new Coordinate(10d,20d,null,null))
-                .setText("РЕЕСТР ЦЕН")
-                .setCssClasses(CSSclasses.REGISTRY_BUTTONS_BFx)
-                .setEvents(
-                        new SubWindowCreater(
-                                WindowBuilder.newBuilder()
-                                        .setClosingCallBack(()->leftTableWrapper.getServiceTables().refresh(leftTableWrapper))
-                                        .setGUIStructura(null)
-                                        .setButtonsForStage(null)
-                                        .setFxmlFileName("ByDateResearchWindow")
-                                        .setParentAnchorNameForFXML(WindowAbstraction.DefaultPanelsNames.topVisibleAnchor.name())
-                                        .setWidth(900d)
-                                        .setHeight(600d)
-                                        .setDynamicContentPanelCreator(PopupExemple::new)
-                                        .setTitle("ОБОРУДОВАНИЕ")
-                                        .setMessage(null)
-                                        .build()
-                        )
-                )
-                .build();
+
+
+//        ComboBox<Range> comboBox = new RangeDirector(
+//                new ComboBox<>(),
+//                mediatorServiceTwoLinkedTable,
+//                Range.ACTUAL,
+//                Range.getAll()
+//        ).getComboBox();
+//
+//        Coordinate  coordinate=new Coordinate(0d,20d,null,null);
+//        coordinate.setParentAnchorPane(dynamicContentAnchorHolder);
+//        coordinate.setChildNode(comboBox);
+//        coordinate.bonding();
+
+//        ButtonWrapper.newBuilder()
+//                .setParentAnchor(dynamicContentAnchorHolder)
+//                .setCoordinate(new Coordinate(10d,20d,null,null))
+//                .setText("РЕЕСТР ЦЕН")
+//                .setCssClasses(CSSclasses.REGISTRY_BUTTONS_BFx)
+//                .setEvents(
+//                        new SubWindowCreater(
+//                                WindowBuilder.newBuilder()
+//                                        .setClosingCallBack(()->leftTableWrapper.getServiceTables().refresh(leftTableWrapper))
+//                                        .setGUIStructura(null)
+//                                        .setButtonsForStage(null)
+//                                        .setFxmlFileName("ByDateResearchWindow")
+//                                        .setParentAnchorNameForFXML(WindowAbstraction.DefaultPanelsNames.topVisibleAnchor.name())
+//                                        .setWidth(900d)
+//                                        .setHeight(600d)
+//                                        .setDynamicContentPanelCreator(PopupExemple::new)
+//                                        .setTitle("ОБОРУДОВАНИЕ")
+//                                        .setMessage(null)
+//                                        .build()
+//                        )
+//                )
+//                .build();
 
 
     }
 
     @Override
     public void initServices() {
+
+
+
         mediatorServiceTwoLinkedTable.setAccessoryTableWrapper(rightTableWrapper);
         mediatorServiceTwoLinkedTable.setPrimaryTableWrapper(leftTableWrapper);
+        mediatorServiceTwoLinkedTable.setRangeDirector(rangeDirector);
         mediatorServiceTwoLinkedTable.initElements();
+
     }
 
 

@@ -14,13 +14,13 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.util.Callback;
 
-public class ColumnWrapperBool<T> extends ColumnWrapper{
+public class ColWrapperBool<T> extends ColWrapper {
 
     protected TableColumn<ActiveRecord, BoolComboBox> column;
     protected ActiveRecord domain;
     protected Class <? extends ActiveRecord> domainClass;
 
-    private ColumnWrapperBool(Builder builder) {
+    private ColWrapperBool(Builder builder) {
         tableWrapper = builder.tableWrapper;
         propertyName = builder.propertyName;
         columnName = builder.columnName;
@@ -29,6 +29,7 @@ public class ColumnWrapperBool<T> extends ColumnWrapper{
         domain = BoolComboBox.getINSTANCE();
         column =  new TableColumn<>(columnName);
         column.setEditable(isEditeble);
+        column.setResizable(false);
         setCellValueFactory();
         setCellFactory();
         setOnEditCommit();
@@ -120,8 +121,8 @@ public class ColumnWrapperBool<T> extends ColumnWrapper{
             return this;
         }
 
-        public ColumnWrapperBool build() {
-            return new ColumnWrapperBool(this);
+        public ColWrapperBool build() {
+            return new ColWrapperBool(this);
         }
     }
 

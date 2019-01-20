@@ -1,9 +1,3 @@
-@font-face {
-    src: url("../../fonts/Roboto-Light.ttf");
-}
-@font-face {
-    src: url("../../fonts/Roboto-Bold.ttf");
-}
 #IMG_ICON{
     -fx-pref-height: 40;
         -fx-background-image: url("../../img/logo33.png");
