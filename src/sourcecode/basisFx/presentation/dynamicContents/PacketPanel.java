@@ -1,6 +1,7 @@
 package basisFx.presentation.dynamicContents;
 
 import basisFx.appCore.elements.GridPaneWrapper;
+import basisFx.appCore.elements.RangeDirector;
 import basisFx.appCore.elements.TableWrapper;
 import basisFx.appCore.grid.*;
 import basisFx.service.ServiceTablesTwoLinked;

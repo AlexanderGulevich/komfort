@@ -14,7 +14,7 @@ public class LabelPrice extends ActiveRecord {
     private static LabelPrice INSTANCE = new LabelPrice();
     private SimpleObjectProperty<Double> price =new SimpleObjectProperty<>(this, "price", null);
     @DataStore (AS_OUTER_ID = true) private SimpleObjectProperty<Integer> labelId =new SimpleObjectProperty<>(this, "labelId", null);
-    @DataStore(SORTING = Sorting.DESC) private SimpleObjectProperty<LocalDate> startDate =new SimpleObjectProperty<>(this, "startDate", null);
+    @DataStore (SORTING = Sorting.DESC, ANALIZED_DATE = true) private SimpleObjectProperty<LocalDate> startDate =new SimpleObjectProperty<>(this, "startDate", null);
 
     public static LabelPrice getINSTANCE() {
         return INSTANCE;

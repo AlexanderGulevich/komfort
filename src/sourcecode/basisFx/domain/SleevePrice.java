@@ -7,14 +7,12 @@ import org.hsqldb.index.Index;
 import java.time.LocalDate;
 
 public class SleevePrice extends ActiveRecord {
-    private static SleevePrice INSTANCE =
-            new SleevePrice();
-    private SimpleObjectProperty<Double> price =
-            new SimpleObjectProperty<>(this, "price", null);
-    @DataStore (SORTING = Sorting.DESC, ANALIZED_DATE = true) private SimpleObjectProperty<LocalDate> startDate =
-            new SimpleObjectProperty<>(this, "startDate", null);
-    @DataStore (AS_OUTER_ID = true)private SimpleObjectProperty<Index> sleeveId =
-            new SimpleObjectProperty<>(this, "sleeveId", null);
+    private static SleevePrice INSTANCE = new SleevePrice();
+    private SimpleObjectProperty<Double> price = new SimpleObjectProperty<>(this, "price", null);
+    @DataStore (SORTING = Sorting.DESC, ANALIZED_DATE = true)
+    private SimpleObjectProperty<LocalDate> startDate =new SimpleObjectProperty<>(this, "startDate", null);
+    @DataStore (AS_OUTER_ID = true)
+    private SimpleObjectProperty<Index> sleeveId =new SimpleObjectProperty<>(this, "sleeveId", null);
 
 
     public static SleevePrice getINSTANCE() {

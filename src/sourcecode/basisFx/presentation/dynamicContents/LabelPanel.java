@@ -1,8 +1,11 @@
 package basisFx.presentation.dynamicContents;
 
 import basisFx.appCore.elements.GridPaneWrapper;
+import basisFx.appCore.elements.RangeDirector;
 import basisFx.appCore.grid.*;
 import basisFx.appCore.table.ColWrapperString;
+import basisFx.appCore.utils.Range;
+import basisFx.domain.LabelPrice;
 import basisFx.service.ServiceTablesTwoLinked;
 import basisFx.appCore.elements.TableWrapper;
 import basisFx.appCore.table.ColWrapperComboBox;
@@ -13,20 +16,23 @@ import basisFx.domain.Counterparty;
 import basisFx.domain.ExchangeRates;
 import basisFx.domain.Label;
 import basisFx.presentation.DynamicContentPanel;
+import javafx.scene.control.ComboBox;
 
 public class LabelPanel  extends DynamicContentPanel {
 
-    private ServiceTablesTwoLinked mediatorServiceTwoLinkedTable ;
+    private ServiceTablesTwoLinked mediator;
     private  TableWrapper leftTableWrapper ;
     private  TableWrapper rightTableWrapper ;
+    private RangeDirector rangeDirector;
 
     @Override
     public void createServices() {
-        mediatorServiceTwoLinkedTable =new ServiceTablesTwoLinked();
+        mediator =new ServiceTablesTwoLinked();
     }
 
     @Override
     public void customDynamicElementsInit() {
+        rangeDirector=new RangeDirector(new ComboBox<>(), mediator, Range.DAY30,Range.getAll());
 
           leftTableWrapper = TableWrapper.newBuilder()
                 .setGridName("Этикетки")
@@ -35,7 +41,7 @@ public class LabelPanel  extends DynamicContentPanel {
                 .setUnitOfWork(unitOfWork)
                 .setIsEditable(true)
                 .setIsSortableColums(false)
-                .setServiceTables(mediatorServiceTwoLinkedTable)
+                .setServiceTables(mediator)
                 .setColWrappers(
                         ColWrapperString.newBuilder()
                                 .setColumnName("Наименование")
@@ -53,23 +59,23 @@ public class LabelPanel  extends DynamicContentPanel {
 
 
           rightTableWrapper = TableWrapper.newBuilder()
-                .setGridName("Курсы")
-                .setOrganization(new SingleTable(new ButSizeLittle(),new CtrlPosTop()))
-                .setActiveRecordClass(ExchangeRates.class)
+                .setGridName("Цены")
+                .setOrganization( new SingleTable(new ButSizeLittle(),new CtrlPosButAndCombobox(rangeDirector.getComboBox())))
+                .setActiveRecordClass(LabelPrice.class)
                 .setUnitOfWork(unitOfWork)
                 .setIsEditable(true)
                 .setIsSortableColums(false)
-                .setServiceTables(mediatorServiceTwoLinkedTable)
+                .setServiceTables(mediator)
                 .setColWrappers(
                         ColWrapperDouble.newBuilder()
-                                .setColumnName("Курс")
-                                .setColumnSize(0.6d)
+                                .setColumnName("Цена")
+                                .setColumnSize(0.4d)
                                 .setIsEditeble(true)
-                                .setPropertyName("exchangeRate")
+                                .setPropertyName("price")
                                 .build(),
                         ColWrapperDate.newBuilder()
-                                .setColumnName("Дата")
-                                .setColumnSize(0.4d)
+                                .setColumnName("Действует с")
+                                .setColumnSize(0.6d)
                                 .setIsEditeble(true)
                                 .setPropertyName("startDate")
                                 .build()
@@ -77,8 +83,8 @@ public class LabelPanel  extends DynamicContentPanel {
                 .build();
 
         GridPaneWrapper commonGridPaneWrapper = GridPaneWrapper.newBuilder()
-                .setColumnVsPercent(60)
-                .setColumnVsPercent(40)
+                .setColumnVsPercent(70)
+                .setColumnVsPercent(30)
                 .setGridName("Управление валютами и динамика курсов")
                 .setParentAnchor(dynamicContentAnchorHolder)
                 .setCoordinate(new Coordinate(0d, 10d, 10d, 0d))
@@ -93,9 +99,10 @@ public class LabelPanel  extends DynamicContentPanel {
 
     @Override
     public void initServices() {
-        mediatorServiceTwoLinkedTable.setAccessoryTableWrapper(rightTableWrapper);
-        mediatorServiceTwoLinkedTable.setPrimaryTableWrapper(leftTableWrapper);
-        mediatorServiceTwoLinkedTable.initElements();
+        mediator.setAccessoryTableWrapper(rightTableWrapper);
+        mediator.setPrimaryTableWrapper(leftTableWrapper);;
+        mediator.setRangeDirector(rangeDirector);
+        mediator.initElements();
 
     }
 

@@ -1,12 +1,11 @@
 package basisFx.presentation.dynamicContents;
 
-import basisFx.appCore.grid.CtrlPosTop;
-import basisFx.appCore.grid.ButSizeLittle;
+import basisFx.appCore.elements.RangeDirector;
+import basisFx.appCore.grid.*;
 import basisFx.appCore.table.*;
+import basisFx.appCore.utils.Range;
 import basisFx.service.ServiceTablesTwoLinked;
 import basisFx.appCore.elements.TableWrapper;
-import basisFx.appCore.grid.SingleTable;
-import basisFx.appCore.grid.TwoHorisontalBondGrids;
 import basisFx.appCore.elements.GridPaneWrapper;
 import basisFx.appCore.table.ColWrapperBool;
 import basisFx.appCore.table.ColWrapperDate;
@@ -14,19 +13,22 @@ import basisFx.appCore.utils.Coordinate;
 import basisFx.domain.ProductPrice;
 import basisFx.domain.Product;
 import basisFx.presentation.DynamicContentPanel;
+import javafx.scene.control.ComboBox;
 
 public class ProductPanel  extends DynamicContentPanel {
-    private ServiceTablesTwoLinked mediatorServiceTwoLinkedTable;
+    private ServiceTablesTwoLinked mediator;
     private TableWrapper leftTableWrapper;
     private TableWrapper rightTableWrapper;
+    private RangeDirector rangeDirector;
 
     @Override
     public void createServices() {
-        mediatorServiceTwoLinkedTable =new ServiceTablesTwoLinked();
+        mediator =new ServiceTablesTwoLinked();
     }
 
     @Override
     public void customDynamicElementsInit() {
+          rangeDirector=new RangeDirector(new ComboBox<>(), mediator, Range.DAY30,Range.getAll());
 
           leftTableWrapper = TableWrapper.newBuilder()
                 .setGridName("Список продукции ")
@@ -35,7 +37,7 @@ public class ProductPanel  extends DynamicContentPanel {
                 .setUnitOfWork(unitOfWork)
                 .setIsEditable(true)
                 .setIsSortableColums(false)
-                .setServiceTables(mediatorServiceTwoLinkedTable)
+                .setServiceTables(mediator)
                 .setColWrappers(
                         ColWrapperString.newBuilder()
                                 .setColumnName("Наименование")
@@ -53,23 +55,23 @@ public class ProductPanel  extends DynamicContentPanel {
                 .build();
 
           rightTableWrapper = TableWrapper.newBuilder()
-                .setGridName("Архив цен ")
-                .setOrganization(new SingleTable(new ButSizeLittle(),new CtrlPosTop()))
+                .setGridName("Цены")
+                  .setOrganization( new SingleTable(new ButSizeLittle(),new CtrlPosButAndCombobox(rangeDirector.getComboBox())))
                 .setActiveRecordClass(ProductPrice.class)
                 .setUnitOfWork(unitOfWork)
                 .setIsEditable(true)
                 .setIsSortableColums(false)
-                .setServiceTables(mediatorServiceTwoLinkedTable)
+                .setServiceTables(mediator)
                 .setColWrappers(
                         ColWrapperDouble.newBuilder()
                                 .setColumnName("Цена")
-                                .setColumnSize(0.3d)
+                                .setColumnSize(0.4d)
                                 .setIsEditeble(true)
                                 .setPropertyName("price")
                                 .build(),
                         ColWrapperDate.newBuilder()
-                                .setColumnName("Дата")
-                                .setColumnSize(0.7d)
+                                .setColumnName("Действует с")
+                                .setColumnSize(0.6d)
                                 .setIsEditeble(true)
                                 .setPropertyName("startDate")
                                 .build()
@@ -78,8 +80,8 @@ public class ProductPanel  extends DynamicContentPanel {
 
 
         GridPaneWrapper commonGridPaneWrapper = GridPaneWrapper.newBuilder()
-                .setColumnVsPercent(60)
-                .setColumnVsPercent(40)
+                .setColumnVsPercent(70)
+                .setColumnVsPercent(30)
                 .setGridName("Управление продуктами и динамика цен")
                 .setParentAnchor(dynamicContentAnchorHolder)
                 .setCoordinate(new Coordinate(0d, 10d, 10d, 0d))
@@ -98,9 +100,10 @@ public class ProductPanel  extends DynamicContentPanel {
 
     @Override
     public void initServices() {
-        mediatorServiceTwoLinkedTable.setAccessoryTableWrapper(rightTableWrapper);
-        mediatorServiceTwoLinkedTable.setPrimaryTableWrapper(leftTableWrapper);
-        mediatorServiceTwoLinkedTable.initElements();
+        mediator.setAccessoryTableWrapper(rightTableWrapper);
+        mediator.setPrimaryTableWrapper(leftTableWrapper);;
+        mediator.setRangeDirector(rangeDirector);
+        mediator.initElements();
     }
 
 

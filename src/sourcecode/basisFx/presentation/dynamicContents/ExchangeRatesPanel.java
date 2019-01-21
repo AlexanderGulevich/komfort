@@ -1,12 +1,11 @@
 package basisFx.presentation.dynamicContents;
 
-import basisFx.appCore.grid.CtrlPosTop;
-import basisFx.appCore.grid.ButSizeLittle;
+import basisFx.appCore.elements.RangeDirector;
+import basisFx.appCore.grid.*;
+import basisFx.appCore.utils.Range;
 import basisFx.service.ServiceTablesTwoLinked;
 import basisFx.appCore.elements.TableWrapper;
-import basisFx.appCore.grid.SingleTable;
 import basisFx.appCore.elements.GridPaneWrapper;
-import basisFx.appCore.grid.TwoHorisontalBondGrids;
 import basisFx.appCore.table.ColWrapperDate;
 import basisFx.appCore.table.ColWrapperDouble;
 import basisFx.appCore.table.ColWrapperString;
@@ -14,20 +13,23 @@ import basisFx.appCore.utils.Coordinate;
 import basisFx.domain.Currency;
 import basisFx.domain.ExchangeRates;
 import basisFx.presentation.DynamicContentPanel;
+import javafx.scene.control.ComboBox;
 
 public class ExchangeRatesPanel extends DynamicContentPanel {
 
-    private ServiceTablesTwoLinked mediatorServiceTwoLinkedTable;
+    private ServiceTablesTwoLinked mediator;
     private TableWrapper leftTableWrapper;
     private TableWrapper rightTableWrapper;
+    private RangeDirector rangeDirector;
 
     @Override
     public void createServices() {
-        mediatorServiceTwoLinkedTable =new ServiceTablesTwoLinked();
+        mediator =new ServiceTablesTwoLinked();
     }
 
     @Override
     public void customDynamicElementsInit() {
+        rangeDirector=new RangeDirector(new ComboBox<>(), mediator, Range.DAY30,Range.getAll());
 
         leftTableWrapper = TableWrapper.newBuilder()
                 .setGridName("Валюта ")
@@ -36,7 +38,7 @@ public class ExchangeRatesPanel extends DynamicContentPanel {
                 .setUnitOfWork(unitOfWork)
                 .setIsEditable(true)
                 .setIsSortableColums(false)
-                .setServiceTables(mediatorServiceTwoLinkedTable)
+                .setServiceTables(mediator)
                 .setColWrappers(
                         ColWrapperString.newBuilder()
                                 .setColumnName("Наименование")
@@ -48,13 +50,13 @@ public class ExchangeRatesPanel extends DynamicContentPanel {
 
 
         rightTableWrapper = TableWrapper.newBuilder()
-                .setGridName("Курсы ")
-                .setOrganization(new SingleTable(new ButSizeLittle(),new CtrlPosTop()))
+                .setGridName("Курсы валют")
+                .setOrganization( new SingleTable(new ButSizeLittle(),new CtrlPosButAndCombobox(rangeDirector.getComboBox())))
                 .setActiveRecordClass(ExchangeRates.class)
                 .setUnitOfWork(unitOfWork)
                 .setIsEditable(true)
                 .setIsSortableColums(false)
-                .setServiceTables(mediatorServiceTwoLinkedTable)
+                .setServiceTables(mediator)
                 .setColWrappers(
                         ColWrapperDouble.newBuilder()
                                 .setColumnName("Курс")
@@ -72,8 +74,8 @@ public class ExchangeRatesPanel extends DynamicContentPanel {
                 .build();
 
         GridPaneWrapper commonGridPaneWrapper = GridPaneWrapper.newBuilder()
-                .setColumnVsPercent(60)
-                .setColumnVsPercent(40)
+                .setColumnVsPercent(70)
+                .setColumnVsPercent(30)
                 .setGridName("Управление валютами и динамика курсов")
                 .setParentAnchor(dynamicContentAnchorHolder)
                 .setCoordinate(new Coordinate(0d, 10d, 10d, 0d))
@@ -93,9 +95,10 @@ public class ExchangeRatesPanel extends DynamicContentPanel {
 
     @Override
     public void initServices() {
-        mediatorServiceTwoLinkedTable.setAccessoryTableWrapper(rightTableWrapper);
-        mediatorServiceTwoLinkedTable.setPrimaryTableWrapper(leftTableWrapper);
-        mediatorServiceTwoLinkedTable.initElements();
+        mediator.setAccessoryTableWrapper(rightTableWrapper);
+        mediator.setPrimaryTableWrapper(leftTableWrapper);;
+        mediator.setRangeDirector(rangeDirector);
+        mediator.initElements();
     }
 
 

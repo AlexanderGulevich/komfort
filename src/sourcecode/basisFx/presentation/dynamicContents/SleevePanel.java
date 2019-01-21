@@ -14,25 +14,18 @@ import basisFx.domain.*;
 import javafx.scene.control.ComboBox;
 
 public class SleevePanel  extends DynamicContentPanel {
-    private ServiceTablesTwoLinked mediatorServiceTwoLinkedTable;
+    private ServiceTablesTwoLinked mediator;
     private TableWrapper leftTableWrapper ;
     private TableWrapper rightTableWrapper ;
-    private RangeDirector rangeDirector ;
-
+    private RangeDirector rangeDirector;
     @Override
     public void createServices() {
-        mediatorServiceTwoLinkedTable =new ServiceTablesTwoLinked();
+        mediator =new ServiceTablesTwoLinked();
     }
 
     @Override
     public void customDynamicElementsInit() {
-
-        rangeDirector=new RangeDirector(
-                new ComboBox<>(),
-                mediatorServiceTwoLinkedTable,
-                Range.DAY30,
-                Range.getAll()
-        );
+          rangeDirector=new RangeDirector(new ComboBox<>(), mediator,Range.DAY30,Range.getAll());
 
           leftTableWrapper = TableWrapper.newBuilder()
                 .setGridName("Втулка ")
@@ -41,7 +34,7 @@ public class SleevePanel  extends DynamicContentPanel {
                 .setUnitOfWork(unitOfWork)
                 .setIsEditable(true)
                 .setIsSortableColums(false)
-                .setServiceTables(mediatorServiceTwoLinkedTable)
+                .setServiceTables(mediator)
                 .setColWrappers(
                         ColWrapperComboBox.newBuilder(Counterparty.class)
                                 .setColumnName("Поставщик")
@@ -53,19 +46,15 @@ public class SleevePanel  extends DynamicContentPanel {
                 .build();
 
 
-
-
-
         rightTableWrapper = TableWrapper.newBuilder()
-                .setGridName("Архив цен ")
+                .setGridName("Цены")
                 .setCssClasses(CSSclasses.first_child_Red)
                 .setOrganization( new SingleTable(new ButSizeLittle(),new CtrlPosButAndCombobox(rangeDirector.getComboBox())))
-//                .setOrganization( new SingleTable(new ButSizeLittle(),new CtrlPosTop()))
                 .setActiveRecordClass(SleevePrice.class)
                 .setUnitOfWork(unitOfWork)
                 .setIsEditable(true)
                 .setIsSortableColums(false)
-                .setServiceTables(mediatorServiceTwoLinkedTable)
+                .setServiceTables(mediator)
                 .setColWrappers(
                         ColWrapperDouble.newBuilder()
                                 .setColumnName("Цена")
@@ -81,7 +70,6 @@ public class SleevePanel  extends DynamicContentPanel {
                                 .build()
                 )
                 .build();
-
 
         GridPaneWrapper commonGridPaneWrapper = GridPaneWrapper.newBuilder()
                 .setColumnVsPercent(70)
@@ -100,41 +88,6 @@ public class SleevePanel  extends DynamicContentPanel {
 
 
 
-//        ComboBox<Range> comboBox = new RangeDirector(
-//                new ComboBox<>(),
-//                mediatorServiceTwoLinkedTable,
-//                Range.ACTUAL,
-//                Range.getAll()
-//        ).getComboBox();
-//
-//        Coordinate  coordinate=new Coordinate(0d,20d,null,null);
-//        coordinate.setParentAnchorPane(dynamicContentAnchorHolder);
-//        coordinate.setChildNode(comboBox);
-//        coordinate.bonding();
-
-//        ButtonWrapper.newBuilder()
-//                .setParentAnchor(dynamicContentAnchorHolder)
-//                .setCoordinate(new Coordinate(10d,20d,null,null))
-//                .setText("РЕЕСТР ЦЕН")
-//                .setCssClasses(CSSclasses.REGISTRY_BUTTONS_BFx)
-//                .setEvents(
-//                        new SubWindowCreater(
-//                                WindowBuilder.newBuilder()
-//                                        .setClosingCallBack(()->leftTableWrapper.getServiceTables().refresh(leftTableWrapper))
-//                                        .setGUIStructura(null)
-//                                        .setButtonsForStage(null)
-//                                        .setFxmlFileName("ByDateResearchWindow")
-//                                        .setParentAnchorNameForFXML(WindowAbstraction.DefaultPanelsNames.topVisibleAnchor.name())
-//                                        .setWidth(900d)
-//                                        .setHeight(600d)
-//                                        .setDynamicContentPanelCreator(PopupExemple::new)
-//                                        .setTitle("ОБОРУДОВАНИЕ")
-//                                        .setMessage(null)
-//                                        .build()
-//                        )
-//                )
-//                .build();
-
 
     }
 
@@ -143,10 +96,10 @@ public class SleevePanel  extends DynamicContentPanel {
 
 
 
-        mediatorServiceTwoLinkedTable.setAccessoryTableWrapper(rightTableWrapper);
-        mediatorServiceTwoLinkedTable.setPrimaryTableWrapper(leftTableWrapper);
-        mediatorServiceTwoLinkedTable.setRangeDirector(rangeDirector);
-        mediatorServiceTwoLinkedTable.initElements();
+        mediator.setAccessoryTableWrapper(rightTableWrapper);
+        mediator.setPrimaryTableWrapper(leftTableWrapper);
+        mediator.setRangeDirector(rangeDirector);
+        mediator.initElements();
 
     }
 
