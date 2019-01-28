@@ -13,4 +13,8 @@ public abstract class ServiceCrossWindow <T extends Object> implements Mediator 
         this.currentWindow = currentWindow;
     }
     public abstract void init();
+
+    protected void informParentWindowAboutClosing() {
+        currentWindow.getWindowImpl().getCallBackSubWindowClosing().call();
+    }
 }

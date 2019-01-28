@@ -38,7 +38,7 @@ public class ServiceTablesAutoCommitByDate extends ServiceTables {
         UnitOfWork unitOfWork = ((TableWrapper) node).unitOfWork;
         boolean newDomane = ActiveRecord.isNewDomane(record);
         if (!newDomane) {
-            unitOfWork.registercDeleted(record.entityName,record);
+            unitOfWork.registercDeleted(record);
             commit(tableWrapper);
         }
     }
@@ -52,9 +52,9 @@ public class ServiceTablesAutoCommitByDate extends ServiceTables {
         if (readyToTransaction) {
             boolean newDomane = ActiveRecord.isNewDomane(record);
             if (newDomane) {
-                unitOfWork.registerNew(record.entityName,record);
+                unitOfWork.registerNew(record);
             }else{
-                unitOfWork.registercDirty(record.entityName,record);
+                unitOfWork.registercDirty(record);
             }
 
             commit(tableWrapper);

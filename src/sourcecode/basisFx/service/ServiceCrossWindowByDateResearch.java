@@ -17,32 +17,35 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 
+import java.time.LocalDate;
+
 public  class ServiceCrossWindowByDateResearch  extends ServiceCrossWindow   {
 
     private RangeDirector rangeDirector;
     private DatePickerHandler datePickerHandlerSTART;
     private DatePickerHandler datePickerHandlerEND;
-    private TableWrapper  table_wrapper;
+    private TableWrapper table_wrapper;
+    private TableWrapper outer_table_wrapper;
+    private LocalDate selectedDateStart ;
+    private LocalDate selectedDateEnd ;
 
     @FXML private AnchorPane dynamicContentAnchorHolder;
     @FXML private AnchorPane titlePanel;
     @FXML private Button addBut;
     @FXML private Button delBut;
     @FXML private Button okBut;
+    @FXML private Button periodBut;
     @FXML private Label title;
     @FXML private DatePicker dateStart;
     @FXML private DatePicker dateEnd;
     @FXML private ComboBox combobox;
 
-    @FXML public void initialize() { }
-
- //   @FXML
-//    private void leftclick(ActionEvent event) {
-//    }
-
+    @FXML public void initialize() {
+           outer_table_wrapper = (TableWrapper) Registry.mainWindow.getNodeFromMap("outer_table_wrapper_for_ByDateResearchWindow");
+    }
 
     public ServiceCrossWindowByDateResearch() {
-        Registry.serviceCrossWindowMap.put("ByDateResearchWindow",this);
+        Registry.crossWindowMediators.put("ByDateResearchWindow",this);
     }
     @Override
     public void init() {
@@ -53,6 +56,7 @@ public  class ServiceCrossWindowByDateResearch  extends ServiceCrossWindow   {
         initAddDelButtonsEvents();
         initComboboxHandler();
         initDatePickersHadler();
+        initPeriodButEvent();
 
     }
 
@@ -71,7 +75,7 @@ public  class ServiceCrossWindowByDateResearch  extends ServiceCrossWindow   {
     }
 
     private void bondingToContentAnchorWidth() {
-        dynamicContentAnchor = currentWindow.getCurrentDynamicContent().getDynamicContentAnchor();
+        dynamicContentAnchor = currentWindow.getCurrentDynamicContent().getDynamicContentAnchorHolder();
         Coordinate coordinate = new Coordinate(0d, 0d, 0d, 0d);
         coordinate.setChildNode(dynamicContentAnchor);
         coordinate.setParentAnchorPane(dynamicContentAnchorHolder);
@@ -79,9 +83,26 @@ public  class ServiceCrossWindowByDateResearch  extends ServiceCrossWindow   {
     }
 
     private void initAddDelButtonsEvents() {
-        table_wrapper= (TableWrapper) currentWindow.getNodeFromMap("TABLE_wrapper_ByDateResearchWindow");
-        new RowAddToTable( table_wrapper ).setEventToElement(addBut);
-        new RowDeleteFromTable( table_wrapper ).setEventToElement(delBut);
+        table_wrapper = (TableWrapper) currentWindow.getNodeFromMap("TABLE_wrapper_ByDateResearchWindow");
+
+        new RowAddToTable(table_wrapper).setEventToElement(addBut);
+        new RowDeleteFromTable(table_wrapper).setEventToElement(delBut);
+    }
+
+    private void initPeriodButEvent() {
+        periodBut.setOnMousePressed(event -> {
+            if (event.isPrimaryButtonDown() && event.getClickCount() == 1 ||  event.getClickCount() ==2 ) {
+                if (selectedDateStart != null && selectedDateEnd!= null ) {
+                    table_wrapper.getMediator()
+                            .refreshViaPeriodAndOuterId(
+                                    table_wrapper,
+                                    outer_table_wrapper.clickedDomain.id.get(),
+                                    selectedDateStart,
+                                    selectedDateEnd
+                            );
+                }
+            }
+        });
     }
 
     private void initCloseButtonEvent() {
@@ -95,7 +116,7 @@ public  class ServiceCrossWindowByDateResearch  extends ServiceCrossWindow   {
     }
 
     private void initTitle() {
-        title.setText(currentWindow.getWindowImpl().getTitleName());
+        title.setText(outer_table_wrapper.clickedDomain.toString());
     }
 
     @Override
@@ -104,16 +125,14 @@ public  class ServiceCrossWindowByDateResearch  extends ServiceCrossWindow   {
             informParentWindowAboutClosing();
         }
         if (node == rangeDirector) {
-            System.out.println("=========="+ rangeDirector.getSelectedRange());
+            table_wrapper.getMediator().refreshViaRangeAndOuterId(table_wrapper, outer_table_wrapper.clickedDomain.id.get(),rangeDirector.getSelectedRange());
         }
         if (node == datePickerHandlerSTART) {
-            System.out.println("=========="+datePickerHandlerSTART.getSelectedDate());
+            selectedDateStart=datePickerHandlerSTART.getSelectedDate();
         }
         if (node == datePickerHandlerEND) {
-            System.out.println("=========="+datePickerHandlerEND.getSelectedDate());
+            selectedDateEnd=datePickerHandlerEND.getSelectedDate();
         }
     }
-    public void informParentWindowAboutClosing() {
-        currentWindow.getWindowImpl().getCallBackSubWindowClosing().call();
-    }
+
 }

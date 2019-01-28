@@ -47,7 +47,7 @@ public class RowDeleteFromTable extends AppEvent{
             final ActiveRecord selectedItem = selectionModel.getSelectedItem();
             if (selectedItem != null) {
                 tableWrapper.getItems().remove(selectedItem);
-                tableWrapper.getServiceTables().wasRemoved(tableWrapper,selectedItem);
+                tableWrapper.getMediator().wasRemoved(tableWrapper,selectedItem);
             }
 
 

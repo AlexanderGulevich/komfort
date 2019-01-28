@@ -87,7 +87,7 @@ public class ColWrapperComboBox extends ColWrapper {
                     if (value instanceof WritableValue) {
                         ((WritableValue<ActiveRecord>)value).setValue(event.getNewValue());
                         ActiveRecord domain = (ActiveRecord) event.getRowValue();
-                        tableWrapper.getServiceTables().wasChanged(tableWrapper,domain);
+                        tableWrapper.getMediator().wasChanged(tableWrapper,domain);
                     }
                 }
             };

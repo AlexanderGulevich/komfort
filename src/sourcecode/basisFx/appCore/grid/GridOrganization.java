@@ -2,7 +2,6 @@ package basisFx.appCore.grid;
 
 import basisFx.appCore.elements.GridPaneWrapper;
 import basisFx.appCore.elements.TableWrapper;
-import basisFx.appCore.fabrics.ButtonFactory;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 
@@ -10,7 +9,6 @@ public abstract class GridOrganization {
 
     protected Insets insets = new Insets(3, 3, 3, 3);
     protected GridPaneWrapper parentGridWrapper;
-    protected ButtonFactory buttonFactory = ButtonFactory.getInstance();
     protected Label label;
 
     protected CtrlPosition ctrlPosition;

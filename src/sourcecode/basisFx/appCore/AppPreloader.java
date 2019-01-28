@@ -35,8 +35,8 @@ public class AppPreloader extends Preloader {
     public double WIDTH_VISIBLE=600d;
     public double HEIGHT_VISIBLE= 400d ;
 
-    public double WIDTH_TRANSPARENT= WIDTH_VISIBLE+5d;
-    public double HEIGHT_TRANSPARENT= HEIGHT_VISIBLE+5d;
+    public double WIDTH_TRANSPARENT= WIDTH_VISIBLE+10d;
+    public double HEIGHT_TRANSPARENT= HEIGHT_VISIBLE+10d;
 
     @Override
     public void init() throws Exception {

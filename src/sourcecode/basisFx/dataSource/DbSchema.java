@@ -144,13 +144,13 @@ public class DbSchema {
                 + " numberOfProduct INTEGER    "
                 + ")";
         String viewActualRate= "Create  view ActualEmployersRate  as " +
-                " SELECT  r.employerId, r.rate, r.startDate, e.name, e.isFired"+
+                " SELECT  r.employerId as id,r.employerId as employerId , r.rate, r.startDate, e.name, e.isFired"+
                 " from  employer as e,"+
                 " (select * from EMPLOYEESRATEPERHOUR where (employerId, startDate)"+
                 " in (select employerId, max(startDate) from  EMPLOYEESRATEPERHOUR group by employerId)) as r"+
 
-//                " where r.employerId=e.id and e.isFired = false"+
-                " where r.employerId=e.id  "+
+                " where r.employerId=e.id and e.isFired = false"+
+//                " where r.employerId=e.id  "+
                 " ORDER BY r.employerId";
         String viewTimeRecordingAndSalary= "Create  view TimeRecordingAndSalary  as " +
                 "SELECT EMPLOYERID, DATE, HOURS , rate, rate*HOURS AS salary, e.ISFIRED,e.NAME FROM(\n" +
@@ -208,9 +208,9 @@ public class DbSchema {
                 Jumbo,
                 outputPerDay,
                 jumboAccounting,
-                jumboAccounting
+                jumboAccounting,
 
-//                viewActualRate,
+                viewActualRate
 //                viewTimeRecordingAndSalary,
 //                viewActualRate
 
@@ -243,9 +243,8 @@ public class DbSchema {
         
  
 }
-//SELECT  * FROM SLEEVEPRICE WHERE YEAR(STARTDATE) =YEAR(CURRENT_DATE);
-//SELECT  * FROM SLEEVEPRICE WHERE YEAR(STARTDATE) =2016
-//выдаст за текщий день
+//SELECT * FROM SLEEVEPRICE WHERE YEAR(STARTDATE) =YEAR(CURRENT_DATE);
+//SELECT * FROM SLEEVEPRICE WHERE YEAR(STARTDATE) =2016
 //SELECT * FROM SLEEVEPRICE WHERE STARTDATE > (NOW() - INTERVAL 1 DAY) AND STARTDATE <= NOW() ;
 //SELECT * FROM SLEEVEPRICE   ORDER BY STARTDATE DESC LIMIT 2   ;
 //SELECT * FROM SLEEVEPRICE WHERE STARTDATE >= '2019-01-11' AND STARTDATE <= '2019-01-15' ;

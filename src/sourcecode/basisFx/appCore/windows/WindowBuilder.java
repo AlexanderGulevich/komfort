@@ -3,6 +3,8 @@ package basisFx.appCore.windows;
 import basisFx.appCore.interfaces.CallBack;
 import basisFx.appCore.interfaces.DynamicContentPanelCreator;
 import basisFx.appCore.guiStructura.GUIStructura;
+import lombok.Setter;
+import lombok.experimental.Accessors;
 
 public class WindowBuilder {
     public GUIStructura GUIStructura=null;
@@ -26,13 +28,14 @@ public class WindowBuilder {
         parentAnchorNameForFXML = builder.parentAnchorNameForFXML;
         buttonsForStage = builder.buttonsForStage;
         message = builder.message;
-        callBackSubWindowClosing = builder.callBackSubWindowClosing;
+        callBackSubWindowClosing = builder.closingCallBack;
     }
 
     public static Builder newBuilder() {
         return new Builder();
     }
 
+    @Accessors (chain = true) @Setter
     public static final class Builder {
         private basisFx.appCore.guiStructura.GUIStructura GUIStructura;
         private DynamicContentPanelCreator dynamicContentPanelCreator;
@@ -43,59 +46,9 @@ public class WindowBuilder {
         private String parentAnchorNameForFXML;
         private ButtonsForStage buttonsForStage;
         private String message;
-        private CallBack callBackSubWindowClosing;
+        private CallBack closingCallBack;
 
         private Builder() {
-        }
-
-        public Builder setGUIStructura(GUIStructura val) {
-            GUIStructura = val;
-            return this;
-        }
-
-        public Builder setDynamicContentPanelCreator(DynamicContentPanelCreator val) {
-            dynamicContentPanelCreator = val;
-            return this;
-        }
-
-        public Builder setWidth(Double val) {
-            width = val;
-            return this;
-        }
-
-        public Builder setHeight(Double val) {
-            height = val;
-            return this;
-        }
-
-        public Builder setFxmlFileName(String val) {
-            fxmlFileName = val;
-            return this;
-        }
-
-        public Builder setTitle(String val) {
-            title = val;
-            return this;
-        }
-
-        public Builder setParentAnchorNameForFXML(String val) {
-            parentAnchorNameForFXML = val;
-            return this;
-        }
-
-        public Builder setButtonsForStage(ButtonsForStage val) {
-            buttonsForStage = val;
-            return this;
-        }
-
-        public Builder setMessage(String val) {
-            message = val;
-            return this;
-        }
-
-        public Builder setClosingCallBack(CallBack val) {
-            callBackSubWindowClosing = val;
-            return this;
         }
 
         public WindowBuilder build() {

@@ -24,7 +24,7 @@ public class App{
         IconToPlatform.init(primaryStage);
         CSSHandler.init(StylesPathes.CUSTOM_1);
         WindowFabric.WindowUndecorated();
-
+//
         Registry.windowFabric.mainWindow(primaryStage,
                 WindowBuilder.newBuilder()
                         .setGUIStructura(new LeftAndTopMenuGUI())

@@ -34,7 +34,7 @@ public class RowAddToSubmitTableWhisCommonDate<T> extends AppEvent{
         try {
             ActiveRecord newInstance = (ActiveRecord) tableWrapper.activeRecordClass.newInstance();
             if (tableWrapper.isItemListExist()
-                    && ((ServiceTablesAutoCommitByDate) tableWrapper.getServiceTables()).
+                    && ((ServiceTablesAutoCommitByDate) tableWrapper.getMediator()).
                           getDatePickerWrapper().getDate()!=null) {
                     tableWrapper.getItems().add(newInstance);
                     tableWrapper.scrollToItem(newInstance);

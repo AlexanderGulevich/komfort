@@ -15,7 +15,6 @@ import javafx.util.StringConverter;
 import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.time.format.FormatStyle;
 
 public class ColWrapperDate extends ColWrapper {
 
@@ -62,7 +61,7 @@ public class ColWrapperDate extends ColWrapper {
                     ((WritableValue<LocalDate>)v).setValue(event.getNewValue());
                 }
                 ActiveRecord domain = (ActiveRecord) event.getRowValue();
-                tableWrapper.getServiceTables().wasChanged(tableWrapper,domain);
+                tableWrapper.getMediator().wasChanged(tableWrapper,domain);
 
             }else {
 

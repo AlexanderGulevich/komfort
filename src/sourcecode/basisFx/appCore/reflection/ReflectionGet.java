@@ -1,7 +1,6 @@
 package basisFx.appCore.reflection;
 
-import basisFx.appCore.annotation.DataStore;
-import basisFx.appCore.annotation.Sorting;
+
 import basisFx.appCore.utils.DomainPropertiesMetaInfo;
 import basisFx.appCore.utils.Range;
 import basisFx.dataSource.Db;
@@ -10,12 +9,12 @@ import basisFx.domain.BoolComboBox;
 import javafx.collections.ObservableList;
 
 import java.lang.reflect.*;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
-
-import static basisFx.appCore.utils.Range.ACTUAL;
 
 public class ReflectionGet {
 
@@ -161,7 +160,7 @@ public class ReflectionGet {
         return activeRecord;
     }
 
-    public static ObservableList<ActiveRecord> getAllDomains(
+    public static ObservableList<ActiveRecord> getAllDomainsList(
             ActiveRecord record,
             ObservableList<ActiveRecord> list,
             ArrayList<DomainPropertiesMetaInfo> domainPropertiesMetaInfoList,
@@ -193,112 +192,39 @@ public class ReflectionGet {
     }
 
 
-    public static String createfindAllByOuterIdExpression(ActiveRecord record,
-                                                          ArrayList<DomainPropertiesMetaInfo> domainPropertiesMetaInfoList,
-                                                          int id) {
-        String expression = "Select * from " + record.entityName + " ";
-        String sorting=null;
-        String where_expr=null;
-        for (DomainPropertiesMetaInfo info : domainPropertiesMetaInfoList) {
-            DataStore dataStoreAnnotation = info.getDataStoreAnnotation();
-            if (dataStoreAnnotation != null) {
-                if (dataStoreAnnotation.SORTING()==Sorting.ASK) {
-                    sorting=" "+" ORDER BY "  + info.getPropertyName()+" "+"ASK";
-                }
-                if (dataStoreAnnotation.SORTING()==Sorting.DESC) {
-                    sorting=" "+" ORDER BY "  + info.getPropertyName()+" "+"DESC";
-                }
-                if (dataStoreAnnotation.AS_OUTER_ID()) {
-                    where_expr= " "+ "where "+info.getPropertyName()+"="+id;
-                }
-            }
-        }
-        return expression =expression +where_expr+sorting;
+    public static String createFindAllByOuterIdExpression(ActiveRecord record, ArrayList<DomainPropertiesMetaInfo> inf, int id) {
+        return  "Select * from " + record.entityName  + " "+ExpressionProcessor.getWhere(inf,id);
     }
 
-    public static String createfindAllByOuterIdAndRangeExpression(ActiveRecord record,
-                                                          ArrayList<DomainPropertiesMetaInfo> domainPropertiesMetaInfoList,
-                                                          int id, Range range) {
-        String expression = "Select * from " + record.entityName ;
-        String sorting=null;
-        String outerIdExp=null;
-        String limit=null;
-        String analizedDateName=null;
-        String year=null;
-        String month=null;
-        String intervalDays=null;
+    public static String createFindAllByOuterIdAndRangeExpression(ActiveRecord record, ArrayList<DomainPropertiesMetaInfo> inf, int id, Range range) {
+        return  "Select * from " + record.entityName  + " "+ExpressionProcessor.getWhere(inf,id,range);
+    }
+    public static ResultSet findAllByOuterIdAndPeriod(ActiveRecord record,
+                                                                   ArrayList<DomainPropertiesMetaInfo> inf,
+                                                                   int id,
+                                                                   LocalDate start,
+                                                                   LocalDate end
+    ) {
 
-        for (DomainPropertiesMetaInfo info : domainPropertiesMetaInfoList) {
-            DataStore dataStoreAnnotation = info.getDataStoreAnnotation();
-            if (dataStoreAnnotation != null) {
-                if (dataStoreAnnotation.SORTING()==Sorting.ASK) {
-                    sorting=" "+" ORDER BY "  + info.getPropertyName()+" "+"ASK";
-                }
-                if (dataStoreAnnotation.SORTING()==Sorting.DESC) {
-                    sorting=" "+" ORDER BY "  + info.getPropertyName()+" "+"DESC";
-                }
-                if (dataStoreAnnotation.AS_OUTER_ID()) {
-                    outerIdExp = " "+info.getPropertyName()+"="+id;
-                }
-                if (dataStoreAnnotation.ANALIZED_DATE()) {
-                    analizedDateName = info.getPropertyName();
-                }
-             }
-        }
+        String expression = "Select * from " + record.entityName + ExpressionProcessor.getWhereForPeriod(inf,id);
 
-        switch (range) {
-            case  ACTUAL: limit=" LIMIT 1 ";
-                break;
-            case  ALLTIME:
-                break;
-            case  YEAR:year=" YEAR("+analizedDateName+") =YEAR(CURRENT_DATE) ";
-                break;
-            case  MONTH:month=" MONTH("+analizedDateName+") =MONTH(CURRENT_DATE) AND  YEAR("+analizedDateName+") =YEAR(CURRENT_DATE) ";
-                break;
-            case  DAY30: intervalDays=analizedDateName+" >= (NOW() - INTERVAL 30 DAY) AND ("+analizedDateName+" <= NOW()) ";
-                break;
-            case  DAY60:intervalDays=analizedDateName+" >= (NOW() - INTERVAL 60 DAY) AND ("+analizedDateName+" <= NOW()) ";
-                break;
-            case  DAY90:intervalDays=analizedDateName+">= (NOW() - INTERVAL 90 DAY) AND ("+analizedDateName+" <= NOW()) ";
-                break;
-            case  DAY180:intervalDays=analizedDateName+" >= (NOW() - INTERVAL 180 DAY) AND ("+analizedDateName+" <= NOW()) ";
-                break;
-            case  LAST10: limit=" LIMIT 10 ";
-                break;
-            case  LAST30: limit=" LIMIT 30 ";
-                break;
+        PreparedStatement pstmt=null;
+        try {
+            pstmt = Db.connection.prepareStatement(expression);
 
-
-        }
-        String where_EXP=null;
-        if (outerIdExp != null)   where_EXP= " where "+ outerIdExp;
-        if (year != null) {
-            if (where_EXP != null)  {
-                where_EXP+=" and "+year;
-            } else {
-                where_EXP= year;
-            }
-        }
-        if (month != null) {
-            if (where_EXP != null)  {
-                where_EXP+=" and "+month;
-            } else {
-                where_EXP= month;
-            }
-        }
-        if (intervalDays != null) {
-            if (where_EXP != null)  {
-                where_EXP+=" and "+intervalDays;
-            } else {
-                where_EXP= intervalDays;
-            }
+            pstmt.setDate(1, Date.valueOf(start));
+            pstmt.setDate(2, Date.valueOf(end));
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
 
 
-        if (sorting == null) sorting=" ";
-        if (limit == null) limit=" ";
-
-        return expression =expression +where_EXP +sorting + limit;
+        try {
+            return pstmt.executeQuery();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
 
     }
 }

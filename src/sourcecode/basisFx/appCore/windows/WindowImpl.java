@@ -6,20 +6,25 @@ import basisFx.appCore.utils.Coordinate;
 import basisFx.appCore.utils.FXMLFileLoader;
 import basisFx.appCore.guiStructura.GUIStructura;
 import javafx.scene.layout.AnchorPane;
+import lombok.Getter;
+import lombok.Setter;
 
 public abstract class WindowImpl {
-    protected double width;
-    protected double height;
-    protected WindowAbstraction windowAbstraction;
+    @Getter protected double width;
+    @Getter protected double height;
+    @Getter @Setter protected WindowAbstraction windowAbstraction;
     protected AnchorPane topLevelAnchorFromFXML;
-    protected String titleName;
-    protected String message;
-    protected ButtonsForStage buttonsForStage;
-    protected GUIStructura GUIStructura;
-    protected DynamicContentPanelCreator dynamicContentPanelCreator;
+    @Getter protected String titleName;
+    @Getter protected String message;
+    @Getter protected ButtonsForStage buttonsForStage;
+    @Getter protected GUIStructura GUIStructura;
+    @Getter protected DynamicContentPanelCreator dynamicContentPanelCreator;
     protected String parentAnchorNameForFXML;
     protected WindowBuilder builder;
-    protected CallBack callBackSubWindowClosing;
+    @Getter protected CallBack callBackSubWindowClosing;
+
+    protected abstract void setDefaultWidthAndHeight();
+    public abstract void customInit(WindowAbstraction windowAbstraction);
 
     public WindowImpl(WindowBuilder builder) {
         this.builder=builder;
@@ -39,31 +44,8 @@ public abstract class WindowImpl {
         titleName=builder.title;
         message=builder.message;
         callBackSubWindowClosing=builder.callBackSubWindowClosing;
-
-    }
-    public WindowAbstraction getWindowAbstraction() {
-        return windowAbstraction;
-    }
-    public String getTitleName() {
-        return titleName;
-    }
-    public void setWindowAbstraction(WindowAbstraction windowAbstraction) {
-        this.windowAbstraction = windowAbstraction;
-    }
-    protected abstract void setDefaultWidthAndHeight();
-
-    public double getWidth() {
-        return width;
     }
 
-    public double getHeight() {
-        return height;
-    }
-
-    //этот метод необходим в случае если необходимо некое конфигурирование из абстракции моста,
-    // после того как абстракция проинициализирована реализацией и реальзация содержит ссылку на абстрацию, хранящую узлы
-
-    public abstract void customInit(WindowAbstraction windowAbstraction);
     public  void initTemplateMethod(WindowAbstraction windowAbstraction){
 
         if (GUIStructura != null) {
@@ -89,19 +71,4 @@ public abstract class WindowImpl {
     }
 
 
-    public String getMessage() {
-        return message;
-    }
-
-    public ButtonsForStage getButtonsForStage() {
-        return buttonsForStage;
-    }
-
-    public DynamicContentPanelCreator getDynamicContentPanelCreator() {
-        return dynamicContentPanelCreator;
-    }
-
-    public CallBack getCallBackSubWindowClosing() {
-        return callBackSubWindowClosing;
-    }
 }

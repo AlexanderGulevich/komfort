@@ -1,11 +1,13 @@
 package basisFx.appCore.menu;
+import lombok.Getter;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 public class MenuComposite extends MenuComponent {
 
-    protected ArrayList<MenuComponent> childs =new ArrayList<>();
+    @Getter protected ArrayList<MenuComponent> childs =new ArrayList<>();
 
     public MenuComponent add(MenuComponent... component){
         List<MenuComponent> menuComponents = Arrays.asList(component);
@@ -17,10 +19,6 @@ public class MenuComposite extends MenuComponent {
     }
     public void remove(MenuComponent component){
         childs.remove(component);
-    }
-
-    public ArrayList<MenuComponent> getChilds() {
-        return childs;
     }
 
     @Override

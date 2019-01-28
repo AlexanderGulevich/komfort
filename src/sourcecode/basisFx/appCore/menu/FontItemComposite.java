@@ -2,12 +2,13 @@ package basisFx.appCore.menu;
 
 import basisFx.appCore.interfaces.DynamicContentPanelCreator;
 import basisFx.appCore.settings.FontsStore;
+import lombok.Getter;
 
 public class FontItemComposite extends MenuComposite{
-    protected String fontSymbol;
-    protected String description;
-    protected FontsStore fontsStore;
-    protected double fontSize;
+    @Getter protected String fontSymbol;
+    @Getter protected String description;
+    @Getter protected FontsStore fontsStore;
+    @Getter protected double fontSize;
 
     private FontItemComposite(Builder builder) {
         dynamicContentPanelCreator = builder.dynamicContentPanelCreator;
@@ -16,22 +17,6 @@ public class FontItemComposite extends MenuComposite{
         fontSize = builder.fontSize;
         description=builder.description;
         isActive=builder.isActive;
-    }
-
-    public String getFontSymbol() {
-        return fontSymbol;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public FontsStore getFontsStore() {
-        return fontsStore;
-    }
-
-    public double getFontSize() {
-        return fontSize;
     }
 
     public static Builder newBuilder() {
@@ -45,9 +30,6 @@ public class FontItemComposite extends MenuComposite{
         private String fontSymbol;
         private FontsStore fontsStore;
         private double fontSize;
-
-
-
 
         private Builder() {
         }

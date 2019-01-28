@@ -12,14 +12,24 @@ import java.util.logging.Logger;
 
 public class ClosePopupAndSubWindow extends AppEvent{
     protected Button  but;
+    Long sleepMillis;
+
+    public void setSleepMillis(long sleepMillis) {
+        this.sleepMillis = sleepMillis;
+    }
+
     @Override
     public void setEventToElement(AppNode n) {
         this.nodeWrapper =n;
         this.but=(Button) n.getElement();
         but.setOnMouseClicked((event) -> {
-            run();
-        }
+                    run();
+                }
         ) ;
+        but.setOnAction((event) -> {
+                    run();
+                }
+        ); ;
     }
 
     @Override
@@ -29,12 +39,21 @@ public class ClosePopupAndSubWindow extends AppEvent{
                     run();
                 }
         ) ;
+        but.setOnAction((event) -> {
+                    run();
+                }
+        ); ;
     }
 
     @Override
     public void run() {
         try {
-            Thread.sleep(1);
+
+            if (sleepMillis != null) {
+                Thread.sleep(sleepMillis);
+            }else {
+                Thread.sleep(1);
+            }
 
             if (mediator != null) {
                 mediator.inform(but);

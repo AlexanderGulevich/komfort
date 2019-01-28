@@ -1,119 +1,169 @@
 package basisFx.presentation.dynamicContents;
-import basisFx.appCore.elements.ComboBoxWrapper;
+import basisFx.appCore.events.SubWindowCreater;
+import basisFx.appCore.grid.ButSizeBig;
 import basisFx.appCore.grid.CtrlPosTop;
 import basisFx.appCore.grid.ButSizeLittle;
-import basisFx.appCore.settings.CSSclasses;
-import basisFx.appCore.utils.Range;
+import basisFx.appCore.table.*;
+import basisFx.appCore.utils.Registry;
+import basisFx.appCore.windows.WindowAbstraction;
+import basisFx.appCore.windows.WindowBuilder;
+import basisFx.domain.ActualEmployersRate;
+import basisFx.domain.Equipment;
 import basisFx.presentation.DynamicContentPanel;
-import basisFx.service.ServiceTablesTwoLinked;
+import basisFx.service.ServiceTablesSingle;
 import basisFx.appCore.elements.TableWrapper;
 import basisFx.appCore.grid.SingleTable;
-import basisFx.appCore.grid.TwoHorisontalBondGrids;
 import basisFx.appCore.elements.GridPaneWrapper;
-import basisFx.appCore.table.ColWrapperDate;
-import basisFx.appCore.table.ColWrapperDouble;
-import basisFx.appCore.table.ColWrapperString;
 import basisFx.appCore.utils.Coordinate;
-import basisFx.domain.EmployeesRatePerHour;
 import basisFx.domain.Employer;
 
 public class EmployeesPanel extends DynamicContentPanel {
-    private ServiceTablesTwoLinked mediatorServiceTwoLinkedTable;
+//    private ServiceTablesTwoLinked mediator;
+    private ServiceTablesSingle mediator;
     private TableWrapper leftTableWrapper ;
     private TableWrapper rightTableWrapper ;
+    private WindowBuilder dateResearchWindowBuilder;
+    private WindowBuilder hiringWindowBuilder;
 
     @Override
     public void createServices() {
-        mediatorServiceTwoLinkedTable =new ServiceTablesTwoLinked();
+        mediator =new ServiceTablesSingle();
     }
 
     @Override
     public void customDynamicElementsInit() {
 
-          leftTableWrapper = TableWrapper.newBuilder()
-                .setGridName("Текущий список сотрудников ")
-                .setOrganization(new SingleTable(new ButSizeLittle(),new CtrlPosTop()))
-                .setActiveRecordClass(Employer.class)
-                .setUnitOfWork(unitOfWork)
-                .setIsEditable(true)
-                .setIsSortableColums(false)
-                .setServiceTables(mediatorServiceTwoLinkedTable)
-                .setColWrappers(
-                        ColWrapperString.newBuilder()
-                                .setColumnName("ФИО")
-                                .setColumnSize(1d)
-                                .setIsEditeble(true)
-                                .setPropertyName("name")
-                                .build()
-                )
+        dateResearchWindowBuilder = WindowBuilder.newBuilder()
+                .setGUIStructura(null)
+                .setButtonsForStage(null)
+                .setDynamicContentPanelCreator(EmployeesPanel::new)
+                .setTitle(null)
+                .setMessage(null)
+                .setFxmlFileName("ByDateResearchWindow")
+                .setParentAnchorNameForFXML(WindowAbstraction.DefaultPanelsNames.topVisibleAnchor.name())
+                .setWidth(900d)
+                .setHeight(600d)
+                .setClosingCallBack(
+                        () -> {
+                            TableWrapper tableWrapper = (TableWrapper) currentDynamicContent.get("tableWrapper");
+                            tableWrapper.getMediator().refresh(tableWrapper);
+                        })
                 .build();
 
-          rightTableWrapper = TableWrapper.newBuilder()
-                .setGridName("Реестр тарифных ставок ")
-                .setOrganization(new SingleTable(new ButSizeLittle(),new CtrlPosTop()))
-                .setActiveRecordClass(EmployeesRatePerHour.class)
+
+        hiringWindowBuilder = WindowBuilder.newBuilder()
+                .setGUIStructura(null)
+                .setButtonsForStage(null)
+                .setDynamicContentPanelCreator(EmployeesPanel::new)
+                .setTitle(null)
+                .setMessage(null)
+                .setFxmlFileName("EmployerHire")
+                .setParentAnchorNameForFXML(WindowAbstraction.DefaultPanelsNames.topVisibleAnchor.name())
+                .setWidth(530d)
+                .setHeight(350d)
+                .setClosingCallBack(
+                        () -> {
+                            TableWrapper tableWrapper = (TableWrapper) currentDynamicContent.get("tableWrapper");
+                            tableWrapper.getMediator().refresh(tableWrapper);
+                        })
+                .build();
+
+
+        leftTableWrapper = TableWrapper.newBuilder()
+                .setGridName("Сотрудники ")
+                .setActiveRecordClass(ActualEmployersRate.class)
                 .setUnitOfWork(unitOfWork)
                 .setIsEditable(true)
                 .setIsSortableColums(false)
-                .setServiceTables(mediatorServiceTwoLinkedTable)
+                .setServiceTables(mediator)
                 .setColWrappers(
+                        ColWrapperComboBox.newBuilder(Employer.class)
+                                .setColumnName("Работник")
+                                .setColumnSize(0.5d)
+                                .setIsEditeble(false)
+                                .setPropertyName("EMPLOYER")
+                                .build(),
                         ColWrapperDouble.newBuilder()
-                                .setColumnName("Тариф")
-                                .setColumnSize(0.3d)
+                                .setColumnName("Тариф/ч. ")
+                                .setColumnSize(0.1d)
                                 .setIsEditeble(true)
-                                .setPropertyName("rate")
+                                .setPropertyName("RATE")
                                 .build(),
                         ColWrapperDate.newBuilder()
                                 .setColumnName("Действует с")
-                                .setColumnSize(0.7d)
+                                .setColumnSize(0.2d)
                                 .setIsEditeble(true)
-                                .setPropertyName("startDate")
+                                .setPropertyName("STARTDATE")
+                                .build(),
+                        ColWrapperPopupViaBtn.newBuilder()
+                                .setBtnName("Показать")
+                                .setColumnName("Архив")
+                                .setColumnSize(0.2d)
+                                .setWindowBuilder(dateResearchWindowBuilder)
                                 .build()
                 )
                 .build();
 
+        currentDynamicContent.put("tableWrapper",leftTableWrapper);
 
-        GridPaneWrapper commonGridPaneWrapper = GridPaneWrapper.newBuilder()
-                .setColumnVsPercent(60)
-                .setColumnVsPercent(40)
-                .setGridName("Управление сотрудниками и тарифными ставками")
+//
+//          rightTableWrapper = TableWrapper.newBuilder()
+//                .setGridName("Реестр тарифных ставок ")
+//                .setOrganization(new SingleTable(new ButSizeLittle(),new CtrlPosTop()))
+//                .setActiveRecordClass(EmployeesRatePerHour.class)
+//                .setUnitOfWork(unitOfWork)
+//                .setIsEditable(true)
+//                .setIsSortableColums(false)
+//                .setServiceTables(mediator)
+//                .setColWrappers(
+//                        ColWrapperDouble.newBuilder()
+//                                .setColumnName("Тариф")
+//                                .setColumnSize(0.3d)
+//                                .setIsEditeble(true)
+//                                .setPropertyName("rate")
+//                                .build(),
+//                        ColWrapperDate.newBuilder()
+//                                .setColumnName("Действует с")
+//                                .setColumnSize(0.7d)
+//                                .setIsEditeble(true)
+//                                .setPropertyName("startDate")
+//                                .build()
+//                )
+//                .build();
+
+
+        Registry.mainWindow.setNodeToMap(leftTableWrapper,"outer_table_wrapper_for_ByDateResearchWindow");
+
+
+
+         GridPaneWrapper.newBuilder()
+                .setGridName("Текущий список сотрудников и актуальные тарифные ставки")
                 .setParentAnchor(dynamicContentAnchorHolder)
-                .setCoordinate(new Coordinate(0d, 10d, 10d, 0d))
+                .setCoordinate(new Coordinate(0d, 0d, 10d, 0d))
                 .setGridLinesVisibility(gridVisibility)
                 .setOrganization(
-                        new TwoHorisontalBondGrids(
-                                leftTableWrapper.getGridPaneWrapper(),
-                                rightTableWrapper.getGridPaneWrapper()
-                        )
-                )
+                        new SingleTable(
+                                leftTableWrapper,
+                                new ButSizeBig(
+                                        null,
+                                        new SubWindowCreater(hiringWindowBuilder)
+                                ),
+                                new CtrlPosTop()
+                        ))
                 .build();
 
 
 
 
-        ComboBoxWrapper.newBuilder()
-                .setCoordinate(new Coordinate(0d, 15d, null, null))
-                .setCssClasses(CSSclasses.COMBOBOX_BFx)
-                .setParentAnchor(dynamicContentAnchorHolder)
-                .setStartRange(Range.DAY30)
-                .setServiceTables(mediatorServiceTwoLinkedTable)
-                .setComboboxValues(Range.getParticular(
-                        Range.DAY30,
-                        Range.DAY60,
-                        Range.DAY30,
-                        Range.DAY90,
-                        Range.ACTUAL
-                        )
-                )
 
-                .build();
     }
 
     @Override
     public void initServices() {
-        mediatorServiceTwoLinkedTable.setAccessoryTableWrapper(rightTableWrapper);
-        mediatorServiceTwoLinkedTable.setPrimaryTableWrapper(leftTableWrapper);
-        mediatorServiceTwoLinkedTable.initElements();
+//        mediator.setAccessoryTableWrapper(rightTableWrapper);
+//        mediator.setPrimaryTableWrapper(leftTableWrapper);
+        mediator.setTableWrapper(leftTableWrapper);
+        mediator.initElements();
     }
 
 

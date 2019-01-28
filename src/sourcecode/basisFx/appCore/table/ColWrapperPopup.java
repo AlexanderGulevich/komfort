@@ -11,7 +11,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseButton;
 
-public class ColWrapperPopup extends ColWrapper {
+    public class ColWrapperPopup extends ColWrapper {
 
     protected TableColumn<ActiveRecord, ActiveRecord> column;
     protected ActiveRecord domain;
@@ -78,7 +78,7 @@ public class ColWrapperPopup extends ColWrapper {
                     if (value instanceof WritableValue) {
                         ((WritableValue<ActiveRecord>)value).setValue(event.getNewValue());
                         ActiveRecord domain = (ActiveRecord) event.getRowValue();
-                        tableWrapper.getServiceTables().wasChanged(tableWrapper,domain);
+                        tableWrapper.getMediator().wasChanged(tableWrapper,domain);
                     }
                 }
             };

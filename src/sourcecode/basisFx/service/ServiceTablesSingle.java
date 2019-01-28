@@ -4,13 +4,12 @@ import basisFx.appCore.elements.AppNode;
 import basisFx.appCore.elements.TableWrapper;
 import basisFx.dataSource.UnitOfWork;
 import basisFx.domain.ActiveRecord;
+import lombok.Setter;
 
 public class ServiceTablesSingle extends ServiceTables {
 
-    private TableWrapper tableWrapper;
-    public void setTableWrapper(TableWrapper tableWrapper) {
-        this.tableWrapper = tableWrapper;
-    }
+    @Setter private TableWrapper tableWrapper;
+    @Setter private int outrId;
 
     @Override
     public void inform(Object node) {
@@ -23,7 +22,7 @@ public class ServiceTablesSingle extends ServiceTables {
         if (readyToTransaction) {
             Boolean isNewDomane = ActiveRecord.isNewDomane(record);
             if (!isNewDomane){
-                unitOfWork.registercDeleted(record.entityName,record);
+                unitOfWork.registercDeleted(record);
                     unitOfWork.commit();
             }
         }
@@ -36,12 +35,12 @@ public class ServiceTablesSingle extends ServiceTables {
             Boolean isNewDomane = ActiveRecord.isNewDomane(record);
 
             if (!isNewDomane){
-                unitOfWork.registercDirty(record.entityName,record);
+                unitOfWork.registercDirty(record);
             }else {
-                unitOfWork.registerNew(record.entityName,record);
+                unitOfWork.registerNew(record);
             }
                 unitOfWork.commit();
-                ((TableWrapper) node).getServiceTables().refresh(node);
+                ((TableWrapper) node).getMediator().refresh(node);
         }
     }
 

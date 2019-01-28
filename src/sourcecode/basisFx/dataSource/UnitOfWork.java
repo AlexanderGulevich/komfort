@@ -12,19 +12,19 @@ public class UnitOfWork {
     public HashMap <String,ArrayList<ActiveRecord>>      dirtyDomainObjects=new HashMap<>();
     public HashMap <String,ArrayList<ActiveRecord>>      deletedDomainObject=new HashMap<>();
 
-    public void registerNew(String activeRecordName, ActiveRecord record){
-        listNullCheck(newDomainObjects,activeRecordName);
-        ArrayList<ActiveRecord> records = newDomainObjects.get(activeRecordName);
+    public void registerNew(ActiveRecord record){
+        listNullCheck(newDomainObjects,record.entityName);
+        ArrayList<ActiveRecord> records = newDomainObjects.get(record.entityName);
         records.add(record);
     }
-    public void registercDirty(String activeRecordName,ActiveRecord record){
-        listNullCheck(dirtyDomainObjects,activeRecordName);
-        ArrayList<ActiveRecord> records = dirtyDomainObjects.get(activeRecordName);
+    public void registercDirty(ActiveRecord record){
+        listNullCheck(dirtyDomainObjects,record.entityName);
+        ArrayList<ActiveRecord> records = dirtyDomainObjects.get(record.entityName);
         records.add(record);
     }
-    public void registercDeleted(String activeRecordName, ActiveRecord record){
-        listNullCheck(deletedDomainObject,activeRecordName);
-        ArrayList<ActiveRecord> records = deletedDomainObject.get(activeRecordName);
+    public void registercDeleted(ActiveRecord record){
+        listNullCheck(deletedDomainObject,record.entityName);
+        ArrayList<ActiveRecord> records = deletedDomainObject.get(record.entityName);
         records.add(record);
     }
 

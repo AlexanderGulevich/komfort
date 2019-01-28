@@ -3,12 +3,13 @@ package basisFx.appCore.menu;
 import basisFx.appCore.interfaces.DynamicContentPanelCreator;
 import basisFx.appCore.settings.FontsStore;
 import basisFx.presentation.DynamicContentPanel;
+import lombok.Getter;
 
 public class FontItemLeaf extends MenuLeaf{
-    protected String sumbols;
-    protected FontsStore fontsStore;
-    protected double fontSize;
-    protected String description;
+    @Getter protected String sumbols;
+    @Getter protected FontsStore fontsStore;
+    @Getter protected double fontSize;
+    @Getter protected String description;
 
     private FontItemLeaf(Builder builder) {
         dynamicContentPanelCreator = builder.dynamicContentPanelCreator;
@@ -19,21 +20,6 @@ public class FontItemLeaf extends MenuLeaf{
         isActive=builder.isActive;
     }
 
-    public String getSumbols() {
-        return sumbols;
-    }
-
-    public FontsStore getFontsStore() {
-        return fontsStore;
-    }
-
-    public double getFontSize() {
-        return fontSize;
-    }
-
-    public String getDescription() {
-        return description;
-    }
 
     public static Builder newBuilder() {
         return new Builder();

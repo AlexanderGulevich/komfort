@@ -35,12 +35,12 @@ public class ServiceTablesTwoLinked extends ServiceTables {
     @Override
     public void wasRemoved(AppNode node, ActiveRecord record) {
         TableWrapper tableWrapper = (TableWrapper) node;
-        ServiceTablesTwoLinked mediator = (ServiceTablesTwoLinked) tableWrapper.getServiceTables();
+        ServiceTablesTwoLinked mediator = (ServiceTablesTwoLinked) tableWrapper.getMediator();
         Boolean isNewDomane = ActiveRecord.isNewDomane(record);
         boolean readyToTransaction = record.isReadyToTransaction();
         if (readyToTransaction) {
             if (!isNewDomane) {
-                tableWrapper.unitOfWork.registercDeleted(record.entityName, record);
+                tableWrapper.unitOfWork.registercDeleted(record);
                 if (tableWrapper == mediator.getPrimaryTableWrapper()) {
                     removeAccessoryTableItems(mediator);
                 }
@@ -55,7 +55,7 @@ public class ServiceTablesTwoLinked extends ServiceTables {
                 if (ActiveRecord.isNewDomane(record)) {
                     continue;
                 }
-                mediator.getAccessoryTableWrapper().unitOfWork.registercDeleted(record.entityName,record);
+                mediator.getAccessoryTableWrapper().unitOfWork.registercDeleted(record);
             }
             commit(mediator.getAccessoryTableWrapper());
         }
@@ -68,9 +68,9 @@ public class ServiceTablesTwoLinked extends ServiceTables {
         boolean readyToTransaction = record.isReadyToTransaction();
         if (readyToTransaction) {
             if (isNewDomane){
-                tableWrapper.unitOfWork.registerNew(record.entityName,record);
+                tableWrapper.unitOfWork.registerNew(record);
             }else {
-                tableWrapper.unitOfWork.registercDirty(record.entityName,record);
+                tableWrapper.unitOfWork.registercDirty(record);
             }
             commit(tableWrapper);
         }
@@ -81,10 +81,10 @@ public class ServiceTablesTwoLinked extends ServiceTables {
             refreshPrimaryTable();
         }
         if (node == accessoryTableWrapper && rangeDirector ==null ) {
-            refreshAccessoryTable();
+            refreshByOuterId(accessoryTableWrapper,idFromPrimeTable);
         }
         if (node == accessoryTableWrapper&& rangeDirector !=null) {
-            refreshAccessoryTableViaRange();
+            refreshViaRangeAndOuterId(accessoryTableWrapper,idFromPrimeTable, rangeDirector.getSelectedRange());
         }
     }
 
@@ -98,23 +98,7 @@ public class ServiceTablesTwoLinked extends ServiceTables {
            accessoryTableWrapper.setItems(null);
 
     }
-    private void refreshAccessoryTable() {
-        setItems(
-                accessoryTableWrapper,
-                accessoryTableWrapper.activeRecord.findAllByOuterId(idFromPrimeTable)
-        );
-    }
-    private void refreshAccessoryTableViaRange() {
-        setItems(
-                accessoryTableWrapper,
-                accessoryTableWrapper.activeRecord.findAllByOuterIdAndRange(
-                        idFromPrimeTable,
-                        rangeDirector.getSelectedRange()
-                )
 
-
-        );
-    }
 }
 
 

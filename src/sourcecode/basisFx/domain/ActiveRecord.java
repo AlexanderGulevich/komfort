@@ -15,9 +15,8 @@ import javafx.collections.ObservableList;
 
 public abstract class ActiveRecord {
     public String entityName;
-    public ActiveRecord outerRecord;
     public ObjectProperty<Integer> id =new SimpleObjectProperty<>(this, "id", null);
-    public int outerId;
+    public Integer outerId=null;
     public abstract String toString();  //Method for Combobox
     public ActiveRecord( ) {
         String name = this.getClass().getName();
@@ -55,23 +54,30 @@ public abstract class ActiveRecord {
         ObservableList <ActiveRecord> list= FXCollections.observableArrayList();
         ArrayList<DomainPropertiesMetaInfo> domainPropertiesMetaInfoList = ReflectionInspectDomain.inspectDomainProperties(this);
         ResultSet rs = Reflection.executeQuery("Select * from " + this.entityName + " order by id ");
-        return ReflectionGet.getAllDomains(this,list, domainPropertiesMetaInfoList, rs);
+        return ReflectionGet.getAllDomainsList(this,list, domainPropertiesMetaInfoList, rs);
     }
 
     public ObservableList<ActiveRecord> findAllByOuterId(int id){
         ObservableList <ActiveRecord> list= FXCollections.observableArrayList();
         ArrayList<DomainPropertiesMetaInfo> domainPropertiesMetaInfoList = ReflectionInspectDomain.inspectDomainProperties(this);
-        String exp = ReflectionGet.createfindAllByOuterIdExpression(this,domainPropertiesMetaInfoList, id);
+        String exp = ReflectionGet.createFindAllByOuterIdExpression(this,domainPropertiesMetaInfoList, id);
         ResultSet rs = Reflection.executeQuery(exp);
-        return ReflectionGet.getAllDomains(this,list, domainPropertiesMetaInfoList, rs);
+        return ReflectionGet.getAllDomainsList(this,list, domainPropertiesMetaInfoList, rs);
     }
 
     public ObservableList<ActiveRecord> findAllByOuterIdAndRange(int id, Range   range){
         ObservableList <ActiveRecord> list= FXCollections.observableArrayList();
         ArrayList<DomainPropertiesMetaInfo> domainPropertiesMetaInfoList = ReflectionInspectDomain.inspectDomainProperties(this);
-        String exp = ReflectionGet.createfindAllByOuterIdAndRangeExpression(this,domainPropertiesMetaInfoList, id,range);
+        String exp = ReflectionGet.createFindAllByOuterIdAndRangeExpression(this,domainPropertiesMetaInfoList, id,range);
         ResultSet rs = Reflection.executeQuery(exp);
-        return ReflectionGet.getAllDomains(this,list, domainPropertiesMetaInfoList, rs);
+        return ReflectionGet.getAllDomainsList(this,list, domainPropertiesMetaInfoList, rs);
+    }
+
+    public ObservableList<ActiveRecord> findAllByOuterIdAndPeriod(int id, LocalDate start, LocalDate end){
+        ObservableList <ActiveRecord> list= FXCollections.observableArrayList();
+        ArrayList<DomainPropertiesMetaInfo> domainPropertiesMetaInfoList = ReflectionInspectDomain.inspectDomainProperties(this);
+        ResultSet rs =  ReflectionGet.findAllByOuterIdAndPeriod(this,domainPropertiesMetaInfoList, id,start,end);
+        return ReflectionGet.getAllDomainsList(this,list, domainPropertiesMetaInfoList, rs);
     }
 
     public ActiveRecord find(int id) {
@@ -106,6 +112,43 @@ public abstract class ActiveRecord {
         String insertExpression = ReflectionInsert.createInsertExpression(this,domainPropertiesMetaInfoList);
         ReflectionInsert.executeInsertStatement(this,insertExpression,domainPropertiesMetaInfoList);
     }
+
+
+    protected void executeUpdate(PreparedStatement pstmt){
+        try {
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    protected PreparedStatement prepareStatement(String expression){
+        try {
+            return     Db.connection.prepareStatement(expression);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+
+    public static Integer getMaxIdFromTable(ActiveRecord record){
+        ResultSet rs = Reflection.executeQuery(  "SELECT  max(id) as id FROM " +record.entityName);
+        Integer id = null;
+        while (true) {
+            try {
+                if (!rs.next()) break;
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            try {
+                id = rs.getInt("id");
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return id;
+    }
+
 
 }
 

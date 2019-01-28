@@ -55,7 +55,7 @@ public class ReflectionInsert {
                 DataStore dataStoreAnnotation = info.getDataStoreAnnotation();
 
                 if (dataStoreAnnotation != null) {
-                    if (dataStoreAnnotation.AS_OUTER_ID()) {
+                    if (dataStoreAnnotation.AS_OUTER_ID() && activeRecord.outerId!=null) {
                         Integer val = activeRecord.outerId;
                         pstmt.setInt(counter, val);
                         counter++;
@@ -103,7 +103,9 @@ public class ReflectionInsert {
         } catch (SQLException e) {
 
             Platform.runLater(() -> {
+
                 Registry.windowFabric.infoWindow(Settings.COMMON_ERROR_MESSAGE);
+                e.printStackTrace();
                     });
 
         }

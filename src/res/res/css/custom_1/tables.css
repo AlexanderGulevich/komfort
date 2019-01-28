@@ -78,9 +78,13 @@
 
 
 
-  #rightColumnContentElighment  {
-    -fx-alignment: CENTER-RIGHT;
-  }
+    #rightColumnContentElighment  {
+      -fx-alignment: CENTER-RIGHT;
+    }
+    
+    .column_with_button_BFx  {
+        -fx-alignment: center;
+      }
   .TABLE_BFx .table-row-cell,
   .TABLE_BFx .cell,
   .TABLE_BFx .table-cell,

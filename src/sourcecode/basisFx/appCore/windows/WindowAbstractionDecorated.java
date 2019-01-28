@@ -37,10 +37,10 @@ public  class WindowAbstractionDecorated extends WindowAbstraction {
 
     @Override
     protected void initRoot() {
-        root= AnchorWrapper.newBuilder()
-                .setCSSid(CSSid.TRANSPARENT_ROOT)
-                .setInsects(new Insets(0d, 0d, 0d, 0d))
-                .build().getElement();
+//        root= AnchorWrapper.newBuilder()
+//                .setCSSid(CSSid.TRANSPARENT_ROOT)
+//                .setInsects(new Insets(0d, 0d, 0d, 0d))
+//                .build().getElement();
     }
 
 

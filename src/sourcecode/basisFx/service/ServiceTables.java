@@ -2,8 +2,11 @@ package basisFx.service;
 
 import basisFx.appCore.elements.AppNode;
 import basisFx.appCore.elements.TableWrapper;
+import basisFx.appCore.utils.Range;
 import basisFx.domain.ActiveRecord;
 import javafx.collections.ObservableList;
+
+import java.time.LocalDate;
 
 public abstract class ServiceTables implements Mediator{
 
@@ -15,11 +18,42 @@ public abstract class ServiceTables implements Mediator{
     protected void commit(TableWrapper tableWrapper) {
             boolean isCommitted = tableWrapper.unitOfWork.commit();
             if (isCommitted) {
-                tableWrapper.getServiceTables().refresh(tableWrapper);
+                tableWrapper.getMediator().refresh(tableWrapper);
             }
     }
     public  void setItems(TableWrapper tableWrapper, ObservableList<ActiveRecord> list ) {
         tableWrapper.setItems(list);
+    }
+
+
+    public void refreshByOuterId(TableWrapper tableWrapper, int idFromPrimeTable) {
+        setItems(
+                tableWrapper,
+                tableWrapper.activeRecord.findAllByOuterId(idFromPrimeTable)
+        );
+    }
+    public void refreshViaRangeAndOuterId(TableWrapper tableWrapper, int idFromPrimeTable, Range range) {
+        setItems(
+                tableWrapper,
+                tableWrapper.activeRecord.findAllByOuterIdAndRange(
+                        idFromPrimeTable,
+                        range
+                )
+
+
+        );
+    }
+    public void refreshViaPeriodAndOuterId(TableWrapper tableWrapper, int idFromPrimeTable,LocalDate start ,LocalDate end) {
+        setItems(
+                tableWrapper,
+                tableWrapper.activeRecord.findAllByOuterIdAndPeriod(
+                        idFromPrimeTable,
+                        start,
+                        end
+                )
+
+
+        );
     }
 
 }

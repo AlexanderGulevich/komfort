@@ -94,6 +94,7 @@ public class ReflectionUpdate {
 
             Platform.runLater(() -> {
                 Registry.windowFabric.infoWindow(Settings.COMMON_ERROR_MESSAGE);
+                e.printStackTrace();
             });
         }
     }

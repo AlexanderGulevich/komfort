@@ -1,17 +1,13 @@
 package basisFx.domain;
 
-import basisFx.dataSource.Db;
 import javafx.beans.property.SimpleObjectProperty;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-
-import java.sql.*;
-import java.time.LocalDate;
 
 public class Employer extends ActiveRecord {
 
     private static Employer INSTANCE = new Employer();
     private SimpleObjectProperty<String> name =new SimpleObjectProperty<>(this, "name", null);
+    private SimpleObjectProperty<BoolComboBox> isFired =new SimpleObjectProperty<>(this, "isFired", new BoolComboBox(false));
+
 
     public static Employer getINSTANCE() {
         return INSTANCE;
@@ -27,26 +23,16 @@ public class Employer extends ActiveRecord {
         this.name.set(name);
     }
 
-    @Override
-    public ObservableList<ActiveRecord> getAll() {
+    public BoolComboBox getIsFired() {
+        return isFired.get();
+    }
 
-        ObservableList <ActiveRecord> list= FXCollections.observableArrayList();
-        String expression="SELECT  * from "+ this.entityName+" where isFired=false";
+    public SimpleObjectProperty<BoolComboBox> isFiredProperty() {
+        return isFired;
+    }
 
-        try {
-            Statement stmt  = Db.connection.createStatement();
-            ResultSet rs = stmt.executeQuery(expression);
-            while (rs.next()) {
-                Employer pojo=new Employer();
-                pojo.setId(rs.getInt("id"));
-                pojo.setName(rs.getString("name"));
-
-                list.add(pojo);
-            }
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        return list;
+    public void setIsFired(BoolComboBox isFired) {
+        this.isFired.set(isFired);
     }
 
     @Override
@@ -54,9 +40,7 @@ public class Employer extends ActiveRecord {
         return getName();
     }
 
-    @Override
-    public ObservableList<ActiveRecord> findAllByOuterId(int id) {
-        return null;
-    }
+
+
 
 }

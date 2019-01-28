@@ -50,7 +50,7 @@
                      </stylesheets>
                   </DatePicker>
                   <ComboBox fx:id="combobox" layoutX="333.0" layoutY="59.0" prefHeight="30.0" prefWidth="191.0" styleClass="COMBOBOX_BFx" stylesheets="@../css/custom_1/combobox.css" AnchorPane.bottomAnchor="15.0" />
-                  <Label layoutX="129.0" layoutY="85.0" opacity="0.61" text="Фильтры по умолчанию" textFill="#f8f8f8">
+                  <Label layoutX="129.0" layoutY="85.0" opacity="0.61" text="Задать ограничения выборки" textFill="#f8f8f8">
                      <font>
                         <Font name="Roboto Light" size="14.0" />
                      </font>
@@ -60,7 +60,7 @@
                         <Font name="Roboto Black" size="18.0" />
                      </font>
                   </Label>
-                  <Line endX="347.0" layoutX="179.0" layoutY="54.0" opacity="0.34" startX="-47.0" stroke="#f2f2f2" />
+                  <Line endX="386.0" layoutX="179.0" layoutY="54.0" opacity="0.34" startX="-47.0" stroke="#f2f2f2" />
                   <JFXButton id="PANELS_BUTTON" fx:id="okBut" layoutX="806.0" layoutY="62.0" mnemonicParsing="false" pickOnBounds="false" prefHeight="36.0" prefWidth="69.0" scaleShape="false" style="-fx-padding: 7 9; -fx-background-color: #FFFFFF; -fx-max-width: 80;" styleClass="all_side" text="ОК" AnchorPane.bottomAnchor="15.0" AnchorPane.rightAnchor="15.0">
                      <font>
                         <Font name="Font Awesome 5 Free Solid" size="11.0" />
@@ -71,6 +71,7 @@
                         <URL value="@../css/custom_1/borders.css" />
                      </stylesheets>
                   </JFXButton>
+                  <Button fx:id="periodBut" layoutX="527.0" layoutY="12.0" mnemonicParsing="false" styleClass="search_but_popup" stylesheets="@../css/custom_1/buttons.css" text=" " />
                </children>
             </AnchorPane>
          </children>

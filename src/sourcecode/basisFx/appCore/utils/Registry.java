@@ -10,7 +10,7 @@ import java.util.HashMap;
 public class Registry {
    public static WindowFabric windowFabric;
    public static WindowAbstraction mainWindow;
-   public static HashMap<String, ServiceCrossWindow> serviceCrossWindowMap =new HashMap<>();
+   public static HashMap<String, ServiceCrossWindow> crossWindowMediators =new HashMap<>();
 
 
 }

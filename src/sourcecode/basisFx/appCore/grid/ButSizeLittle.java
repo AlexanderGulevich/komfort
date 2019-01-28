@@ -1,13 +1,23 @@
 package basisFx.appCore.grid;
 
+import basisFx.appCore.events.AppEvent;
 
 public class ButSizeLittle extends ButSizeForGrid {
+    public ButSizeLittle() {
+    }
+
+    public ButSizeLittle(AppEvent del, AppEvent add) {
+        super(del, add);
+    }
 
     @Override
     public void init() {
         setColumnWidth(40d);
-        buttonAdd=buttonFactory.littleRowAddButton(tableWrapper);
-        buttonDel=buttonFactory.littleRowDeleteButton(tableWrapper);
+        buttonAdd=littleRowAddButton(tableWrapper);
+        buttonDel=littleRowDeleteButton(tableWrapper);
     }
+
+
+
 
 }

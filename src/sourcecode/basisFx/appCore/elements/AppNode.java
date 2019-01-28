@@ -14,6 +14,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import javafx.stage.Stage;
+import lombok.Getter;
 
 
 public abstract class AppNode <T extends Node> {
@@ -29,21 +30,12 @@ public abstract class AppNode <T extends Node> {
     protected Group parentGroup;
     protected FlowPane parentFlowPane;
     protected ScrollPane parentScrollPane;
-    protected String metaName;
-    protected String text;
-    protected Stage stage;
+    @Getter protected String metaName;
+    @Getter protected String text;
+    @Getter protected Stage stage;
     protected WindowAbstraction windowAbstraction;
 
-    public String getMetaName() {
-        return metaName;
-    }
-    public String getText() {
-        return text;
-    }
     public abstract Node getElement();
-    public Stage getStage() {
-        return stage;
-    }
     public void setElementToWindowRegistry() {
         if (metaName != null) {
             if (windowAbstraction != null) {

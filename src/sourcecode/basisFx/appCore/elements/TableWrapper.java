@@ -127,7 +127,7 @@ public  class TableWrapper extends AppNode  {
         }
     }
 
-    public ServiceTables getServiceTables() {
+    public ServiceTables getMediator() {
         return serviceTables;
     }
 

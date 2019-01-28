@@ -20,7 +20,7 @@ public class WindowImplSubWindow extends WindowImpl{
     }
     @Override
     public void customInit(WindowAbstraction windowAbstraction) {
-        ServiceCrossWindow serviceCrossWindow = Registry.serviceCrossWindowMap.get(builder.fxmlFileName);
+        ServiceCrossWindow serviceCrossWindow = Registry.crossWindowMediators.get(builder.fxmlFileName);
         serviceCrossWindow.setCurrentWindow(windowAbstraction);
         serviceCrossWindow.init();
     }
