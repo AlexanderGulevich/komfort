@@ -40,12 +40,10 @@ public  class ServiceCrossWindowByDateResearch  extends ServiceCrossWindow   {
     @FXML private DatePicker dateEnd;
     @FXML private ComboBox combobox;
 
-    @FXML public void initialize() {
-           outer_table_wrapper = (TableWrapper) Registry.mainWindow.getNodeFromMap("outer_table_wrapper_for_ByDateResearchWindow");
-    }
-
     public ServiceCrossWindowByDateResearch() {
+        outer_table_wrapper = (TableWrapper)  Registry.mainWindow.getNodeFromMap("outer_table_wrapper");
         Registry.crossWindowMediators.put("ByDateResearchWindow",this);
+        table_wrapper = (TableWrapper) currentWindow.getNodeFromMap("TABLE_wrapper_ByDateResearchWindow");
     }
     @Override
     public void init() {
@@ -57,7 +55,16 @@ public  class ServiceCrossWindowByDateResearch  extends ServiceCrossWindow   {
         initComboboxHandler();
         initDatePickersHadler();
         initPeriodButEvent();
+        refreshTable();
 
+
+    }
+
+    private void refreshTable() {
+        table_wrapper.getMediator().setItems(
+                table_wrapper,
+                table_wrapper.activeRecord.findAllByOuterId(outer_table_wrapper.clickedDomain.getId())
+        );
     }
 
     private void initDatePickersHadler() {
@@ -83,7 +90,6 @@ public  class ServiceCrossWindowByDateResearch  extends ServiceCrossWindow   {
     }
 
     private void initAddDelButtonsEvents() {
-        table_wrapper = (TableWrapper) currentWindow.getNodeFromMap("TABLE_wrapper_ByDateResearchWindow");
 
         new RowAddToTable(table_wrapper).setEventToElement(addBut);
         new RowDeleteFromTable(table_wrapper).setEventToElement(delBut);

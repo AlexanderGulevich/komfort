@@ -42,7 +42,7 @@ public class SingleTable extends GridOrganization{
     public void organize() {
 
             if (butSizeForGrid instanceof ButSizeNon &&
-                    ctrlPosition instanceof CtrlPosNotExist
+                    ctrlPosition instanceof CtrlPosNON
             ){
                 organizeNonButtons();
             }else{

@@ -20,11 +20,18 @@
          /* -fx-effect: dropshadow(gaussian ,#555555 , 10, 0, 0.5, 0.5); */
             -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.9), 5, 0, 0.0, 0.0);
    -fx-background-color:  #ffffff;
+
       /* -fx-border-width: 0.1;
       -fx-border-color: #3e4658; */
 
          /* -fx-border-width: 0.2;
          -fx-border-color: #1e2430; */
+}
+#TopVisiblePanel,
+#MAIN_CONTENT_ANCHOR,
+#HORIZONTAL_FLOW_MENU_PANEL{
+
+       -fx-background-color:  #F4F4F4;
 }
 #PROGRAMM_NAME{
     -fx-text-fill: #ffffff;

@@ -7,10 +7,12 @@ import basisFx.service.ServiceCrossWindowByDateResearch;
 
 import java.util.HashMap;
 
-public class Registry {
+public class Registry   {
    public static WindowFabric windowFabric;
    public static WindowAbstraction mainWindow;
+
    public static HashMap<String, ServiceCrossWindow> crossWindowMediators =new HashMap<>();
+   public static HashMap<String, Object> crossWindowTransfer =new HashMap<>();
 
 
 }

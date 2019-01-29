@@ -44,4 +44,6 @@ public abstract class DynamicContentPanel {
                 .build().getElement();
     }
 
+    public void closeDynamicContentPanel(){}
+
 }

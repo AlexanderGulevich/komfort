@@ -260,6 +260,11 @@ public  class TableWrapper extends AppNode  {
             }
         }
     }
+    public void fireRowClick(TableRow<ActiveRecord> row) {
+        element.getSelectionModel().focus(row.getIndex());
+        element.getSelectionModel().select(row.getIndex());
+        clickedDomain=row.getItem();
+    }
 
     public void scrollToItem(ActiveRecord domainObject) {
         int newPojoIndex = element.getItems().indexOf(domainObject);

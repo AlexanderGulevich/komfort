@@ -54,7 +54,7 @@ public class MenuButtonsClick extends AppEvent{
         AnchorPane mainContentAnchor =
                 (AnchorPane)  Registry.mainWindow.getNodeFromMap(WindowAbstraction.DefaultPanelsNames.mainContentAnchor.name());
         mainContentAnchor.getChildren().clear();
-        Registry.mainWindow.clearCurrentDynamicContentPanel();
+        Registry.mainWindow.closeDynamicContentPanel();
     }
 
 }

@@ -83,6 +83,6 @@ public class ActualEmployersRate extends ActiveRecord {
 
     @Override
     public String toString() {
-        return null;
+        return getNAME().toString();
     }
 }

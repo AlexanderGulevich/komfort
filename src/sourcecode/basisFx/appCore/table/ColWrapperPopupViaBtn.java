@@ -4,15 +4,18 @@ import basisFx.appCore.events.SubWindowCreater;
 import basisFx.appCore.settings.CSSclasses;
 import basisFx.appCore.windows.WindowBuilder;
 import basisFx.domain.ActiveRecord;
+import basisFx.service.Mediator;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableRow;
 
 public class ColWrapperPopupViaBtn extends ColWrapper {
 
-    protected TableColumn<ActiveRecord, Void> column;
+    protected TableColumn<ActiveRecord, ActiveRecord> column;
     protected  String btnName;
     protected  WindowBuilder windowBuilder;
+
 
     private ColWrapperPopupViaBtn(Builder builder) {
         columnName = builder.columnName;
@@ -23,16 +26,20 @@ public class ColWrapperPopupViaBtn extends ColWrapper {
         column.getStyleClass().add(CSSclasses.column_with_button_BFx.get());
         column.setResizable(false);
         column.setEditable(false);
-        column.setCellFactory((TableColumn<ActiveRecord, Void> param) -> new ButtonCustomCell( ));
+        column.setCellFactory((TableColumn<ActiveRecord, ActiveRecord> param) -> new ButtonCustomCell());
     }
 
     public static Builder newBuilder() {
         return new Builder();
     }
 
-    class ButtonCustomCell extends TableCell<ActiveRecord,Void> {
 
+
+    class ButtonCustomCell extends TableCell<ActiveRecord,ActiveRecord> implements Mediator  {
+
+        private  SubWindowCreater  subWindowCreater = new SubWindowCreater();
         private   Button btn ;
+        protected  TableRow tableRow  ;
 
         public ButtonCustomCell() {
             createButton();
@@ -50,11 +57,12 @@ public class ColWrapperPopupViaBtn extends ColWrapper {
         }
 
         @Override
-        public void updateItem(Void item, boolean empty) {
+        public void updateItem(ActiveRecord item, boolean empty) {
             super.updateItem(item, empty);
             if (empty) {
                 setGraphic(null);
             } else {
+                tableRow = getTableRow();
                 setGraphic(btn);
             }
         }
@@ -62,8 +70,16 @@ public class ColWrapperPopupViaBtn extends ColWrapper {
         private void createButton() {
             btn = new Button(btnName);
             btn.getStyleClass().add(CSSclasses.table_column_buttons_BFx.get());
-            new SubWindowCreater(windowBuilder).setEventToElement(btn);
+            subWindowCreater.setWindowBuilder(windowBuilder);
+            subWindowCreater.setEventToElement(btn);
+            subWindowCreater.setMediator(this);
+        }
 
+        @Override
+        public void inform(Object node) {
+            if(node==subWindowCreater){
+                tableWrapper.fireRowClick(tableRow);
+            }
         }
 
     }

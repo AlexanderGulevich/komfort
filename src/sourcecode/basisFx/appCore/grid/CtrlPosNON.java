@@ -6,7 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 
-public class CtrlPosNotExist extends CtrlPosition {
+public class CtrlPosNON extends CtrlPosition {
     @Override
     public void organize(Label label, Button addBut, Button delBut, TableView tableView) {
 

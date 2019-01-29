@@ -1,6 +1,7 @@
 package basisFx.service;
 
 import basisFx.appCore.elements.AppNode;
+import basisFx.appCore.utils.Registry;
 import basisFx.appCore.windows.WindowAbstraction;
 import javafx.scene.Node;
 import javafx.scene.layout.AnchorPane;
@@ -16,5 +17,9 @@ public abstract class ServiceCrossWindow <T extends Object> implements Mediator 
 
     protected void informParentWindowAboutClosing() {
         currentWindow.getWindowImpl().getCallBackSubWindowClosing().call();
+    }
+    public void close(){
+        Registry.crossWindowTransfer.clear();
+        Registry.crossWindowMediators.values().remove(this);
     }
 }

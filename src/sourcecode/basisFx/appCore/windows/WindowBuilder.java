@@ -12,7 +12,7 @@ public class WindowBuilder {
     public Double width=null;
     public Double height=null;
     public String fxmlFileName=null;
-    public String title=null;
+    @Setter public String title=null;
     public String parentAnchorNameForFXML=null;
     public ButtonsForStage buttonsForStage=null;
     public String message;

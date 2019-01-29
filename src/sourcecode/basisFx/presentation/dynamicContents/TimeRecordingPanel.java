@@ -3,7 +3,7 @@ package basisFx.presentation.dynamicContents;
 
 import basisFx.appCore.elements.DatePickerWrapper;
 import basisFx.appCore.elements.TableWrapper;
-import basisFx.appCore.grid.CtrlPosNotExist;
+import basisFx.appCore.grid.CtrlPosNON;
 import basisFx.appCore.elements.GridPaneWrapper;
 import basisFx.appCore.grid.ButSizeNon;
 import basisFx.appCore.grid.SingleTable;
@@ -61,7 +61,7 @@ public class TimeRecordingPanel extends DynamicContentPanel {
 
 
         GridPaneWrapper.newBuilder()
-                .setOrganization(new SingleTable(tableWrapper,new ButSizeNon(),new CtrlPosNotExist()))
+                .setOrganization(new SingleTable(tableWrapper,new ButSizeNon(),new CtrlPosNON()))
                 .setGridName("Учет рабочего времени")
                 .setParentAnchor(dynamicContentAnchorHolder)
                 .setCoordinate(new Coordinate(50d,10d,10d,0d))

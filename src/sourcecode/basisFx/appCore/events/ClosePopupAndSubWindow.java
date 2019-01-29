@@ -2,6 +2,7 @@ package basisFx.appCore.events;
 
 import basisFx.appCore.elements.AppNode;
 import basisFx.appCore.utils.Registry;
+import basisFx.service.ServiceCrossWindow;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
@@ -57,6 +58,7 @@ public class ClosePopupAndSubWindow extends AppEvent{
 
             if (mediator != null) {
                 mediator.inform(but);
+                ((ServiceCrossWindow) mediator).close();
             }
             Window window = but.getScene().getWindow();
             Stage stage= ((Stage) window);
