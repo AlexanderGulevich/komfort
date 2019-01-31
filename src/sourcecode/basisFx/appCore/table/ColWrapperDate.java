@@ -195,9 +195,10 @@ public class ColWrapperDate extends ColWrapper {
         private void createDatePicker() {
             datePicker = new DatePicker(getDate());
             datePicker.getStyleClass().add(CSSclasses.DATEPICKER_BFx.get());
-            datePicker.setMinWidth(this.getWidth() - this.getGraphicTextGap() * 7);
+//            datePicker.setMinWidth(this.getWidth() - this.getGraphicTextGap() * 7);
 //            datePicker.setMinWidth(this.getWidth() - this.getGraphicTextGap() * 2);
             datePicker.setConverter(new CustomStringConverter());
+            datePicker.setMinWidth(this.getWidth());
             datePicker.setPromptText("");
             datePicker.setOnAction((e) -> {
 //                System.out.println("Committed: " + datePicker.getValue().toString());

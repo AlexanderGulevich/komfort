@@ -22,6 +22,7 @@ public class ColWrapperComboBox extends ColWrapper {
     protected ActiveRecord domain;
     protected Class <? extends ActiveRecord> domainClass;
     protected String space= "  ";
+    protected double textGap= 20d;
 
     private ColWrapperComboBox(Builder builder) {
         tableWrapper = builder.tableWrapper;
@@ -167,8 +168,10 @@ public class ColWrapperComboBox extends ColWrapper {
             if (!isEmpty()) {
                 super.startEdit();
                 createComboBox();
-                setText(null);
+                String s = space + getNamedDomainObject().toString();
+                setText(s);
                 setGraphic(comboBox);
+                setGraphicTextGap(textGap);
             }
         }
 
@@ -178,6 +181,7 @@ public class ColWrapperComboBox extends ColWrapper {
             String s = space + getNamedDomainObject().toString();
             setText(s);
             setGraphic(null);
+            setGraphicTextGap(textGap);
         }
 
         @Override
@@ -190,6 +194,7 @@ public class ColWrapperComboBox extends ColWrapper {
                 if (isEditing()) {
                     if (comboBox != null) {
                         comboBox.setValue(getNamedDomainObject());
+                        setGraphicTextGap(textGap);
                     }
                     String s = getNamedDomainObject().toString();
                     if (s != null) {
@@ -197,6 +202,7 @@ public class ColWrapperComboBox extends ColWrapper {
                     }
                     setText(s);
                     setGraphic(comboBox);
+                    setGraphicTextGap(textGap);
                 } else {
                     String s = getNamedDomainObject().toString();
                     if (s != null) {
@@ -216,7 +222,8 @@ public class ColWrapperComboBox extends ColWrapper {
             comboBox.setEditable(false);
             comboBoxConverter(comboBox);
             comboBox.valueProperty().set(getNamedDomainObject());
-            comboBox.setMinWidth(this.getWidth() - this.getGraphicTextGap() * 2);
+//            comboBox.setMinWidth(this.getWidth() - this.getGraphicTextGap() * 2);
+            comboBox.setMinWidth(this.getWidth());
             comboBox.setOnAction((e) -> {
                 commitEdit(comboBox.getSelectionModel().getSelectedItem());
             });
@@ -225,6 +232,11 @@ public class ColWrapperComboBox extends ColWrapper {
                     commitEdit(comboBox.getSelectionModel().getSelectedItem());
                 }
             });
+            String s = getNamedDomainObject().toString();
+            if (s != null) {
+                s=space+s;
+            }
+            setText(s);
         }
 
         private void comboBoxConverter(ComboBox<ActiveRecord> comboBox) {

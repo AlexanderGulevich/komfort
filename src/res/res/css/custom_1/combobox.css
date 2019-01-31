@@ -139,12 +139,23 @@
     -fx-border-width: 0.4;
     -fx-border-color: #dbdee4;
   }
-  .COMBOBOX_BFx .cell,.COMBOBOX_BFx  .indexed-cell,.COMBOBOX_BFx .list-cell{
+  .COMBOBOX_BFx .cell,
+  .COMBOBOX_BFx  .indexed-cell,
+  .COMBOBOX_BFx .list-cell{
+
     -fx-text-fill:#2f4a6f;
     -fx-font-family: "Roboto Light";
       -fx-font-size: 14;
+      -fx-padding: 0 0 0 10;
+      -fx-insets: 0 0 0 10;
   }
-  .COMBOBOX_BFx  {
+
+.COMBOBOX_BFx,.COMBOBOX_BFx.cell{
+
+  -fx-padding: 0 0 0 10;
+  -fx-insets: 0 0 0 10;
+}
+    .COMBOBOX_BFx  {
   -fx-background-color:#ffffff;
   -fx-border-color: #cfc0c0;
   -fx-background-insets: 0, 0, 0, 0;

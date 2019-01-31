@@ -81,7 +81,7 @@
     #rightColumnContentElighment  {
       -fx-alignment: CENTER-RIGHT;
     }
-    
+
     .column_with_button_BFx  {
         -fx-alignment: center;
       }
@@ -127,6 +127,20 @@
     -fx-background:  #dae0d1;
     -fx-padding: 0;
 }
+
+/* Selected when control is not focused                date-picker-display-node */
+.TABLE_BFx .DATEPICKER_BFx .date-picker-display-node  {
+     -fx-background-radius: 0;
+    -fx-border-radius:0;
+    -fx-background-insets: 0;
+    -fx-border-width: 0.1;
+    -fx-border-insets:0;
+    -fx-table-cell-border-color:  #f4f4f4;
+    -fx-background:  #ffffff;
+    -fx-padding: 0;
+}
+
+
 .table-view:focused > .virtual-flow > .clipped-container > .sheet > .table-row-cell:filled > .check-box-table-cell:selected > .check-box > .box,
 .tree-table-view:focused > .virtual-flow > .clipped-container > .sheet > .tree-table-row-cell:filled > .check-box-table-cell:selected > .check-box > .box,
 .table-view:focused > .virtual-flow > .clipped-container > .sheet > .table-row-cell:filled:selected > .check-box-table-cell > .check-box > .box,
