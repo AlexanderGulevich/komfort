@@ -9,10 +9,6 @@ import org.hsqldb.Server;
 
 import java.sql.Connection;
 
-/**
- *
- * @author Alek
- */
 public abstract class Db {
    
     public static Connection connection = null;

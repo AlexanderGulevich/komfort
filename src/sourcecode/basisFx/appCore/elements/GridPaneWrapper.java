@@ -102,7 +102,7 @@ public  class GridPaneWrapper extends AppNode {
 
     private void applyGridConfiguration() {
         if (gridOrganization != null) {
-            gridOrganization.setParentGridPaneWrapper(this);
+            gridOrganization.setParentGridWrapper(this);
             gridOrganization.organize();
         }
     }

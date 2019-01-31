@@ -26,12 +26,8 @@ public class ReflectionGet {
         String propertyName = propertiesMetaInfo.getPropertyName();
         Class propertyGenericClass = propertiesMetaInfo.getGenericClass();
 
-        Method setMethod = null;
-        try {
-            setMethod = activeRecord.getClass().getDeclaredMethod("set" + propertyName, propertyGenericClass);
-        } catch (NoSuchMethodException e) {
-            e.printStackTrace();
-        }
+        Method setMethod = Reflection.setMethod(activeRecord,propertyName,propertyGenericClass);
+
             try {
                 if (genericShortTypeName.equals("String")) {
                     setMethod.invoke(activeRecord, rs.getString(propertyName));

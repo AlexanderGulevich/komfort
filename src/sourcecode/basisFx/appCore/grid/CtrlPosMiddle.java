@@ -12,7 +12,7 @@ public class CtrlPosMiddle extends CtrlPosition {
 
         parentGridWrapper.addSpanNode(
                 label,
-                0, 0, 3, 1, HPos.LEFT, VPos.TOP, insets);
+                0, 0, 2, 1, HPos.LEFT, VPos.TOP, insets);
         parentGridWrapper.addSpanNode(
                 addBut,
                 2, 1, 1, 1, HPos.CENTER, VPos.TOP, insets);

@@ -24,6 +24,7 @@ public class App{
         IconToPlatform.init(primaryStage);
         CSSHandler.init(StylesPathes.CUSTOM_1);
         WindowFabric.WindowUndecorated();
+        DbFactory.createDbServer();
 //
         Registry.windowFabric.mainWindow(primaryStage,
                 WindowBuilder.newBuilder()
@@ -38,7 +39,6 @@ public class App{
                         .setMessage(null)
                         .build()
                 );
-        DbFactory.createDbServer();
         MenuFabric.menuLeftAndTopRepresentation( new MainMenuSketch());
 
 

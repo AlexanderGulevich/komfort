@@ -2,14 +2,18 @@ package basisFx.service;
 
 import basisFx.appCore.elements.AppNode;
 import basisFx.appCore.elements.TableWrapper;
+import basisFx.appCore.interfaces.CallBack;
 import basisFx.appCore.utils.Range;
 import basisFx.domain.ActiveRecord;
 import javafx.collections.ObservableList;
+import lombok.Setter;
 
 import java.time.LocalDate;
 
 public abstract class ServiceTables implements Mediator{
 
+    @Setter
+    protected CallBack refreshCallBack;
     public abstract void wasRemoved(AppNode node, ActiveRecord record);
     public abstract void wasChanged(AppNode node, ActiveRecord record);
     public abstract void refresh(AppNode node);

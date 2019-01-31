@@ -28,6 +28,9 @@ public  class ServiceCrossWindowByDateResearch  extends ServiceCrossWindow   {
     private TableWrapper outer_table_wrapper;
     private LocalDate selectedDateStart ;
     private LocalDate selectedDateEnd ;
+    private RowAddToTable rowAddToTable ;
+    private RowDeleteFromTable rowDeleteFromTable ;
+    private Label gridLabel;
 
     @FXML private AnchorPane dynamicContentAnchorHolder;
     @FXML private AnchorPane titlePanel;
@@ -41,12 +44,16 @@ public  class ServiceCrossWindowByDateResearch  extends ServiceCrossWindow   {
     @FXML private ComboBox combobox;
 
     public ServiceCrossWindowByDateResearch() {
-        outer_table_wrapper = (TableWrapper)  Registry.mainWindow.getNodeFromMap("outer_table_wrapper");
         Registry.crossWindowMediators.put("ByDateResearchWindow",this);
-        table_wrapper = (TableWrapper) currentWindow.getNodeFromMap("TABLE_wrapper_ByDateResearchWindow");
     }
     @Override
     public void init() {
+        outer_table_wrapper = (TableWrapper)  Registry.mainWindow.getNodeFromMap("outer_table_wrapper");
+        Registry.crossWindowMediators.put("ByDateResearchWindow",this);
+
+        gridLabel = (Label) currentWindow.getNodeFromMap("gridLabel");
+        table_wrapper = (TableWrapper) currentWindow.getNodeFromMap("tableWrapper");
+        table_wrapper.getMediator().setRefreshCallBack(this::refreshTable);
         initCloseButtonEvent();
         initStageDragging();
         initTitle();
@@ -56,22 +63,17 @@ public  class ServiceCrossWindowByDateResearch  extends ServiceCrossWindow   {
         initDatePickersHadler();
         initPeriodButEvent();
         refreshTable();
-
-
     }
-
     private void refreshTable() {
         table_wrapper.getMediator().setItems(
                 table_wrapper,
                 table_wrapper.activeRecord.findAllByOuterId(outer_table_wrapper.clickedDomain.getId())
         );
     }
-
     private void initDatePickersHadler() {
         datePickerHandlerSTART=new DatePickerHandler(dateStart,this);
         datePickerHandlerEND=new DatePickerHandler(dateEnd,this);
     }
-
     private void initComboboxHandler() {
         rangeDirector =new RangeDirector(
                 combobox,
@@ -80,7 +82,6 @@ public  class ServiceCrossWindowByDateResearch  extends ServiceCrossWindow   {
                 Range.getAll()
         );
     }
-
     private void bondingToContentAnchorWidth() {
         dynamicContentAnchor = currentWindow.getCurrentDynamicContent().getDynamicContentAnchorHolder();
         Coordinate coordinate = new Coordinate(0d, 0d, 0d, 0d);
@@ -88,13 +89,14 @@ public  class ServiceCrossWindowByDateResearch  extends ServiceCrossWindow   {
         coordinate.setParentAnchorPane(dynamicContentAnchorHolder);
         coordinate.bonding();
     }
-
     private void initAddDelButtonsEvents() {
-
-        new RowAddToTable(table_wrapper).setEventToElement(addBut);
-        new RowDeleteFromTable(table_wrapper).setEventToElement(delBut);
+        rowAddToTable=new RowAddToTable(table_wrapper);
+        rowAddToTable.setEventToElement(addBut);
+        rowAddToTable.setMediator(this);
+        rowDeleteFromTable=new RowDeleteFromTable(table_wrapper);
+        rowDeleteFromTable.setEventToElement(delBut);
+        rowDeleteFromTable.setMediator(this);
     }
-
     private void initPeriodButEvent() {
         periodBut.setOnMousePressed(event -> {
             if (event.isPrimaryButtonDown() && event.getClickCount() == 1 ||  event.getClickCount() ==2 ) {
@@ -110,28 +112,33 @@ public  class ServiceCrossWindowByDateResearch  extends ServiceCrossWindow   {
             }
         });
     }
-
     private void initCloseButtonEvent() {
         ClosePopupAndSubWindow closePopupAndSubWindow = new ClosePopupAndSubWindow();
         closePopupAndSubWindow.setMediator(this);
         closePopupAndSubWindow.setEventToElement(okBut);
     }
-
     private void initStageDragging() {
         new StageDragging().setEventToElement(titlePanel);
     }
-
     private void initTitle() {
-        title.setText(outer_table_wrapper.clickedDomain.toString());
+        title.setText(currentWindow.getWindowImpl().getTitleName());
+        gridLabel.setText(outer_table_wrapper.clickedDomain.toString());
     }
-
     @Override
     public void inform(Object node) {
         if (node == okBut) {
             informParentWindowAboutClosing();
         }
+        if (node == rowAddToTable) {
+           rowAddToTable.getCurrentNewInstance().setOuterIdToRecord(outer_table_wrapper.clickedDomain.getId());
+        }
         if (node == rangeDirector) {
-            table_wrapper.getMediator().refreshViaRangeAndOuterId(table_wrapper, outer_table_wrapper.clickedDomain.id.get(),rangeDirector.getSelectedRange());
+            table_wrapper.getMediator()
+                    .refreshViaRangeAndOuterId(
+                            table_wrapper,
+                            outer_table_wrapper.clickedDomain.id.get(),
+                            rangeDirector.getSelectedRange()
+                    );
         }
         if (node == datePickerHandlerSTART) {
             selectedDateStart=datePickerHandlerSTART.getSelectedDate();

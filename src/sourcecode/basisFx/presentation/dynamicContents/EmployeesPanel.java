@@ -1,9 +1,7 @@
 package basisFx.presentation.dynamicContents;
 import basisFx.appCore.events.RowDeleteFromTable;
 import basisFx.appCore.events.SubWindowCreater;
-import basisFx.appCore.grid.ButSizeBig;
-import basisFx.appCore.grid.CtrlPosBotton;
-import basisFx.appCore.grid.CtrlPosTop;
+import basisFx.appCore.grid.*;
 import basisFx.appCore.table.*;
 import basisFx.appCore.utils.Registry;
 import basisFx.appCore.windows.WindowAbstraction;
@@ -12,7 +10,6 @@ import basisFx.domain.ActualEmployersRate;
 import basisFx.presentation.DynamicContentPanel;
 import basisFx.service.ServiceTablesSingle;
 import basisFx.appCore.elements.TableWrapper;
-import basisFx.appCore.grid.SingleTable;
 import basisFx.appCore.elements.GridPaneWrapper;
 import basisFx.appCore.utils.Coordinate;
 import basisFx.domain.Employer;
@@ -34,13 +31,12 @@ public class EmployeesPanel extends DynamicContentPanel {
         dateResearchWindowBuilder = WindowBuilder.newBuilder()
                 .setGUIStructura(null)
                 .setButtonsForStage(null)
-//                .setDynamicContentPanelCreator(RatePerHourPanel::new)
-                .setDynamicContentPanelCreator(EmployeesPanel::new)
-                .setTitle(null)
+                .setDynamicContentPanelCreator(RatePerHourPanel::new)
+                .setTitle("Архив тарифов")
                 .setMessage(null)
                 .setFxmlFileName("ByDateResearchWindow")
                 .setParentAnchorNameForFXML(WindowAbstraction.DefaultPanelsNames.topVisibleAnchor.name())
-                .setWidth(900d)
+                .setWidth(700d)
                 .setHeight(600d)
                 .setClosingCallBack(
                         () -> {
@@ -76,22 +72,22 @@ public class EmployeesPanel extends DynamicContentPanel {
                 .setIsSortableColums(false)
                 .setServiceTables(mediator)
                 .setColWrappers(
-                        ColWrapperComboBox.newBuilder(Employer.class)
+                        ColWrapperString.newBuilder()
                                 .setColumnName("Фамилия / Имя / Отчество")
                                 .setColumnSize(0.5d)
-                                .setIsEditeble(false)
-                                .setPropertyName("EMPLOYER")
+                                .setIsEditeble(true)
+                                .setPropertyName("NAME")
                                 .build(),
                         ColWrapperDouble.newBuilder()
                                 .setColumnName("Тариф - руб./ч. ")
                                 .setColumnSize(0.15d)
-                                .setIsEditeble(true)
+                                .setIsEditeble(false)
                                 .setPropertyName("RATE")
                                 .build(),
                         ColWrapperDate.newBuilder()
                                 .setColumnName("Начало действия")
                                 .setColumnSize(0.15d)
-                                .setIsEditeble(true)
+                                .setIsEditeble(false)
                                 .setPropertyName("STARTDATE")
                                 .build(),
                         ColWrapperPopupViaBtn.newBuilder()
@@ -115,11 +111,12 @@ public class EmployeesPanel extends DynamicContentPanel {
                 .setOrganization(
                         new SingleTable(
                                 outer_table_wrapper,
-                                new ButSizeBig(
+                                new ButSizeLittle(
                                         new RowDeleteFromTable(outer_table_wrapper),
                                         new SubWindowCreater(hiringWindowBuilder)
                                 ),
-                                new CtrlPosBotton()
+                                new CtrlPosTop()
+//                                new CtrlPosBotton()
 //                                new CtrlPosTop()
                         ))
                 .build();

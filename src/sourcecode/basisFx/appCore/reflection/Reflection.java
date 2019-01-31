@@ -100,6 +100,16 @@ public class Reflection {
         return method;
     }
 
+    public static Method setMethod(ActiveRecord record,String propertyName, Class propertyGenericClass){
+        Method setMethod = null;
+        try {
+            setMethod = record.getClass().getDeclaredMethod("set" + propertyName, propertyGenericClass);
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+        }
+        return setMethod;
+    }
+
 
 
     public static Boolean invokeBooleanGetter(ActiveRecord activeRecord, Method method) {

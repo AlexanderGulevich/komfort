@@ -1,11 +1,14 @@
 package basisFx.appCore.grid;
 
 import basisFx.appCore.elements.GridPaneWrapper;
+import basisFx.appCore.windows.WindowAbstraction;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
+import lombok.Setter;
+import lombok.experimental.Accessors;
 
 public abstract class CtrlPosition {
 

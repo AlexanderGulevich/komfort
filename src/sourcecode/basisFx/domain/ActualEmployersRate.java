@@ -17,10 +17,6 @@ public class ActualEmployersRate extends ActiveRecord {
         return INSTANCE;
     }
 
-    public static void setINSTANCE(ActualEmployersRate INSTANCE) {
-        ActualEmployersRate.INSTANCE = INSTANCE;
-    }
-
     public Employer getEMPLOYER() {
         return EMPLOYER.get();
     }
@@ -31,6 +27,10 @@ public class ActualEmployersRate extends ActiveRecord {
 
     public void setEMPLOYER(Employer EMPLOYER) {
         this.EMPLOYER.set(EMPLOYER);
+    }
+
+    public static void setINSTANCE(ActualEmployersRate INSTANCE) {
+        ActualEmployersRate.INSTANCE = INSTANCE;
     }
 
     public Double getRATE() {
@@ -84,5 +84,14 @@ public class ActualEmployersRate extends ActiveRecord {
     @Override
     public String toString() {
         return getNAME().toString();
+    }
+
+
+    @Override
+    public void update() {
+        Employer employer = new Employer();
+        employer.setName(getNAME());
+        employer.setId(getId());
+        employer.update();
     }
 }

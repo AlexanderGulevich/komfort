@@ -21,9 +21,7 @@ public class RatePerHourPanel extends DynamicContentPanel {
     @Override
     public void customDynamicElementsInit() {
 
-
         tableWrapper = TableWrapper.newBuilder()
-                .setGridName("Реестр тарифных ставок ")
                 .setActiveRecordClass(EmployeesRatePerHour.class)
                 .setUnitOfWork(unitOfWork)
                 .setIsEditable(true)
@@ -52,12 +50,14 @@ public class RatePerHourPanel extends DynamicContentPanel {
                 .setGridLinesVisibility(gridVisibility)
                 .setOrganization(
                         new SingleTable(
+                                window,
                                 tableWrapper,
-                                new ButSizeBig( ),
-                                new CtrlPosMiddle()
-                        ))
+                                new ButSizeNon(),
+                                new CtrlPosNON()
+                        ) )
                 .build();
 
+        window.setNodeToMap(tableWrapper,"tableWrapper");
 
     }
 

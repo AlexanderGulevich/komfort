@@ -1,9 +1,13 @@
 package basisFx.domain;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+import basisFx.appCore.annotation.DataStore;
+import basisFx.appCore.annotation.Sorting;
 import basisFx.appCore.utils.DomainPropertiesMetaInfo;
 import basisFx.appCore.reflection.*;
 import basisFx.appCore.utils.Range;
@@ -48,6 +52,26 @@ public abstract class ActiveRecord {
             }
         }else{
             throw new  NullPointerException();
+        }
+    }
+    public  void setOuterIdToRecord(Integer id) {
+        ArrayList<DomainPropertiesMetaInfo> domainPropertiesMetaInfoList = ReflectionInspectDomain.inspectDomainProperties(this);
+        for (DomainPropertiesMetaInfo info : domainPropertiesMetaInfoList) {
+            DataStore dataStoreAnnotation = info.getDataStoreAnnotation();
+            if (dataStoreAnnotation != null) {
+                if (dataStoreAnnotation.AS_OUTER_ID()) {
+                    String propertyName = info.getPropertyName();
+                    Method method = Reflection.setMethod(this,propertyName, info.getGenericClass());
+                    try {
+                        method.invoke(this,id);
+                    } catch (IllegalAccessException e) {
+                        e.printStackTrace();
+                    } catch (InvocationTargetException e) {
+                        e.printStackTrace();
+                    }
+
+                }
+            }
         }
     }
     public  ObservableList <ActiveRecord>  getAll() {

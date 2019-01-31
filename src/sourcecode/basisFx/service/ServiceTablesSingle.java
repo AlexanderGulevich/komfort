@@ -2,6 +2,7 @@ package basisFx.service;
 
 import basisFx.appCore.elements.AppNode;
 import basisFx.appCore.elements.TableWrapper;
+import basisFx.appCore.interfaces.CallBack;
 import basisFx.dataSource.UnitOfWork;
 import basisFx.domain.ActiveRecord;
 import lombok.Setter;
@@ -46,8 +47,13 @@ public class ServiceTablesSingle extends ServiceTables {
 
     @Override
     public void refresh(AppNode node) {
-        TableWrapper tableWrapper = (TableWrapper) node;
-        setItems(tableWrapper,tableWrapper.activeRecord.getAll());
+        if (refreshCallBack != null) {
+            refreshCallBack.call();
+        }else {
+            TableWrapper tableWrapper = (TableWrapper) node;
+            setItems(tableWrapper,tableWrapper.activeRecord.getAll());
+        }
+
     }
 
     @Override

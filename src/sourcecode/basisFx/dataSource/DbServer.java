@@ -12,17 +12,13 @@ import java.sql.Statement;
 
 import org.hsqldb.persist.HsqlProperties;
 
-/**
- *
- * @author Alek
- */
 public class DbServer extends Db{
 
     protected Statement statement = null;
 
 
 
-    public DbServer() throws ClassNotFoundException, SQLException {
+    public DbServer()  {
 
         HsqlProperties props = new HsqlProperties();
 

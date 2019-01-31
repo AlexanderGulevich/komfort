@@ -7,11 +7,13 @@ import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableView;
+import lombok.Getter;
 
 public class RowAddToTable<T> extends AppEvent{
 
     private Button but;
     private TableWrapper tableWrapper;
+    @Getter private ActiveRecord currentNewInstance;
 
     public RowAddToTable(TableWrapper tableWrapper ) {
         this.tableWrapper = tableWrapper;
@@ -42,6 +44,12 @@ public class RowAddToTable<T> extends AppEvent{
                     tableWrapper.getItems().add(newInstance);
                     tableWrapper.scrollToItem(newInstance);
                     tableWrapper.focusItem(newInstance);
+
+                if (mediator != null) {
+                    currentNewInstance=newInstance;
+                    mediator.inform(this);
+                }
+
             }else {
                 System.err.println("RowAddToTable--!tableWrapper.isItemListExist() && tableWrapper.haveNewItem()".toUpperCase());
             }

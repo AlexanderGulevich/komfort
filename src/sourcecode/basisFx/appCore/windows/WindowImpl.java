@@ -28,9 +28,6 @@ public abstract class WindowImpl {
 
     public WindowImpl(WindowBuilder builder) {
         this.builder=builder;
-        if (builder.fxmlFileName != null) {
-            topLevelAnchorFromFXML = FXMLFileLoader.load(builder.fxmlFileName);
-        }
         if (builder.height != null && builder.width != null) {
             height=builder.height;
             width=builder.width;
@@ -54,6 +51,14 @@ public abstract class WindowImpl {
         if (buttonsForStage != null) {
             buttonsForStage.initTemplateMethod(windowAbstraction);
         }
+
+        if (dynamicContentPanelCreator != null) {
+            dynamicContentPanelCreator.create().initTemplateMethod(windowAbstraction);
+        }
+
+        if (builder.fxmlFileName != null) {
+            topLevelAnchorFromFXML = FXMLFileLoader.load(builder.fxmlFileName);
+        }
         if (parentAnchorNameForFXML != null && topLevelAnchorFromFXML != null ) {
 
             AnchorPane parentAnchorHolder = (AnchorPane) windowAbstraction.getNodeFromMap(parentAnchorNameForFXML);
@@ -63,9 +68,6 @@ public abstract class WindowImpl {
             coordinate.setParentAnchorPane(parentAnchorHolder);
             coordinate.bonding();
 
-        }
-        if (dynamicContentPanelCreator != null) {
-            dynamicContentPanelCreator.create().initTemplateMethod(windowAbstraction);
         }
         customInit(windowAbstraction);
     }

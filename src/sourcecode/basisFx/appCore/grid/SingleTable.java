@@ -1,6 +1,7 @@
 package basisFx.appCore.grid;
 
 import basisFx.appCore.elements.TableWrapper;
+import basisFx.appCore.windows.WindowAbstraction;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 
@@ -18,6 +19,16 @@ public class SingleTable extends GridOrganization{
             this.butSizeForGrid = butSizeForGrid;
             this.butSizeForGrid.setTableWrapper(tableWrapper);
             this.butSizeForGrid.init();
+
+    }
+    public SingleTable(WindowAbstraction currentWindow,TableWrapper tableWrapper, ButSizeForGrid butSizeForGrid, CtrlPosition position) {
+
+            this.tableWrapper = tableWrapper;
+            this.ctrlPosition =position;
+            this.butSizeForGrid = butSizeForGrid;
+            this.butSizeForGrid.setTableWrapper(tableWrapper);
+            this.butSizeForGrid.init();
+            setCurrentWindow(currentWindow);
 
     }
 
@@ -40,8 +51,10 @@ public class SingleTable extends GridOrganization{
 
     @Override
     public void organize() {
+        handleLabel();
 
-            if (butSizeForGrid instanceof ButSizeNon &&
+
+        if (butSizeForGrid instanceof ButSizeNon &&
                     ctrlPosition instanceof CtrlPosNON
             ){
                 organizeNonButtons();
@@ -56,7 +69,6 @@ public class SingleTable extends GridOrganization{
     private void organizeNonButtons() {
         parentGridWrapper.setColumnComputerWidth();
         ctrlPosition.setParentGridWrapper(parentGridWrapper);
-        label= parentGridWrapper.label.getElement();
         bindHeight(tableWrapper);
         ctrlPosition.organize(label, tableWrapper.getElement()  );
     }
@@ -73,7 +85,7 @@ public class SingleTable extends GridOrganization{
         bindHeight(tableWrapper);
 
         ctrlPosition.organize(
-                parentGridWrapper.label.getElement(),
+                label,
                 butSizeForGrid.buttonAdd,
                 butSizeForGrid.buttonDel,
                 tableWrapper.getElement()

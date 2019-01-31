@@ -2,20 +2,21 @@ package basisFx.domain;
 
 import basisFx.appCore.annotation.DataStore;
 import basisFx.appCore.annotation.Sorting;
-import basisFx.dataSource.Db;
 import javafx.beans.property.SimpleObjectProperty;
-import javafx.collections.ObservableList;
-import org.hsqldb.index.Index;
-
-import java.sql.*;
 import java.time.LocalDate;
 
 public class EmployeesRatePerHour extends ActiveRecord {
 
     private static EmployeesRatePerHour INSTANCE = new EmployeesRatePerHour();
-    @DataStore(SORTING = Sorting.DESC) private SimpleObjectProperty<LocalDate> startDate =new SimpleObjectProperty<>(this, "startDate", null);
+
+    @DataStore(SORTING = Sorting.DESC, ANALIZED_DATE = true)
+    private SimpleObjectProperty<LocalDate> startDate =new SimpleObjectProperty<>(this, "startDate", null);
+
+    @DataStore (AS_OUTER_ID = true)
+    private SimpleObjectProperty<Integer> employerId =new SimpleObjectProperty<>(this, "employerId", null);
+
     private SimpleObjectProperty<Double> rate =new SimpleObjectProperty<>(this, "rate", null);
-    @DataStore (AS_OUTER_ID = true) private SimpleObjectProperty<Integer> employerId =new SimpleObjectProperty<>(this, "employerId", null);
+
 
     public static EmployeesRatePerHour getINSTANCE() {
         return INSTANCE;

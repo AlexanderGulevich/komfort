@@ -2,16 +2,21 @@ package basisFx.appCore.grid;
 
 import basisFx.appCore.elements.GridPaneWrapper;
 import basisFx.appCore.elements.TableWrapper;
+import basisFx.appCore.windows.WindowAbstraction;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.experimental.Accessors;
+import org.apache.xmlbeans.impl.xb.xsdschema.Facet;
 
 public abstract class GridOrganization {
 
-    protected Insets insets = new Insets(3, 3, 3, 3);
-    protected GridPaneWrapper parentGridWrapper;
+    @Setter @Accessors(chain = true)  protected WindowAbstraction currentWindow;
+    @Getter  protected Insets insets = new Insets(3, 3, 3, 3);
+    @Getter @Setter protected GridPaneWrapper parentGridWrapper;
+    @Getter @Setter protected CtrlPosition ctrlPosition;
     protected Label label;
-
-    protected CtrlPosition ctrlPosition;
 
     public abstract void organize();
 
@@ -19,14 +24,6 @@ public abstract class GridOrganization {
         this.insets = insets;
         return null;
     }
-    public void setParentGridPaneWrapper(GridPaneWrapper gridPaneWrapper) {
-        this.parentGridWrapper = gridPaneWrapper;
-    }
-
-    public GridPaneWrapper getParentGridWrapper() {
-        return parentGridWrapper;
-    }
-
     protected void bindHeight(GridPaneWrapper gridPaneWrapper){
         parentGridWrapper.getElement().prefHeightProperty().addListener((observable, oldValue, newValue) -> {
             gridPaneWrapper.getElement().setPrefHeight(newValue.doubleValue()-10d);
@@ -38,11 +35,16 @@ public abstract class GridOrganization {
             tableWrapper.getElement().setPrefHeight(newValue.doubleValue()-10d);
         });
     }
+    public  void setTableWrapper(TableWrapper tableWrapper){};
 
-    public void setCtrlPosition(CtrlPosition ctrlPosition) {
-        this.ctrlPosition = ctrlPosition;
+    protected void handleLabel() {
+        if (parentGridWrapper.label != null) {
+            label = parentGridWrapper.label.getElement();
+            if (currentWindow != null) {
+                currentWindow.setNodeToMap(label,"gridLabel");
+            }
+        }
     }
 
-    public  void setTableWrapper(TableWrapper tableWrapper){};
 
 }
