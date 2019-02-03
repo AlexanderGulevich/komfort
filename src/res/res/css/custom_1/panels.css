@@ -25,16 +25,11 @@
             -fx-fill:       -fx-label;
             -fx-text-fill:  -fx-label;
 }
-#HORIZONTAL_FLOW_MENU_PANEL{
-       -fx-background-color: #ffffff;
-        -fx-padding: 0  0 0 0.5;
-       -fx-border-width: 0   0   0.1    0.1;
-         -fx-border-color: #28385e;
-}
-#TILE_PANE_ANCHOR{
+
+/* #TILE_PANE_ANCHOR{
     -fx-background-color:white;
     -fx-background-radius: 0;
     -fx-border-radius:0;
     -fx-background-insets: 0, 0, 0, 0;
     -fx-effect: dropshadow(gaussian ,#555555 , 2, 0, 0.5, 0.5);
-}
+} */

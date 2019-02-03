@@ -17,6 +17,7 @@ public class FontItemComposite extends MenuComposite{
         fontSize = builder.fontSize;
         description=builder.description;
         isActive=builder.isActive;
+        fxmlFileName=builder.fxmlFileName;
     }
 
     public static Builder newBuilder() {
@@ -30,6 +31,7 @@ public class FontItemComposite extends MenuComposite{
         private String fontSymbol;
         private FontsStore fontsStore;
         private double fontSize;
+        private String fxmlFileName;
 
         private Builder() {
         }
@@ -39,6 +41,10 @@ public class FontItemComposite extends MenuComposite{
             return this;
         }
 
+        public Builder setFxmlFileName(String fxmlFileName) {
+            this.fxmlFileName = fxmlFileName;
+            return this;
+        }
 
         public Builder setDynamicContentPanelCreator(DynamicContentPanelCreator val) {
             dynamicContentPanelCreator = val;

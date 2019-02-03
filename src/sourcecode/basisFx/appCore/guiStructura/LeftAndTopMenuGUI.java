@@ -47,7 +47,6 @@ public class LeftAndTopMenuGUI extends GUIStructura {
                 .setParentAnchor(((AnchorPane) window.getNodeFromMap("titleAnchor") ))
                 .setCoordinate(new Coordinate(10d, null, null, 70d))
                 .setFont(FontsStore.ROBOTO_BOLD)
-                .setFontSize(50)
                 .setMetaName(Structura.companyNameText.name())
                 .setText("KOMFORT")
                 .build();

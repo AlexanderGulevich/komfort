@@ -2,8 +2,8 @@ package basisFx.appCore.menu;
 
 public  class MenuFabric {
     
-    public  static MenuRepresentLeftAndTopBarViaFontItem menuLeftAndTopRepresentation(MenuSketch sketch){
-        return new MenuRepresentLeftAndTopBarViaFontItem(sketch);
+    public  static LeftAndTopBar menuLeftAndTop(MenuSketch sketch){
+        return new LeftAndTopBar(sketch);
     }
     
     

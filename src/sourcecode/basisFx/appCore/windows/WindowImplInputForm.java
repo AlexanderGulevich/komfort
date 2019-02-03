@@ -19,4 +19,9 @@ public class WindowImplInputForm extends WindowImpl{
     public void customInit(WindowAbstraction windowAbstraction) {
 
     }
+
+    @Override
+    public void addToRegistry(WindowAbstraction windowAbstraction) {
+
+    }
 }

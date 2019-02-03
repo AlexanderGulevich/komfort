@@ -1,6 +1,7 @@
 package basisFx;
 
 import basisFx.appCore.fabrics.*;
+import basisFx.appCore.menu.FXMLItemComposit;
 import basisFx.appCore.menu.MenuFabric;
 import basisFx.appCore.settings.Settings;
 import basisFx.appCore.settings.StylesPathes;
@@ -10,7 +11,6 @@ import basisFx.appCore.utils.Registry;
 import basisFx.appCore.windows.ButtonsForStageThreeEntity;
 import basisFx.appCore.windows.WindowAbstraction;
 import basisFx.appCore.windows.WindowBuilder;
-import basisFx.appCore.windows.WindowImplMain;
 import basisFx.presentation.MainMenuSketch;
 import basisFx.appCore.guiStructura.LeftAndTopMenuGUI;
 import javafx.stage.Stage;
@@ -26,12 +26,25 @@ public class App{
         WindowFabric.WindowUndecorated();
         DbFactory.createDbServer();
 //
+//        Registry.windowFabric.mainWindow(primaryStage,
+//                WindowBuilder.newBuilder()
+//                        .setGUIStructura(new LeftAndTopMenuGUI())
+//                        .setButtonsForStage(new ButtonsForStageThreeEntity(LeftAndTopMenuGUI.Structura.titleAnchor.name()))
+//                        .setFxmlFileName(null)
+//                        .setParentAnchorNameForFXML(null)
+//                        .setWidth(Settings.WIDTH)
+//                        .setHeight(Settings.HEIGHT)
+//                        .setDynamicContentPanelCreator(null)
+//                        .setTitle(Settings.TITLE)
+//                        .setMessage(null)
+//                        .build()
+//                );
+
         Registry.windowFabric.mainWindow(primaryStage,
                 WindowBuilder.newBuilder()
-                        .setGUIStructura(new LeftAndTopMenuGUI())
                         .setButtonsForStage(new ButtonsForStageThreeEntity(LeftAndTopMenuGUI.Structura.titleAnchor.name()))
-                        .setFxmlFileName(null)
-                        .setParentAnchorNameForFXML(null)
+                        .setFxmlFileName("Main_v1")
+                        .setParentAnchorNameForFXML(WindowAbstraction.DefaultPanelsNames.topVisibleAnchor.name())
                         .setWidth(Settings.WIDTH)
                         .setHeight(Settings.HEIGHT)
                         .setDynamicContentPanelCreator(null)
@@ -39,8 +52,10 @@ public class App{
                         .setMessage(null)
                         .build()
                 );
-        MenuFabric.menuLeftAndTopRepresentation( new MainMenuSketch());
 
+
+
+        MenuFabric.menuLeftAndTop( new MainMenuSketch());
 
 //        ScenicView.show(Registry.mainWindow.getScene());
 

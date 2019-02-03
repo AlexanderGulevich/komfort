@@ -10,9 +10,9 @@
 @font-face {
     src: url("../../fonts/batch-icons-webfont.ttf");
 }
-@font-face {
+/* @font-face {
     src: url("../../fonts/Docker Two.ttf");
-}
+} */
 @font-face {
     src: url("../../fonts/Font-Awesome-5-Free-Solid-900.ttf");
 }
@@ -37,6 +37,3 @@
 @font-face {
     src: url("../../fonts/MaterialIcons-Regular.ttf");
 }
-
-
-   

@@ -13,7 +13,6 @@ public class WindowUndecoratedFabric  extends WindowFabric{
     public WindowAbstraction mainWindow( Stage stage,WindowBuilder builder) {
         WindowImpl mainWindow = WindowImplMain.getInstance(builder);
         WindowAbstractionUndecorated windowUndecorated=new WindowAbstractionUndecorated(stage,mainWindow);
-        Registry.mainWindow=windowUndecorated;
         return windowUndecorated;
     }
 

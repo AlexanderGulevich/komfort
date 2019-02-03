@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+
+<Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <stylesheets>
+      <URL value="@../css/custom_1/leftSideMenu.css" />
+      <URL value="@../css/custom_1/colors.css" />
+   </stylesheets>
+   <styleClass>
+      <String fx:value="LEFT_SIDE_MENU_VERTICAL_BUTTONS" />
+      <String fx:value="transparent" />
+   </styleClass>
+</Button>

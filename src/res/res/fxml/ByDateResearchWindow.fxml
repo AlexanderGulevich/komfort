@@ -36,7 +36,7 @@
                   <URL value="@../css/custom_1/borders.css" />
                </stylesheets>
             </AnchorPane>
-            <AnchorPane layoutX="-10.0" layoutY="492.0" prefHeight="100.0" prefWidth="0.0" styleClass="darckBlue" stylesheets="@../css/custom_1/colors.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+            <AnchorPane layoutX="-10.0" layoutY="492.0" prefHeight="100.0" prefWidth="0.0" styleClass="mediumBlue" stylesheets="@../css/custom_1/colors.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                <children>
                   <FontAwesomeIconView fill="#ffffff86" layoutX="14.0" layoutY="93.0" size="99" strokeWidth="200.0" style="-fx-text-alignment: center; -fx-text-insets: 0; -fx-padding: 0;" text="" wrappingWidth="116.57142627239227" />
                   <DatePicker fx:id="dateStart" layoutX="129.0" layoutY="14.0" prefHeight="27.0" prefWidth="191.0" promptText="Начало периода" styleClass="DATEPICKER_BFx" AnchorPane.topAnchor="15.0">

@@ -13,6 +13,8 @@ import javafx.scene.Node;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import lombok.Getter;
 
@@ -34,6 +36,8 @@ public abstract class AppNode <T extends Node> {
     @Getter protected String text;
     @Getter protected Stage stage;
     protected WindowAbstraction windowAbstraction;
+    protected HBox parentHBox;
+    protected VBox parentVBox;
 
     public abstract Node getElement();
     public void setElementToWindowRegistry() {
@@ -47,10 +51,9 @@ public abstract class AppNode <T extends Node> {
             if(parentAnchor!=null){     bondAnchorAndNode(node);}
             if(parentFlowPane!=null){   bondNodeWithFlowPane(node);}
             if(parentScrollPane!=null){ bondParentScrollPane(node);}
-            if(parentGroup!=null){      bondToGroup(node);}
-    }
-    private boolean bondToGroup(AppNode n) {
-        return parentGroup.getChildren().addAll(n.getElement());
+            if(parentGroup!=null){      parentGroup.getChildren().addAll(node.getElement());}
+            if(parentHBox!=null){       parentHBox.getChildren().add(node.getElement());}
+            if(parentVBox!=null){       parentVBox.getChildren().add(node.getElement());}
     }
     private void bondParentScrollPane(AppNode n) {
         parentScrollPane.setPannable(true);

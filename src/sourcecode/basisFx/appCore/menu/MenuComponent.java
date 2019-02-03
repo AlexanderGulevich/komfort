@@ -1,13 +1,16 @@
 package basisFx.appCore.menu;
 
 import basisFx.appCore.interfaces.DynamicContentPanelCreator;
+import lombok.Getter;
+import lombok.Setter;
 
 public abstract class MenuComponent {
 
-    protected DynamicContentPanelCreator dynamicContentPanelCreator;
-    protected MenuComponent parent;
-    protected boolean isActive;
+    @Getter protected DynamicContentPanelCreator dynamicContentPanelCreator;
+    @Getter protected MenuComponent parent;
+    @Getter protected boolean isActive;
     protected boolean hasParent;
+    @Getter @Setter protected String fxmlFileName;
 
     public boolean hasParent() {
         return hasParent;
@@ -18,12 +21,5 @@ public abstract class MenuComponent {
         this.parent = parent;
     }
 
-    public DynamicContentPanelCreator getDynamicElementsCreator() {
-        return dynamicContentPanelCreator;
-    }
-
     public abstract boolean  isComposit();
-
-
-
 }

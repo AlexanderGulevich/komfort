@@ -44,6 +44,7 @@ public  class ServiceCrossWindowByDateResearch  extends ServiceCrossWindow   {
     @FXML private ComboBox combobox;
 
     public ServiceCrossWindowByDateResearch() {
+
         Registry.crossWindowMediators.put("ByDateResearchWindow",this);
     }
     @Override

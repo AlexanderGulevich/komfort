@@ -2,19 +2,19 @@ package basisFx.appCore.events;
 
 import basisFx.appCore.elements.AppNode;
 import basisFx.appCore.menu.FontItemComposite;
-import basisFx.appCore.menu.MenuRepresentLeftAndTopBarViaFontItem;
+import basisFx.appCore.menu.LeftAndTopBar;
 import basisFx.appCore.menu.MenuComponent;
-import basisFx.appCore.settings.CSSid;
+import basisFx.appCore.settings.CSSclasses;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 
 public class leftSideMenuIconClick extends AppEvent{
     protected FontItemComposite component;
-    protected MenuRepresentLeftAndTopBarViaFontItem represent;
+    protected LeftAndTopBar represent;
     protected Button  but;
 
 
-    public leftSideMenuIconClick(MenuComponent component,MenuRepresentLeftAndTopBarViaFontItem represent) {
+    public leftSideMenuIconClick(MenuComponent component, LeftAndTopBar represent) {
         this.represent=represent;
         this.component = (FontItemComposite) component;
     }
@@ -32,6 +32,11 @@ public class leftSideMenuIconClick extends AppEvent{
 
     @Override
     public void setEventToElement(Node node) {
+        but= ((Button) node);
+
+        but.setOnAction((event) -> {
+            run();
+        });
 
     }
 
@@ -41,7 +46,7 @@ public class leftSideMenuIconClick extends AppEvent{
         represent.setDefaultStyleVerticalButtons();
         represent.setCommonTextName(component);
         represent.setHorisontalButtons(component);
-        but.setId(CSSid.LEFT_SIDE_MENU_VERTICAL_BUTTONS_CLICKED.get());
+        but.getStyleClass().add(CSSclasses.LEFT_SIDE_MENU_VERTICAL_BUTTONS_CLICKED.get());
 
 
 

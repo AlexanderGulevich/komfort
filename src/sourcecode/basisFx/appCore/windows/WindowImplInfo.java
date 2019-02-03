@@ -27,4 +27,9 @@ public class WindowImplInfo extends WindowImpl{
 //        textArea.setText(messagge);
 
     }
+
+    @Override
+    public void addToRegistry(WindowAbstraction windowAbstraction) {
+
+    }
 }

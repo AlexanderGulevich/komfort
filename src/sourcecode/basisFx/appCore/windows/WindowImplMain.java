@@ -1,5 +1,7 @@
 package basisFx.appCore.windows;
 
+import basisFx.appCore.utils.Registry;
+
 public class WindowImplMain extends WindowImpl {
 
     private static WindowImplMain instance;
@@ -21,5 +23,11 @@ public class WindowImplMain extends WindowImpl {
     }
     @Override
     public void customInit(WindowAbstraction windowAbstraction) {
+
+    }
+
+    @Override
+    public void addToRegistry(WindowAbstraction windowAbstraction) {
+        Registry.mainWindow=windowAbstraction;
     }
 }

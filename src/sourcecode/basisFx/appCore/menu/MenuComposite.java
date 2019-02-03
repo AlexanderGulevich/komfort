@@ -1,5 +1,6 @@
 package basisFx.appCore.menu;
 import lombok.Getter;
+import lombok.experimental.SuperBuilder;
 
 import java.util.ArrayList;
 import java.util.Arrays;

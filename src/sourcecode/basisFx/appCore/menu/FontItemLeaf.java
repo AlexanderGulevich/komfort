@@ -18,6 +18,7 @@ public class FontItemLeaf extends MenuLeaf{
         fontSize = builder.fontSize;
         description=builder.description;
         isActive=builder.isActive;
+        fxmlFileName=builder.fxmlFileName;
     }
 
 
@@ -28,6 +29,7 @@ public class FontItemLeaf extends MenuLeaf{
 
     public static final class Builder {
         public DynamicContentPanelCreator dynamicContentPanelCreator;
+        public String fxmlFileName;
         private boolean isActive;
         private String description;
         private DynamicContentPanel dynamicContentPanel;
@@ -36,6 +38,11 @@ public class FontItemLeaf extends MenuLeaf{
         private double fontSize;
 
         private Builder() {
+        }
+
+        public Builder setFxmlFileName(String fxmlFileName) {
+            this.fxmlFileName = fxmlFileName;
+            return this;
         }
 
         public Builder setActive(boolean active) {

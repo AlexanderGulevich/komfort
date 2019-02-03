@@ -56,7 +56,7 @@ public class PieSliceTest extends Application {
 			             " (" + String.format("%.2f", percentPieValue) + "%)";
 			Tooltip tt = new Tooltip(msg);
 			tt.setStyle("-fx-background-color: yellow;" + 
-			            "-fx-text-fill: black;");
+			            "-fx-label-fill: black;");
 			Tooltip.install(sliceNode, tt);
 		}
 	}

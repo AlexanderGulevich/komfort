@@ -2,8 +2,8 @@ package basisFx.appCore.events;
 
 import basisFx.appCore.elements.AppNode;
 import basisFx.appCore.menu.FontItemLeaf;
-import basisFx.appCore.menu.MenuRepresentLeftAndTopBarViaFontItem;
-import basisFx.appCore.settings.CSSid;
+import basisFx.appCore.menu.LeftAndTopBar;
+import basisFx.appCore.settings.CSSclasses;
 import basisFx.appCore.utils.Registry;
 import basisFx.appCore.windows.WindowAbstraction;
 import javafx.scene.Node;
@@ -13,11 +13,11 @@ import javafx.scene.layout.AnchorPane;
 public class MenuButtonsClick extends AppEvent{
 
     protected FontItemLeaf fontItemLeaf;
-    protected MenuRepresentLeftAndTopBarViaFontItem represent;
+    protected LeftAndTopBar represent;
 
     protected  Button  but;
 
-    public MenuButtonsClick(FontItemLeaf component,MenuRepresentLeftAndTopBarViaFontItem represent ) {
+    public MenuButtonsClick(FontItemLeaf component, LeftAndTopBar represent ) {
         this.fontItemLeaf = component;
         this.represent=represent;
 
@@ -30,7 +30,7 @@ public class MenuButtonsClick extends AppEvent{
         but.setOnMouseClicked((event) -> {
 
             represent.setDefaultStyleHorisontalButtons();
-            but.setId(CSSid.LEFT_SIDE_MENU_HORIZONTAL_BUTTONS_CLICKED.get());
+            but.getStyleClass().add(CSSclasses.LEFT_SIDE_MENU_HORIZONTAL_BUTTONS_CLICKED.get());
 
             run();
         });
@@ -45,7 +45,7 @@ public class MenuButtonsClick extends AppEvent{
     @Override
     public void run() {
         clearContent();
-        fontItemLeaf.getDynamicElementsCreator().create().initTemplateMethod(Registry.mainWindow);
+        fontItemLeaf.getDynamicContentPanelCreator().create().initTemplateMethod(Registry.mainWindow);
 
 
     }

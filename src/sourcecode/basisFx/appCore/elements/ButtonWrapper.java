@@ -16,6 +16,8 @@ import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import java.util.ArrayList;
 
@@ -40,6 +42,8 @@ public class ButtonWrapper extends AppNode{
         height = builder.height;
         coordinate = builder.coordinate;
         parentAnchor = builder.parentAnchor;
+        parentHBox = builder.hBox;
+        parentVBox = builder.vBox;
         parentGroup = builder.parentGroup;
         parentFlowPane = builder.parentFlowPane;
         parentScrollPane = builder.parentScrollPane;
@@ -176,6 +180,8 @@ public class ButtonWrapper extends AppNode{
         private String metaName;
         private CSSclasses[] cssClasses;
         private String[] cssClassesStrings;
+        private VBox vBox;
+        private HBox hBox;
 
 
         public Builder setCssClasses(CSSclasses...  cssClasses) {
@@ -237,6 +243,15 @@ public class ButtonWrapper extends AppNode{
 
         public Builder setParentAnchor(AnchorPane val) {
             parentAnchor = val;
+            return this;
+        }
+        public Builder setParentVBox(VBox box) {
+            vBox = box;
+            return this;
+        }
+
+        public Builder setParentHBox(HBox box) {
+            hBox = box;
             return this;
         }
 

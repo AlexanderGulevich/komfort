@@ -13,10 +13,20 @@ public class MainMenuSketch extends MenuSketch {
         components = new MenuComposite () .add(
 
                 FontItemComposite.newBuilder()
-                        .setDescription("Управление затратами и выработкой за день")
-                        .setFontsStore(FontsStore.WEBHOSTINGHUB)
-                        .setFontSymbol("\uF0A1")
+                        .setDescription("Ukfdyfzzzzzzzzzzzzzzzzzz wefwe erg erg erg \n")
+                        .setFontsStore(FontsStore.FAWESOME5SOLID)
+                        .setFxmlFileName("vbut.fxml")
+                        .setFontSymbol("\uF015")
                         .setActive(true)
+                        .setFontSize(iconSize)
+                        .build() ,
+
+                FontItemComposite.newBuilder()
+                        .setDescription("Управление затратами и выработкой за день \n")
+                        .setFontsStore(FontsStore.WEBHOSTINGHUB)
+                        .setFxmlFileName("vbut.fxml")
+                        .setFontSymbol("\uF0A1")
+                        .setActive(false)
                         .setFontSize(iconSize)
                         .build().add(
                             FontItemLeaf.newBuilder()
@@ -47,6 +57,7 @@ public class MainMenuSketch extends MenuSketch {
 
                 FontItemComposite.newBuilder().setDescription("Статистика")
                         .setFontsStore(FontsStore.FAWESOME5SOLID)
+                        .setFxmlFileName("vbut.fxml")
                         .setFontSymbol("\uF080")
                         .setFontSize(iconSize)
                         .build().add(
@@ -70,6 +81,7 @@ public class MainMenuSketch extends MenuSketch {
 
                 FontItemComposite.newBuilder().setDescription("Управление сотрудниками")
                         .setFontsStore(FontsStore.FAWESOME5REGULAR)
+                        .setFxmlFileName("vbut.fxml")
                         .setFontSymbol("\uF007")
                         .setFontSize(iconSize)
                         .build().add(
@@ -86,6 +98,7 @@ public class MainMenuSketch extends MenuSketch {
 
                 FontItemComposite.newBuilder().setDescription("СЫРЬЕ")
                         .setFontsStore(FontsStore.IONICONS)
+                        .setFxmlFileName("vbut.fxml")
                         .setFontSymbol("\uF4F4")
                         .setFontSize(iconSize+2)
                         .build().add(
@@ -113,6 +126,7 @@ public class MainMenuSketch extends MenuSketch {
 
                 FontItemComposite.newBuilder().setDescription("Прочая информация")
                         .setFontsStore(FontsStore.MATERIAL_ICONS)
+                        .setFxmlFileName("vbut.fxml")
                         .setFontSymbol("")
                         .setFontSize(iconSize)
                         .build().add(
