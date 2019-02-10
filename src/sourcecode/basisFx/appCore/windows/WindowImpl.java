@@ -17,6 +17,8 @@ public abstract class WindowImpl {
     @Getter protected CallBack callBackSubWindowClosing;
     @Getter protected ButtonsForStage buttonsForStage;
     @Getter protected GUIStructura GUIStructura;
+    @Getter  protected String fxmlFileName;
+    @Getter  protected  ServiceCrossWindow serviceCrossWindow ;
     @Getter protected Double width;
     @Getter protected Double height;
     @Getter protected String titleName;
@@ -35,6 +37,7 @@ public abstract class WindowImpl {
         message=builder.message;
         titleName=builder.title;
         GUIStructura =builder.GUIStructura;
+        fxmlFileName =builder.fxmlFileName;
         buttonsForStage=builder.buttonsForStage;
         parentAnchorNameForFXML=builder.parentAnchorNameForFXML;
         callBackSubWindowClosing=builder.callBackSubWindowClosing;
@@ -74,10 +77,11 @@ public abstract class WindowImpl {
     }
     private void loadAnchorPaneFromFXML() {
         topLevelAnchorFromFXML = FXMLLoader.loadAnchorPane(builder.fxmlFileName);
+        if (topLevelAnchorFromFXML == null) throw new NullPointerException();
     }
 
     private void initFXMLService(WindowAbstraction windowAbstraction) {
-        ServiceCrossWindow serviceCrossWindow = Registry.crossWindowMediators.get(builder.fxmlFileName);
+        serviceCrossWindow = Registry.crossWindowMediators.get(builder.fxmlFileName);
         serviceCrossWindow.setCurrentWindow(windowAbstraction);
         serviceCrossWindow.init();
     }

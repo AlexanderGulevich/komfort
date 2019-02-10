@@ -1,6 +1,8 @@
 package basisFx.service;
 
 import basisFx.appCore.events.StageDragging;
+import basisFx.appCore.settings.FontsStore;
+import basisFx.appCore.utils.FontLogic;
 import basisFx.appCore.utils.Registry;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -41,7 +43,7 @@ public class ServiceCrossWindowMain_v1 extends ServiceCrossWindow   {
         Registry.mainWindow.setNodeToMap(horisontalMenuButHolderFlowPane,"horisontalMenuButHolderFlowPane");
 
         new StageDragging().setEventToElement(titleAnchor);
-
+        companyNameText.setFont(FontLogic.loadFont(FontsStore.ROBOTO_BOLD,35));
 
 
     }

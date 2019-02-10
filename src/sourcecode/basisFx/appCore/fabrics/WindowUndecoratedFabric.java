@@ -1,7 +1,6 @@
 package basisFx.appCore.fabrics;
 
 import basisFx.appCore.windows.*;
-import basisFx.appCore.utils.Registry;
 import basisFx.appCore.windows.WindowAbstraction;
 import basisFx.appCore.windows.WindowAbstractionUndecorated;
 import javafx.stage.Stage;
@@ -11,9 +10,13 @@ public class WindowUndecoratedFabric  extends WindowFabric{
 
     @Override
     public WindowAbstraction mainWindow( Stage stage,WindowBuilder builder) {
-        WindowImpl mainWindow = WindowImplMain.getInstance(builder);
-        WindowAbstractionUndecorated windowUndecorated=new WindowAbstractionUndecorated(stage,mainWindow);
-        return windowUndecorated;
+
+        if (WindowAbstraction.isWindowNotExist(builder)) {
+            WindowImpl mainWindow = WindowImplMain.getInstance(builder);
+            WindowAbstractionUndecorated windowUndecorated=new WindowAbstractionUndecorated(stage,mainWindow);
+            return windowUndecorated;
+        }
+       return null;
     }
 
     @Override
@@ -43,10 +46,12 @@ public class WindowUndecoratedFabric  extends WindowFabric{
 
     @Override
     public WindowAbstraction customSubWindow(WindowBuilder builder) {
-
-        WindowImplSubWindow windowImplSubWindow=new WindowImplSubWindow( builder);
-        WindowAbstractionUndecorated windowUndecorated=new WindowAbstractionUndecorated(windowImplSubWindow);
-        return windowUndecorated;
+        if (WindowAbstraction.isWindowNotExist(builder)) {
+            WindowImplSubWindow windowImplSubWindow=new WindowImplSubWindow( builder);
+            WindowAbstractionUndecorated windowUndecorated=new WindowAbstractionUndecorated(windowImplSubWindow);
+            return windowUndecorated;
+        }
+        return null;
     }
 
 }

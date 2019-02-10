@@ -8,31 +8,31 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="280.0" prefWidth="500.0" style="-fx-background-color: #FFFFFF;" stylesheets="@../css/custom_1/styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="280.0" prefWidth="500.0" style="-fx-background-color: #FFFFFF;" stylesheets="@../css/custom_1/styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="basisFx.service.ServiceCrossWindowInfo">
    <children>
       <AnchorPane layoutX="4.0" layoutY="57.57143020629883" prefHeight="433.0" prefWidth="680.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="60.0">
          <children>
-            <AnchorPane fx:id="tableHolderAnchor" stylesheets="@../css/custom_1/borders.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <AnchorPane stylesheets="@../css/custom_1/borders.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <TextArea editable="false" layoutX="36.0" layoutY="14.0" prefHeight="200.0" prefWidth="200.0" promptText="Было введено неправильное значение" styleClass="TEXTAREA_Bfx" stylesheets="@../css/custom_1/textArea.css" wrapText="true" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
+                  <TextArea fx:id="message" editable="false" layoutX="36.0" layoutY="14.0" prefHeight="200.0" prefWidth="200.0" promptText="Было введено неправильное значение" styleClass="TEXTAREA_Bfx" stylesheets="@../css/custom_1/textArea.css" wrapText="true" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
                </children>
             </AnchorPane>
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="72.0" layoutY="7.0" prefHeight="46.0" prefWidth="680.0" styleClass="bottom" stylesheets="@../css/custom_1/borders.css" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="100.0">
+      <AnchorPane fx:id="titleAnchor" layoutX="72.0" layoutY="7.0" prefHeight="46.0" prefWidth="680.0" styleClass="bottom" stylesheets="@../css/custom_1/borders.css" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="100.0">
          <children>
             <FontAwesomeIconView fill="#42606e93" layoutY="38.0" size="45" text="" />
-            <Label fx:id="title" layoutX="96.0" layoutY="4.0" prefHeight="38.0" prefWidth="280.0" stylesheets="@../css/custom_1/borders.css" text="ВНИМАНИЕ" textAlignment="RIGHT" textFill="#436270c1" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="0.0">
+            <Label fx:id="titleLabel" layoutX="96.0" layoutY="4.0" prefHeight="38.0" prefWidth="280.0" stylesheets="@../css/custom_1/borders.css" text="ВНИМАНИЕ" textAlignment="RIGHT" textFill="#436270c1" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="0.0">
                <font>
                   <Font name="Roboto Light" size="30.0" />
                </font>
             </Label>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="tableHolderAnchor1" layoutX="400.0" layoutY="7.0" prefWidth="100.0" styleClass="darckBlue" stylesheets="@../css/custom_1/colors.css" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane fx:id="rightAnchor" layoutX="400.0" layoutY="7.0" prefWidth="100.0" styleClass="mediumBlue2" stylesheets="@../css/custom_1/colors.css" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <FontAwesomeIconView fill="WHITE" layoutX="17.0" layoutY="82.0" size="80" text="" />
-            <JFXButton id="PANELS_BUTTON" layoutX="10.0" layoutY="234.0" prefHeight="36.0" prefWidth="69.0" style="-fx-padding: 7 9;  -fx-background-color: #FFFFFF; -fx-max-width: 80;" styleClass="all_side" text="ОК"  AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0">
+            <JFXButton id="PANELS_BUTTON" fx:id="okBut" layoutX="10.0" layoutY="234.0" prefHeight="36.0" prefWidth="69.0" style="-fx-padding: 7 9;  -fx-background-color: #FFFFFF; -fx-max-width: 80;" styleClass="all_side" text="ОК" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0">
                <font>
                   <Font name="Font Awesome 5 Free Solid" size="11.0" />
                </font>

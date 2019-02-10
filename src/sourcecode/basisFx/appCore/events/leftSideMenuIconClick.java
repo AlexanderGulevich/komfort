@@ -19,6 +19,12 @@ public class leftSideMenuIconClick extends AppEvent{
         this.component = (FontItemComposite) component;
     }
 
+    public leftSideMenuIconClick(MenuComponent component, LeftAndTopBar represent, Button button) {
+        this.represent=represent;
+        this.component = (FontItemComposite) component;
+        setEventToElement(button);
+    }
+
     @Override
     public void setEventToElement(AppNode n) {
         but=(Button) n.getElement();
@@ -46,9 +52,8 @@ public class leftSideMenuIconClick extends AppEvent{
         represent.setDefaultStyleVerticalButtons();
         represent.setCommonTextName(component);
         represent.setHorisontalButtons(component);
+        but.getStyleClass().clear();
         but.getStyleClass().add(CSSclasses.LEFT_SIDE_MENU_VERTICAL_BUTTONS_CLICKED.get());
-
-
 
              }
 

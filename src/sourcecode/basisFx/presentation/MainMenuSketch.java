@@ -13,13 +13,13 @@ public class MainMenuSketch extends MenuSketch {
         components = new MenuComposite () .add(
 
                 FontItemComposite.newBuilder()
-                        .setDescription("Ukfdyfzzzzzzzzzzzzzzzzzz wefwe erg erg erg \n")
+                        .setDescription("ПАНЕЛЬ УПРАВЛЕНИЯ \n")
                         .setFontsStore(FontsStore.FAWESOME5SOLID)
                         .setFxmlFileName("vbut.fxml")
                         .setFontSymbol("\uF015")
                         .setActive(true)
                         .setFontSize(iconSize)
-                        .build() ,
+                        .build(),
 
                 FontItemComposite.newBuilder()
                         .setDescription("Управление затратами и выработкой за день \n")
@@ -55,7 +55,7 @@ public class MainMenuSketch extends MenuSketch {
 //                ),
 //
 
-                FontItemComposite.newBuilder().setDescription("Статистика")
+                FontItemComposite.newBuilder().setDescription("Статистическая информация")
                         .setFontsStore(FontsStore.FAWESOME5SOLID)
                         .setFxmlFileName("vbut.fxml")
                         .setFontSymbol("\uF080")
@@ -96,7 +96,7 @@ public class MainMenuSketch extends MenuSketch {
                                 .build()
                 ),
 
-                FontItemComposite.newBuilder().setDescription("СЫРЬЕ")
+                FontItemComposite.newBuilder().setDescription("Управление сырьем")
                         .setFontsStore(FontsStore.IONICONS)
                         .setFxmlFileName("vbut.fxml")
                         .setFontSymbol("\uF4F4")

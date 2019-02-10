@@ -73,7 +73,7 @@
 
   -fx-border-width: 0  0.1   0    0;
 }
-.LEFT_SIDE_MENU_HORIZONTAL_BUTTONS:armed,
+/* .LEFT_SIDE_MENU_HORIZONTAL_BUTTONS:armed, */
 .LEFT_SIDE_MENU_HORIZONTAL_BUTTONS_CLICKED{
        -fx-font-size: 17;
       /* -fx-text-fill: #d96844; */

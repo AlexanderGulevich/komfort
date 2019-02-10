@@ -25,21 +25,20 @@ public class LeftAndTopBar extends MenuRepresent {
     protected VBox vButHolder = (VBox) Registry.mainWindow.getNodeFromMap("vButHolder")  ;
     protected AnchorPane contentAnchorPane = (AnchorPane) Registry.mainWindow.getNodeFromMap("mainContentAnchor")  ;
     private ArrayList<ButtonWrapper> buttonWrappers=new ArrayList<>();
+    private leftSideMenuIconClick startButEvent;
 
     public LeftAndTopBar(MenuSketch sketch) {
         label.setText("");
         makeStructuredMenuView(sketch.getComponents(), null);
         setDefaultStyleVerticalButtons();
         setDefaultStyleHorisontalButtons();
-        fireActiveMarckedButton();
+        fireStartButton();
     }
-    private void fireActiveMarckedButton() {
-        for (ButtonWrapper wrapper:buttonWrappers) {
-            if (wrapper.isActive()){
-                wrapper.makeActive();
-            }
-        }
+
+    private void fireStartButton() {
+        startButEvent.run();
     }
+
     @Override
     protected <T> void makeStructuredMenuView(MenuComponent c, MenuComposite parentMenu) {
         ArrayList<MenuComponent> components = null;
@@ -77,13 +76,10 @@ public class LeftAndTopBar extends MenuRepresent {
         Button button = FXMLLoader.loadButton(composite.fxmlFileName);
         button.setText(composite.fontSymbol);
         button.setFont(FontLogic.loadFont(composite.fontsStore,composite.fontSize));
-        button.setFont(FontLogic.loadFont(composite.fontsStore,composite.fontSize));
         vButHolder.getChildren().add(button);
-        new leftSideMenuIconClick(verticalBut, this).setEventToElement(button);
+        leftSideMenuIconClick clickEvent = new leftSideMenuIconClick(verticalBut, this,button);
         if (composite.isActive) {
-            button.fire();
-            button.getStyleClass().clear();
-            button.getStyleClass().add(CSSclasses.LEFT_SIDE_MENU_VERTICAL_BUTTONS_CLICKED.get());
+            startButEvent=clickEvent;
         }
 
     }
@@ -105,7 +101,7 @@ public class LeftAndTopBar extends MenuRepresent {
                 next.getStyleClass().clear();
                 next.getStyleClass().add(CSSclasses.LEFT_SIDE_MENU_VERTICAL_BUTTONS.name());
             }
-            buttons.get(0).getStyleClass().add(CSSclasses.LEFT_SIDE_MENU_VERTICAL_BUTTONS_FIRST.name());
+//            buttons.get(0).getStyleClass().add(CSSclasses.LEFT_SIDE_MENU_VERTICAL_BUTTONS_FIRST.name());
         }
     }
     public void setCommonTextName(FontItemComposite itemComposite) {

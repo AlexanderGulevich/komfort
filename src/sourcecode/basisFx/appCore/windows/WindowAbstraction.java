@@ -4,6 +4,7 @@ import basisFx.appCore.utils.IconToPlatform;
 import basisFx.appCore.elements.AnchorWrapper;
 import basisFx.appCore.settings.CSSid;
 import basisFx.appCore.utils.Coordinate;
+import basisFx.appCore.utils.Registry;
 import basisFx.presentation.DynamicContentPanel;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
@@ -49,6 +50,12 @@ public    abstract  class  WindowAbstraction<T extends  Object> {
         currentDynamicContent = null;
     }
     protected abstract void createScene();
+    public static boolean isWindowNotExist(WindowBuilder builder){
+        if (Registry.crossWindowMediators.get(builder.fxmlFileName) != null) {
+            return false;
+        }
+        return true;
+    }
 
     public void setNodeToMap(T  node, String name) {
         nodMap.put(name,node);
