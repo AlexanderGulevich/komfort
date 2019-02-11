@@ -2,8 +2,7 @@
       -fx-background-color: transparent;
          -fx-padding:0 0 0 0;
 }
-#INNER_PANE{
-}
+
 #WindowButtonsPanel{
   -fx-background-color: transparent;
     -fx-border-width: 0 0 0.2 0;
@@ -16,6 +15,9 @@
   -fx-fill:-fx-common;
   -fx-fill:-fx-common;
   -fx-text-fill:-fx-common;
+  -fx-font-size: 27;
+  -fx-font-weight: bold;
+  -fx-font-family: "Roboto Bold";
 }
 #LABEL_TEXT{
       -fx-label:#697886;

@@ -46,7 +46,7 @@ public class BoolComboBox extends ActiveRecord {
     }
     public Boolean getBoolean(){
 
-        if(stringValue.get()=="ДА"){
+        if(stringValue.get()=="  ДА"){
             return true;
         }else{
             return false;
@@ -55,9 +55,9 @@ public class BoolComboBox extends ActiveRecord {
     public void setBoolean(boolean val){
 
         if(val==true){
-          setStringValue("ДА");
+          setStringValue("  ДА");
         }else{
-            setStringValue("НЕТ");
+            setStringValue("  НЕТ");
         }
 
 
