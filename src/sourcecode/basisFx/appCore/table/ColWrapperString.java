@@ -129,7 +129,7 @@ public class ColWrapperString<T> extends ColWrapper {
 
         /** {@inheritDoc} */
         @Override public String fromString(String value) {
-            return value;
+            return value.trim();
         }
 
     }
