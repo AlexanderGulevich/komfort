@@ -1,6 +1,6 @@
 package basisFx.appCore.table;
 
-import basisFx.appCore.events.SubWindowCreater;
+import basisFx.appCore.events.SubWindowCreaterByBut;
 import basisFx.appCore.settings.CSSclasses;
 import basisFx.appCore.windows.WindowBuilder;
 import basisFx.domain.ActiveRecord;
@@ -37,7 +37,7 @@ public class ColWrapperPopupViaBtn extends ColWrapper {
 
     class ButtonCustomCell extends TableCell<ActiveRecord,ActiveRecord> implements Mediator  {
 
-        private  SubWindowCreater  subWindowCreater = new SubWindowCreater();
+        private SubWindowCreaterByBut subWindowCreaterByBut = new SubWindowCreaterByBut();
         private   Button btn ;
         protected  TableRow tableRow  ;
 
@@ -70,14 +70,14 @@ public class ColWrapperPopupViaBtn extends ColWrapper {
         private void createButton() {
             btn = new Button(btnName);
             btn.getStyleClass().add(CSSclasses.table_column_buttons_BFx.get());
-            subWindowCreater.setWindowBuilder(windowBuilder);
-            subWindowCreater.setEventToElement(btn);
-            subWindowCreater.setMediator(this);
+            subWindowCreaterByBut.setWindowBuilder(windowBuilder);
+            subWindowCreaterByBut.setEventToElement(btn);
+            subWindowCreaterByBut.setMediator(this);
         }
 
         @Override
         public void inform(Object node) {
-            if(node==subWindowCreater){
+            if(node== subWindowCreaterByBut){
                 tableWrapper.fireRowClick(tableRow);
             }
         }

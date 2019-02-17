@@ -1,18 +1,21 @@
 package basisFx.presentation.dynamicContents;
 
 import basisFx.appCore.elements.GridPaneWrapper;
-import basisFx.appCore.elements.RangeDirector;
 import basisFx.appCore.elements.TableWrapper;
 import basisFx.appCore.grid.*;
-import basisFx.service.ServiceTablesTwoLinked;
+import basisFx.appCore.utils.Registry;
+import basisFx.appCore.windows.ButtonsForStageSingle;
+import basisFx.appCore.windows.WindowAbstraction;
+import basisFx.appCore.windows.WindowBuilder;
+import basisFx.service.ServiceTablesSingle;
 import basisFx.appCore.table.*;
 import basisFx.appCore.utils.Coordinate;
 import basisFx.domain.*;
 import basisFx.presentation.DynamicContentPanel;
 
 public class PacketPanel  extends DynamicContentPanel {
-    private ServiceTablesTwoLinked mediatorServiceTwoLinkedTable1;
-    private ServiceTablesTwoLinked mediatorServiceTwoLinkedTable2;
+    private ServiceTablesSingle serviceTablesSingle1;
+    private ServiceTablesSingle serviceTablesSingle2;
     private TableWrapper t1;
     private TableWrapper t2;
     private TableWrapper t3;
@@ -20,12 +23,28 @@ public class PacketPanel  extends DynamicContentPanel {
 
     @Override
     public void createServices() {
-            mediatorServiceTwoLinkedTable1 =new ServiceTablesTwoLinked();
-            mediatorServiceTwoLinkedTable2 =new ServiceTablesTwoLinked();
+            serviceTablesSingle1 =new ServiceTablesSingle();
+            serviceTablesSingle2 =new ServiceTablesSingle();
     }
 
     @Override
     public void customDynamicElementsInit() {
+
+        WindowBuilder windowBuilder = WindowBuilder.newBuilder()
+                .setGUIStructura(null)
+                .setDynamicContentPanelCreator(PacketSizePanel::new)
+                .setTitle("Размеры пакетов")
+                .setMessage(null)
+                .setFxmlFileName("AddDellPopupWindow")
+                .setParentAnchorNameForFXML(WindowAbstraction.DefaultPanelsNames.topVisibleAnchor.name())
+                .setWidth(700d)
+                .setHeight(600d)
+                .setClosingCallBack(
+                        () -> {
+                            TableWrapper tableWrapper = (TableWrapper) Registry.mainWindow.getNodeFromMap("outer_table_wrapper");
+                            tableWrapper.getMediator().refresh(tableWrapper);
+                        })
+                .build();
 
           t1 = TableWrapper.newBuilder()
                 .setGridLinesVisibility(gridVisibility)
@@ -35,12 +54,13 @@ public class PacketPanel  extends DynamicContentPanel {
                 .setUnitOfWork(unitOfWork)
                 .setIsEditable(true)
                 .setIsSortableColums(false)
-                .setServiceTables(mediatorServiceTwoLinkedTable1)
+                .setServiceTables(serviceTablesSingle1)
                 .setColWrappers(
-                        ColWrapperComboBox.newBuilder(PacketSize.class)
+                        ColWrapperPopup.newBuilder()
                                 .setColumnName("Размер")
                                 .setColumnSize(0.5d)
                                 .setIsEditeble(true)
+                                .setWindowBuilder(windowBuilder)
                                 .setPropertyName("packetSize")
                                 .build(),
                         ColWrapperComboBox.newBuilder(Counterparty.class)
@@ -48,11 +68,22 @@ public class PacketPanel  extends DynamicContentPanel {
                                 .setColumnSize(0.5d)
                                 .setIsEditeble(true)
                                 .setPropertyName("counterparty")
+                                .build(),
+                        ColWrapperPopupViaBtn.newBuilder()
+                                .setBtnName("Показать")
+                                .setColumnName("Архив")
+                                .setColumnSize(0.2d)
+                                .setWindowBuilder(dateResearchWindowBuilder)
                                 .build()
                 )
                 .build();
 
-          t2 = TableWrapper.newBuilder()
+
+
+        Registry.mainWindow.setNodeToMap(t1,"outer_table_wrapper");
+
+
+        t2 = TableWrapper.newBuilder()
                 .setGridLinesVisibility(gridVisibility)
                 .setGridName("Реестр цен")
                 .setOrganization(new SingleTable(new ButSizeLittle(),new CtrlPosTop()))
@@ -60,7 +91,7 @@ public class PacketPanel  extends DynamicContentPanel {
                 .setUnitOfWork(unitOfWork)
                 .setIsEditable(true)
                 .setIsSortableColums(false)
-                .setServiceTables(mediatorServiceTwoLinkedTable1)
+                .setServiceTables(serviceTablesSingle1)
                 .setColWrappers(
                         ColWrapperDouble.newBuilder()
                                 .setColumnName("Тариф")
@@ -77,24 +108,6 @@ public class PacketPanel  extends DynamicContentPanel {
                 )
                 .build();
 
-          t3 = TableWrapper.newBuilder()
-                .setGridLinesVisibility(gridVisibility)
-                .setGridName("Размеры пакетов ")
-                .setOrganization(new SingleTable(new ButSizeLittle(),new CtrlPosTop()))
-                .setActiveRecordClass(PacketSize.class)
-                .setUnitOfWork(unitOfWork)
-                .setIsEditable(true)
-                .setIsSortableColums(false)
-                .setServiceTables(mediatorServiceTwoLinkedTable2)
-                .setColWrappers(
-                        ColWrapperString.newBuilder()
-                                .setColumnName("Размер пакета")
-                                .setColumnSize(1d)
-                                .setIsEditeble(true)
-                                .setPropertyName("size")
-                                .build()
-                )
-                .build();
 
           t4 = TableWrapper.newBuilder()
                 .setGridLinesVisibility(gridVisibility)
@@ -104,7 +117,7 @@ public class PacketPanel  extends DynamicContentPanel {
                 .setUnitOfWork(unitOfWork)
                 .setIsEditable(true)
                 .setIsSortableColums(false)
-                .setServiceTables(mediatorServiceTwoLinkedTable2)
+                .setServiceTables(serviceTablesSingle2)
                 .setColWrappers(
                         ColWrapperComboBox.newBuilder(Product.class)
                                 .setColumnName("Продукция")
@@ -124,15 +137,14 @@ public class PacketPanel  extends DynamicContentPanel {
 
 
         GridPaneWrapper commonGridPaneWrapper = GridPaneWrapper.newBuilder()
+                .setColumnVsPercent(50)
+                .setColumnVsPercent(50)
                 .setGridLinesVisibility(gridVisibility)
                 .setGridName("Управление информацией о пакетах")
                 .setParentAnchor(dynamicContentAnchorHolder)
                 .setCoordinate(new Coordinate(0d, 10d, 10d, 0d))
                 .setOrganization(
-                        new TwoVerticaGrids(
-                                new TwoHorisontalBondGrids(t1.getGridPaneWrapper() ,t2.getGridPaneWrapper() ) ,
-                                new TwoHorisontalBondGrids(t3.getGridPaneWrapper() ,t4.getGridPaneWrapper() )
-                        )
+                        new TwoHorisontalBondGrids(t1  ,t4)
                  )
                 .build();
 
@@ -140,13 +152,11 @@ public class PacketPanel  extends DynamicContentPanel {
 
     @Override
     public void initServices() {
-        mediatorServiceTwoLinkedTable1.setAccessoryTableWrapper(t2);
-        mediatorServiceTwoLinkedTable1.setPrimaryTableWrapper(t1);
-        mediatorServiceTwoLinkedTable1.initElements();
+        serviceTablesSingle1.setTableWrapper(t1);
+        serviceTablesSingle1.initElements();
 
-        mediatorServiceTwoLinkedTable2.setAccessoryTableWrapper(t4);
-        mediatorServiceTwoLinkedTable2.setPrimaryTableWrapper(t3);
-        mediatorServiceTwoLinkedTable2.initElements();
+        serviceTablesSingle2.setTableWrapper(t4);
+        serviceTablesSingle2.initElements();
     }
 
 

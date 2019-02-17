@@ -7,14 +7,14 @@ import javafx.scene.Node;
 import lombok.Setter;
 
 
-public class SubWindowCreater extends AppEvent{
+public class SubWindowCreaterByBut extends AppEvent{
     protected Node node;
     @Setter protected WindowBuilder windowBuilder;
 
-    public SubWindowCreater() {
+    public SubWindowCreaterByBut() {
     }
 
-    public SubWindowCreater(WindowBuilder windowBuilder) {
+    public SubWindowCreaterByBut(WindowBuilder windowBuilder) {
         this.windowBuilder = windowBuilder;
     }
 

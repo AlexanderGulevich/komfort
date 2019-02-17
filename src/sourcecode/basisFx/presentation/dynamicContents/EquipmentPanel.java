@@ -1,5 +1,6 @@
 package basisFx.presentation.dynamicContents;
 
+import basisFx.appCore.grid.CtrlPosMiddle;
 import basisFx.appCore.grid.CtrlPosTop;
 import basisFx.appCore.grid.ButSizeBig;
 import basisFx.appCore.settings.CSSclasses;
@@ -27,7 +28,7 @@ public class EquipmentPanel extends DynamicContentPanel {
                  .setActiveRecordClass(Equipment.class)
                  .setUnitOfWork(unitOfWork)
                  .setIsEditable(true)
-                 .setCssClasses(CSSclasses.wrappedHeaderColumn)
+                 .setCssClasses(CSSclasses.TABLE_BFx)
                  .setIsSortableColums(false)
                  .setServiceTables(mediatorSingleTable)
                  .setColWrappers(

@@ -39,7 +39,7 @@ public abstract class DynamicContentPanel {
                 .setWindowAbstraction(window)
                 .setMetaName("dynamicContentAnchorHolder")
                 .setCSSid(CSSid.TARGET_PANEL)
-                .setCoordinate(new Coordinate(0d, 10d, 10d, 10d))
+                .setCoordinate(new Coordinate(5d, 0d, 10d, 10d))
                 .setParentAnchor(mainContentAnchor)
                 .build().getElement();
     }

@@ -1,9 +1,10 @@
 package basisFx.presentation.dynamicContents;
 import basisFx.appCore.events.RowDeleteFromTable;
-import basisFx.appCore.events.SubWindowCreater;
+import basisFx.appCore.events.SubWindowCreaterByBut;
 import basisFx.appCore.grid.*;
 import basisFx.appCore.table.*;
 import basisFx.appCore.utils.Registry;
+import basisFx.appCore.windows.ButtonsForStageSingle;
 import basisFx.appCore.windows.WindowAbstraction;
 import basisFx.appCore.windows.WindowBuilder;
 import basisFx.domain.ActualEmployersRate;
@@ -12,7 +13,6 @@ import basisFx.service.ServiceTablesSingle;
 import basisFx.appCore.elements.TableWrapper;
 import basisFx.appCore.elements.GridPaneWrapper;
 import basisFx.appCore.utils.Coordinate;
-import basisFx.domain.Employer;
 
 public class EmployeesPanel extends DynamicContentPanel {
     private ServiceTablesSingle mediator;
@@ -113,7 +113,7 @@ public class EmployeesPanel extends DynamicContentPanel {
                                 outer_table_wrapper,
                                 new ButSizeLittle(
                                         new RowDeleteFromTable(outer_table_wrapper),
-                                        new SubWindowCreater(hiringWindowBuilder)
+                                        new SubWindowCreaterByBut(hiringWindowBuilder)
                                 ),
                                 new CtrlPosTop()
 //                                new CtrlPosBotton()

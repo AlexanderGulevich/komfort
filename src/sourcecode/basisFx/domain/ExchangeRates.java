@@ -9,7 +9,7 @@ public class ExchangeRates extends ActiveRecord{
 
     private static ExchangeRates INSTANCE = new ExchangeRates();
     @DataStore (SORTING = Sorting.DESC, ANALIZED_DATE = true) private SimpleObjectProperty<LocalDate> startDate =new SimpleObjectProperty<>(this, "startDate", null);
-    private SimpleObjectProperty<Double> exchangeRate =new SimpleObjectProperty<>(this, "exchangeRate", null);
+    private SimpleObjectProperty<Double> rate =new SimpleObjectProperty<>(this, "rate", null);
     @DataStore (AS_OUTER_ID = true) private SimpleObjectProperty<Integer> currencyId =new SimpleObjectProperty<>(this, "currencyId", null);
 
     public static ExchangeRates getINSTANCE() {
@@ -18,7 +18,7 @@ public class ExchangeRates extends ActiveRecord{
 
     @Override
     public String toString() {
-        return getExchangeRate().toString();
+        return getRate().toString();
     }
 
     public LocalDate getStartDate() {
@@ -33,16 +33,16 @@ public class ExchangeRates extends ActiveRecord{
         this.startDate.set(startDate);
     }
 
-    public Double getExchangeRate() {
-        return exchangeRate.get();
+    public Double getRate() {
+        return rate.get();
     }
 
-    public SimpleObjectProperty<Double> exchangeRateProperty() {
-        return exchangeRate;
+    public SimpleObjectProperty<Double> rateProperty() {
+        return rate;
     }
 
-    public void setExchangeRate(Double exchangeRate) {
-        this.exchangeRate.set(exchangeRate);
+    public void setRate(Double rate) {
+        this.rate.set(rate);
     }
 
     public Integer getCurrencyId() {

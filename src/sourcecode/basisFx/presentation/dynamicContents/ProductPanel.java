@@ -28,7 +28,7 @@ public class ProductPanel  extends DynamicContentPanel {
 
     @Override
     public void customDynamicElementsInit() {
-          rangeDirector=new RangeDirector(new ComboBox<>(), mediator, Range.DAY30,Range.getAll());
+          rangeDirector=new RangeDirector(new ComboBox<>(), mediator, Range.LAST10,Range.getAll());
 
           leftTableWrapper = TableWrapper.newBuilder()
                 .setGridName("Список продукции ")

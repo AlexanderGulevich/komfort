@@ -1,5 +1,6 @@
 package basisFx.presentation.dynamicContents;
 
+import basisFx.appCore.grid.CtrlPosMiddle;
 import basisFx.appCore.grid.CtrlPosTop;
 import basisFx.appCore.grid.ButSizeBig;
 import basisFx.appCore.grid.SingleTable;
