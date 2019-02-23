@@ -2,11 +2,8 @@ package basisFx.domain;
 
 import basisFx.appCore.annotation.DataStore;
 import basisFx.appCore.annotation.Sorting;
-import basisFx.dataSource.Db;
 import javafx.beans.property.SimpleObjectProperty;
-import javafx.collections.ObservableList;
 
-import java.sql.*;
 import java.time.LocalDate;
 
 public class PaperPrice extends ActiveRecord {
@@ -14,7 +11,7 @@ public class PaperPrice extends ActiveRecord {
     private static PaperPrice INSTANCE = new PaperPrice();
     private SimpleObjectProperty<Double> price = new SimpleObjectProperty<>(this, "price", null);
     @DataStore (SORTING = Sorting.DESC, ANALIZED_DATE = true)private SimpleObjectProperty<LocalDate> startDate = new SimpleObjectProperty<>(this, "startDate", null);
-    @DataStore (AS_OUTER_ID = true) private SimpleObjectProperty<Integer> packetId = new SimpleObjectProperty<>(this, "packetId", null);
+    @DataStore (AS_OUTER_ID = true) private SimpleObjectProperty<Integer> paperId = new SimpleObjectProperty<>(this, "paperId", null);
 
     public static PaperPrice getINSTANCE() {
         return INSTANCE;
@@ -48,15 +45,15 @@ public class PaperPrice extends ActiveRecord {
         this.startDate.set(startDate);
     }
 
-    public Integer getPacketId() {
-        return packetId.get();
+    public Integer getPaperId() {
+        return paperId.get();
     }
 
-    public SimpleObjectProperty<Integer> packetIdProperty() {
-        return packetId;
+    public SimpleObjectProperty<Integer> paperIdProperty() {
+        return paperId;
     }
 
-    public void setPacketId(Integer packetId) {
-        this.packetId.set(packetId);
+    public void setPaperId(Integer paperId) {
+        this.paperId.set(paperId);
     }
 }

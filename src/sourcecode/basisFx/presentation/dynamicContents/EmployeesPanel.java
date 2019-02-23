@@ -1,10 +1,10 @@
 package basisFx.presentation.dynamicContents;
 import basisFx.appCore.events.RowDeleteFromTable;
 import basisFx.appCore.events.SubWindowCreaterByBut;
+import basisFx.appCore.events.YNWindowCreaterForTable;
 import basisFx.appCore.grid.*;
 import basisFx.appCore.table.*;
 import basisFx.appCore.utils.Registry;
-import basisFx.appCore.windows.ButtonsForStageSingle;
 import basisFx.appCore.windows.WindowAbstraction;
 import basisFx.appCore.windows.WindowBuilder;
 import basisFx.domain.ActualEmployersRate;
@@ -38,7 +38,7 @@ public class EmployeesPanel extends DynamicContentPanel {
                 .setParentAnchorNameForFXML(WindowAbstraction.DefaultPanelsNames.topVisibleAnchor.name())
                 .setWidth(700d)
                 .setHeight(600d)
-                .setClosingCallBack(
+                .setCallBack(
                         () -> {
                             TableWrapper tableWrapper =(TableWrapper)   Registry.mainWindow.getNodeFromMap("outer_table_wrapper");
                             tableWrapper.getMediator().refresh(tableWrapper);
@@ -56,7 +56,7 @@ public class EmployeesPanel extends DynamicContentPanel {
                 .setParentAnchorNameForFXML(WindowAbstraction.DefaultPanelsNames.topVisibleAnchor.name())
                 .setWidth(530d)
                 .setHeight(350d)
-                .setClosingCallBack(
+                .setCallBack(
                         () -> {
                             TableWrapper tableWrapper =(TableWrapper)   Registry.mainWindow.getNodeFromMap("outer_table_wrapper");
                             tableWrapper.getMediator().refresh(tableWrapper);
@@ -106,18 +106,19 @@ public class EmployeesPanel extends DynamicContentPanel {
          GridPaneWrapper.newBuilder()
                 .setGridName("Текущий список сотрудников и актуальные тарифные ставки")
                 .setParentAnchor(dynamicContentAnchorHolder)
-                .setCoordinate(new Coordinate(0d, 0d, 10d, 0d))
+                .setCoordinate(new Coordinate(0d, 10d, 10d, 0d))
                 .setGridLinesVisibility(gridVisibility)
                 .setOrganization(
                         new SingleTable(
                                 outer_table_wrapper,
                                 new ButSizeLittle(
-                                        new RowDeleteFromTable(outer_table_wrapper),
+                                        new YNWindowCreaterForTable(
+                                                new RowDeleteFromTable(outer_table_wrapper),
+                                                "Вы уверены, что хотите уволить сотрудника"
+                                        ) ,
                                         new SubWindowCreaterByBut(hiringWindowBuilder)
                                 ),
                                 new CtrlPosTop()
-//                                new CtrlPosBotton()
-//                                new CtrlPosTop()
                         ))
                 .build();
     }

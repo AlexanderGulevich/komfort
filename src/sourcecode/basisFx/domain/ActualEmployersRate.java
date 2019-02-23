@@ -1,7 +1,10 @@
 package basisFx.domain;
 
+import basisFx.dataSource.Db;
 import javafx.beans.property.SimpleObjectProperty;
 
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.time.LocalDate;
 
 public class ActualEmployersRate extends ActiveRecord {
@@ -93,5 +96,22 @@ public class ActualEmployersRate extends ActiveRecord {
         employer.setName(getNAME());
         employer.setId(getId());
         employer.update();
+    }
+
+    @Override
+    public void delete() {
+        String expression = "UPDATE Employer SET  " +
+                " isfired = ?" +
+                " WHERE id= ?";
+        PreparedStatement pstmt = null;
+        try {
+            pstmt = Db.connection.prepareStatement(expression);
+            pstmt.setBoolean(1, true);
+            pstmt.setInt(2, id.get());
+
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }

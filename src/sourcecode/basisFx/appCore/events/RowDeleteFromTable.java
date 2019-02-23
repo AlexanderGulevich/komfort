@@ -2,12 +2,13 @@ package basisFx.appCore.events;
 
 import basisFx.appCore.elements.AppNode;
 import basisFx.appCore.elements.TableWrapper;
+import basisFx.appCore.interfaces.TableBasedDirectors;
 import basisFx.domain.ActiveRecord;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableView;
 
-public class RowDeleteFromTable extends AppEvent{
+public class RowDeleteFromTable extends AppEvent implements TableBasedDirectors {
     private Button but;
     private TableWrapper tableWrapper;
 
@@ -58,4 +59,8 @@ public class RowDeleteFromTable extends AppEvent{
     }
 
 
+    @Override
+    public TableWrapper getWrapper() {
+        return tableWrapper;
+    }
 }

@@ -2,12 +2,13 @@ package basisFx.appCore.events;
 
 import basisFx.appCore.elements.AppNode;
 import basisFx.appCore.elements.TableWrapper;
+import basisFx.appCore.interfaces.TableBasedDirectors;
 import basisFx.domain.ActiveRecord;
 import basisFx.service.ServiceTablesAutoCommitByDate;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 
-public class RowAddToSubmitTableWhisCommonDate<T> extends AppEvent{
+public class RowAddToSubmitTableWhisCommonDate<T> extends AppEvent implements TableBasedDirectors {
 
     private Button but;
     private TableWrapper tableWrapper;
@@ -51,4 +52,8 @@ public class RowAddToSubmitTableWhisCommonDate<T> extends AppEvent{
     }
 
 
+    @Override
+    public TableWrapper getWrapper() {
+        return tableWrapper;
+    }
 }

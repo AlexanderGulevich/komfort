@@ -1,5 +1,6 @@
 package basisFx.appCore.fabrics;
 
+import basisFx.appCore.interfaces.CallBackParametrized;
 import basisFx.appCore.windows.*;
 import basisFx.appCore.windows.WindowAbstraction;
 import basisFx.appCore.windows.WindowAbstractionUndecorated;
@@ -20,8 +21,25 @@ public class WindowUndecoratedFabric  extends WindowFabric{
     }
 
     @Override
-    public WindowAbstraction dialogWindow(WindowBuilder builder) {
-        return null;
+    public WindowAbstraction dialogWindow(String message, CallBackParametrized<Boolean> callBackParametrized) {
+
+        WindowBuilder builder = WindowBuilder.newBuilder()
+                .setGUIStructura(null)
+                .setButtonsForStage(null)
+                .setDynamicContentPanelCreator(null)
+                .setTitle(null)
+                .setMessage(message)
+                .setFxmlFileName("YN")
+                .setParentAnchorNameForFXML(WindowAbstraction.DefaultPanelsNames.topVisibleAnchor.name())
+                .setHeight(280d)
+                .setWidth(500d)
+                .setCallBack(null)
+                .setCallBackParametrized(callBackParametrized)
+                .build();
+
+        WindowImplDialog windowImplInfo = new WindowImplDialog(builder) ;
+        WindowAbstractionUndecorated windowUndecorated=new WindowAbstractionUndecorated(windowImplInfo);
+        return windowUndecorated;
     }
 
     @Override

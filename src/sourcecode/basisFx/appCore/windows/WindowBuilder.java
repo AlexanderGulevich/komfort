@@ -1,6 +1,7 @@
 package basisFx.appCore.windows;
 
 import basisFx.appCore.interfaces.CallBack;
+import basisFx.appCore.interfaces.CallBackParametrized;
 import basisFx.appCore.interfaces.DynamicContentPanelCreator;
 import basisFx.appCore.guiStructura.GUIStructura;
 import lombok.Setter;
@@ -16,7 +17,8 @@ public class WindowBuilder {
     public String parentAnchorNameForFXML=null;
     public ButtonsForStage buttonsForStage=null;
     public String message;
-    public CallBack callBackSubWindowClosing;
+    public CallBack callBack;
+    public CallBackParametrized callBackParametrized;
 
     private WindowBuilder(Builder builder) {
         GUIStructura = builder.GUIStructura;
@@ -28,7 +30,8 @@ public class WindowBuilder {
         parentAnchorNameForFXML = builder.parentAnchorNameForFXML;
         buttonsForStage = builder.buttonsForStage;
         message = builder.message;
-        callBackSubWindowClosing = builder.closingCallBack;
+        callBack = builder.callBack;
+        callBackParametrized = builder.callBackParametrized;
     }
 
     public static Builder newBuilder() {
@@ -46,7 +49,8 @@ public class WindowBuilder {
         private String parentAnchorNameForFXML;
         private ButtonsForStage buttonsForStage;
         private String message;
-        private CallBack closingCallBack;
+        private CallBack callBack;
+        private CallBackParametrized callBackParametrized;
 
         private Builder() {
         }

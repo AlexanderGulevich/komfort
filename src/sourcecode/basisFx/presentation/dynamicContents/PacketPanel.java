@@ -4,7 +4,6 @@ import basisFx.appCore.elements.GridPaneWrapper;
 import basisFx.appCore.elements.TableWrapper;
 import basisFx.appCore.grid.*;
 import basisFx.appCore.utils.Registry;
-import basisFx.appCore.windows.ButtonsForStageSingle;
 import basisFx.appCore.windows.WindowAbstraction;
 import basisFx.appCore.windows.WindowBuilder;
 import basisFx.service.ServiceTablesSingle;
@@ -30,6 +29,23 @@ public class PacketPanel  extends DynamicContentPanel {
     @Override
     public void customDynamicElementsInit() {
 
+        WindowBuilder dateResearchWindowBuilder = WindowBuilder.newBuilder()
+                .setGUIStructura(null)
+                .setButtonsForStage(null)
+                .setDynamicContentPanelCreator(PacketPricePanel::new)
+                .setTitle("Реестр цен")
+                .setMessage(null)
+                .setFxmlFileName("ByDateResearchWindow")
+                .setParentAnchorNameForFXML(WindowAbstraction.DefaultPanelsNames.topVisibleAnchor.name())
+                .setWidth(700d)
+                .setHeight(600d)
+                .setCallBack(
+                        () -> {
+                            TableWrapper tableWrapper =(TableWrapper)   Registry.mainWindow.getNodeFromMap("outer_table_wrapper");
+                            tableWrapper.getMediator().refresh(tableWrapper);
+                        })
+                .build();
+
         WindowBuilder windowBuilder = WindowBuilder.newBuilder()
                 .setGUIStructura(null)
                 .setDynamicContentPanelCreator(PacketSizePanel::new)
@@ -39,7 +55,7 @@ public class PacketPanel  extends DynamicContentPanel {
                 .setParentAnchorNameForFXML(WindowAbstraction.DefaultPanelsNames.topVisibleAnchor.name())
                 .setWidth(700d)
                 .setHeight(600d)
-                .setClosingCallBack(
+                .setCallBack(
                         () -> {
                             TableWrapper tableWrapper = (TableWrapper) Registry.mainWindow.getNodeFromMap("outer_table_wrapper");
                             tableWrapper.getMediator().refresh(tableWrapper);
@@ -58,20 +74,20 @@ public class PacketPanel  extends DynamicContentPanel {
                 .setColWrappers(
                         ColWrapperPopup.newBuilder()
                                 .setColumnName("Размер")
-                                .setColumnSize(0.5d)
+                                .setColumnSize(0.4d)
                                 .setIsEditeble(true)
                                 .setWindowBuilder(windowBuilder)
                                 .setPropertyName("packetSize")
                                 .build(),
                         ColWrapperComboBox.newBuilder(Counterparty.class)
                                 .setColumnName("Поставщик")
-                                .setColumnSize(0.5d)
+                                .setColumnSize(0.4d)
                                 .setIsEditeble(true)
                                 .setPropertyName("counterparty")
                                 .build(),
                         ColWrapperPopupViaBtn.newBuilder()
-                                .setBtnName("Показать")
-                                .setColumnName("Архив")
+                                .setBtnName("Архив цен")
+                                .setColumnName("Архив цен")
                                 .setColumnSize(0.2d)
                                 .setWindowBuilder(dateResearchWindowBuilder)
                                 .build()
@@ -82,31 +98,6 @@ public class PacketPanel  extends DynamicContentPanel {
 
         Registry.mainWindow.setNodeToMap(t1,"outer_table_wrapper");
 
-
-        t2 = TableWrapper.newBuilder()
-                .setGridLinesVisibility(gridVisibility)
-                .setGridName("Реестр цен")
-                .setOrganization(new SingleTable(new ButSizeLittle(),new CtrlPosTop()))
-                .setActiveRecordClass(PacketPrice.class)
-                .setUnitOfWork(unitOfWork)
-                .setIsEditable(true)
-                .setIsSortableColums(false)
-                .setServiceTables(serviceTablesSingle1)
-                .setColWrappers(
-                        ColWrapperDouble.newBuilder()
-                                .setColumnName("Тариф")
-                                .setColumnSize(0.3d)
-                                .setIsEditeble(true)
-                                .setPropertyName("price")
-                                .build(),
-                        ColWrapperDate.newBuilder()
-                                .setColumnName("Действует с")
-                                .setColumnSize(0.7d)
-                                .setIsEditeble(true)
-                                .setPropertyName("startDate")
-                                .build()
-                )
-                .build();
 
 
           t4 = TableWrapper.newBuilder()
@@ -126,7 +117,7 @@ public class PacketPanel  extends DynamicContentPanel {
                                 .setPropertyName("product")
                                 .build(),
                         ColWrapperInt.newBuilder()
-                                .setColumnName("Вместимость")
+                                .setColumnName("Кол-во")
                                 .setColumnSize(0.3d)
                                 .setIsEditeble(true)
                                 .setPropertyName("number")
@@ -137,8 +128,8 @@ public class PacketPanel  extends DynamicContentPanel {
 
 
         GridPaneWrapper commonGridPaneWrapper = GridPaneWrapper.newBuilder()
-                .setColumnVsPercent(50)
-                .setColumnVsPercent(50)
+                .setColumnVsPercent(70)
+                .setColumnVsPercent(30)
                 .setGridLinesVisibility(gridVisibility)
                 .setGridName("Управление информацией о пакетах")
                 .setParentAnchor(dynamicContentAnchorHolder)

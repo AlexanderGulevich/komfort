@@ -7,42 +7,44 @@ import basisFx.appCore.grid.*;
 import basisFx.appCore.table.ColWrapperDate;
 import basisFx.appCore.table.ColWrapperDouble;
 import basisFx.appCore.utils.Coordinate;
-import basisFx.domain.*;
+import basisFx.domain.EmployeesRatePerHour;
+import basisFx.domain.LabelPrice;
+import basisFx.domain.PacketPrice;
 import basisFx.presentation.DynamicContentPanel;
+import basisFx.service.ServiceTablesSingle;
 import basisFx.service.ServiceTablesTwoLinked;
 
-public class EmployeesRate extends DynamicContentPanel {
+public class PacketPricePanel extends DynamicContentPanel {
 
-    private ServiceTablesTwoLinked mediator;
-    private TableWrapper leftTableWrapper;
-    private TableWrapper rightTableWrapper;
-    private RangeDirector rangeDirector;
-
+    private ServiceTablesSingle mediator;
+    private TableWrapper tableWrapper;
     @Override
     public void createServices() {
-        mediator = new ServiceTablesTwoLinked();
+        mediator = new ServiceTablesSingle();
     }
 
     @Override
     public void customDynamicElementsInit() {
 
-        rightTableWrapper = TableWrapper.newBuilder()
-                .setGridName("Цены")
-                 .setActiveRecordClass(LabelPrice.class)
+        tableWrapper  = TableWrapper.newBuilder()
+                .setGridLinesVisibility(gridVisibility)
+                .setGridName("Реестр цен")
+                .setOrganization(new SingleTable(new ButSizeNon(),new CtrlPosNON()))
+                .setActiveRecordClass(PacketPrice.class)
                 .setUnitOfWork(unitOfWork)
                 .setIsEditable(true)
                 .setIsSortableColums(false)
                 .setServiceTables(mediator)
                 .setColWrappers(
                         ColWrapperDouble.newBuilder()
-                                .setColumnName("Цена")
-                                .setColumnSize(0.4d)
+                                .setColumnName("Тариф")
+                                .setColumnSize(0.3d)
                                 .setIsEditeble(true)
                                 .setPropertyName("price")
                                 .build(),
                         ColWrapperDate.newBuilder()
                                 .setColumnName("Действует с")
-                                .setColumnSize(0.6d)
+                                .setColumnSize(0.7d)
                                 .setIsEditeble(true)
                                 .setPropertyName("startDate")
                                 .build()
@@ -51,25 +53,27 @@ public class EmployeesRate extends DynamicContentPanel {
 
 
 
-
-         GridPaneWrapper.newBuilder()
-                .setGridName("Управление валютами и динамика курсов")
+        GridPaneWrapper.newBuilder()
+                .setGridName("Архив тарифных ставок")
                 .setParentAnchor(dynamicContentAnchorHolder)
-                .setOrganization(new SingleTable(new ButSizeLittle(), new CtrlPosButAndCombobox(rangeDirector.getComboBox())))
-                .setCoordinate(new Coordinate(0d, 10d, 10d, 0d))
+                .setCoordinate(new Coordinate(0d, 0d, 10d, 0d))
                 .setGridLinesVisibility(gridVisibility)
-                .setOrganization(new TwoHorisontalBondGrids(leftTableWrapper, rightTableWrapper))
+                .setOrganization(
+                        new SingleTable(
+                                window,
+                                tableWrapper,
+                                new ButSizeNon(),
+                                new CtrlPosNON()
+                        ) )
                 .build();
 
+        window.setNodeToMap(tableWrapper,"tableWrapper");
 
     }
 
     @Override
     public void initServices() {
-        mediator.setAccessoryTableWrapper(rightTableWrapper);
-        mediator.setPrimaryTableWrapper(leftTableWrapper);
-        mediator.setRangeDirector(rangeDirector);
+        mediator.setTableWrapper(tableWrapper);
         mediator.initElements();
-
     }
 }

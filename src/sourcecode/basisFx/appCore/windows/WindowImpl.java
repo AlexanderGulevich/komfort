@@ -1,6 +1,7 @@
 package basisFx.appCore.windows;
 
 import basisFx.appCore.interfaces.CallBack;
+import basisFx.appCore.interfaces.CallBackParametrized;
 import basisFx.appCore.interfaces.DynamicContentPanelCreator;
 import basisFx.appCore.utils.Coordinate;
 import basisFx.appCore.utils.FXMLLoader;
@@ -14,7 +15,8 @@ import lombok.Setter;
 public abstract class WindowImpl {
     @Getter @Setter protected WindowAbstraction windowAbstraction;
     @Getter protected DynamicContentPanelCreator dynamicContentPanelCreator;
-    @Getter protected CallBack callBackSubWindowClosing;
+    @Getter protected CallBack callBack;
+    @Getter protected CallBackParametrized callBackParametrized;
     @Getter protected ButtonsForStage buttonsForStage;
     @Getter protected GUIStructura GUIStructura;
     @Getter  protected String fxmlFileName;
@@ -40,8 +42,9 @@ public abstract class WindowImpl {
         fxmlFileName =builder.fxmlFileName;
         buttonsForStage=builder.buttonsForStage;
         parentAnchorNameForFXML=builder.parentAnchorNameForFXML;
-        callBackSubWindowClosing=builder.callBackSubWindowClosing;
+        callBack =builder.callBack;
         dynamicContentPanelCreator=builder.dynamicContentPanelCreator;
+        callBackParametrized=builder.callBackParametrized;
         this.builder=builder;
     }
 
@@ -84,6 +87,8 @@ public abstract class WindowImpl {
         serviceCrossWindow = Registry.crossWindowMediators.get(builder.fxmlFileName);
         serviceCrossWindow.setCurrentWindow(windowAbstraction);
         serviceCrossWindow.init();
+        serviceCrossWindow.setCallBackParametrized(callBackParametrized);
+        serviceCrossWindow.setCallBack(callBack);
     }
 
     private void toBindWithWindow(WindowAbstraction windowAbstraction) {
