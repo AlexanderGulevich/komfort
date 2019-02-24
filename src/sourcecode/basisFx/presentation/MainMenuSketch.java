@@ -92,7 +92,7 @@ public class MainMenuSketch extends MenuSketch {
                                 .build(),
                         FontItemLeaf.newBuilder()
                                 .setDescription("Уволенные")
-//                                        .setDynamicContentPanelCreator(fm.employeesFiredPanel())
+                                        .setDynamicContentPanelCreator(FiredEmployeesPanel::new)
                                 .build()
                 ),
 

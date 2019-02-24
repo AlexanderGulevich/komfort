@@ -143,6 +143,9 @@ public class DbSchema {
                 + " width INTEGER,   "
                 + " numberOfProduct INTEGER    "
                 + ")";
+        String fired= "Create  view Fired  as " +
+                " SELECT  * from  employer  where employer.ISFIRED=true ORDER BY  employer.ID " ;
+
         String viewActualRate= "Create  view ActualEmployersRate  as " +
                 " SELECT  r.employerId as id,r.employerId as employerId , r.rate, r.startDate, e.name, e.isFired"+
                 " from  employer as e,"+
@@ -210,6 +213,7 @@ public class DbSchema {
                 jumboAccounting,
                 jumboAccounting,
 
+                fired,
                 viewTimeRecordingAndSalary,
                 viewActualRate
 

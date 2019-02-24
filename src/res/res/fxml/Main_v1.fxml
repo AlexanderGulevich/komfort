@@ -60,7 +60,7 @@
          <children>
             <AnchorPane fx:id="leftButAnchor" layoutX="-70.0" layoutY="46.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <VBox fx:id="vButHolder" prefHeight="200.0" prefWidth="100.0" stylesheets="@../css/custom_1/colors.css" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="80.0" />
+                  <VBox fx:id="vButHolder" prefHeight="200.0" prefWidth="100.0" stylesheets="@../css/custom_1/colors.css" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="65.0" />
                   <AnchorPane id="IMG_ICON" fx:id="iconAnchor" blendMode="HARD_LIGHT" layoutX="2.0" layoutY="358.0" prefHeight="200.0" prefWidth="50.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="3.0" AnchorPane.topAnchor="5.0">
                      <stylesheets>
                         <URL value="@../css/custom_1/leftSideMenu.css" />
