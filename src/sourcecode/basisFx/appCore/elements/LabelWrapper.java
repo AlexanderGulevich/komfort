@@ -108,8 +108,9 @@ public  class LabelWrapper extends AppNode{
         protected String[] cssClassesStrings;
 
 
-        public void setCssClasses(CSSclasses...  cssClasses) {
+        public Builder setCssClasses(CSSclasses...  cssClasses) {
             this.cssClasses = cssClasses;
+            return this;
         }
 
         public void setCssClassesStrings(String... cssClassesStrings) {

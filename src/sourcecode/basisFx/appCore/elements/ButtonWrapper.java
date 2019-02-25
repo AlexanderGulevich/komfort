@@ -19,6 +19,8 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import lombok.Setter;
+
 import java.util.ArrayList;
 
 public class ButtonWrapper extends AppNode{
@@ -31,7 +33,7 @@ public class ButtonWrapper extends AppNode{
     protected String string;
     protected Node graphicNode;
     protected ContentDisplay contentDisplay;
-    protected ServiceTables serviceTables;
+    @Setter protected ServiceTables serviceTables;
 
     private ButtonWrapper(Builder builder) {
         element=new Button();
@@ -73,7 +75,12 @@ public class ButtonWrapper extends AppNode{
         setFont();
         setSize();
         bond(this);
-        elocateEvents();
+        if (serviceTables != null) {
+            elocateEvents(serviceTables);
+        }else{
+            elocateEvents();
+        }
+
 
     }
 

@@ -24,7 +24,13 @@ public class RowAddToTable<T> extends AppEvent implements TableBasedDirectors {
     public void setEventToElement(AppNode node) {
         but=(Button) node.getElement();
         but.setOnMouseClicked((event) -> {
-            run();
+            if (callBackTyped != null) {
+                if (((Boolean) callBackTyped.call())) {
+                    run();
+                }
+            }else {
+                run();
+            }
         });
     }
 
@@ -32,7 +38,13 @@ public class RowAddToTable<T> extends AppEvent implements TableBasedDirectors {
     public void setEventToElement(Node node) {
         but=(Button) node;
         but.setOnMouseClicked((event) -> {
-            run();
+            if (callBackTyped != null) {
+                if (((Boolean) callBackTyped.call())) {
+                    run();
+                }
+            }else {
+                run();
+            }
         });
     }
 

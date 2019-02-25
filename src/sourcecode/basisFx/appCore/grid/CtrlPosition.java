@@ -17,6 +17,7 @@ public abstract class CtrlPosition {
 
 
     public abstract void organize(Label label, Button addBut, Button delBut, TableView tableView);
+    public abstract void organize(Button addBut, Button delBut, TableView tableView);
     public abstract void organize(Label label,  TableView tableView);
     public abstract void organize(TableView tableView);
 

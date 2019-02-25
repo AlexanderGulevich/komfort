@@ -54,9 +54,7 @@ public class SingleTable extends GridOrganization{
         handleLabel();
 
 
-        if (butSizeForGrid instanceof ButSizeNon &&
-                    ctrlPosition instanceof CtrlPosNON
-            ){
+        if (butSizeForGrid instanceof ButSizeNon && ctrlPosition instanceof CtrlPosNON ){
                 organizeNonButtons();
             }else{
 
@@ -70,7 +68,13 @@ public class SingleTable extends GridOrganization{
         parentGridWrapper.setColumnComputerWidth();
         ctrlPosition.setParentGridWrapper(parentGridWrapper);
         bindHeight(tableWrapper);
-        ctrlPosition.organize(label, tableWrapper.getElement()  );
+        if (label != null) {
+            ctrlPosition.organize(label, tableWrapper.getElement()  );
+        }else{
+
+            ctrlPosition.organize( tableWrapper.getElement()  );
+        }
+
     }
 
     private void organizeWithButtons() {
@@ -84,11 +88,22 @@ public class SingleTable extends GridOrganization{
         ctrlPosition.setParentGridWrapper(parentGridWrapper);
         bindHeight(tableWrapper);
 
-        ctrlPosition.organize(
-                label,
-                butSizeForGrid.buttonAdd,
-                butSizeForGrid.buttonDel,
-                tableWrapper.getElement()
-        );
+
+        if (label != null) {
+            ctrlPosition.organize(
+                    label,
+                    butSizeForGrid.buttonAdd,
+                    butSizeForGrid.buttonDel,
+                    tableWrapper.getElement()
+            );
+        }else{
+            ctrlPosition.organize(
+                    butSizeForGrid.buttonAdd,
+                    butSizeForGrid.buttonDel,
+                    tableWrapper.getElement()
+            );
+        }
+
+
     }
 }

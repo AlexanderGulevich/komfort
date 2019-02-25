@@ -18,6 +18,7 @@ public enum CSSclasses {
     wrappedHeaderColumn("wrappedHeaderColumn"),
     column_with_button_BFx("column_with_button_BFx"),
     first_child_Red("first_child_Red"),
+    LABEL_COMMON("LABEL_COMMON"),
     COMBOBOX_BFx_forGrid("COMBOBOX_BFx_forGrid"),
     COMBOBOX_BFx("COMBOBOX_BFx");
 

@@ -25,6 +25,11 @@ public class CtrlPosMiddle extends CtrlPosition {
     }
 
     @Override
+    public void organize(Button addBut, Button delBut, TableView tableView) {
+
+    }
+
+    @Override
     public void organize(Label label, TableView tableView) {
 
     }

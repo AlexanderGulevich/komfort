@@ -1,32 +1,48 @@
 package basisFx.service;
 
 import basisFx.appCore.elements.AppNode;
+import basisFx.appCore.elements.ButtonWrapper;
 import basisFx.appCore.elements.DatePickerWrapper;
 import basisFx.appCore.elements.TableWrapper;
+import basisFx.appCore.events.AppEvent;
 import basisFx.appCore.interfaces.RecordWithDate;
 import basisFx.dataSource.UnitOfWork;
 import basisFx.domain.ActiveRecord;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import lombok.Setter;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 public class ServiceTablesAutoCommitByDate extends ServiceTables {
     private TableWrapper tableWrapper;
     private DatePickerWrapper datePickerWrapper;
-//    private ButtonWrapper buttonWrapper;
+
+    public void setButtonWrapper(ButtonWrapper buttonWrapper) {
+        this.buttonWrapper = buttonWrapper;
+        buttonWrapper.setServiceTables(this);
+        ArrayList events = buttonWrapper.getEvents();
+        for (Object event : events) {
+            ((AppEvent) event).setCallBackTyped(
+                    ()->{
+                        if (datePickerWrapper.getDate() != null) {
+                            return Boolean.valueOf(true);
+                        }else{
+                            return Boolean.valueOf(false);
+                        }
+                    }
+            );
+        }
+    }
+
+    private ButtonWrapper buttonWrapper;
 
     @Override
     public void inform(Object node) {
         if (node==datePickerWrapper){
             refresh(tableWrapper);
         }
-//        if (node==buttonWrapper)    {
-//            tableWrapper.unitOfWork.commit();
-//            refresh();
-//            datePickerWrapper.getElement().setValue(null);
-//        }
-
     }
 
     public DatePickerWrapper getDatePickerWrapper() {
@@ -56,7 +72,6 @@ public class ServiceTablesAutoCommitByDate extends ServiceTables {
             }else{
                 unitOfWork.registercDirty(record);
             }
-
             commit(tableWrapper);
         }
     }
@@ -75,8 +90,6 @@ public class ServiceTablesAutoCommitByDate extends ServiceTables {
                 list=FXCollections.observableArrayList();
             }
             tableWrapper.setItems(list);
-//            tableWrapper.manageScrollBar();
-
         }
 
     }
@@ -89,8 +102,5 @@ public class ServiceTablesAutoCommitByDate extends ServiceTables {
         this.datePickerWrapper = datePickerWrapper;
     }
 
-//    public void setButtonWrapper(ButtonWrapper buttonWrapper) {
-//        this.buttonWrapper = buttonWrapper;
-//    }
 
 }

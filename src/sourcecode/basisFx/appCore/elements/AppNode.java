@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 import basisFx.appCore.windows.WindowAbstraction;
+import basisFx.service.Mediator;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.control.ScrollPane;
@@ -21,7 +22,7 @@ import lombok.Getter;
 
 public abstract class AppNode <T extends Node> {
 
-    protected ArrayList<AppEvent> events;
+    @Getter protected ArrayList<AppEvent> events;
     protected CSSid CSSid;
     protected CSSclasses[] cssClasses;
     protected String[] cssClassesStrings;
@@ -69,12 +70,21 @@ public abstract class AppNode <T extends Node> {
     }
     protected void elocateEvents() {
         if ( events != null  &&! events.isEmpty()) {
-            for (Iterator<AppEvent> iterator = events.iterator(); iterator.hasNext();) {
+        for (Iterator<AppEvent> iterator = events.iterator(); iterator.hasNext();) {
             AppEvent next = iterator.next();
             next.setEventToElement(this);
         }
+    }
+}
+    protected void elocateEvents(Mediator mediator) {
+        if ( events != null  &&! events.isEmpty()) {
+        for (Iterator<AppEvent> iterator = events.iterator(); iterator.hasNext();) {
+            AppEvent next = iterator.next();
+            next.setMediator(mediator);
+            next.setEventToElement(this);
         }
     }
+}
     protected void applyCssId() {
         if (CSSid != null) {
             getElement().setId(CSSid.get());

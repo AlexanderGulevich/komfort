@@ -85,12 +85,8 @@ public class ExchangeRatesPanel extends DynamicContentPanel {
                                 leftTableWrapper.getGridPaneWrapper(),
                                 rightTableWrapper.getGridPaneWrapper()
                         )
-
                 )
                 .build();
-
-
-
     }
 
     @Override

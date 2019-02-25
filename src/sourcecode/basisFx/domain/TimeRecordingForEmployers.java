@@ -64,13 +64,12 @@ public class TimeRecordingForEmployers extends ActiveRecord implements RecordWit
     public ObservableList<ActiveRecord> getAllByDate(LocalDate date) {
         ObservableList <ActiveRecord> list= FXCollections.observableArrayList();
 
-
             String expression="SELECT * from(\t   \n" +
                     "\tSELECT  allemplid as employerId, allemplisfired AS ISFIRED, allemplname AS name, date, hours\n" +
                     "\t  \t FROM (SELECT id AS allemplid , name AS allemplname, ISFIRED AS allemplisfired FROM EMPLOYER) AS allempl\n" +
                     "\t        left JOIN  (SELECT * FROM(\n" +
                     "\t        \tSELECT employerId, date, hours FROM TIMERECORDINGFOREMPLOYERS t where date=?\n" +
-                    "\t                ) ) AS byDate\n" +
+                    "\t                ) ) AS byDate \n" +
                     "\t           on byDate.employerId =allempl.allemplid\n" +
                     "\t           ) \n" +
                     "\t           WHERE  NOT(ISFIRED=TRUE and date IS  NULL)";
@@ -96,6 +95,27 @@ public class TimeRecordingForEmployers extends ActiveRecord implements RecordWit
         return list;
     }
 
+    private Boolean inspectExisting()     {
+        String expression="SELECT  * from " + this.entityName + " " +
+                "where " +
+                "  EMPLOYERID= ? and date=?";
+        PreparedStatement pstmt = null;
+        ResultSet resultSet = null;
+        try {
+            pstmt = Db.connection.prepareStatement(expression);
+            pstmt.setInt(1, getEmployer().getId());
+            pstmt.setDate(2, Date.valueOf(getDate()));
+
+            resultSet = pstmt.executeQuery();
+
+            while (resultSet.next()) {
+                return true;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
     private LocalDate inspectDate(ResultSet rs) throws SQLException {
         Date date = rs.getDate("date");
         if (date != null) {
@@ -103,7 +123,53 @@ public class TimeRecordingForEmployers extends ActiveRecord implements RecordWit
         }
         return null;
 
+    }
+
+    @Override
+    public void insert() {
+        if (getHours()==0d){
+            delete();
+        }
+        else if (inspectExisting()) {
+            update();
+        }else {
+            super.insert();
+        }
 
 
+    }
+
+    @Override
+    public void update() {
+
+
+        String expression = "UPDATE " + this.entityName + " SET  " +
+                " HOURS = ?" +
+                " WHERE EMPLOYERID= ? and date=?";
+        PreparedStatement pstmt = null;
+        try {
+            pstmt = Db.connection.prepareStatement(expression);
+            pstmt.setDouble(1, getHours());
+            pstmt.setInt(2, getEmployer().getId());
+            pstmt.setDate(3, Date.valueOf(getDate()));
+
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    @Override
+    public void delete() {
+        try {
+            String expression="delete from " +entityName+"  WHERE EMPLOYERID= ? and date=?  ";
+            PreparedStatement pstmt =  Db.connection.prepareStatement(expression);
+            pstmt.setInt(1,getEmployer().getId());
+            pstmt.setDate(2, Date.valueOf(getDate()));
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }

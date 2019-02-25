@@ -17,6 +17,8 @@ public  abstract class ButSizeForGrid {
     @Getter @Setter  protected Double  columnWidth;
     @Getter protected Button buttonAdd;
     @Getter protected Button  buttonDel;
+    @Getter protected ButtonWrapper  buttonWrapperAdd;
+    @Getter protected ButtonWrapper  buttonWrapperDel;
     protected AppEvent del;
     protected AppEvent  add;
 
@@ -38,15 +40,15 @@ public  abstract class ButSizeForGrid {
             event = new RowAddToTable(tableWrapper);
         }
 
-        Button button = ButtonWrapper.newBuilder()
+        buttonWrapperAdd=ButtonWrapper.newBuilder()
                 .setCSSid(CSSid.Little_PANELS_BUTTON_ADD)
                 .setText("\uF199")
                 .setFont(FontsStore.fontcustom)
                 .setEvents(event)
-                .build().getElement();
+                .build();
 
 
-        return button;
+        return buttonWrapperAdd.getElement();
 
     }
     public Button littleRowDeleteButton(TableWrapper tableWrapper ){
@@ -58,13 +60,13 @@ public  abstract class ButSizeForGrid {
             event = new RowDeleteFromTable(tableWrapper);
         }
 
-        Button button = ButtonWrapper.newBuilder()
+        buttonWrapperDel= ButtonWrapper.newBuilder()
                 .setCSSid(CSSid.Little_PANELS_BUTTON_DEL)
                 .setText("\uF176")
                 .setFont(FontsStore.fontcustom)
                 .setEvents(event)
-                .build().getElement();
-        return button;
+                .build();
+        return buttonWrapperDel.getElement();
 
     }
     public Button addRowButtonHuge(TableWrapper tableWrapper){
@@ -75,12 +77,14 @@ public  abstract class ButSizeForGrid {
         }else  {
             event = new RowAddToTable(tableWrapper);
         }
-        return  ButtonWrapper.newBuilder()
+        buttonWrapperAdd=ButtonWrapper.newBuilder()
                 .setCSSid(CSSid.PANELS_BUTTON)
                 .setText("ДОБАВИТЬ")
                 .setFont(FontsStore.ROBOTO_LIGHT)
                 .setEvents(event)
-                .build().getElement();
+                .build();
+
+        return buttonWrapperAdd.getElement();
     }
 
     public Button deleteRowButtonHuge(TableWrapper tableWrapper){
@@ -91,13 +95,14 @@ public  abstract class ButSizeForGrid {
         }else  {
             event = new RowDeleteFromTable(tableWrapper);
         }
-        return ButtonWrapper.newBuilder()
+        buttonWrapperDel= ButtonWrapper.newBuilder()
                 .setCSSid(CSSid.PANELS_BUTTON)
                 .setText("УДАЛИТЬ")
                 .setEvents(event)
-                .build().getElement();
+                .build();
 
 
+        return buttonWrapperDel.getElement();
 
     }
 }

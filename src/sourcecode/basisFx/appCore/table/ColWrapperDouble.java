@@ -141,8 +141,19 @@ public class ColWrapperDouble<T>extends ColWrapper {
             value=value.replaceAll(groupingSeparator,"");
             value=value.replaceAll(" ","");
 
-            if (value.length() < 1) {
+            if (value.length() < 0) {
                 return null;
+            }
+
+            if (value.equals("") ) {
+                return 0d;
+            }
+
+            if (value.equals(" ") ) {
+                return 0d;
+            }
+            if (value.equals("  ") ) {
+                return 0d;
             }
 
             if (checkValue(value)) {
