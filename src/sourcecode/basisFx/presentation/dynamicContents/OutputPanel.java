@@ -9,7 +9,11 @@ import basisFx.appCore.settings.CSSclasses;
 import basisFx.appCore.settings.FontsStore;
 import basisFx.appCore.table.ColWrapperComboBox;
 import basisFx.appCore.table.ColWrapperInt;
+import basisFx.appCore.table.ColWrapperPopup;
 import basisFx.appCore.utils.Coordinate;
+import basisFx.appCore.utils.Registry;
+import basisFx.appCore.windows.WindowAbstraction;
+import basisFx.appCore.windows.WindowBuilder;
 import basisFx.domain.*;
 import basisFx.presentation.DynamicContentPanel;
 import basisFx.service.ServiceTablesAutoCommitByDate;
@@ -30,6 +34,21 @@ public class OutputPanel  extends DynamicContentPanel {
 
     @Override
     public void customDynamicElementsInit() {
+        WindowBuilder windowBuilder = WindowBuilder.newBuilder()
+                .setGUIStructura(null)
+                .setDynamicContentPanelCreator(PacketForPopup::new)
+                .setTitle("Пакет")
+                .setMessage(null)
+                .setFxmlFileName("AddDellPopupWindow")
+                .setParentAnchorNameForFXML(WindowAbstraction.DefaultPanelsNames.topVisibleAnchor.name())
+                .setWidth(700d)
+                .setHeight(600d)
+                .setCallBack(
+                        () -> {
+                            TableWrapper tableWrapper = (TableWrapper) Registry.mainWindow.getNodeFromMap("outer_table_wrapper");
+                            tableWrapper.getMediator().refresh(tableWrapper);
+                        })
+                .build();
 
         datePickerWrapper = DatePickerWrapper.newBuilder()
                 .setCoordinate(new Coordinate(10d, 15d, null, null))
@@ -75,10 +94,11 @@ public class OutputPanel  extends DynamicContentPanel {
                                 .setIsEditeble(true)
                                 .setPropertyName("rodsNumber")
                                 .build(),
-                        ColWrapperComboBox.newBuilder(Packet.class)
-                                .setColumnName("Размер пакета")
+                        ColWrapperPopup.newBuilder()
+                                .setColumnName("Пакет")
                                 .setColumnSize(0.15d)
                                 .setIsEditeble(true)
+                                .setWindowBuilder(windowBuilder)
                                 .setPropertyName("packet")
                                 .build(),
                         ColWrapperComboBox.newBuilder(Counterparty.class)

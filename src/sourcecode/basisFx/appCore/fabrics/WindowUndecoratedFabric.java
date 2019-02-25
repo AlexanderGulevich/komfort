@@ -64,7 +64,8 @@ public class WindowUndecoratedFabric  extends WindowFabric{
 
     @Override
     public WindowAbstraction customSubWindow(WindowBuilder builder) {
-        if (WindowAbstraction.isWindowNotExist(builder)) {
+        boolean exist = WindowAbstraction.isWindowNotExist(builder);
+        if (exist) {
             WindowImplSubWindow windowImplSubWindow=new WindowImplSubWindow( builder);
             WindowAbstractionUndecorated windowUndecorated=new WindowAbstractionUndecorated(windowImplSubWindow);
             return windowUndecorated;

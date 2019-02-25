@@ -2,7 +2,9 @@ package basisFx.appCore.table;
 
 import basisFx.appCore.settings.CSSclasses;
 import basisFx.appCore.utils.Registry;
+import basisFx.appCore.windows.WindowAbstraction;
 import basisFx.appCore.windows.WindowBuilder;
+import basisFx.appCore.windows.WindowImpl;
 import basisFx.domain.ActiveRecord;
 import basisFx.service.Mediator;
 import basisFx.service.ServiceCrossWindow;
@@ -47,8 +49,9 @@ public class ColWrapperPopup extends ColWrapper {
                     setEditable(true);
                     setHover(true);
                     setGraphic(null);
-                    ServiceCrossWindow serviceCrossWindow
-                            = Registry.windowFabric.customSubWindow(windowBuilder).getWindowImpl().getServiceCrossWindow();
+                    WindowAbstraction windowAbstraction = Registry.windowFabric.customSubWindow(windowBuilder);
+                    WindowImpl windowImpl = windowAbstraction.getWindowImpl();
+                    ServiceCrossWindow serviceCrossWindow=windowImpl.getServiceCrossWindow();
                     serviceCrossWindow.setCallBackParametrized(
                             (t)->{
                                 ActiveRecord record = (ActiveRecord) t;
