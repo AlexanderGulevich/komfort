@@ -5,6 +5,7 @@ import basisFx.appCore.elements.ButtonWrapper;
 import basisFx.appCore.elements.DatePickerWrapper;
 import basisFx.appCore.elements.TableWrapper;
 import basisFx.appCore.events.AppEvent;
+import basisFx.appCore.interfaces.DataStoreCallBack;
 import basisFx.appCore.interfaces.RecordWithDate;
 import basisFx.dataSource.UnitOfWork;
 import basisFx.domain.ActiveRecord;
@@ -18,6 +19,8 @@ import java.util.ArrayList;
 public class ServiceTablesAutoCommitByDate extends ServiceTables {
     private TableWrapper tableWrapper;
     private DatePickerWrapper datePickerWrapper;
+    @Setter
+    public DataStoreCallBack dataStoreCallBack;
 
     public void setButtonWrapper(ButtonWrapper buttonWrapper) {
         this.buttonWrapper = buttonWrapper;
@@ -65,6 +68,17 @@ public class ServiceTablesAutoCommitByDate extends ServiceTables {
         LocalDate date = datePickerWrapper.getDate();
         ((RecordWithDate) record).setDate(date);
         boolean readyToTransaction = record.isReadyToTransaction();
+        if (dataStoreCallBack != null) {
+            if (dataStoreCallBack.check(record)) {
+                write(record, unitOfWork, readyToTransaction);
+            }
+        }else {
+            write(record, unitOfWork, readyToTransaction);
+        }
+
+    }
+
+    private void write(ActiveRecord record, UnitOfWork unitOfWork, boolean readyToTransaction) {
         if (readyToTransaction) {
             boolean newDomane = ActiveRecord.isNewDomane(record);
             if (newDomane) {

@@ -7,16 +7,24 @@ import basisFx.appCore.grid.CtrlPosNON;
 import basisFx.appCore.elements.GridPaneWrapper;
 import basisFx.appCore.grid.ButSizeNon;
 import basisFx.appCore.grid.SingleTable;
+import basisFx.appCore.interfaces.DataStoreCallBack;
 import basisFx.appCore.settings.CSSclasses;
 import basisFx.appCore.settings.FontsStore;
 import basisFx.appCore.table.ColWrapperComboBox;
 import basisFx.appCore.table.ColWrapperDouble;
 import basisFx.appCore.utils.Coordinate;
-import basisFx.domain.Employer;
-import basisFx.domain.TimeRecordingForEmployers;
+import basisFx.appCore.utils.Registry;
+import basisFx.dataSource.Db;
+import basisFx.domain.*;
 import basisFx.presentation.DynamicContentPanel;
 import basisFx.service.ServiceTablesAutoCommitByDate;
 import javafx.geometry.Pos;
+
+import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.time.LocalDate;
 
 public class TimeRecordingPanel extends DynamicContentPanel {
 
@@ -24,6 +32,7 @@ public class TimeRecordingPanel extends DynamicContentPanel {
     private DatePickerWrapper datePickerWrapper ;
     private TableWrapper tableWrapper;
     private LabelWrapper label;
+    private DataStoreCallBack callBackForColumn;
 
     @Override
     public void createServices() {
@@ -32,6 +41,39 @@ public class TimeRecordingPanel extends DynamicContentPanel {
 
     @Override
     public void customDynamicElementsInit() {
+
+
+         callBackForColumn = new DataStoreCallBack() {
+            @Override
+            public boolean check(ActiveRecord activeRecord) {
+                TimeRecordingForEmployers entry = (TimeRecordingForEmployers) activeRecord;
+                LocalDate date = entry.getDate();
+                Integer employerId = entry.getEmployer().getId();
+
+                String expression="SELECT * FROM EmployeesRatePerHour " +
+                        "WHERE EMPLOYERID=?" +
+                        " and " +
+                        " STARTDATE<=?";
+
+                try {
+                    PreparedStatement pstmt = Db.connection.prepareStatement(expression);
+                    pstmt.setInt(1, employerId);
+                    pstmt.setDate(2, Date.valueOf(date));
+                    ResultSet rs = pstmt.executeQuery();
+
+                    if (!rs.next()) {
+                        Registry.windowFabric.infoWindow("К сожалению, для данной даты не установлен тариф для следующего сотрудника: \n"
+                        + entry.getEmployer().getName().toUpperCase().trim()) ;
+                    }
+
+
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+
+                return false;
+            }
+        };
 
         datePickerWrapper = DatePickerWrapper.newBuilder()
                 .setCoordinate(new Coordinate(10d, 15d, null, null))
@@ -91,6 +133,7 @@ public class TimeRecordingPanel extends DynamicContentPanel {
     public void initServices() {
         mediator.setTableWrapper(tableWrapper);
         mediator.setDatePickerWrapper(datePickerWrapper);
+        mediator.setDataStoreCallBack(callBackForColumn);
         mediator.initElements();
     }
 }
