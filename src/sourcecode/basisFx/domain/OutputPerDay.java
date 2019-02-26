@@ -17,7 +17,6 @@ public class OutputPerDay extends ActiveRecord implements RecordWithDate {
     private SimpleObjectProperty<Integer> rodsNumber=new SimpleObjectProperty<>(this, "rodsNumber", null);
     private SimpleObjectProperty<Jumbo> jumbo=new SimpleObjectProperty<>(this, "jumbo", null);
     private SimpleObjectProperty<Packet> packet=new SimpleObjectProperty<>(this, "packet", null);
-    private SimpleObjectProperty<Counterparty> packetCounterparty=new SimpleObjectProperty<>(this, "packetCounterparty", null);
     private SimpleObjectProperty<Counterparty> paperCounterparty=new SimpleObjectProperty<>(this, "paperCounterparty", null);
     private SimpleObjectProperty<LocalDate> date =new SimpleObjectProperty<>(this, "date", null);
 
@@ -50,7 +49,6 @@ public class OutputPerDay extends ActiveRecord implements RecordWithDate {
                 pojo.setRodsNumber(  rs.getInt("rodsNumber")  );
                 pojo.setJumbo((Jumbo) Jumbo.getINSTANCE().find(rs.getInt("JumboId") ));
                 pojo.setPacket((Packet) Packet.getINSTANCE().find( rs.getInt("packetId") ));
-                pojo.setPacketCounterparty((Counterparty) Counterparty.getINSTANCE().find( rs.getInt("packetCounterpartyId") ));
                 pojo.setPaperCounterparty((Counterparty) Counterparty.getINSTANCE().find( rs.getInt("paperCounterpartyId") ));
                 list.add(pojo);
             }
@@ -124,18 +122,6 @@ public class OutputPerDay extends ActiveRecord implements RecordWithDate {
 
     public void setPacket(Packet packet) {
         this.packet.set(packet);
-    }
-
-    public Counterparty getPacketCounterparty() {
-        return packetCounterparty.get();
-    }
-
-    public SimpleObjectProperty<Counterparty> packetCounterpartyProperty() {
-        return packetCounterparty;
-    }
-
-    public void setPacketCounterparty(Counterparty packetCounterparty) {
-        this.packetCounterparty.set(packetCounterparty);
     }
 
     public Counterparty getPaperCounterparty() {

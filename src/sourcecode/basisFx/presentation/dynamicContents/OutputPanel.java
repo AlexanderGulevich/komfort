@@ -78,13 +78,13 @@ public class OutputPanel  extends DynamicContentPanel {
                 .setColWrappers(
                         ColWrapperComboBox.newBuilder(Equipment.class)
                                 .setColumnName("Станок")
-                                .setColumnSize(0.15d)
+                                .setColumnSize(0.2d)
                                 .setIsEditeble(true)
                                 .setPropertyName("equipment")
                                 .build(),
                         ColWrapperComboBox.newBuilder(Product.class)
                                 .setColumnName("Продукт")
-                                .setColumnSize(0.15d)
+                                .setColumnSize(0.2d)
                                 .setIsEditeble(true)
                                 .setPropertyName("product")
                                 .build(),
@@ -101,12 +101,6 @@ public class OutputPanel  extends DynamicContentPanel {
                                 .setWindowBuilder(windowBuilder)
                                 .setPropertyName("packet")
                                 .build(),
-                        ColWrapperComboBox.newBuilder(Counterparty.class)
-                                .setColumnName("Поставщик \nпакета")
-                                .setColumnSize(0.15d)
-                                .setIsEditeble(true)
-                                .setPropertyName("packetCounterparty")
-                                .build(),
                         ColWrapperComboBox.newBuilder(Jumbo.class)
                                 .setColumnName("Ширина\n роля")
                                 .setColumnSize(0.15d)
@@ -115,7 +109,7 @@ public class OutputPanel  extends DynamicContentPanel {
                                 .build(),
                         ColWrapperComboBox.newBuilder(Counterparty.class)
                                 .setColumnName("Поставщик\n бумаги")
-                                .setColumnSize(0.15d)
+                                .setColumnSize(0.2d)
                                 .setIsEditeble(true)
                                 .setPropertyName("paperCounterparty")
                                 .build()

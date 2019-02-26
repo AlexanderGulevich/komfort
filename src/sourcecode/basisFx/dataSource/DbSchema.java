@@ -201,14 +201,12 @@ public class DbSchema {
                 + " rodsNumber INTEGER,   "
                 + " jumboId INTEGER,   "
                 + " packetId INTEGER,   "
-                + " packetCounterpartyId INTEGER,   "
                 + " paperCounterpartyId INTEGER,   "
                 + " date Date,  "
                 + " FOREIGN KEY (EquipmentId) REFERENCES Equipment(id)  on delete cascade, "
                 + " FOREIGN KEY (productId) REFERENCES product(id)  on delete cascade, "
                 + " FOREIGN KEY (packetId) REFERENCES packet(id)  on delete cascade, "
                 + " FOREIGN KEY (jumboId) REFERENCES jumbo(id)  on delete cascade, "
-                + " FOREIGN KEY (packetCounterpartyId) REFERENCES Counterparty(id)  on delete cascade, "
                 + " FOREIGN KEY (paperCounterpartyId) REFERENCES Counterparty(id)  on delete cascade "
                 + ")";
         create(
