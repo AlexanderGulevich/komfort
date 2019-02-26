@@ -64,6 +64,8 @@ public class TimeRecordingPanel extends DynamicContentPanel {
                     if (!rs.next()) {
                         Registry.windowFabric.infoWindow("К сожалению, для данной даты не установлен тариф для следующего сотрудника: \n"
                         + entry.getEmployer().getName().toUpperCase().trim()) ;
+
+                        return false;
                     }
 
 
@@ -71,7 +73,7 @@ public class TimeRecordingPanel extends DynamicContentPanel {
                     e.printStackTrace();
                 }
 
-                return false;
+                return true;
             }
         };
 

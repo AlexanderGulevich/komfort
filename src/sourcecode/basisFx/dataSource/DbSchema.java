@@ -234,15 +234,15 @@ public class DbSchema {
                 Jumbo,
                 outputPerDay,
                 jumboAccounting,
-                jumboAccounting
+                jumboAccounting,
 
-//                viewFired,
-//                viewTimeRecordingAndSalary,
-//                viewSalaryByMonth,
-//                viewSalaryByYear,
-//                viewActualRate
-//                viewTotalSalaryByYear,
-//                viewTotalSalaryByMonth
+                viewFired,
+                viewTimeRecordingAndSalary,
+                viewSalaryByMonth,
+                viewSalaryByYear,
+                viewActualRate,
+                viewTotalSalaryByYear,
+                viewTotalSalaryByMonth
 
         );
 
