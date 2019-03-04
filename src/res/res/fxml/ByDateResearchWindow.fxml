@@ -22,8 +22,8 @@
             </AnchorPane>
             <AnchorPane fx:id="titlePanel" layoutX="72.0" layoutY="7.0" prefHeight="46.0" prefWidth="700.0" styleClass="bottom" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
                <children>
-                  <Button id="PANELS_BUTTON" fx:id="addBut" layoutX="466.0" layoutY="8.0" mnemonicParsing="false" stylesheets="@../css/custom_1/buttons.css" text="ДОБАВИТЬ" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="8.0" />
-                  <Button id="PANELS_BUTTON" fx:id="delBut" layoutX="332.0" layoutY="9.0" mnemonicParsing="false" stylesheets="@../css/custom_1/buttons.css" text="УДАЛИТЬ" AnchorPane.rightAnchor="140.0" AnchorPane.topAnchor="8.0" />
+                  <Button id="PANELS_BUTTON" fx:id="addBut" layoutX="466.0" layoutY="8.0" mnemonicParsing="false" stylesheets="@../css/custom_1/buttons.css" text="ДОБАВИТЬ" visible="false" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="8.0" />
+                  <Button id="PANELS_BUTTON" fx:id="delBut" layoutX="332.0" layoutY="9.0" mnemonicParsing="false" stylesheets="@../css/custom_1/buttons.css" text="УДАЛИТЬ" visible="false" AnchorPane.rightAnchor="140.0" AnchorPane.topAnchor="8.0" />
                   <Label fx:id="title" layoutX="48.0" layoutY="3.0" prefHeight="38.0" prefWidth="364.0" style="-fx-border-width: 0 0 0 0; -fx-border-color: #436271;" text="АРХИВ ЦЕН" textAlignment="RIGHT" textFill="#436270c1">
                      <font>
                         <Font name="Roboto Light" size="30.0" />

@@ -6,26 +6,27 @@ import basisFx.appCore.settings.CSSid;
 import basisFx.appCore.settings.FontsStore;
 import javafx.geometry.HPos;
 import javafx.geometry.VPos;
+import javafx.scene.control.Label;
+import javafx.scene.layout.GridPane;
 
 public class TwoVerticaGrids extends GridOrganization {
 
-    protected GridPaneWrapper gridWrapperTop;
-    protected GridPaneWrapper gridWrapperBottom;
+    private final GridPaneWrapper gridWrapperTop;
+    private final GridPaneWrapper gridWrapperBottom;
 
 
-    public TwoVerticaGrids(GridOrganization organizationTop, GridOrganization organizationBottom) {
+    public TwoVerticaGrids(GridOrganization organizationTop, String name1, GridOrganization organizationBottom, String name2 ) {
 
         gridWrapperTop = GridPaneWrapper.newBuilder()
                 .setGridLinesVisibility(false)
-                .setColumnVsPercent(40)
-                .setColumnVsPercent(60)
+                .setGridName(name1)
                 .setOrganization(organizationTop).build();
 
         gridWrapperBottom = GridPaneWrapper.newBuilder()
                 .setGridLinesVisibility(false)
-                .setColumnVsPercent(40)
-                .setColumnVsPercent(60)
+                .setGridName(name2)
                 .setOrganization(organizationBottom).build();
+
 
     }
     private void applyWidth() {
@@ -42,12 +43,10 @@ public class TwoVerticaGrids extends GridOrganization {
 
     @Override
     public void organize() {
-        parentGridWrapper.setColumnComputerWidth();
+
         parentGridWrapper.setRowConstraints();
         parentGridWrapper.setRowConstraints();
         applyWidth();
-
-
 
         if (parentGridWrapper.getText() != null) {
             createInnerNodsAndCommonName();
@@ -60,17 +59,21 @@ public class TwoVerticaGrids extends GridOrganization {
     private void createInnerNodsAndCommonName() {
         LabelWrapper labelWrapper = createCommonLabel();
 
+        Label label = labelWrapper.getElement();
         parentGridWrapper.addSpanNode(
-                labelWrapper.getElement(),
-                0,0,2,1, HPos.LEFT, VPos.CENTER,insets);
+                label,
+                0,0,1,1, HPos.LEFT, VPos.CENTER,insets);
 
+        GridPane gridPane1 = gridWrapperTop.getElement();
         parentGridWrapper.addSpanNode(
-                gridWrapperTop.getElement(),
-                0,1,2,1, HPos.LEFT, VPos.TOP,insets);
+                gridPane1,
+                0,1,1,1, HPos.LEFT, VPos.TOP,insets);
 
+
+        GridPane gridPane2 = gridWrapperBottom.getElement();
         parentGridWrapper.addSpanNode(
-                gridWrapperBottom.getElement(),
-                0,2,2,1, HPos.LEFT, VPos.TOP,insets);
+                gridPane2,
+                0,2,1,1, HPos.LEFT, VPos.TOP,insets);
     }
 
     private LabelWrapper createCommonLabel() {

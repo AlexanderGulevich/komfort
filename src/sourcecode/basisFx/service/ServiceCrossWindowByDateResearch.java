@@ -122,8 +122,8 @@ public  class ServiceCrossWindowByDateResearch  extends ServiceCrossWindow   {
         new StageDragging().setEventToElement(titlePanel);
     }
     private void initTitle() {
-        title.setText(currentWindow.getWindowImpl().getTitleName());
-        gridLabel.setText(outer_table_wrapper.clickedDomain.toString());
+        title.setText(outer_table_wrapper.clickedDomain.toString());
+        gridLabel.setText(currentWindow.getWindowImpl().getTitleName());
     }
     @Override
     public void inform(Object node) {

@@ -14,7 +14,7 @@ import basisFx.presentation.DynamicContentPanel;
 import basisFx.service.ServiceTablesSingle;
 import basisFx.service.ServiceTablesTwoLinked;
 
-public class PacketPricePanel extends DynamicContentPanel {
+public class PacketPricePanelPopup extends DynamicContentPanel {
 
     private ServiceTablesSingle mediator;
     private TableWrapper tableWrapper;
@@ -62,8 +62,8 @@ public class PacketPricePanel extends DynamicContentPanel {
                         new SingleTable(
                                 window,
                                 tableWrapper,
-                                new ButSizeNon(),
-                                new CtrlPosNON()
+                                new ButSizeBig(),
+                                new CtrlPosTop()
                         ) )
                 .build();
 

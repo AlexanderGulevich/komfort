@@ -3,10 +3,8 @@ package basisFx.presentation.dynamicContents;
 import basisFx.appCore.elements.GridPaneWrapper;
 import basisFx.appCore.elements.TableWrapper;
 import basisFx.appCore.grid.*;
-import basisFx.appCore.interfaces.CallBackTyped;
 import basisFx.appCore.table.ColWrapperComboBox;
 import basisFx.appCore.table.ColWrapperPopup;
-import basisFx.appCore.table.ColWrapperPopupViaBtn;
 import basisFx.appCore.utils.Coordinate;
 import basisFx.appCore.utils.Registry;
 import basisFx.appCore.windows.WindowAbstraction;
@@ -33,7 +31,7 @@ public class PacketForPopup extends DynamicContentPanel {
         WindowBuilder dateResearchWindowBuilder = WindowBuilder.newBuilder()
                 .setGUIStructura(null)
                 .setButtonsForStage(null)
-                .setDynamicContentPanelCreator(PacketPricePanel::new)
+                .setDynamicContentPanelCreator(PacketPricePanelPopup::new)
                 .setTitle("Реестр цен")
                 .setMessage(null)
                 .setFxmlFileName("ByDateResearchWindow")
@@ -85,12 +83,6 @@ public class PacketForPopup extends DynamicContentPanel {
                                 .setColumnSize(0.4d)
                                 .setIsEditeble(true)
                                 .setPropertyName("counterparty")
-                                .build(),
-                        ColWrapperPopupViaBtn.newBuilder()
-                                .setBtnName("Архив цен")
-                                .setColumnName("Архив цен")
-                                .setColumnSize(0.2d)
-                                .setWindowBuilder(dateResearchWindowBuilder)
                                 .build()
                 )
                 .build();

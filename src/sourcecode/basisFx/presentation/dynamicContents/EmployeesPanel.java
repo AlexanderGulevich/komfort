@@ -66,6 +66,7 @@ public class EmployeesPanel extends DynamicContentPanel {
 
         outer_table_wrapper = TableWrapper.newBuilder()
                 .setGridName("Сотрудники ")
+                .setClass("wrappedHeaderColumn")
                 .setActiveRecordClass(ActualEmployersRate.class)
                 .setUnitOfWork(unitOfWork)
                 .setIsEditable(true)

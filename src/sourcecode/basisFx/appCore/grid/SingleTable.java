@@ -3,13 +3,10 @@ package basisFx.appCore.grid;
 import basisFx.appCore.elements.TableWrapper;
 import basisFx.appCore.windows.WindowAbstraction;
 import javafx.geometry.Insets;
-import javafx.scene.control.Button;
 
 
 public class SingleTable extends GridOrganization{
     private ButSizeForGrid butSizeForGrid;
-    private Button add;
-    private Button del;
     protected TableWrapper tableWrapper=null;
 
     public SingleTable(TableWrapper tableWrapper, ButSizeForGrid butSizeForGrid, CtrlPosition position) {
@@ -53,11 +50,9 @@ public class SingleTable extends GridOrganization{
     public void organize() {
         handleLabel();
 
-
         if (butSizeForGrid instanceof ButSizeNon && ctrlPosition instanceof CtrlPosNON ){
                 organizeNonButtons();
             }else{
-
                 organizeWithButtons();
             }
 

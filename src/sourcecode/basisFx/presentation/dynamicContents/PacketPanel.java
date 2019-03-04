@@ -15,10 +15,8 @@ import basisFx.presentation.DynamicContentPanel;
 public class PacketPanel  extends DynamicContentPanel {
     private ServiceTablesSingle serviceTablesSingle1;
     private ServiceTablesSingle serviceTablesSingle2;
-    private TableWrapper t1;
-    private TableWrapper t2;
-    private TableWrapper t3;
-    private TableWrapper t4;
+    private TableWrapper packet;
+    private TableWrapper capacity;
 
     @Override
     public void createServices() {
@@ -32,7 +30,7 @@ public class PacketPanel  extends DynamicContentPanel {
         WindowBuilder dateResearchWindowBuilder = WindowBuilder.newBuilder()
                 .setGUIStructura(null)
                 .setButtonsForStage(null)
-                .setDynamicContentPanelCreator(PacketPricePanel::new)
+                .setDynamicContentPanelCreator(PacketPricePanelPopup::new)
                 .setTitle("Реестр цен")
                 .setMessage(null)
                 .setFxmlFileName("ByDateResearchWindow")
@@ -62,7 +60,7 @@ public class PacketPanel  extends DynamicContentPanel {
                         })
                 .build();
 
-          t1 = TableWrapper.newBuilder()
+        packet = TableWrapper.newBuilder()
                 .setGridLinesVisibility(gridVisibility)
                 .setGridName("Пакеты ")
                 .setOrganization(new SingleTable(new ButSizeLittle(),new CtrlPosTop()))
@@ -96,11 +94,11 @@ public class PacketPanel  extends DynamicContentPanel {
 
 
 
-        Registry.mainWindow.setNodeToMap(t1,"outer_table_wrapper");
+        Registry.mainWindow.setNodeToMap(packet,"outer_table_wrapper");
 
 
 
-          t4 = TableWrapper.newBuilder()
+          capacity = TableWrapper.newBuilder()
                 .setGridLinesVisibility(gridVisibility)
                 .setGridName("Вместимость пакетов")
                 .setOrganization(new SingleTable(new ButSizeLittle(),new CtrlPosTop()))
@@ -128,25 +126,27 @@ public class PacketPanel  extends DynamicContentPanel {
 
 
         GridPaneWrapper commonGridPaneWrapper = GridPaneWrapper.newBuilder()
-                .setColumnVsPercent(70)
-                .setColumnVsPercent(30)
-                .setGridLinesVisibility(gridVisibility)
+                .setGridLinesVisibility(false)
+                .setColumnVsPercent(100)
                 .setGridName("Управление информацией о пакетах")
                 .setParentAnchor(dynamicContentAnchorHolder)
                 .setCoordinate(new Coordinate(0d, 10d, 10d, 0d))
                 .setOrganization(
-                        new TwoHorisontalBondGrids(t1  ,t4)
+                        new TwoVerticaGrids(
+                                new SingleTable(packet,new ButSizeBig(),new CtrlPosTop())  , "Пакеты",
+                                new SingleTable(capacity,new ButSizeBig(),new CtrlPosTop()), "Вместимость пакетов"
                  )
+                )
                 .build();
 
     }
 
     @Override
     public void initServices() {
-        serviceTablesSingle1.setTableWrapper(t1);
+        serviceTablesSingle1.setTableWrapper(packet);
         serviceTablesSingle1.initElements();
 
-        serviceTablesSingle2.setTableWrapper(t4);
+        serviceTablesSingle2.setTableWrapper(capacity);
         serviceTablesSingle2.initElements();
     }
 

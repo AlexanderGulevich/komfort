@@ -38,12 +38,15 @@ public abstract class GridOrganization {
     public  void setTableWrapper(TableWrapper tableWrapper){};
 
     protected void handleLabel() {
-        if (parentGridWrapper.label != null) {
-            label = parentGridWrapper.label.getElement();
-            if (currentWindow != null) {
-                currentWindow.setNodeToMap(label,"gridLabel");
+        if (parentGridWrapper != null) {
+            if (parentGridWrapper.label != null) {
+                label = parentGridWrapper.label.getElement();
+                if (currentWindow != null) {
+                    currentWindow.setNodeToMap(label,"gridLabel");
+                }
             }
         }
+
     }
 
 

@@ -13,7 +13,7 @@ public class PacketPrice extends ActiveRecord {
 
     private static PacketPrice INSTANCE = new PacketPrice();
     private SimpleObjectProperty<Double> price = new SimpleObjectProperty<>(this, "price", null);
-    @DataStore(SORTING = Sorting.DESC)  private SimpleObjectProperty<LocalDate> startDate = new SimpleObjectProperty<>(this, "startDate", null);
+    @DataStore(SORTING = Sorting.DESC, ANALIZED_DATE = true)  private SimpleObjectProperty<LocalDate> startDate = new SimpleObjectProperty<>(this, "startDate", null);
     @DataStore (AS_OUTER_ID = true) private SimpleObjectProperty<Integer> packetId = new SimpleObjectProperty<>(this, "packetId", null);
 
     public static PacketPrice getINSTANCE() {
