@@ -157,19 +157,21 @@ public class DbSchema {
                 " ORDER BY r.employerId";
         String viewTimeRecordingAndSalary= "Create  view TimeRecordingAndSalary  as " +
                 "SELECT EMPLOYERID, DATE, HOURS , rate, rate*HOURS AS salary, e.ISFIRED,e.NAME FROM(\n" +
-                "SELECT t.EMPLOYERID, t.DATE,t.HOURS,\n" +
-                "(select RATE from EMPLOYEESRATEPERHOUR where (employerId, startdate)\n" +
-                "in (\n" +
-                "SELECT employerId, startdate FROM (\n" +
-                "select employerId,max(startdate) AS startdate\n" +
-                "from ( SELECT * from EMPLOYEESRATEPERHOUR WHERE startdate <= t.DATE)\n" +
-                "group by employerId\n" +
-                ") AS RATEDADE \n" +
-                "WHERE RATEDADE.employerId=t.EMPLOYERID\n" +
-                ") ) AS rate \n" +
-                "FROM TimeRecordingForEmployers t\n" +
-                ")AS timerec  left JOIN  EMPLOYER e\n" +
-                "ON timerec.EMPLOYERID=e.id\n";
+                "\t\tSELECT t.EMPLOYERID, t.DATE,t.HOURS,\n" +
+                "\t\t(select RATE from EMPLOYEESRATEPERHOUR where (employerId, startdate)\n" +
+                "\t\tin (\n" +
+                "\t\t\tSELECT employerId, startdate FROM (\n" +
+                "\t\t\t\tselect employerId,max(startdate) AS startdate\n" +
+                "\t\t\t\tfrom ( SELECT * \n" +
+                "\t\t\t\t\tfrom EMPLOYEESRATEPERHOUR WHERE startdate <= t.DATE\n" +
+                "\t\t\t\t)\n" +
+                "\t\t\t\tgroup by employerId\n" +
+                "\t\t\t) AS RATEDADE \n" +
+                "\t\t\tWHERE RATEDADE.employerId=t.EMPLOYERID\n" +
+                "\t\t) ) AS rate \n" +
+                "\t\tFROM TimeRecordingForEmployers t\n" +
+                "\t)AS timerec \n" +
+                "\tleft JOIN   EMPLOYER e ON timerec.EMPLOYERID=e.id";
         String viewSalaryByMonth= "Create  view SalaryByMonth  as " +
                 "SELECT * FROM (\n" +
                 "SELECT SUM(SALARY) AS SALARY, EMPLOYERID,  MONTH(\"DATE\") AS sMonth, YEAR(\"DATE\") AS sYear\n" +
@@ -195,20 +197,7 @@ public class DbSchema {
                 "         GROUP BY SMONTH";
 
         String viewtotalproductcostandamount=  "Create  view totalproductcostandamount  as "
-                +"SELECT\n" +
-                "\tN_rods,\n" +
-                "\tpr_Id,\n" +
-                "\tj_id,\n" +
-                "\tOut_D,\n" +
-                "\tout_id,\n" +
-                "\teqp_id,\n" +
-                "\tn_Pr_by_W,\n" +
-                "\tpr_Am,\n" +
-                "\tPACKETID,\n" +
-                "\tp.PRICE,\n" +
-                "\tp.STARTDATE AS START_d,\n" +
-                "\tp.PRICE*pr_Am AS total_cost\n" +
-                "\tfrom \n" +
+                +"SELECT * from \n" +
                 "\t( SELECT * from(\n" +
                 "\t\tSELECT\n" +
                 "\t\to.rodsnumber AS N_rods,\n" +
@@ -219,13 +208,18 @@ public class DbSchema {
                 "\t\to.PACKETID,\n" +
                 "\t\to.EQUIPMENTID AS eqp_id,\n" +
                 "\t\tj.numberofproduct AS n_Pr_by_W ,\n" +
-                "\t\to.rodsnumber*j.numberofproduct AS pr_Am \n" +
+                "\t\to.rodsnumber*j.numberofproduct AS pr_Am,\n" +
+                "\t\t(select PRICE from PRODUCTPRICE where (PRODUCTID, startDate)\n" +
+                "\t\t\t\t\tin (\n" +
+                "\t\t\t\t\t\tselect PRODUCTID, max(startDate) from  PRODUCTPRICE\n" +
+                "\t\t\t\t\t\tWHERE startDate<=o.DATE\n" +
+                "\t\t\t\t\t\tgroup by PRODUCTID \n" +
+                "\t\t\t\t\t)) AS pr\n" +
+                "\t\t\t\t\tWHERE pr.PRODUCTID=o.PRODUCTID\n" +
                 "\t\tFROM\n" +
-                "\t\tOUTPUTPERDAY o, jumbo j \n" +
+                "\t\tOUTPUTPERDAY o, jumbo j   \n" +
                 "\t\tWHERE o.jumboid= j.ID\n" +
-                "\t) )AS amount, PRODUCTPRICE AS p\n" +
-                "\t\tWHERE p.startdate<=amount.Out_D \n" +
-                "\t\tAND amount.pr_Id=p.PRODUCTID";
+                "\t) ) ";
 
 
         String viewtotalpacketcostandamount=  "Create  view totalpacketcostandamount  as "
