@@ -197,52 +197,52 @@ public class DbSchema {
                 "         GROUP BY SMONTH";
 
         String viewtotalproductcostandamount=  "Create  view totalproductcostandamount  as "
-                +"SELECT * from \n" +
-                "\t( SELECT * from(\n" +
-                "\t\tSELECT\n" +
-                "\t\to.rodsnumber AS N_rods,\n" +
-                "\t\to.PRODUCTID AS pr_Id,\n" +
-                "\t\to.jumboid AS j_id,\n" +
-                "\t\to.date AS Out_D, \n" +
-                "\t\to.ID AS out_id ,\n" +
-                "\t\to.PACKETID,\n" +
-                "\t\to.EQUIPMENTID AS eqp_id,\n" +
-                "\t\tj.numberofproduct AS n_Pr_by_W ,\n" +
-                "\t\to.rodsnumber*j.numberofproduct AS pr_Am,\n" +
-                "\t\t(select PRICE from PRODUCTPRICE where (PRODUCTID, startDate)\n" +
-                "\t\t\t\t\tin (\n" +
-                "\t\t\t\t\t\tselect PRODUCTID, max(startDate) from  PRODUCTPRICE\n" +
-                "\t\t\t\t\t\tWHERE startDate<=o.DATE\n" +
-                "\t\t\t\t\t\tgroup by PRODUCTID \n" +
-                "\t\t\t\t\t)) AS pr\n" +
-                "\t\t\t\t\tWHERE pr.PRODUCTID=o.PRODUCTID\n" +
-                "\t\tFROM\n" +
-                "\t\tOUTPUTPERDAY o, jumbo j   \n" +
-                "\t\tWHERE o.jumboid= j.ID\n" +
-                "\t) ) ";
+                +"SELECT rodsnumber,PRODUCTID,jumboid,OutDate,outid,PACKETID,EQUIPMENTID,numberofproductForRod,price,\n" +
+                "rodsnumber*numberofproductForRod AS productAmount,\n" +
+                "rodsnumber*numberofproductForRod*price AS totalCost\n" +
+                "from \n" +
+                "( SELECT \n" +
+                "o.rodsnumber, o.PRODUCTID, o.jumboid , o.date AS OutDate, o.ID AS outid ,\n" +
+                "o.PACKETID, o.EQUIPMENTID, j.numberofproduct AS numberofproductForRod,\n" +
+                "(select PRICE from PRODUCTPRICE where (PRODUCTID, startDate)\n" +
+                "in (\n" +
+                "select PRODUCTID, max(startDate) from PRODUCTPRICE\n" +
+                "WHERE startDate<=o.DATE\n" +
+                "and PRODUCTID=o.PRODUCTID\n" +
+                "group by PRODUCTID \n" +
+                ")) AS price \n" +
+                "FROM\n" +
+                "OUTPUTPERDAY o, jumbo j \n" +
+                "WHERE o.jumboid= j.ID\n" +
+                ")";
 
 
         String viewtotalpacketcostandamount=  "Create  view totalpacketcostandamount  as "
-                +"SELECT\n" +
-                "\tpr_Id,\n" +
-                "\tpr_Am,\n" +
-                "\tPACKETID,\n" +
-                "\tOut_D,\n" +
-                "\tpprice.STARTDATE AS START_d,\n" +
-                "\tpprice.PRICE,\n" +
-                "\tpack.PACKETSIZEID,\n" +
-                "\tACCORDANCE.NUMBER AS capacity,\n" +
-                "\tpr_Am/ACCORDANCE.NUMBER AS packetAmount,\n" +
-                "\tpprice.PRICE*pr_Am/ACCORDANCE.NUMBER AS total_cost\n" +
-                "\tfrom \n" +
-                "\t\tTOTALPRODUCTCOSTANDAMOUNT AS amount, \n" +
-                "\t\tPACKETPrice AS pprice,\n" +
-                "\t\tPACKET AS pack, \n" +
-                "\t\tPACKETPRODUCTACCORDANCE AS ACCORDANCE\n" +
-                "\t\t\tWHERE\n" +
-                "\t\t\tpprice.startdate<=amount.Out_D\n" +
-                "\t\t\tAND amount.PACKETID=pprice.PACKETID\n" +
-                "\t\t\tAND pack.PACKETSIZEID=PACKETID\n";
+                +"SELECT  \n" +
+                "\tOUTDATE,PACKETID,PRODUCTAMOUNT,PRODUCTID,PACKETprice, p.PACKETSIZEID,ACCORDANCE.NUMBER AS numberinpacket,\n" +
+                "\tPRODUCTAMOUNT/ACCORDANCE.NUMBER AS totalpacketamount, \n" +
+                "\tPRODUCTAMOUNT/ACCORDANCE.NUMBER * PACKETprice AS totalpacketcost\n" +
+                "\tfrom\n" +
+                "\t(SELECT   \n" +
+                "\t\tproductamount.OUTDATE,\n" +
+                "\t\tproductamount.PACKETID,\n" +
+                "\t\tproductamount.PRODUCTAMOUNT,\n" +
+                "\t\tproductamount.PRODUCTID, \n" +
+                "\t\t(select PRICE from PACKETPrice where (PACKETID, startDate)\n" +
+                "\t\t\tin (\n" +
+                "\t\t\tselect PACKETID, max(startDate) from PACKETPrice\n" +
+                "\t\t\tWHERE startDate<=productamount.OUTDATE\n" +
+                "\t\t\tand PACKETID=productamount.PACKETID\n" +
+                "\t\t\tgroup by PACKETID \n" +
+                "\t\t\t)) AS PACKETprice \n" +
+                "\t\t\tfrom \n" +
+                "\t\t\tTOTALPRODUCTCOSTANDAMOUNT AS productamount\n" +
+                "\t\t\t)\n" +
+                "\tAS subquery,PACKET AS p, PACKETPRODUCTACCORDANCE AS ACCORDANCE\n" +
+                "\tWHERE\n" +
+                "\tp.ID=SUBQUERY.PACKETID \n" +
+                "\tand ACCORDANCE.PACKETSIZEID=p.PACKETSIZEID \n" +
+                "\tand ACCORDANCE.PRODUCTID=SUBQUERY.PRODUCTID";
 
         String outputPerDay= "CREATE TABLE IF NOT EXISTS outputPerDay ( "
                 + "	id INTEGER GENERATED BY DEFAULT AS IDENTITY PRIMARY KEY,   "
@@ -283,17 +283,17 @@ public class DbSchema {
                 outputPerDay,
                 jumboAccounting,
                 jumboAccounting
-//                ,
-//
-//                viewFired,
-//                viewTimeRecordingAndSalary,
-//                viewSalaryByMonth,
-//                viewSalaryByYear,
-//                viewActualRate,
-//                viewTotalSalaryByYear,
-//                viewTotalSalaryByMonth,
-//                viewtotalproductcostandamount,
-//                viewtotalpacketcostandamount
+                ,
+
+                viewFired,
+                viewTimeRecordingAndSalary,
+                viewSalaryByMonth,
+                viewSalaryByYear,
+                viewActualRate,
+                viewTotalSalaryByYear,
+                viewTotalSalaryByMonth,
+                viewtotalproductcostandamount,
+                viewtotalpacketcostandamount
 
         );
 
