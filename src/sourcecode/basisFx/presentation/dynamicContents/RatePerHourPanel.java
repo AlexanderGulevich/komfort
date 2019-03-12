@@ -52,8 +52,8 @@ public class RatePerHourPanel extends DynamicContentPanel {
                         new SingleTable(
                                 window,
                                 tableWrapper,
-                                new ButSizeNon(),
-                                new CtrlPosNON()
+                                new ButSizeBig(),
+                                new CtrlPosTop()
                         ) )
                 .build();
 

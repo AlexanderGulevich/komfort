@@ -3,10 +3,8 @@ package basisFx.presentation.dynamicContents;
 import basisFx.appCore.elements.DatePickerWrapper;
 import basisFx.appCore.elements.LabelWrapper;
 import basisFx.appCore.elements.TableWrapper;
-import basisFx.appCore.grid.CtrlPosNON;
+import basisFx.appCore.grid.*;
 import basisFx.appCore.elements.GridPaneWrapper;
-import basisFx.appCore.grid.ButSizeNon;
-import basisFx.appCore.grid.SingleTable;
 import basisFx.appCore.interfaces.DataStoreCallBack;
 import basisFx.appCore.settings.CSSclasses;
 import basisFx.appCore.settings.FontsStore;
@@ -120,7 +118,7 @@ public class TimeRecordingPanel extends DynamicContentPanel {
 
 
         GridPaneWrapper.newBuilder()
-                .setOrganization(new SingleTable(tableWrapper,new ButSizeNon(),new CtrlPosNON()))
+                .setOrganization(new SingleTable(tableWrapper,new ButSizeNon() ,new CtrlPosNON()))
                 .setGridName(null)
                 .setParentAnchor(dynamicContentAnchorHolder)
                 .setCoordinate(new Coordinate(50d,10d,10d,0d))

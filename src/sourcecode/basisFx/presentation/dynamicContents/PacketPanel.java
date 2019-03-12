@@ -110,13 +110,19 @@ public class PacketPanel  extends DynamicContentPanel {
                 .setColWrappers(
                         ColWrapperComboBox.newBuilder(Product.class)
                                 .setColumnName("Продукция")
-                                .setColumnSize(0.7d)
+                                .setColumnSize(0.5d)
                                 .setIsEditeble(true)
                                 .setPropertyName("product")
                                 .build(),
+                        ColWrapperComboBox.newBuilder(PacketSize.class)
+                                .setColumnName("Размер")
+                                .setColumnSize(0.3d)
+                                .setIsEditeble(true)
+                                .setPropertyName("packetSize")
+                                .build(),
                         ColWrapperInt.newBuilder()
                                 .setColumnName("Кол-во")
-                                .setColumnSize(0.3d)
+                                .setColumnSize(0.2d)
                                 .setIsEditeble(true)
                                 .setPropertyName("number")
                                 .build()

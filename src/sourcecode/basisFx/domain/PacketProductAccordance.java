@@ -15,10 +15,23 @@ public class PacketProductAccordance extends ActiveRecord {
 
     private static PacketProductAccordance INSTANCE = new PacketProductAccordance();
     private SimpleObjectProperty<Product> product = new SimpleObjectProperty<>(this, "product", null);
+    private SimpleObjectProperty<PacketSize> packetSize = new SimpleObjectProperty<>(this, "packetSize", null);
     private SimpleObjectProperty<Integer> number = new SimpleObjectProperty<>(this, "number", null);
 
     public static PacketProductAccordance getINSTANCE() {
         return INSTANCE;
+    }
+
+    public PacketSize getPacketSize() {
+        return packetSize.get();
+    }
+
+    public SimpleObjectProperty<PacketSize> packetSizeProperty() {
+        return packetSize;
+    }
+
+    public void setPacketSize(PacketSize packetSize) {
+        this.packetSize.set(packetSize);
     }
 
     public Product getProduct() {

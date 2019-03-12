@@ -112,14 +112,14 @@ public class EmployeesPanel extends DynamicContentPanel {
                 .setOrganization(
                         new SingleTable(
                                 outer_table_wrapper,
-                                new ButSizeLittle(
+                                new ButSizeBig(
                                         new YNWindowCreaterForTable(
                                                 new RowDeleteFromTable(outer_table_wrapper),
                                                 "Вы уверены, что хотите уволить сотрудника"
                                         ) ,
                                         new SubWindowCreaterByBut(hiringWindowBuilder)
                                 ),
-                                new CtrlPosTop()
+                                new CtrlPosBotton()
                         ))
                 .build();
     }

@@ -1,13 +1,7 @@
 package basisFx.domain;
 
-
-import basisFx.dataSource.Db;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.ObservableList;
-
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 
 public class PacketSize extends ActiveRecord {
 
@@ -29,7 +23,6 @@ public class PacketSize extends ActiveRecord {
     public void setSize(String size) {
         this.size.set(size);
     }
-
 
     @Override
     public String toString() {
