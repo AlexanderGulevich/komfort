@@ -240,9 +240,21 @@ public class DbSchema {
                 "WHERE o.jumboid= j.ID\n" +
                 ")";
         String viewproductResultByMonth=  "Create  view productResultByMonth  as "
-                +" ";
+                +"SELECT * FROM (\n" +
+                "SELECT * FROM (\n" +
+                "SELECT SUM(PRODUCTAMOUNT) AS products,SUM(TOTALCOST) AS cost, PRODUCTID,  MONTH( OUTDATE) AS  pMonth, YEAR(OUTDATE) AS pYear\n" +
+                "  FROM PRODUCTRESULT\n" +
+                " GROUP BY YEAR(OUTDATE),MONTH(OUTDATE), PRODUCTID) AS result1\n" +
+                " )LEFT JOIN product ON PRODUCTID=product.id\n" +
+                "  ";
         String viewproductResultByYEAR=  "Create  view productResultByYEAR  as "
-                +" ";
+                +"SELECT * FROM (\n" +
+                "SELECT * FROM (\n" +
+                "SELECT SUM(PRODUCTAMOUNT) AS products,SUM(TOTALCOST) AS cost, PRODUCTID,   YEAR(OUTDATE) AS pYear\n" +
+                "  FROM PRODUCTRESULT\n" +
+                " GROUP BY YEAR(OUTDATE), PRODUCTID) AS result1\n" +
+                " )LEFT JOIN product ON PRODUCTID=product.id\n" +
+                "  ";
 
 
         String packetResultFull=  "Create  view packetResultFull  as "
