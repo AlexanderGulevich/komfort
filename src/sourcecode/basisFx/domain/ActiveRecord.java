@@ -102,6 +102,22 @@ public abstract class ActiveRecord {
         ResultSet rs =  ReflectionGet.findAllByOuterIdAndPeriod(this,domainPropertiesMetaInfoList, id,start,end);
         return ReflectionGet.getAllDomainsList(this,list, domainPropertiesMetaInfoList, rs);
     }
+    public ObservableList<ActiveRecord> findAllByRange(  Range   range){
+        ObservableList <ActiveRecord> list= FXCollections.observableArrayList();
+        ArrayList<DomainPropertiesMetaInfo> domainPropertiesMetaInfoList = ReflectionInspectDomain.inspectDomainProperties(this);
+        String exp = ReflectionGet.createFindAllByRangeExpression(this,domainPropertiesMetaInfoList,  range);
+        ResultSet rs = Reflection.executeQuery(exp);
+        return ReflectionGet.getAllDomainsList(this,list, domainPropertiesMetaInfoList, rs);
+    }
+
+
+
+    public ObservableList<ActiveRecord> findAllByPeriod( LocalDate start, LocalDate end){
+        ObservableList <ActiveRecord> list= FXCollections.observableArrayList();
+        ArrayList<DomainPropertiesMetaInfo> domainPropertiesMetaInfoList = ReflectionInspectDomain.inspectDomainProperties(this);
+        ResultSet rs =  ReflectionGet.findAllByPeriod(this,domainPropertiesMetaInfoList,start,end);
+        return ReflectionGet.getAllDomainsList(this,list, domainPropertiesMetaInfoList, rs);
+    }
 
     public ActiveRecord find(int id) {
         ActiveRecord activeRecord = Reflection.createNewInstance(this);

@@ -7,44 +7,32 @@ import basisFx.appCore.table.ColWrapperDate;
 import basisFx.appCore.table.ColWrapperDouble;
 import basisFx.appCore.utils.Range;
 import basisFx.presentation.DynamicContentPanel;
-import basisFx.service.ServiceTablesTwoLinked;
-import basisFx.appCore.table.ColWrapperComboBox;
+import basisFx.service.ServiceTablesSingle;
 import basisFx.appCore.utils.Coordinate;
 import basisFx.domain.*;
 import javafx.scene.control.ComboBox;
 
 public class SleevePanel  extends DynamicContentPanel {
-    private ServiceTablesTwoLinked mediator;
-    private TableWrapper leftTableWrapper ;
+    private ServiceTablesSingle mediator;
     private TableWrapper rightTableWrapper ;
     private RangeDirector rangeDirector;
     @Override
     public void createServices() {
-        mediator =new ServiceTablesTwoLinked();
+        mediator =new ServiceTablesSingle();
     }
 
     @Override
     public void customDynamicElementsInit() {
-          rangeDirector=new RangeDirector(new ComboBox<>(), mediator,Range.LAST10,Range.getAll());
-
-          leftTableWrapper = TableWrapper.newBuilder()
-                .setGridName("Втулка ")
-                .setOrganization(new SingleTable(new ButSizeLittle(),new CtrlPosTop()))
-                .setActiveRecordClass(Sleeve.class)
-                .setUnitOfWork(unitOfWork)
-                .setIsEditable(true)
-                .setIsSortableColums(false)
-                .setServiceTables(mediator)
-                .setColWrappers(
-                        ColWrapperComboBox.newBuilder(Counterparty.class)
-                                .setColumnName("Поставщик")
-                                .setColumnSize(1d)
-                                .setIsEditeble(true)
-                                .setPropertyName("counterparty")
-                                .build()
+        rangeDirector=new RangeDirector(
+                new ComboBox<>(),
+                mediator,
+                Range.LAST10,
+                Range.get(
+                        Range.LAST10,
+                        Range.LAST30,
+                        Range.ALLTIME
                 )
-                .build();
-
+        );
 
         rightTableWrapper = TableWrapper.newBuilder()
                 .setGridName("Цены")
@@ -71,36 +59,23 @@ public class SleevePanel  extends DynamicContentPanel {
                 )
                 .build();
 
-        GridPaneWrapper commonGridPaneWrapper = GridPaneWrapper.newBuilder()
-                .setColumnVsPercent(70)
-                .setColumnVsPercent(30)
-                .setGridName("Поставщики втулок и цены")
+
+        GridPaneWrapper.newBuilder()
+                .setGridName("Цена втулок")
                 .setParentAnchor(dynamicContentAnchorHolder)
                 .setCoordinate(new Coordinate(0d, 10d, 10d, 0d))
                 .setGridLinesVisibility(gridVisibility)
                 .setOrganization(
-                        new TwoHorisontalBondGrids(
-                                leftTableWrapper.getGridPaneWrapper(),
-                                rightTableWrapper.getGridPaneWrapper()
-                        )
-                )
+                        new SingleTable(rightTableWrapper, new ButSizeBig(),new CtrlPosButAndCombobox(rangeDirector.getComboBox())
+                        ))
                 .build();
-
-
-
-
     }
 
     @Override
     public void initServices() {
-
-
-
-        mediator.setAccessoryTableWrapper(rightTableWrapper);
-        mediator.setPrimaryTableWrapper(leftTableWrapper);
+        mediator.setTableWrapper(rightTableWrapper);
         mediator.setRangeDirector(rangeDirector);
         mediator.initElements();
-
     }
 
 

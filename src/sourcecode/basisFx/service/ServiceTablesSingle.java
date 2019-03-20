@@ -1,10 +1,11 @@
 package basisFx.service;
 
 import basisFx.appCore.elements.AppNode;
+import basisFx.appCore.elements.RangeDirector;
 import basisFx.appCore.elements.TableWrapper;
-import basisFx.appCore.interfaces.CallBack;
 import basisFx.dataSource.UnitOfWork;
 import basisFx.domain.ActiveRecord;
+import lombok.Getter;
 import lombok.Setter;
 
 public class ServiceTablesSingle extends ServiceTables {
@@ -12,8 +13,14 @@ public class ServiceTablesSingle extends ServiceTables {
     @Setter private TableWrapper tableWrapper;
     @Setter private int outrId;
 
+    @Setter @Getter
+    private RangeDirector rangeDirector;
+
     @Override
     public void inform(Object node) {
+        if (node == rangeDirector) {
+            refreshViaRange(tableWrapper,rangeDirector.getSelectedRange());
+        }
     }
 
     @Override
@@ -53,6 +60,7 @@ public class ServiceTablesSingle extends ServiceTables {
             TableWrapper tableWrapper = (TableWrapper) node;
             setItems(tableWrapper,tableWrapper.activeRecord.getAll());
         }
+
 
     }
 

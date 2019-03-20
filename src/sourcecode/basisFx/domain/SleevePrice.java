@@ -11,8 +11,6 @@ public class SleevePrice extends ActiveRecord {
     private SimpleObjectProperty<Double> price = new SimpleObjectProperty<>(this, "price", null);
     @DataStore (SORTING = Sorting.DESC, ANALIZED_DATE = true)
     private SimpleObjectProperty<LocalDate> startDate =new SimpleObjectProperty<>(this, "startDate", null);
-    @DataStore (AS_OUTER_ID = true)
-    private SimpleObjectProperty<Index> sleeveId =new SimpleObjectProperty<>(this, "sleeveId", null);
 
 
     public static SleevePrice getINSTANCE() {
@@ -48,15 +46,4 @@ public class SleevePrice extends ActiveRecord {
         this.startDate.set(startDate);
     }
 
-    public Index getSleeveId() {
-        return sleeveId.get();
-    }
-
-    public SimpleObjectProperty<Index> sleeveIdProperty() {
-        return sleeveId;
-    }
-
-    public void setSleeveId(Index sleeveId) {
-        this.sleeveId.set(sleeveId);
-    }
 }

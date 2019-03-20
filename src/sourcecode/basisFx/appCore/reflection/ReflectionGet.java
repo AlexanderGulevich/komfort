@@ -223,4 +223,31 @@ public class ReflectionGet {
         return null;
 
     }
+
+    public static ResultSet findAllByPeriod(ActiveRecord record, ArrayList<DomainPropertiesMetaInfo> domainPropertiesMetaInfoList, LocalDate start, LocalDate end) {
+
+        String expression = "Select * from " + record.entityName + ExpressionProcessor.getWhereForPeriod(domainPropertiesMetaInfoList);
+
+        PreparedStatement pstmt=null;
+        try {
+            pstmt = Db.connection.prepareStatement(expression);
+
+            pstmt.setDate(1, Date.valueOf(start));
+            pstmt.setDate(2, Date.valueOf(end));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
+        try {
+            return pstmt.executeQuery();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public static String createFindAllByRangeExpression(ActiveRecord record, ArrayList<DomainPropertiesMetaInfo> inf, Range range) {
+        return  "Select * from " + record.entityName  + " "+ExpressionProcessor.getWhere(inf,range);
+    }
 }

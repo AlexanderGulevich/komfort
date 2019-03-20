@@ -22,9 +22,21 @@ public class ExpressionProcessor {
         examineAnnotatedField(metaInfo,dto);
         return exemineWhere(dto);
     }
+    public static String getWhereForPeriod(ArrayList<DomainPropertiesMetaInfo> metaInfo ) {
+        DTOexp dto =new DTOexp();
+        dto.isPeriodocal =true;
+        examineAnnotatedField(metaInfo,dto);
+        return exemineWhere(dto);
+    }
     public static String getWhere(ArrayList<DomainPropertiesMetaInfo> metaInfo,int outerDomainId,Range range) {
         DTOexp dto=new DTOexp();
         dto.outerDomainId=outerDomainId;
+        examineAnnotatedField(metaInfo,dto);
+        examineRange(dto,range);
+        return exemineWhere(dto);
+    }
+    public static String getWhere(ArrayList<DomainPropertiesMetaInfo> metaInfo, Range range) {
+        DTOexp dto=new DTOexp();
         examineAnnotatedField(metaInfo,dto);
         examineRange(dto,range);
         return exemineWhere(dto);
@@ -92,12 +104,23 @@ public class ExpressionProcessor {
         if (dto.intervalDays != null)  list.add(dto.intervalDays);
         if (dto.isPeriodocal != null)  list.add( " "+dto.analizedDateName + " >=?" +" and " + dto.analizedDateName + "<= ? ");
 
-        String exp=" where "+ String.join(" and ",list);
+        if(list.toArray().length>0) {
 
-        if (dto.order_by != null)  exp+=dto.order_by;
-        if (dto.limit != null)  exp+=dto.limit;
 
-        return exp;
+            String exp = " where " + String.join(" and ", list);
+
+            if (dto.order_by != null) exp += dto.order_by;
+            if (dto.limit != null) exp += dto.limit;
+
+            return exp;
+        }else {
+            String exp = " ";
+
+            if (dto.order_by != null) exp += dto.order_by;
+            if (dto.limit != null) exp += dto.limit;
+
+            return exp;
+        }
     }
 
 

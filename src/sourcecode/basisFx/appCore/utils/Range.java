@@ -45,6 +45,10 @@ public enum Range {
         List<Range> list = Arrays.asList(Range.values());
         return  FXCollections.observableList(list);
     }
+    public static  ObservableList<Range> get(Range ...range){
+        List<Range> list = Arrays.asList(range);
+        return  FXCollections.observableList(list);
+    }
     public Range getMain() {
         return main;
     }

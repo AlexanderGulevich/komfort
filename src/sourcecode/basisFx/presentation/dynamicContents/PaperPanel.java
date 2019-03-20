@@ -14,7 +14,6 @@ import basisFx.appCore.table.ColWrapperDouble;
 import basisFx.appCore.utils.Coordinate;
 import basisFx.domain.Counterparty;
 import basisFx.domain.PaperPrice;
-import basisFx.domain.Sleeve;
 import javafx.scene.control.ComboBox;
 
 public class PaperPanel  extends DynamicContentPanel {

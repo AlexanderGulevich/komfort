@@ -47,6 +47,16 @@ public abstract class ServiceTables implements Mediator{
 
         );
     }
+    public void refreshViaRange(TableWrapper tableWrapper,   Range range) {
+        setItems(
+                tableWrapper,
+                tableWrapper.activeRecord.findAllByRange(
+                        range
+                )
+
+
+        );
+    }
     public void refreshViaPeriodAndOuterId(TableWrapper tableWrapper, int idFromPrimeTable,LocalDate start ,LocalDate end) {
         setItems(
                 tableWrapper,
