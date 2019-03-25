@@ -80,7 +80,7 @@ public class PacketForPopup extends DynamicContentPanel {
                                 .build(),
                         ColWrapperComboBox.newBuilder(Counterparty.class)
                                 .setColumnName("Поставщик")
-                                .setColumnSize(0.4d)
+                                .setColumnSize(0.6d)
                                 .setIsEditeble(true)
                                 .setPropertyName("counterparty")
                                 .build()

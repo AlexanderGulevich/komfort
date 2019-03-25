@@ -1,9 +1,7 @@
 package basisFx.appCore.events;
 
 import basisFx.appCore.elements.AppNode;
-import basisFx.appCore.interfaces.CallBackParametrized;
 import basisFx.appCore.interfaces.CallBackTyped;
-import basisFx.appCore.utils.Registry;
 import basisFx.service.ServiceCrossWindow;
 import javafx.scene.Node;
 import javafx.scene.control.Button;

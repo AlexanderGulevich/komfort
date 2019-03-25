@@ -10,6 +10,8 @@ import basisFx.appCore.events.StageDragging;
 import basisFx.appCore.utils.Coordinate;
 import basisFx.appCore.utils.Range;
 import basisFx.appCore.utils.Registry;
+import basisFx.domain.ActiveRecord;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -55,6 +57,7 @@ public  class ServiceCrossWindowByDateResearch  extends ServiceCrossWindow   {
         gridLabel = (Label) currentWindow.getNodeFromMap("gridLabel");
         table_wrapper = (TableWrapper) currentWindow.getNodeFromMap("tableWrapper");
         table_wrapper.getMediator().setRefreshCallBack(this::refreshTable);
+        table_wrapper.setOuterTable(outer_table_wrapper);
         initCloseButtonEvent();
         initStageDragging();
         initTitle();
@@ -66,10 +69,10 @@ public  class ServiceCrossWindowByDateResearch  extends ServiceCrossWindow   {
         refreshTable();
     }
     private void refreshTable() {
-        table_wrapper.getMediator().setItems(
-                table_wrapper,
-                table_wrapper.activeRecord.findAllByOuterId(outer_table_wrapper.clickedDomain.getId())
-        );
+        Integer clickedDomainId = outer_table_wrapper.clickedDomain.getId();
+        ObservableList<ActiveRecord> allByOuterId = table_wrapper.activeRecord.findAllByOuterId(clickedDomainId);
+        allByOuterId.forEach(record -> record.outerId=clickedDomainId);
+        table_wrapper.getMediator().setItems( table_wrapper, allByOuterId);
     }
     private void initDatePickersHadler() {
         datePickerHandlerSTART=new DatePickerHandler(dateStart,this);

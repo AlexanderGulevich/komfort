@@ -124,7 +124,7 @@ public class App{
 }
 // ColWrapperPopup.newBuilder()
 //         .setColumnSize(1d)
-//         .setPropertyName("ftgnfrg")
+//         .setBindPropertyName("ftgnfrg")
 //         .setCurrentWindow(window)
 //         .setIsEditeble(true)
 //         .setWindowBuilder(

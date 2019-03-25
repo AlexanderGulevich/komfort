@@ -3,18 +3,12 @@ package basisFx.presentation.dynamicContents;
 import basisFx.appCore.elements.GridPaneWrapper;
 import basisFx.appCore.elements.RangeDirector;
 import basisFx.appCore.grid.*;
-import basisFx.appCore.table.ColWrapperString;
+import basisFx.appCore.table.*;
 import basisFx.appCore.utils.Range;
-import basisFx.domain.LabelPrice;
+import basisFx.domain.*;
 import basisFx.service.ServiceTablesTwoLinked;
 import basisFx.appCore.elements.TableWrapper;
-import basisFx.appCore.table.ColWrapperComboBox;
-import basisFx.appCore.table.ColWrapperDate;
-import basisFx.appCore.table.ColWrapperDouble;
 import basisFx.appCore.utils.Coordinate;
-import basisFx.domain.Counterparty;
-import basisFx.domain.ExchangeRates;
-import basisFx.domain.Label;
 import basisFx.presentation.DynamicContentPanel;
 import javafx.scene.control.ComboBox;
 
@@ -45,7 +39,7 @@ public class LabelPanel  extends DynamicContentPanel {
                 .setColWrappers(
                         ColWrapperString.newBuilder()
                                 .setColumnName("Наименование")
-                                .setColumnSize(0.6d)
+                                .setColumnSize(0.4d)
                                 .setIsEditeble(true)
                                 .setPropertyName("name")
                                 .build(),
@@ -54,6 +48,20 @@ public class LabelPanel  extends DynamicContentPanel {
                                 .setColumnSize(0.4d)
                                 .setIsEditeble(true)
                                 .setPropertyName("counterparty")
+                                .build(),
+                        ColWrapperBind.newBuilder()
+                                .setColumnName("Валюта")
+                                .setColumnSize(0.2d)
+                                .setCallBackTypedAndParametrized(
+                                        r -> {
+                                            Label var = (Label) r;
+                                            if (!ActiveRecord.isNewDomane(var)) {
+                                               return  var .getCounterparty().currencyProperty();
+                                            }
+                                            else return null;
+                                        }
+
+                                )
                                 .build())
                 .build();
 

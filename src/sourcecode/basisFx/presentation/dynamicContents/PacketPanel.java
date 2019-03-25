@@ -44,10 +44,26 @@ public class PacketPanel  extends DynamicContentPanel {
                         })
                 .build();
 
-        WindowBuilder windowBuilder = WindowBuilder.newBuilder()
+        WindowBuilder packetSize = WindowBuilder.newBuilder()
                 .setGUIStructura(null)
                 .setDynamicContentPanelCreator(PacketSizePanel::new)
                 .setTitle("Размеры пакетов")
+                .setMessage(null)
+                .setFxmlFileName("AddDellPopupWindow")
+                .setParentAnchorNameForFXML(WindowAbstraction.DefaultPanelsNames.topVisibleAnchor.name())
+                .setWidth(700d)
+                .setHeight(600d)
+                .setCallBack(
+                        () -> {
+                            TableWrapper tableWrapper = (TableWrapper) Registry.mainWindow.getNodeFromMap("outer_table_wrapper");
+                            tableWrapper.getMediator().refresh(tableWrapper);
+                        })
+                .build();
+
+        WindowBuilder counterparty = WindowBuilder.newBuilder()
+                .setGUIStructura(null)
+                .setDynamicContentPanelCreator(CounterpartyPanelPopup::new)
+                .setTitle("Список контрагентов")
                 .setMessage(null)
                 .setFxmlFileName("AddDellPopupWindow")
                 .setParentAnchorNameForFXML(WindowAbstraction.DefaultPanelsNames.topVisibleAnchor.name())
@@ -72,16 +88,30 @@ public class PacketPanel  extends DynamicContentPanel {
                 .setColWrappers(
                         ColWrapperPopup.newBuilder()
                                 .setColumnName("Размер")
-                                .setColumnSize(0.4d)
+                                .setColumnSize(0.3d)
                                 .setIsEditeble(true)
-                                .setWindowBuilder(windowBuilder)
+                                .setWindowBuilder(packetSize)
                                 .setPropertyName("packetSize")
                                 .build(),
-                        ColWrapperComboBox.newBuilder(Counterparty.class)
+                        ColWrapperPopup.newBuilder()
                                 .setColumnName("Поставщик")
-                                .setColumnSize(0.4d)
+                                .setColumnSize(0.3d)
                                 .setIsEditeble(true)
+                                .setWindowBuilder(counterparty)
                                 .setPropertyName("counterparty")
+                                .build(),
+                        ColWrapperBind.newBuilder()
+                                .setColumnName("Валюта")
+                                .setColumnSize(0.2d)
+                                .setCallBackTypedAndParametrized(
+                                        r -> {
+                                            Packet var = (Packet) r;
+                                            if (!ActiveRecord.isNewDomane(var)) {
+                                                return var.getCounterparty().currencyProperty();
+                                            }
+                                            else return null;
+                                        }
+                                )
                                 .build(),
                         ColWrapperPopupViaBtn.newBuilder()
                                 .setBtnName("Архив цен")
@@ -91,7 +121,6 @@ public class PacketPanel  extends DynamicContentPanel {
                                 .build()
                 )
                 .build();
-
 
 
         Registry.mainWindow.setNodeToMap(packet,"outer_table_wrapper");

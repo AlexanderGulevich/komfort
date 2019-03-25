@@ -59,7 +59,7 @@
 //                .setColums(
 //                        columnFabric.<Country,DefaultPanelsNames>string(ColWrapper.Bulder.create()
 //                                        .setColumnName("Наименование")
-//                                        .setPropertyName("name")
+//                                        .setBindPropertyName("name")
 //                                        .setValueChecking(check.createTextCheck())
 //                                        .setColumnSize(1)
 //                                        .setDomainChanging(

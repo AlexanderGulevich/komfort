@@ -96,33 +96,29 @@ public class MainMenuSketch extends MenuSketch {
                                 .build()
                 ),
 
-                FontItemComposite.newBuilder().setDescription("Управление сырьем")
-                        .setFontsStore(FontsStore.IONICONS)
-                        .setFxmlFileName("vbut.fxml")
-                        .setFontSymbol("\uF4F4")
-                        .setFontSize(iconSize+2)
-                        .build().add(
-                        FontItemLeaf.newBuilder()
-                                .setDescription("Пакеты")
-                                .setDynamicContentPanelCreator(PacketPanel::new)
-                                .build(),
-                        FontItemLeaf.newBuilder()
-                                .setDescription("Этикетки")
-                                .setDynamicContentPanelCreator(LabelPanel::new)
-                                .build(),
-                        FontItemLeaf.newBuilder()
-                                .setDescription("Втулки")
-                                .setDynamicContentPanelCreator(SleevePanel::new)
-                                .build(),
-                        FontItemLeaf.newBuilder()
-                                .setDescription("Бумага")
-                                .setDynamicContentPanelCreator(PaperPanel::new)
-                                .build(),
-                        FontItemLeaf.newBuilder()
-                                .setDescription("Джамбо")
-                                .setDynamicContentPanelCreator(JumboPanel::new)
-                                .build()
-                ),
+//                FontItemComposite.newBuilder().setDescription("Управление сырьем")
+//                        .setFontsStore(FontsStore.IONICONS)
+//                        .setFxmlFileName("vbut.fxml")
+//                        .setFontSymbol("\uF4F4")
+//                        .setFontSize(iconSize+2)
+//                        .build().add(
+//                        FontItemLeaf.newBuilder()
+//                                .setDescription("Пакеты")
+//                                .setDynamicContentPanelCreator(PacketPanel::new)
+//                                .build(),
+//                        FontItemLeaf.newBuilder()
+//                                .setDescription("Этикетки")
+//                                .setDynamicContentPanelCreator(LabelPanel::new)
+//                                .build(),
+//                        FontItemLeaf.newBuilder()
+//                                .setDescription("Втулки")
+//                                .setDynamicContentPanelCreator(SleevePanel::new)
+//                                .build(),
+//                        FontItemLeaf.newBuilder()
+//                                .setDescription("Бумага")
+//                                .setDynamicContentPanelCreator(PaperPanel::new)
+//                                .build()
+//                ),
 
                 FontItemComposite.newBuilder().setDescription("Прочая информация")
                         .setFontsStore(FontsStore.MATERIAL_ICONS)
@@ -145,7 +141,28 @@ public class MainMenuSketch extends MenuSketch {
                             FontItemLeaf.newBuilder()
                                     .setDescription("Валюты")
                                     .setDynamicContentPanelCreator(ExchangeRatesPanel::new)
-                                    .build()
+                                    .build(),
+                          FontItemLeaf.newBuilder()
+                                .setDescription("Ширины ролей")
+                                .setDynamicContentPanelCreator(JumboPanel::new)
+                                .build()
+                        ,
+                        FontItemLeaf.newBuilder()
+                                .setDescription("Пакеты")
+                                .setDynamicContentPanelCreator(PacketPanel::new)
+                                .build(),
+                        FontItemLeaf.newBuilder()
+                                .setDescription("Этикетки")
+                                .setDynamicContentPanelCreator(LabelPanel::new)
+                                .build(),
+                        FontItemLeaf.newBuilder()
+                                .setDescription("Втулки")
+                                .setDynamicContentPanelCreator(SleevePanel::new)
+                                .build(),
+                        FontItemLeaf.newBuilder()
+                                .setDescription("Бумага")
+                                .setDynamicContentPanelCreator(PaperPanel::new)
+                                .build()
 
 
 

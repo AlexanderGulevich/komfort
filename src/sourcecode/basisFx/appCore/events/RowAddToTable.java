@@ -52,13 +52,18 @@ public class RowAddToTable<T> extends AppEvent implements TableBasedDirectors {
     public void run() {
         try {
             ActiveRecord newInstance = (ActiveRecord) tableWrapper.activeRecordClass.newInstance();
+            if (tableWrapper.getOuterTable() != null) {
+                newInstance.outerId=tableWrapper.getOuterTable().clickedDomain.getId();
+            }
             if (tableWrapper.isItemListExist() && !tableWrapper.haveNewItem()) {
+
                 System.out.println("RowAddToTable.run---tableWrapper.isItemListExist() && !tableWrapper.haveNewItem()");
                     tableWrapper.getItems().add(newInstance);
                     tableWrapper.scrollToItem(newInstance);
                     tableWrapper.focusItem(newInstance);
 
                 if (mediator != null) {
+
                     currentNewInstance=newInstance;
                     mediator.inform(this);
                 }

@@ -27,9 +27,12 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import javafx.stage.Stage;
 import javafx.util.Callback;
+import lombok.Getter;
+import lombok.Setter;
 
 public  class TableWrapper extends AppNode  {
     private boolean isEditable;
+    @Setter @Getter private TableWrapper outerTable;
     private DynamicContentPanel dynamicContentPanel;
     private GridPaneWrapper gridPaneWrapper;
     private Callback<TableView.ResizeFeatures,Boolean> columnResizePolicy ;

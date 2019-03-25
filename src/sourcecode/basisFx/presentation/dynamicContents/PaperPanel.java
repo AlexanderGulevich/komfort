@@ -4,16 +4,15 @@ import basisFx.appCore.elements.RangeDirector;
 import basisFx.appCore.elements.TableWrapper;
 import basisFx.appCore.grid.*;
 import basisFx.appCore.elements.GridPaneWrapper;
+import basisFx.appCore.table.ColWrapperBind;
 import basisFx.appCore.utils.Range;
-import basisFx.domain.Paper;
+import basisFx.domain.*;
 import basisFx.presentation.DynamicContentPanel;
 import basisFx.service.ServiceTablesTwoLinked;
 import basisFx.appCore.table.ColWrapperComboBox;
 import basisFx.appCore.table.ColWrapperDate;
 import basisFx.appCore.table.ColWrapperDouble;
 import basisFx.appCore.utils.Coordinate;
-import basisFx.domain.Counterparty;
-import basisFx.domain.PaperPrice;
 import javafx.scene.control.ComboBox;
 
 public class PaperPanel  extends DynamicContentPanel {
@@ -42,9 +41,22 @@ public class PaperPanel  extends DynamicContentPanel {
                 .setColWrappers(
                         ColWrapperComboBox.newBuilder(Counterparty.class)
                                 .setColumnName("Поставщик")
-                                .setColumnSize(1d)
+                                .setColumnSize(0.7d)
                                 .setIsEditeble(true)
                                 .setPropertyName("counterparty")
+                                .build(),
+                        ColWrapperBind.newBuilder()
+                                .setColumnName("Валюта")
+                                .setColumnSize(0.3d)
+                                .setCallBackTypedAndParametrized(
+                                        r -> {
+                                            Counterparty var = (Counterparty) r;
+                                            if (!ActiveRecord.isNewDomane(var)) {
+                                                return  var.currencyProperty();
+                                            }
+                                            else return null;
+                                        }
+                                )
                                 .build()
                 )
                 .build();
