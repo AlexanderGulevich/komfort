@@ -1,6 +1,6 @@
 package basisFx.appCore.utils;
 
-import basisFx.domain.ActiveRecord;
+import basisFx.appCore.activeRecord.ActiveRecord;
 
 public class ActiveRecordDTO  extends  DTO{
 

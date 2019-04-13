@@ -1,11 +1,12 @@
 package basisFx.domain;
 
+import basisFx.appCore.activeRecord.ActiveRecord;
 import basisFx.appCore.annotation.DataStore;
 import basisFx.appCore.annotation.Sorting;
 import javafx.beans.property.SimpleObjectProperty;
 import java.time.LocalDate;
 
-public class ProductPrice extends ActiveRecord{
+public class ProductPrice extends ActiveRecord {
 
     private static ProductPrice INSTANCE = new ProductPrice();
     private SimpleObjectProperty<Double> price =new SimpleObjectProperty<>(this, "price", null);

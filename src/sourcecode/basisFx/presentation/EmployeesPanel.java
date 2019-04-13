@@ -1,4 +1,4 @@
-package basisFx.presentation.dynamicContents;
+package basisFx.presentation;
 import basisFx.appCore.events.RowDeleteFromTable;
 import basisFx.appCore.events.SubWindowCreaterByBut;
 import basisFx.appCore.events.YNWindowCreaterForTable;
@@ -8,7 +8,7 @@ import basisFx.appCore.utils.Registry;
 import basisFx.appCore.windows.WindowAbstraction;
 import basisFx.appCore.windows.WindowBuilder;
 import basisFx.domain.ActualEmployersRate;
-import basisFx.presentation.DynamicContentPanel;
+import basisFx.appCore.DynamicContentPanel;
 import basisFx.service.ServiceTablesSingle;
 import basisFx.appCore.elements.TableWrapper;
 import basisFx.appCore.elements.GridPaneWrapper;
@@ -31,7 +31,7 @@ public class EmployeesPanel extends DynamicContentPanel {
         dateResearchWindowBuilder = WindowBuilder.newBuilder()
                 .setGUIStructura(null)
                 .setButtonsForStage(null)
-                .setDynamicContentPanelCreator(RatePerHourPanel::new)
+                .setPanelCreator(RatePerHourPanel::new)
                 .setTitle("Архив тарифов")
                 .setMessage(null)
                 .setFxmlFileName("ByDateResearchWindow")
@@ -49,7 +49,7 @@ public class EmployeesPanel extends DynamicContentPanel {
         hiringWindowBuilder = WindowBuilder.newBuilder()
                 .setGUIStructura(null)
                 .setButtonsForStage(null)
-                .setDynamicContentPanelCreator(null)
+                .setPanelCreator(null)
                 .setTitle(null)
                 .setMessage(null)
                 .setFxmlFileName("EmployerHire")

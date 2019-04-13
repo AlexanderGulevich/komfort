@@ -1,5 +1,6 @@
-package basisFx.presentation.dynamicContents;
+package basisFx.presentation;
 
+import basisFx.appCore.activeRecord.ActiveRecord;
 import basisFx.appCore.elements.DatePickerWrapper;
 import basisFx.appCore.elements.LabelWrapper;
 import basisFx.appCore.elements.TableWrapper;
@@ -14,7 +15,7 @@ import basisFx.appCore.utils.Coordinate;
 import basisFx.appCore.utils.Registry;
 import basisFx.dataSource.Db;
 import basisFx.domain.*;
-import basisFx.presentation.DynamicContentPanel;
+import basisFx.appCore.DynamicContentPanel;
 import basisFx.service.ServiceTablesAutoCommitByDate;
 import javafx.geometry.Pos;
 

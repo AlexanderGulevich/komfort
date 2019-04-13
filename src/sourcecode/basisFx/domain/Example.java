@@ -1,5 +1,7 @@
 package basisFx.domain;
 
+import basisFx.appCore.activeRecord.ActiveRecord;
+import basisFx.appCore.activeRecord.BoolComboBox;
 import basisFx.dataSource.Db;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
@@ -8,7 +10,7 @@ import javafx.collections.ObservableList;
 import java.sql.*;
 import java.time.LocalDate;
 
-public class Example extends ActiveRecord{
+public class Example extends ActiveRecord {
     private SimpleObjectProperty<String> name =new SimpleObjectProperty(this, "name", null);
     private SimpleObjectProperty<Currency> currency =new SimpleObjectProperty<>(this, "currency", null);
     private SimpleObjectProperty<PacketSize> packetSize =new SimpleObjectProperty<>(this, "packetSize", null);

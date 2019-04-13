@@ -1,6 +1,6 @@
 package basisFx.appCore.interfaces;
 
-import basisFx.domain.ActiveRecord;
+import basisFx.appCore.activeRecord.ActiveRecord;
 
 public interface DataStoreCallBack {
 

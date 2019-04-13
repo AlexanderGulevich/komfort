@@ -1,25 +1,25 @@
-package basisFx.presentation.dynamicContents;
+package basisFx.presentation;
 
+import basisFx.appCore.activeRecord.ActiveRecord;
 import basisFx.appCore.elements.RangeDirector;
-import basisFx.appCore.grid.*;
-import basisFx.appCore.utils.Range;
-import basisFx.service.ServiceTablesTwoLinked;
 import basisFx.appCore.elements.TableWrapper;
+import basisFx.appCore.grid.*;
 import basisFx.appCore.elements.GridPaneWrapper;
+import basisFx.appCore.table.ColWrapperBind;
+import basisFx.appCore.utils.Range;
+import basisFx.domain.*;
+import basisFx.appCore.DynamicContentPanel;
+import basisFx.service.ServiceTablesTwoLinked;
+import basisFx.appCore.table.ColWrapperComboBox;
 import basisFx.appCore.table.ColWrapperDate;
 import basisFx.appCore.table.ColWrapperDouble;
-import basisFx.appCore.table.ColWrapperString;
 import basisFx.appCore.utils.Coordinate;
-import basisFx.domain.Currency;
-import basisFx.domain.ExchangeRates;
-import basisFx.presentation.DynamicContentPanel;
 import javafx.scene.control.ComboBox;
 
-public class ExchangeRatesPanel extends DynamicContentPanel {
-
+public class PaperPanel  extends DynamicContentPanel {
     private ServiceTablesTwoLinked mediator;
-    private TableWrapper leftTableWrapper;
-    private TableWrapper rightTableWrapper;
+    private TableWrapper leftTableWrapper ;
+    private TableWrapper rightTableWrapper ;
     private RangeDirector rangeDirector;
 
     @Override
@@ -31,42 +31,56 @@ public class ExchangeRatesPanel extends DynamicContentPanel {
     public void customDynamicElementsInit() {
         rangeDirector=new RangeDirector(new ComboBox<>(), mediator, Range.LAST10,Range.getAll());
 
-        leftTableWrapper = TableWrapper.newBuilder()
-                .setGridName("Валюта ")
+          leftTableWrapper = TableWrapper.newBuilder()
+                .setGridName("Бумага ")
                 .setOrganization(new SingleTable(new ButSizeLittle(),new CtrlPosTop()))
-                .setActiveRecordClass(Currency.class)
+                .setActiveRecordClass(Paper.class)
                 .setUnitOfWork(unitOfWork)
                 .setIsEditable(true)
                 .setIsSortableColums(false)
                 .setServiceTables(mediator)
                 .setColWrappers(
-                        ColWrapperString.newBuilder()
-                                .setColumnName("Наименование")
-                                .setColumnSize(1d)
+                        ColWrapperComboBox.newBuilder(Counterparty.class)
+                                .setColumnName("Поставщик")
+                                .setColumnSize(0.7d)
                                 .setIsEditeble(true)
-                                .setPropertyName("name")
-                                .build())
+                                .setPropertyName("counterparty")
+                                .build(),
+                        ColWrapperBind.newBuilder()
+                                .setColumnName("Валюта")
+                                .setColumnSize(0.3d)
+                                .setCallBackTypedAndParametrized(
+                                        r -> {
+                                            Paper var = (Paper) r;
+                                            if (!ActiveRecord.isNewDomane(var)) {
+                                                return  var.counterpartyProperty();
+                                            }
+                                            else return null;
+                                        }
+                                )
+                                .build()
+                )
                 .build();
 
 
-        rightTableWrapper = TableWrapper.newBuilder()
-                .setGridName("Курсы валют")
+          rightTableWrapper = TableWrapper.newBuilder()
+                .setGridName("Цены ")
                 .setOrganization( new SingleTable(new ButSizeLittle(),new CtrlPosButAndCombobox(rangeDirector.getComboBox())))
-                .setActiveRecordClass(ExchangeRates.class)
+                .setActiveRecordClass(PaperPrice.class)
                 .setUnitOfWork(unitOfWork)
                 .setIsEditable(true)
                 .setIsSortableColums(false)
                 .setServiceTables(mediator)
                 .setColWrappers(
                         ColWrapperDouble.newBuilder()
-                                .setColumnName("Курс")
-                                .setColumnSize(0.6d)
+                                .setColumnName("Цена")
+                                .setColumnSize(0.4d)
                                 .setIsEditeble(true)
-                                .setPropertyName("rate")
+                                .setPropertyName("price")
                                 .build(),
                         ColWrapperDate.newBuilder()
-                                .setColumnName("Дата")
-                                .setColumnSize(0.4d)
+                                .setColumnName("Действует с")
+                                .setColumnSize(0.6d)
                                 .setIsEditeble(true)
                                 .setPropertyName("startDate")
                                 .build()
@@ -76,7 +90,7 @@ public class ExchangeRatesPanel extends DynamicContentPanel {
         GridPaneWrapper commonGridPaneWrapper = GridPaneWrapper.newBuilder()
                 .setColumnVsPercent(70)
                 .setColumnVsPercent(30)
-                .setGridName("Управление валютами и динамика курсов")
+                .setGridName("Поставщики бумаги и цены")
                 .setParentAnchor(dynamicContentAnchorHolder)
                 .setCoordinate(new Coordinate(0d, 10d, 10d, 0d))
                 .setGridLinesVisibility(gridVisibility)
@@ -87,6 +101,8 @@ public class ExchangeRatesPanel extends DynamicContentPanel {
                         )
                 )
                 .build();
+
+
     }
 
     @Override
@@ -96,6 +112,5 @@ public class ExchangeRatesPanel extends DynamicContentPanel {
         mediator.setRangeDirector(rangeDirector);
         mediator.initElements();
     }
-
 
 }

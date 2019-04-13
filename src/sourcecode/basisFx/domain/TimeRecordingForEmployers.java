@@ -1,5 +1,6 @@
 package basisFx.domain;
 
+import basisFx.appCore.activeRecord.ActiveRecord;
 import basisFx.appCore.interfaces.RecordWithDate;
 import basisFx.dataSource.Db;
 import javafx.beans.property.SimpleObjectProperty;

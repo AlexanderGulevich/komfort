@@ -2,7 +2,7 @@ package basisFx.appCore.reflection;
 
 import basisFx.appCore.annotation.DataStore;
 import basisFx.appCore.utils.DomainPropertiesMetaInfo;
-import basisFx.domain.ActiveRecord;
+import basisFx.appCore.activeRecord.ActiveRecord;
 import javafx.beans.property.SimpleObjectProperty;
 
 import java.lang.reflect.*;

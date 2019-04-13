@@ -1,22 +1,19 @@
-package basisFx.presentation.dynamicContents;
+package basisFx.presentation;
 
-import basisFx.appCore.grid.CtrlPosMiddle;
+import basisFx.appCore.elements.GridPaneWrapper;
+import basisFx.appCore.elements.TableWrapper;
 import basisFx.appCore.grid.CtrlPosTop;
 import basisFx.appCore.grid.ButSizeBig;
 import basisFx.appCore.grid.SingleTable;
-import basisFx.appCore.table.ColWrapperComboBox;
-import basisFx.service.ServiceTablesSingle;
-import basisFx.appCore.elements.TableWrapper;
-import basisFx.appCore.elements.GridPaneWrapper;
-import basisFx.appCore.table.ColWrapperString;
+import basisFx.appCore.table.ColWrapperInt;
 import basisFx.appCore.utils.Coordinate;
-import basisFx.domain.Counterparty;
-import basisFx.domain.Currency;
-import basisFx.presentation.DynamicContentPanel;
+import basisFx.domain.Jumbo;
+import basisFx.appCore.DynamicContentPanel;
+import basisFx.service.ServiceTablesSingle;
 
-public class CounterpartyPanel extends DynamicContentPanel {
+public class JumboPanel extends DynamicContentPanel {
     private ServiceTablesSingle mediatorSingleTable;
-    private   TableWrapper tableWrapper;
+    private      TableWrapper tableWrapper ;
     @Override
     public void createServices() {
         mediatorSingleTable = new ServiceTablesSingle();
@@ -24,25 +21,24 @@ public class CounterpartyPanel extends DynamicContentPanel {
 
     @Override
     public void customDynamicElementsInit() {
-
-          tableWrapper = TableWrapper.newBuilder()
-                .setActiveRecordClass(Counterparty.class)
+            tableWrapper = TableWrapper.newBuilder()
+                .setActiveRecordClass(Jumbo.class)
                 .setUnitOfWork(unitOfWork)
                 .setIsEditable(true)
                 .setIsSortableColums(false)
                 .setServiceTables(mediatorSingleTable)
                 .setColWrappers(
-                        ColWrapperString.newBuilder()
-                                .setColumnName("Наименование")
+                        ColWrapperInt.newBuilder()
+                                .setColumnName("Ширина")
                                 .setColumnSize(0.6d)
                                 .setIsEditeble(true)
-                                .setPropertyName("name")
+                                .setPropertyName("width")
                                 .build(),
-                        ColWrapperComboBox.newBuilder(Currency.class)
-                                .setColumnName("Валюта ")
+                        ColWrapperInt.newBuilder()
+                                .setColumnName("Кол-во продукции на выходе ")
                                 .setIsEditeble(true)
                                 .setColumnSize(0.4d)
-                                .setPropertyName("currency")
+                                .setPropertyName("numberOfProduct")
                                 .build()
 
                 )
@@ -50,7 +46,7 @@ public class CounterpartyPanel extends DynamicContentPanel {
 
         GridPaneWrapper.newBuilder()
                 .setOrganization(new SingleTable(tableWrapper,new ButSizeBig(),new CtrlPosTop()))
-                .setGridName("Список контрагентов")
+                .setGridName("Ширины джамбо ролей и выход продукции по ширине")
                 .setParentAnchor(dynamicContentAnchorHolder)
                 .setCoordinate(new Coordinate(0d,10d,10d,0d))
                 .setGridLinesVisibility(false)

@@ -4,8 +4,8 @@ package basisFx.appCore.reflection;
 import basisFx.appCore.utils.DomainPropertiesMetaInfo;
 import basisFx.appCore.utils.Range;
 import basisFx.dataSource.Db;
-import basisFx.domain.ActiveRecord;
-import basisFx.domain.BoolComboBox;
+import basisFx.appCore.activeRecord.ActiveRecord;
+import basisFx.appCore.activeRecord.BoolComboBox;
 import javafx.collections.ObservableList;
 
 import java.lang.reflect.*;

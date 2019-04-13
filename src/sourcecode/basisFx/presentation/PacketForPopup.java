@@ -1,4 +1,4 @@
-package basisFx.presentation.dynamicContents;
+package basisFx.presentation;
 
 import basisFx.appCore.elements.GridPaneWrapper;
 import basisFx.appCore.elements.TableWrapper;
@@ -11,7 +11,7 @@ import basisFx.appCore.windows.WindowAbstraction;
 import basisFx.appCore.windows.WindowBuilder;
 import basisFx.domain.Counterparty;
 import basisFx.domain.Packet;
-import basisFx.presentation.DynamicContentPanel;
+import basisFx.appCore.DynamicContentPanel;
 import basisFx.service.ServiceTablesSingle;
 
 public class PacketForPopup extends DynamicContentPanel {
@@ -31,7 +31,7 @@ public class PacketForPopup extends DynamicContentPanel {
         WindowBuilder dateResearchWindowBuilder = WindowBuilder.newBuilder()
                 .setGUIStructura(null)
                 .setButtonsForStage(null)
-                .setDynamicContentPanelCreator(PacketPricePanelPopup::new)
+                .setPanelCreator(PacketPricePanelPopup::new)
                 .setTitle("Реестр цен")
                 .setMessage(null)
                 .setFxmlFileName("ByDateResearchWindow")
@@ -47,7 +47,7 @@ public class PacketForPopup extends DynamicContentPanel {
 
         WindowBuilder windowBuilder = WindowBuilder.newBuilder()
                 .setGUIStructura(null)
-                .setDynamicContentPanelCreator(PacketSizePanel::new)
+                .setPanelCreator(PacketSizePanel::new)
                 .setTitle("Размеры пакетов")
                 .setMessage(null)
                 .setFxmlFileName("AddDellPopupWindow")

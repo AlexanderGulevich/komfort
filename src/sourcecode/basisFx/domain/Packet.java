@@ -1,15 +1,11 @@
 package basisFx.domain;
 
 
-import basisFx.dataSource.Db;
+import basisFx.appCore.activeRecord.ActiveRecord;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.ObservableList;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-
-public class Packet extends  ActiveRecord {
+public class Packet extends ActiveRecord {
 
 
     private static Packet INSTANCE = new Packet();

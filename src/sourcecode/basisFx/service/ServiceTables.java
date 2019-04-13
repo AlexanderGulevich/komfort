@@ -4,7 +4,7 @@ import basisFx.appCore.elements.AppNode;
 import basisFx.appCore.elements.TableWrapper;
 import basisFx.appCore.interfaces.CallBack;
 import basisFx.appCore.utils.Range;
-import basisFx.domain.ActiveRecord;
+import basisFx.appCore.activeRecord.ActiveRecord;
 import javafx.collections.ObservableList;
 import lombok.Setter;
 

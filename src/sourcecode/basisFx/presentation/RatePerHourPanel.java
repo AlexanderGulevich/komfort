@@ -1,4 +1,4 @@
-package basisFx.presentation.dynamicContents;
+package basisFx.presentation;
 
 import basisFx.appCore.elements.GridPaneWrapper;
 import basisFx.appCore.elements.TableWrapper;
@@ -7,7 +7,7 @@ import basisFx.appCore.table.ColWrapperDate;
 import basisFx.appCore.table.ColWrapperDouble;
 import basisFx.appCore.utils.Coordinate;
 import basisFx.domain.EmployeesRatePerHour;
-import basisFx.presentation.DynamicContentPanel;
+import basisFx.appCore.DynamicContentPanel;
 import basisFx.service.ServiceTablesSingle;
 
 public class RatePerHourPanel extends DynamicContentPanel {

@@ -2,14 +2,14 @@ package basisFx.appCore.windows;
 
 import basisFx.appCore.interfaces.CallBack;
 import basisFx.appCore.interfaces.CallBackParametrized;
-import basisFx.appCore.interfaces.DynamicContentPanelCreator;
+import basisFx.appCore.interfaces.PanelCreator;
 import basisFx.appCore.guiStructura.GUIStructura;
 import lombok.Setter;
 import lombok.experimental.Accessors;
 
 public class WindowBuilder {
     public GUIStructura GUIStructura=null;
-    public DynamicContentPanelCreator dynamicContentPanelCreator=null;
+    public PanelCreator panelCreator =null;
     public Double width=null;
     public Double height=null;
     public String fxmlFileName=null;
@@ -22,7 +22,7 @@ public class WindowBuilder {
 
     private WindowBuilder(Builder builder) {
         GUIStructura = builder.GUIStructura;
-        dynamicContentPanelCreator = builder.dynamicContentPanelCreator;
+        panelCreator = builder.panelCreator;
         width = builder.width;
         height = builder.height;
         fxmlFileName = builder.fxmlFileName;
@@ -41,7 +41,7 @@ public class WindowBuilder {
     @Accessors (chain = true) @Setter
     public static final class Builder {
         private basisFx.appCore.guiStructura.GUIStructura GUIStructura;
-        private DynamicContentPanelCreator dynamicContentPanelCreator;
+        private PanelCreator panelCreator;
         private Double width;
         private Double height;
         private String fxmlFileName;

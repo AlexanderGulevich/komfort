@@ -5,10 +5,10 @@ import basisFx.appCore.settings.CSSclasses;
 import basisFx.appCore.table.ColWrapper;
 import basisFx.appCore.utils.Coordinate;
 import basisFx.appCore.windows.WindowAbstraction;
-import basisFx.presentation.DynamicContentPanel;
+import basisFx.appCore.DynamicContentPanel;
 import basisFx.service.ServiceTables;
 import basisFx.appCore.events.AppEvent;
-import basisFx.domain.ActiveRecord;
+import basisFx.appCore.activeRecord.ActiveRecord;
 import basisFx.dataSource.UnitOfWork;
 import basisFx.appCore.table.TableListener;
 

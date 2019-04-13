@@ -1,24 +1,23 @@
-package basisFx.presentation.dynamicContents;
+package basisFx.presentation;
 
-import basisFx.appCore.elements.RangeDirector;
-import basisFx.appCore.elements.TableWrapper;
-import basisFx.appCore.grid.*;
+import basisFx.appCore.activeRecord.ActiveRecord;
 import basisFx.appCore.elements.GridPaneWrapper;
-import basisFx.appCore.table.ColWrapperBind;
+import basisFx.appCore.elements.RangeDirector;
+import basisFx.appCore.grid.*;
+import basisFx.appCore.table.*;
 import basisFx.appCore.utils.Range;
 import basisFx.domain.*;
-import basisFx.presentation.DynamicContentPanel;
 import basisFx.service.ServiceTablesTwoLinked;
-import basisFx.appCore.table.ColWrapperComboBox;
-import basisFx.appCore.table.ColWrapperDate;
-import basisFx.appCore.table.ColWrapperDouble;
+import basisFx.appCore.elements.TableWrapper;
 import basisFx.appCore.utils.Coordinate;
+import basisFx.appCore.DynamicContentPanel;
 import javafx.scene.control.ComboBox;
 
-public class PaperPanel  extends DynamicContentPanel {
+public class LabelPanel  extends DynamicContentPanel {
+
     private ServiceTablesTwoLinked mediator;
-    private TableWrapper leftTableWrapper ;
-    private TableWrapper rightTableWrapper ;
+    private  TableWrapper leftTableWrapper ;
+    private  TableWrapper rightTableWrapper ;
     private RangeDirector rangeDirector;
 
     @Override
@@ -31,41 +30,47 @@ public class PaperPanel  extends DynamicContentPanel {
         rangeDirector=new RangeDirector(new ComboBox<>(), mediator, Range.LAST10,Range.getAll());
 
           leftTableWrapper = TableWrapper.newBuilder()
-                .setGridName("Бумага ")
+                .setGridName("Этикетки")
                 .setOrganization(new SingleTable(new ButSizeLittle(),new CtrlPosTop()))
-                .setActiveRecordClass(Paper.class)
+                .setActiveRecordClass(Label.class)
                 .setUnitOfWork(unitOfWork)
                 .setIsEditable(true)
                 .setIsSortableColums(false)
                 .setServiceTables(mediator)
                 .setColWrappers(
+                        ColWrapperString.newBuilder()
+                                .setColumnName("Наименование")
+                                .setColumnSize(0.4d)
+                                .setIsEditeble(true)
+                                .setPropertyName("name")
+                                .build(),
                         ColWrapperComboBox.newBuilder(Counterparty.class)
                                 .setColumnName("Поставщик")
-                                .setColumnSize(0.7d)
+                                .setColumnSize(0.4d)
                                 .setIsEditeble(true)
                                 .setPropertyName("counterparty")
                                 .build(),
                         ColWrapperBind.newBuilder()
                                 .setColumnName("Валюта")
-                                .setColumnSize(0.3d)
+                                .setColumnSize(0.2d)
                                 .setCallBackTypedAndParametrized(
                                         r -> {
-                                            Counterparty var = (Counterparty) r;
+                                            Label var = (Label) r;
                                             if (!ActiveRecord.isNewDomane(var)) {
-                                                return  var.currencyProperty();
+                                               return  var .getCounterparty().currencyProperty();
                                             }
                                             else return null;
                                         }
+
                                 )
-                                .build()
-                )
+                                .build())
                 .build();
 
 
           rightTableWrapper = TableWrapper.newBuilder()
-                .setGridName("Цены ")
+                .setGridName("Цены")
                 .setOrganization( new SingleTable(new ButSizeLittle(),new CtrlPosButAndCombobox(rangeDirector.getComboBox())))
-                .setActiveRecordClass(PaperPrice.class)
+                .setActiveRecordClass(LabelPrice.class)
                 .setUnitOfWork(unitOfWork)
                 .setIsEditable(true)
                 .setIsSortableColums(false)
@@ -89,17 +94,14 @@ public class PaperPanel  extends DynamicContentPanel {
         GridPaneWrapper commonGridPaneWrapper = GridPaneWrapper.newBuilder()
                 .setColumnVsPercent(70)
                 .setColumnVsPercent(30)
-                .setGridName("Поставщики бумаги и цены")
+                .setGridName("Управление валютами и динамика курсов")
                 .setParentAnchor(dynamicContentAnchorHolder)
                 .setCoordinate(new Coordinate(0d, 10d, 10d, 0d))
                 .setGridLinesVisibility(gridVisibility)
-                .setOrganization(
-                        new TwoHorisontalBondGrids(
-                                leftTableWrapper.getGridPaneWrapper(),
-                                rightTableWrapper.getGridPaneWrapper()
-                        )
-                )
+                .setOrganization(new TwoHorisontalBondGrids(leftTableWrapper,rightTableWrapper))
                 .build();
+
+
 
 
     }
@@ -110,6 +112,9 @@ public class PaperPanel  extends DynamicContentPanel {
         mediator.setPrimaryTableWrapper(leftTableWrapper);;
         mediator.setRangeDirector(rangeDirector);
         mediator.initElements();
+
     }
 
+
 }
+

@@ -3,7 +3,6 @@ package basisFx.appCore.utils;
 import basisFx.appCore.fabrics.WindowFabric;
 import basisFx.appCore.windows.WindowAbstraction;
 import basisFx.service.ServiceCrossWindow;
-import basisFx.service.ServiceCrossWindowByDateResearch;
 
 import java.util.HashMap;
 

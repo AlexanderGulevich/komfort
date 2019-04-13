@@ -1,4 +1,4 @@
-package basisFx.presentation.dynamicContents;
+package basisFx.presentation;
 
 import basisFx.appCore.elements.GridPaneWrapper;
 import basisFx.appCore.elements.TableWrapper;
@@ -11,7 +11,7 @@ import basisFx.appCore.utils.Coordinate;
 import basisFx.appCore.utils.Registry;
 import basisFx.appCore.windows.WindowBuilder;
 import basisFx.domain.Fired;
-import basisFx.presentation.DynamicContentPanel;
+import basisFx.appCore.DynamicContentPanel;
 import basisFx.service.ServiceTablesSingle;
 
 public class FiredEmployeesPanel extends DynamicContentPanel {

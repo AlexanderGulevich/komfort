@@ -1,7 +1,7 @@
 package basisFx.appCore.events;
 
 import basisFx.appCore.elements.AppNode;
-import basisFx.appCore.menu.FontItemLeaf;
+import basisFx.appCore.menu.LeftAndTopBarItemLeaf;
 import basisFx.appCore.menu.LeftAndTopBar;
 import basisFx.appCore.settings.CSSclasses;
 import basisFx.appCore.utils.Registry;
@@ -12,13 +12,13 @@ import javafx.scene.layout.AnchorPane;
 
 public class MenuButtonsClick extends AppEvent{
 
-    protected FontItemLeaf fontItemLeaf;
+    protected LeftAndTopBarItemLeaf LeftAndTopBarItemLeaf;
     protected LeftAndTopBar represent;
 
     protected  Button  but;
 
-    public MenuButtonsClick(FontItemLeaf component, LeftAndTopBar represent ) {
-        this.fontItemLeaf = component;
+    public MenuButtonsClick(LeftAndTopBarItemLeaf component, LeftAndTopBar represent ) {
+        this.LeftAndTopBarItemLeaf = component;
         this.represent=represent;
 
     }
@@ -45,7 +45,7 @@ public class MenuButtonsClick extends AppEvent{
     @Override
     public void run() {
         clearContent();
-        fontItemLeaf.getDynamicContentPanelCreator().create().initTemplateMethod(Registry.mainWindow);
+        LeftAndTopBarItemLeaf.getPanelCreator().create().initTemplateMethod(Registry.mainWindow);
 
 
     }

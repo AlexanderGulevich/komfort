@@ -1,12 +1,10 @@
 package basisFx.domain;
 
+import basisFx.appCore.activeRecord.ActiveRecord;
 import basisFx.appCore.annotation.DataStore;
 import basisFx.appCore.annotation.Sorting;
-import basisFx.dataSource.Db;
 import javafx.beans.property.SimpleObjectProperty;
-import javafx.collections.ObservableList;
 
-import java.sql.*;
 import java.time.LocalDate;
 
 public class LabelPrice extends ActiveRecord {

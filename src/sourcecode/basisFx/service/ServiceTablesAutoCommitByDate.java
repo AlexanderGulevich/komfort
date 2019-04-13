@@ -8,7 +8,7 @@ import basisFx.appCore.events.AppEvent;
 import basisFx.appCore.interfaces.DataStoreCallBack;
 import basisFx.appCore.interfaces.RecordWithDate;
 import basisFx.dataSource.UnitOfWork;
-import basisFx.domain.ActiveRecord;
+import basisFx.appCore.activeRecord.ActiveRecord;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import lombok.Setter;

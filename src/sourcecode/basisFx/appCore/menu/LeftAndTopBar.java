@@ -20,16 +20,21 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 public class LeftAndTopBar extends MenuRepresent {
-    protected Label label = ((Label) Registry.mainWindow.getNodeFromMap("commonMenuLabel"));
-    protected HBox horisontalMenuButHolder = ((HBox) Registry.mainWindow.getNodeFromMap("horisontalMenuButHolder"));
-    protected VBox vButHolder = (VBox) Registry.mainWindow.getNodeFromMap("vButHolder")  ;
-    protected AnchorPane contentAnchorPane = (AnchorPane) Registry.mainWindow.getNodeFromMap("mainContentAnchor")  ;
-    private ArrayList<ButtonWrapper> buttonWrappers=new ArrayList<>();
+    protected Label label =
+            ((Label) Registry.mainWindow.getNodeFromMap("commonMenuLabel"));
+    protected HBox horisontalMenuButHolder =
+            ((HBox) Registry.mainWindow.getNodeFromMap("horisontalMenuButHolder"));
+    protected VBox vButHolder =
+            (VBox) Registry.mainWindow.getNodeFromMap("vButHolder")  ;
+    protected AnchorPane contentAnchorPane =
+            (AnchorPane) Registry.mainWindow.getNodeFromMap("mainContentAnchor")  ;
+    private ArrayList<ButtonWrapper> buttonWrappers=
+            new ArrayList<>();
     private leftSideMenuIconClick startButEvent;
 
     public LeftAndTopBar(MenuSketch sketch) {
         label.setText("");
-        makeStructuredMenuView(sketch.getComponents(), null);
+        makeStructuredMenuView(sketch.getMenuTree(), null);
         setDefaultStyleVerticalButtons();
         setDefaultStyleHorisontalButtons();
         fireStartButton();
@@ -54,31 +59,18 @@ public class LeftAndTopBar extends MenuRepresent {
             MenuComponent verticalBut = iterator.next();
 
             if (verticalBut.isComposit()) {
-                createVerticalBut((FontItemComposite) verticalBut);
+                createVerticalBut((LeftAndTopBarItemComposite) verticalBut);
             }
         }
     }
-    private void createVerticalBut(FontItemComposite verticalBut) {
-        FontItemComposite composite = verticalBut;
-//        //создание кнопок вертикальных
-//        ButtonWrapper wrapper = ButtonWrapper.newBuilder()
-//                .setCssClasses(CSSclasses.LEFT_SIDE_MENU_VERTICAL_BUTTONS)
-//                .setText(composite.fontSymbol)
-//                .setFont(composite.fontsStore)
-//                .setIsActive(composite.isActive)
-//                .setFontSize(composite.fontSize)
-//                .setEvents(new leftSideMenuIconClick(verticalBut, this))
-//                .setParentVBox(vButHolder)
-//                .build();
-//        buttonWrappers.add(wrapper);
-
-
-        Button button = FXMLLoader.loadButton(composite.fxmlFileName);
-        button.setText(composite.fontSymbol);
-        button.setFont(FontLogic.loadFont(composite.fontsStore,composite.fontSize));
+    private void createVerticalBut(LeftAndTopBarItemComposite verticalBut) {
+        LeftAndTopBarItemComposite composite = verticalBut;
+        Button button = FXMLLoader.loadButton(composite.getFxmlFileName());
+        button.setText(composite.getFontSymbol());
+        button.setFont(FontLogic.loadFont(composite.getFontsStore(),composite.getFontSize()));
         vButHolder.getChildren().add(button);
         leftSideMenuIconClick clickEvent = new leftSideMenuIconClick(verticalBut, this,button);
-        if (composite.isActive) {
+        if (composite.isActive()) {
             startButEvent=clickEvent;
         }
 
@@ -101,23 +93,22 @@ public class LeftAndTopBar extends MenuRepresent {
                 next.getStyleClass().clear();
                 next.getStyleClass().add(CSSclasses.LEFT_SIDE_MENU_VERTICAL_BUTTONS.name());
             }
-//            buttons.get(0).getStyleClass().add(CSSclasses.LEFT_SIDE_MENU_VERTICAL_BUTTONS_FIRST.name());
         }
     }
-    public void setCommonTextName(FontItemComposite itemComposite) {
+    public void setCommonTextName(LeftAndTopBarItemComposite itemComposite) {
         label.setText(itemComposite.getDescription());
     }
-    public void setHorisontalButtons(FontItemComposite itemComposite) {
+    public void setHorisontalButtons(LeftAndTopBarItemComposite itemComposite) {
         horisontalMenuButHolder.getChildren().clear();
         if (itemComposite.isComposit()) {
             contentAnchorPane.getChildren().clear();
             ArrayList<MenuComponent> inerLevelComponents = itemComposite.getChilds();
             for (Iterator<MenuComponent> iterator1 = inerLevelComponents.iterator(); iterator1.hasNext(); ) {
-                FontItemLeaf innerLevelComponent = (FontItemLeaf) iterator1.next();
+                LeftAndTopBarItemLeaf innerLevelComponent = (LeftAndTopBarItemLeaf) iterator1.next();
                 //создание кнопок горизонтальных
                 ButtonWrapper.newBuilder()
                         .setCssClasses(CSSclasses.LEFT_SIDE_MENU_HORIZONTAL_BUTTONS)
-                        .setText(innerLevelComponent.getDescription())
+                        .setText(innerLevelComponent.getName())
                         .setFont(FontsStore.ROBOTO_LIGHT)
                         .setEvents(new MenuButtonsClick(innerLevelComponent,this))
                         .setParentHBox(horisontalMenuButHolder)

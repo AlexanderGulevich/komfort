@@ -1,5 +1,6 @@
 package basisFx.domain;
 
+import basisFx.appCore.activeRecord.ActiveRecord;
 import basisFx.appCore.annotation.DataStore;
 import basisFx.appCore.annotation.Sorting;
 import javafx.beans.property.SimpleObjectProperty;

@@ -5,7 +5,7 @@
 // */
 //package basisFx.appCore.utils;
 //
-//import basisFx.presentation.DynamicContentPanel;
+//import basisFx.appCore.DynamicContentPanel;
 //import java.util.ArrayList;
 //
 ///**

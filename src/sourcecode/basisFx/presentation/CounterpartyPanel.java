@@ -1,19 +1,19 @@
-package basisFx.presentation.dynamicContents;
+package basisFx.presentation;
 
-import basisFx.appCore.elements.GridPaneWrapper;
-import basisFx.appCore.elements.TableWrapper;
-import basisFx.appCore.grid.ButSizeBig;
 import basisFx.appCore.grid.CtrlPosTop;
+import basisFx.appCore.grid.ButSizeBig;
 import basisFx.appCore.grid.SingleTable;
 import basisFx.appCore.table.ColWrapperComboBox;
+import basisFx.service.ServiceTablesSingle;
+import basisFx.appCore.elements.TableWrapper;
+import basisFx.appCore.elements.GridPaneWrapper;
 import basisFx.appCore.table.ColWrapperString;
 import basisFx.appCore.utils.Coordinate;
 import basisFx.domain.Counterparty;
 import basisFx.domain.Currency;
-import basisFx.presentation.DynamicContentPanel;
-import basisFx.service.ServiceTablesSingle;
+import basisFx.appCore.DynamicContentPanel;
 
-public class CounterpartyPanelPopup extends DynamicContentPanel {
+public class CounterpartyPanel extends DynamicContentPanel {
     private ServiceTablesSingle mediatorSingleTable;
     private   TableWrapper tableWrapper;
     @Override
@@ -51,12 +51,11 @@ public class CounterpartyPanelPopup extends DynamicContentPanel {
                 .setOrganization(new SingleTable(tableWrapper,new ButSizeBig(),new CtrlPosTop()))
                 .setGridName("Список контрагентов")
                 .setParentAnchor(dynamicContentAnchorHolder)
-                .setCoordinate(new Coordinate(0d,0d,10d,0d))
+                .setCoordinate(new Coordinate(0d,10d,10d,0d))
                 .setGridLinesVisibility(false)
                 .build();
 
 
-        window.setNodeToMap(tableWrapper,"tableWrapper");
     }
 
     @Override

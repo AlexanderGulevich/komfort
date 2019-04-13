@@ -2,8 +2,8 @@ package basisFx.appCore.reflection;
 
 import basisFx.appCore.annotation.DataStore;
 import basisFx.dataSource.Db;
-import basisFx.domain.ActiveRecord;
-import basisFx.domain.BoolComboBox;
+import basisFx.appCore.activeRecord.ActiveRecord;
+import basisFx.appCore.activeRecord.BoolComboBox;
 import javafx.beans.property.SimpleObjectProperty;
 
 import java.lang.reflect.Field;

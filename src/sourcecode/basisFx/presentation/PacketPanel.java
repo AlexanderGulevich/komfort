@@ -1,5 +1,6 @@
-package basisFx.presentation.dynamicContents;
+package basisFx.presentation;
 
+import basisFx.appCore.activeRecord.ActiveRecord;
 import basisFx.appCore.elements.GridPaneWrapper;
 import basisFx.appCore.elements.TableWrapper;
 import basisFx.appCore.grid.*;
@@ -10,7 +11,7 @@ import basisFx.service.ServiceTablesSingle;
 import basisFx.appCore.table.*;
 import basisFx.appCore.utils.Coordinate;
 import basisFx.domain.*;
-import basisFx.presentation.DynamicContentPanel;
+import basisFx.appCore.DynamicContentPanel;
 
 public class PacketPanel  extends DynamicContentPanel {
     private ServiceTablesSingle serviceTablesSingle1;
@@ -30,7 +31,7 @@ public class PacketPanel  extends DynamicContentPanel {
         WindowBuilder dateResearchWindowBuilder = WindowBuilder.newBuilder()
                 .setGUIStructura(null)
                 .setButtonsForStage(null)
-                .setDynamicContentPanelCreator(PacketPricePanelPopup::new)
+                .setPanelCreator(PacketPricePanelPopup::new)
                 .setTitle("Реестр цен")
                 .setMessage(null)
                 .setFxmlFileName("ByDateResearchWindow")
@@ -46,7 +47,7 @@ public class PacketPanel  extends DynamicContentPanel {
 
         WindowBuilder packetSize = WindowBuilder.newBuilder()
                 .setGUIStructura(null)
-                .setDynamicContentPanelCreator(PacketSizePanel::new)
+                .setPanelCreator(PacketSizePanel::new)
                 .setTitle("Размеры пакетов")
                 .setMessage(null)
                 .setFxmlFileName("AddDellPopupWindow")
@@ -62,7 +63,7 @@ public class PacketPanel  extends DynamicContentPanel {
 
         WindowBuilder counterparty = WindowBuilder.newBuilder()
                 .setGUIStructura(null)
-                .setDynamicContentPanelCreator(CounterpartyPanelPopup::new)
+                .setPanelCreator(CounterpartyPanelPopup::new)
                 .setTitle("Список контрагентов")
                 .setMessage(null)
                 .setFxmlFileName("AddDellPopupWindow")

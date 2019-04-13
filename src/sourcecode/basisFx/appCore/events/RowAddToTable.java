@@ -3,11 +3,9 @@ package basisFx.appCore.events;
 import basisFx.appCore.elements.AppNode;
 import basisFx.appCore.elements.TableWrapper;
 import basisFx.appCore.interfaces.TableBasedDirectors;
-import basisFx.domain.ActiveRecord;
-import javafx.collections.ObservableList;
+import basisFx.appCore.activeRecord.ActiveRecord;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
-import javafx.scene.control.TableView;
 import lombok.Getter;
 
 public class RowAddToTable<T> extends AppEvent implements TableBasedDirectors {

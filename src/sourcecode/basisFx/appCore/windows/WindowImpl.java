@@ -2,7 +2,7 @@ package basisFx.appCore.windows;
 
 import basisFx.appCore.interfaces.CallBack;
 import basisFx.appCore.interfaces.CallBackParametrized;
-import basisFx.appCore.interfaces.DynamicContentPanelCreator;
+import basisFx.appCore.interfaces.PanelCreator;
 import basisFx.appCore.utils.Coordinate;
 import basisFx.appCore.utils.FXMLLoader;
 import basisFx.appCore.guiStructura.GUIStructura;
@@ -14,7 +14,7 @@ import lombok.Setter;
 
 public abstract class WindowImpl {
     @Getter @Setter protected WindowAbstraction windowAbstraction;
-    @Getter protected DynamicContentPanelCreator dynamicContentPanelCreator;
+    @Getter protected PanelCreator panelCreator;
     @Getter protected CallBack callBack;
     @Getter protected CallBackParametrized callBackParametrized;
     @Getter protected ButtonsForStage buttonsForStage;
@@ -43,7 +43,7 @@ public abstract class WindowImpl {
         buttonsForStage=builder.buttonsForStage;
         parentAnchorNameForFXML=builder.parentAnchorNameForFXML;
         callBack =builder.callBack;
-        dynamicContentPanelCreator=builder.dynamicContentPanelCreator;
+        panelCreator =builder.panelCreator;
         callBackParametrized=builder.callBackParametrized;
         this.builder=builder;
     }
@@ -69,7 +69,7 @@ public abstract class WindowImpl {
         if (buttonsForStage != null)   buttonsForStage.initTemplateMethod(windowAbstraction);
     }
     private void toCreateDynamicContent(WindowAbstraction windowAbstraction) {
-        if (dynamicContentPanelCreator != null) dynamicContentPanelCreator.create().initTemplateMethod(windowAbstraction);
+        if (panelCreator != null) panelCreator.create().initTemplateMethod(windowAbstraction);
     }
     private void toHandleFXML(WindowAbstraction windowAbstraction) {
         if (builder.fxmlFileName != null){

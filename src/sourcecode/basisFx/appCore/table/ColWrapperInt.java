@@ -2,7 +2,7 @@ package basisFx.appCore.table;
 
 import basisFx.appCore.elements.TableWrapper;
 import basisFx.appCore.utils.Registry;
-import basisFx.domain.ActiveRecord;
+import basisFx.appCore.activeRecord.ActiveRecord;
 import javafx.beans.value.ObservableValue;
 import javafx.beans.value.WritableValue;
 import javafx.scene.control.TableColumn;

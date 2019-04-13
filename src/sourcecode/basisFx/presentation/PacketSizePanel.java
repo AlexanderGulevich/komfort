@@ -1,14 +1,12 @@
-package basisFx.presentation.dynamicContents;
+package basisFx.presentation;
 
 import basisFx.appCore.elements.GridPaneWrapper;
 import basisFx.appCore.elements.TableWrapper;
 import basisFx.appCore.grid.*;
-import basisFx.appCore.settings.CSSclasses;
 import basisFx.appCore.table.ColWrapperString;
 import basisFx.appCore.utils.Coordinate;
-import basisFx.domain.Equipment;
 import basisFx.domain.PacketSize;
-import basisFx.presentation.DynamicContentPanel;
+import basisFx.appCore.DynamicContentPanel;
 import basisFx.service.ServiceTablesSingle;
 
 public class PacketSizePanel extends DynamicContentPanel {

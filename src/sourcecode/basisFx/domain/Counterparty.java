@@ -1,12 +1,7 @@
 package basisFx.domain;
-import basisFx.dataSource.Db;
+import basisFx.appCore.activeRecord.ActiveRecord;
 import javafx.beans.property.SimpleObjectProperty;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 
 public class Counterparty extends ActiveRecord {
 

@@ -1,11 +1,10 @@
 package basisFx.appCore.menu;
 
 
-public class MenuLeaf extends MenuComponent{
-
+public  interface MenuLeaf extends MenuComponent{
 
     @Override
-    public boolean isComposit() {
+    default boolean isComposit() {
         return false;
     }
 

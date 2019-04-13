@@ -1,12 +1,11 @@
 package basisFx.domain;
 
 
+import basisFx.appCore.activeRecord.ActiveRecord;
 import basisFx.dataSource.Db;
 import javafx.beans.property.SimpleObjectProperty;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;

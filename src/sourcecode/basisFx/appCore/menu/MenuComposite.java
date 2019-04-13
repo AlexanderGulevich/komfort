@@ -1,29 +1,25 @@
 package basisFx.appCore.menu;
-import lombok.Getter;
-import lombok.experimental.SuperBuilder;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class MenuComposite extends MenuComponent {
+public interface MenuComposite extends MenuComponent {
 
-    @Getter protected ArrayList<MenuComponent> childs =new ArrayList<>();
-
-    public MenuComponent add(MenuComponent... component){
+    ArrayList<MenuComponent>  getChilds();
+    default MenuComponent add(MenuComponent... component){
         List<MenuComponent> menuComponents = Arrays.asList(component);
         for (MenuComponent c:menuComponents) {
-            childs.add(c);
+            getChilds().add(c);
             c.setParent(this);
         }
             return this;
     }
-    public void remove(MenuComponent component){
-        childs.remove(component);
+    default void remove(MenuComponent component){
+        getChilds().remove(component);
     }
-
     @Override
-    public boolean isComposit() {
+    default boolean isComposit() {
         return true;
     }
 

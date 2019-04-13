@@ -1,11 +1,12 @@
 package basisFx.domain;
 
+import basisFx.appCore.activeRecord.ActiveRecord;
 import basisFx.appCore.annotation.DataStore;
 import basisFx.appCore.annotation.Sorting;
 import javafx.beans.property.SimpleObjectProperty;
 import java.time.LocalDate;
 
-public class ExchangeRates extends ActiveRecord{
+public class ExchangeRates extends ActiveRecord {
 
     private static ExchangeRates INSTANCE = new ExchangeRates();
     @DataStore (SORTING = Sorting.DESC, ANALIZED_DATE = true) private SimpleObjectProperty<LocalDate> startDate =new SimpleObjectProperty<>(this, "startDate", null);

@@ -1,10 +1,9 @@
-package basisFx.presentation.dynamicContents;
+package basisFx.presentation;
 
 import basisFx.appCore.elements.DatePickerWrapper;
 import basisFx.appCore.elements.LabelWrapper;
 import basisFx.appCore.elements.TableWrapper;
 import basisFx.appCore.grid.CtrlPosBotton;
-import basisFx.appCore.grid.CtrlPosTop;
 import basisFx.appCore.grid.ButSizeBig;
 import basisFx.appCore.grid.SingleTable;
 import basisFx.appCore.elements.GridPaneWrapper;
@@ -14,7 +13,7 @@ import basisFx.appCore.table.ColWrapperComboBox;
 import basisFx.appCore.table.ColWrapperDouble;
 import basisFx.appCore.utils.Coordinate;
 import basisFx.domain.*;
-import basisFx.presentation.DynamicContentPanel;
+import basisFx.appCore.DynamicContentPanel;
 import basisFx.service.ServiceTablesAutoCommitByDate;
 import javafx.geometry.Pos;
 

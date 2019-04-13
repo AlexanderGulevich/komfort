@@ -4,7 +4,7 @@ import basisFx.appCore.elements.AppNode;
 import basisFx.appCore.elements.RangeDirector;
 import basisFx.appCore.elements.TableWrapper;
 import basisFx.dataSource.UnitOfWork;
-import basisFx.domain.ActiveRecord;
+import basisFx.appCore.activeRecord.ActiveRecord;
 import lombok.Getter;
 import lombok.Setter;
 

@@ -5,8 +5,8 @@ import basisFx.appCore.settings.Settings;
 import basisFx.appCore.utils.DomainPropertiesMetaInfo;
 import basisFx.appCore.utils.Registry;
 import basisFx.dataSource.Db;
-import basisFx.domain.ActiveRecord;
-import basisFx.domain.BoolComboBox;
+import basisFx.appCore.activeRecord.ActiveRecord;
+import basisFx.appCore.activeRecord.BoolComboBox;
 import javafx.application.Platform;
 
 import java.lang.reflect.Method;

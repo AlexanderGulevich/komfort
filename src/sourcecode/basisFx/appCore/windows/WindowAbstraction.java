@@ -5,7 +5,7 @@ import basisFx.appCore.elements.AnchorWrapper;
 import basisFx.appCore.settings.CSSid;
 import basisFx.appCore.utils.Coordinate;
 import basisFx.appCore.utils.Registry;
-import basisFx.presentation.DynamicContentPanel;
+import basisFx.appCore.DynamicContentPanel;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;

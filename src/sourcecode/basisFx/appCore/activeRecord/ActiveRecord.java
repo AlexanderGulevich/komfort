@@ -1,4 +1,4 @@
-package basisFx.domain;
+package basisFx.appCore.activeRecord;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;

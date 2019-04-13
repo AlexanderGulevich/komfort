@@ -1,4 +1,4 @@
-package basisFx.presentation.dynamicContents;
+package basisFx.presentation;
 
 import basisFx.appCore.elements.*;
 import basisFx.appCore.grid.*;
@@ -6,7 +6,7 @@ import basisFx.appCore.settings.CSSclasses;
 import basisFx.appCore.table.ColWrapperDate;
 import basisFx.appCore.table.ColWrapperDouble;
 import basisFx.appCore.utils.Range;
-import basisFx.presentation.DynamicContentPanel;
+import basisFx.appCore.DynamicContentPanel;
 import basisFx.service.ServiceTablesSingle;
 import basisFx.appCore.utils.Coordinate;
 import basisFx.domain.*;

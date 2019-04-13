@@ -1,19 +1,21 @@
-package basisFx.presentation.dynamicContents;
+package basisFx.presentation;
 
 import basisFx.appCore.elements.GridPaneWrapper;
 import basisFx.appCore.elements.TableWrapper;
-import basisFx.appCore.grid.CtrlPosTop;
 import basisFx.appCore.grid.ButSizeBig;
+import basisFx.appCore.grid.CtrlPosTop;
 import basisFx.appCore.grid.SingleTable;
-import basisFx.appCore.table.ColWrapperInt;
+import basisFx.appCore.table.ColWrapperComboBox;
+import basisFx.appCore.table.ColWrapperString;
 import basisFx.appCore.utils.Coordinate;
-import basisFx.domain.Jumbo;
-import basisFx.presentation.DynamicContentPanel;
+import basisFx.domain.Counterparty;
+import basisFx.domain.Currency;
+import basisFx.appCore.DynamicContentPanel;
 import basisFx.service.ServiceTablesSingle;
 
-public class JumboPanel extends DynamicContentPanel {
+public class CounterpartyPanelPopup extends DynamicContentPanel {
     private ServiceTablesSingle mediatorSingleTable;
-    private      TableWrapper tableWrapper ;
+    private   TableWrapper tableWrapper;
     @Override
     public void createServices() {
         mediatorSingleTable = new ServiceTablesSingle();
@@ -21,24 +23,25 @@ public class JumboPanel extends DynamicContentPanel {
 
     @Override
     public void customDynamicElementsInit() {
-            tableWrapper = TableWrapper.newBuilder()
-                .setActiveRecordClass(Jumbo.class)
+
+          tableWrapper = TableWrapper.newBuilder()
+                .setActiveRecordClass(Counterparty.class)
                 .setUnitOfWork(unitOfWork)
                 .setIsEditable(true)
                 .setIsSortableColums(false)
                 .setServiceTables(mediatorSingleTable)
                 .setColWrappers(
-                        ColWrapperInt.newBuilder()
-                                .setColumnName("Ширина")
+                        ColWrapperString.newBuilder()
+                                .setColumnName("Наименование")
                                 .setColumnSize(0.6d)
                                 .setIsEditeble(true)
-                                .setPropertyName("width")
+                                .setPropertyName("name")
                                 .build(),
-                        ColWrapperInt.newBuilder()
-                                .setColumnName("Кол-во продукции на выходе ")
+                        ColWrapperComboBox.newBuilder(Currency.class)
+                                .setColumnName("Валюта ")
                                 .setIsEditeble(true)
                                 .setColumnSize(0.4d)
-                                .setPropertyName("numberOfProduct")
+                                .setPropertyName("currency")
                                 .build()
 
                 )
@@ -46,13 +49,14 @@ public class JumboPanel extends DynamicContentPanel {
 
         GridPaneWrapper.newBuilder()
                 .setOrganization(new SingleTable(tableWrapper,new ButSizeBig(),new CtrlPosTop()))
-                .setGridName("Ширины джамбо ролей и выход продукции по ширине")
+                .setGridName("Список контрагентов")
                 .setParentAnchor(dynamicContentAnchorHolder)
-                .setCoordinate(new Coordinate(0d,10d,10d,0d))
+                .setCoordinate(new Coordinate(0d,0d,10d,0d))
                 .setGridLinesVisibility(false)
                 .build();
 
 
+        window.setNodeToMap(tableWrapper,"tableWrapper");
     }
 
     @Override

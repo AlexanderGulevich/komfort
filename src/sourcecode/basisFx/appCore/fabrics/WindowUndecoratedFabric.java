@@ -26,7 +26,7 @@ public class WindowUndecoratedFabric  extends WindowFabric{
         WindowBuilder builder = WindowBuilder.newBuilder()
                 .setGUIStructura(null)
                 .setButtonsForStage(null)
-                .setDynamicContentPanelCreator(null)
+                .setPanelCreator(null)
                 .setTitle(null)
                 .setMessage(message)
                 .setFxmlFileName("YN")
@@ -52,7 +52,7 @@ public class WindowUndecoratedFabric  extends WindowFabric{
                 .setParentAnchorNameForFXML(WindowAbstraction.DefaultPanelsNames.topVisibleAnchor.name())
                 .setHeight(280d)
                 .setWidth(500d)
-                .setDynamicContentPanelCreator(null)
+                .setPanelCreator(null)
                 .setTitle(null)
                 .setMessage(message)
                 .build();

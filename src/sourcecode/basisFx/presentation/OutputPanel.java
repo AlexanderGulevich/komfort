@@ -1,4 +1,4 @@
-package basisFx.presentation.dynamicContents;
+package basisFx.presentation;
 
 import basisFx.appCore.elements.DatePickerWrapper;
 import basisFx.appCore.elements.GridPaneWrapper;
@@ -15,7 +15,7 @@ import basisFx.appCore.utils.Registry;
 import basisFx.appCore.windows.WindowAbstraction;
 import basisFx.appCore.windows.WindowBuilder;
 import basisFx.domain.*;
-import basisFx.presentation.DynamicContentPanel;
+import basisFx.appCore.DynamicContentPanel;
 import basisFx.service.ServiceTablesAutoCommitByDate;
 import javafx.geometry.Pos;
 
@@ -36,7 +36,7 @@ public class OutputPanel  extends DynamicContentPanel {
     public void customDynamicElementsInit() {
         WindowBuilder windowBuilder = WindowBuilder.newBuilder()
                 .setGUIStructura(null)
-                .setDynamicContentPanelCreator(PacketForPopup::new)
+                .setPanelCreator(PacketForPopup::new)
                 .setTitle("Пакет")
                 .setMessage(null)
                 .setFxmlFileName("AddDellPopupWindow")

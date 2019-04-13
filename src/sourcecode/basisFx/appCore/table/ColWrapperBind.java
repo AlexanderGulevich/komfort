@@ -1,9 +1,8 @@
 package basisFx.appCore.table;
 
-import basisFx.appCore.interfaces.CallBackTyped;
 import basisFx.appCore.interfaces.CallBackTypedAndParametrized;
 import basisFx.appCore.settings.CSSclasses;
-import basisFx.domain.ActiveRecord;
+import basisFx.appCore.activeRecord.ActiveRecord;
 import basisFx.service.Mediator;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.control.TableCell;

@@ -1,11 +1,10 @@
-package basisFx.presentation.dynamicContents;
+package basisFx.presentation;
 
-import basisFx.appCore.grid.CtrlPosMiddle;
 import basisFx.appCore.grid.CtrlPosTop;
 import basisFx.appCore.grid.ButSizeBig;
 import basisFx.appCore.settings.CSSclasses;
 import basisFx.appCore.table.ColWrapperString;
-import basisFx.presentation.DynamicContentPanel;
+import basisFx.appCore.DynamicContentPanel;
 import basisFx.service.ServiceTablesSingle;
 import basisFx.appCore.elements.TableWrapper;
 import basisFx.appCore.grid.SingleTable;

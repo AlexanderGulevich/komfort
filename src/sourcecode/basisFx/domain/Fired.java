@@ -1,5 +1,7 @@
 package basisFx.domain;
 
+import basisFx.appCore.activeRecord.ActiveRecord;
+import basisFx.appCore.activeRecord.BoolComboBox;
 import basisFx.dataSource.Db;
 import javafx.beans.property.SimpleObjectProperty;
 

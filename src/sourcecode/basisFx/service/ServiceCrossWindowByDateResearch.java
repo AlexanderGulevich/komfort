@@ -10,7 +10,7 @@ import basisFx.appCore.events.StageDragging;
 import basisFx.appCore.utils.Coordinate;
 import basisFx.appCore.utils.Range;
 import basisFx.appCore.utils.Registry;
-import basisFx.domain.ActiveRecord;
+import basisFx.appCore.activeRecord.ActiveRecord;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;

@@ -1,5 +1,6 @@
 package basisFx.domain;
 
+import basisFx.appCore.activeRecord.ActiveRecord;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.ObservableList;
 

@@ -5,7 +5,7 @@ import basisFx.appCore.utils.Registry;
 import basisFx.appCore.windows.WindowAbstraction;
 import basisFx.appCore.windows.WindowBuilder;
 import basisFx.appCore.windows.WindowImpl;
-import basisFx.domain.ActiveRecord;
+import basisFx.appCore.activeRecord.ActiveRecord;
 import basisFx.service.Mediator;
 import basisFx.service.ServiceCrossWindow;
 import javafx.beans.value.ObservableValue;
@@ -14,9 +14,6 @@ import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.control.cell.TextFieldTableCell;
-import javafx.util.Callback;
-import javafx.util.converter.DefaultStringConverter;
 
 public class ColWrapperPopup extends ColWrapper {
         protected TableColumn<ActiveRecord, ActiveRecord> column;

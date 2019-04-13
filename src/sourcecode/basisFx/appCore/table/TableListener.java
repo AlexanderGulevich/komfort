@@ -1,6 +1,6 @@
 package basisFx.appCore.table;
 
-import basisFx.domain.ActiveRecord;
+import basisFx.appCore.activeRecord.ActiveRecord;
 import basisFx.appCore.elements.TableWrapper;
 import javafx.collections.ListChangeListener;
 

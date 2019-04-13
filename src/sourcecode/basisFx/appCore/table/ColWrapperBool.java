@@ -2,8 +2,8 @@ package basisFx.appCore.table;
 
 import basisFx.appCore.elements.TableWrapper;
 import basisFx.appCore.settings.CSSclasses;
-import basisFx.domain.ActiveRecord;
-import basisFx.domain.BoolComboBox;
+import basisFx.appCore.activeRecord.ActiveRecord;
+import basisFx.appCore.activeRecord.BoolComboBox;
 import javafx.beans.value.ObservableValue;
 import javafx.beans.value.WritableValue;
 import javafx.collections.ObservableList;

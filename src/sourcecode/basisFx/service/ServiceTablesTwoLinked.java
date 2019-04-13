@@ -3,7 +3,7 @@ package basisFx.service;
 import basisFx.appCore.elements.AppNode;
 import basisFx.appCore.elements.RangeDirector;
 import basisFx.appCore.elements.TableWrapper;
-import basisFx.domain.ActiveRecord;
+import basisFx.appCore.activeRecord.ActiveRecord;
 import javafx.collections.ObservableList;
 import lombok.Getter;
 import lombok.Setter;

@@ -1,4 +1,4 @@
-package basisFx.presentation.dynamicContents;
+package basisFx.presentation;
 
 import basisFx.appCore.elements.RangeDirector;
 import basisFx.appCore.grid.*;
@@ -12,7 +12,7 @@ import basisFx.appCore.table.ColWrapperDate;
 import basisFx.appCore.utils.Coordinate;
 import basisFx.domain.ProductPrice;
 import basisFx.domain.Product;
-import basisFx.presentation.DynamicContentPanel;
+import basisFx.appCore.DynamicContentPanel;
 import javafx.scene.control.ComboBox;
 
 public class ProductPanel  extends DynamicContentPanel {

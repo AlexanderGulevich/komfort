@@ -1,4 +1,4 @@
-package basisFx.domain;
+package basisFx.appCore.activeRecord;
 
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
