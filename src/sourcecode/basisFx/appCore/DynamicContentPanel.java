@@ -1,7 +1,6 @@
 package basisFx.appCore;
 
 import basisFx.appCore.elements.AnchorWrapper;
-import basisFx.appCore.elements.AppNode;
 import basisFx.appCore.settings.CSSid;
 import basisFx.appCore.utils.Coordinate;
 import basisFx.appCore.windows.WindowAbstraction;
@@ -17,9 +16,9 @@ public abstract class DynamicContentPanel {
     protected WindowAbstraction window;
     protected boolean gridVisibility =false;
 
-    protected abstract void createServices();
+    protected   void createServices(){};
     protected abstract void customDynamicElementsInit();
-    protected abstract void initServices();
+    protected   void initServices(){};
 
     public  void initTemplateMethod(WindowAbstraction windowAbstraction){
         window=windowAbstraction;
@@ -35,7 +34,7 @@ public abstract class DynamicContentPanel {
                 .setWindowAbstraction(window)
                 .setMetaName("dynamicContentAnchorHolder")
                 .setCSSid(CSSid.TARGET_PANEL)
-                .setCoordinate(new Coordinate(5d, 0d, 10d, 10d))
+                .setCoordinate(new Coordinate(0d, 0d, 10d, 10d))
                 .setParentAnchor(mainContentAnchor)
                 .build().getElement();
     }

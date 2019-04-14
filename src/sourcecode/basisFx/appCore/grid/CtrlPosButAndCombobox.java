@@ -6,12 +6,16 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
+import lombok.Setter;
 
 public class CtrlPosButAndCombobox extends CtrlPosition {
-    private ComboBox comboBox;
+    @Setter private ComboBox comboBox;
 
     public CtrlPosButAndCombobox(ComboBox comboBox) {
         this.comboBox = comboBox;
+    }
+
+    CtrlPosButAndCombobox() {
     }
 
     @Override

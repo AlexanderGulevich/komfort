@@ -1,6 +1,7 @@
 package basisFx.appCore.events;
 
 import basisFx.appCore.elements.AppNode;
+import basisFx.appCore.elements.TableWrapper;
 import basisFx.appCore.interfaces.CallBackParametrized;
 import basisFx.appCore.interfaces.CallBackTyped;
 import basisFx.service.Mediator;

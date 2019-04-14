@@ -51,7 +51,7 @@ package basisFx.appCore.utils;
 //            
 //            this.descendantExistance=true;
 //            
-//            descendants.add(n);
+//            descendants.addButEvent(n);
 //        
 //        }
 //        public Boolean hasDescendant( ){
@@ -91,7 +91,7 @@ package basisFx.appCore.utils;
 //                
 //                currentBranchNods =new HashMap<Integer,Node>();//создать новую ветвь от корня
 //                
-//                this.headNods.add(node);// вставить в список головных элементом
+//                this.headNods.addButEvent(node);// вставить в список головных элементом
 //                
 //                currentBranchNods.put(level, node);//вставить  элемент в корневую ветку
 //                

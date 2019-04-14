@@ -18,7 +18,7 @@
 //
 //    public AreaChart areaChart(AreaChartBuilder builder){
 //
-//        AreaChartWrapper areaChartWrapper = AppNode.NodeBuilder.create()
+//        AreaChartWrapper areaChartWrapper = AppNode.NodeBuilder.configure()
 //                .setParent(builder.getPanel())
 //                .setCoordinate(builder.getCoordinate())
 //                .setWidth(builder.getWidth())

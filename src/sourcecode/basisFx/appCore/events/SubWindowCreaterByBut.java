@@ -1,15 +1,19 @@
 package basisFx.appCore.events;
 
 import basisFx.appCore.elements.AppNode;
+import basisFx.appCore.elements.TableWrapper;
 import basisFx.appCore.utils.Registry;
 import basisFx.appCore.windows.WindowBuilder;
 import javafx.scene.Node;
+import lombok.Getter;
 import lombok.Setter;
 
 
-public class SubWindowCreaterByBut extends AppEvent{
+public class SubWindowCreaterByBut extends AppEvent implements TableEvents{
     protected Node node;
     @Setter protected WindowBuilder windowBuilder;
+    @Setter @Getter
+    private TableWrapper tableWrapper;
 
     public SubWindowCreaterByBut() {
     }

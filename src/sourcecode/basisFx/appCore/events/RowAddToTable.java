@@ -7,11 +7,13 @@ import basisFx.appCore.activeRecord.ActiveRecord;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import lombok.Getter;
+import lombok.Setter;
 
-public class RowAddToTable<T> extends AppEvent implements TableBasedDirectors {
+public class RowAddToTable<T> extends AppEvent implements TableEvents {
 
     private Button but;
-    private TableWrapper tableWrapper;
+
+    @Setter @Getter private TableWrapper tableWrapper;
     @Getter private ActiveRecord currentNewInstance;
 
     public RowAddToTable(TableWrapper tableWrapper ) {
@@ -79,8 +81,4 @@ public class RowAddToTable<T> extends AppEvent implements TableBasedDirectors {
     }
 
 
-    @Override
-    public TableWrapper getWrapper() {
-        return tableWrapper;
-    }
 }

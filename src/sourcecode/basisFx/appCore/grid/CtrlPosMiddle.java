@@ -7,6 +7,9 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 
 public class CtrlPosMiddle extends CtrlPosition {
+    CtrlPosMiddle() {
+    }
+
     @Override
     public void organize(Label label, Button addBut, Button delBut, TableView tableView) {
 

@@ -23,20 +23,23 @@ public class ServiceTablesAutoCommitByDate extends ServiceTables {
     public DataStoreCallBack dataStoreCallBack;
 
     public void setButtonWrapper(ButtonWrapper buttonWrapper) {
-        this.buttonWrapper = buttonWrapper;
-        buttonWrapper.setServiceTables(this);
-        ArrayList events = buttonWrapper.getEvents();
-        for (Object event : events) {
-            ((AppEvent) event).setCallBackTyped(
-                    ()->{
-                        if (datePickerWrapper.getDate() != null) {
-                            return Boolean.valueOf(true);
-                        }else{
-                            return Boolean.valueOf(false);
+        if (buttonWrapper != null) {
+            this.buttonWrapper = buttonWrapper;
+            buttonWrapper.setServiceTables(this);
+            ArrayList events = buttonWrapper.getEvents();
+            for (Object event : events) {
+                ((AppEvent) event).setCallBackTyped(
+                        ()->{
+                            if (datePickerWrapper.getDate() != null) {
+                                return Boolean.valueOf(true);
+                            }else{
+                                return Boolean.valueOf(false);
+                            }
                         }
-                    }
-            );
+                );
+            }
         }
+
     }
 
     private ButtonWrapper buttonWrapper;

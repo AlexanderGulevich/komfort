@@ -24,7 +24,7 @@
 //    protected void configurate() {
 //
 //
-//     AppNode.NodeBuilder.create()
+//     AppNode.NodeBuilder.configure()
 //             .setId(CSSid.TILE_PANE).setParent(panel)
 //             .setCoordinate(80d , 0d, 0d, 0d)
 //             .createTilePaneWrapper()
@@ -51,13 +51,13 @@
 //
 //    private void setCountryTable(AnchorPane pane){
 //
-//        TableWrapper countryTableWrapper = AppNode.NodeBuilder.create()
+//        TableWrapper countryTableWrapper = AppNode.NodeBuilder.configure()
 //                .setId(CSSid.TABLE).setCoordinate(pane,50d, 40d, 10d, 10d)
 //                .<Equipment>createTableViewWrapper().setTablesWidthProperty(0.4, pane.widthProperty()).setTablesHeight(200d)
 //                .setActiveRecord(this.dataMapperFabric.getNamedDataMapper())
 //                .setDbTableName("Country").refresh()
 //                .setColums(
-//                        columnFabric.<Country,DefaultPanelsNames>string(ColWrapper.Bulder.create()
+//                        columnFabric.<Country,DefaultPanelsNames>stringCol(ColWrapper.Bulder.configure()
 //                                        .setColumnName("Наименование")
 //                                        .setBindPropertyName("name")
 //                                        .setValueChecking(check.createTextCheck())

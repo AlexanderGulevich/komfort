@@ -19,7 +19,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
-public class LeftAndTopBar extends MenuRepresent {
+public class LeftAndTopBarRepresetation extends MenuRepresent {
     protected Label label =
             ((Label) Registry.mainWindow.getNodeFromMap("commonMenuLabel"));
     protected HBox horisontalMenuButHolder =
@@ -32,7 +32,7 @@ public class LeftAndTopBar extends MenuRepresent {
             new ArrayList<>();
     private leftSideMenuIconClick startButEvent;
 
-    public LeftAndTopBar(MenuSketch sketch) {
+    public LeftAndTopBarRepresetation(MenuSketch sketch) {
         label.setText("");
         makeStructuredMenuView(sketch.getMenuTree(), null);
         setDefaultStyleVerticalButtons();

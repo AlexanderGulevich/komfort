@@ -7,11 +7,16 @@ import basisFx.appCore.activeRecord.ActiveRecord;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableView;
+import lombok.Getter;
+import lombok.Setter;
 
-public class RowDeleteFromTable extends AppEvent implements TableBasedDirectors {
+public class RowDeleteFromTable extends AppEvent implements TableEvents {
     private Button but;
+    @Setter @Getter
     private TableWrapper tableWrapper;
 
+    public RowDeleteFromTable(){
+    }
     public RowDeleteFromTable(TableWrapper t) {
         this.tableWrapper = t;
     }
@@ -20,11 +25,8 @@ public class RowDeleteFromTable extends AppEvent implements TableBasedDirectors 
     public void setEventToElement(AppNode node) {
         but=(Button) node.getElement();
         but.setOnMouseClicked((event) -> {
-
                 run();
-
         });
-
     }
 
     @Override
@@ -58,9 +60,4 @@ public class RowDeleteFromTable extends AppEvent implements TableBasedDirectors 
 
     }
 
-
-    @Override
-    public TableWrapper getWrapper() {
-        return tableWrapper;
-    }
 }

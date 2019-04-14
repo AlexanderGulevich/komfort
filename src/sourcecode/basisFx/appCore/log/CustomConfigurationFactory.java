@@ -23,24 +23,24 @@ public class CustomConfigurationFactory extends ConfigurationFactory {
         builder.setConfigurationName("RollingBuilder");
 //
 //        builder.setStatusLevel(Level.ERROR);
-//        builder.add(builder.newFilter(
+//        builder.addButEvent(builder.newFilter(
 //                "ThresholdFilter", Filter.Result.ACCEPT, Filter.Result.NEUTRAL).addAttribute("level", Level.DEBUG));
 //
 //        AppenderComponentBuilder consoleBuilder = builder.newAppender("Stdout", "CONSOLE")
 //                .addAttribute("dynamicElements", ConsoleAppender.DynamicContentPanel.SYSTEM_ERR);
-//        consoleBuilder.add(builder.newLayout("PatternLayout")
+//        consoleBuilder.addButEvent(builder.newLayout("PatternLayout")
 //                .addAttribute("pattern", "%d [%t] %-5level: %msg%n%throwable"));
-//        consoleBuilder.add(builder.newFilter("MarkerFilter", Filter.Result.DENY,Filter.Result.NEUTRAL)
+//        consoleBuilder.addButEvent(builder.newFilter("MarkerFilter", Filter.Result.DENY,Filter.Result.NEUTRAL)
 //                .addAttribute("marker", "FLOW"));
-//        builder.add(consoleBuilder);
+//        builder.addButEvent(consoleBuilder);
 //
-//        builder.add(builder.newLogger("org.apache.logging.log4j", Level.DEBUG)
-//                .add(builder.newAppenderRef("Stdout"))
+//        builder.addButEvent(builder.newLogger("org.apache.logging.log4j", Level.DEBUG)
+//                .addButEvent(builder.newAppenderRef("Stdout"))
 //                .addAttribute("additivity", false));
-//        builder.add(builder.newRootLogger(Level.ERROR).add(builder.newAppenderRef("Stdout")));
+//        builder.addButEvent(builder.newRootLogger(Level.ERROR).addButEvent(builder.newAppenderRef("Stdout")));
 
 
-// create a rolling file appender
+// configure a rolling file appender
         LayoutComponentBuilder layoutBuilder = builder.newLayout("PatternLayout")
                 .addAttribute("pattern", "%d [%t] %-5level: %msg%n");
 
@@ -55,7 +55,7 @@ public class CustomConfigurationFactory extends ConfigurationFactory {
                 .addComponent(triggeringPolicy);
         builder.add(appenderBuilder);
 
-// create the new logger
+// configure the new logger
         builder.add( builder.newLogger( "TestLogger", Level.DEBUG )
                 .add( builder.newAppenderRef( "rolling" ) )
                 .addAttribute( "additivity", false ) );

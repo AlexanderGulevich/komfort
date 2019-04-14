@@ -16,7 +16,7 @@
 //        areaChart =new AreaChart<Number,Number>(xAxis,yAxis);
 //        element=areaChart;
 //        organize(builder);
-//        areaChart.setTitle(string);
+//        areaChart.setTitle(stringCol);
 //    }
 //    /**
 //     * Вставка значения нижней границы по оси Х

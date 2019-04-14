@@ -22,7 +22,7 @@ public class PacketSizePanel extends DynamicContentPanel {
 
          tableWrapper = TableWrapper.newBuilder()
                 .setGridLinesVisibility(gridVisibility)
-//                .setOrganization(new SingleTable(new ButSizeNon(), new CtrlPosNON()))
+//                .setOrganization(new SingleTableSet(new ButSizeNon(), new CtrlPosNON()))
                 .setActiveRecordClass(PacketSize.class)
                 .setUnitOfWork(unitOfWork)
                 .setIsEditable(true)

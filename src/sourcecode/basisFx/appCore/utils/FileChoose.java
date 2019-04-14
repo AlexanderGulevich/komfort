@@ -17,7 +17,7 @@ package basisFx.appCore.utils;
 //   
 //   public FileChoose() {
 //       fileDialog.setTitle("Выберете один или несколько файлов");
-//       fileDialog.getExtensionFilters().add(
+//       fileDialog.getExtensionFilters().addButEvent(
 //               new FileChooser.ExtensionFilter("files", "*.xlsx","*.xls", "*.docx","*.doc")
 //       );
 //       

@@ -14,6 +14,7 @@ import basisFx.appCore.table.TableListener;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 import basisFx.appCore.settings.FontsStore;
 import javafx.beans.property.ReadOnlyDoubleProperty;
@@ -53,6 +54,7 @@ public  class TableWrapper extends AppNode  {
     private GridOrganization gridOrganization;
     private String gridName;
     private String className;
+    private List<ColWrapper>   colWrapper;
 
     private TableWrapper(Builder builder) {
 
@@ -84,6 +86,8 @@ public  class TableWrapper extends AppNode  {
         className=builder.className;
         coordinate=builder.coordinate;
         windowAbstraction=builder.windowAbstraction;
+        colWrapper=builder.colWrapper;
+        cssClass=builder.cssClass;
         setElementToWindowRegistry();
         createActiveRecord(builder);
         element =new TableView<>();
@@ -188,6 +192,13 @@ public  class TableWrapper extends AppNode  {
     private void applyColums(){
         if (colWrappers != null) {
             for (ColWrapper cw : colWrappers) {
+                element.getColumns().add(cw.getColumn());
+                applyColumsSize(cw);
+                cw.tableWrapper=this;
+            }
+        }
+        if (colWrapper != null) {
+            for (ColWrapper cw : colWrapper) {
                 element.getColumns().add(cw.getColumn());
                 applyColumsSize(cw);
                 cw.tableWrapper=this;
@@ -333,6 +344,7 @@ public  class TableWrapper extends AppNode  {
         private double prefHeight;
         private ServiceTables serviceTables;
         private ColWrapper[] colWrappers;
+        private List<ColWrapper> colWrapper;
         private UnitOfWork unitOfWork;
         private ActiveRecord clickedDomain;
         private boolean gridLinesVisibility=false;
@@ -341,6 +353,7 @@ public  class TableWrapper extends AppNode  {
         private String className;
         protected CSSclasses[] cssClasses;
         protected String[] cssClassesStrings;
+        private String cssClass;
 
         public Builder setCoordinate(Coordinate coordinate) {
             this.coordinate = coordinate;
@@ -349,6 +362,11 @@ public  class TableWrapper extends AppNode  {
 
         public Builder setCssClasses(CSSclasses...  cssClasses) {
             this.cssClasses = cssClasses;
+            return this;
+        }
+
+        public Builder setCssClass(String cssClass) {
+            this.cssClass = cssClass;
             return this;
         }
 
@@ -475,6 +493,10 @@ public  class TableWrapper extends AppNode  {
 
         public Builder setColWrappers(ColWrapper... val) {
             colWrappers = val;
+            return this;
+        }
+        public Builder setColWrappers( List<ColWrapper>  val) {
+            colWrapper = val;
             return this;
         }
 

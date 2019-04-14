@@ -1,140 +1,69 @@
 package basisFx.presentation;
 
-import basisFx.appCore.activeRecord.ActiveRecord;
-import basisFx.appCore.elements.DatePickerWrapper;
-import basisFx.appCore.elements.LabelWrapper;
-import basisFx.appCore.elements.TableWrapper;
 import basisFx.appCore.grid.*;
-import basisFx.appCore.elements.GridPaneWrapper;
 import basisFx.appCore.interfaces.DataStoreCallBack;
-import basisFx.appCore.settings.CSSclasses;
-import basisFx.appCore.settings.FontsStore;
-import basisFx.appCore.table.ColWrapperComboBox;
-import basisFx.appCore.table.ColWrapperDouble;
-import basisFx.appCore.utils.Coordinate;
+import basisFx.appCore.panelElements.AutoCommitByDateTableSet;
+import basisFx.appCore.table.ColumnFabric;
 import basisFx.appCore.utils.Registry;
-import basisFx.dataSource.Db;
+import basisFx.dataSource.BFxPreparedStatement;
 import basisFx.domain.*;
 import basisFx.appCore.DynamicContentPanel;
-import basisFx.service.ServiceTablesAutoCommitByDate;
-import javafx.geometry.Pos;
-
 import java.sql.Date;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.time.LocalDate;
 
 public class TimeRecordingPanel extends DynamicContentPanel {
 
-    private ServiceTablesAutoCommitByDate mediator;
-    private DatePickerWrapper datePickerWrapper ;
-    private TableWrapper tableWrapper;
-    private LabelWrapper label;
-    private DataStoreCallBack callBackForColumn;
-
-    @Override
-    public void createServices() {
-        mediator = new ServiceTablesAutoCommitByDate();
-    }
-
     @Override
     public void customDynamicElementsInit() {
 
-
-         callBackForColumn = new DataStoreCallBack() {
-            @Override
-            public boolean check(ActiveRecord activeRecord) {
-                TimeRecordingForEmployers entry = (TimeRecordingForEmployers) activeRecord;
-                LocalDate date = entry.getDate();
-                Integer employerId = entry.getEmployer().getId();
-
-                String expression="SELECT * FROM EmployeesRatePerHour " +
-                        "WHERE EMPLOYERID=?" +
-                        " and " +
-                        " STARTDATE<=?";
-
-                try {
-                    PreparedStatement pstmt = Db.connection.prepareStatement(expression);
-                    pstmt.setInt(1, employerId);
-                    pstmt.setDate(2, Date.valueOf(date));
-                    ResultSet rs = pstmt.executeQuery();
-
-                    if (!rs.next()) {
-                        Registry.windowFabric.infoWindow("К сожалению, для данной даты не установлен тариф для следующего сотрудника: \n"
-                        + entry.getEmployer().getName().toUpperCase().trim()) ;
-
-                        return false;
-                    }
-
-
-                } catch (SQLException e) {
-                    e.printStackTrace();
+        DataStoreCallBack callBackForColumn = activeRecord -> {
+            TimeRecordingForEmployers entry = (TimeRecordingForEmployers) activeRecord;
+            LocalDate date = entry.getDate();
+            Integer employerId = entry.getEmployer().getId();
+            boolean filled =BFxPreparedStatement
+                    .create("SELECT * FROM EmployeesRatePerHour " + "WHERE EMPLOYERID=?" + " and " +" STARTDATE<=?")
+                    .setInt(1, employerId)
+                    .setDate(2, Date.valueOf(date))
+                    .executeAndCheckFilling();
+                if (!filled) {
+                    Registry.windowFabric.infoWindow("К сожалению, для данной даты не установлен тариф для следующего сотрудника: \n"
+                    + entry.getEmployer().getName().toUpperCase().trim()) ;
+                    return false;
                 }
-
-                return true;
-            }
+            return true;
         };
 
-        datePickerWrapper = DatePickerWrapper.newBuilder()
-                .setCoordinate(new Coordinate(10d, 15d, null, null))
-                .setParentAnchor(dynamicContentAnchorHolder)
-                .setServiceTables(mediator)
-                .build();
-
-
-        label =LabelWrapper.newBuilder()
-                .setCssClasses(CSSclasses.LABEL_COMMON)
-                .setText("Учет рабочего времени")
-                .setParentAnchor(dynamicContentAnchorHolder)
-                .setCoordinate(new Coordinate(0d, 300d, null, 10d))
-                .setFont(FontsStore.ROBOTO_LIGHT)
-                .setAlignment(Pos.TOP_LEFT)
-                .setFontSize(30d)
-                .build();
-
-
-          tableWrapper = TableWrapper.newBuilder()
-                .setActiveRecordClass(TimeRecordingForEmployers.class)
-                .setUnitOfWork(unitOfWork)
-                .setIsEditable(true)
-                .setIsSortableColums(false)
-                .setServiceTables(mediator)
-                .setColWrappers(
-                        ColWrapperComboBox.newBuilder(Employer.class)
-                                .setColumnName("Работник")
-                                .setColumnSize(0.7d)
-                                .setIsEditeble(false)
-                                .setPropertyName("employer")
-                                .build()
-                                ,
-                        ColWrapperDouble.newBuilder()
-                                .setColumnName("Отработанные часы")
-                                .setColumnSize(0.3d)
-                                .setIsEditeble(true)
-                                .setPropertyName("hours")
-                                .build()
+        AutoCommitByDateTableSet.builder()
+                .aClass(TimeRecordingForEmployers.class)
+                .callBackForColumn(callBackForColumn)
+                .isEditable(true).isSortable(false)
+                .currentWindow(window)
+                .bigTitle("Учет рабочего времени")
+                .littleTitle(null)
+                .cssClass(null)
+                .parentAnchor(dynamicContentAnchorHolder)
+                .ctrlPosEnum(CtrlPosEnum.CTRL_POS_N_O_N)
+                .butSizeEnum(ButSizeEnum.BUT_SIZE_NON)
+                .addButEvent(null)
+                .delButEvent(null)
+                .column(
+                        ColumnFabric.comboBoxCol(
+                                Employer.class,
+                                "Работник",
+                                "employer",
+                                0.7d,
+                                false
+                        ))
+                .column(
+                        ColumnFabric.doubleCol(
+                                "Отработанные часы",
+                                "hours",
+                                0.3d,
+                                true
+                        )
                 )
-                .build();
-
-
-        GridPaneWrapper.newBuilder()
-                .setOrganization(new SingleTable(tableWrapper,new ButSizeNon() ,new CtrlPosNON()))
-                .setGridName(null)
-                .setParentAnchor(dynamicContentAnchorHolder)
-                .setCoordinate(new Coordinate(50d,10d,10d,0d))
-                .setGridLinesVisibility(false)
-                .build();
-
-
+                .build().configure();
 
     }
 
-    @Override
-    public void initServices() {
-        mediator.setTableWrapper(tableWrapper);
-        mediator.setDatePickerWrapper(datePickerWrapper);
-        mediator.setDataStoreCallBack(callBackForColumn);
-        mediator.initElements();
-    }
 }

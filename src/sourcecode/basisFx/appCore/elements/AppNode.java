@@ -39,6 +39,7 @@ public abstract class AppNode <T extends Node> {
     protected WindowAbstraction windowAbstraction;
     protected HBox parentHBox;
     protected VBox parentVBox;
+    protected String cssClass;
 
     public abstract Node getElement();
     public void setElementToWindowRegistry() {
@@ -91,6 +92,10 @@ public abstract class AppNode <T extends Node> {
         }
     }
     protected void applyCssClasses() {
+        if (cssClass != null) {
+            getElement().getStyleClass().add(cssClass);
+        }
+
         if (cssClasses != null) {
             for (int i = 0; i < cssClasses.length; i++) {
                 getElement().getStyleClass().add(cssClasses[i].get());

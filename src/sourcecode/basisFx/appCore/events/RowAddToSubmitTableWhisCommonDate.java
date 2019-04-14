@@ -7,10 +7,13 @@ import basisFx.appCore.activeRecord.ActiveRecord;
 import basisFx.service.ServiceTablesAutoCommitByDate;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import lombok.Getter;
+import lombok.Setter;
 
-public class RowAddToSubmitTableWhisCommonDate<T> extends AppEvent implements TableBasedDirectors {
+public class RowAddToSubmitTableWhisCommonDate<T> extends AppEvent implements TableEvents {
 
     private Button but;
+    @Setter @Getter
     private TableWrapper tableWrapper;
 
     public RowAddToSubmitTableWhisCommonDate(TableWrapper tableWrapper ) {
@@ -51,9 +54,4 @@ public class RowAddToSubmitTableWhisCommonDate<T> extends AppEvent implements Ta
         }
     }
 
-
-    @Override
-    public TableWrapper getWrapper() {
-        return tableWrapper;
-    }
 }

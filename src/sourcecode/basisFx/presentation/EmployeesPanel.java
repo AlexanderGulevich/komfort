@@ -3,34 +3,24 @@ import basisFx.appCore.events.RowDeleteFromTable;
 import basisFx.appCore.events.SubWindowCreaterByBut;
 import basisFx.appCore.events.YNWindowCreaterForTable;
 import basisFx.appCore.grid.*;
+import basisFx.appCore.panelElements.SingleTableSet;
 import basisFx.appCore.table.*;
 import basisFx.appCore.utils.Registry;
 import basisFx.appCore.windows.WindowAbstraction;
 import basisFx.appCore.windows.WindowBuilder;
 import basisFx.domain.ActualEmployersRate;
 import basisFx.appCore.DynamicContentPanel;
-import basisFx.service.ServiceTablesSingle;
 import basisFx.appCore.elements.TableWrapper;
-import basisFx.appCore.elements.GridPaneWrapper;
-import basisFx.appCore.utils.Coordinate;
 
 public class EmployeesPanel extends DynamicContentPanel {
-    private ServiceTablesSingle mediator;
-    private TableWrapper outer_table_wrapper;
     private WindowBuilder dateResearchWindowBuilder;
     private WindowBuilder hiringWindowBuilder;
 
     @Override
-    public void createServices() {
-        mediator =new ServiceTablesSingle();
-    }
-
-    @Override
     public void customDynamicElementsInit() {
 
+
         dateResearchWindowBuilder = WindowBuilder.newBuilder()
-                .setGUIStructura(null)
-                .setButtonsForStage(null)
                 .setPanelCreator(RatePerHourPanel::new)
                 .setTitle("Архив тарифов")
                 .setMessage(null)
@@ -47,8 +37,6 @@ public class EmployeesPanel extends DynamicContentPanel {
 
 
         hiringWindowBuilder = WindowBuilder.newBuilder()
-                .setGUIStructura(null)
-                .setButtonsForStage(null)
                 .setPanelCreator(null)
                 .setTitle(null)
                 .setMessage(null)
@@ -64,79 +52,55 @@ public class EmployeesPanel extends DynamicContentPanel {
                 .build();
 
 
-        outer_table_wrapper = TableWrapper.newBuilder()
-                .setGridName("Сотрудники ")
-                .setClass("wrappedHeaderColumn")
-                .setActiveRecordClass(ActualEmployersRate.class)
-                .setUnitOfWork(unitOfWork)
-                .setIsEditable(true)
-                .setIsSortableColums(false)
-                .setServiceTables(mediator)
-                .setColWrappers(
-                        ColWrapperString.newBuilder()
-                                .setColumnName("Фамилия / Имя / Отчество")
-                                .setColumnSize(0.5d)
-                                .setIsEditeble(true)
-                                .setPropertyName("NAME")
-                                .build(),
-                        ColWrapperDouble.newBuilder()
-                                .setColumnName("Тариф - руб./ч. ")
-                                .setColumnSize(0.15d)
-                                .setIsEditeble(false)
-                                .setPropertyName("RATE")
-                                .build(),
-                        ColWrapperDate.newBuilder()
-                                .setColumnName("Начало действия")
-                                .setColumnSize(0.15d)
-                                .setIsEditeble(false)
-                                .setPropertyName("STARTDATE")
-                                .build(),
-                        ColWrapperPopupViaBtn.newBuilder()
-                                .setBtnName("Показать")
-                                .setColumnName("Архив")
-                                .setColumnSize(0.2d)
-                                .setWindowBuilder(dateResearchWindowBuilder)
-                                .build()
-                )
-                .build();
 
 
-        Registry.mainWindow.setNodeToMap(outer_table_wrapper,"outer_table_wrapper");
-
-
-         GridPaneWrapper.newBuilder()
-                .setGridName("Текущий список сотрудников и актуальные тарифные ставки")
-                .setParentAnchor(dynamicContentAnchorHolder)
-                .setCoordinate(new Coordinate(0d, 10d, 10d, 0d))
-                .setGridLinesVisibility(gridVisibility)
-                .setOrganization(
-                        new SingleTable(
-                                outer_table_wrapper,
-                                new ButSizeBig(
-                                        new YNWindowCreaterForTable(
-                                                new RowDeleteFromTable(outer_table_wrapper),
-                                                "Вы уверены, что хотите уволить сотрудника"
-                                        ) ,
-                                        new SubWindowCreaterByBut(hiringWindowBuilder)
-                                ),
-                                new CtrlPosBotton()
+        SingleTableSet.builder()
+                .aClass(ActualEmployersRate.class)
+                .isSortable(false) .isEditable(true)
+                .currentWindow(window)
+                .cssClass("wrappedHeaderColumn")
+                .bigTitle("Текущий список сотрудников и актуальные тарифные ставки")
+                .littleTitle("Сотрудники ")
+                .parentAnchor(dynamicContentAnchorHolder)
+                .ctrlPosEnum(CtrlPosEnum.CTRL_POS_TOP)
+                .butSizeEnum(ButSizeEnum.BUT_SIZE_LITTLE)
+                .addButEvent(new SubWindowCreaterByBut(hiringWindowBuilder) )
+                .delButEvent(new YNWindowCreaterForTable( new RowDeleteFromTable(),"Вы уверены, что хотите уволить сотрудника") )
+                .column(
+                        ColumnFabric.stringCol(
+                                "Фамилия / Имя / Отчество",
+                                "NAME",
+                                0.5d,
+                                true
                         ))
-                .build();
+                .column(
+                        ColumnFabric.doubleCol(
+                                "Тариф - руб./ч. ",
+                                "RATE",
+                                0.15d,
+                                false
+                        ))
+                .column(
+                        ColumnFabric.dateCol(
+                                "Начало действия",
+                                "STARTDATE",
+                                0.15d,
+                                false
+                        ))
+                .column(
+                        ColumnFabric.popupViaBtnCol(
+                                "Архив",
+                                "Показать",
+                                0.2d,
+                                dateResearchWindowBuilder
+                        ))
+                .build().configure();
+
+
+
+
+
     }
-
-    @Override
-    public void closeDynamicContentPanel() {
-        Registry.mainWindow.delNodeFromMap(outer_table_wrapper );
-
-    }
-
-    @Override
-    public void initServices() {
-        mediator.setTableWrapper(outer_table_wrapper);
-        mediator.initElements();
-    }
-
-
 
 
 }

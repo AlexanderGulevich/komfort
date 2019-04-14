@@ -50,7 +50,7 @@ public class MainMenuSketch implements MenuSketch {
 //                        .setFontsStore(FontsStore.MATERIAL_ICONS)
 //                        .setFontSymbol("\uE52D")
 //                        .setFontSize(iconSize)
-//                        .build().add(
+//                        .build().addButEvent(
 //                              LeftAndTopBarItemLeaf.newBuilder()
 //                                      .setDescription("Дневная выработка")
 ////                                      .setPanelCreator(fm.dailyOutputPanel())
@@ -136,7 +136,7 @@ public class MainMenuSketch implements MenuSketch {
 //                        .setFontsStore(FontsStore.fontcustom)
 //                        .setFontSymbol("\uF214")
 //                        .setFontSize(iconSize)
-//                        .build().add()
+//                        .build().addButEvent()
 
 
 

@@ -19,14 +19,14 @@ public  abstract class ButSizeForGrid {
     @Getter protected Button  buttonDel;
     @Getter protected ButtonWrapper  buttonWrapperAdd;
     @Getter protected ButtonWrapper  buttonWrapperDel;
-    protected AppEvent del;
-    protected AppEvent  add;
+    @Getter @Setter protected AppEvent delButEvent;
+    @Getter @Setter protected AppEvent addButEvent;
 
     public ButSizeForGrid() {
     }
-    public ButSizeForGrid(AppEvent del, AppEvent add) {
-        this.del = del;
-        this.add = add;
+    public ButSizeForGrid(AppEvent delButEvent, AppEvent addButEvent) {
+        this.delButEvent = delButEvent;
+        this.addButEvent = addButEvent;
     }
     public abstract void init();
 
@@ -34,8 +34,8 @@ public  abstract class ButSizeForGrid {
 
         AppEvent event;
 
-        if (add != null) {
-            event=add;
+        if (addButEvent != null) {
+            event= addButEvent;
         }else  {
             event = new RowAddToTable(tableWrapper);
         }
@@ -54,8 +54,8 @@ public  abstract class ButSizeForGrid {
     public Button littleRowDeleteButton(TableWrapper tableWrapper ){
         AppEvent event;
 
-        if (del != null) {
-            event=del;
+        if (delButEvent != null) {
+            event= delButEvent;
         }else  {
             event = new RowDeleteFromTable(tableWrapper);
         }
@@ -72,8 +72,8 @@ public  abstract class ButSizeForGrid {
     public Button addRowButtonHuge(TableWrapper tableWrapper){
         AppEvent event;
 
-        if (add != null) {
-            event=add;
+        if (addButEvent != null) {
+            event= addButEvent;
         }else  {
             event = new RowAddToTable(tableWrapper);
         }
@@ -90,8 +90,8 @@ public  abstract class ButSizeForGrid {
     public Button deleteRowButtonHuge(TableWrapper tableWrapper){
         AppEvent event;
 
-        if (del != null) {
-            event=del;
+        if (delButEvent != null) {
+            event= delButEvent;
         }else  {
             event = new RowDeleteFromTable(tableWrapper);
         }

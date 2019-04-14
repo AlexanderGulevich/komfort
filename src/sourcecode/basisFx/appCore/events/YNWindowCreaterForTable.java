@@ -3,21 +3,21 @@ package basisFx.appCore.events;
 import basisFx.appCore.elements.AppNode;
 import basisFx.appCore.elements.TableWrapper;
 import basisFx.appCore.fabrics.WindowFabric;
-import basisFx.appCore.interfaces.TableBasedDirectors;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import lombok.Getter;
+import lombok.Setter;
 
-public class YNWindowCreaterForTable extends AppEvent{
+public class YNWindowCreaterForTable extends AppEvent implements TableEvents{
     protected AppEvent event;
     private String mess;
     private Button but;
+    @Setter @Getter
     private TableWrapper tableWrapper;
 
     public YNWindowCreaterForTable(AppEvent event, String mess ) {
         this.event=event;
         this.mess = mess;
-        tableWrapper=((TableBasedDirectors) event).getWrapper();
-
     }
     @Override
     public void setEventToElement(AppNode node) {
@@ -35,8 +35,11 @@ public class YNWindowCreaterForTable extends AppEvent{
     }
     @Override
     public void run() {
+        ((TableEvents) event).setTableWrapper(tableWrapper);
         WindowFabric.WindowUndecorated().dialogWindow(  mess, (t) -> {
             if(t)  event.run(); }
             );
     }
+
+
 }
