@@ -31,7 +31,7 @@ public class PacketForPopup extends DynamicContentPanel {
         WindowBuilder dateResearchWindowBuilder = WindowBuilder.newBuilder()
                 .setGUIStructura(null)
                 .setButtonsForStage(null)
-                .setPanelCreator(PacketPricePanelPopup::new)
+                .setPanelCreator(PopupPacketPricePanel::new)
                 .setTitle("Реестр цен")
                 .setMessage(null)
                 .setFxmlFileName("ByDateResearchWindow")
@@ -47,7 +47,7 @@ public class PacketForPopup extends DynamicContentPanel {
 
         WindowBuilder windowBuilder = WindowBuilder.newBuilder()
                 .setGUIStructura(null)
-                .setPanelCreator(PacketSizePanel::new)
+                .setPanelCreator(PopupPacketSizePanel::new)
                 .setTitle("Размеры пакетов")
                 .setMessage(null)
                 .setFxmlFileName("AddDellPopupWindow")

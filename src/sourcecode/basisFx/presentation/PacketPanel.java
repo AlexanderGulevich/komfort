@@ -1,29 +1,17 @@
 package basisFx.presentation;
 
 import basisFx.appCore.activeRecord.ActiveRecord;
-import basisFx.appCore.elements.GridPaneWrapper;
 import basisFx.appCore.elements.TableWrapper;
-import basisFx.appCore.grid.*;
+import basisFx.appCore.interfaces.CallBackTypedAndParametrized;
+import basisFx.appCore.panelElements.TwoVerticalTablesSet;
 import basisFx.appCore.utils.Registry;
 import basisFx.appCore.windows.WindowAbstraction;
 import basisFx.appCore.windows.WindowBuilder;
-import basisFx.service.ServiceTablesSingle;
 import basisFx.appCore.table.*;
-import basisFx.appCore.utils.Coordinate;
 import basisFx.domain.*;
 import basisFx.appCore.DynamicContentPanel;
 
 public class PacketPanel  extends DynamicContentPanel {
-    private ServiceTablesSingle serviceTablesSingle1;
-    private ServiceTablesSingle serviceTablesSingle2;
-    private TableWrapper packet;
-    private TableWrapper capacity;
-
-    @Override
-    public void createServices() {
-            serviceTablesSingle1 =new ServiceTablesSingle();
-            serviceTablesSingle2 =new ServiceTablesSingle();
-    }
 
     @Override
     public void customDynamicElementsInit() {
@@ -31,7 +19,7 @@ public class PacketPanel  extends DynamicContentPanel {
         WindowBuilder dateResearchWindowBuilder = WindowBuilder.newBuilder()
                 .setGUIStructura(null)
                 .setButtonsForStage(null)
-                .setPanelCreator(PacketPricePanelPopup::new)
+                .setPanelCreator(PopupPacketPricePanel::new)
                 .setTitle("Реестр цен")
                 .setMessage(null)
                 .setFxmlFileName("ByDateResearchWindow")
@@ -47,7 +35,7 @@ public class PacketPanel  extends DynamicContentPanel {
 
         WindowBuilder packetSize = WindowBuilder.newBuilder()
                 .setGUIStructura(null)
-                .setPanelCreator(PacketSizePanel::new)
+                .setPanelCreator(PopupPacketSizePanel::new)
                 .setTitle("Размеры пакетов")
                 .setMessage(null)
                 .setFxmlFileName("AddDellPopupWindow")
@@ -63,7 +51,7 @@ public class PacketPanel  extends DynamicContentPanel {
 
         WindowBuilder counterparty = WindowBuilder.newBuilder()
                 .setGUIStructura(null)
-                .setPanelCreator(CounterpartyPanelPopup::new)
+                .setPanelCreator(PopupCounterpartyPanel::new)
                 .setTitle("Список контрагентов")
                 .setMessage(null)
                 .setFxmlFileName("AddDellPopupWindow")
@@ -77,113 +65,30 @@ public class PacketPanel  extends DynamicContentPanel {
                         })
                 .build();
 
-        packet = TableWrapper.newBuilder()
-                .setGridLinesVisibility(gridVisibility)
-                .setGridName("Пакеты ")
-                .setOrganization(new SingleTable(new ButSizeLittle(),new CtrlPosTop()))
-                .setActiveRecordClass(Packet.class)
-                .setUnitOfWork(unitOfWork)
-                .setIsEditable(true)
-                .setIsSortableColums(false)
-                .setServiceTables(serviceTablesSingle1)
-                .setColWrappers(
-                        ColWrapperPopup.newBuilder()
-                                .setColumnName("Размер")
-                                .setColumnSize(0.3d)
-                                .setIsEditeble(true)
-                                .setWindowBuilder(packetSize)
-                                .setPropertyName("packetSize")
-                                .build(),
-                        ColWrapperPopup.newBuilder()
-                                .setColumnName("Поставщик")
-                                .setColumnSize(0.3d)
-                                .setIsEditeble(true)
-                                .setWindowBuilder(counterparty)
-                                .setPropertyName("counterparty")
-                                .build(),
-                        ColWrapperBind.newBuilder()
-                                .setColumnName("Валюта")
-                                .setColumnSize(0.2d)
-                                .setCallBackTypedAndParametrized(
-                                        r -> {
-                                            Packet var = (Packet) r;
-                                            if (!ActiveRecord.isNewDomane(var)) {
-                                                return var.getCounterparty().currencyProperty();
-                                            }
-                                            else return null;
-                                        }
-                                )
-                                .build(),
-                        ColWrapperPopupViaBtn.newBuilder()
-                                .setBtnName("Архив цен")
-                                .setColumnName("Архив цен")
-                                .setColumnSize(0.2d)
-                                .setWindowBuilder(dateResearchWindowBuilder)
-                                .build()
-                )
-                .build();
 
-
-        Registry.mainWindow.setNodeToMap(packet,"outer_table_wrapper");
+        CallBackTypedAndParametrized clb=r -> { Packet var = (Packet) r;
+            if (!ActiveRecord.isNewDomane(var)) {
+                return var.getCounterparty().currencyProperty();
+            } else return null; };
 
 
 
-          capacity = TableWrapper.newBuilder()
-                .setGridLinesVisibility(gridVisibility)
-                .setGridName("Вместимость пакетов")
-                .setOrganization(new SingleTable(new ButSizeLittle(),new CtrlPosTop()))
-                .setActiveRecordClass(PacketProductAccordance.class)
-                .setUnitOfWork(unitOfWork)
-                .setIsEditable(true)
-                .setIsSortableColums(false)
-                .setServiceTables(serviceTablesSingle2)
-                .setColWrappers(
-                        ColWrapperComboBox.newBuilder(Product.class)
-                                .setColumnName("Продукция")
-                                .setColumnSize(0.5d)
-                                .setIsEditeble(true)
-                                .setPropertyName("product")
-                                .build(),
-                        ColWrapperComboBox.newBuilder(PacketSize.class)
-                                .setColumnName("Размер")
-                                .setColumnSize(0.3d)
-                                .setIsEditeble(true)
-                                .setPropertyName("packetSize")
-                                .build(),
-                        ColWrapperInt.newBuilder()
-                                .setColumnName("Кол-во")
-                                .setColumnSize(0.2d)
-                                .setIsEditeble(true)
-                                .setPropertyName("number")
-                                .build()
-                )
-                .build();
+        TwoVerticalTablesSet.builder()
+                .aClassTop(Packet.class).aClassBottom(PacketProductAccordance.class)
+                .bigTitle("Управление информацией о пакетах")
+                .littleTitleTop("Пакеты").littleTitleBottom("Вместимость пакетов")
+                .parentAnchor(dynamicContentAnchorHolder)
+                .currentWindow(window)
+                .topCols(ColumnFabric.popup("Размер","packetSize",0.3d,packetSize))
+                .topCols(ColumnFabric.popup("Поставщик","counterparty",0.3d,counterparty))
+                .topCols(ColumnFabric.bindCol("Валюта",0.2d,clb))
+                .topCols(ColumnFabric.popupViaBtnCol("Архив цен","Архив цен",0.2d,dateResearchWindowBuilder))
+                .bottomCols(ColumnFabric.comboBoxCol(Product.class,"Продукция","product",0.5d,true))
+                .bottomCols(ColumnFabric.comboBoxCol(PacketSize.class,"Размер","packetSize",0.3d,true))
+                .bottomCols(ColumnFabric.intCol("Кол-во","number",0.2d,true))
+                .build().configure();
 
 
-
-        GridPaneWrapper commonGridPaneWrapper = GridPaneWrapper.newBuilder()
-                .setGridLinesVisibility(false)
-                .setColumnVsPercent(100)
-                .setGridName("Управление информацией о пакетах")
-                .setParentAnchor(dynamicContentAnchorHolder)
-                .setCoordinate(new Coordinate(0d, 10d, 10d, 0d))
-                .setOrganization(
-                        new TwoVerticaGrids(
-                                new SingleTable(packet,new ButSizeBig(),new CtrlPosTop())  , "Пакеты",
-                                new SingleTable(capacity,new ButSizeBig(),new CtrlPosTop()), "Вместимость пакетов"
-                 )
-                )
-                .build();
-
-    }
-
-    @Override
-    public void initServices() {
-        serviceTablesSingle1.setTableWrapper(packet);
-        serviceTablesSingle1.initElements();
-
-        serviceTablesSingle2.setTableWrapper(capacity);
-        serviceTablesSingle2.initElements();
     }
 
 

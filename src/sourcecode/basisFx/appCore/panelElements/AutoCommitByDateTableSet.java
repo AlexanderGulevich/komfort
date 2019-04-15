@@ -46,8 +46,8 @@ public class AutoCommitByDateTableSet implements  PanelSets {
     private AnchorPane parentAnchor;
     private ButSizeEnum butSizeEnum;
     private CtrlPosEnum ctrlPosEnum;
-    @Builder.Default private ButSizeForGrid buttonsForGrid ;
-    @Builder.Default private CtrlPosition ctrlPosition ;
+    @Builder.Default private ButSizeForGrid buttonsForGrid=null;
+    @Builder.Default private CtrlPosition ctrlPosition=null;
 
     @Override
     public void configure() {

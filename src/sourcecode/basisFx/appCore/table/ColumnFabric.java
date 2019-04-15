@@ -1,6 +1,9 @@
 package basisFx.appCore.table;
 
+import basisFx.appCore.activeRecord.ActiveRecord;
+import basisFx.appCore.interfaces.CallBackTypedAndParametrized;
 import basisFx.appCore.windows.WindowBuilder;
+import basisFx.domain.Label;
 
 public interface ColumnFabric {
     static  ColWrapper doubleCol(String name, String property, double size, boolean isEditable){
@@ -60,6 +63,25 @@ public interface ColumnFabric {
                .setPropertyName(property)
                .setWindowBuilder(windowBuilder)
                .build();
+    }
+
+
+    static  ColWrapper boolCol(String name,String property, double size,boolean isEditable  ){
+       return    ColWrapperBool.newBuilder()
+               .setColumnName(name)
+               .setColumnSize(size)
+               .setIsEditeble(isEditable)
+               .setPropertyName(property)
+               .build();
+
+    }
+    static  ColWrapper bindCol(String name, double size, CallBackTypedAndParametrized clb){
+       return    ColWrapperBind.newBuilder()
+               .setColumnName(name)
+               .setColumnSize(size)
+               .setCallBackTypedAndParametrized(clb )
+               .build();
+
     }
 
 

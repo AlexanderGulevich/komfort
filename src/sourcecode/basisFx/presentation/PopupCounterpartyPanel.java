@@ -7,7 +7,7 @@ import basisFx.domain.Counterparty;
 import basisFx.domain.Currency;
 import basisFx.appCore.DynamicContentPanel;
 
-public class CounterpartyPanelPopup extends DynamicContentPanel {
+public class PopupCounterpartyPanel extends DynamicContentPanel {
     @Override
     public void customDynamicElementsInit() {
         SingleTableSet.builder()

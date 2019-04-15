@@ -11,7 +11,7 @@
    <children>
       <AnchorPane layoutX="4.0" layoutY="57.57143020629883" prefHeight="433.0" prefWidth="680.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="60.0">
          <children>
-            <AnchorPane fx:id="dynamicContentAnchorHolder" layoutX="-2.0" layoutY="8.0" prefHeight="421.0" prefWidth="700.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
+            <AnchorPane fx:id="dynamicContentAnchorHolder" layoutX="-2.0" layoutY="8.0" prefHeight="421.0" prefWidth="700.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="10.0" />
          </children>
       </AnchorPane>
       <AnchorPane fx:id="titlePanel" layoutX="72.0" layoutY="7.0" prefHeight="46.0" prefWidth="680.0" styleClass="bottom" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="0.0">

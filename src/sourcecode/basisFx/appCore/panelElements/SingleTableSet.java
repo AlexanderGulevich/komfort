@@ -28,11 +28,11 @@ import java.util.List;
 public class SingleTableSet implements PanelSets {
     @Builder.Default private ServiceTablesSingle mediatorSingleTable=new ServiceTablesSingle();
     @Builder.Default private UnitOfWork unitOfWork=new UnitOfWork();
-    @Builder.Default private TableWrapper tableWrapper=null;
+    private TableWrapper tableWrapper;
     @Builder.Default private CtrlPosFactory posFactory=CtrlPosFactory.getInstance();
     @Builder.Default private ButSizeFactory bsFactory=ButSizeFactory.getInstance();
     @Builder.Default private Coordinate coordinate=new Coordinate(0d, 10d, null, 0d);
-    @Builder.Default private RangeDirector rangeDirector=null;
+    private RangeDirector rangeDirector;
     private TableEvents delButEvent;
     private TableEvents addButEvent;
     private WindowAbstraction currentWindow;
@@ -48,13 +48,13 @@ public class SingleTableSet implements PanelSets {
     private AnchorPane parentAnchor;
     private ButSizeEnum butSizeEnum;
     private CtrlPosEnum ctrlPosEnum;
-    @Builder.Default private ButSizeForGrid buttonsForGrid ;
-    @Builder.Default private CtrlPosition ctrlPosition ;
+    private ButSizeForGrid buttonsForGrid;
+    private CtrlPosition ctrlPosition;
 
     @Override
     public void configure() {
         butInit();
-        rangeDirectorHandle((CtrlPosButAndCombobox) ctrlPosition);
+        rangeDirectorHandle();
         bigTitleHandle();
         createTable();
         handleEvents(buttonsForGrid);
@@ -126,12 +126,12 @@ public class SingleTableSet implements PanelSets {
         }
     }
 
-    private void rangeDirectorHandle(CtrlPosButAndCombobox ctrlPosition) {
+    private void rangeDirectorHandle() {
         if(ctrlPosEnum== CtrlPosEnum.CTRL_POS_BUT_AND_COMBOBOX){
             rangeDirector= new RangeDirector( new ComboBox<>(), mediatorSingleTable, Range.LAST10,
                     Range.get( Range.LAST10, Range.LAST30, Range.ALLTIME )
             );
-            ctrlPosition.setComboBox(rangeDirector.getComboBox());
+            ((CtrlPosButAndCombobox) ctrlPosition).setComboBox(rangeDirector.getComboBox());
             mediatorSingleTable.setRangeDirector(rangeDirector);
         }
         ;
