@@ -1,9 +1,6 @@
-package basisFx.appCore.fabrics;
+package basisFx.appCore.windows;
 
 import basisFx.appCore.interfaces.CallBackParametrized;
-import basisFx.appCore.windows.*;
-import basisFx.appCore.windows.WindowAbstraction;
-import basisFx.appCore.windows.WindowAbstractionUndecorated;
 import javafx.stage.Stage;
 
 

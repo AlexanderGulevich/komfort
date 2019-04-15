@@ -19,6 +19,7 @@ import basisFx.dataSource.UnitOfWork;
 import basisFx.service.ServiceTablesSingle;
 import javafx.geometry.Pos;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Tooltip;
 import javafx.scene.layout.AnchorPane;
 import lombok.Builder;
 import lombok.Singular;
@@ -61,11 +62,14 @@ public class SingleTableSet implements PanelSets {
         createGrid(buttonsForGrid, ctrlPosition);
         putObjToRegistres();
         initService();
+
     }
 
     private void butInit() {
         buttonsForGrid = bsFactory.getButSizeForGrid(butSizeEnum);
         ctrlPosition = posFactory.getCtrlPosition(ctrlPosEnum);
+
+
     }
 
     private void putObjToRegistres() {

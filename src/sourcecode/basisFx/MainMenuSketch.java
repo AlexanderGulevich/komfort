@@ -35,14 +35,11 @@ public class MainMenuSketch implements MenuSketch {
                         .fontSize(iconSize)
                         .build()
         ).setLeaf(LeftAndTopBarItemLeaf.builder()
-                .name("Учет времени").panelCreator(TimeRecordingPanel::new )
-                .build())
+                .name("Учет времени").panelCreator(TimeRecordingPanel::new ).build())
         .setLeaf(LeftAndTopBarItemLeaf.builder()
-                .name("Учет выходной продукции").panelCreator(OutputPanel::new )
-                .build())
+                .name("Учет выходной продукции").panelCreator(OutputPanel::new ).build())
         .setLeaf(LeftAndTopBarItemLeaf.builder()
-                .name("Учет джамбо-ролей").panelCreator(JumboAccountingPanel::new)
-                .build());
+                .name("Учет джамбо-ролей").panelCreator(JumboAccountingPanel::new).build());
 
 
 
@@ -57,23 +54,40 @@ public class MainMenuSketch implements MenuSketch {
 //                                      .build()
 //                ),
         menuDirector.setComposite(LeftAndTopBarItemComposite.builder()
-                    .description("Статистическая информация")
+                    .description("Графики")
                     .fontsStore(FAWESOME5SOLID)
                     .fxmlFileName("vbut.fxml")
                     .fontSymbol("\uF080")
                     .fontSize(iconSize)
                     .build()
         ).setLeaf(LeftAndTopBarItemLeaf.builder()
-                .name("Затраты").panelCreator(null)
-                .build() )
-        .setLeaf(LeftAndTopBarItemLeaf.builder().name("Валюты").panelCreator(null)
-                .build() )
+                .name("Затраты").panelCreator(ChartTestArea::new).build() )
         .setLeaf(LeftAndTopBarItemLeaf.builder()
-                .name("Выход").panelCreator(null)
-                .build() )
+                .name("Валюты").panelCreator(ChartTestLine::new).build() )
         .setLeaf(LeftAndTopBarItemLeaf.builder()
-                .name("Рентабельность").panelCreator(null)
-                .build() );
+                .name("Выход").panelCreator(ChartTestVerticalBar::new) .build() )
+        .setLeaf(LeftAndTopBarItemLeaf.builder()
+                .name("Рентабельность").panelCreator(ChartTestStackedArea::new).build() )
+        .setLeaf(LeftAndTopBarItemLeaf.builder()
+                .name("Рентабельность").panelCreator(ChartTestPie::new).build() )
+        .setLeaf(LeftAndTopBarItemLeaf.builder()
+                .name("Рентабельность").panelCreator(null).build() );
+
+        menuDirector.setComposite(LeftAndTopBarItemComposite.builder()
+                    .description("Статистическая информация")
+                    .fontsStore(FAWESOME5SOLID)
+                    .fxmlFileName("vbut.fxml")
+                    .fontSymbol("\uF15C")
+                    .fontSize(iconSize)
+                    .build()
+        ).setLeaf(LeftAndTopBarItemLeaf.builder()
+                .name("Затраты").panelCreator(null).build() )
+        .setLeaf(LeftAndTopBarItemLeaf.builder()
+                .name("Валюты").panelCreator(null).build() )
+        .setLeaf(LeftAndTopBarItemLeaf.builder()
+                .name("Выход").panelCreator(null) .build() )
+        .setLeaf(LeftAndTopBarItemLeaf.builder()
+                .name("Рентабельность").panelCreator(null).build() );
 
 
         menuDirector.setComposite(LeftAndTopBarItemComposite.builder()
@@ -84,11 +98,9 @@ public class MainMenuSketch implements MenuSketch {
                         .fontSize(iconSize)
                         .build()
         ).setLeaf( LeftAndTopBarItemLeaf.builder()
-                        .name("Сотрудники").panelCreator(EmployeesPanel::new)
-                        .build()
+                        .name("Сотрудники").panelCreator(EmployeesPanel::new).build()
         ).setLeaf( LeftAndTopBarItemLeaf.builder()
-                        .name("Уволенные").panelCreator(FiredEmployeesPanel::new)
-                        .build() );
+                        .name("Уволенные").panelCreator(FiredEmployeesPanel::new).build() );
 
 
 
@@ -101,32 +113,23 @@ public class MainMenuSketch implements MenuSketch {
                         .fontSize(iconSize)
                         .build()
         ).setLeaf(LeftAndTopBarItemLeaf.builder()
-                .name("Продукция").panelCreator(ProductPanel::new)
-                .build()
+                .name("Продукция").panelCreator(ProductPanel::new).build()
         ).setLeaf(LeftAndTopBarItemLeaf.builder()
-                .name("Станки").panelCreator(EquipmentPanel::new)
-                .build()
+                .name("Станки").panelCreator(EquipmentPanel::new).build()
         ).setLeaf( LeftAndTopBarItemLeaf.builder()
-                .name("Контрагенты").panelCreator(CounterpartyPanel::new)
-                .build()
+                .name("Контрагенты").panelCreator(CounterpartyPanel::new).build()
         ).setLeaf( LeftAndTopBarItemLeaf.builder()
-                .name("Валюты").panelCreator(ExchangeRatesPanel::new)
-                .build()
+                .name("Валюты").panelCreator(ExchangeRatesPanel::new).build()
         ).setLeaf( LeftAndTopBarItemLeaf.builder()
-                .name("Ширины ролей").panelCreator(JumboPanel::new)
-                .build()
+                .name("Ширины ролей").panelCreator(JumboPanel::new).build()
         ).setLeaf(LeftAndTopBarItemLeaf.builder()
-                .name("Пакеты").panelCreator(PacketPanel::new)
-                .build()
+                .name("Пакеты").panelCreator(PacketPanel::new).build()
         ).setLeaf( LeftAndTopBarItemLeaf.builder()
-                .name("Этикетки").panelCreator(LabelPanel::new)
-                .build()
+                .name("Этикетки").panelCreator(LabelPanel::new).build()
         ).setLeaf(LeftAndTopBarItemLeaf.builder()
-                .name("Втулки").panelCreator(SleevePanel::new)
-                .build()
+                .name("Втулки").panelCreator(SleevePanel::new).build()
         ).setLeaf(LeftAndTopBarItemLeaf.builder()
-                .name("Бумага").panelCreator(PaperPanel::new)
-                .build()
+                .name("Бумага").panelCreator(PaperPanel::new).build()
         );
 
 

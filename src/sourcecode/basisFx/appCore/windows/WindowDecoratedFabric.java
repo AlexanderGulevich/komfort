@@ -1,8 +1,6 @@
-package basisFx.appCore.fabrics;
+package basisFx.appCore.windows;
 
-import basisFx.appCore.events.AppEvent;
 import basisFx.appCore.interfaces.CallBackParametrized;
-import basisFx.appCore.windows.*;
 import javafx.stage.Stage;
 
 

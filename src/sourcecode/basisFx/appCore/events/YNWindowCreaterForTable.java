@@ -2,7 +2,7 @@ package basisFx.appCore.events;
 
 import basisFx.appCore.elements.AppNode;
 import basisFx.appCore.elements.TableWrapper;
-import basisFx.appCore.fabrics.WindowFabric;
+import basisFx.appCore.windows.WindowFabric;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import lombok.Getter;
