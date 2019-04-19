@@ -47,7 +47,10 @@
             <AnchorPane fx:id="mainContentAnchor" minHeight="200.0" prefHeight="0.0" prefWidth="200.0" styleClass="lightGrey" stylesheets="@../css/custom_1/colors.css" VBox.vgrow="ALWAYS">
                <padding>
                   <Insets top="10.0" />
-               </padding></AnchorPane>
+               </padding>
+               <children>
+                  <fx:include source="chartPanel.fxml" />
+               </children></AnchorPane>
          </children>
       </VBox>
       <AnchorPane fx:id="verticalMenuAnchor" layoutX="14.0" layoutY="66.0" prefHeight="0.0" prefWidth="60.0" style="-fx-pref-width: 60;" styleClass="darckBlue" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">

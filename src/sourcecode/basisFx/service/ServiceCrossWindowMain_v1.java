@@ -43,7 +43,7 @@ public class ServiceCrossWindowMain_v1 extends ServiceCrossWindow   {
         Registry.mainWindow.setNodeToMap(horisontalMenuButHolderFlowPane,"horisontalMenuButHolderFlowPane");
 
         new StageDragging().setEventToElement(titleAnchor);
-        companyNameText.setFont(FontLogic.loadFont(FontsStore.ROBOTO_BOLD,35));
+//        companyNameText.setFont(FontLogic.loadFont(FontsStore.ROBOTO_BOLD,35));
 
 
     }
