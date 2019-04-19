@@ -1,4 +1,4 @@
-package basisFx.appCore.panelElements;
+package basisFx.appCore.panelSets;
 
 public interface PanelSets {
     void configure();

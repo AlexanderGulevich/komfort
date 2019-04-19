@@ -1,6 +1,6 @@
 package basisFx.presentation;
 
-import basisFx.appCore.panelElements.TwoBindTableSet;
+import basisFx.appCore.panelSets.TwoBindTableSet;
 import basisFx.appCore.table.*;
 import basisFx.domain.ProductPrice;
 import basisFx.domain.Product;

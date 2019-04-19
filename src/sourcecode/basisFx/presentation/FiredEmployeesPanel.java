@@ -3,7 +3,7 @@ package basisFx.presentation;
 import basisFx.appCore.events.RowDeleteFromTable;
 import basisFx.appCore.events.YNWindowCreaterForTable;
 import basisFx.appCore.grid.*;
-import basisFx.appCore.panelElements.SingleTableSet;
+import basisFx.appCore.panelSets.SingleTableSet;
 import basisFx.appCore.table.ColumnFabric;
 import basisFx.domain.Fired;
 import basisFx.appCore.DynamicContentPanel;

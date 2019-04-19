@@ -1,4 +1,4 @@
-package basisFx.appCore.panelElements;
+package basisFx.appCore.panelSets;
 
 import basisFx.appCore.elements.GridPaneWrapper;
 import basisFx.appCore.elements.LabelWrapper;
@@ -19,7 +19,6 @@ import basisFx.dataSource.UnitOfWork;
 import basisFx.service.ServiceTablesSingle;
 import javafx.geometry.Pos;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.Tooltip;
 import javafx.scene.layout.AnchorPane;
 import lombok.Builder;
 import lombok.Singular;

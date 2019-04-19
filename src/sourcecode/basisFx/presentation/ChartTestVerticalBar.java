@@ -34,7 +34,7 @@ public class ChartTestVerticalBar extends DynamicContentPanel {
                 .parent(dynamicContentAnchorHolder)
                 .chartTitle("LineChartBfx")
                 .xLabel("xxxxxxxxxx").yLabel("yyyyyyyyy")
-                .xPrefix("d").yPrefix("y")
+                .xPrefix("ServiceChartPanelRightControls").yPrefix("y")
                 .xLines(true).yLines(false)
                 .cursor(Cursor.DEFAULT)
                 .coordinate(new Coordinate(0d, 0d, 0d, 0d))

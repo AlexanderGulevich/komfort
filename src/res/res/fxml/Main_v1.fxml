@@ -49,7 +49,7 @@
                   <Insets top="10.0" />
                </padding>
                <children>
-                  <fx:include source="chartPanel.fxml" />
+                  <fx:include source="chartPanelRightControls.fxml" />
                </children></AnchorPane>
          </children>
       </VBox>

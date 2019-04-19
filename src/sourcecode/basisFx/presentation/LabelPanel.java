@@ -1,7 +1,7 @@
 package basisFx.presentation;
 
 import basisFx.appCore.activeRecord.ActiveRecord;
-import basisFx.appCore.panelElements.TwoBindTableSet;
+import basisFx.appCore.panelSets.TwoBindTableSet;
 import basisFx.appCore.table.*;
 import basisFx.domain.*;
 import basisFx.appCore.DynamicContentPanel;

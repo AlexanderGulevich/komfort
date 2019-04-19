@@ -1,7 +1,7 @@
 package basisFx.presentation;
 
 import basisFx.appCore.grid.*;
-import basisFx.appCore.panelElements.AutoCommitByDateTableSet;
+import basisFx.appCore.panelSets.AutoCommitByDateTableSet;
 import basisFx.appCore.table.ColumnFabric;
 import basisFx.domain.*;
 import basisFx.appCore.DynamicContentPanel;

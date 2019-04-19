@@ -11,7 +11,7 @@ public class Registry   {
    public static WindowAbstraction mainWindow;
 
    public static HashMap<String, ServiceCrossWindow> crossWindowMediators =new HashMap<>();
-   public static HashMap<String, Object> crossWindowTransfer =new HashMap<>();
+   public static HashMap<String, Object> dataExchanger =new HashMap<>();
 
 
 }

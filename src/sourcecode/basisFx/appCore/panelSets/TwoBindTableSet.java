@@ -1,4 +1,4 @@
-package basisFx.appCore.panelElements;
+package basisFx.appCore.panelSets;
 
 import basisFx.appCore.elements.GridPaneWrapper;
 import basisFx.appCore.elements.RangeDirector;

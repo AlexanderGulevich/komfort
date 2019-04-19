@@ -2,7 +2,7 @@ package basisFx.presentation;
 
 import basisFx.appCore.grid.*;
 import basisFx.appCore.interfaces.DataStoreCallBack;
-import basisFx.appCore.panelElements.AutoCommitByDateTableSet;
+import basisFx.appCore.panelSets.AutoCommitByDateTableSet;
 import basisFx.appCore.table.ColumnFabric;
 import basisFx.appCore.utils.Registry;
 import basisFx.dataSource.BFxPreparedStatement;

@@ -3,7 +3,7 @@ package basisFx.presentation;
 import basisFx.appCore.activeRecord.ActiveRecord;
 import basisFx.appCore.elements.TableWrapper;
 import basisFx.appCore.interfaces.CallBackTypedAndParametrized;
-import basisFx.appCore.panelElements.TwoVerticalTablesSet;
+import basisFx.appCore.panelSets.TwoVerticalTablesSet;
 import basisFx.appCore.utils.Registry;
 import basisFx.appCore.windows.WindowAbstraction;
 import basisFx.appCore.windows.WindowBuilder;

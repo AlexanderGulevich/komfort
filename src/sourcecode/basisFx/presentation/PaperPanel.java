@@ -1,18 +1,10 @@
 package basisFx.presentation;
 
 import basisFx.appCore.activeRecord.ActiveRecord;
-import basisFx.appCore.elements.RangeDirector;
-import basisFx.appCore.elements.TableWrapper;
-import basisFx.appCore.grid.*;
-import basisFx.appCore.elements.GridPaneWrapper;
-import basisFx.appCore.panelElements.TwoBindTableSet;
+import basisFx.appCore.panelSets.TwoBindTableSet;
 import basisFx.appCore.table.*;
-import basisFx.appCore.utils.Range;
 import basisFx.domain.*;
 import basisFx.appCore.DynamicContentPanel;
-import basisFx.service.ServiceTablesTwoLinked;
-import basisFx.appCore.utils.Coordinate;
-import javafx.scene.control.ComboBox;
 
 public class PaperPanel  extends DynamicContentPanel {
 

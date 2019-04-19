@@ -1,27 +1,14 @@
 package basisFx.presentation;
 
-import basisFx.appCore.elements.DatePickerWrapper;
-import basisFx.appCore.elements.GridPaneWrapper;
-import basisFx.appCore.elements.LabelWrapper;
 import basisFx.appCore.elements.TableWrapper;
 import basisFx.appCore.grid.*;
-import basisFx.appCore.panelElements.AutoCommitByDateTableSet;
-import basisFx.appCore.settings.CSSclasses;
-import basisFx.appCore.settings.FontsStore;
-import basisFx.appCore.table.ColWrapperComboBox;
-import basisFx.appCore.table.ColWrapperInt;
-import basisFx.appCore.table.ColWrapperPopup;
+import basisFx.appCore.panelSets.AutoCommitByDateTableSet;
 import basisFx.appCore.table.ColumnFabric;
-import basisFx.appCore.utils.Coordinate;
 import basisFx.appCore.utils.Registry;
 import basisFx.appCore.windows.WindowAbstraction;
 import basisFx.appCore.windows.WindowBuilder;
 import basisFx.domain.*;
 import basisFx.appCore.DynamicContentPanel;
-import basisFx.service.ServiceTablesAutoCommitByDate;
-import javafx.geometry.Pos;
-
-import java.util.Objects;
 
 public class OutputPanel  extends DynamicContentPanel {
 

@@ -32,7 +32,7 @@ public abstract class ServiceCrossWindow <T extends Object> implements Mediator 
 
     }
     public void close(){
-        Registry.crossWindowTransfer.clear();
+        Registry.dataExchanger.clear();
         Registry.crossWindowMediators.values().remove(this);
     }
 }

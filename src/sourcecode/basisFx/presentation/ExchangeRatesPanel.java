@@ -1,6 +1,6 @@
 package basisFx.presentation;
 
-import basisFx.appCore.panelElements.TwoBindTableSet;
+import basisFx.appCore.panelSets.TwoBindTableSet;
 import basisFx.appCore.table.ColumnFabric;
 import basisFx.domain.Currency;
 import basisFx.domain.ExchangeRates;

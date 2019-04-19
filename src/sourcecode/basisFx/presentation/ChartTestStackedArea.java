@@ -30,7 +30,7 @@ public class ChartTestStackedArea extends DynamicContentPanel {
                 .parent(dynamicContentAnchorHolder)
                 .chartTitle("AreaChartBfx")
                 .xLabel("xxxxxxxxxx").yLabel("yyyyyyyyy")
-                .xPrefix("d").yPrefix("y")
+                .xPrefix("ServiceChartPanelRightControls").yPrefix("y")
                 .xLines(true).yLines(false)
                 .cursor(Cursor.DEFAULT)
                 .coordinate(new Coordinate(40d, 0d, 0d, 0d))

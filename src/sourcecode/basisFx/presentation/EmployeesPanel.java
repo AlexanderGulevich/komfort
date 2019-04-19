@@ -3,7 +3,7 @@ import basisFx.appCore.events.RowDeleteFromTable;
 import basisFx.appCore.events.SubWindowCreaterByBut;
 import basisFx.appCore.events.YNWindowCreaterForTable;
 import basisFx.appCore.grid.*;
-import basisFx.appCore.panelElements.SingleTableSet;
+import basisFx.appCore.panelSets.SingleTableSet;
 import basisFx.appCore.table.*;
 import basisFx.appCore.utils.Registry;
 import basisFx.appCore.windows.WindowAbstraction;

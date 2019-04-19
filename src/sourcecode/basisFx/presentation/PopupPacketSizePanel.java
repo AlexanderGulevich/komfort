@@ -1,7 +1,7 @@
 package basisFx.presentation;
 
 import basisFx.appCore.grid.*;
-import basisFx.appCore.panelElements.SingleTableSet;
+import basisFx.appCore.panelSets.SingleTableSet;
 import basisFx.appCore.table.ColumnFabric;
 import basisFx.domain.PacketSize;
 import basisFx.appCore.DynamicContentPanel;
