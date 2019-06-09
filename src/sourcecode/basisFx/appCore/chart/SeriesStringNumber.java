@@ -5,7 +5,7 @@ import javafx.collections.ObservableList;
 import javafx.scene.chart.XYChart;
 import lombok.Getter;
 
-public class XYStringNumberSets {
+public class SeriesStringNumber implements Series {
     @Getter private ObservableList<XYChart.Series<String, Number>> allSets = FXCollections.observableArrayList();
 
     public void createSet(String name){

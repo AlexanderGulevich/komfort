@@ -1,68 +1,144 @@
+.coordinateLabel{
+  -fx-text-fill:#697886;
+  -fx-font-family: "Roboto Light";
+  -fx-font-size: 16;
+  -fx-padding: 0 0 0 20;
+}
 
+.root {
+
+
+
+/* CHART_COLOR_1: #f4622d;
+CHART_COLOR_2: #fba71b;
+CHART_COLOR_3: #57b757;
+CHART_COLOR_4: #41a9c9;
+CHART_COLOR_5: #4258c9;
+CHART_COLOR_6: #9a42c8;
+CHART_COLOR_7: #c84164;
+CHART_COLOR_8: #888888; */
+
+/*
+CHART_COLOR_1_TRANS_20: #f3622d33;
+CHART_COLOR_2_TRANS_20: #fba71b33;
+CHART_COLOR_3_TRANS_20: #57b75733;
+CHART_COLOR_4_TRANS_20: #41a9c933;
+CHART_COLOR_5_TRANS_20: #4258c933;
+CHART_COLOR_6_TRANS_20: #9a42c833;
+CHART_COLOR_7_TRANS_20: #c8416433;
+CHART_COLOR_8_TRANS_20: #88888833;
+
+CHART_COLOR_1_TRANS_70: #f3622db3;
+CHART_COLOR_2_TRANS_70: #fba71bb3;
+CHART_COLOR_3_TRANS_70: #57b757b3;
+CHART_COLOR_4_TRANS_70: #41a9c9b3;
+CHART_COLOR_5_TRANS_70: #4258c9b3;
+CHART_COLOR_6_TRANS_70: #9a42c8b3;
+CHART_COLOR_7_TRANS_70: #c84164b3;
+CHART_COLOR_8_TRANS_70: #888888b3; */
+/* #FFD23F */
+CHART_COLOR_1: #DE1A1A;
+CHART_COLOR_2: #FFD23F;
+CHART_COLOR_3: #348a7a;
+CHART_COLOR_4: #41a9c9;
+CHART_COLOR_5: #98CE00;
+CHART_COLOR_6: #5D576B;
+CHART_COLOR_7: #FF6321;
+CHART_COLOR_8: #2CA94F;
+
+
+
+CHART_COLOR_1_TRANS_20: #DE1A1A77;
+CHART_COLOR_2_TRANS_20: #FFFD8288;
+CHART_COLOR_3_TRANS_20: #348a7a77;
+CHART_COLOR_4_TRANS_20: #41a9c977;
+CHART_COLOR_5_TRANS_20: #98CE0077;
+CHART_COLOR_6_TRANS_20: #5D576B77;
+CHART_COLOR_7_TRANS_20: #FF632177;
+CHART_COLOR_8_TRANS_20: #2CA94F77;
+
+
+CHART_COLOR_1_TRANS_70: #DE1A1Ab9;
+CHART_COLOR_2_TRANS_70: #FFFD82b9;
+CHART_COLOR_3_TRANS_70: #348a7ab9;
+CHART_COLOR_4_TRANS_70: #41a9c9b9;
+CHART_COLOR_5_TRANS_70: #98CE00b9;
+CHART_COLOR_6_TRANS_70: #5D576Bb9;
+CHART_COLOR_7_TRANS_70: #FF6321b9;
+CHART_COLOR_8_TRANS_70: #2CA94Fb9;
+
+
+}
 /*******************************************************************************
  *                                                                             *
  * Charts                                                                      *
  *                                                                             *
  ******************************************************************************/
-
-.chart {
-    -fx-padding: 5px;
-}
-.chart-plot-background {
-    -fx-background-color: -fx-background;
-}
-.chart-content {
+ .chart {
+     -fx-padding: 5px;
+ }
+ .chart-plot-background {
+      -fx-background-color:#f6f4f4;    /*  подложка графика*/
+      -fx-background-color:transparent;    /*  подложка графика*/
+ }
+ .chart-content {
+     -fx-padding: 10px;
+ }
+ .chart-title {
+     -fx-font-size: 10px;
+ }
+ .chart-legend {
+    -fx-background-color: transparent;
+    -fx-border-color: #f6f4f4;
+    -fx-border-width: 1;
+    /* -fx-background-insets: 0 0 -1 0, 0,1; */
+    /* -fx-background-radius: 4,4,3; */
     -fx-padding: 10px;
-}
-.chart-title {
-    -fx-font-size: 1.4em;
-}
-.chart-legend {
-   -fx-background-color: -fx-shadow-highlight-color,
-        linear-gradient(to bottom, derive(-fx-background, -10%), derive(-fx-background, -5%)),
-        linear-gradient(from 0px 0px to 0px 4px, derive(-fx-background, -4%), derive(-fx-background, 10%));
-   -fx-background-insets: 0 0 -1 0, 0,1;
-   -fx-background-radius: 4,4,3;
-   -fx-padding: 6px;
+ }
+
+ /*******************************************************************************
+  *                                                                             *
+  * Axis                                                                        *
+  *                                                                             *
+  ******************************************************************************/
+
+ .axis {
+      AXIS_COLOR:  #647f8c;/*шкала  */
+     -fx-tick-label-font-size: 12;/* значения  */
+     -fx-tick-label-fill:  #436271;/*цвет значений  */
+ }
+ .axis:top {
+     -fx-border-color: transparent transparent AXIS_COLOR transparent;
+ }
+ .axis:right {
+     -fx-border-color: transparent transparent transparent AXIS_COLOR;
+ }
+ .axis:bottom {
+     -fx-border-color: AXIS_COLOR transparent transparent transparent;
+ }
+ .axis:left {
+     -fx-border-color: transparent AXIS_COLOR transparent transparent;
+ }
+
+.axis-label{
+  -fx-text-fill:#697886;
+  -fx-font-family: "Roboto Light";
+    -fx-font-size: 15;
 }
 
-/*******************************************************************************
- *                                                                             *
- * Axis                                                                        *
- *                                                                             *
- ******************************************************************************/
-
-.axis {
-    AXIS_COLOR: derive(-fx-background,-20%);
-    -fx-tick-label-font-size: 0.833333em; /* 10px */
-    -fx-tick-label-fill: derive(-fx-text-background-color, 30%);
-}
-.axis:top {
-    -fx-border-color: transparent transparent AXIS_COLOR transparent;
-}
-.axis:right {
-    -fx-border-color: transparent transparent transparent AXIS_COLOR;
-}
-.axis:bottom {
-    -fx-border-color: AXIS_COLOR transparent transparent transparent;
-}
-.axis:left {
-    -fx-border-color: transparent AXIS_COLOR transparent transparent;
-}
-.axis:top > .axis-label,
-.axis:left > .axis-label {
-    -fx-padding: 0 0 4px 0;
-}
-.axis:bottom > .axis-label,
-.axis:right > .axis-label {
-    -fx-padding: 4px 0 0 0;
-}
-.axis-tick-mark,
-.axis-minor-tick-mark {
-    -fx-fill: null;
-    -fx-stroke: AXIS_COLOR;
-}
-
+ .axis:top > .axis-label,
+ .axis:left > .axis-label {
+     -fx-padding: 0 0 4px 0;
+ }
+ .axis:bottom > .axis-label,
+ .axis:right > .axis-label {
+     -fx-padding: 4px 0 0 0;
+ }
+ .axis-tick-mark,
+ .axis-minor-tick-mark {
+     -fx-fill: #ff3d00;
+     -fx-stroke: AXIS_COLOR;
+ }
 /*******************************************************************************
  *                                                                             *
  * ChartPlot                                                                   *
@@ -224,29 +300,6 @@
     -fx-background-radius: 6px; /* makes sure this remains circular */
     -fx-background-insets: 0, 3;
 }
-
-/*******************************************************************************
- *                                                                             *
- * BubbleChart                                                                 *
- *                                                                             *
- ******************************************************************************/
-
-.bubble-legend-symbol {
-    -fx-background-radius: 8px;
-    -fx-padding: 8px;
-}
-.chart-bubble {
-    -fx-bubble-fill: CHART_COLOR_1_TRANS_70;
-    -fx-background-color: radial-gradient(center 50% 50%, radius 80%, derive(-fx-bubble-fill,20%), derive(-fx-bubble-fill,-30%));
-}
-.default-color0.chart-bubble { -fx-bubble-fill: CHART_COLOR_1_TRANS_70; }
-.default-color1.chart-bubble { -fx-bubble-fill: CHART_COLOR_2_TRANS_70; }
-.default-color2.chart-bubble { -fx-bubble-fill: CHART_COLOR_3_TRANS_70; }
-.default-color3.chart-bubble { -fx-bubble-fill: CHART_COLOR_4_TRANS_70; }
-.default-color4.chart-bubble { -fx-bubble-fill: CHART_COLOR_5_TRANS_70; }
-.default-color5.chart-bubble { -fx-bubble-fill: CHART_COLOR_6_TRANS_70; }
-.default-color6.chart-bubble { -fx-bubble-fill: CHART_COLOR_7_TRANS_70; }
-.default-color7.chart-bubble { -fx-bubble-fill: CHART_COLOR_8_TRANS_70; }
 
 /*******************************************************************************
  *                                                                             *

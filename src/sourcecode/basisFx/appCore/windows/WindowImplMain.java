@@ -27,7 +27,8 @@ public class WindowImplMain extends WindowImpl {
     }
 
     @Override
-    public void addToRegistry(WindowAbstraction windowAbstraction) {
+    public void addToRegistry(WindowAbstraction windowAbstraction)
+    {
         Registry.mainWindow=windowAbstraction;
     }
 }

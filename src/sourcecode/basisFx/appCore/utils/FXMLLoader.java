@@ -13,6 +13,7 @@ public class FXMLLoader {
     public static AnchorPane loadAnchorPane(String fxmlName){
 
         Parent parent = getParent(fxmlName);
+        if (parent == null) throw new NullPointerException();
         return (AnchorPane) parent;
     }
     public static Button loadButton(String fxmlName){
@@ -41,6 +42,7 @@ public class FXMLLoader {
         try {
             url = file.toURI().toURL();
             parent = javafx.fxml.FXMLLoader.load(url);
+
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }  catch (IOException e) {

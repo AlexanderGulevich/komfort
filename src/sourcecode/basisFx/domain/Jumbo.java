@@ -3,6 +3,9 @@ package basisFx.domain;
 import basisFx.appCore.activeRecord.ActiveRecord;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.ObservableList;
+import lombok.AccessLevel;
+import lombok.Setter;
+
 
 public class Jumbo extends ActiveRecord {
 

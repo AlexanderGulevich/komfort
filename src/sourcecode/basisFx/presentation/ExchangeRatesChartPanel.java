@@ -1,6 +1,6 @@
 //package basisFx.presentation.dynamicContents;
 //
-//import basisFx.appCore.chart.AreaChartBfx;
+//import basisFx.appCore.chart.ChartBfxXY;
 //import basisFx.appCore.utils.Coordinate;
 //
 //
@@ -9,7 +9,7 @@
 //    @Override
 //    protected void configurate() {
 //
-//        AreaChartBfx chartBuilder = new AreaChartBfx();
+//        ChartBfxXY chartBuilder = new ChartBfxXY();
 //        chartBuilder.setCoordinate(new Coordinate(10d,10d,10d,10d));
 //        chartBuilder.setHeight(600d);
 //        chartBuilder.setWidth(700d);

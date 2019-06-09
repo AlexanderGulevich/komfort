@@ -155,11 +155,6 @@ public class DbSchema {
 
 
 
-
-
-
-
-
         String viewFired= "Create  view Fired  as " +
                 " SELECT  * from  employer  where employer.ISFIRED=true ORDER BY  employer.ID " ;
 

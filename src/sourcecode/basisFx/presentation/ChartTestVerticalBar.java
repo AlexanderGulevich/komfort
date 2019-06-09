@@ -9,7 +9,7 @@ public class ChartTestVerticalBar extends DynamicContentPanel {
     @Override
     protected void customDynamicElementsInit() {
 
-        XYStringNumberSets sets = new XYStringNumberSets();
+        SeriesStringNumber sets = new SeriesStringNumber();
 
         sets.createSet("1950");
         sets.add("Китай",5);
@@ -29,19 +29,49 @@ public class ChartTestVerticalBar extends DynamicContentPanel {
         sets.add("Россия",7);
         sets.add("Украина",88);
 
+        sets.createSet("2018");
+        sets.add("Китай",33);
+        sets.add("Беларусь",45);
+        sets.add("Россия",73);
+        sets.add("Украина",65);
 
-        VerticalBarChartBfx.builder()
-                .parent(dynamicContentAnchorHolder)
-                .chartTitle("LineChartBfx")
-                .xLabel("xxxxxxxxxx").yLabel("yyyyyyyyy")
-                .xPrefix("ServiceChartPanelRightControls").yPrefix("y")
-                .xLines(true).yLines(false)
-                .cursor(Cursor.DEFAULT)
-                .coordinate(new Coordinate(0d, 0d, 0d, 0d))
-                .data(sets.getAllSets())
-                .xAutoRanging(true).yAutoRanging(true)
-                .yLowerBound(10).yUpperBound(2000).yTickUnit(2)
-                .build().configure();
+        sets.createSet("2019");
+        sets.add("Китай",44);
+        sets.add("Беларусь",66);
+        sets.add("Россия",74);
+        sets.add("Украина",46);
+
+        sets.createSet("2019");
+        sets.add("Китай",44);
+        sets.add("Беларусь",66);
+        sets.add("Россия",74);
+        sets.add("Украина",46);
+
+        sets.createSet("2019");
+        sets.add("Китай",44);
+        sets.add("Беларусь",66);
+        sets.add("Россия",74);
+        sets.add("Украина",46);
+
+        sets.createSet("2019");
+        sets.add("Китай",44);
+        sets.add("Беларусь",66);
+        sets.add("Россия",74);
+        sets.add("Украина",46);
+
+//
+//        ChartBfxVerticalBar.builder()
+//                .parent(dynamicContentAnchorHolder)
+//                .chartTitle("ChartBfxLineChart")
+//                .xLabel("xxxxxxxxxx").yLabel("yyyyyyyyy")
+//                .xPrefix("ServiceChartPanelRightControls").yPrefix("y")
+//                .xLines(true).yLines(false)
+//                .cursor(Cursor.DEFAULT)
+//                .coordinate(new Coordinate(0d, 0d, 0d, 0d))
+//                .data(sets.getAllSets())
+//                .xAutoRanging(true).yAutoRanging(true)
+//                .yLowerBound(10).yUpperBound(2000).yTickUnit(2)
+//                .build().configure();
 
     }
 

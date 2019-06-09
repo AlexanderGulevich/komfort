@@ -80,7 +80,6 @@ public abstract class WindowImpl {
     }
     private void loadAnchorPaneFromFXML() {
         topLevelAnchorFromFXML = FXMLLoader.loadAnchorPane(builder.fxmlFileName);
-        if (topLevelAnchorFromFXML == null) throw new NullPointerException();
     }
 
     private void initFXMLService(WindowAbstraction windowAbstraction) {

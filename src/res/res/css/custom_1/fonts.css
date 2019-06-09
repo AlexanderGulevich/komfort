@@ -37,3 +37,43 @@
 @font-face {
     src: url("../../fonts/MaterialIcons-Regular.ttf");
 }
+
+.font_lightGrey{
+  -fx-text-fill:  #F4F4F4;
+}
+.font_mediumBlue{
+  -fx-text-fill:  #233D4D;
+}
+.font_mediumBlue2{
+  -fx-text-fill:  #436271;
+}
+.font_mediumBlue3{
+  -fx-text-fill:  #003641;
+}
+.font_darckBlue{
+  -fx-text-fill:   #01111D;
+}
+.font_softRed{
+  -fx-text-fill:  #DD614A;
+}
+.font_softRed2{
+  -fx-text-fill:  #FF8964;
+}
+.font_contrastedRed{
+  -fx-text-fill:  #ff3d00;
+}
+.font_white{
+  -fx-text-fill:  #FFFFFF  ;
+}
+.font_mediumGreen{
+  -fx-text-fill:  #3B6064;
+}
+.font_yellowgreen{
+  -fx-text-fill:  yellowgreen;
+}
+.font_transparent{
+  -fx-text-fill:  transparent;
+}
+.font_neon{
+  -fx-text-fill:  #1ac7f5;
+}

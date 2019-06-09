@@ -1,68 +1,63 @@
 package basisFx.appCore.chart;
 
 import basisFx.appCore.utils.Coordinate;
+import basisFx.service.ServiceChartPanels;
 import javafx.collections.ObservableList;
 import javafx.scene.Cursor;
-import javafx.scene.chart.AreaChart;
-import javafx.scene.chart.NumberAxis;
-import javafx.scene.chart.XYChart;
-import javafx.scene.control.Label;
+import javafx.scene.chart.*;
 import javafx.scene.layout.AnchorPane;
 import lombok.Builder;
+import lombok.Getter;
+import lombok.Setter;
+
+import java.util.List;
 
 @Builder
-public class AreaChartBfx implements ChartBfx {
+public class ChartBfxVerticalBar implements ChartBfx{
 
-    private NumberAxis xAxis;
+    @Setter private ServiceChartPanels service;
+    private CategoryAxis xAxis;
     private NumberAxis yAxis;
-    private AreaChart<Number,Number> chart;
-    private ObservableList<XYChart.Series<Number, Number>> data;
+    private BarChart<String, Number> chart;
+    private ObservableList<XYChart.Series<String, Number>> data;
     private String chartTitle;
     private String xLabel;
     private String yLabel;
     private String xPrefix;
     private String yPrefix;
-    private boolean xAutoRanging;
     private boolean yAutoRanging;
+    private boolean xAutoRanging;
 
+    @Getter
+    private Class aClass;
     private boolean xLines;
     private boolean yLines;
 
-    private double xLowerBound;
     private double yLowerBound;
-    private double xUpperBound;
     private double yUpperBound;
-    private double xTickUnit;
     private double yTickUnit;
 
+    @Setter
     private AnchorPane parent;
     private Coordinate coordinate;
 
     private Cursor cursor;
-
-
-
-
     @Override
     public void configure() {
-        xAxis = new NumberAxis();
+        xAxis = new CategoryAxis();
         yAxis = new NumberAxis();
-        chart = new AreaChart(xAxis, yAxis);
-        xAxis.setTickLabelFormatter(new NumberAxis.DefaultFormatter(xAxis, null, xPrefix));
+        chart = new BarChart<>(xAxis, yAxis);
         yAxis.setTickLabelFormatter(new NumberAxis.DefaultFormatter(yAxis, null, yPrefix));
         chart.setTitle(chartTitle);
-        chart.setCursor(cursor);
+
         chart.setAlternativeColumnFillVisible(true);
         chart.setAlternativeRowFillVisible(true);
-
         chart.setHorizontalGridLinesVisible(xLines);
         chart.setVerticalGridLinesVisible(yLines);
+        chart.setCursor(cursor);
 
         xAxis.setLabel(xLabel);
-        xAxis.setTickUnit(xTickUnit);
         xAxis.setAutoRanging(xAutoRanging);
-        xAxis.setLowerBound(xLowerBound);
-        xAxis.setUpperBound(xUpperBound);
 
         yAxis.setLabel(yLabel);
         yAxis.setTickUnit(yTickUnit);
@@ -76,14 +71,11 @@ public class AreaChartBfx implements ChartBfx {
         coordinate.setParentAnchorPane(parent);
         coordinate.bonding();
 
-        Label label = CoordinateLabel.createLabel(chart);
-
-        Coordinate coordinateLabel =new Coordinate(0d,null,null,0d);
-        coordinateLabel.setChildNode(label);
-        coordinateLabel.setParentAnchorPane(parent);
-        coordinateLabel.bonding();
+    }
 
 
-
+    @Override
+    public void setData(List data) {
+        this.data = (ObservableList<XYChart.Series<String, Number>>) data;
     }
 }

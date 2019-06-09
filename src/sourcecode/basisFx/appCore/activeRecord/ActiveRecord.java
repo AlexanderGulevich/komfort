@@ -26,7 +26,6 @@ public abstract class ActiveRecord {
         String[] arr = name.split("\\.");
         name= arr[arr.length - 1];
         this.entityName =name;
-
     }
     public boolean isReadyToTransaction(){
         return Reflection.isReadyToTransaction(this);
@@ -79,7 +78,6 @@ public abstract class ActiveRecord {
         ResultSet rs = Reflection.executeQuery("Select * from " + this.entityName + " order by id ");
         return ReflectionGet.getAllDomainsList(this,list, domainPropertiesMetaInfoList, rs);
     }
-
     public ObservableList<ActiveRecord> findAllByOuterId(int id){
         ObservableList <ActiveRecord> list= FXCollections.observableArrayList();
         ArrayList<DomainPropertiesMetaInfo> domainPropertiesMetaInfoList = ReflectionInspectDomain.inspectDomainProperties(this);
@@ -87,7 +85,6 @@ public abstract class ActiveRecord {
         ResultSet rs = Reflection.executeQuery(exp);
         return ReflectionGet.getAllDomainsList(this,list, domainPropertiesMetaInfoList, rs);
     }
-
     public ObservableList<ActiveRecord> findAllByOuterIdAndRange(int id, Range   range){
         ObservableList <ActiveRecord> list= FXCollections.observableArrayList();
         ArrayList<DomainPropertiesMetaInfo> domainPropertiesMetaInfoList = ReflectionInspectDomain.inspectDomainProperties(this);
@@ -95,7 +92,6 @@ public abstract class ActiveRecord {
         ResultSet rs = Reflection.executeQuery(exp);
         return ReflectionGet.getAllDomainsList(this,list, domainPropertiesMetaInfoList, rs);
     }
-
     public ObservableList<ActiveRecord> findAllByOuterIdAndPeriod(int id, LocalDate start, LocalDate end){
         ObservableList <ActiveRecord> list= FXCollections.observableArrayList();
         ArrayList<DomainPropertiesMetaInfo> domainPropertiesMetaInfoList = ReflectionInspectDomain.inspectDomainProperties(this);
@@ -109,24 +105,18 @@ public abstract class ActiveRecord {
         ResultSet rs = Reflection.executeQuery(exp);
         return ReflectionGet.getAllDomainsList(this,list, domainPropertiesMetaInfoList, rs);
     }
-
-
-
     public ObservableList<ActiveRecord> findAllByPeriod( LocalDate start, LocalDate end){
         ObservableList <ActiveRecord> list= FXCollections.observableArrayList();
         ArrayList<DomainPropertiesMetaInfo> domainPropertiesMetaInfoList = ReflectionInspectDomain.inspectDomainProperties(this);
         ResultSet rs =  ReflectionGet.findAllByPeriod(this,domainPropertiesMetaInfoList,start,end);
         return ReflectionGet.getAllDomainsList(this,list, domainPropertiesMetaInfoList, rs);
     }
-
     public ActiveRecord find(int id) {
         ActiveRecord activeRecord = Reflection.createNewInstance(this);
         ArrayList<DomainPropertiesMetaInfo> domainPropertiesMetaInfoList = ReflectionInspectDomain.inspectDomainProperties(this);
         String expression="SELECT  * FROM " +this.entityName+" WHERE ID=?";
         return ReflectionGet.findDomain(id, activeRecord, domainPropertiesMetaInfoList, expression);
     }
-
-
     public void delete(){
             try {
                 String expression="delete from " +entityName+" where id=? ";
@@ -143,16 +133,11 @@ public abstract class ActiveRecord {
         String updateExpression = ReflectionUpdate.createUpdateExpression(this,domainPropertiesMetaInfoList);
         ReflectionUpdate.executePepareStatement(this,updateExpression,domainPropertiesMetaInfoList);
     }
-
-
-
     public void insert() {
         ArrayList<DomainPropertiesMetaInfo> domainPropertiesMetaInfoList = ReflectionInspectDomain.inspectDomainProperties(this);
         String insertExpression = ReflectionInsert.createInsertExpression(this,domainPropertiesMetaInfoList);
         ReflectionInsert.executeInsertStatement(this,insertExpression,domainPropertiesMetaInfoList);
     }
-
-
     protected void executeUpdate(PreparedStatement pstmt){
         try {
             pstmt.executeUpdate();
@@ -168,8 +153,6 @@ public abstract class ActiveRecord {
         }
         return null;
     }
-
-
     public static Integer getMaxIdFromTable(ActiveRecord record){
         ResultSet rs = Reflection.executeQuery(  "SELECT  max(id) as id FROM " +record.entityName);
         Integer id = null;
@@ -187,8 +170,6 @@ public abstract class ActiveRecord {
         }
         return id;
     }
-
-
 }
 
 

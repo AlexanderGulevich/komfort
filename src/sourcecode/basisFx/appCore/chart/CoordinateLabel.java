@@ -5,15 +5,20 @@ import javafx.scene.Node;
 import javafx.scene.chart.Axis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Label;
+import javafx.scene.control.Tooltip;
 import javafx.scene.input.MouseEvent;
+
+import java.math.BigDecimal;
 
 public class CoordinateLabel {
 
-    public static   Label createLabel(XYChart<Number,Number> chart) {
+
+    public static   Label executeLabel(XYChart<Number,Number> chart) {
+        final Label label = new Label();
+
         final Axis<Number> xAxis = chart.getXAxis();
         final Axis<Number> yAxis = chart.getYAxis();
 
-        final Label cursorCoords = new Label();
 
         final Node chartBackground = chart.lookup(".chart-plot-background");
         for (Node n: chartBackground.getParent().getChildrenUnmodifiable()) {
@@ -24,15 +29,15 @@ public class CoordinateLabel {
 
         chartBackground.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override public void handle(MouseEvent mouseEvent) {
-                cursorCoords.setVisible(true);
+                label.setVisible(true);
             }
         });
 
         chartBackground.setOnMouseMoved(new EventHandler<MouseEvent>() {
             @Override public void handle(MouseEvent mouseEvent) {
-                cursorCoords.setText(
+                label.setText(
                         String.format(
-                                "(%.2f, %.2f)",
+                                "x - %.1f,    y - %.1f",
                                 xAxis.getValueForDisplay(mouseEvent.getX()),
                                 yAxis.getValueForDisplay(mouseEvent.getY())
                         )
@@ -42,21 +47,21 @@ public class CoordinateLabel {
 
         chartBackground.setOnMouseExited(new EventHandler<MouseEvent>() {
             @Override public void handle(MouseEvent mouseEvent) {
-                cursorCoords.setVisible(false);
+                label.setVisible(false);
             }
         });
 
         xAxis.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override public void handle(MouseEvent mouseEvent) {
-                cursorCoords.setVisible(true);
+                label.setVisible(true);
             }
         });
 
         xAxis.setOnMouseMoved(new EventHandler<MouseEvent>() {
             @Override public void handle(MouseEvent mouseEvent) {
-                cursorCoords.setText(
+                label.setText(
                         String.format(
-                                "x = %.2f",
+                                "x = %.1f",
                                 xAxis.getValueForDisplay(mouseEvent.getX())
                         )
                 );
@@ -65,21 +70,21 @@ public class CoordinateLabel {
 
         xAxis.setOnMouseExited(new EventHandler<MouseEvent>() {
             @Override public void handle(MouseEvent mouseEvent) {
-                cursorCoords.setVisible(false);
+                label.setVisible(false);
             }
         });
 
         yAxis.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override public void handle(MouseEvent mouseEvent) {
-                cursorCoords.setVisible(true);
+                label.setVisible(true);
             }
         });
 
         yAxis.setOnMouseMoved(new EventHandler<MouseEvent>() {
             @Override public void handle(MouseEvent mouseEvent) {
-                cursorCoords.setText(
+                label.setText(
                         String.format(
-                                "y = %.2f",
+                                "y = %.1f",
                                 yAxis.getValueForDisplay(mouseEvent.getY())
                         )
                 );
@@ -88,11 +93,11 @@ public class CoordinateLabel {
 
         yAxis.setOnMouseExited(new EventHandler<MouseEvent>() {
             @Override public void handle(MouseEvent mouseEvent) {
-                cursorCoords.setVisible(false);
+                label.setVisible(false);
             }
         });
 
-        return cursorCoords;
+        return label;
     }
 
 

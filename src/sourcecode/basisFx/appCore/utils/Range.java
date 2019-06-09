@@ -2,8 +2,8 @@ package basisFx.appCore.utils;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public enum Range {
 
@@ -14,9 +14,11 @@ public enum Range {
     DAY60("За 60 дней"),
     DAY90("За 90 дней"),
     DAY180("За 180 дней"),
+    YEAR2("За 2 года"),
+    YEAR3("За 3 года"),
     YEAR("За текущий год"),
     MONTH("За текущий месяц"),
-    ALLTIME("Все время");
+    ALLTIME("За все время");
 
     private final String name;
     private Range main;
@@ -34,16 +36,21 @@ public enum Range {
        return  Range.valueOf(s);
     }
 
-    public static  ObservableList<Range> getParticular(Range first, Range... subsequent){
-        List<Range> list = Arrays.asList(subsequent);
-        Collections.reverse(list);
-        list.add(first);
-        Collections.reverse(list);
-        return  FXCollections.observableList(list);
+    public static  ObservableList<Range> getParticular(Range... subsequent){
+        return FXCollections.observableList(Arrays.asList(subsequent));
     }
     public static  ObservableList<Range> getAll(){
         List<Range> list = Arrays.asList(Range.values());
         return  FXCollections.observableList(list);
+    }
+    public static  ObservableList<Range> getAllPeriodicaly(){
+        return  FXCollections.observableList(
+                Arrays.stream(Range.values())
+                        .filter(range -> range!=ACTUAL)
+                        .filter(range -> range!=LAST30)
+                        .filter(range -> range!=LAST10)
+                        .collect(Collectors.toList())
+        );
     }
     public static  ObservableList<Range> get(Range ...range){
         List<Range> list = Arrays.asList(range);

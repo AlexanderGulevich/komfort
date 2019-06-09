@@ -25,14 +25,6 @@ public class DatePickerHandler {
             mediator.inform(this);
         });
 
-//        datePicker.valueProperty().addListener(new ChangeListener<LocalDate>() {
-//            @Override
-//            public void changed(ObservableValue<? extends LocalDate> observable, LocalDate oldValue, LocalDate newValue) {
-//                selectedDate = datePicker.getValue();
-//                mediator.inform(this);
-//            }
-//        });
-
         datePicker.setConverter(new CustomStringConverter());
 
     }

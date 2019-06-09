@@ -1,6 +1,7 @@
 package basisFx.appCore.chart;
 
 import basisFx.appCore.utils.Coordinate;
+import basisFx.service.ServiceChartPanels;
 import javafx.collections.ObservableList;
 import javafx.geometry.Side;
 import javafx.scene.Cursor;
@@ -8,27 +9,34 @@ import javafx.scene.chart.PieChart;
 import javafx.scene.control.Tooltip;
 import javafx.scene.layout.AnchorPane;
 import lombok.Builder;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 
 @Builder
-public class PieChartBfx implements ChartBfx {
+public class ChartBfxPie implements ChartBfx {
 
+    @Setter private ServiceChartPanels service;
     private PieChart chart ;
     private ObservableList<PieChart.Data> data;
     private String chartTitle;
     private Side side;
+    @Setter
     private AnchorPane parent;
     private Coordinate coordinate;
 
+    @Getter
+    private Class aClass;
     private Cursor cursor;
 
-   static double ovetall;
+   static double overall;
 
     @Override
     public void configure() {
-        ovetall=0;
+        overall =0;
         chart = new PieChart();
         chart.setTitle(chartTitle);
         chart.setLegendSide(side);
@@ -41,17 +49,14 @@ public class PieChartBfx implements ChartBfx {
 
     }
     private void addSliceTooltip(PieChart chart) {
+        ObservableList<PieChart.Data> data = chart.getData();
+        data.forEach(d -> { overall = overall +d.getPieValue(); });
 
-        chart.getData().forEach(d -> {
-            ovetall = ovetall+d.getPieValue();
-        });
-
-
-        chart.getData().forEach(d -> {
+        data.forEach(d -> {
             Tooltip tip = new Tooltip();
             double percent=
                     new BigDecimal(d.getPieValue())
-                            .divide( new BigDecimal(ovetall))
+                            .divide( new BigDecimal(overall))
                             .multiply(new BigDecimal(100))
                             .doubleValue();
             tip.setText(d.getName()+"-"+d.getPieValue() + " /  "+ percent+"%");
@@ -61,5 +66,9 @@ public class PieChartBfx implements ChartBfx {
 
 
 
+    }
+    @Override
+    public void setData(List data) {
+        this.data = (ObservableList<PieChart.Data> ) data;
     }
 }
