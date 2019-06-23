@@ -2,6 +2,7 @@ package basisFx.service;
 
 import basisFx.appCore.chart.ChartDataHandler;
 import basisFx.appCore.elements.DatePickerHandler;
+import basisFx.appCore.elements.DatePickerWrapper;
 import basisFx.appCore.elements.RangeDirector;
 import basisFx.appCore.utils.Range;
 import basisFx.appCore.utils.Registry;
@@ -61,7 +62,7 @@ public class ServiceChartPanelRightControls extends ServiceChartPanels {
                     before.add(Calendar.DAY_OF_MONTH, -1);
                     Calendar after = new GregorianCalendar(end.getYear(), end.getMonthValue() - 1, end.getDayOfMonth());
                     after.add(Calendar.DAY_OF_MONTH, 1);
-                    chartBfx.setData(ChartDataHandler.getDataByPeriod(chartBfx.getAClass(), after, before));
+                    chartBfx.applyPeriod(before, after);
                 }
             }
         });
@@ -85,7 +86,7 @@ public class ServiceChartPanelRightControls extends ServiceChartPanels {
             Range range = rangeDirector.getSelectedRange();
             switch (range) {
                 case ALLTIME:{
-                    chartBfx.setData(ChartDataHandler.getData(chartBfx.getAClass()));
+                    chartBfx.applyAllTime();
                 };
                     break;
                 case DAY30:{
@@ -95,7 +96,7 @@ public class ServiceChartPanelRightControls extends ServiceChartPanels {
                     start.clear(Calendar.MINUTE);
                     start.clear(Calendar.SECOND);
                     start.clear(Calendar.MILLISECOND);
-                    chartBfx.setData(ChartDataHandler.getDataByPeriod(chartBfx.getAClass(), end, start));
+                    chartBfx.applyPeriod(end, start);
 
                     System.out.println(start.getTime());
                     System.out.println(end.getTime());
@@ -109,7 +110,7 @@ public class ServiceChartPanelRightControls extends ServiceChartPanels {
                     start.clear(Calendar.SECOND);
                     start.clear(Calendar.MILLISECOND);
                     Calendar end = Calendar.getInstance();
-                    chartBfx.setData(ChartDataHandler.getDataByPeriod(chartBfx.getAClass(), end, start));
+                    chartBfx.applyPeriod(end, start);
 
                     System.out.println(start.getTime());
                     System.out.println(end.getTime());
@@ -123,7 +124,7 @@ public class ServiceChartPanelRightControls extends ServiceChartPanels {
                     start.clear(Calendar.SECOND);
                     start.clear(Calendar.MILLISECOND);
                     Calendar end = Calendar.getInstance();
-                    chartBfx.setData(ChartDataHandler.getDataByPeriod(chartBfx.getAClass(), end, start));
+                    chartBfx.applyPeriod(end, start);
 
                     System.out.println(start.getTime());
                     System.out.println(end.getTime());
@@ -136,7 +137,7 @@ public class ServiceChartPanelRightControls extends ServiceChartPanels {
                     start.clear(Calendar.MINUTE);
                     start.clear(Calendar.SECOND);
                     start.clear(Calendar.MILLISECOND);
-                    chartBfx.setData(ChartDataHandler.getDataByPeriod(chartBfx.getAClass(), end, start));
+                    chartBfx.applyPeriod(end, start);
 
                     System.out.println(start.getTime());
                     System.out.println(end.getTime());
@@ -152,7 +153,7 @@ public class ServiceChartPanelRightControls extends ServiceChartPanels {
                     start.clear(Calendar.MILLISECOND);
 
                     Calendar end = Calendar.getInstance();
-                    chartBfx.setData(ChartDataHandler.getDataByPeriod(chartBfx.getAClass(), end, start));
+                    chartBfx.applyPeriod(end, start);
 
                     System.out.println(start.getTime());
                     System.out.println(end.getTime());
@@ -167,7 +168,7 @@ public class ServiceChartPanelRightControls extends ServiceChartPanels {
                     start.clear(Calendar.MILLISECOND);
 
                     Calendar end = Calendar.getInstance();
-                    chartBfx.setData(ChartDataHandler.getDataByPeriod(chartBfx.getAClass(), end, start));
+                    chartBfx.applyPeriod(end, start);
 
                     System.out.println(start.getTime());
                     System.out.println(end.getTime());
@@ -183,7 +184,7 @@ public class ServiceChartPanelRightControls extends ServiceChartPanels {
                     start.clear(Calendar.MILLISECOND);
 
                     Calendar end = Calendar.getInstance();
-                    chartBfx.setData(ChartDataHandler.getDataByPeriod(chartBfx.getAClass(), end, start));
+                    chartBfx.applyPeriod(end, start);
 
                     System.out.println(start.getTime());
                     System.out.println(end.getTime());
@@ -199,7 +200,7 @@ public class ServiceChartPanelRightControls extends ServiceChartPanels {
                     start.clear(Calendar.MILLISECOND);
 
                     Calendar end = Calendar.getInstance();
-                    chartBfx.setData(ChartDataHandler.getDataByPeriod(chartBfx.getAClass(), end, start));
+                    chartBfx.applyPeriod(end, start);
 
                     System.out.println(start.getTime());
                     System.out.println(end.getTime());
@@ -210,4 +211,5 @@ public class ServiceChartPanelRightControls extends ServiceChartPanels {
 
 
     }
+
 }

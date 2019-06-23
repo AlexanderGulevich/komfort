@@ -4,6 +4,7 @@ import basisFx.appCore.grid.*;
 import basisFx.appCore.interfaces.DataStoreCallBack;
 import basisFx.appCore.panelSets.AutoCommitByDateTableSet;
 import basisFx.appCore.table.ColumnFabric;
+import basisFx.appCore.utils.DateViaPopup;
 import basisFx.appCore.utils.Registry;
 import basisFx.dataSource.BFxPreparedStatement;
 import basisFx.domain.*;
@@ -35,6 +36,7 @@ public class TimeRecordingPanel extends DynamicContentPanel {
 
         AutoCommitByDateTableSet.builder()
                 .aClass(TimeRecordingForEmployers.class)
+                .dateGetter(new DateViaPopup())
                 .callBackForColumn(callBackForColumn)
                 .isEditable(true).isSortable(false)
                 .currentWindow(window)

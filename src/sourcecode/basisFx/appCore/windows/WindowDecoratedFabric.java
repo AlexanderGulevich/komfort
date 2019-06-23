@@ -27,4 +27,9 @@ public class WindowDecoratedFabric extends WindowFabric {
     public WindowAbstraction customSubWindow(WindowBuilder builder) {
         return null;
     }
+
+    @Override
+    public WindowAbstraction dateWindow( ) {
+        return null;
+    }
 }

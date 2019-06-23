@@ -10,6 +10,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.Calendar;
 import java.util.List;
 
 @Builder
@@ -44,6 +45,8 @@ public class ChartBfxVerticalBar implements ChartBfx{
     private Cursor cursor;
     @Override
     public void configure() {
+
+        service.setChartBfx(this);
         xAxis = new CategoryAxis();
         yAxis = new NumberAxis();
         chart = new BarChart<>(xAxis, yAxis);
@@ -65,14 +68,30 @@ public class ChartBfxVerticalBar implements ChartBfx{
         yAxis.setLowerBound(yLowerBound);
         yAxis.setUpperBound(yUpperBound);
 
-        chart.setData(data);
+
+        if (data != null) {
+            chart.setData(data);
+        }else {
+            chart.setData(ChartDataHandler.getVBarData(aClass));
+        }
+
 
         coordinate.setChildNode(chart);
         coordinate.setParentAnchorPane(parent);
         coordinate.bonding();
 
     }
+    @Override
+    public void applyPeriod(Calendar before, Calendar after) {
+        ObservableList<XYChart.Series<String, Number>> data = ChartDataHandler.getVBarDataByPeriod(getAClass(), before, after);
+        chart.setData(data);
+    }
 
+    @Override
+    public void applyAllTime() {
+        ObservableList<XYChart.Series<String, Number>> data = ChartDataHandler.getVBarData(getAClass());
+        chart.setData(data);
+    }
 
     @Override
     public void setData(List data) {

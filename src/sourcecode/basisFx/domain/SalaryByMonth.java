@@ -5,6 +5,8 @@ import basisFx.appCore.interfaces.AnalazedForChart;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.ObservableList;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 public class SalaryByMonth extends ActiveRecord implements AnalazedForChart {
@@ -116,6 +118,13 @@ public class SalaryByMonth extends ActiveRecord implements AnalazedForChart {
         GregorianCalendar calendar = new GregorianCalendar();
         calendar.set(getSyear(), getSmonth()-1,1);
         return calendar;
+    }
+
+    @Override
+    public String getVBarXAxisNames() {
+        GregorianCalendar calendar = new GregorianCalendar();
+        calendar.set(getSyear(), getSmonth()-1,1);
+        return  new SimpleDateFormat("yyyy").format(calendar.getTime());
     }
 
     @Override

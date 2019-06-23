@@ -16,7 +16,7 @@ public class ChartTestArea extends DynamicContentPanel {
 
 
         ChartPanel.builder()
-                .commonLabelName("ChartBfxXY")
+                .commonLabelName("AREA")
                 .fxmlFileName("chartPanel")
                 .parent(dynamicContentAnchorHolder)
                 .chartBfx(

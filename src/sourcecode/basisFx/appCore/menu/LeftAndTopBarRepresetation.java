@@ -55,24 +55,18 @@ public class LeftAndTopBarRepresetation extends MenuRepresent {
         }
     }
     private void seachVerticalBut(ArrayList<MenuComponent> components) {
-        for (Iterator<MenuComponent> iterator = components.iterator(); iterator.hasNext(); ) {
-            MenuComponent verticalBut = iterator.next();
-
-            if (verticalBut.isComposit()) {
-                createVerticalBut((LeftAndTopBarItemComposite) verticalBut);
-            }
-        }
+        components.forEach(c ->   {
+            if (c.isComposit())   createVerticalBut((LeftAndTopBarItemComposite) c); }
+            );
     }
-    private void createVerticalBut(LeftAndTopBarItemComposite verticalBut) {
-        LeftAndTopBarItemComposite composite = verticalBut;
-        Button button = FXMLLoader.loadButton(composite.getFxmlFileName());
-        button.setText(composite.getFontSymbol());
-        button.setFont(FontLogic.loadFont(composite.getFontsStore(),composite.getFontSize()));
+    private void createVerticalBut(LeftAndTopBarItemComposite c) {
+        Button button = FXMLLoader.loadButton(c.getFxmlFileName());
+        button.setText(c.getFontSymbol());
+        button.setFont(FontLogic.loadFont(c.getFontsStore(),c.getFontSize()));
         vButHolder.getChildren().add(button);
-        leftSideMenuIconClick clickEvent = new leftSideMenuIconClick(verticalBut, this,button);
-        if (composite.isActive()) {
-            startButEvent=clickEvent;
-        }
+        leftSideMenuIconClick clickEvent = new leftSideMenuIconClick(c, this,button);
+        clickEvent.setCallBack(c.getCallBack());
+        if (c.isActive())  startButEvent=clickEvent;
 
     }
     public void setDefaultStyleHorisontalButtons() {
@@ -103,17 +97,18 @@ public class LeftAndTopBarRepresetation extends MenuRepresent {
         if (itemComposite.isComposit()) {
             contentAnchorPane.getChildren().clear();
             ArrayList<MenuComponent> inerLevelComponents = itemComposite.getChilds();
-            for (Iterator<MenuComponent> iterator1 = inerLevelComponents.iterator(); iterator1.hasNext(); ) {
-                LeftAndTopBarItemLeaf innerLevelComponent = (LeftAndTopBarItemLeaf) iterator1.next();
-                //создание кнопок горизонтальных
-                ButtonWrapper.newBuilder()
-                        .setCssClasses(CSSclasses.LEFT_SIDE_MENU_HORIZONTAL_BUTTONS)
-                        .setText(innerLevelComponent.getName())
-                        .setFont(FontsStore.ROBOTO_LIGHT)
-                        .setEvents(new MenuButtonsClick(innerLevelComponent,this))
-                        .setParentHBox(horisontalMenuButHolder)
-                        .build();
-            }
+
+            inerLevelComponents.forEach( c ->
+            //создание кнопок горизонтальных
+                    ButtonWrapper.newBuilder()
+                            .setCssClasses(CSSclasses.LEFT_SIDE_MENU_HORIZONTAL_BUTTONS)
+                            .setText(((LeftAndTopBarItemLeaf) c).getName())
+                            .setFont(FontsStore.ROBOTO_LIGHT)
+                            .setEvents(new MenuButtonsClick(((LeftAndTopBarItemLeaf) c),this))
+                            .setParentHBox(horisontalMenuButHolder)
+                            .build()
+                    );
+
         }
         ObservableList<Node> children = horisontalMenuButHolder.getChildren();
         if (!children.isEmpty()) {

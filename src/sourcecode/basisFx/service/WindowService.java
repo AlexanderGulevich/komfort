@@ -2,12 +2,14 @@ package basisFx.service;
 
 import basisFx.appCore.interfaces.CallBack;
 import basisFx.appCore.interfaces.CallBackParametrized;
+import basisFx.appCore.interfaces.Mediator;
+import basisFx.appCore.interfaces.Observer;
 import basisFx.appCore.utils.Registry;
 import basisFx.appCore.windows.WindowAbstraction;
 import javafx.scene.layout.AnchorPane;
 import lombok.Setter;
 
-public abstract class ServiceCrossWindow <T extends Object> implements Mediator {
+public abstract class WindowService<T extends Object> implements Mediator {
 
     protected WindowAbstraction currentWindow;
     protected AnchorPane dynamicContentAnchor;
@@ -32,7 +34,7 @@ public abstract class ServiceCrossWindow <T extends Object> implements Mediator 
 
     }
     public void close(){
-        Registry.dataExchanger.clear();
+//        Registry.dataExchanger.clear();
         Registry.crossWindowMediators.values().remove(this);
     }
 }

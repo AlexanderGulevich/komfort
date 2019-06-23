@@ -6,6 +6,7 @@ public interface AnalazedForChart {
 
     String getSeriesName();
     GregorianCalendar getCalendar();
+    String getVBarXAxisNames();
     double getValue();
 
 }

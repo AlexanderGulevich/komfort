@@ -1,23 +1,21 @@
 package basisFx.appCore.windows;
 
-public class WindowImplDialog extends WindowImpl {
-    private  String messagge;
+import basisFx.service.WindowServiceInfo;
 
-    public WindowImplDialog(WindowBuilder builder) {
+public class WindowImplDatePicker extends WindowImpl{
+
+
+    public WindowImplDatePicker(WindowBuilder builder) {
         super(builder);
-        this.messagge=builder.message;
 
     }
 
     @Override
     protected void setDefaultWidthAndHeight() {
-        width=530d;
-        height=300d;
     }
 
     @Override
     public void customInit(WindowAbstraction windowAbstraction) {
-         windowService.setMessage(builder.message);
     }
 
     @Override

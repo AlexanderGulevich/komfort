@@ -1,8 +1,6 @@
 package basisFx.appCore.windows;
 
 import basisFx.appCore.settings.Settings;
-import basisFx.appCore.utils.Registry;
-import basisFx.service.ServiceCrossWindow;
 
 import java.math.BigDecimal;
 

@@ -21,7 +21,7 @@ import javafx.scene.layout.AnchorPane;
 
 import java.time.LocalDate;
 
-public  class ServiceCrossWindowByDateResearch  extends ServiceCrossWindow   {
+public  class WindowServiceByDateResearch extends WindowService {
 
     private RangeDirector rangeDirector;
     private DatePickerHandler datePickerHandlerSTART;
@@ -45,7 +45,7 @@ public  class ServiceCrossWindowByDateResearch  extends ServiceCrossWindow   {
     @FXML private DatePicker dateEnd;
     @FXML private ComboBox combobox;
 
-    public ServiceCrossWindowByDateResearch() {
+    public WindowServiceByDateResearch() {
 
         Registry.crossWindowMediators.put("ByDateResearchWindow",this);
     }

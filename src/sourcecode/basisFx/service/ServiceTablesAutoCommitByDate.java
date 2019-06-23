@@ -1,58 +1,29 @@
 package basisFx.service;
 
 import basisFx.appCore.elements.AppNode;
-import basisFx.appCore.elements.ButtonWrapper;
-import basisFx.appCore.elements.DatePickerWrapper;
 import basisFx.appCore.elements.TableWrapper;
-import basisFx.appCore.events.AppEvent;
 import basisFx.appCore.interfaces.DataStoreCallBack;
 import basisFx.appCore.interfaces.RecordWithDate;
+import basisFx.appCore.utils.DateGetter;
 import basisFx.dataSource.UnitOfWork;
 import basisFx.appCore.activeRecord.ActiveRecord;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import lombok.Setter;
-
 import java.time.LocalDate;
-import java.util.ArrayList;
 
 public class ServiceTablesAutoCommitByDate extends ServiceTables {
     private TableWrapper tableWrapper;
-    private DatePickerWrapper datePickerWrapper;
     @Setter
     public DataStoreCallBack dataStoreCallBack;
-
-    public void setButtonWrapper(ButtonWrapper buttonWrapper) {
-        if (buttonWrapper != null) {
-            this.buttonWrapper = buttonWrapper;
-            buttonWrapper.setServiceTables(this);
-            ArrayList events = buttonWrapper.getEvents();
-            for (Object event : events) {
-                ((AppEvent) event).setCallBackTyped(
-                        ()->{
-                            if (datePickerWrapper.getDate() != null) {
-                                return Boolean.valueOf(true);
-                            }else{
-                                return Boolean.valueOf(false);
-                            }
-                        }
-                );
-            }
-        }
-
-    }
-
-    private ButtonWrapper buttonWrapper;
+    @Setter
+    private DateGetter dateGetter;
 
     @Override
     public void inform(Object node) {
-        if (node==datePickerWrapper){
-            refresh(tableWrapper);
+        if (node==dateGetter){
+            initElements();
         }
-    }
-
-    public DatePickerWrapper getDatePickerWrapper() {
-        return datePickerWrapper;
     }
 
     @Override
@@ -68,7 +39,7 @@ public class ServiceTablesAutoCommitByDate extends ServiceTables {
     @Override
     public void wasChanged(AppNode node, ActiveRecord record) {
         UnitOfWork unitOfWork = ((TableWrapper) node).unitOfWork;
-        LocalDate date = datePickerWrapper.getDate();
+        LocalDate date = dateGetter.getDate();
         ((RecordWithDate) record).setDate(date);
         boolean readyToTransaction = record.isReadyToTransaction();
         if (dataStoreCallBack != null) {
@@ -100,7 +71,7 @@ public class ServiceTablesAutoCommitByDate extends ServiceTables {
 
     @Override
     public void initElements() {
-        LocalDate date = datePickerWrapper.getDate();
+        LocalDate date = dateGetter.getDate();
         if (date != null) {
             ObservableList <ActiveRecord> list=tableWrapper.activeRecord.getAllByDate(date);
             if (list == null) {
@@ -113,10 +84,6 @@ public class ServiceTablesAutoCommitByDate extends ServiceTables {
 
     public void setTableWrapper(TableWrapper tableWrapper) {
         this.tableWrapper = tableWrapper;
-    }
-
-    public void setDatePickerWrapper(DatePickerWrapper datePickerWrapper) {
-        this.datePickerWrapper = datePickerWrapper;
     }
 
 

@@ -70,4 +70,21 @@ public class WindowUndecoratedFabric  extends WindowFabric{
         return null;
     }
 
+    @Override
+    public WindowAbstraction dateWindow() {
+
+        WindowBuilder builder = WindowBuilder.newBuilder()
+                .setFxmlFileName("SelectDate")
+                .setParentAnchorNameForFXML(WindowAbstraction.DefaultPanelsNames.topVisibleAnchor.name())
+                .setHeight(230d)
+                .setWidth(350d)
+                .setPanelCreator(null)
+                .setTitle(null)
+                .build();
+
+        WindowImplDatePicker  windowImplDatePicker = new WindowImplDatePicker(builder) ;
+        WindowAbstractionUndecorated windowUndecorated=new WindowAbstractionUndecorated(windowImplDatePicker);
+        return windowUndecorated;
+    }
+
 }

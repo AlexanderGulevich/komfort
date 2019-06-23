@@ -2,6 +2,7 @@ package basisFx;
 
 import basisFx.appCore.menu.*;
 import basisFx.appCore.settings.FontsStore;
+import basisFx.appCore.utils.Registry;
 import basisFx.presentation.*;
 
 import static basisFx.appCore.settings.FontsStore.*;
@@ -14,8 +15,7 @@ public class MainMenuSketch implements MenuSketch {
 
     public MainMenuSketch() {
 
-        menuDirector.setComposite(
-                LeftAndTopBarItemComposite.builder()
+        menuDirector.setComposite(LeftAndTopBarItemComposite.builder()
                 .description("ПАНЕЛЬ УПРАВЛЕНИЯ \n")
                 .fontsStore(FontsStore.FAWESOME5SOLID)
                 .fxmlFileName("vbut.fxml")
@@ -23,12 +23,15 @@ public class MainMenuSketch implements MenuSketch {
                 .panelCreator(null)
                 .isActive(true)
                 .fontSize(iconSize)
+                .panelCreator(MainPanel::new)
                 .build()
         );
 
         menuDirector.setComposite(LeftAndTopBarItemComposite.builder()
                         .description("Управление затратами и выработкой за день \n")
                         .fontsStore(FontsStore.WEBHOSTINGHUB)
+                        .callBack(() -> Registry.windowFabric.dateWindow())
+                        .panelCreator( () -> new CommonPanel("\uF0A1",FontsStore.WEBHOSTINGHUB))
                         .fxmlFileName("vbut.fxml")
                         .fontSymbol("\uF0A1")
                         .isActive(false)
@@ -54,6 +57,7 @@ public class MainMenuSketch implements MenuSketch {
 //                                      .build()
 //                ),
         menuDirector.setComposite(LeftAndTopBarItemComposite.builder()
+                    .panelCreator( () -> new CommonPanel("\uF080",FontsStore.FAWESOME5SOLID))
                     .description("Графики")
                     .fontsStore(FAWESOME5SOLID)
                     .fxmlFileName("vbut.fxml")
@@ -73,7 +77,9 @@ public class MainMenuSketch implements MenuSketch {
         .setLeaf(LeftAndTopBarItemLeaf.builder()
                 .name("Рентабельность").panelCreator(null).build() );
 
+
         menuDirector.setComposite(LeftAndTopBarItemComposite.builder()
+                    .panelCreator( () -> new CommonPanel("\uF15C",FontsStore.FAWESOME5SOLID))
                     .description("Статистическая информация")
                     .fontsStore(FAWESOME5SOLID)
                     .fxmlFileName("vbut.fxml")
@@ -91,6 +97,7 @@ public class MainMenuSketch implements MenuSketch {
 
 
         menuDirector.setComposite(LeftAndTopBarItemComposite.builder()
+                        .panelCreator( () -> new CommonPanel("\uF007",FontsStore.FAWESOME5REGULAR))
                         .description("Управление сотрудниками")
                         .fontsStore(FontsStore.FAWESOME5REGULAR)
                         .fxmlFileName("vbut.fxml")
@@ -103,9 +110,8 @@ public class MainMenuSketch implements MenuSketch {
                         .name("Уволенные").panelCreator(FiredEmployeesPanel::new).build() );
 
 
-
-
         menuDirector.setComposite(LeftAndTopBarItemComposite.builder()
+                        .panelCreator( () -> new CommonPanel("",FontsStore.MATERIAL_ICONS))
                         .description("Прочая информация")
                         .fontsStore(FontsStore.MATERIAL_ICONS)
                         .fxmlFileName("vbut.fxml")
@@ -131,16 +137,6 @@ public class MainMenuSketch implements MenuSketch {
         ).setLeaf(LeftAndTopBarItemLeaf.builder()
                 .name("Бумага").panelCreator(PaperPanel::new).build()
         );
-
-
-
-//
-//                LeftAndTopBarItemComposite.newBuilder().setDescription("Настройки")
-//                        .setFontsStore(FontsStore.fontcustom)
-//                        .setFontSymbol("\uF214")
-//                        .setFontSize(iconSize)
-//                        .build().addButEvent()
-
 
 
     }

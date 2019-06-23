@@ -1,5 +1,6 @@
 package basisFx.appCore.menu;
 
+import basisFx.appCore.interfaces.CallBack;
 import basisFx.appCore.interfaces.PanelCreator;
 import lombok.Builder;
 import lombok.Getter;
@@ -18,6 +19,9 @@ public class LeftAndTopBarItemLeaf implements MenuLeaf {
     private boolean hasParent;
     @Getter
     private String name;
+
+    @Setter
+    @Getter private CallBack callBack;
 
     @Override
     public boolean hasParent() {

@@ -1,7 +1,7 @@
 package basisFx.appCore.elements;
 
 import basisFx.appCore.utils.Registry;
-import basisFx.service.Mediator;
+import basisFx.appCore.interfaces.Mediator;
 import javafx.scene.control.TextField;
 import lombok.Getter;
 

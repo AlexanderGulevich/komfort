@@ -7,7 +7,7 @@ import basisFx.appCore.utils.Coordinate;
 import basisFx.appCore.utils.FXMLLoader;
 import basisFx.appCore.guiStructura.GUIStructura;
 import basisFx.appCore.utils.Registry;
-import basisFx.service.ServiceCrossWindow;
+import basisFx.service.WindowService;
 import javafx.scene.layout.AnchorPane;
 import lombok.Getter;
 import lombok.Setter;
@@ -20,7 +20,7 @@ public abstract class WindowImpl {
     @Getter protected ButtonsForStage buttonsForStage;
     @Getter protected GUIStructura GUIStructura;
     @Getter  protected String fxmlFileName;
-    @Getter  protected  ServiceCrossWindow serviceCrossWindow ;
+    @Getter  protected WindowService windowService;
     @Getter protected Double width;
     @Getter protected Double height;
     @Getter protected String titleName;
@@ -83,11 +83,11 @@ public abstract class WindowImpl {
     }
 
     private void initFXMLService(WindowAbstraction windowAbstraction) {
-        serviceCrossWindow = Registry.crossWindowMediators.get(builder.fxmlFileName);
-        serviceCrossWindow.setCurrentWindow(windowAbstraction);
-        serviceCrossWindow.init();
-        serviceCrossWindow.setCallBackParametrized(callBackParametrized);
-        serviceCrossWindow.setCallBack(callBack);
+        windowService = Registry.crossWindowMediators.get(builder.fxmlFileName);
+        windowService.setCurrentWindow(windowAbstraction);
+        windowService.init();
+        windowService.setCallBackParametrized(callBackParametrized);
+        windowService.setCallBack(callBack);
     }
 
     private void toBindWithWindow(WindowAbstraction windowAbstraction) {

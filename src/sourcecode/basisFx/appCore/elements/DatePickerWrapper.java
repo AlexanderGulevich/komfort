@@ -4,7 +4,7 @@ import basisFx.appCore.events.AppEvent;
 import basisFx.appCore.settings.CSSclasses;
 import basisFx.appCore.settings.CSSid;
 import basisFx.appCore.windows.WindowAbstraction;
-import basisFx.service.ServiceTables;
+import basisFx.appCore.interfaces.Mediator;
 import basisFx.appCore.utils.Coordinate;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -24,7 +24,7 @@ import java.util.ArrayList;
 public class DatePickerWrapper  extends AppNode{
 
     private DatePicker element;
-    private ServiceTables serviceTables;
+    private Mediator mediator;
     private LocalDate date;
     private DatePickerWrapper datePickerWrapper;
 
@@ -41,7 +41,7 @@ public class DatePickerWrapper  extends AppNode{
         parentScrollPane = builder.parentScrollPane;
         metaName = builder.metaName;
         stage = builder.stage;
-        serviceTables = builder.serviceTables;
+        mediator = builder.mediator;
         datePickerWrapper=this;
         applyWidth();
         createDatePicker();
@@ -69,14 +69,14 @@ public class DatePickerWrapper  extends AppNode{
         element.setPromptText("");
 //        element.setOnAction((e) -> {
 //               this.date = element.getValue();
-//               serviceTables.informParentWindow(this);
+//               mediator.informParentWindow(this);
 //
 //        });
         element.valueProperty().addListener(new ChangeListener<LocalDate>() {
             @Override
             public void changed(ObservableValue<? extends LocalDate> observable, LocalDate oldValue, LocalDate newValue) {
                 date = element.getValue();
-                serviceTables.inform(datePickerWrapper);
+                mediator.inform(datePickerWrapper);
             }
         });
     }
@@ -88,7 +88,6 @@ public class DatePickerWrapper  extends AppNode{
     public static Builder newBuilder() {
         return new Builder();
     }
-
 
     @Override
     public DatePicker getElement() {
@@ -131,7 +130,7 @@ public class DatePickerWrapper  extends AppNode{
         private ScrollPane parentScrollPane;
         private String metaName;
         private Stage stage;
-        private ServiceTables serviceTables;
+        private Mediator mediator;
         protected CSSclasses[] cssClasses;
         protected String[] cssClassesStrings;
 
@@ -206,8 +205,8 @@ public class DatePickerWrapper  extends AppNode{
             return this;
         }
 
-        public Builder setServiceTables(ServiceTables val) {
-            serviceTables = val;
+        public Builder setMediator(Mediator val) {
+            mediator = val;
             return this;
         }
 
@@ -215,4 +214,6 @@ public class DatePickerWrapper  extends AppNode{
             return new DatePickerWrapper(this);
         }
     }
+
+
 }

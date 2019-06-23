@@ -6,8 +6,8 @@ import basisFx.appCore.windows.WindowAbstraction;
 import basisFx.appCore.windows.WindowBuilder;
 import basisFx.appCore.windows.WindowImpl;
 import basisFx.appCore.activeRecord.ActiveRecord;
-import basisFx.service.Mediator;
-import basisFx.service.ServiceCrossWindow;
+import basisFx.appCore.interfaces.Mediator;
+import basisFx.service.WindowService;
 import javafx.beans.value.ObservableValue;
 import javafx.beans.value.WritableValue;
 import javafx.scene.control.TableCell;
@@ -48,8 +48,8 @@ public class ColWrapperPopup extends ColWrapper {
                     setGraphic(null);
                     WindowAbstraction windowAbstraction = Registry.windowFabric.customSubWindow(windowBuilder);
                     WindowImpl windowImpl = windowAbstraction.getWindowImpl();
-                    ServiceCrossWindow serviceCrossWindow=windowImpl.getServiceCrossWindow();
-                    serviceCrossWindow.setCallBackParametrized(
+                    WindowService windowService =windowImpl.getWindowService();
+                    windowService.setCallBackParametrized(
                             (t)->{
                                 ActiveRecord record = (ActiveRecord) t;
                                 if (record != null) {

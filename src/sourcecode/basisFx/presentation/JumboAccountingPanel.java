@@ -3,6 +3,7 @@ package basisFx.presentation;
 import basisFx.appCore.grid.*;
 import basisFx.appCore.panelSets.AutoCommitByDateTableSet;
 import basisFx.appCore.table.ColumnFabric;
+import basisFx.appCore.utils.DateViaPopup;
 import basisFx.domain.*;
 import basisFx.appCore.DynamicContentPanel;
 
@@ -12,6 +13,7 @@ public class JumboAccountingPanel extends DynamicContentPanel {
 
         AutoCommitByDateTableSet.builder()
                 .aClass(JumboAccounting.class)
+                .dateGetter(new DateViaPopup())
                 .callBackForColumn(null)
                 .isEditable(true).isSortable(false)
                 .currentWindow(window)

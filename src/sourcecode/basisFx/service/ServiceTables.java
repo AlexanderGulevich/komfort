@@ -1,19 +1,24 @@
 package basisFx.service;
 
 import basisFx.appCore.elements.AppNode;
+import basisFx.appCore.elements.DatePickerWrapper;
 import basisFx.appCore.elements.TableWrapper;
 import basisFx.appCore.interfaces.CallBack;
+import basisFx.appCore.interfaces.Mediator;
+import basisFx.appCore.interfaces.Observer;
 import basisFx.appCore.utils.Range;
 import basisFx.appCore.activeRecord.ActiveRecord;
 import javafx.collections.ObservableList;
+import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDate;
 
-public abstract class ServiceTables implements Mediator{
+public abstract class ServiceTables implements Mediator {
 
     @Setter
     protected CallBack refreshCallBack;
+    @Setter @Getter protected DatePickerWrapper datePickerWrapper;
     public abstract void wasRemoved(AppNode node, ActiveRecord record);
     public abstract void wasChanged(AppNode node, ActiveRecord record);
     public abstract void refresh(AppNode node);

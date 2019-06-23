@@ -9,7 +9,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.AnchorPane;
 
-public class ServiceCrossWindowInfo extends ServiceCrossWindow {
+public class WindowServiceInfo extends WindowService {
     @FXML private JFXButton okBut;
     @FXML private TextArea message;
     @FXML private AnchorPane titleAnchor;
@@ -19,7 +19,7 @@ public class ServiceCrossWindowInfo extends ServiceCrossWindow {
     @FXML public void initialize() {
     }
 
-    public ServiceCrossWindowInfo() {
+    public WindowServiceInfo() {
         Registry.crossWindowMediators.put("Info",this);
     }
 
@@ -39,5 +39,4 @@ public class ServiceCrossWindowInfo extends ServiceCrossWindow {
     public void inform(Object node) {
 
     }
-
 }

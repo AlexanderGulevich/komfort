@@ -11,7 +11,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane minWidth="700.0" prefHeight="600.0" styleClass="lightGrey" stylesheets="@../css/custom_1/styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="basisFx.service.ServiceCrossWindowByDateResearch">
+<AnchorPane minWidth="700.0" prefHeight="600.0" styleClass="lightGrey" stylesheets="@../css/custom_1/styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="basisFx.service.WindowServiceByDateResearch">
    <children>
       <AnchorPane layoutX="6.0" layoutY="-0.5714302062988281" prefWidth="700.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>

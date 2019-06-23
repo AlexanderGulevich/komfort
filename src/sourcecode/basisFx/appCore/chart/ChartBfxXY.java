@@ -12,6 +12,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -75,7 +76,7 @@ public class ChartBfxXY implements ChartBfx {
         if (data != null) {
             chart.setData(data);
         }else {
-            chart.setData(ChartDataHandler.getData(aClass));
+            chart.setData(ChartDataHandler.getXYData(aClass));
         }
 
     }
@@ -169,5 +170,17 @@ public class ChartBfxXY implements ChartBfx {
     public void setData(List data) {
         chart.setData((ObservableList<XYChart.Series>) data);
 
+    }
+
+    @Override
+    public void applyPeriod(Calendar before, Calendar after) {
+        ObservableList<XYChart.Series<Number, Number>> data = ChartDataHandler.getXYDataByPeriod(getAClass(), before, after);
+        chart.setData(data);
+    }
+
+    @Override
+    public void applyAllTime() {
+        ObservableList<XYChart.Series<Number, Number>> data = ChartDataHandler.getXYData(getAClass());
+        chart.setData(data);
     }
 }

@@ -12,7 +12,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 
-public  class ServiceCrossWindowAddDel extends ServiceCrossWindow   {
+public  class WindowServiceAddDel extends WindowService {
 
     private TableWrapper table_wrapper;
     private TableWrapper outer_table_wrapper;
@@ -26,7 +26,7 @@ public  class ServiceCrossWindowAddDel extends ServiceCrossWindow   {
     @FXML private Button delBut;
     @FXML private Label title;
 
-    public ServiceCrossWindowAddDel() {
+    public WindowServiceAddDel() {
         Registry.crossWindowMediators.put("AddDellPopupWindow",this);
     }
     @Override

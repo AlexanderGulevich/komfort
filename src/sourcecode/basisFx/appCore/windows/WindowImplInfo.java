@@ -1,9 +1,6 @@
 package basisFx.appCore.windows;
 
-import basisFx.service.ServiceCrossWindowInfo;
-import basisFx.service.ServiceCrossWindowMain_v1;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
+import basisFx.service.WindowServiceInfo;
 
 public class WindowImplInfo extends WindowImpl{
 
@@ -23,7 +20,7 @@ public class WindowImplInfo extends WindowImpl{
 
     @Override
     public void customInit(WindowAbstraction windowAbstraction) {
-        ((ServiceCrossWindowInfo) serviceCrossWindow).setMessage(builder.message);
+        ((WindowServiceInfo) windowService).setMessage(builder.message);
     }
 
     @Override

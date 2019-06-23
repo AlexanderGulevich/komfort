@@ -2,7 +2,7 @@ package basisFx.appCore.elements;
 
 import basisFx.appCore.settings.CSSclasses;
 import basisFx.appCore.utils.Range;
-import basisFx.service.Mediator;
+import basisFx.appCore.interfaces.Mediator;
 import javafx.collections.ObservableList;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListCell;

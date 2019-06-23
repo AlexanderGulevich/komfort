@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 import basisFx.appCore.windows.WindowAbstraction;
-import basisFx.service.Mediator;
+import basisFx.appCore.interfaces.Mediator;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.control.ScrollPane;

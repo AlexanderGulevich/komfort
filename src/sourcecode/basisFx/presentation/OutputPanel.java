@@ -4,6 +4,7 @@ import basisFx.appCore.elements.TableWrapper;
 import basisFx.appCore.grid.*;
 import basisFx.appCore.panelSets.AutoCommitByDateTableSet;
 import basisFx.appCore.table.ColumnFabric;
+import basisFx.appCore.utils.DateViaPopup;
 import basisFx.appCore.utils.Registry;
 import basisFx.appCore.windows.WindowAbstraction;
 import basisFx.appCore.windows.WindowBuilder;
@@ -32,6 +33,7 @@ public class OutputPanel  extends DynamicContentPanel {
 
         AutoCommitByDateTableSet.builder()
                 .aClass(OutputPerDay.class)
+                .dateGetter(new DateViaPopup())
                 .callBackForColumn(null)
                 .isEditable(true).isSortable(false)
                 .currentWindow(window)

@@ -1,5 +1,6 @@
 package basisFx.appCore.menu;
 
+import basisFx.appCore.interfaces.CallBack;
 import basisFx.appCore.interfaces.PanelCreator;
 import basisFx.appCore.settings.FontsStore;
 import lombok.Builder;
@@ -14,6 +15,7 @@ public class LeftAndTopBarItemComposite implements MenuComposite{
     @Getter private PanelCreator panelCreator;
     @Getter @Setter  private MenuComponent parent;
     @Getter @Setter private boolean isActive;
+    @Setter @Getter private CallBack callBack;
     @Getter private String fxmlFileName;
     @Getter private String fontSymbol;
     @Getter private String description;

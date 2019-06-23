@@ -3,7 +3,7 @@ package basisFx.appCore.table;
 import basisFx.appCore.interfaces.CallBackTypedAndParametrized;
 import basisFx.appCore.settings.CSSclasses;
 import basisFx.appCore.activeRecord.ActiveRecord;
-import basisFx.service.Mediator;
+import basisFx.appCore.interfaces.Mediator;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;

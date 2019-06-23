@@ -15,7 +15,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 
-public class ServiceCrossWindowEmployerHire  extends ServiceCrossWindow {
+public class WindowServiceEmployerHire extends WindowService {
     private UnitOfWork unitOfWork=new UnitOfWork();
     private  DatePickerHandler datePickerHandler;
     private  TextFieldHandler rateFieldHandler;
@@ -30,7 +30,7 @@ public class ServiceCrossWindowEmployerHire  extends ServiceCrossWindow {
     @FXML public void initialize() {
     }
 
-    public ServiceCrossWindowEmployerHire() {
+    public WindowServiceEmployerHire() {
         Registry.crossWindowMediators.put("EmployerHire",this);
     }
 
@@ -101,6 +101,5 @@ public class ServiceCrossWindowEmployerHire  extends ServiceCrossWindow {
     private void initStageDragging() {
         new StageDragging().setEventToElement(titlePanel);
     }
-
 
 }

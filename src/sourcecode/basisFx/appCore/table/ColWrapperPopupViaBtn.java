@@ -4,7 +4,7 @@ import basisFx.appCore.events.SubWindowCreaterByBut;
 import basisFx.appCore.settings.CSSclasses;
 import basisFx.appCore.windows.WindowBuilder;
 import basisFx.appCore.activeRecord.ActiveRecord;
-import basisFx.service.Mediator;
+import basisFx.appCore.interfaces.Mediator;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;

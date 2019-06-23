@@ -10,6 +10,7 @@ import basisFx.appCore.settings.CSSclasses;
 import basisFx.appCore.settings.FontsStore;
 import basisFx.appCore.table.ColWrapper;
 import basisFx.appCore.utils.Coordinate;
+import basisFx.appCore.utils.DateGetter;
 import basisFx.appCore.windows.WindowAbstraction;
 import basisFx.dataSource.UnitOfWork;
 import basisFx.service.ServiceTablesAutoCommitByDate;
@@ -24,7 +25,6 @@ import java.util.List;
 public class AutoCommitByDateTableSet implements  PanelSets {
 
     @Builder.Default private ServiceTablesAutoCommitByDate mediator=new ServiceTablesAutoCommitByDate();
-    @Builder.Default private DatePickerWrapper datePickerWrapper =null;
     @Builder.Default private TableWrapper tableWrapper=null;
     @Builder.Default private LabelWrapper label=null;
     private DataStoreCallBack callBackForColumn;
@@ -33,6 +33,7 @@ public class AutoCommitByDateTableSet implements  PanelSets {
     @Builder.Default private ButSizeFactory bsFactory=ButSizeFactory.getInstance();
     @Builder.Default private Coordinate coordinate=new Coordinate(0d, 10d, null, 0d);
     @Builder.Default private RangeDirector rangeDirector=null;
+    private DateGetter dateGetter;
     private TableEvents delButEvent;
     private TableEvents addButEvent;
     private WindowAbstraction currentWindow;
@@ -51,8 +52,9 @@ public class AutoCommitByDateTableSet implements  PanelSets {
 
     @Override
     public void configure() {
+        mediator.setDateGetter(dateGetter);
         butInit();
-        createDatePicker();
+        initDateGetter();
         createLabel();
         createTable();
         handleEvents(buttonsForGrid);
@@ -67,17 +69,15 @@ public class AutoCommitByDateTableSet implements  PanelSets {
 
     private void initService() {
         mediator.setTableWrapper(tableWrapper);
-        mediator.setDatePickerWrapper(datePickerWrapper);
+        mediator.setDateGetter(dateGetter);
         mediator.setDataStoreCallBack(callBackForColumn);
-        mediator.setButtonWrapper(buttonsForGrid.getButtonWrapperAdd());
-        mediator.setButtonWrapper(buttonsForGrid.getButtonWrapperDel());
         mediator.initElements();
     }
 
     private void createGrid(ButSizeForGrid buttonsForGrid, CtrlPosition ctrlPosition) {
         GridPaneWrapper.newBuilder()
                 .setOrganization(new SingleTable(tableWrapper,buttonsForGrid ,ctrlPosition))
-                .setGridName(null)
+                .setGridName(littleTitle)
                 .setParentAnchor(parentAnchor)
                 .setCoordinate(new Coordinate(50d,10d,10d,0d))
                 .setGridLinesVisibility(false)
@@ -118,11 +118,12 @@ public class AutoCommitByDateTableSet implements  PanelSets {
                 .build();
     }
 
-    private void createDatePicker() {
-        datePickerWrapper = DatePickerWrapper.newBuilder()
-                .setCoordinate(new Coordinate(10d, 15d, null, null))
-                .setParentAnchor(parentAnchor)
-                .setServiceTables(mediator)
-                .build();
+    private void initDateGetter() {
+
+        dateGetter.setCoordinate( new Coordinate(10d, 15d, null, null));
+        dateGetter.setMediator(mediator);
+        dateGetter.setParentAnchor(parentAnchor);
+        dateGetter.init();
     }
+
 }

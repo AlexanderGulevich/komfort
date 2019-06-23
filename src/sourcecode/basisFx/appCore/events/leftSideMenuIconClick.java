@@ -1,12 +1,16 @@
 package basisFx.appCore.events;
 
 import basisFx.appCore.elements.AppNode;
+import basisFx.appCore.interfaces.PanelCreator;
 import basisFx.appCore.menu.LeftAndTopBarItemComposite;
 import basisFx.appCore.menu.LeftAndTopBarRepresetation;
 import basisFx.appCore.menu.MenuComponent;
 import basisFx.appCore.settings.CSSclasses;
+import basisFx.appCore.utils.Registry;
+import basisFx.appCore.windows.WindowAbstraction;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.layout.AnchorPane;
 
 public class leftSideMenuIconClick extends AppEvent{
     protected LeftAndTopBarItemComposite component;
@@ -48,14 +52,36 @@ public class leftSideMenuIconClick extends AppEvent{
 
     @Override
     public void run() {
-
         represent.setDefaultStyleVerticalButtons();
         represent.setCommonTextName(component);
         represent.setHorisontalButtons(component);
         but.getStyleClass().clear();
         but.getStyleClass().add(CSSclasses.LEFT_SIDE_MENU_VERTICAL_BUTTONS_CLICKED.get());
+        if (callBack != null) callBack.call();
+        clearContent();
+        PanelCreator panelCreator = component.getPanelCreator();
+        if (panelCreator != null) {
+            panelCreator.create().initTemplateMethod(Registry.mainWindow);
+        }
 
              }
+
+
+
+    private void clearContent() {
+        AnchorPane mainContentAnchor =
+                (AnchorPane)  Registry.mainWindow.getNodeFromMap(WindowAbstraction.DefaultPanelsNames.mainContentAnchor.name());
+        mainContentAnchor.getChildren().clear();
+        Registry.mainWindow.closeDynamicContentPanel();
+    }
+
+
+
+
+
+
+
+
 
 
 

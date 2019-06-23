@@ -9,6 +9,7 @@ public abstract class WindowFabric {
     public abstract WindowAbstraction dialogWindow(String message, CallBackParametrized <Boolean> callBackParametrized);
     public abstract WindowAbstraction infoWindow(String message);
     public abstract WindowAbstraction customSubWindow(WindowBuilder builder);
+    public abstract WindowAbstraction dateWindow();
 
 
     public static WindowFabric WindowDecorated(){

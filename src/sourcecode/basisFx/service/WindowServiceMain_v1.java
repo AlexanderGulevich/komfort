@@ -1,8 +1,6 @@
 package basisFx.service;
 
 import basisFx.appCore.events.StageDragging;
-import basisFx.appCore.settings.FontsStore;
-import basisFx.appCore.utils.FontLogic;
 import basisFx.appCore.utils.Registry;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -11,7 +9,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
-public class ServiceCrossWindowMain_v1 extends ServiceCrossWindow   {
+public class WindowServiceMain_v1 extends WindowService {
 
     @FXML private AnchorPane verticalMenuAnchor;
     @FXML private AnchorPane leftButAnchor;
@@ -24,7 +22,7 @@ public class ServiceCrossWindowMain_v1 extends ServiceCrossWindow   {
     @FXML private HBox horisontalMenuButHolder;
     @FXML private VBox vButHolder;
 
-    public ServiceCrossWindowMain_v1() {
+    public WindowServiceMain_v1() {
         Registry.crossWindowMediators.put("Main_v1",this);
     }
 

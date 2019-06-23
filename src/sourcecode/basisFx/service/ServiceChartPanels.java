@@ -3,8 +3,9 @@ package basisFx.service;
 import basisFx.appCore.chart.ChartBfx;
 import basisFx.appCore.interfaces.CallBack;
 import basisFx.appCore.interfaces.CallBackParametrized;
+import basisFx.appCore.interfaces.Mediator;
+import basisFx.appCore.interfaces.Observer;
 import basisFx.appCore.windows.WindowAbstraction;
-import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import lombok.Setter;
 

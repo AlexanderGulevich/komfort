@@ -10,7 +10,7 @@ public abstract class MenuRepresent {
     @Setter protected CSSid css;
     @Setter protected MenuComponent component;
     @Setter protected AnchorPane parentAnchor;
-    @Setter protected Coordinate c;
+    @Setter protected Coordinate coordinate;
     @Setter protected Double width;
     @Setter protected Double height;
 
