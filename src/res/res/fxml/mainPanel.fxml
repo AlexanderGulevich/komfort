@@ -2,111 +2,41 @@
 
 <?import java.lang.String?>
 <?import java.net.URL?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="mainPanel" prefHeight="400.0" prefWidth="600.0" styleClass="main_panel_bcqrd" stylesheets="@../css/custom_1/styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="basisFx.service.CommonLabel">
+<AnchorPane fx:id="mainPanel" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="basisFx.service.CommonLabel">
    <children>
-      <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+      <VBox AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
          <children>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+            <HBox alignment="CENTER" spacing="10.0" styleClass="transparent" stylesheets="@../css/custom_1/colors.css">
                <children>
-                  <HBox prefHeight="100.0" prefWidth="200.0">
+                  <HBox alignment="CENTER" prefHeight="250.0" prefWidth="300.0" styleClass="bottom" stylesheets="@../css/custom_1/borders.css" HBox.hgrow="ALWAYS">
                      <children>
-                        <AnchorPane>
+                        <FlowPane alignment="CENTER" columnHalignment="CENTER" prefHeight="200.0" prefWidth="250.0" stylesheets="@../css/custom_1/colors.css">
                            <children>
-                              <AnchorPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="10.0">
-                                 <stylesheets>
-                                    <URL value="@../css/custom_1/borders.css" />
-                                    <URL value="@../css/custom_1/colors.css" />
-                                 </stylesheets>
+                              <HBox alignment="TOP_CENTER">
                                  <children>
-                                    <Label layoutX="68.0" layoutY="25.0" styleClass="yellowgreen" text="" textFill="WHITE">
+                                    <Label alignment="TOP_CENTER" prefHeight="82.0" prefWidth="104.0" styleClass="font_neon" text="" textFill="WHITE">
                                        <font>
-                                          <Font name="FontAwesome Regular" size="48.0" />
-                                       </font>
-                                    </Label>
-                                    <Label layoutX="7.0" layoutY="88.0" styleClass="font_darckBlue" text="Панель управления" textFill="WHITE">
-                                       <font>
-                                          <Font name="Roboto" size="18.0" />
-                                       </font>
-                                       <stylesheets>
-                                          <URL value="@../css/custom_1/colors.css" />
-                                          <URL value="@../css/custom_1/fonts.css" />
-                                       </stylesheets>
-                                    </Label>
-                                 </children>
-                                 <styleClass>
-                                    <String fx:value="all_side" />
-                                    <String fx:value="mediumGreen" />
-                                 </styleClass>
-                              </AnchorPane>
-                           </children>
-                        </AnchorPane>
-                     </children>
-                  </HBox>
-                  <HBox prefHeight="100.0" prefWidth="200.0">
-                     <children>
-                        <AnchorPane prefHeight="200.0" prefWidth="200.0">
-                           <children>
-                              <AnchorPane AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="10.0">
-                                 <stylesheets>
-                                    <URL value="@../css/custom_1/borders.css" />
-                                    <URL value="@../css/custom_1/colors.css" />
-                                 </stylesheets>
-                                 <children>
-                                    <Label layoutX="68.0" layoutY="25.0" styleClass="yellowgreen" text="" textFill="WHITE">
-                                       <font>
-                                          <Font name="FontAwesome Regular" size="48.0" />
-                                       </font>
-                                    </Label>
-                                    <Label layoutX="7.0" layoutY="88.0" styleClass="font_darckBlue" text="Панель управления" textFill="WHITE">
-                                       <font>
-                                          <Font name="Roboto" size="18.0" />
-                                       </font>
-                                       <stylesheets>
-                                          <URL value="@../css/custom_1/colors.css" />
-                                          <URL value="@../css/custom_1/fonts.css" />
-                                       </stylesheets>
-                                    </Label>
-                                 </children>
-                                 <styleClass>
-                                    <String fx:value="all_side" />
-                                    <String fx:value="neon" />
-                                 </styleClass>
-                              </AnchorPane>
-                           </children>
-                        </AnchorPane>
-                     </children>
-                  </HBox>
-                  <HBox>
-                     <children>
-                        <AnchorPane prefHeight="200.0" prefWidth="200.0">
-                           <children>
-                              <AnchorPane AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="10.0">
-                                 <stylesheets>
-                                    <URL value="@../css/custom_1/borders.css" />
-                                    <URL value="@../css/custom_1/colors.css" />
-                                 </stylesheets>
-                                 <children>
-                                    <Label alignment="CENTER" layoutX="39.0" layoutY="14.0" prefHeight="82.0" prefWidth="104.0" text="" textFill="WHITE">
-                                       <font>
-                                          <Font name="FontAwesome Regular" size="72.0" />
+                                          <Font name="FontAwesome Regular" size="96.0" />
                                        </font>
                                        <stylesheets>
                                           <URL value="@../css/custom_1/fonts.css" />
                                           <URL value="@../css/custom_1/colors.css" />
                                           <URL value="@../css/custom_1/borders.css" />
                                        </stylesheets>
-                                       <styleClass>
-                                          <String fx:value="font_neon" />
-                                          <String fx:value="all_side" />
-                                       </styleClass>
                                     </Label>
-                                    <Label layoutX="14.0" layoutY="107.0" styleClass="font_mediumBlue2" text="Панель управления" textFill="WHITE">
+                                 </children>
+                              </HBox>
+                              <HBox alignment="BOTTOM_RIGHT">
+                                 <children>
+                                    <Label alignment="BOTTOM_CENTER" text="Панель управления" textFill="WHITE" HBox.hgrow="ALWAYS">
                                        <font>
                                           <Font name="Roboto Bold" size="18.0" />
                                        </font>
@@ -114,20 +44,353 @@
                                           <URL value="@../css/custom_1/colors.css" />
                                           <URL value="@../css/custom_1/fonts.css" />
                                        </stylesheets>
+                                       <styleClass>
+                                          <String fx:value="font_mediumBlue2" />
+                                          <String fx:value="all_side" />
+                                          <String fx:value="font_neon" />
+                                          <String fx:value="font_softRed" />
+                                       </styleClass>
+                                       <HBox.margin>
+                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                       </HBox.margin>
                                     </Label>
                                  </children>
+                                 <FlowPane.margin>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </FlowPane.margin>
+                                 <stylesheets>
+                                    <URL value="@../css/custom_1/colors.css" />
+                                    <URL value="@../css/custom_1/borders.css" />
+                                 </stylesheets>
                                  <styleClass>
                                     <String fx:value="all_side" />
-                                    <String fx:value="white" />
+                                    <String fx:value="mediumGreen" />
                                  </styleClass>
-                              </AnchorPane>
+                              </HBox>
                            </children>
-                        </AnchorPane>
+                           <styleClass>
+                              <String fx:value="white" />
+                              <String fx:value="all_side" />
+                           </styleClass>
+                        </FlowPane>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="250.0" prefWidth="300.0" styleClass="bottom" stylesheets="@../css/custom_1/borders.css">
+                     <children>
+                        <FlowPane alignment="CENTER" columnHalignment="CENTER" prefHeight="200.0" prefWidth="250.0" stylesheets="@../css/custom_1/colors.css">
+                           <children>
+                              <HBox alignment="TOP_CENTER">
+                                 <children>
+                                    <Label alignment="TOP_CENTER" prefHeight="82.0" prefWidth="104.0" styleClass="font_neon" text="" textFill="WHITE">
+                                       <font>
+                                          <Font name="FontAwesome Regular" size="96.0" />
+                                       </font>
+                                       <stylesheets>
+                                          <URL value="@../css/custom_1/fonts.css" />
+                                          <URL value="@../css/custom_1/colors.css" />
+                                          <URL value="@../css/custom_1/borders.css" />
+                                       </stylesheets>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="BOTTOM_RIGHT">
+                                 <children>
+                                    <Label alignment="BOTTOM_CENTER" text="Панель управления" textFill="WHITE" HBox.hgrow="ALWAYS">
+                                       <font>
+                                          <Font name="Roboto Bold" size="18.0" />
+                                       </font>
+                                       <stylesheets>
+                                          <URL value="@../css/custom_1/colors.css" />
+                                          <URL value="@../css/custom_1/fonts.css" />
+                                       </stylesheets>
+                                       <styleClass>
+                                          <String fx:value="font_mediumBlue2" />
+                                          <String fx:value="all_side" />
+                                          <String fx:value="font_neon" />
+                                          <String fx:value="font_softRed" />
+                                       </styleClass>
+                                       <HBox.margin>
+                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                 </children>
+                                 <FlowPane.margin>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </FlowPane.margin>
+                                 <stylesheets>
+                                    <URL value="@../css/custom_1/colors.css" />
+                                    <URL value="@../css/custom_1/borders.css" />
+                                 </stylesheets>
+                                 <styleClass>
+                                    <String fx:value="all_side" />
+                                    <String fx:value="mediumGreen" />
+                                 </styleClass>
+                              </HBox>
+                           </children>
+                           <styleClass>
+                              <String fx:value="white" />
+                              <String fx:value="all_side" />
+                           </styleClass>
+                        </FlowPane>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="250.0" prefWidth="300.0" styleClass="bottom" stylesheets="@../css/custom_1/borders.css">
+                     <children>
+                        <FlowPane alignment="CENTER" columnHalignment="CENTER" prefHeight="200.0" prefWidth="250.0" stylesheets="@../css/custom_1/colors.css">
+                           <children>
+                              <HBox alignment="TOP_CENTER">
+                                 <children>
+                                    <Label alignment="TOP_CENTER" prefHeight="82.0" prefWidth="104.0" styleClass="font_neon" text="" textFill="WHITE">
+                                       <font>
+                                          <Font name="FontAwesome Regular" size="96.0" />
+                                       </font>
+                                       <stylesheets>
+                                          <URL value="@../css/custom_1/fonts.css" />
+                                          <URL value="@../css/custom_1/colors.css" />
+                                          <URL value="@../css/custom_1/borders.css" />
+                                       </stylesheets>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="BOTTOM_RIGHT">
+                                 <children>
+                                    <Label alignment="BOTTOM_CENTER" text="Панель управления" textFill="WHITE" HBox.hgrow="ALWAYS">
+                                       <font>
+                                          <Font name="Roboto Bold" size="18.0" />
+                                       </font>
+                                       <stylesheets>
+                                          <URL value="@../css/custom_1/colors.css" />
+                                          <URL value="@../css/custom_1/fonts.css" />
+                                       </stylesheets>
+                                       <styleClass>
+                                          <String fx:value="font_mediumBlue2" />
+                                          <String fx:value="all_side" />
+                                          <String fx:value="font_neon" />
+                                          <String fx:value="font_softRed" />
+                                       </styleClass>
+                                       <HBox.margin>
+                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                 </children>
+                                 <FlowPane.margin>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </FlowPane.margin>
+                                 <stylesheets>
+                                    <URL value="@../css/custom_1/colors.css" />
+                                    <URL value="@../css/custom_1/borders.css" />
+                                 </stylesheets>
+                                 <styleClass>
+                                    <String fx:value="all_side" />
+                                    <String fx:value="mediumGreen" />
+                                 </styleClass>
+                              </HBox>
+                           </children>
+                           <styleClass>
+                              <String fx:value="white" />
+                              <String fx:value="all_side" />
+                           </styleClass>
+                        </FlowPane>
                      </children>
                   </HBox>
                </children>
+               <padding>
+                  <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
+               </padding>
+            </HBox>
+            <HBox alignment="CENTER" spacing="10.0" styleClass="transparent" stylesheets="@../css/custom_1/colors.css">
+               <children>
+                  <HBox alignment="CENTER" prefHeight="250.0" prefWidth="300.0" styleClass="bottom" stylesheets="@../css/custom_1/borders.css" HBox.hgrow="ALWAYS">
+                     <children>
+                        <FlowPane alignment="CENTER" columnHalignment="CENTER" prefHeight="200.0" prefWidth="250.0" stylesheets="@../css/custom_1/colors.css">
+                           <children>
+                              <HBox alignment="TOP_CENTER">
+                                 <children>
+                                    <Label alignment="TOP_CENTER" prefHeight="82.0" prefWidth="104.0" styleClass="font_neon" text="" textFill="WHITE">
+                                       <font>
+                                          <Font name="FontAwesome Regular" size="96.0" />
+                                       </font>
+                                       <stylesheets>
+                                          <URL value="@../css/custom_1/fonts.css" />
+                                          <URL value="@../css/custom_1/colors.css" />
+                                          <URL value="@../css/custom_1/borders.css" />
+                                       </stylesheets>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="BOTTOM_RIGHT">
+                                 <children>
+                                    <Label alignment="BOTTOM_CENTER" text="Панель управления" textFill="WHITE" HBox.hgrow="ALWAYS">
+                                       <font>
+                                          <Font name="Roboto Bold" size="18.0" />
+                                       </font>
+                                       <stylesheets>
+                                          <URL value="@../css/custom_1/colors.css" />
+                                          <URL value="@../css/custom_1/fonts.css" />
+                                       </stylesheets>
+                                       <styleClass>
+                                          <String fx:value="font_mediumBlue2" />
+                                          <String fx:value="all_side" />
+                                          <String fx:value="font_neon" />
+                                          <String fx:value="font_softRed" />
+                                       </styleClass>
+                                       <HBox.margin>
+                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                 </children>
+                                 <FlowPane.margin>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </FlowPane.margin>
+                                 <stylesheets>
+                                    <URL value="@../css/custom_1/colors.css" />
+                                    <URL value="@../css/custom_1/borders.css" />
+                                 </stylesheets>
+                                 <styleClass>
+                                    <String fx:value="all_side" />
+                                    <String fx:value="mediumGreen" />
+                                 </styleClass>
+                              </HBox>
+                           </children>
+                           <styleClass>
+                              <String fx:value="white" />
+                              <String fx:value="all_side" />
+                           </styleClass>
+                        </FlowPane>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="250.0" prefWidth="300.0" styleClass="bottom" stylesheets="@../css/custom_1/borders.css">
+                     <children>
+                        <FlowPane alignment="CENTER" columnHalignment="CENTER" prefHeight="200.0" prefWidth="250.0" stylesheets="@../css/custom_1/colors.css">
+                           <children>
+                              <HBox alignment="TOP_CENTER">
+                                 <children>
+                                    <Label alignment="TOP_CENTER" prefHeight="82.0" prefWidth="104.0" styleClass="font_neon" text="" textFill="WHITE">
+                                       <font>
+                                          <Font name="FontAwesome Regular" size="96.0" />
+                                       </font>
+                                       <stylesheets>
+                                          <URL value="@../css/custom_1/fonts.css" />
+                                          <URL value="@../css/custom_1/colors.css" />
+                                          <URL value="@../css/custom_1/borders.css" />
+                                       </stylesheets>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="BOTTOM_RIGHT">
+                                 <children>
+                                    <Label alignment="BOTTOM_CENTER" text="Панель управления" textFill="WHITE" HBox.hgrow="ALWAYS">
+                                       <font>
+                                          <Font name="Roboto Bold" size="18.0" />
+                                       </font>
+                                       <stylesheets>
+                                          <URL value="@../css/custom_1/colors.css" />
+                                          <URL value="@../css/custom_1/fonts.css" />
+                                       </stylesheets>
+                                       <styleClass>
+                                          <String fx:value="font_mediumBlue2" />
+                                          <String fx:value="all_side" />
+                                          <String fx:value="font_neon" />
+                                          <String fx:value="font_softRed" />
+                                       </styleClass>
+                                       <HBox.margin>
+                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                 </children>
+                                 <FlowPane.margin>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </FlowPane.margin>
+                                 <stylesheets>
+                                    <URL value="@../css/custom_1/colors.css" />
+                                    <URL value="@../css/custom_1/borders.css" />
+                                 </stylesheets>
+                                 <styleClass>
+                                    <String fx:value="all_side" />
+                                    <String fx:value="mediumGreen" />
+                                 </styleClass>
+                              </HBox>
+                           </children>
+                           <styleClass>
+                              <String fx:value="white" />
+                              <String fx:value="all_side" />
+                           </styleClass>
+                        </FlowPane>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="250.0" prefWidth="300.0" styleClass="bottom" stylesheets="@../css/custom_1/borders.css">
+                     <children>
+                        <FlowPane alignment="CENTER" columnHalignment="CENTER" prefHeight="200.0" prefWidth="250.0" stylesheets="@../css/custom_1/colors.css">
+                           <children>
+                              <HBox alignment="TOP_CENTER">
+                                 <children>
+                                    <Label alignment="TOP_CENTER" prefHeight="82.0" prefWidth="104.0" styleClass="font_neon" text="" textFill="WHITE">
+                                       <font>
+                                          <Font name="FontAwesome Regular" size="96.0" />
+                                       </font>
+                                       <stylesheets>
+                                          <URL value="@../css/custom_1/fonts.css" />
+                                          <URL value="@../css/custom_1/colors.css" />
+                                          <URL value="@../css/custom_1/borders.css" />
+                                       </stylesheets>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="BOTTOM_RIGHT">
+                                 <children>
+                                    <Label alignment="BOTTOM_CENTER" text="Панель управления" textFill="WHITE" HBox.hgrow="ALWAYS">
+                                       <font>
+                                          <Font name="Roboto Bold" size="18.0" />
+                                       </font>
+                                       <stylesheets>
+                                          <URL value="@../css/custom_1/colors.css" />
+                                          <URL value="@../css/custom_1/fonts.css" />
+                                       </stylesheets>
+                                       <styleClass>
+                                          <String fx:value="font_mediumBlue2" />
+                                          <String fx:value="all_side" />
+                                          <String fx:value="font_neon" />
+                                          <String fx:value="font_softRed" />
+                                       </styleClass>
+                                       <HBox.margin>
+                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                 </children>
+                                 <FlowPane.margin>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </FlowPane.margin>
+                                 <stylesheets>
+                                    <URL value="@../css/custom_1/colors.css" />
+                                    <URL value="@../css/custom_1/borders.css" />
+                                 </stylesheets>
+                                 <styleClass>
+                                    <String fx:value="all_side" />
+                                    <String fx:value="mediumGreen" />
+                                 </styleClass>
+                              </HBox>
+                           </children>
+                           <styleClass>
+                              <String fx:value="white" />
+                              <String fx:value="all_side" />
+                           </styleClass>
+                        </FlowPane>
+                     </children>
+                  </HBox>
+               </children>
+               <padding>
+                  <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
+               </padding>
             </HBox>
          </children>
+         <stylesheets>
+            <URL value="@../css/custom_1/colors.css" />
+            <URL value="@../css/custom_1/borders.css" />
+         </stylesheets>
       </VBox>
    </children>
+   <stylesheets>
+      <URL value="@../css/custom_1/styles.css" />
+      <URL value="@../css/custom_1/colors.css" />
+   </stylesheets>
 </AnchorPane>
