@@ -87,6 +87,7 @@ public class SingleTableSet implements PanelSets {
                 .setGridName(littleTitle)
                 .setParentAnchor(parentAnchor)
                 .setCoordinate(coordinate)
+                .setWindowAbstraction(currentWindow)
                 .setGridLinesVisibility(false)
                 .build();
     }

@@ -29,6 +29,7 @@ public class ChartBfxXY implements ChartBfx {
 
     @Setter private ServiceChartPanels service;
 
+    private ChartData_XY chartDataXY;
     private KIND kind;
     private ObservableList<XYChart.Series<Number, Number>>  data;
     @Getter private Class aClass;
@@ -76,7 +77,7 @@ public class ChartBfxXY implements ChartBfx {
         if (data != null) {
             chart.setData(data);
         }else {
-            chart.setData(ChartDataHandler.getXYData(aClass));
+            applyAllTime();
         }
 
     }
@@ -174,13 +175,13 @@ public class ChartBfxXY implements ChartBfx {
 
     @Override
     public void applyPeriod(Calendar before, Calendar after) {
-        ObservableList<XYChart.Series<Number, Number>> data = ChartDataHandler.getXYDataByPeriod(getAClass(), before, after);
+        ObservableList<XYChart.Series<Number, Number>> data = ChartXYDataHandler.getXYDataByPeriod(getAClass(), before, after, chartDataXY);
         chart.setData(data);
     }
 
     @Override
     public void applyAllTime() {
-        ObservableList<XYChart.Series<Number, Number>> data = ChartDataHandler.getXYData(getAClass());
+        ObservableList<XYChart.Series<Number, Number>> data = ChartXYDataHandler.getXYData(getAClass(), chartDataXY);
         chart.setData(data);
     }
 }

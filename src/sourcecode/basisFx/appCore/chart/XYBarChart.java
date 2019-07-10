@@ -458,7 +458,7 @@ public class XYBarChart<X, Y> extends XYChart<X, Y> {
                         bar.setVisible(false);
                     }
 				}
-				series = (Series<X, Y>) ReflectionUtils.forceFieldCall(Series.class, "next", series);
+				series = (Series<X, Y>) ReflectionUtils.forceFieldCall(Series.class, "run", series);
 			}
 		}
 	}

@@ -29,7 +29,8 @@ public class ColWrapperInt<T> extends ColWrapper {
 
         column =  new TableColumn<>(columnName);
         column.setResizable(false);
-        column.setId("rightColumnContentElighment");
+//        column.setId("rightColumnContentElighment");
+        column.getStyleClass().add("leftColumnContentElighment");
         groupingSeparator = String.valueOf(decimalFormat.getDecimalFormatSymbols().getGroupingSeparator());
 
         column.setEditable(isEditeble);
@@ -38,7 +39,7 @@ public class ColWrapperInt<T> extends ColWrapper {
             @Override
             public String toString(Integer val) {
                 if (val != null) {
-                    String string = decimalFormat.format(val)+"    ";
+                    String string = " "+decimalFormat.format(val)+"    ";
                     return string;
                 }
                 return "";

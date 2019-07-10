@@ -1,6 +1,7 @@
 package basisFx.appCore.reflection;
 
 import basisFx.appCore.annotation.DataStore;
+import basisFx.appCore.utils.Registry;
 import basisFx.dataSource.Db;
 import basisFx.appCore.activeRecord.ActiveRecord;
 import basisFx.appCore.activeRecord.BoolComboBox;
@@ -23,11 +24,14 @@ public class Reflection {
             ResultSet resultSet;
             try {
                 resultSet = stmt.executeQuery(expression);
+
                 return resultSet;
             } catch (SQLException e) {
+                Registry.windowFabric.infoWindow("Что-то пошло не так при загрузке данных из БД");
                 e.printStackTrace();
             }
         } catch (SQLException e) {
+            Registry.windowFabric.infoWindow("Что-то пошло не так при загрузке данных из БД");
             e.printStackTrace();
         }
         return null;
@@ -43,8 +47,10 @@ public class Reflection {
         } catch (NoSuchMethodException e) {
             e.printStackTrace();
         } catch (IllegalAccessException e) {
+            Registry.windowFabric.infoWindow("Что-то пошло не так при загрузке данных из БД");
             e.printStackTrace();
         } catch (InvocationTargetException e) {
+            Registry.windowFabric.infoWindow("Что-то пошло не так при загрузке данных из БД");
             e.printStackTrace();
         }
         return record;
@@ -56,8 +62,10 @@ public class Reflection {
         try {
             activeRecord = aClass.newInstance();
         } catch (InstantiationException e) {
+            Registry.windowFabric.infoWindow("Что-то пошло не так при загрузке данных из БД");
             e.printStackTrace();
         } catch (IllegalAccessException e) {
+            Registry.windowFabric.infoWindow("Что-то пошло не так при загрузке данных из БД");
             e.printStackTrace();
         }
         return  activeRecord;

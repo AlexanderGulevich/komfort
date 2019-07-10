@@ -78,7 +78,7 @@
 //        HashMap <Integer,Node> currentBranchNods=null;
 //
 //        for (Iterator iterator = pojoes.iterator(); iterator.hasNext();) {
-//            CategoryPojo concretePojo = (CategoryPojo)iterator.next();
+//            CategoryPojo concretePojo = (CategoryPojo)iterator.run();
 //
 //            Node node= new  Node(concretePojo);
 //

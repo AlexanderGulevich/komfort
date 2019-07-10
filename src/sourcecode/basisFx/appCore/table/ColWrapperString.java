@@ -22,6 +22,7 @@ public class ColWrapperString<T> extends ColWrapper {
 
         column =  new TableColumn<>(columnName);
 
+
         column.setResizable(false);
         column.setEditable(isEditeble);
         column.setCellValueFactory(new PropertyValueFactory<>(propertyName));

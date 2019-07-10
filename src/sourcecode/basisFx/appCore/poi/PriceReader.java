@@ -1,7 +1,5 @@
 package basisFx.appCore.poi;
 
-import hepo.model.entity.pojo.GoodsPojo;
-import hepo.model.entity.Price;
 import java.io.IOException;
 import java.util.Iterator;
 import org.apache.poi.ss.usermodel.Row;

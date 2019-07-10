@@ -1,5 +1,6 @@
 package basisFx.service;
 
+import basisFx.appCore.elements.LabelWrapper;
 import basisFx.appCore.elements.RangeDirector;
 import basisFx.appCore.elements.DatePickerHandler;
 import basisFx.appCore.elements.TableWrapper;
@@ -7,12 +8,15 @@ import basisFx.appCore.events.ClosePopupAndSubWindow;
 import basisFx.appCore.events.RowAddToTable;
 import basisFx.appCore.events.RowDeleteFromTable;
 import basisFx.appCore.events.StageDragging;
+import basisFx.appCore.settings.CSSid;
+import basisFx.appCore.settings.FontsStore;
 import basisFx.appCore.utils.Coordinate;
 import basisFx.appCore.utils.Range;
 import basisFx.appCore.utils.Registry;
 import basisFx.appCore.activeRecord.ActiveRecord;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
@@ -54,7 +58,15 @@ public  class WindowServiceByDateResearch extends WindowService {
         outer_table_wrapper = (TableWrapper)  Registry.mainWindow.getNodeFromMap("outer_table_wrapper");
         Registry.crossWindowMediators.put("ByDateResearchWindow",this);
 
-        gridLabel = (Label) currentWindow.getNodeFromMap("gridLabel");
+        gridLabel =   LabelWrapper.newBuilder()
+                .setCSSid(CSSid.LABEL_TEXT)
+                .setText(((String) currentWindow.getNodeFromMap("gridLabel")))
+                .setFont(FontsStore.ROBOTO_LIGHT)
+                .setAlignment(Pos.BASELINE_LEFT)
+                .setFontSize(25d)
+                .build().getElement();
+
+
         table_wrapper = (TableWrapper) currentWindow.getNodeFromMap("tableWrapper");
         table_wrapper.getMediator().setRefreshCallBack(this::refreshTable);
         table_wrapper.setOuterTable(outer_table_wrapper);

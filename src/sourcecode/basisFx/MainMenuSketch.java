@@ -65,7 +65,7 @@ public class MainMenuSketch implements MenuSketch {
                     .fontSize(iconSize)
                     .build()
         ).setLeaf(LeftAndTopBarItemLeaf.builder()
-                .name("Затраты").panelCreator(ChartTestArea::new).build() )
+                .name("Затраты").panelCreator(Chart_Packet::new).build() )
         .setLeaf(LeftAndTopBarItemLeaf.builder()
                 .name("Валюты").panelCreator(ChartTestLine::new).build() )
         .setLeaf(LeftAndTopBarItemLeaf.builder()

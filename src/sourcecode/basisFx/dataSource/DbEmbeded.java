@@ -1,5 +1,7 @@
 package basisFx.dataSource;
 
+import basisFx.DbSchema;
+
 import java.sql.*;
 
 

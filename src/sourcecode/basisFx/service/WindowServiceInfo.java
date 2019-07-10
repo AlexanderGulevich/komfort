@@ -20,7 +20,9 @@ public class WindowServiceInfo extends WindowService {
     }
 
     public WindowServiceInfo() {
+
         Registry.crossWindowMediators.put("Info",this);
+
     }
 
     @Override

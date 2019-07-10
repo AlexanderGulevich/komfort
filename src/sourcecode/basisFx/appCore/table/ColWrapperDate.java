@@ -161,9 +161,11 @@ public class ColWrapperDate extends ColWrapper {
         @Override
         public void cancelEdit() {
             super.cancelEdit();
-            setText(
-                    ("  "+ getDate().format(DateTimeFormatter.ofPattern("dd.MM.yyyy")) + " г.  ")
-            );
+            if (getDate() != null) {
+                setText(
+                        ("  "+ getDate().format(DateTimeFormatter.ofPattern("dd.MM.yyyy")) + " г.  ")
+                );
+            }
             setGraphic(null);
         }
 

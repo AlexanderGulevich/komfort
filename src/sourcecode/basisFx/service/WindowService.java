@@ -3,9 +3,10 @@ package basisFx.service;
 import basisFx.appCore.interfaces.CallBack;
 import basisFx.appCore.interfaces.CallBackParametrized;
 import basisFx.appCore.interfaces.Mediator;
-import basisFx.appCore.interfaces.Observer;
 import basisFx.appCore.utils.Registry;
 import basisFx.appCore.windows.WindowAbstraction;
+import basisFx.appCore.windows.WindowInfoDispatcher;
+import javafx.concurrent.Task;
 import javafx.scene.layout.AnchorPane;
 import lombok.Setter;
 
@@ -31,10 +32,16 @@ public abstract class WindowService<T extends Object> implements Mediator {
         if (callBack != null) {
             callBack.call();
         }
-
     }
+
     public void close(){
-//        Registry.dataExchanger.clear();
         Registry.crossWindowMediators.values().remove(this);
+        System.out.println("WindowService.close");
+
+         WindowInfoDispatcher.run();
+
+
+//        WindowInfoDispatcher.run();
+
     }
 }

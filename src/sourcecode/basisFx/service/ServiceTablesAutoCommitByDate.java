@@ -5,17 +5,19 @@ import basisFx.appCore.elements.TableWrapper;
 import basisFx.appCore.interfaces.DataStoreCallBack;
 import basisFx.appCore.interfaces.RecordWithDate;
 import basisFx.appCore.utils.DateGetter;
+import basisFx.appCore.windows.WindowInfoDispatcher;
 import basisFx.dataSource.UnitOfWork;
 import basisFx.appCore.activeRecord.ActiveRecord;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import lombok.Setter;
 import java.time.LocalDate;
+import java.util.List;
 
 public class ServiceTablesAutoCommitByDate extends ServiceTables {
     private TableWrapper tableWrapper;
     @Setter
-    public DataStoreCallBack dataStoreCallBack;
+    public List<DataStoreCallBack> dataStoreCallBack ;
     @Setter
     private DateGetter dateGetter;
 
@@ -38,17 +40,32 @@ public class ServiceTablesAutoCommitByDate extends ServiceTables {
 
     @Override
     public void wasChanged(AppNode node, ActiveRecord record) {
+        if (checkingTableRecordCallBack != null) {
+            checkingTableRecordCallBack.call(record);
+        }
         UnitOfWork unitOfWork = ((TableWrapper) node).unitOfWork;
         LocalDate date = dateGetter.getDate();
         ((RecordWithDate) record).setDate(date);
-        boolean readyToTransaction = record.isReadyToTransaction();
-        if (dataStoreCallBack != null) {
-            if (dataStoreCallBack.check(record)) {
-                write(record, unitOfWork, readyToTransaction);
+        boolean ready = record.isReadyToTransaction();
+        if (ready) {
+            if (dataStoreCallBack != null) {
+                boolean accept=true;
+                for (DataStoreCallBack callBack : dataStoreCallBack) {
+                    if (!callBack.check(record)) {
+                        accept = false;
+                    }
+                }
+                if (accept) {
+                    write(record, unitOfWork, ready);
+                }else {
+                    WindowInfoDispatcher.run();
+                }
             }
-        }else {
-            write(record, unitOfWork, readyToTransaction);
+            else {
+                write(record, unitOfWork, ready);
+            }
         }
+
 
     }
 

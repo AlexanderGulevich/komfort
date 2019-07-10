@@ -43,7 +43,7 @@ public class Packet extends ActiveRecord {
     @Override
     public String toString() {
         if (getPacketSize() != null) {
-            return  getPacketSize().getSize();
+            return  getPacketSize().getSize() +" , "+ getCounterparty().getName();
         }
         return  null;
     }

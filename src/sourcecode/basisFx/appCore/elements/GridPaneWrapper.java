@@ -138,6 +138,8 @@ public  class GridPaneWrapper extends AppNode {
                     .setAlignment(Pos.BASELINE_LEFT)
                     .setFontSize(25d)
                     .build();
+
+
         }
 
 
@@ -258,8 +260,9 @@ public  class GridPaneWrapper extends AppNode {
             this.cssClassesStrings = cssClassesStrings;
         }
 
-        public void setWindowAbstraction(WindowAbstraction windowAbstraction) {
+        public Builder setWindowAbstraction(WindowAbstraction windowAbstraction) {
             this.windowAbstraction = windowAbstraction;
+            return this;
         }
 
         public Builder setGridLinesVisibility(boolean gridLinesVisibility) {

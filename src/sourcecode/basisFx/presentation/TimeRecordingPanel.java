@@ -5,7 +5,7 @@ import basisFx.appCore.interfaces.DataStoreCallBack;
 import basisFx.appCore.panelSets.AutoCommitByDateTableSet;
 import basisFx.appCore.table.ColumnFabric;
 import basisFx.appCore.utils.DateViaPopup;
-import basisFx.appCore.utils.Registry;
+import basisFx.appCore.windows.WindowInfoDispatcher;
 import basisFx.dataSource.BFxPreparedStatement;
 import basisFx.domain.*;
 import basisFx.appCore.DynamicContentPanel;
@@ -17,7 +17,7 @@ public class TimeRecordingPanel extends DynamicContentPanel {
     @Override
     public void customDynamicElementsInit() {
 
-        DataStoreCallBack callBackForColumn = activeRecord -> {
+        DataStoreCallBack cb = activeRecord -> {
             TimeRecordingForEmployers entry = (TimeRecordingForEmployers) activeRecord;
             LocalDate date = entry.getDate();
             Integer employerId = entry.getEmployer().getId();
@@ -25,10 +25,11 @@ public class TimeRecordingPanel extends DynamicContentPanel {
                     .create("SELECT * FROM EmployeesRatePerHour " + "WHERE EMPLOYERID=?" + " and " +" STARTDATE<=?")
                     .setInt(1, employerId)
                     .setDate(2, Date.valueOf(date))
-                    .executeAndCheckFilling();
+                    .executeAndCheck();
                 if (!filled) {
-                    Registry.windowFabric.infoWindow("К сожалению, для данной даты не установлен тариф для следующего сотрудника: \n"
-                    + entry.getEmployer().getName().toUpperCase().trim()) ;
+                    entry.setHours(null);
+                    WindowInfoDispatcher.add("К сожалению, для данной даты не установлен тариф для следующего сотрудника: \n"
+                    + entry.getEmployer().getName().toUpperCase().trim() );
                     return false;
                 }
             return true;
@@ -37,7 +38,7 @@ public class TimeRecordingPanel extends DynamicContentPanel {
         AutoCommitByDateTableSet.builder()
                 .aClass(TimeRecordingForEmployers.class)
                 .dateGetter(new DateViaPopup())
-                .callBackForColumn(callBackForColumn)
+                .checkingCallBack(cb)
                 .isEditable(true).isSortable(false)
                 .currentWindow(window)
                 .bigTitle("Учет рабочего времени")

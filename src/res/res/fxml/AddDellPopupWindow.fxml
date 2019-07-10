@@ -22,7 +22,7 @@
                </font>
             </Label>
             <FontAwesomeIconView fill="#42606e94" layoutY="38.0" size="45" text="" />
-            <Button id="PANELS_BUTTON" fx:id="selectBut" layoutX="596.0" layoutY="8.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="96.0" style="-fx-pref-width: 100; -fx-font-size: 15;" stylesheets="@../css/custom_1/buttons.css" text="Выбрать" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="8.0">
+            <Button id="PANELS_BUTTON" fx:id="selectBut" layoutX="596.0" layoutY="8.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="130.0" style="-fx-pref-width: 130; -fx-font-size: 15;" stylesheets="@../css/custom_1/buttons.css" text="Выбрать" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="8.0">
                <graphic>
                   <FontAwesomeIconView fill="#686e75bf" size="20" text="" />
                </graphic>

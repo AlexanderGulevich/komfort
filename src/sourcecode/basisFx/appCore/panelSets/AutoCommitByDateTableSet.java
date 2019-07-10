@@ -1,10 +1,12 @@
 package basisFx.appCore.panelSets;
 
 
+import basisFx.appCore.activeRecord.ActiveRecord;
 import basisFx.appCore.elements.*;
 import basisFx.appCore.events.AppEvent;
 import basisFx.appCore.events.TableEvents;
 import basisFx.appCore.grid.*;
+import basisFx.appCore.interfaces.CallBackParametrized;
 import basisFx.appCore.interfaces.DataStoreCallBack;
 import basisFx.appCore.settings.CSSclasses;
 import basisFx.appCore.settings.FontsStore;
@@ -17,6 +19,7 @@ import basisFx.service.ServiceTablesAutoCommitByDate;
 import javafx.geometry.Pos;
 import javafx.scene.layout.AnchorPane;
 import lombok.Builder;
+import lombok.Setter;
 import lombok.Singular;
 
 import java.util.List;
@@ -27,7 +30,9 @@ public class AutoCommitByDateTableSet implements  PanelSets {
     @Builder.Default private ServiceTablesAutoCommitByDate mediator=new ServiceTablesAutoCommitByDate();
     @Builder.Default private TableWrapper tableWrapper=null;
     @Builder.Default private LabelWrapper label=null;
-    private DataStoreCallBack callBackForColumn;
+    @Singular ("checkingCallBack")
+    private List<DataStoreCallBack> checkingCallBack ;
+    protected CallBackParametrized<ActiveRecord> checkingTableRecordCallBack;
     @Builder.Default private UnitOfWork unitOfWork=new UnitOfWork();
     @Builder.Default private CtrlPosFactory posFactory=CtrlPosFactory.getInstance();
     @Builder.Default private ButSizeFactory bsFactory=ButSizeFactory.getInstance();
@@ -53,6 +58,7 @@ public class AutoCommitByDateTableSet implements  PanelSets {
     @Override
     public void configure() {
         mediator.setDateGetter(dateGetter);
+        mediator.setCheckingTableRecordCallBack(checkingTableRecordCallBack);
         butInit();
         initDateGetter();
         createLabel();
@@ -70,7 +76,7 @@ public class AutoCommitByDateTableSet implements  PanelSets {
     private void initService() {
         mediator.setTableWrapper(tableWrapper);
         mediator.setDateGetter(dateGetter);
-        mediator.setDataStoreCallBack(callBackForColumn);
+        mediator.setDataStoreCallBack(checkingCallBack);
         mediator.initElements();
     }
 

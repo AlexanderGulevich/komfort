@@ -22,6 +22,7 @@ import java.util.List;
 public class ChartBfxPie implements ChartBfx {
 
     @Setter private ServiceChartPanels service;
+    private ChartData_PIE chartDataPIE;
     private PieChart chart ;
     @Getter private Class aClass;
     private ObservableList<PieChart.Data> data;
@@ -40,7 +41,7 @@ public class ChartBfxPie implements ChartBfx {
         chart = new PieChart();
         chart.setTitle(chartTitle);
         chart.setLegendSide(side);
-        data=ChartDataHandler.getPIEData(aClass);
+        data= ChartPIEDataHandler.getPIEData(aClass, chartDataPIE);
         chart.setData(data);
 
 
@@ -83,14 +84,14 @@ public class ChartBfxPie implements ChartBfx {
 
     @Override
     public void applyPeriod(Calendar before, Calendar after) {
-        ObservableList<PieChart.Data> data = ChartDataHandler.getPIEDataByPeriod(getAClass(), before, after);
+        ObservableList<PieChart.Data> data = ChartPIEDataHandler.getPIEDataByPeriod(getAClass(), before, after, chartDataPIE);
         chart.setData(data);
         addSliceTooltip(chart);
     }
 
     @Override
     public void applyAllTime() {
-        ObservableList<PieChart.Data> data = ChartDataHandler.getPIEData(getAClass());
+        ObservableList<PieChart.Data> data = ChartPIEDataHandler.getPIEData(getAClass(), chartDataPIE);
         chart.setData(data);
         addSliceTooltip(chart);
     }

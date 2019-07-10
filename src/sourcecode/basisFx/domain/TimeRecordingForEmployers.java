@@ -65,15 +65,14 @@ public class TimeRecordingForEmployers extends ActiveRecord implements RecordWit
     public ObservableList<ActiveRecord> getAllByDate(LocalDate date) {
         ObservableList <ActiveRecord> list= FXCollections.observableArrayList();
 
-            String expression="SELECT * from(\t   \n" +
-                    "\tSELECT  allemplid as employerId, allemplisfired AS ISFIRED, allemplname AS name, date, hours\n" +
-                    "\t  \t FROM (SELECT id AS allemplid , name AS allemplname, ISFIRED AS allemplisfired FROM EMPLOYER) AS allempl\n" +
-                    "\t        left JOIN  (SELECT * FROM(\n" +
-                    "\t        \tSELECT employerId, date, hours FROM TIMERECORDINGFOREMPLOYERS t where date=?\n" +
-                    "\t                ) ) AS byDate \n" +
-                    "\t           on byDate.employerId =allempl.allemplid\n" +
-                    "\t           ) \n" +
-                    "\t           WHERE  NOT(ISFIRED=TRUE and date IS  NULL)";
+
+            String expression=
+                    "  SELECT EMPLOYERID, HOURS,NAME,ISFIRED,ID, date FROM (\n" +
+                            "\t          \t SELECT * FROM EMPLOYER e LEFT JOIN TIMERECORDINGFOREMPLOYERS t ON t.EMPLOYERID=e.ID \n" +
+                            "\t             WHERE  NOT(ISFIRED=TRUE ) and NOT (date is  NULL) AND  DATE=? \n" +
+                            "\t             )AS records\n" +
+                            "\t             RIGHT JOIN EMPLOYER em ON em.ID=records.EMPLOYERID\n" +
+                            "\t             WHERE  NOT(em.ISFIRED=TRUE )";
 
              try {
                 PreparedStatement pstmt = Db.connection.prepareStatement(expression);
@@ -84,7 +83,7 @@ public class TimeRecordingForEmployers extends ActiveRecord implements RecordWit
                     TimeRecordingForEmployers pojo=new TimeRecordingForEmployers();
                     pojo.setDate(inspectDate(rs));
                     pojo.setHours(rs.getDouble("hours"));
-                    pojo.setEmployer((Employer) Employer.getINSTANCE().find( rs.getInt("employerId")));
+                    pojo.setEmployer((Employer) Employer.getINSTANCE().find( rs.getInt("id")));
 
                     list.add(pojo);
 
@@ -99,7 +98,7 @@ public class TimeRecordingForEmployers extends ActiveRecord implements RecordWit
     private Boolean inspectExisting()     {
         String expression="SELECT  * from " + this.entityName + " " +
                 "where " +
-                "  EMPLOYERID= ? and date=?";
+                "  EMPLOYERID= ? and date = ?";
         PreparedStatement pstmt = null;
         ResultSet resultSet = null;
         try {

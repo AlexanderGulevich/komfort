@@ -38,7 +38,7 @@ public class LabelPanel  extends DynamicContentPanel {
                                 "Цена","price",0.4d,true
                         ))
                 .rightCols(
-                        ColumnFabric.doubleCol(
+                        ColumnFabric.dateCol(
                                 "Действует с","startDate",0.6d,true
                         ))
                 .build().configure();

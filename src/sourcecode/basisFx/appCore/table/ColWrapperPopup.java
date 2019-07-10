@@ -25,7 +25,8 @@ public class ColWrapperPopup extends ColWrapper {
             columnSize = builder.columnSize;
             windowBuilder = builder.windowBuilder;
             column =  new TableColumn <>(columnName);
-            column.getStyleClass().add(CSSclasses.column_with_button_BFx.get());
+            column.getStyleClass().add("leftColumnContentElighment");
+//            column.getStyleClass().add(CSSclasses.column_with_button_BFx.get());
             column.setResizable(false);
             column.setEditable(isEditeble);
             column.setCellValueFactory(new PropertyValueFactory<>(propertyName));
@@ -67,7 +68,7 @@ public class ColWrapperPopup extends ColWrapper {
                     setText(null);
                 } else {
                     if (item != null) {
-                        setText(((ActiveRecord) item).toString());
+                        setText("  "+ item.toString());
                         commitEdit(item);
                     }
 

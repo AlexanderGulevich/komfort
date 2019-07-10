@@ -44,7 +44,7 @@ package basisFx.dataSource;
 //            ResultSet rs = stmt.executeQuery( sql );
 //            
 //            
-//            while ( rs.next() ) {
+//            while ( rs.run() ) {
 //            
 //                 maxId = rs.getInt("maxRightId");
 //                
@@ -102,7 +102,7 @@ package basisFx.dataSource;
 //        
 //        ResultSet rs    = stmt.executeQuery(sql);
 //        
-//         while (rs.next()) {
+//         while (rs.run()) {
 //             
 //             CategoryPojo domaine=new CategoryPojo("");
 //             domaine.setId(rs.getInt("ordersCategoryId"));
@@ -218,7 +218,7 @@ package basisFx.dataSource;
 //  
 //           ResultSet rs  = pstmt.executeQuery();
 //            
-//            if(rs.next()){
+//            if(rs.run()){
 //              
 //                return rs.getInt("ordersCategoryId");
 //                
@@ -372,7 +372,7 @@ package basisFx.dataSource;
 //           
 //           CategoryPojo domaine=new CategoryPojo();
 //            
-//            while (rs.next()) {
+//            while (rs.run()) {
 //                 domaine.setId(rs.getInt("ordersCategoryId"));
 //                 domaine.setLeftId(rs.getInt("leftId"));
 //                 domaine.setLevelId(rs.getInt("levelId"));

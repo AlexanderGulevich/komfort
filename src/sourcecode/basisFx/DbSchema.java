@@ -1,4 +1,6 @@
-package basisFx.dataSource;
+package basisFx;
+
+import basisFx.dataSource.Db;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -184,29 +186,29 @@ public class DbSchema {
                 "\t\tFROM TimeRecordingForEmployers t\n" +
                 "\t)AS timerec \n" +
                 "\tleft JOIN   EMPLOYER e ON timerec.EMPLOYERID=e.id";
-        String viewSalaryByMonth= "Create  view SalaryByMonth  as " +
-                "SELECT * FROM (\n" +
-                "SELECT SUM(SALARY) AS SALARY, EMPLOYERID,  MONTH(\"DATE\") AS sMonth, YEAR(\"DATE\") AS sYear\n" +
-                "  FROM TIMERECORDINGANDSALARY\n" +
-                " GROUP BY MONTH(DATE),YEAR(\"DATE\"), EMPLOYERID) AS salary\n" +
-                " LEFT JOIN Employer ON Employer.id=salary.EMPLOYERID";
-        String viewSalaryByYear=  "Create  view SalaryByYear  as "
-                +"SELECT * FROM (\n" +
-                "SELECT * FROM (\n" +
-                " SELECT SUM(SALARY) AS SALARY, EMPLOYERID,  YEAR(DATE) AS YSALARY\n" +
-                "                  FROM TIMERECORDINGANDSALARY\n" +
-                "                 GROUP BY YEAR(DATE), EMPLOYERID) AS SALARY\n" +
-                "                LEFT JOIN EMPLOYER ON EMPLOYER.ID=SALARY.EMPLOYERID)";
-        String viewTotalSalaryByYear=  "Create  view TotalSalaryByYear  as "
-                +"\n" +
-                " SELECT SUM(SALARY) AS SALARY  ,ySalary  \n" +
-                "                  FROM SalaryByYear\n" +
-                "                 GROUP BY ySalary";
-        String viewTotalSalaryByMonth=  "Create  view TotalSalaryByMonth  as "
-                +"\n" +
-                "  SELECT SUM(SALARY) AS SALARY  , SMONTH   \n" +
-                "        FROM SalaryByMonth   \n" +
-                "         GROUP BY SMONTH";
+//        String viewSalaryByMonth= "Create  view SalaryByMonth  as " +
+//                "SELECT * FROM (\n" +
+//                "SELECT SUM(SALARY) AS SALARY, EMPLOYERID,  MONTH(\"DATE\") AS sMonth, YEAR(\"DATE\") AS sYear\n" +
+//                "  FROM TIMERECORDINGANDSALARY\n" +
+//                " GROUP BY MONTH(DATE),YEAR(\"DATE\"), EMPLOYERID) AS salary\n" +
+//                " LEFT JOIN Employer ON Employer.id=salary.EMPLOYERID";
+//        String viewSalaryByYear=  "Create  view SalaryByYear  as "
+//                +"SELECT * FROM (\n" +
+//                "SELECT * FROM (\n" +
+//                " SELECT SUM(SALARY) AS SALARY, EMPLOYERID,  YEAR(DATE) AS YSALARY\n" +
+//                "                  FROM TIMERECORDINGANDSALARY\n" +
+//                "                 GROUP BY YEAR(DATE), EMPLOYERID) AS SALARY\n" +
+//                "                LEFT JOIN EMPLOYER ON EMPLOYER.ID=SALARY.EMPLOYERID)";
+//        String viewTotalSalaryByYear=  "Create  view TotalSalaryByYear  as "
+//                +"\n" +
+//                " SELECT SUM(SALARY) AS SALARY  ,ySalary  \n" +
+//                "                  FROM SalaryByYear\n" +
+//                "                 GROUP BY ySalary";
+//        String viewTotalSalaryByMonth=  "Create  view TotalSalaryByMonth  as "
+//                +"\n" +
+//                "  SELECT SUM(SALARY) AS SALARY  , SMONTH   \n" +
+//                "        FROM SalaryByMonth   \n" +
+//                "         GROUP BY SMONTH";
 
         String viewproductResult=  "Create  view productResult  as "
                 +"SELECT rodsnumber,PRODUCTID,jumboid,OutDate,outid,PACKETID,EQUIPMENTID,numberofproductForRod,price,\n" +
@@ -227,22 +229,22 @@ public class DbSchema {
                 "OUTPUTPERDAY o, jumbo j \n" +
                 "WHERE o.jumboid= j.ID\n" +
                 ")";
-        String viewproductResultByMonth=  "Create  view productResultByMonth  as "
-                +"SELECT * FROM (\n" +
-                "SELECT * FROM (\n" +
-                "SELECT SUM(PRODUCTAMOUNT) AS products,SUM(TOTALCOST) AS cost, PRODUCTID,  MONTH( OUTDATE) AS  pMonth, YEAR(OUTDATE) AS pYear\n" +
-                "  FROM PRODUCTRESULT\n" +
-                " GROUP BY YEAR(OUTDATE),MONTH(OUTDATE), PRODUCTID) AS result1\n" +
-                " )LEFT JOIN product ON PRODUCTID=product.id\n" +
-                "  ";
-        String viewproductResultByYEAR=  "Create  view productResultByYEAR  as "
-                +"SELECT * FROM (\n" +
-                "SELECT * FROM (\n" +
-                "SELECT SUM(PRODUCTAMOUNT) AS products,SUM(TOTALCOST) AS cost, PRODUCTID,   YEAR(OUTDATE) AS pYear\n" +
-                "  FROM PRODUCTRESULT\n" +
-                " GROUP BY YEAR(OUTDATE), PRODUCTID) AS result1\n" +
-                " )LEFT JOIN product ON PRODUCTID=product.id\n" +
-                "  ";
+//        String viewproductResultByMonth=  "Create  view productResultByMonth  as "
+//                +"SELECT * FROM (\n" +
+//                "SELECT * FROM (\n" +
+//                "SELECT SUM(PRODUCTAMOUNT) AS products,SUM(TOTALCOST) AS cost, PRODUCTID,  MONTH( OUTDATE) AS  pMonth, YEAR(OUTDATE) AS pYear\n" +
+//                "  FROM PRODUCTRESULT\n" +
+//                " GROUP BY YEAR(OUTDATE),MONTH(OUTDATE), PRODUCTID) AS result1\n" +
+//                " )LEFT JOIN product ON PRODUCTID=product.id\n" +
+//                "  ";
+//        String viewproductResultByYEAR=  "Create  view productResultByYEAR  as "
+//                +"SELECT * FROM (\n" +
+//                "SELECT * FROM (\n" +
+//                "SELECT SUM(PRODUCTAMOUNT) AS products,SUM(TOTALCOST) AS cost, PRODUCTID,   YEAR(OUTDATE) AS pYear\n" +
+//                "  FROM PRODUCTRESULT\n" +
+//                " GROUP BY YEAR(OUTDATE), PRODUCTID) AS result1\n" +
+//                " )LEFT JOIN product ON PRODUCTID=product.id\n" +
+//                "  ";
 
 
         String packetResultFull=  "Create  view packetResultFull  as "
@@ -271,65 +273,65 @@ public class DbSchema {
                 "\tp.ID=SUBQUERY.PACKETID \n" +
                 "\tand ACCORDANCE.PACKETSIZEID=p.PACKETSIZEID \n" +
                 "\tand ACCORDANCE.PRODUCTID=SUBQUERY.PRODUCTID";
-
-        String packetResMonthFull=  "Create  view packetResMonthFull  as "
-                +"\n" +
-                "SELECT cost,amount,name AS supplier,SIZE, pMonth,pYear FROM (\n" +
-                "SELECT * FROM (\n" +
-                "SELECT * FROM (\n" +
-                "SELECT SUM(TOTALPACKETCOST) AS cost,SUM(TOTALPACKETAMOUNT) AS amount, PACKETID,  MONTH( OUTDATE) AS  pMonth, YEAR(OUTDATE) AS pYear\n" +
-                "  FROM packetResultFull\n" +
-                " GROUP BY YEAR(OUTDATE),MONTH(OUTDATE), PACKETID) AS res\n" +
-                " LEFT JOIN PACKET ON PACKET.ID=res.PACKETID\n" +
-                " )AS res2 \n" +
-                " LEFT JOIN PACKETSIZE ON PACKETSIZE.ID=res2.packetsizeid\n" +
-                " LEFT JOIN COUNTERPARTY ON COUNTERPARTY.ID=res2.COUNTERPARTYid\n" +
-                " )\n" +
-                "   ";
-        String packetResYearFull=  "Create  view packetResYearFull  as "
-                +"\n" +
-                "SELECT cost,amount,name AS supplier,SIZE, pYear FROM (\n" +
-                "SELECT * FROM (\n" +
-                "SELECT * FROM (\n" +
-                "SELECT SUM(TOTALPACKETCOST) AS cost,SUM(TOTALPACKETAMOUNT) AS amount, PACKETID, YEAR(OUTDATE) AS pYear\n" +
-                "  FROM packetResultFull\n" +
-                " GROUP BY YEAR(OUTDATE), PACKETID) AS res\n" +
-                " LEFT JOIN PACKET ON PACKET.ID=res.PACKETID\n" +
-                " )AS res2 \n" +
-                " LEFT JOIN PACKETSIZE ON PACKETSIZE.ID=res2.packetsizeid\n" +
-                " LEFT JOIN COUNTERPARTY ON COUNTERPARTY.ID=res2.COUNTERPARTYid\n" +
-                " )\n" +
-                "   ";
-        String packetResTotalMonth=  "Create  view packetResTotalMonth  as "
-                +"SELECT sum(cost) AS cost,sum(amount) AS amount ,pMonth,pYear FROM (\n" +
-                "SELECT * FROM (\n" +
-                "SELECT * FROM (\n" +
-                "SELECT SUM(TOTALPACKETCOST) AS cost,SUM(TOTALPACKETAMOUNT) AS amount, PACKETID,  MONTH( OUTDATE) AS  pMonth, YEAR(OUTDATE) AS pYear\n" +
-                "  FROM packetResultFull\n" +
-                " GROUP BY YEAR(OUTDATE),MONTH(OUTDATE), PACKETID\n" +
-                " ) AS res\n" +
-                " LEFT JOIN PACKET ON PACKET.ID=res.PACKETID\n" +
-                " )AS res2 \n" +
-                " LEFT JOIN PACKETSIZE ON PACKETSIZE.ID=res2.packetsizeid\n" +
-                " LEFT JOIN COUNTERPARTY ON COUNTERPARTY.ID=res2.COUNTERPARTYid\n" +
-                " )\n" +
-                " GROUP BY pMonth,pYear\n" +
-                "   ";
-        String packetResTotalYear=  "Create  view packetResTotalYear  as "
-                +"SELECT sum(cost) AS cost,sum(amount) AS amount,pYear FROM (\n" +
-                "SELECT * FROM (\n" +
-                "SELECT * FROM (\n" +
-                "SELECT SUM(TOTALPACKETCOST) AS cost,SUM(TOTALPACKETAMOUNT) AS amount, PACKETID,  MONTH( OUTDATE) AS  pMonth, YEAR(OUTDATE) AS pYear\n" +
-                "  FROM packetResultFull\n" +
-                " GROUP BY YEAR(OUTDATE),MONTH(OUTDATE), PACKETID\n" +
-                " ) AS res\n" +
-                " LEFT JOIN PACKET ON PACKET.ID=res.PACKETID\n" +
-                " )AS res2 \n" +
-                " LEFT JOIN PACKETSIZE ON PACKETSIZE.ID=res2.packetsizeid\n" +
-                " LEFT JOIN COUNTERPARTY ON COUNTERPARTY.ID=res2.COUNTERPARTYid\n" +
-                " )\n" +
-                " GROUP BY pYear\n" +
-                "   ";
+//
+//        String packetResMonthFull=  "Create  view packetResMonthFull  as "
+//                +"\n" +
+//                "SELECT cost,amount,name AS supplier,SIZE, pMonth,pYear FROM (\n" +
+//                "SELECT * FROM (\n" +
+//                "SELECT * FROM (\n" +
+//                "SELECT SUM(TOTALPACKETCOST) AS cost,SUM(TOTALPACKETAMOUNT) AS amount, PACKETID,  MONTH( OUTDATE) AS  pMonth, YEAR(OUTDATE) AS pYear\n" +
+//                "  FROM packetResultFull\n" +
+//                " GROUP BY YEAR(OUTDATE),MONTH(OUTDATE), PACKETID) AS res\n" +
+//                " LEFT JOIN PACKET ON PACKET.ID=res.PACKETID\n" +
+//                " )AS res2 \n" +
+//                " LEFT JOIN PACKETSIZE ON PACKETSIZE.ID=res2.packetsizeid\n" +
+//                " LEFT JOIN COUNTERPARTY ON COUNTERPARTY.ID=res2.COUNTERPARTYid\n" +
+//                " )\n" +
+//                "   ";
+//        String packetResYearFull=  "Create  view packetResYearFull  as "
+//                +"\n" +
+//                "SELECT cost,amount,name AS supplier,SIZE, pYear FROM (\n" +
+//                "SELECT * FROM (\n" +
+//                "SELECT * FROM (\n" +
+//                "SELECT SUM(TOTALPACKETCOST) AS cost,SUM(TOTALPACKETAMOUNT) AS amount, PACKETID, YEAR(OUTDATE) AS pYear\n" +
+//                "  FROM packetResultFull\n" +
+//                " GROUP BY YEAR(OUTDATE), PACKETID) AS res\n" +
+//                " LEFT JOIN PACKET ON PACKET.ID=res.PACKETID\n" +
+//                " )AS res2 \n" +
+//                " LEFT JOIN PACKETSIZE ON PACKETSIZE.ID=res2.packetsizeid\n" +
+//                " LEFT JOIN COUNTERPARTY ON COUNTERPARTY.ID=res2.COUNTERPARTYid\n" +
+//                " )\n" +
+//                "   ";
+//        String packetResTotalMonth=  "Create  view packetResTotalMonth  as "
+//                +"SELECT sum(cost) AS cost,sum(amount) AS amount ,pMonth,pYear FROM (\n" +
+//                "SELECT * FROM (\n" +
+//                "SELECT * FROM (\n" +
+//                "SELECT SUM(TOTALPACKETCOST) AS cost,SUM(TOTALPACKETAMOUNT) AS amount, PACKETID,  MONTH( OUTDATE) AS  pMonth, YEAR(OUTDATE) AS pYear\n" +
+//                "  FROM packetResultFull\n" +
+//                " GROUP BY YEAR(OUTDATE),MONTH(OUTDATE), PACKETID\n" +
+//                " ) AS res\n" +
+//                " LEFT JOIN PACKET ON PACKET.ID=res.PACKETID\n" +
+//                " )AS res2 \n" +
+//                " LEFT JOIN PACKETSIZE ON PACKETSIZE.ID=res2.packetsizeid\n" +
+//                " LEFT JOIN COUNTERPARTY ON COUNTERPARTY.ID=res2.COUNTERPARTYid\n" +
+//                " )\n" +
+//                " GROUP BY pMonth,pYear\n" +
+//                "   ";
+//        String packetResTotalYear=  "Create  view packetResTotalYear  as "
+//                +"SELECT sum(cost) AS cost,sum(amount) AS amount,pYear FROM (\n" +
+//                "SELECT * FROM (\n" +
+//                "SELECT * FROM (\n" +
+//                "SELECT SUM(TOTALPACKETCOST) AS cost,SUM(TOTALPACKETAMOUNT) AS amount, PACKETID,  MONTH( OUTDATE) AS  pMonth, YEAR(OUTDATE) AS pYear\n" +
+//                "  FROM packetResultFull\n" +
+//                " GROUP BY YEAR(OUTDATE),MONTH(OUTDATE), PACKETID\n" +
+//                " ) AS res\n" +
+//                " LEFT JOIN PACKET ON PACKET.ID=res.PACKETID\n" +
+//                " )AS res2 \n" +
+//                " LEFT JOIN PACKETSIZE ON PACKETSIZE.ID=res2.packetsizeid\n" +
+//                " LEFT JOIN COUNTERPARTY ON COUNTERPARTY.ID=res2.COUNTERPARTYid\n" +
+//                " )\n" +
+//                " GROUP BY pYear\n" +
+//                "   ";
 
 
         create(
@@ -359,14 +361,18 @@ public class DbSchema {
 //
 //                viewFired,
 //                viewTimeRecordingAndSalary,
+
 //                viewSalaryByMonth,
 //                viewSalaryByYear,
 //                viewActualRate,
 //                viewTotalSalaryByYear,
 //                viewTotalSalaryByMonth,
+
 //                viewproductResult,
 //
 //                packetResultFull,
+
+
 //                packetResMonthFull,
 //                packetResYearFull,
 //                packetResTotalMonth,

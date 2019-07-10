@@ -66,7 +66,7 @@ public class BFxPreparedStatement {
         }
         return null;
     }
-    public boolean executeAndCheckFilling(){
+    public boolean executeAndCheck(){
         ResultSet resultSet = null;
         try {
             resultSet = statement.executeQuery();

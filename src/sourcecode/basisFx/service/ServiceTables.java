@@ -4,6 +4,7 @@ import basisFx.appCore.elements.AppNode;
 import basisFx.appCore.elements.DatePickerWrapper;
 import basisFx.appCore.elements.TableWrapper;
 import basisFx.appCore.interfaces.CallBack;
+import basisFx.appCore.interfaces.CallBackParametrized;
 import basisFx.appCore.interfaces.Mediator;
 import basisFx.appCore.interfaces.Observer;
 import basisFx.appCore.utils.Range;
@@ -18,6 +19,8 @@ public abstract class ServiceTables implements Mediator {
 
     @Setter
     protected CallBack refreshCallBack;
+    @Setter
+    protected CallBackParametrized<ActiveRecord> checkingTableRecordCallBack;
     @Setter @Getter protected DatePickerWrapper datePickerWrapper;
     public abstract void wasRemoved(AppNode node, ActiveRecord record);
     public abstract void wasChanged(AppNode node, ActiveRecord record);

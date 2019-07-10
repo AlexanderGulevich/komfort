@@ -28,3 +28,11 @@
 
      -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.9), 5, 0, 0.0, 0.0);
 }
+.shawdow{
+
+     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.9), 5, 0, 0.0, 0.0);
+}
+.shawdowNON{
+
+       -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0), 0, 0, 0.0, 0.0);
+}

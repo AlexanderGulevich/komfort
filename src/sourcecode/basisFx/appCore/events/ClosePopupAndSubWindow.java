@@ -57,16 +57,17 @@ public class ClosePopupAndSubWindow extends AppEvent{
                 Thread.sleep(1);
             }
 
-            if (mediator != null) {
-                mediator.inform(but);
-                ((WindowService) mediator).close();
-            }
             Window window = but.getScene().getWindow();
             Stage stage= ((Stage) window);
             stage.close();
             } catch (InterruptedException ex) {
                 Logger.getLogger(ClosePopupAndSubWindow.class.getName()).log(Level.SEVERE, null, ex);
             }
+
+        if (mediator != null) {
+            mediator.inform(but);
+            ((WindowService) mediator).close();
+        }
     }
 
 

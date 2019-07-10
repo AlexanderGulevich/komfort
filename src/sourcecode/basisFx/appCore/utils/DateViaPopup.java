@@ -24,12 +24,13 @@ public class DateViaPopup extends DateGetter {
     public   void createLabel() {
         LabelWrapper.newBuilder()
                 .setCssClassesStrings("LABEL1")
+                .setCssClassesStrings("font_softRed")
                 .setText(date.format(DateTimeFormatter.ofPattern("dd-MM-yyyy г.")))
                 .setParentAnchor(parentAnchor)
                 .setCoordinate(new Coordinate(18d, 15d, null, null))
                 .setFont(FontsStore.ROBOTO_LIGHT)
                 .setAlignment(Pos.TOP_LEFT)
-                .setFontSize(30d)
+                .setFontSize(18d)
                 .build();
     }
 

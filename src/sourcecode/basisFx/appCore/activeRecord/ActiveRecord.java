@@ -78,6 +78,12 @@ public abstract class ActiveRecord {
         ResultSet rs = Reflection.executeQuery("Select * from " + this.entityName + " order by id ");
         return ReflectionGet.getAllDomainsList(this,list, domainPropertiesMetaInfoList, rs);
     }
+    public  ObservableList <ActiveRecord>  getAllWithoutID() {
+        ObservableList <ActiveRecord> list= FXCollections.observableArrayList();
+        ArrayList<DomainPropertiesMetaInfo> domainPropertiesMetaInfoList = ReflectionInspectDomain.inspectDomainProperties(this);
+        ResultSet rs = Reflection.executeQuery("Select * from " + this.entityName );
+        return ReflectionGet.getAllDomainsList(this,list, domainPropertiesMetaInfoList, rs);
+    }
     public ObservableList<ActiveRecord> findAllByOuterId(int id){
         ObservableList <ActiveRecord> list= FXCollections.observableArrayList();
         ArrayList<DomainPropertiesMetaInfo> domainPropertiesMetaInfoList = ReflectionInspectDomain.inspectDomainProperties(this);

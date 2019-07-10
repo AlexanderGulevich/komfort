@@ -17,6 +17,7 @@ import java.util.List;
 public class ChartBfxVerticalBar implements ChartBfx{
 
     @Setter private ServiceChartPanels service;
+    private ChartData_VBar dataVBar;
     private CategoryAxis xAxis;
     private NumberAxis yAxis;
     private BarChart<String, Number> chart;
@@ -72,7 +73,7 @@ public class ChartBfxVerticalBar implements ChartBfx{
         if (data != null) {
             chart.setData(data);
         }else {
-            chart.setData(ChartDataHandler.getVBarData(aClass));
+            chart.setData(ChartVBarDataHandler.getVBarData(aClass,dataVBar));
         }
 
 
@@ -83,13 +84,13 @@ public class ChartBfxVerticalBar implements ChartBfx{
     }
     @Override
     public void applyPeriod(Calendar before, Calendar after) {
-        ObservableList<XYChart.Series<String, Number>> data = ChartDataHandler.getVBarDataByPeriod(getAClass(), before, after);
+        ObservableList<XYChart.Series<String, Number>> data = ChartVBarDataHandler.getVBarDataByPeriod(getAClass(), before, after,dataVBar);
         chart.setData(data);
     }
 
     @Override
     public void applyAllTime() {
-        ObservableList<XYChart.Series<String, Number>> data = ChartDataHandler.getVBarData(getAClass());
+        ObservableList<XYChart.Series<String, Number>> data = ChartVBarDataHandler.getVBarData(getAClass(),dataVBar);
         chart.setData(data);
     }
 

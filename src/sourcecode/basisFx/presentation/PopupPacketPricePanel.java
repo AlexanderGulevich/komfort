@@ -20,8 +20,8 @@ public class PopupPacketPricePanel extends DynamicContentPanel {
                 .currentWindow(window)
                 .littleTitle("Архив тарифных ставок")
                 .parentAnchor(dynamicContentAnchorHolder)
-                .ctrlPosEnum(CtrlPosEnum.CTRL_POS_N_O_N)
-                .butSizeEnum(ButSizeEnum.BUT_SIZE_NON)
+                .ctrlPosEnum(CtrlPosEnum.CTRL_POS_TOP)
+                .butSizeEnum(ButSizeEnum.BUT_SIZE_BIG)
                 .addButEvent(null)
                 .delButEvent(null)
                 .column(

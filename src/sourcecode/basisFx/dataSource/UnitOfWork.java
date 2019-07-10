@@ -1,11 +1,14 @@
 
 package basisFx.dataSource;
 import basisFx.appCore.activeRecord.ActiveRecord;
+import basisFx.appCore.interfaces.DataStoreCallBack;
+import lombok.Singular;
 
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class UnitOfWork {
+
 
     public HashMap <String,ArrayList<ActiveRecord>>      newDomainObjects=new HashMap<>();
     public HashMap <String,ArrayList<ActiveRecord>>      dirtyDomainObjects=new HashMap<>();

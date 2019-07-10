@@ -9,10 +9,7 @@ import basisFx.appCore.activeRecord.BoolComboBox;
 import javafx.collections.ObservableList;
 
 import java.lang.reflect.*;
-import java.sql.Date;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -118,7 +115,7 @@ public class ReflectionGet {
             try {
                 methodIdSetter.invoke(activeRecord,rs.getInt("id"));
             } catch (SQLException e) {
-                e.printStackTrace();
+                System.out.println("отсутствует id");
             }
         } catch (IllegalAccessException e) {
             e.printStackTrace();
