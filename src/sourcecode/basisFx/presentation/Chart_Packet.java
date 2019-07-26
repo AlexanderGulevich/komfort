@@ -25,7 +25,6 @@ public class Chart_Packet extends DynamicContentPanel {
                         ChartBfxXY.builder()
                                 .aClass(PACKETRESULTFULL.class)
                                 .kind(ChartBfxXY.KIND.AREA)
-                                .coordinateLabel(true)
                                 .dateBasedChart(true)
                                 .dateformat(ChartBfxXY.DATEFORMAT.MONTHYEAR)
                                 .xLabel("Дата").yLabel("Зарплата")

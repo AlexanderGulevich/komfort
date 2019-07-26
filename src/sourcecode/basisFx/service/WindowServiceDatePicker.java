@@ -1,8 +1,6 @@
 package basisFx.service;
 
 import basisFx.appCore.elements.DatePickerHandler;
-import basisFx.appCore.elements.DatePickerWrapper;
-import basisFx.appCore.events.CallBackEvent;
 import basisFx.appCore.events.ClosePopupAndSubWindow;
 import basisFx.appCore.events.StageDragging;
 import basisFx.appCore.utils.Registry;
@@ -20,8 +18,18 @@ public class WindowServiceDatePicker extends WindowService {
     @FXML private Label dateLsabel;
     @FXML private AnchorPane titleAnchor;
     @FXML private DatePicker datePicker;
+    ClosePopupAndSubWindow closePopupAndSubWindow;
     DatePickerHandler datePickerHandler;
+
     @FXML public void initialize() {
+
+    }
+    public static void closeIfExist(){
+        WindowServiceDatePicker windowService = (WindowServiceDatePicker) Registry.crossWindowMediators.get("SelectDate");
+            if (windowService != null)  {
+
+                windowService.closeWithoutChecking();
+            }
     }
     public WindowServiceDatePicker() {
         Registry.crossWindowMediators.put("SelectDate",this);
@@ -30,9 +38,22 @@ public class WindowServiceDatePicker extends WindowService {
     public void init() {
         new StageDragging().setEventToElement(titleAnchor);
         datePickerHandler=new DatePickerHandler(datePicker,this);
-        new  ClosePopupAndSubWindow().setEventToElement(okBut);
+        setCloseEvent();
         dateLsabel.setText("Дата для проводок");
     }
+
+    private void setCloseEvent() {
+        closePopupAndSubWindow = new ClosePopupAndSubWindow();
+        closePopupAndSubWindow.setEventToElement(okBut);
+        closePopupAndSubWindow.setCallBackTyped(() ->
+        {
+            if (datePicker.getValue() != null) {
+                return true;
+            }
+            return false;
+        });
+    }
+
     @Override
     public void inform(Object node) {
         if (node==datePickerHandler){
@@ -43,6 +64,18 @@ public class WindowServiceDatePicker extends WindowService {
             Registry.dataExchanger.put("SelectedDateFromPopup",localDate);
         }
         }
+
+    @Override
+    public void close() {
+        closePopupAndSubWindow.run();
+        super.close();
+    }
+
+    public void closeWithoutChecking() {
+        closePopupAndSubWindow.setCallBackTyped(() -> true);
+        closePopupAndSubWindow.run();
+        super.close();
+    }
 
 
 }

@@ -89,7 +89,7 @@ public class OutputPerDay extends ActiveRecord implements RecordWithDate {
         this.product.set(product);
     }
 
-    public Integer getRodsNumber() {
+    public Integer  getRodsNumber() {
         return rodsNumber.get();
     }
 

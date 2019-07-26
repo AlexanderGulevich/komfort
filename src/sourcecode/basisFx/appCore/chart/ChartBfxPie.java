@@ -95,4 +95,24 @@ public class ChartBfxPie implements ChartBfx {
         chart.setData(data);
         addSliceTooltip(chart);
     }
+
+    @Override
+    public void applyYearFormat() {
+
+    }
+
+    @Override
+    public void applyMonthFormat() {
+
+    }
+
+    @Override
+    public void applyMonthYearFormat() {
+
+    }
+
+    @Override
+    public void applyDayFormat() {
+
+    }
 }

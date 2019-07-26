@@ -15,6 +15,11 @@ public interface ChartBfx {
     void applyAllTime() ;
     Class getAClass() ;
 
+    void applyYearFormat();
+    void applyMonthFormat();
+    void applyMonthYearFormat();
+    void applyDayFormat();
+
 
 
 }

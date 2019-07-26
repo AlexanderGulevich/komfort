@@ -8,6 +8,7 @@ import basisFx.appCore.menu.MenuComponent;
 import basisFx.appCore.settings.CSSclasses;
 import basisFx.appCore.utils.Registry;
 import basisFx.appCore.windows.WindowAbstraction;
+import basisFx.service.WindowService;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
@@ -85,7 +86,7 @@ public class leftSideMenuIconClick extends AppEvent{
 
 
 
-    }
+}
 
 
 

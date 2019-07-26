@@ -25,18 +25,18 @@ public class ClosePopupAndSubWindow extends AppEvent{
     public void setEventToElement(AppNode n) {
         this.nodeWrapper =n;
         this.but=(Button) n.getElement();
-        but.setOnMouseClicked((event) ->check()) ;
-        but.setOnAction((event) -> check());
+        but.setOnMouseClicked((event) ->run()) ;
+        but.setOnAction((event) -> run());
     }
 
-    private void check() {
+    public void check() {
         if (callBackTyped != null) {
             Boolean call = (Boolean) callBackTyped.call();
             if (call) {
-                run();
+                action();
             }
         } else {
-            run();
+            action();
         }
     }
 
@@ -49,7 +49,13 @@ public class ClosePopupAndSubWindow extends AppEvent{
 
     @Override
     public void run() {
+        check();
+    }
+
+    private void action() {
         try {
+
+            System.out.println("ClosePopupAndSubWindow.run");
 
             if (sleepMillis != null) {
                 Thread.sleep(sleepMillis);
@@ -69,7 +75,6 @@ public class ClosePopupAndSubWindow extends AppEvent{
             ((WindowService) mediator).close();
         }
     }
-
 
 
 }

@@ -95,6 +95,26 @@ public class ChartBfxVerticalBar implements ChartBfx{
     }
 
     @Override
+    public void applyYearFormat() {
+
+    }
+
+    @Override
+    public void applyMonthFormat() {
+
+    }
+
+    @Override
+    public void applyMonthYearFormat() {
+
+    }
+
+    @Override
+    public void applyDayFormat() {
+
+    }
+
+    @Override
     public void setData(List data) {
         this.data = (ObservableList<XYChart.Series<String, Number>>) data;
     }

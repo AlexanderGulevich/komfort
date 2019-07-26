@@ -75,6 +75,10 @@ public class ExpressionProcessor {
                 break;
             case  YEAR:dto.year=" YEAR("+dto.analizedDateName+") =YEAR(CURRENT_DATE) ";
                 break;
+            case  YEAR2:dto.year=dto.analizedDateName+" >= (NOW() - INTERVAL 2 YEAR - 1 DAY) AND ("+dto.analizedDateName+" <= NOW()) ";
+                break;
+            case  YEAR3:dto.year=dto.analizedDateName+" >= (NOW() - INTERVAL 3 YEAR - 1 DAY) AND ("+dto.analizedDateName+" <= NOW()) ";
+                break;
             case  MONTH:dto.month=" MONTH("+dto.analizedDateName+") =MONTH(CURRENT_DATE) AND  YEAR("+dto.analizedDateName+") =YEAR(CURRENT_DATE) ";
                 break;
             case  DAY30: dto.intervalDays=dto.analizedDateName+" >= (NOW() - INTERVAL 30 DAY) AND ("+dto.analizedDateName+" <= NOW()) ";

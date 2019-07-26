@@ -20,7 +20,6 @@ public class ChartTestLine extends DynamicContentPanel {
                         ChartBfxXY.builder()
                                 .aClass(SalaryByMonth.class)
                                 .kind(ChartBfxXY.KIND.LINE)
-                                .coordinateLabel(true)
                                 .dateBasedChart(true)
                                 .dateformat(ChartBfxXY.DATEFORMAT.MONTHYEAR)
                                 .xLabel("Дата").yLabel("Зарплата")

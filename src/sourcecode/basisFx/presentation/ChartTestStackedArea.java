@@ -20,7 +20,6 @@ public class ChartTestStackedArea extends DynamicContentPanel {
                         ChartBfxXY.builder()
                                 .aClass(SalaryByMonth.class)
                                 .kind(ChartBfxXY.KIND.STACKED)
-                                .coordinateLabel(true)
                                 .dateBasedChart(true)
                                 .dateformat(ChartBfxXY.DATEFORMAT.MONTHYEAR)
                                 .xLabel("Дата").yLabel("Зарплата")

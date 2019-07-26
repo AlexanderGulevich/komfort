@@ -103,7 +103,7 @@ public class OutputPanel  extends DynamicContentPanel {
                 .delButEvent(null)
                 .checkingTableRecordCallBack(record -> {
                     OutputPerDay outputPerDay = (OutputPerDay) record;
-                    if (outputPerDay.getRodsNumber()==0) {
+                    if (outputPerDay.getRodsNumber() != null && outputPerDay.getRodsNumber()==0) {
                         outputPerDay.setRodsNumber(null);
                         Registry.windowFabric.infoWindow("Количество стержней не может быть равно 0.");
                     }

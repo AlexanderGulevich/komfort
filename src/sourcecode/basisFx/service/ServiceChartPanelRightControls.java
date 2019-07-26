@@ -9,10 +9,13 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import org.hsqldb.types.IntervalMonthData;
 
 import java.time.LocalDate;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.TimeZone;
 
 
 public class ServiceChartPanelRightControls extends ServiceChartPanels {
@@ -56,11 +59,19 @@ public class ServiceChartPanelRightControls extends ServiceChartPanels {
             if (event.isPrimaryButtonDown() && event.getClickCount() == 1 || event.getClickCount() == 2) {
                 if (start != null && end != null) {
 
-                    Calendar before = new GregorianCalendar(start.getYear(), start.getMonthValue() - 1, start.getDayOfMonth());
-                    before.add(Calendar.DAY_OF_MONTH, -1);
-                    Calendar after = new GregorianCalendar(end.getYear(), end.getMonthValue() - 1, end.getDayOfMonth());
-                    after.add(Calendar.DAY_OF_MONTH, 1);
-                    chartBfx.applyPeriod(before, after);
+                    Calendar start2 = new GregorianCalendar(start.getYear(), start.getMonthValue() - 1, start.getDayOfMonth());
+                    start2.add(Calendar.DAY_OF_MONTH, -1);
+                    Calendar end2 = new GregorianCalendar(end.getYear(), end.getMonthValue() - 1, end.getDayOfMonth());
+                    end2.add(Calendar.DAY_OF_MONTH, 1);
+                    chartBfx.applyPeriod(end2, start2);
+
+                    long diff= end2.getTimeInMillis()-start2.getTimeInMillis();
+                    long days = diff / (1000*60*60*24);
+
+                    if(days <90)  chartBfx.applyDayFormat();
+                    if(days <180 && days>=90)  chartBfx.applyMonthYearFormat();
+                    if(days >=180)  chartBfx.applyMonthYearFormat();
+
                 }
             }
         });
@@ -85,6 +96,7 @@ public class ServiceChartPanelRightControls extends ServiceChartPanels {
             switch (range) {
                 case ALLTIME:{
                     chartBfx.applyAllTime();
+                    chartBfx.applyMonthFormat();
                 };
                     break;
                 case DAY30:{
@@ -95,6 +107,8 @@ public class ServiceChartPanelRightControls extends ServiceChartPanels {
                     start.clear(Calendar.SECOND);
                     start.clear(Calendar.MILLISECOND);
                     chartBfx.applyPeriod(end, start);
+
+                    chartBfx.applyDayFormat();
 
                     System.out.println(start.getTime());
                     System.out.println(end.getTime());
@@ -110,6 +124,8 @@ public class ServiceChartPanelRightControls extends ServiceChartPanels {
                     Calendar end = Calendar.getInstance();
                     chartBfx.applyPeriod(end, start);
 
+                    chartBfx.applyDayFormat();
+
                     System.out.println(start.getTime());
                     System.out.println(end.getTime());
                 };
@@ -124,6 +140,8 @@ public class ServiceChartPanelRightControls extends ServiceChartPanels {
                     Calendar end = Calendar.getInstance();
                     chartBfx.applyPeriod(end, start);
 
+                    chartBfx.applyDayFormat();
+
                     System.out.println(start.getTime());
                     System.out.println(end.getTime());
                 };
@@ -136,6 +154,10 @@ public class ServiceChartPanelRightControls extends ServiceChartPanels {
                     start.clear(Calendar.SECOND);
                     start.clear(Calendar.MILLISECOND);
                     chartBfx.applyPeriod(end, start);
+
+
+
+                    chartBfx.applyMonthFormat();
 
                     System.out.println(start.getTime());
                     System.out.println(end.getTime());
@@ -153,6 +175,8 @@ public class ServiceChartPanelRightControls extends ServiceChartPanels {
                     Calendar end = Calendar.getInstance();
                     chartBfx.applyPeriod(end, start);
 
+                    chartBfx.applyDayFormat();
+
                     System.out.println(start.getTime());
                     System.out.println(end.getTime());
                 };
@@ -167,6 +191,8 @@ public class ServiceChartPanelRightControls extends ServiceChartPanels {
 
                     Calendar end = Calendar.getInstance();
                     chartBfx.applyPeriod(end, start);
+
+                    chartBfx.applyMonthYearFormat();
 
                     System.out.println(start.getTime());
                     System.out.println(end.getTime());
@@ -184,6 +210,8 @@ public class ServiceChartPanelRightControls extends ServiceChartPanels {
                     Calendar end = Calendar.getInstance();
                     chartBfx.applyPeriod(end, start);
 
+                    chartBfx.applyMonthYearFormat();
+
                     System.out.println(start.getTime());
                     System.out.println(end.getTime());
                 };
@@ -199,6 +227,8 @@ public class ServiceChartPanelRightControls extends ServiceChartPanels {
 
                     Calendar end = Calendar.getInstance();
                     chartBfx.applyPeriod(end, start);
+
+                    chartBfx.applyMonthYearFormat();
 
                     System.out.println(start.getTime());
                     System.out.println(end.getTime());

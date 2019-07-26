@@ -22,10 +22,11 @@ public class ChartBfxXY implements ChartBfx {
 
     private static SimpleDateFormat yearDateFormat = new SimpleDateFormat("yyyy");
     private static SimpleDateFormat monthDateFormat = new SimpleDateFormat("MMM",new Locale("ru"));
-    private static SimpleDateFormat monthYearDateFormat = new SimpleDateFormat("MMM.yyyy",new Locale("ru"));
+    private static SimpleDateFormat monthYearDateFormat = new SimpleDateFormat("MMM.yy",new Locale("ru"));
+    private static SimpleDateFormat dayFormat = new SimpleDateFormat("dd.MMM",new Locale("ru"));
 
     public enum KIND {AREA,LINE,STACKED};
-    public enum DATEFORMAT {YEAR,MONTH,MONTHYEAR};
+    public enum DATEFORMAT {YEAR,MONTH,MONTHYEAR, DAY};
 
     @Setter private ServiceChartPanels service;
 
@@ -43,7 +44,6 @@ public class ChartBfxXY implements ChartBfx {
     private boolean yAutoRanging;
 
     private boolean dateBasedChart;
-    private boolean coordinateLabel;
     private boolean xLines;
     private boolean yLines;
 
@@ -57,6 +57,7 @@ public class ChartBfxXY implements ChartBfx {
     @Setter private AnchorPane parent;
     private Coordinate coordinate;
 
+    private DateAxis xAxis;
 
     @Override
     public void configure() {
@@ -65,14 +66,15 @@ public class ChartBfxXY implements ChartBfx {
 
         if (dateBasedChart) {
             createDateBased();
+            createDateBasedCoordinateLabel();
 
         }else {
             createNumberBased();
+            createCoordinateLabel();
         }
 
         toBondWithParent();
 
-        if (coordinateLabel)   createCoordinateLabel();
 
         if (data != null) {
             chart.setData(data);
@@ -97,10 +99,19 @@ public class ChartBfxXY implements ChartBfx {
                 .setParentAnchorPane(parent)
                 .bonding();
     }
+    private void createDateBasedCoordinateLabel() {
+        Label label = CoordinateLabel.executeDateBasedLabel(chart);
+        label.getStyleClass().add("coordinateLabel");
+
+        new Coordinate(5d,null,null,20d)
+                .setChildNode(label)
+                .setParentAnchorPane(parent)
+                .bonding();
+    }
 
     private void createDateBased() {
         NumberAxis yAxis = new NumberAxis();
-        DateAxis xAxis = new DateAxis();
+        xAxis = new DateAxis();
 
         applyDATEFORMAT(xAxis);
 
@@ -128,8 +139,54 @@ public class ChartBfxXY implements ChartBfx {
                 if(dateformat== DATEFORMAT.YEAR) return   yearDateFormat.format(new Date(object));
                 if(dateformat== DATEFORMAT.MONTH) return  monthDateFormat.format(new Date(object));
                 if(dateformat== DATEFORMAT.MONTHYEAR) return  monthYearDateFormat.format(new Date(object));
+                if(dateformat== DATEFORMAT.DAY) return  dayFormat.format(new Date(object));
                 else return null;
             }
+            @Override
+            public Long fromString(String string) {
+                return null;
+            }
+        });
+    }
+    @Override
+    public void applyYearFormat(){
+        xAxis.setTickLabelFormatter(new StringConverter<Long>() {
+            @Override
+            public String toString(Long object) {  return   yearDateFormat.format(new Date(object)); }
+            @Override
+            public Long fromString(String string) {
+                return null;
+            }
+        });
+    }
+    @Override
+    public void applyMonthFormat(){
+        xAxis.setTickLabelFormatter(new StringConverter<Long>() {
+            @Override
+            public String toString(Long object) { return  monthDateFormat.format(new Date(object)); }
+            @Override
+            public Long fromString(String string) {
+                return null;
+            }
+        });
+    }
+    @Override
+    public void applyMonthYearFormat(){
+        xAxis.setTickLabelFormatter(new StringConverter<Long>() {
+            @Override
+            public String toString(Long object) { return  monthYearDateFormat.format(new Date(object)); }
+            @Override
+            public Long fromString(String string) {
+                return null;
+            }
+        });
+    }
+    @Override
+    public void applyDayFormat(){
+        xAxis.setTickLabelFormatter(new StringConverter<Long>() {
+            @Override
+            public String toString(Long object) {
+            return  dayFormat.format(new Date(object)); }
             @Override
             public Long fromString(String string) {
                 return null;
@@ -175,7 +232,12 @@ public class ChartBfxXY implements ChartBfx {
 
     @Override
     public void applyPeriod(Calendar before, Calendar after) {
-        ObservableList<XYChart.Series<Number, Number>> data = ChartXYDataHandler.getXYDataByPeriod(getAClass(), before, after, chartDataXY);
+        ObservableList<XYChart.Series<Number, Number>> data =
+                ChartXYDataHandler.getXYDataByPeriod(getAClass(), before, after, chartDataXY);
+
+        xAxis.setLowerBound(after.getTime().getTime());
+        xAxis.setUpperBound(before.getTime().getTime());
+
         chart.setData(data);
     }
 

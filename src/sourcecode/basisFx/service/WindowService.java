@@ -38,7 +38,7 @@ public abstract class WindowService<T extends Object> implements Mediator {
         Registry.crossWindowMediators.values().remove(this);
         System.out.println("WindowService.close");
 
-         WindowInfoDispatcher.run();
+//         WindowInfoDispatcher.run();
 
 
 //        WindowInfoDispatcher.run();
