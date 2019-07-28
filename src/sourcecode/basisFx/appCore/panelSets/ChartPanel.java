@@ -5,7 +5,7 @@ import basisFx.appCore.utils.Coordinate;
 import basisFx.appCore.utils.FXMLLoader;
 import basisFx.appCore.utils.Registry;
 import basisFx.appCore.windows.WindowAbstraction;
-import basisFx.service.ServiceChartPanels;
+import basisFx.service.ServicePanels;
 import javafx.scene.layout.AnchorPane;
 import lombok.Builder;
 
@@ -22,7 +22,7 @@ public class ChartPanel implements PanelSets {
     public void configure() {
 
         AnchorPane anchorPaneFromFXML = FXMLLoader.loadAnchorPane(fxmlFileName);
-        ServiceChartPanels service = (ServiceChartPanels) Registry.dataExchanger.get(fxmlFileName);
+        ServicePanels service = (ServicePanels) Registry.dataExchanger.get(fxmlFileName);
         service.commonLabelName(commonLabelName);
         service.init();
 

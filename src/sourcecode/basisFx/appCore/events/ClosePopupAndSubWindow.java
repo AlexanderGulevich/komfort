@@ -48,6 +48,11 @@ public class ClosePopupAndSubWindow extends AppEvent{
     }
 
     @Override
+    public void setEventToElement(Node node, Stage stage) {
+
+    }
+
+    @Override
     public void run() {
         check();
     }

@@ -32,6 +32,11 @@ protected Stage stage;
     }
 
     @Override
+    public void setEventToElement(Node node, Stage stage) {
+
+    }
+
+    @Override
     public void run() {
 
 

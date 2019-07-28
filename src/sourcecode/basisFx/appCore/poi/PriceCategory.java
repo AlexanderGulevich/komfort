@@ -1,38 +1,26 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package basisFx.appCore.poi;
+
+import basisFx.domain.price.TNPProduct;
 
 import java.util.ArrayList;
 
-/**
- *
- * @author Alek
- */
 public class PriceCategory {
      
             String name;
             
             
-            ArrayList<GoodsPojo>  categoryFilds;
+            ArrayList<TNPProduct>  categoryFilds;
             
-            void setName(String n){
-                
+            public void setName(String n){
                 this.name=n;
-
             }
-
             public String getName() {
                 return name;
             }
-
-            public ArrayList<GoodsPojo> getFilds() {
+            public ArrayList<TNPProduct> getFilds() {
                 return categoryFilds;
             }
-
-            public void setFilds(ArrayList<GoodsPojo> filds) {
+            public void setFilds(ArrayList<TNPProduct> filds) {
                 this.categoryFilds = filds;
             }
 

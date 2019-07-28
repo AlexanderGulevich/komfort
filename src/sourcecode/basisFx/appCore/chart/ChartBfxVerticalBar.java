@@ -1,7 +1,7 @@
 package basisFx.appCore.chart;
 
 import basisFx.appCore.utils.Coordinate;
-import basisFx.service.ServiceChartPanels;
+import basisFx.service.ServicePanels;
 import javafx.collections.ObservableList;
 import javafx.scene.Cursor;
 import javafx.scene.chart.*;
@@ -16,7 +16,7 @@ import java.util.List;
 @Builder
 public class ChartBfxVerticalBar implements ChartBfx{
 
-    @Setter private ServiceChartPanels service;
+    @Setter private ServicePanels service;
     private ChartData_VBar dataVBar;
     private CategoryAxis xAxis;
     private NumberAxis yAxis;

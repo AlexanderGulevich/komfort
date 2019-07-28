@@ -1,10 +1,10 @@
 package basisFx;
 
-import basisFx.appCore.elements.TableWrapper;
 import basisFx.appCore.menu.MenuFabric;
 import basisFx.appCore.settings.Settings;
 import basisFx.appCore.settings.StylesPathes;
 import basisFx.appCore.utils.CSSHandler;
+import basisFx.appCore.utils.FontHandler;
 import basisFx.appCore.utils.IconToPlatform;
 import basisFx.appCore.utils.Registry;
 import basisFx.appCore.windows.ButtonsForStageThreeEntity;
@@ -14,7 +14,6 @@ import basisFx.appCore.guiStructura.LeftAndTopMenuGUI;
 import basisFx.appCore.windows.WindowFabric;
 import basisFx.dataSource.DbFactory;
 import javafx.stage.Stage;
-import org.scenicview.ScenicView;
 
 import java.sql.SQLException;
 
@@ -26,6 +25,8 @@ public class App{
         CSSHandler.init(StylesPathes.CUSTOM_1);
         WindowFabric.WindowUndecorated();
         DbFactory.createDbServer();
+        FontHandler.getInstanse().loadFontToScene();
+
 
         Registry.windowFabric.mainWindow(primaryStage,
                 WindowBuilder.newBuilder()
@@ -38,14 +39,14 @@ public class App{
                         .setTitle(Settings.TITLE)
                         .setMessage(null)
                         .build()
-                );
+        );
 
         MenuFabric.menuLeftAndTop( new MainMenuSketch());
 
 //        ScenicView.show(Registry.mainWindow.getScene());
 
     }
-    
+
 }
 
 

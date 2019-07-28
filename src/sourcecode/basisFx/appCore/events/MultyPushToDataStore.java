@@ -4,6 +4,7 @@ import basisFx.appCore.elements.AppNode;
 import basisFx.appCore.elements.ButtonWrapper;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.stage.Stage;
 
 
 public class MultyPushToDataStore  extends AppEvent{
@@ -23,6 +24,11 @@ public class MultyPushToDataStore  extends AppEvent{
 
     @Override
     public void setEventToElement(Node node) {
+
+    }
+
+    @Override
+    public void setEventToElement(Node node, Stage stage) {
 
     }
 

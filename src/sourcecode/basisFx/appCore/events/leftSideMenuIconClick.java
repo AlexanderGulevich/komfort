@@ -12,6 +12,7 @@ import basisFx.service.WindowService;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
 public class leftSideMenuIconClick extends AppEvent{
     protected LeftAndTopBarItemComposite component;
@@ -48,6 +49,11 @@ public class leftSideMenuIconClick extends AppEvent{
         but.setOnAction((event) -> {
             run();
         });
+
+    }
+
+    @Override
+    public void setEventToElement(Node node, Stage stage) {
 
     }
 

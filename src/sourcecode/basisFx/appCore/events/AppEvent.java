@@ -6,6 +6,7 @@ import basisFx.appCore.interfaces.CallBackParametrized;
 import basisFx.appCore.interfaces.CallBackTyped;
 import basisFx.appCore.interfaces.Mediator;
 import javafx.scene.Node;
+import javafx.stage.Stage;
 import lombok.Setter;
 
 
@@ -19,6 +20,9 @@ public abstract class AppEvent {
 
     public abstract void setEventToElement(AppNode node);
     public abstract void setEventToElement(Node node);
+
+    public abstract void setEventToElement(Node node, Stage stage);
+
     public abstract void run() ;
 
 }

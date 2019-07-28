@@ -1,225 +1,143 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package basisFx.appCore.poi;
+package basisFx.domain.price;
 
+import basisFx.appCore.poi.StringHandler;
+import basisFx.appCore.utils.Registry;
+import lombok.Getter;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 
-/**
- *
- * @author Alek
- */
-public class PriceCommonLogic {
+import java.util.ArrayList;
+import java.util.List;
+
+public class PriceUtils {
+
+    @Getter
+    ArrayList<String> messageArray =new ArrayList<>();
     
   protected StringHandler strHandler=new StringHandler();
   
-//искать категорию
      public Boolean isCategory(Cell c ) {
-     
      String value=null;
-     
             if (!(c==null)){
-            
                  if (!(c.getCellTypeEnum()==c.getCellTypeEnum().BLANK)){
-                     
-                     
                         if (c.getCellTypeEnum()==c.getCellTypeEnum().STRING){
-                            
                             value=c.getStringCellValue();
-                            
-                           
                                 if (value.contains("готовая продукция")&&
                                         (!(value.contains("Итого по группе:")))){
-
                                      return true;
-
                                   }else{ return false;}
-                    
                         }else{ return false;}
-
                 }else{ return false;}
-            
             }else{ return false;}
     }
-//искать поле в категории   
-     public Boolean isFild(Cell c){
-        
-            if (!(c==null)){
-            
-                 if (!(c.getCellTypeEnum()==c.getCellTypeEnum().BLANK)){//не пустая ячейка
-                     
-                     
-                        if (c.getCellTypeEnum()==c.getCellTypeEnum().STRING){//соит строку
-                            
-                            return true;
-                            
-                           
-                    
-                        }else{ return false;}
 
+     public Boolean isFild(Cell c){
+            if (!(c==null)){
+                 if (!(c.getCellTypeEnum()==c.getCellTypeEnum().BLANK)){//не пустая ячейка
+                        if (c.getCellTypeEnum()==c.getCellTypeEnum().STRING){//соит строку
+                            return true;
+                        }else{ return false;}
                 }else{ return false;}
-            
             }else{ return false;}
      }
 
      public Boolean isDate(Cell c){
-         
             String value;
-      
              if (!(c==null)){
-            
                  if (!(c.getCellTypeEnum()==c.getCellTypeEnum().BLANK)){
-                     
-                     
                         if (c.getCellTypeEnum()==c.getCellTypeEnum().STRING){
-                            
                             value=c.getStringCellValue();
-                            
                             if (value.contains("по подразделениям")) {
-                                
                                  return true;
-                                 
-                            } else{ return false;}   
-                            
+                            } else{ return false;}
                         }else{ return false;}
-
                 }else{ return false;}
-            
             }else{ return false;}
      }
      
      public Boolean isEnd(Cell c){
-         
             String value;
-      
              if (!(c==null)){
-            
                  if (!(c.getCellTypeEnum()==c.getCellTypeEnum().BLANK)){
-                     
-                     
                         if (c.getCellTypeEnum()==c.getCellTypeEnum().STRING){
-                            
                             value=c.getStringCellValue();
-                            
                             if (value.contains("ИТОГО ПО ПРЕДПРИЯТИЮ")) {
-                                
                                  return true;
-                                 
-                            } else{ return false;}   
-                            
+                            } else{ return false;}
                         }else{ return false;}
-
                 }else{ return false;}
-            
             }else{ return false;}
      }
-//получить имя категории    
+
      public String readCategoryName(Cell c){
-         
-          String value=null;
-          
-           value=c.getStringCellValue();
-                            
-                           
+          String value= c.getStringCellValue();
                                 if (value.contains("готовая продукция")&&
                                         (!(value.contains("Итого по группе:")))){
-                                    
-                                    
                                      value= strHandler.delText(value, "готовая продукция,");
                                      value= strHandler.delText(value, "готовая продукция");
                                      value= strHandler.delDimension(value, "(", ")");
                                      value= strHandler.delDimension(value, "(", ")");
-                                                                       
                                      return value;
-
                                   }else{ return "не найдено";}
-          
-         
      }
-//получить имя продукта      
-     public String readProdactName(Cell c){
-           String value=null;
-           value=c.getStringCellValue();
-           
-//           value=value.substring(value.indexOf(" "));
-           
-//           value=strHandler.delAllSpace(value);
-           
 
+     public String readProdactName(Cell c){
+         String value= c.getStringCellValue();
+         String barcode = readBarcode(c);
+         if (barcode != null) value=strHandler.delText(value,barcode);
          try {
-             
-                  value=value.substring(
-                     value.indexOf("-")+3);
-             
-                  
+             value=value.substring( value.indexOf("-")+1);
+             value=value.substring(value.indexOf(" "));
+
          } catch (Exception e) {
-             
-             System.err.println("ERROR IS----------------"+ value);
+             Registry.windowFabric.infoWindow("Возникла проблемма в этом месте: \n" + value);
          }
 
-      
-           
-           
-           value=strHandler.clearEdges(value);
-                   
-           return value;      
+         String amountInbox = readAmountInbox(c);
+         value=strHandler.delText(value,"("+amountInbox+")");
+         value=strHandler.delText(value,"( "+amountInbox+")");
+         value=strHandler.delText(value,"( "+amountInbox+" )");
+         value=strHandler.delText(value,"("+amountInbox+" )");
+
+         value=strHandler.clearEdges(value);
+         return value;
      }
-//найти конец категории     
+
      public Boolean isEndOfCategory(Cell c){
-        
          String value=null;
-     
             if (!(c==null)){
-            
                  if (!(c.getCellTypeEnum()==c.getCellTypeEnum().BLANK)){
-                     
-                     
                         if (c.getCellTypeEnum()==c.getCellTypeEnum().STRING){
-                            
                             value=c.getStringCellValue();
-                            
-                           
                                 if (value.contains("Итого по группе: готовая продукция")){
-
                                      return true;
-
                                   }else{ return false;}
-                    
                         }else{ return false;}
-
                 }else{ return false;}
-            
             }else{ return false;}
-         
-     
      }
-//найти единицу измерения   
+
      public String readMeasure(Cell c){
-          
-            String value=null;
-            value=c.getStringCellValue();
+            String value=c.getStringCellValue();
             value= strHandler.clearEdges(value);
             return value;
             
      }
-//найти количество       
+
      public Double readAmount(Cell c){
             Double value=null;
             value=c.getNumericCellValue();
             return value;
      }
-//найти цену за единицу         
+
      public Double readPricePerUnit(Cell c){
             
             Double value=null;
             value=c.getNumericCellValue();
             return value;
      }
-//найти дату      
+
      public String readDate(Sheet sheet){
         
         Row dateRow =sheet.getRow(3);
@@ -279,93 +197,84 @@ public class PriceCommonLogic {
         
     
     }
-//найти сумму     
-     public Double readTotalSumma(Cell c){      
-         
-            Double value=null;
-            value=c.getNumericCellValue();
+
+     public Double readTotalSumma(Cell c){
+            Double value= c.getNumericCellValue();
             return value;
-            
      }
      
-     public String readOrderName(Cell c){
-     
+     public String readOrder(Cell c){
             String value=null;
-          
             value=c.getStringCellValue();
-                            
             value= value.substring(0, 10);
             value= strHandler.delText(value, "з.");
-            value= value.substring(0, value.indexOf("-")+3);
-            value= strHandler.clearEdges(value);
-
-            return value;
-
-     
+            if(  value.indexOf("-") <0){
+                messageArray.add("Не получилось прочитать заказ для нижеследующе записи: \n"+ value);
+            }else {
+                value= value.substring(0, value.indexOf("-")+5);
+                value=value.substring(0, value.indexOf(" "));
+                value= strHandler.clearEdges(value);
+                return value;
+            }
+            return null;
      }
      
-     public String readBarcode(Cell c) throws Exception{
-     
-            String value=null;
-          
-            value=c.getStringCellValue();
-            value= strHandler.clearEdges(value);
-            
+     public String readBarcode(Cell c)  {
+        String value=null;
+        value=c.getStringCellValue();
+        value= strHandler.clearEdges(value);
+        char[] charArray = value.toCharArray();
 
-            if (value.contains("(")) { 
-                
-              value= value.substring(
-                        value.lastIndexOf("(")-13,
-                        value.lastIndexOf("("));
-              
-              
-                
-                
-         }else{
-            
-              throw new Exception("readBarcode not find  -   ) "); 
-            
-            }
-                
-            value= strHandler.clearEdges(value);
-            
-            if (value.contains(" ")) {
-                
-                 throw new Exception("readBarcode find   \"  \"  ===== "+   value + "-ряд-"+c.getRow()); 
-             
+        List<Character> chars = new ArrayList<>();
+         for (int i = 0; i < charArray.length; i++) {
+             chars.add(charArray[i]);
          }
 
-            return value;
+         String barcode=new String();
+         int barcodeLenth=0;
 
-     
+         for (Character aChar : chars) {
+             try {
+                 Integer integer = Integer.valueOf(aChar.toString());
+                 String current=aChar.toString();
+                 barcodeLenth += 1;
+                 barcode+=integer.toString();
+                 if (barcodeLenth==13) return barcode;
+             } catch (NumberFormatException e) {
+                 if (barcodeLenth==12 || barcodeLenth==11 || barcodeLenth==10 ) {
+                     messageArray.add("Шрихкод нижеследующего товара содержит  менее 13 символов: \n" + value);
+                 }
+                 barcodeLenth=0;
+                 barcode="";
+                continue;
+             }
+         }
+         return null;
      }
      
-     public String readAmountInbox(Cell c) throws Exception{
-     
-            String value=null;
-          
-            value=c.getStringCellValue();
-            
+     public String readAmountInbox(Cell c){
+         String value= c.getStringCellValue();
+         int length = value.length();
+         value= value.substring(length/2);
+         String finded= null;
+         if (value.contains("(")) {
 
-            if (value.contains("(")) { 
-                
-                value= value.substring(
-                        value.lastIndexOf("(")+1,
-                        value.lastIndexOf(")"));
-                
-            }else{
-            
-             // throw new Exception("readAmountInbox not find  -   ) "); 
-             
-             value="не указано";
-            
+             try {
+                 finded = value.substring( value.lastIndexOf("(")+1, value.lastIndexOf(")"));
+             } catch (Exception e) {
+                 messageArray.add("Скобка на закрыта:\n" + c.getStringCellValue());
+             }
+                finded= strHandler.clearEdges(finded);
+             try {
+                 Integer.valueOf(finded);
+             } catch (NumberFormatException e) {
+                 finded=null;
+             }
+
+         }else{
+             finded=null;
             }
-                
-            value= strHandler.clearEdges(value);
-
-            return value;
-
-     
+            return finded;
      }
      
      

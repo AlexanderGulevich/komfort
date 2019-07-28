@@ -1,9 +1,9 @@
-package basisFx.appCore.poi;
+package basisFx.domain.price;
 
 import java.io.Serializable;
 import java.time.LocalDate;
 
-import basisFx.appCore.poi.Pojo;
+import basisFx.domain.price.Pojo;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.IntegerProperty;

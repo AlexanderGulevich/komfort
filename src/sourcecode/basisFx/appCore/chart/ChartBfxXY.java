@@ -1,7 +1,7 @@
 package basisFx.appCore.chart;
 
 import basisFx.appCore.utils.Coordinate;
-import basisFx.service.ServiceChartPanels;
+import basisFx.service.ServicePanels;
 import javafx.collections.ObservableList;
 import javafx.scene.chart.*;
 import javafx.scene.control.Label;
@@ -28,7 +28,7 @@ public class ChartBfxXY implements ChartBfx {
     public enum KIND {AREA,LINE,STACKED};
     public enum DATEFORMAT {YEAR,MONTH,MONTHYEAR, DAY};
 
-    @Setter private ServiceChartPanels service;
+    @Setter private ServicePanels service;
 
     private ChartData_XY chartDataXY;
     private KIND kind;

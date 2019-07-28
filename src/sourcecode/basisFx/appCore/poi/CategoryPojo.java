@@ -1,6 +1,6 @@
 package basisFx.appCore.poi;
 
-import basisFx.appCore.poi.Pojo;
+import basisFx.domain.price.Pojo;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleBooleanProperty;

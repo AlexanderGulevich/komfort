@@ -8,14 +8,19 @@ import java.util.logging.Logger;
 
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.stage.Stage;
+import lombok.Setter;
 
 public class CloseMainWindow extends AppEvent{
     protected Button  but;
+    @Setter
+    protected Stage stage;
     @Override
     public void setEventToElement(AppNode n) {
 
         this.nodeWrapper =n;
         this.but=(Button) n.getElement();
+        stage=nodeWrapper.getStage();
 
 
         but.setOnMouseClicked((event) -> {
@@ -28,6 +33,17 @@ public class CloseMainWindow extends AppEvent{
     @Override
     public void setEventToElement(Node node) {
         this.but=(Button) node;
+
+        but.setOnMouseClicked((event) -> {
+                    run();
+                }
+        ) ;
+    }
+
+    @Override
+    public void setEventToElement(Node node,Stage stage) {
+        this.but=(Button) node;
+        this.stage=stage;
 
         but.setOnMouseClicked((event) -> {
                     run();
@@ -50,7 +66,7 @@ public class CloseMainWindow extends AppEvent{
             }
 
             Thread.sleep(500);
-            nodeWrapper.getStage().close();
+            stage.close();
             System.exit(0);
 
             } catch (InterruptedException ex) {

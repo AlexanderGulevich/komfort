@@ -4,6 +4,7 @@ import basisFx.appCore.elements.AppNode;
 import basisFx.appCore.interfaces.CallBack;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.stage.Stage;
 
 public class CallBackEvent  extends AppEvent{
 
@@ -28,6 +29,11 @@ public class CallBackEvent  extends AppEvent{
         but.setOnMouseClicked((event) -> {
             run();
         });
+    }
+
+    @Override
+    public void setEventToElement(Node node, Stage stage) {
+
     }
 
     @Override

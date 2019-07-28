@@ -9,6 +9,7 @@ import basisFx.appCore.windows.WindowAbstraction;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
 public class MenuButtonsClick extends AppEvent{
 
@@ -39,6 +40,11 @@ public class MenuButtonsClick extends AppEvent{
 
     @Override
     public void setEventToElement(Node node) {
+
+    }
+
+    @Override
+    public void setEventToElement(Node node, Stage stage) {
 
     }
 

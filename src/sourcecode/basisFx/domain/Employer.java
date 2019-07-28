@@ -7,13 +7,13 @@ import javafx.beans.property.SimpleObjectProperty;
 public class Employer extends ActiveRecord {
 
     private static Employer INSTANCE = new Employer();
-    private SimpleObjectProperty<String> name =new SimpleObjectProperty<>(this, "name", null);
-    private SimpleObjectProperty<BoolComboBox> isFired =new SimpleObjectProperty<>(this, "isFired", new BoolComboBox(false));
-
-
     public static Employer getINSTANCE() {
         return INSTANCE;
     }
+
+    private SimpleObjectProperty<String> name =new SimpleObjectProperty<>(this, "name", null);
+    private SimpleObjectProperty<BoolComboBox> isFired =new SimpleObjectProperty<>(this, "isFired", new BoolComboBox(false));
+
 
     public String getName() {
         return name.get();

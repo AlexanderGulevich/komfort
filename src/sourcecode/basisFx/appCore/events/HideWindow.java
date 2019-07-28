@@ -6,6 +6,7 @@ import java.util.logging.Logger;
 
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.stage.Stage;
 
 public class HideWindow extends AppEvent{
     protected Button  but;
@@ -36,6 +37,11 @@ public class HideWindow extends AppEvent{
                 }
 
         ) ;
+    }
+
+    @Override
+    public void setEventToElement(Node node, Stage stage) {
+
     }
 
     @Override

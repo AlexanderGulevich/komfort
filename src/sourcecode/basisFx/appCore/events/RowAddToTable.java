@@ -6,6 +6,7 @@ import basisFx.appCore.interfaces.TableBasedDirectors;
 import basisFx.appCore.activeRecord.ActiveRecord;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.stage.Stage;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -46,6 +47,11 @@ public class RowAddToTable<T> extends AppEvent implements TableEvents {
                 run();
             }
         });
+    }
+
+    @Override
+    public void setEventToElement(Node node, Stage stage) {
+
     }
 
     @Override

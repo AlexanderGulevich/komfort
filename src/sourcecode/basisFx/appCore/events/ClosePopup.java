@@ -3,6 +3,7 @@ package basisFx.appCore.events;
 import basisFx.appCore.elements.AppNode;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.stage.Stage;
 
 public class ClosePopup extends AppEvent{
     protected Button but;
@@ -35,6 +36,11 @@ public class ClosePopup extends AppEvent{
                 }
 
         ) ;
+    }
+
+    @Override
+    public void setEventToElement(Node node, Stage stage) {
+
     }
 
     @Override

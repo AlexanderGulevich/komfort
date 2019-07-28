@@ -7,6 +7,7 @@ import basisFx.appCore.activeRecord.ActiveRecord;
 import basisFx.service.ServiceTablesAutoCommitByDate;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.stage.Stage;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -30,6 +31,11 @@ public class RowAddToSubmitTableWhisCommonDate<T> extends AppEvent implements Ta
 
     @Override
     public void setEventToElement(Node node) {
+
+    }
+
+    @Override
+    public void setEventToElement(Node node, Stage stage) {
 
     }
 

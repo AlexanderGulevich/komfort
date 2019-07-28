@@ -7,6 +7,7 @@ import basisFx.appCore.activeRecord.ActiveRecord;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableView;
+import javafx.stage.Stage;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -37,6 +38,11 @@ public class RowDeleteFromTable extends AppEvent implements TableEvents {
             run();
 
         });
+    }
+
+    @Override
+    public void setEventToElement(Node node, Stage stage) {
+
     }
 
 

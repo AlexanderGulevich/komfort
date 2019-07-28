@@ -3,6 +3,7 @@ package basisFx.appCore.windows;
 import basisFx.appCore.interfaces.CallBackParametrized;
 import basisFx.appCore.utils.Registry;
 import basisFx.service.WindowService;
+import javafx.application.Platform;
 import javafx.stage.Stage;
 
 

@@ -15,7 +15,7 @@ import org.apache.poi.xssf.usermodel.XSSFFont;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-public class CellStylePOIAdapter {
+public class CellStylePOIHandler {
     
     protected    XSSFCellStyle  сellStyle=null;
     protected    XSSFFont font=null;
@@ -24,7 +24,7 @@ public class CellStylePOIAdapter {
     protected    XSSFSheet spreadsheet=null;
 
 
-    public  CellStylePOIAdapter(XSSFWorkbook wb,  XSSFSheet spreadsheet) {
+    public CellStylePOIHandler(XSSFWorkbook wb, XSSFSheet spreadsheet) {
        
        this.workbook=wb;
        this.сellStyle= workbook.createCellStyle();
@@ -34,28 +34,28 @@ public class CellStylePOIAdapter {
 
     }
 
-    public CellStylePOIAdapter setFontHeight(int h) {
+    public CellStylePOIHandler setFontHeight(int h) {
         
          font.setFontHeightInPoints((short)h);
          return this;
         
     }
     
-    public CellStylePOIAdapter setFontName(String n) {
+    public CellStylePOIHandler setFontName(String n) {
         
          font.setFontName(n);
          return this;
         
     }
     
-    public CellStylePOIAdapter setFontBold() {
+    public CellStylePOIHandler setFontBold() {
         
          font.setBold(true);
          return this;
         
     }
     
-    public CellStylePOIAdapter setWrapText() {
+    public CellStylePOIHandler setWrapText() {
        
              this.сellStyle.setWrapText(true);
  
@@ -63,7 +63,7 @@ public class CellStylePOIAdapter {
         
     }
     
-    public CellStylePOIAdapter setRowHeight(int h) {
+    public CellStylePOIHandler setRowHeight(int h) {
        
              this.cell.getRow().setHeightInPoints(h);
  
@@ -71,27 +71,27 @@ public class CellStylePOIAdapter {
         
     }
     
-    public CellStylePOIAdapter setHorizontalAlignmentCENTER() {
+    public CellStylePOIHandler setHorizontalAlignmentCENTER() {
         
         this.сellStyle.setAlignment(HorizontalAlignment.CENTER);
          return this;
         
     }
-    public CellStylePOIAdapter setHorizontalAlignmentLeft() {
+    public CellStylePOIHandler setHorizontalAlignmentLeft() {
         
         this.сellStyle.setAlignment(HorizontalAlignment.LEFT);
          return this;
         
     }
    
-    public CellStylePOIAdapter setHorizontalAlignmentRight() {
+    public CellStylePOIHandler setHorizontalAlignmentRight() {
         
         this.сellStyle.setAlignment(HorizontalAlignment.RIGHT);
          return this;
         
     }
    
-    public CellStylePOIAdapter setVerticalAlignmentCENTER() {
+    public CellStylePOIHandler setVerticalAlignmentCENTER() {
         
         this.сellStyle.setVerticalAlignment(VerticalAlignment.CENTER);
          return this;
@@ -99,35 +99,35 @@ public class CellStylePOIAdapter {
     }
 
     
-    public CellStylePOIAdapter setFontItalic() {
+    public CellStylePOIHandler setFontItalic() {
         
          font.setItalic(true);
          return this;
         
     }
     
-    public CellStylePOIAdapter setFontColor(short s) {
+    public CellStylePOIHandler setFontColor(short s) {
 
          font.setColor(s);   
          return this;
         
     }
     
-    public CellStylePOIAdapter setFontColorRGB(int i, int  k, int j) {
+    public CellStylePOIHandler setFontColorRGB(int i, int  k, int j) {
 
          font.setColor(new XSSFColor(new java.awt.Color(i, k, j)));
          return this;
         
     }
     
-    public CellStylePOIAdapter setCellType(CellType ct) {
+    public CellStylePOIHandler setCellType(CellType ct) {
 
          cell.setCellType(ct);
          return this;
         
     }
     
-    public CellStylePOIAdapter setDataFormatForNumericNotNegative() {
+    public CellStylePOIHandler setDataFormatForNumericNotNegative() {
         
         XSSFCreationHelper creationHelper = new XSSFCreationHelper(workbook);
 
@@ -137,7 +137,7 @@ public class CellStylePOIAdapter {
         
     }
     
-    public CellStylePOIAdapter setDataFormatForNumericWithNegative() {
+    public CellStylePOIHandler setDataFormatForNumericWithNegative() {
       
         DataFormat format = workbook.createDataFormat();
         
@@ -151,8 +151,8 @@ public class CellStylePOIAdapter {
                 return сellStyle;
     }
     
-    public CellStylePOIAdapter setBorder(BorderStyle top,BorderStyle right,
-            BorderStyle bottom,BorderStyle left, short s ){
+    public CellStylePOIHandler setBorder(BorderStyle top, BorderStyle right,
+                                         BorderStyle bottom, BorderStyle left, short s ){
         
         сellStyle.setBorderTop(top);
         сellStyle.setBorderBottom(bottom);
@@ -169,8 +169,8 @@ public class CellStylePOIAdapter {
     
     }
     
-    public CellStylePOIAdapter setBorderRGB(BorderStyle top,BorderStyle right,
-            BorderStyle bottom,BorderStyle left, XSSFColor s ){
+    public CellStylePOIHandler setBorderRGB(BorderStyle top, BorderStyle right,
+                                            BorderStyle bottom, BorderStyle left, XSSFColor s ){
         
         сellStyle.setBorderTop(top);
         сellStyle.setBorderBottom(bottom);
@@ -187,7 +187,7 @@ public class CellStylePOIAdapter {
     
     }
 
-    public CellStylePOIAdapter setFillForegroundCol(short s ){
+    public CellStylePOIHandler setFillForegroundCol(short s ){
         
         сellStyle.setFillForegroundColor(s );
         
@@ -195,7 +195,7 @@ public class CellStylePOIAdapter {
         return this;
     
     }
-    public CellStylePOIAdapter setFillForegroundCol(XSSFColor color ){
+    public CellStylePOIHandler setFillForegroundCol(XSSFColor color ){
         
         сellStyle.setFillForegroundColor(color );
        
@@ -203,7 +203,7 @@ public class CellStylePOIAdapter {
     
     }
     
-    public CellStylePOIAdapter setFillPattern(FillPatternType f ){
+    public CellStylePOIHandler setFillPattern(FillPatternType f ){
         
         сellStyle.setFillPattern(f);
       
@@ -213,9 +213,9 @@ public class CellStylePOIAdapter {
     
     }
 
-    public CellStylePOIAdapter setFillForegroundColRGB(int i, int k, int j) {
+    public CellStylePOIHandler setFillForegroundColRGB(int red, int green, int blue) {
 
-       сellStyle.setFillForegroundColor(new XSSFColor(new java.awt.Color(i, k, j)));
+       сellStyle.setFillForegroundColor(new XSSFColor(new java.awt.Color(red, green, blue)));
        
         
        return this;

@@ -5,6 +5,7 @@ import basisFx.appCore.elements.TableWrapper;
 import basisFx.appCore.utils.Registry;
 import basisFx.appCore.windows.WindowBuilder;
 import javafx.scene.Node;
+import javafx.stage.Stage;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -33,6 +34,12 @@ public class SubWindowCreaterByBut extends AppEvent implements TableEvents{
         this.node= node;
         run();
     }
+
+    @Override
+    public void setEventToElement(Node node, Stage stage) {
+
+    }
+
     @Override
     public void run() {
         node.setOnMousePressed(event -> {

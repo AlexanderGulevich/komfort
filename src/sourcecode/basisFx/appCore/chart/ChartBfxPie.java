@@ -1,7 +1,7 @@
 package basisFx.appCore.chart;
 
 import basisFx.appCore.utils.Coordinate;
-import basisFx.service.ServiceChartPanels;
+import basisFx.service.ServicePanels;
 import javafx.collections.ObservableList;
 import javafx.geometry.Side;
 import javafx.scene.Cursor;
@@ -21,7 +21,7 @@ import java.util.List;
 @Builder
 public class ChartBfxPie implements ChartBfx {
 
-    @Setter private ServiceChartPanels service;
+    @Setter private ServicePanels service;
     private ChartData_PIE chartDataPIE;
     private PieChart chart ;
     @Getter private Class aClass;

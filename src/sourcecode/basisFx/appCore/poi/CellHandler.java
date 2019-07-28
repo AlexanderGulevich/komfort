@@ -26,7 +26,7 @@ public class CellHandler {
     }
     
     
-    public CellHandler setCellToHandle( Cell cell){
+    public CellHandler setCell(Cell cell){
         
         this.cell=cell;
          return this;
@@ -57,16 +57,15 @@ public class CellHandler {
          return this;
         
     }
-    public CellHandler setConcreteCellStyle(CellStylesStore.StyleKind sk) {
+    public CellHandler setCellStyle(CellStylesStore.StyleKind sk) {
         
-               cell.setCellStyle(cellStylesStore.getConcreteCellStyle(sk));      
+               cell.setCellStyle(cellStylesStore.getCellStyle(sk));
         return this;
     
     }
     
-    
     public CellHandler addMergedRegion(int startRow,int endRow,int startCell,int endCell){
-        
+
 
         spreadsheet.addMergedRegion(new CellRangeAddress(
                         startRow,        // ряд начала
@@ -74,20 +73,16 @@ public class CellHandler {
                         startCell,       // ячейка начала
                         endCell          // ячейка конца
                 ));
-    
+
         return this;
     }
     
     public CellHandler multipleSetStyle(XSSFRow row,int srartCell,int endCell,CellStylesStore.StyleKind d){
-   
-
-        for (; srartCell <=endCell; srartCell++) {
-          
-            this.setCellToHandle(row.createCell(srartCell))
-           .setConcreteCellStyle(d);
-    
+        //set for rirst cell
+        this.setCell(row.getCell(srartCell)).setCellStyle(d);
+        for (int cellIndex=srartCell+1; cellIndex <=endCell; cellIndex++) {
+            this.setCell(row.createCell(cellIndex)).setCellStyle(d);
         }
-         
         return this;
     }
     

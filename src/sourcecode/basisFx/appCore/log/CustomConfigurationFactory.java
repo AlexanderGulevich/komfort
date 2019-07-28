@@ -29,7 +29,7 @@ public class CustomConfigurationFactory extends ConfigurationFactory {
 //        AppenderComponentBuilder consoleBuilder = builder.newAppender("Stdout", "CONSOLE")
 //                .addAttribute("dynamicElements", ConsoleAppender.DynamicContentPanel.SYSTEM_ERR);
 //        consoleBuilder.addButEvent(builder.newLayout("PatternLayout")
-//                .addAttribute("pattern", "%ServiceChartPanelRightControls [%t] %-5level: %msg%n%throwable"));
+//                .addAttribute("pattern", "%ServicePanelRightControls [%t] %-5level: %msg%n%throwable"));
 //        consoleBuilder.addButEvent(builder.newFilter("MarkerFilter", Filter.Result.DENY,Filter.Result.NEUTRAL)
 //                .addAttribute("marker", "FLOW"));
 //        builder.addButEvent(consoleBuilder);
@@ -42,7 +42,7 @@ public class CustomConfigurationFactory extends ConfigurationFactory {
 
 // configure a rolling file appender
         LayoutComponentBuilder layoutBuilder = builder.newLayout("PatternLayout")
-                .addAttribute("pattern", "%ServiceChartPanelRightControls [%t] %-5level: %msg%n");
+                .addAttribute("pattern", "%ServicePanelRightControls [%t] %-5level: %msg%n");
 
         ComponentBuilder triggeringPolicy = builder.newComponent("Policies")
                 .addComponent(builder.newComponent("CronTriggeringPolicy").addAttribute("schedule", "0 0 0 * * ?"))
@@ -50,7 +50,7 @@ public class CustomConfigurationFactory extends ConfigurationFactory {
 
         AppenderComponentBuilder appenderBuilder = builder.newAppender("rolling", "RollingFile")
                 .addAttribute("fileName", "log/log.log")
-                .addAttribute("filePattern", "log/log-%ServiceChartPanelRightControls{MM-dd-yy}.log.gz")
+                .addAttribute("filePattern", "log/log-%ServicePanelRightControls{MM-dd-yy}.log.gz")
                 .add(layoutBuilder)
                 .addComponent(triggeringPolicy);
         builder.add(appenderBuilder);

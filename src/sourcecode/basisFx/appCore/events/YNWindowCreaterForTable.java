@@ -5,6 +5,7 @@ import basisFx.appCore.elements.TableWrapper;
 import basisFx.appCore.windows.WindowFabric;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.stage.Stage;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -33,6 +34,12 @@ public class YNWindowCreaterForTable extends AppEvent implements TableEvents{
             run();
         });
     }
+
+    @Override
+    public void setEventToElement(Node node, Stage stage) {
+
+    }
+
     @Override
     public void run() {
         ((TableEvents) event).setTableWrapper(tableWrapper);
