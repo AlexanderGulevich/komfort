@@ -63,8 +63,11 @@ public class UnitOfWork {
             cleardDeleted();
             clearDirty();
             clearNew();
+            System.out.println("UnitOfWork commit");
+
             return  true;
         }
+        System.out.println("UnitOfWork none commit");
         return false;
 
     }

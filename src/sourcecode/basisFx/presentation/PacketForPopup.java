@@ -38,7 +38,7 @@ public class PacketForPopup extends DynamicContentPanel {
                 .setParentAnchorNameForFXML(WindowAbstraction.DefaultPanelsNames.topVisibleAnchor.name())
                 .setWidth(700d)
                 .setHeight(600d)
-                .setCallBack(
+                .setPreClosingCallBack(
                         () -> {
                             TableWrapper tableWrapper =(TableWrapper)   Registry.mainWindow.getNodeFromMap("outer_table_wrapper");
                             tableWrapper.getMediator().refresh(tableWrapper);
@@ -54,7 +54,7 @@ public class PacketForPopup extends DynamicContentPanel {
                 .setParentAnchorNameForFXML(WindowAbstraction.DefaultPanelsNames.topVisibleAnchor.name())
                 .setWidth(700d)
                 .setHeight(600d)
-                .setCallBack(
+                .setPreClosingCallBack(
                         () -> {
                             TableWrapper tableWrapper = (TableWrapper) Registry.mainWindow.getNodeFromMap("outer_table_wrapper");
                             tableWrapper.getMediator().refresh(tableWrapper);

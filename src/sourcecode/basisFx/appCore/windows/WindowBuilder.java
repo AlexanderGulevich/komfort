@@ -30,7 +30,7 @@ public class WindowBuilder {
         parentAnchorNameForFXML = builder.parentAnchorNameForFXML;
         buttonsForStage = builder.buttonsForStage;
         message = builder.message;
-        callBack = builder.callBack;
+        callBack = builder.preClosingCallBack;
         callBackParametrized = builder.callBackParametrized;
     }
 
@@ -49,7 +49,7 @@ public class WindowBuilder {
         private String parentAnchorNameForFXML;
         private ButtonsForStage buttonsForStage;
         private String message;
-        private CallBack callBack;
+        private CallBack preClosingCallBack;
         private CallBackParametrized callBackParametrized;
 
         private Builder() {

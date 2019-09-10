@@ -14,7 +14,7 @@
       -fx-padding:0;
 
       -fx-font-family: "Roboto Light";
-      -fx-font-size: 25;
+      /* -fx-font-size: 25; */
 
 }
 
@@ -52,7 +52,7 @@
       -fx-padding:0;
 
       -fx-font-family: "Roboto Light";
-      -fx-font-size: 25;
+      /* -fx-font-size: 25; */
 
 
       -fx-border-width:  0.2   ;

@@ -1,5 +1,6 @@
 package basisFx.appCore.panelSets;
 
+import basisFx.appCore.activeRecord.ActiveRecord;
 import basisFx.appCore.elements.GridPaneWrapper;
 import basisFx.appCore.elements.LabelWrapper;
 import basisFx.appCore.elements.RangeDirector;
@@ -11,22 +12,28 @@ import basisFx.appCore.interfaces.DataStoreCallBack;
 import basisFx.appCore.settings.CSSclasses;
 import basisFx.appCore.settings.FontsStore;
 import basisFx.appCore.table.ColWrapper;
+import basisFx.appCore.table.ColWrapperPopupViaBtnButYN;
+import basisFx.appCore.table.ColumnFabric;
 import basisFx.appCore.utils.Coordinate;
 import basisFx.appCore.utils.Range;
 import basisFx.appCore.utils.Registry;
 import basisFx.appCore.windows.WindowAbstraction;
 import basisFx.dataSource.UnitOfWork;
 import basisFx.service.ServiceTablesSingle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.geometry.Pos;
 import javafx.scene.control.ComboBox;
 import javafx.scene.layout.AnchorPane;
 import lombok.Builder;
+import lombok.Getter;
 import lombok.Singular;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Builder
 public class SingleTableSet implements PanelSets {
-    @Builder.Default private ServiceTablesSingle mediatorSingleTable=new ServiceTablesSingle();
+    @Builder.Default @Getter private ServiceTablesSingle mediatorSingleTable=new ServiceTablesSingle();
     @Builder.Default private UnitOfWork unitOfWork=new UnitOfWork();
     private TableWrapper tableWrapper;
     @Builder.Default private CtrlPosFactory posFactory=CtrlPosFactory.getInstance();
@@ -36,15 +43,17 @@ public class SingleTableSet implements PanelSets {
     private TableEvents delButEvent;
     private TableEvents addButEvent;
     private WindowAbstraction currentWindow;
-    //не реализован в медиаторе
-    private DataStoreCallBack callBackForColumn;
+    @Singular ("checkingCallBack")
+    private List<DataStoreCallBack> checkingCallBack ;
     private boolean isEditable;
     private boolean isSortable;
     private String cssClass;
     @Singular("column")  private List<ColWrapper> column;
+    @Singular("colWrapperPopupViaBtnButYN")  private List<ColWrapperPopupViaBtnButYN.Builder> colWrapperPopupViaBtnButYN;
     private String bigTitle;
     private String littleTitle;
     private Class aClass;
+    @Singular("cssClassesStringsList") List<String> cssClassesStringsList;
     private AnchorPane parentAnchor;
     private ButSizeEnum butSizeEnum;
     private CtrlPosEnum ctrlPosEnum;
@@ -78,6 +87,7 @@ public class SingleTableSet implements PanelSets {
 
     private void initService() {
         mediatorSingleTable.setTableWrapper(tableWrapper);
+        mediatorSingleTable.setDataStoreCallBack(checkingCallBack);
         mediatorSingleTable.initElements();
     }
 
@@ -104,14 +114,17 @@ public class SingleTableSet implements PanelSets {
     }
 
     private void createTable() {
+
         tableWrapper = TableWrapper.newBuilder()
                 .setActiveRecordClass(aClass)
                 .setUnitOfWork(unitOfWork)
                 .setIsEditable(isEditable)
                 .setCssClass(cssClass)
+                .setCssClassesStrings(cssClassesStringsList)
                 .setIsSortableColums(isSortable)
                 .setServiceTables(mediatorSingleTable)
                 .setColWrappers(column)
+                .setColWrapperPopupViaBtnButYN(colWrapperPopupViaBtnButYN)
                 .build();
     }
 
@@ -138,6 +151,15 @@ public class SingleTableSet implements PanelSets {
             ((CtrlPosButAndCombobox) ctrlPosition).setComboBox(rangeDirector.getComboBox());
             mediatorSingleTable.setRangeDirector(rangeDirector);
         }
-        ;
+}
+    public  void setItems(ObservableList<ActiveRecord> list ) {
+        mediatorSingleTable.setItems(list);
     }
+
+    public  void setItems(List<ActiveRecord> recordList ) {
+        ObservableList<ActiveRecord> activeRecords = FXCollections.<ActiveRecord>observableArrayList();
+        activeRecords.setAll(recordList);
+        mediatorSingleTable.setItems(activeRecords);
+    }
+
 }

@@ -99,6 +99,11 @@ public class ServiceTablesAutoCommitByDate extends ServiceTables {
 
     }
 
+    @Override
+    public TableWrapper getTableWrapper() {
+        return tableWrapper;
+    }
+
     public void setTableWrapper(TableWrapper tableWrapper) {
         this.tableWrapper = tableWrapper;
     }

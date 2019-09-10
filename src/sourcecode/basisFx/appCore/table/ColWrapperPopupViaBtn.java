@@ -1,6 +1,7 @@
 package basisFx.appCore.table;
 
 import basisFx.appCore.events.SubWindowCreaterByBut;
+import basisFx.appCore.interfaces.DataStoreCallBack;
 import basisFx.appCore.settings.CSSclasses;
 import basisFx.appCore.windows.WindowBuilder;
 import basisFx.appCore.activeRecord.ActiveRecord;
@@ -9,18 +10,24 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
+import lombok.Setter;
+import lombok.Singular;
+
+import java.util.List;
 
 public class ColWrapperPopupViaBtn extends ColWrapper {
 
     protected TableColumn<ActiveRecord, ActiveRecord> column;
     protected  String btnName;
     protected  WindowBuilder windowBuilder;
+    private  DataStoreCallBack  checkingCallBack ;
 
 
     private ColWrapperPopupViaBtn(Builder builder) {
         columnName = builder.columnName;
         columnSize = builder.columnSize;
         btnName = builder.btnName;
+        checkingCallBack=builder.checkingCallBack;
         windowBuilder = builder.windowBuilder;
         column =  new TableColumn <>(columnName);
         column.getStyleClass().add(CSSclasses.column_with_button_BFx.get());
@@ -63,16 +70,31 @@ public class ColWrapperPopupViaBtn extends ColWrapper {
                 setGraphic(null);
             } else {
                 tableRow = getTableRow();
-                setGraphic(btn);
+                 setGraphic(btn);
             }
         }
 
         private void createButton() {
-            btn = new Button(btnName);
-            btn.getStyleClass().add(CSSclasses.table_column_buttons_BFx.get());
-            subWindowCreaterByBut.setWindowBuilder(windowBuilder);
-            subWindowCreaterByBut.setEventToElement(btn);
-            subWindowCreaterByBut.setMediator(this);
+
+            if (checkingCallBack != null) {
+                if (checkingCallBack.check(getItem())) {
+                    btn = new Button(btnName);
+                }else {
+                    btn = new Button("---");
+                }
+            }else {
+                btn = new Button(btnName);
+            }
+
+            if (btn != null) {
+
+                btn.getStyleClass().add(CSSclasses.table_column_buttons_BFx.get());
+                subWindowCreaterByBut.setWindowBuilder(windowBuilder);
+                subWindowCreaterByBut.setEventToElement(btn);
+                subWindowCreaterByBut.setMediator(this);
+            }
+
+
         }
 
         @Override
@@ -89,12 +111,18 @@ public class ColWrapperPopupViaBtn extends ColWrapper {
         private Double columnSize;
         private String btnName;
         protected  WindowBuilder windowBuilder;
+        private  DataStoreCallBack  checkingCallBack ;
 
         private Builder() {
         }
 
+
         public Builder setWindowBuilder(WindowBuilder windowBuilder) {
             this.windowBuilder = windowBuilder;
+            return this;
+        }
+        public Builder setDataStoreCallBack(DataStoreCallBack checkingCallBack) {
+            this.checkingCallBack = checkingCallBack;
             return this;
         }
 

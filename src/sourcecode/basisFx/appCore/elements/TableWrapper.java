@@ -3,6 +3,7 @@ package basisFx.appCore.elements;
 import basisFx.appCore.grid.GridOrganization;
 import basisFx.appCore.settings.CSSclasses;
 import basisFx.appCore.table.ColWrapper;
+import basisFx.appCore.table.ColWrapperPopupViaBtnButYN;
 import basisFx.appCore.utils.Coordinate;
 import basisFx.appCore.windows.WindowAbstraction;
 import basisFx.appCore.DynamicContentPanel;
@@ -30,6 +31,7 @@ import javafx.stage.Stage;
 import javafx.util.Callback;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.Singular;
 
 public  class TableWrapper extends AppNode  {
     private boolean isEditable;
@@ -55,6 +57,7 @@ public  class TableWrapper extends AppNode  {
     private String gridName;
     private String className;
     private List<ColWrapper>   colWrapper;
+    private List<ColWrapperPopupViaBtnButYN.Builder> colWrapperPopupViaBtnButYN;
 
     private TableWrapper(Builder builder) {
 
@@ -87,12 +90,14 @@ public  class TableWrapper extends AppNode  {
         coordinate=builder.coordinate;
         windowAbstraction=builder.windowAbstraction;
         colWrapper=builder.colWrapper;
+        colWrapperPopupViaBtnButYN=builder.colWrapperPopupViaBtnButYN;
         cssClass=builder.cssClass;
         setElementToWindowRegistry();
         createActiveRecord(builder);
         element =new TableView<>();
 
         cssClassesStrings=builder.cssClassesStrings;
+        cssClassesStringsList=builder.cssClassesStringsList;
         cssClasses=builder.cssClasses;
 
         element.getStyleClass().add(CSSclasses.TABLE_BFx.get());
@@ -202,6 +207,17 @@ public  class TableWrapper extends AppNode  {
                 element.getColumns().add(cw.getColumn());
                 applyColumsSize(cw);
                 cw.tableWrapper=this;
+            }
+        }
+        if (colWrapperPopupViaBtnButYN != null) {
+            for (ColWrapperPopupViaBtnButYN.Builder builder : colWrapperPopupViaBtnButYN) {
+
+                builder.setTableWrapper(this);
+                ColWrapperPopupViaBtnButYN colWrapperPopupViaBtnButYN1 = builder.build();
+
+                element.getColumns().add(colWrapperPopupViaBtnButYN1.getColumn());
+                applyColumsSize(colWrapperPopupViaBtnButYN1);
+                colWrapperPopupViaBtnButYN1.tableWrapper=this;
             }
         }
     }
@@ -345,6 +361,7 @@ public  class TableWrapper extends AppNode  {
         private ServiceTables serviceTables;
         private ColWrapper[] colWrappers;
         private List<ColWrapper> colWrapper;
+        private List<ColWrapperPopupViaBtnButYN.Builder> colWrapperPopupViaBtnButYN;
         private UnitOfWork unitOfWork;
         private ActiveRecord clickedDomain;
         private boolean gridLinesVisibility=false;
@@ -353,7 +370,18 @@ public  class TableWrapper extends AppNode  {
         private String className;
         protected CSSclasses[] cssClasses;
         protected String[] cssClassesStrings;
+        protected List<String> cssClassesStringsList;
         private String cssClass;
+
+
+        public List<ColWrapperPopupViaBtnButYN.Builder> getColWrapperPopupViaBtnButYN() {
+            return colWrapperPopupViaBtnButYN;
+        }
+
+        public Builder setColWrapperPopupViaBtnButYN(List<ColWrapperPopupViaBtnButYN.Builder> colWrapperPopupViaBtnButYN) {
+            this.colWrapperPopupViaBtnButYN = colWrapperPopupViaBtnButYN;
+            return this;
+        }
 
         public Builder setCoordinate(Coordinate coordinate) {
             this.coordinate = coordinate;
@@ -372,6 +400,10 @@ public  class TableWrapper extends AppNode  {
 
         public Builder setCssClassesStrings(String... cssClassesStrings) {
             this.cssClassesStrings = cssClassesStrings;
+            return this;
+        }
+        public Builder setCssClassesStrings(List<String> cssClassesStringsList) {
+            this.cssClassesStringsList = cssClassesStringsList;
             return this;
         }
 

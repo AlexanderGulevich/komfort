@@ -2,6 +2,7 @@ package basisFx.appCore.table;
 
 import basisFx.appCore.activeRecord.ActiveRecord;
 import basisFx.appCore.interfaces.CallBackTypedAndParametrized;
+import basisFx.appCore.interfaces.DataStoreCallBack;
 import basisFx.appCore.windows.WindowBuilder;
 import basisFx.domain.Label;
 
@@ -54,6 +55,28 @@ public interface ColumnFabric {
                .setColumnSize(size)
                .setWindowBuilder(windowBuilder)
                .build();
+    }
+    static  ColWrapperPopupViaBtnButYN.Builder popupViaBtnColButYNBuilder(String name, String butNameY, String butNameN, double size, WindowBuilder windowBuilder, DataStoreCallBack callBack){
+        ColWrapperPopupViaBtnButYN.Builder builder = ColWrapperPopupViaBtnButYN.newBuilder()
+                .setBtnNameY(butNameY)
+                .setBtnNameN(butNameN)
+                .setColumnName(name)
+                .setDataStoreCallBack(callBack)
+                .setColumnSize(size)
+                .setWindowBuilder(windowBuilder);
+
+        return builder;
+    }
+    static   ColWrapper popupViaBtnColButYN(String name, String butNameY, String butNameN, double size, WindowBuilder windowBuilder, DataStoreCallBack callBack){
+        return ColWrapperPopupViaBtnButYN.newBuilder()
+                .setBtnNameY(butNameY)
+                .setBtnNameN(butNameN)
+                .setColumnName(name)
+                .setDataStoreCallBack(callBack)
+                .setColumnSize(size)
+                .setWindowBuilder(windowBuilder)
+                .build();
+
     }
     static  ColWrapper popup(String name,String property, double size, WindowBuilder windowBuilder){
        return   ColWrapperPopup.newBuilder()

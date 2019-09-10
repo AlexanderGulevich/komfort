@@ -83,6 +83,9 @@ public class Reflection {
             DataStore dataStore = declaredField.getAnnotation(DataStore.class);
             if (dataStore != null) {
                 if (dataStore.AS_OUTER_ID())  continue;
+                SimpleObjectProperty property= ReflectionInspectDomain.getPropertyFromClass(declaredField,activeRecord);
+                Object obj = property.get();
+                if (dataStore.NOT_CHECK_FOR_TRANSACTIONS() && obj==null)  continue;
             }
 
             SimpleObjectProperty property= ReflectionInspectDomain.getPropertyFromClass(declaredField,activeRecord);

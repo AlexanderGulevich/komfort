@@ -1,6 +1,8 @@
 package basisFx.domain.price;
 
-import basisFx.appCore.poi.PriceCategory;
+import basisFx.appCore.activeRecord.ActiveRecord;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -12,6 +14,10 @@ public class Price  {
 
     @Getter @Setter
     private ArrayList<PriceCategory> categoriesArrayList=new ArrayList<>();
+    @Getter @Setter
+    private ArrayList<PriceCategory> newCategoriesArrayListToCustomeOutput=new ArrayList<>();
+    @Getter
+    private ObservableList<ActiveRecord> allRecords= FXCollections.observableArrayList();
 
     @Getter @Setter
     private Date priceDate=null;
@@ -19,16 +25,27 @@ public class Price  {
     private Double totalSumma=null;
     @Getter @Setter
     private String priceDateString=null;
+    @Getter @Setter
+    private boolean filledItems=false;
 
+    public  static   ObservableList<ActiveRecord>  allFromDB;
 
-    public void createCategory(String name,  ArrayList<TNPProduct> categoryFilds){
+    public Price() {
+        this.allFromDB = null;
+    }
+
+    public void createCategory(String name, ArrayList<PriceItem> priceItems){
 
         PriceCategory category=new PriceCategory();
-        category.setFilds(categoryFilds);
+        category.setFilds(priceItems);
         category.setName(name);
         categoriesArrayList.add(category);
+        allRecords.addAll(priceItems);
 
     }
+
+
+
 
 
 

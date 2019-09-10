@@ -3,49 +3,62 @@ package basisFx;
 import basisFx.appCore.menu.MenuFabric;
 import basisFx.appCore.settings.Settings;
 import basisFx.appCore.settings.StylesPathes;
-import basisFx.appCore.utils.CSSHandler;
-import basisFx.appCore.utils.FontHandler;
-import basisFx.appCore.utils.IconToPlatform;
-import basisFx.appCore.utils.Registry;
-import basisFx.appCore.windows.ButtonsForStageThreeEntity;
+import basisFx.appCore.utils.*;
 import basisFx.appCore.windows.WindowAbstraction;
 import basisFx.appCore.windows.WindowBuilder;
-import basisFx.appCore.guiStructura.LeftAndTopMenuGUI;
 import basisFx.appCore.windows.WindowFabric;
 import basisFx.dataSource.DbFactory;
 import javafx.stage.Stage;
+//import org.scenicview.ScenicView;
 
-import java.sql.SQLException;
+
 
 public class App{
 
-    public App(Stage primaryStage) throws ClassNotFoundException, SQLException {
+    public App(Stage primaryStage)  {
 
         IconToPlatform.init(primaryStage);
         CSSHandler.init(StylesPathes.CUSTOM_1);
         WindowFabric.WindowUndecorated();
-        DbFactory.createDbServer();
         FontHandler.getInstanse().loadFontToScene();
 
 
+//        PropertiesUtils.setProperty("db_path","C:/komfdb/");
+//        PropertiesUtils.setProperty("db_name","komdb");
+
+        PropertiesUtils.run();
+        PropertiesUtils.setProperty("db_name","price_db_OMTS");
+        PropertiesUtils.setProperty("db_folder","OMTS");
+        DbFactory.createDbServer(new DbSchemaPrice());
+
         Registry.windowFabric.mainWindow(primaryStage,
                 WindowBuilder.newBuilder()
-                        .setButtonsForStage(new ButtonsForStageThreeEntity(LeftAndTopMenuGUI.Structura.titleAnchor.name()))
-                        .setFxmlFileName("Main_v1")
+//                        .setButtonsForStage(new ButtonsForStageThreeEntity(LeftAndTopMenuGUI.Structura.titleAnchor.name()))
+                        .setFxmlFileName("Main_v2")
                         .setParentAnchorNameForFXML(WindowAbstraction.DefaultPanelsNames.topVisibleAnchor.name())
-                        .setWidth(Settings.WIDTH)
+                        .setWidth(1250d)
                         .setHeight(Settings.HEIGHT)
                         .setPanelCreator(null)
                         .setTitle(Settings.TITLE)
                         .setMessage(null)
                         .build()
-        );
+                );
 
-        MenuFabric.menuLeftAndTop( new MainMenuSketch());
+
+
+
+
+
+
+
+        MenuFabric.menuLeft( new MainMenuSketchKomfort());
 
 //        ScenicView.show(Registry.mainWindow.getScene());
 
+
+
     }
+
 
 }
 

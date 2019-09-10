@@ -1,10 +1,9 @@
 package basisFx.appCore.poi;
 
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.hssf.util.HSSFColor;
-import org.apache.poi.ss.usermodel.BorderStyle;
-import org.apache.poi.ss.usermodel.CellStyle;
-import org.apache.poi.ss.usermodel.FillPatternType;
-import org.apache.poi.ss.usermodel.IndexedColors;
+import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFColor;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -13,9 +12,10 @@ import java.util.HashMap;
 
 public class Styles {
 
-    public static void create(HashMap<CellStylesStore.StyleKind, CellStyle> cellStyles, XSSFWorkbook workbook, XSSFSheet spreadsheet){
+    public static void create(HashMap<CellStylesStore.StyleKind, CellStyle> cellStyles, Workbook workbook,  Sheet spreadsheet){
+
         cellStyles.put(CellStylesStore.StyleKind.TITLE_16_BOLD_vCENTR_text,
-                new CellStylePOIHandler(workbook, spreadsheet)
+                StyleHandlerFabric.createStyleHandler(workbook, spreadsheet)
                         .setFontHeight(18)
                         .setFontName("Calibri")
                         .setVerticalAlignmentCENTER()
@@ -24,7 +24,7 @@ public class Styles {
         );
 
         cellStyles.put(CellStylesStore.StyleKind.TITLE_14_BOLD_GREY80_vCENTR_text,
-                new CellStylePOIHandler(workbook, spreadsheet)
+                StyleHandlerFabric.createStyleHandler(workbook, spreadsheet)
                         .setFontHeight(14)
                         .setFontColor( HSSFColor.HSSFColorPredefined.GREY_80_PERCENT.getIndex())
                         .setVerticalAlignmentCENTER()
@@ -35,7 +35,8 @@ public class Styles {
         );
 
         cellStyles.put(CellStylesStore.StyleKind.TITLE_11_BOLD_GREY80_vCENTR_text,
-                new CellStylePOIHandler(workbook, spreadsheet)
+                
+                StyleHandlerFabric.createStyleHandler(workbook, spreadsheet)
                         .setFontHeight(11)
                         .setFontName("Calibri")
                         .setFontColor( HSSFColor.HSSFColorPredefined.GREY_80_PERCENT.getIndex())
@@ -45,13 +46,15 @@ public class Styles {
         );
 
         cellStyles.put(CellStylesStore.StyleKind.WRAPTEXT,
-                new CellStylePOIHandler(workbook, spreadsheet)
+                
+                StyleHandlerFabric.createStyleHandler(workbook, spreadsheet)
                         .setWrapText()
                         .getСellStyle()
         );
 
         cellStyles.put(CellStylesStore.StyleKind.Standart12,
-                new CellStylePOIHandler(workbook, spreadsheet)
+                
+                StyleHandlerFabric.createStyleHandler(workbook, spreadsheet)
                         .setFontHeight(12)
                         .setVerticalAlignmentCENTER()
                         .setFontName("Calibri")
@@ -59,7 +62,8 @@ public class Styles {
         );
 
         cellStyles.put(CellStylesStore.StyleKind.Standart11,
-                new CellStylePOIHandler(workbook, spreadsheet)
+                
+                StyleHandlerFabric.createStyleHandler(workbook, spreadsheet)
                         .setFontHeight(11)
                         .setVerticalAlignmentCENTER()
                         .setFontName("Calibri")
@@ -69,7 +73,8 @@ public class Styles {
 
 
         cellStyles.put(CellStylesStore.StyleKind.PRICE_DATE,
-                new CellStylePOIHandler(workbook, spreadsheet)
+                
+                StyleHandlerFabric.createStyleHandler(workbook, spreadsheet)
                         .setFontHeight(14)
                         .setFontName("Calibri")
                         .getСellStyle()
@@ -78,7 +83,8 @@ public class Styles {
 
 
         cellStyles.put(CellStylesStore.StyleKind.Huge22BoldGrey50Text,
-                new CellStylePOIHandler(workbook, spreadsheet)
+                
+                StyleHandlerFabric.createStyleHandler(workbook, spreadsheet)
                         .setFontHeight(22)
                         .setFontColor(IndexedColors.GREY_50_PERCENT.index)
                         .setFontName("Calibri")
@@ -88,7 +94,8 @@ public class Styles {
         );
 
         cellStyles.put(CellStylesStore.StyleKind.TABLEHEAD,
-                new CellStylePOIHandler(workbook, spreadsheet)
+                
+                StyleHandlerFabric.createStyleHandler(workbook, spreadsheet)
                         .setFontHeight(11)
                         .setFontColor( HSSFColor.HSSFColorPredefined.GREY_80_PERCENT.getIndex())
                         .setFontBold()
@@ -104,7 +111,8 @@ public class Styles {
                         .getСellStyle()
         );
         cellStyles.put(CellStylesStore.StyleKind.ORANGE_FILLED_CELL_Little_9_Blue_TEXT,
-                new CellStylePOIHandler(workbook, spreadsheet)
+                
+                StyleHandlerFabric.createStyleHandler(workbook, spreadsheet)
                         .setFontHeight(9)
                         .setFontColorRGB(31,78,120)
                         .setFillForegroundColRGB(255,242,204)
@@ -122,7 +130,8 @@ public class Styles {
                         .getСellStyle()
         );
         cellStyles.put(CellStylesStore.StyleKind.ORANGE_FILLED_CELL_HUGE_16_WHITE_TEXT,
-                new CellStylePOIHandler(workbook, spreadsheet)
+                
+                StyleHandlerFabric.createStyleHandler(workbook, spreadsheet)
                         .setFontHeight(16)
                         .setFontColor(HSSFColor.HSSFColorPredefined.WHITE.getIndex())
                         .setFillForegroundColRGB(244,176,132)
@@ -141,7 +150,8 @@ public class Styles {
         );
 
         cellStyles.put(CellStylesStore.StyleKind.TABLEHEAD_18_Bold_80Grey,
-                new CellStylePOIHandler(workbook, spreadsheet)
+                
+                StyleHandlerFabric.createStyleHandler(workbook, spreadsheet)
                         .setFontHeight(18)
                         .setFontColor( HSSFColor.HSSFColorPredefined.GREY_80_PERCENT.getIndex())
                         .setFontBold()
@@ -157,9 +167,10 @@ public class Styles {
         );
 
         cellStyles.put(CellStylesStore.StyleKind.TABLECATEGORY,
-                new CellStylePOIHandler(workbook, spreadsheet)
+                
+                StyleHandlerFabric.createStyleHandler(workbook, spreadsheet)
                         .setFontHeight(10)
-                        .setFontColor(HSSFColor.BLACK.index)
+                        .setFontColor(HSSFColor.HSSFColorPredefined.BLACK.getIndex())
                         .setFontBold()
                         .setFillForegroundCol(IndexedColors.YELLOW.index)
                         .setFillPattern(FillPatternType.SOLID_FOREGROUND)
@@ -174,7 +185,8 @@ public class Styles {
         );
 
         cellStyles.put(CellStylesStore.StyleKind.PERMANENTDATASTRING,
-                new CellStylePOIHandler(workbook, spreadsheet)
+                
+                StyleHandlerFabric.createStyleHandler(workbook, spreadsheet)
                         .setFontHeight(10)
                         .setFontColor(HSSFColor.HSSFColorPredefined.BLACK.getIndex())
                         .setBorder(BorderStyle.THIN,
@@ -185,7 +197,8 @@ public class Styles {
                         .getСellStyle()
         );
         cellStyles.put(CellStylesStore.StyleKind.ORANGE_FILLED_CELL_10_Brown_TEXT,
-                new CellStylePOIHandler(workbook, spreadsheet)
+                
+                StyleHandlerFabric.createStyleHandler(workbook, spreadsheet)
                         .setFontHeight(10)
                         .setFontColorRGB(131,60,12)
                         .setFillForegroundColRGB(255,242,204)
@@ -197,8 +210,23 @@ public class Styles {
                                 IndexedColors.BLACK.index)
                         .getСellStyle()
         );
+        cellStyles.put(CellStylesStore.StyleKind.ORANGE_FILLED_CELL_9_Brown_TEXT,
+
+                StyleHandlerFabric.createStyleHandler(workbook, spreadsheet)
+                        .setFontHeight(9)
+                        .setFontColorRGB(131,60,12)
+                        .setFillForegroundColRGB(255,242,204)
+                        .setFillPattern(FillPatternType.SOLID_FOREGROUND)
+                        .setBorder(BorderStyle.THIN,
+                                BorderStyle.THIN,
+                                BorderStyle.THIN,
+                                BorderStyle.THIN,
+                                IndexedColors.BLACK.index)
+                        .getСellStyle()
+        );
         cellStyles.put(CellStylesStore.StyleKind.NOT_FILLED_CELL_10_BLUE_TEXT,
-                new CellStylePOIHandler(workbook, spreadsheet)
+                
+                StyleHandlerFabric.createStyleHandler(workbook, spreadsheet)
                         .setFontHeight(10)
                         .setFontColorRGB(31,78,120)
                         .setBorder(BorderStyle.THIN,
@@ -208,8 +236,21 @@ public class Styles {
                                 IndexedColors.BLACK.index)
                         .getСellStyle()
         );
+        cellStyles.put(CellStylesStore.StyleKind.NOT_FILLED_CELL_9_BLUE_TEXT,
+
+                StyleHandlerFabric.createStyleHandler(workbook, spreadsheet)
+                        .setFontHeight(9)
+                        .setFontColorRGB(31,78,120)
+                        .setBorder(BorderStyle.THIN,
+                                BorderStyle.THIN,
+                                BorderStyle.THIN,
+                                BorderStyle.THIN,
+                                IndexedColors.BLACK.index)
+                        .getСellStyle()
+        );
         cellStyles.put(CellStylesStore.StyleKind.CELL_BORDERED_STRING_10_CENTER,
-                new CellStylePOIHandler(workbook, spreadsheet)
+                
+                StyleHandlerFabric.createStyleHandler(workbook, spreadsheet)
                         .setFontHeight(10)
                         .setHorizontalAlignmentCENTER()
                         .setVerticalAlignmentCENTER()
@@ -223,10 +264,11 @@ public class Styles {
         );
 
         cellStyles.put(CellStylesStore.StyleKind.PERMANENTDANUMERIC_NotNegative,
-                new CellStylePOIHandler(workbook, spreadsheet)
+                
+                StyleHandlerFabric.createStyleHandler(workbook, spreadsheet)
 //                    .setCellType(CellType.NUMERIC)
                         .setFontHeight(10)
-                        .setFontColor(HSSFColor.BLACK.index)
+                        .setFontColor(HSSFColor.HSSFColorPredefined.BLACK.getIndex())
                         .setDataFormatForNumericNotNegative()
                         .setBorder(BorderStyle.THIN,
                                 BorderStyle.THIN,
@@ -237,10 +279,11 @@ public class Styles {
         );
 
         cellStyles.put(CellStylesStore.StyleKind.PERMANENTDANUMERIC_withNehative,
-                new CellStylePOIHandler(workbook, spreadsheet)
+                
+                StyleHandlerFabric.createStyleHandler(workbook, spreadsheet)
 //                    .setCellType(CellType.NUMERIC)
                         .setFontHeight(10)
-                        .setFontColor(HSSFColor.BLACK.index)
+                        .setFontColor(HSSFColor.HSSFColorPredefined.BLACK.getIndex())
                         .setDataFormatForNumericWithNegative()
                         .setBorder(BorderStyle.THIN,
                                 BorderStyle.THIN,
@@ -252,10 +295,11 @@ public class Styles {
 
 
         cellStyles.put(CellStylesStore.StyleKind.TITLE_REPORT_TNP,
-                new CellStylePOIHandler(workbook, spreadsheet)
+                
+                StyleHandlerFabric.createStyleHandler(workbook, spreadsheet)
                         .setFontHeight(25)
                         .setFontName("Calibri")
-                        .setFontColor(HSSFColor.WHITE.index)
+                        .setFontColor(HSSFColor.HSSFColorPredefined.WHITE.getIndex())
                         .setFontBold()
                         .setHorizontalAlignmentCENTER()
                         .setVerticalAlignmentCENTER()
@@ -271,11 +315,12 @@ public class Styles {
         );
 
         cellStyles.put(CellStylesStore.StyleKind.DATE_REPORT_TNP,
-                new CellStylePOIHandler(workbook, spreadsheet)
+                
+                StyleHandlerFabric.createStyleHandler(workbook, spreadsheet)
                         .setFontHeight(14)
                         .setFontName("Calibri")
                         .setFontBold()
-                        .setFontColor(HSSFColor.ORANGE.index)
+                        .setFontColor(HSSFColor.HSSFColorPredefined.ORANGE.getIndex())
                         .setFillForegroundColRGB(255,222,173)
                         .setFillPattern(FillPatternType.SOLID_FOREGROUND)
                         .setBorder(BorderStyle.THIN,
@@ -287,7 +332,8 @@ public class Styles {
         );
 
         cellStyles.put(CellStylesStore.StyleKind.REPORT_TNP_TABLE_HEAD,
-                new CellStylePOIHandler(workbook, spreadsheet)
+                
+                StyleHandlerFabric.createStyleHandler(workbook, spreadsheet)
                         .setFontHeight(12)
                         .setFontName("Calibri")
                         .setFontBold()
@@ -305,12 +351,13 @@ public class Styles {
         );
 
         cellStyles.put(CellStylesStore.StyleKind.REPORT_TNP_TABLE_LEFT,
-                new CellStylePOIHandler(workbook, spreadsheet)
+                
+                StyleHandlerFabric.createStyleHandler(workbook, spreadsheet)
                         .setFontHeight(14)
                         .setFontName("Calibri")
                         .setFontBold()
                         .setWrapText()
-                        .setFontColor(HSSFColor.TEAL.index)
+                        .setFontColor(HSSFColor.HSSFColorPredefined.TEAL.getIndex())
                         .setFillForegroundColRGB(255,222,173)
                         .setFillPattern(FillPatternType.SOLID_FOREGROUND)
                         .setBorder(BorderStyle.THIN,
@@ -322,7 +369,8 @@ public class Styles {
         );
 
         cellStyles.put(CellStylesStore.StyleKind.LEVE1_CATEGORY,
-                new CellStylePOIHandler(workbook, spreadsheet)
+                
+                StyleHandlerFabric.createStyleHandler(workbook, spreadsheet)
                         .setFontHeight(28)
                         .setFontName("Calibri")
                         .setFontBold()
@@ -339,7 +387,8 @@ public class Styles {
         );
 
         cellStyles.put(CellStylesStore.StyleKind.LEVE2_CATEGORY,
-                new CellStylePOIHandler(workbook, spreadsheet)
+                
+                StyleHandlerFabric.createStyleHandler(workbook, spreadsheet)
                         .setFontHeight(18)
                         .setFontName("Calibri")
                         .setFontBold()
@@ -355,7 +404,8 @@ public class Styles {
 
         );
         cellStyles.put(CellStylesStore.StyleKind.PRODUCT_BLOCK__REPORT_TNP_VALUE,
-                new CellStylePOIHandler(workbook, spreadsheet)
+                
+                StyleHandlerFabric.createStyleHandler(workbook, spreadsheet)
                         .setFontHeight(11)
                         .setFontName("Calibri")
                         .setFontColorRGB(0, 128, 128)
@@ -369,7 +419,8 @@ public class Styles {
         );
 
         cellStyles.put(CellStylesStore.StyleKind.REPORT_TNP_DETALE_HEADER,
-                new CellStylePOIHandler(workbook, spreadsheet)
+                
+                StyleHandlerFabric.createStyleHandler(workbook, spreadsheet)
                         .setFontHeight(14)
                         .setFontName("Calibri")
                         .setFontBold()
@@ -387,7 +438,8 @@ public class Styles {
 
 
         cellStyles.put(CellStylesStore.StyleKind.REPORT_TNP_DETALE_TEXT_LEFT,
-                new CellStylePOIHandler(workbook, spreadsheet)
+                
+                StyleHandlerFabric.createStyleHandler(workbook, spreadsheet)
                         .setFontHeight(12)
                         .setFontName("Calibri")
                         .setHorizontalAlignmentRight()
@@ -402,7 +454,8 @@ public class Styles {
         );
 
         cellStyles.put(CellStylesStore.StyleKind.REPORT_TNP_DETALE_TEXT_RIGHT,
-                new CellStylePOIHandler(workbook, spreadsheet)
+                
+                StyleHandlerFabric.createStyleHandler(workbook, spreadsheet)
                         .setFontHeight(12)
                         .setFontName("Calibri")
                         .setFontColorRGB(33, 89, 103)
@@ -418,7 +471,8 @@ public class Styles {
         );
 
         cellStyles.put(CellStylesStore.StyleKind.REPORT_TNP_DETALE_TEXT,
-                new CellStylePOIHandler(workbook, spreadsheet)
+                
+                StyleHandlerFabric.createStyleHandler(workbook, spreadsheet)
                         .setFontHeight(12)
                         .setFontName("Calibri")
                         .setFontColorRGB(33, 89, 103)
@@ -427,7 +481,8 @@ public class Styles {
         );
 
         cellStyles.put(CellStylesStore.StyleKind.REPORT_TNP_DETALE_HEADER_LEVEL2,
-                new CellStylePOIHandler(workbook, spreadsheet)
+                
+                StyleHandlerFabric.createStyleHandler(workbook, spreadsheet)
                         .setFontHeight(12)
                         .setFontName("Calibri")
                         .setFontBold()

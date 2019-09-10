@@ -71,9 +71,11 @@ public  class WindowServiceAddDel extends WindowService {
         ClosePopupAndSubWindow closePopupAndSubWindow = new ClosePopupAndSubWindow();
         closePopupAndSubWindow.setMediator(this);
         closePopupAndSubWindow.setCallBackTyped(()->{
-            if (table_wrapper.clickedDomain != null) {
-                return true;
-            }return false;
+            if (callBackParametrized != null) { //if calback for bind table exist
+                if (table_wrapper.clickedDomain != null) {
+                    return true;
+                }return false;
+            }return true;
         } );
         closePopupAndSubWindow.setEventToElement(selectBut);
 
@@ -87,7 +89,12 @@ public  class WindowServiceAddDel extends WindowService {
     @Override
     public void inform(Object node) {
         if (node == selectBut) {
-            callBackParametrized.call(table_wrapper.clickedDomain);
+            if (callBackParametrized != null) {
+                callBackParametrized.call(table_wrapper.clickedDomain);
+            }
+        }
+        if (node == selectBut) {
+           informParentWindowAboutClosing();
         }
     }
 

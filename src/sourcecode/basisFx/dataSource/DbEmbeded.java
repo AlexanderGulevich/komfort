@@ -1,6 +1,6 @@
 package basisFx.dataSource;
 
-import basisFx.DbSchema;
+import basisFx.DbSchemaPrice;
 
 import java.sql.*;
 
@@ -35,7 +35,7 @@ public class DbEmbeded extends Db{
     
     private void init(){
         
-        new DbSchema();
+        new DbSchemaPrice();
     
     }
 

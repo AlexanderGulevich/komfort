@@ -51,9 +51,11 @@ private List<File> files;
 
         if (node != null) {
             node.setOnMousePressed(event -> {
-                files = fileDialog.showOpenMultipleDialog(stage);
-                mediator.inform(node);
-                if (nodeWrapper != null)   mediator.inform(nodeWrapper);
+                if (booleanCalBack()) {
+                    files = fileDialog.showOpenMultipleDialog(stage);
+                    mediator.inform(node);
+                    if (nodeWrapper != null)   mediator.inform(nodeWrapper);
+                }
             });
         }
 

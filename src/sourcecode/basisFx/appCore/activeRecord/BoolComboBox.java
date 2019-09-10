@@ -5,7 +5,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 public class BoolComboBox extends ActiveRecord {
-    public static ObservableList<BoolComboBox> comboBoxes= FXCollections.observableArrayList(new BoolComboBox("ДА"),new BoolComboBox("НЕТ"));
+    public static ObservableList<BoolComboBox> comboBoxes=
+            FXCollections.observableArrayList(new BoolComboBox("  ДА"),new BoolComboBox("  НЕТ"));
     private static BoolComboBox INSTANCE = new BoolComboBox();
 
     public static ObservableList<BoolComboBox> getComboBoxes() {

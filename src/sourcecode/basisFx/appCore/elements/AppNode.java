@@ -6,6 +6,7 @@ import basisFx.appCore.events.AppEvent;
 import basisFx.appCore.settings.CSSid;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 import basisFx.appCore.windows.WindowAbstraction;
 import basisFx.appCore.interfaces.Mediator;
@@ -26,6 +27,7 @@ public abstract class AppNode <T extends Node> {
     protected CSSid CSSid;
     protected CSSclasses[] cssClasses;
     protected String[] cssClassesStrings;
+    protected List<String> cssClassesStringsList;
     protected Double width;
     protected Double height;
     protected Coordinate coordinate;
@@ -105,6 +107,9 @@ public abstract class AppNode <T extends Node> {
             for (int i = 0; i < cssClassesStrings.length; i++) {
                 getElement().getStyleClass().add(cssClassesStrings[i]);
             }
+        }
+        if (cssClassesStringsList != null) {
+            cssClassesStringsList.forEach(s -> getElement().getStyleClass().add(s));
         }
     }
     }

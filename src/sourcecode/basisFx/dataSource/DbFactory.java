@@ -21,9 +21,9 @@ public class DbFactory {
         return new DbEmbeded();
     
     }
-    public static DbServer createDbServer() throws ClassNotFoundException, SQLException{
+    public static DbServer createDbServer(DbSchema dbSchema ) {
     
-        return new DbServer();
+        return new DbServer(dbSchema );
     
     }
     

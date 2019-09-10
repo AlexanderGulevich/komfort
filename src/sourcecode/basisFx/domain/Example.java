@@ -257,14 +257,14 @@ public class Example extends ActiveRecord {
         try {
             String expression = "INSERT INTO " + this.entityName
                     + "("
-                    + " EquipmentId=? ,  "
-                    + " productId=?  ,  "
-                    + " rodsNumber=?  ,  "
-                    + " rodsWidth=?  ,  "
-                    + " packetId=?  ,  "
-                    + " packetCounterpartyId=?,  "
-                    + " paperCounterpartyId=?,  "
-                    + " date=?    "
+                    + " EquipmentId ,  "
+                    + " productId  ,  "
+                    + " rodsNumber  ,  "
+                    + " rodsWidth  ,  "
+                    + " packetId ,  "
+                    + " packetCounterpartyId,  "
+                    + " paperCounterpartyId,  "
+                    + " date   "
                     + ") VALUES(?,?,?,?,?,?,?)";
 
             PreparedStatement pstmt = Db.connection.prepareStatement(expression);

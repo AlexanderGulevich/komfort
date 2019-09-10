@@ -1,6 +1,4 @@
-package basisFx.appCore.poi;
-
-import basisFx.domain.price.TNPProduct;
+package basisFx.domain.price;
 
 import java.util.ArrayList;
 
@@ -9,7 +7,7 @@ public class PriceCategory {
             String name;
             
             
-            ArrayList<TNPProduct>  categoryFilds;
+            ArrayList<PriceItem> categoryFilds;
             
             public void setName(String n){
                 this.name=n;
@@ -17,10 +15,10 @@ public class PriceCategory {
             public String getName() {
                 return name;
             }
-            public ArrayList<TNPProduct> getFilds() {
+            public ArrayList<PriceItem> getFilds() {
                 return categoryFilds;
             }
-            public void setFilds(ArrayList<TNPProduct> filds) {
+            public void setFilds(ArrayList<PriceItem> filds) {
                 this.categoryFilds = filds;
             }
 

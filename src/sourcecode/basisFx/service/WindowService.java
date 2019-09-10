@@ -5,8 +5,6 @@ import basisFx.appCore.interfaces.CallBackParametrized;
 import basisFx.appCore.interfaces.Mediator;
 import basisFx.appCore.utils.Registry;
 import basisFx.appCore.windows.WindowAbstraction;
-import basisFx.appCore.windows.WindowInfoDispatcher;
-import javafx.concurrent.Task;
 import javafx.scene.layout.AnchorPane;
 import lombok.Setter;
 

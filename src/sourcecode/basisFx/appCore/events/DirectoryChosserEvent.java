@@ -48,11 +48,10 @@ private String path=null;
 
         if (node != null) {
             node.setOnMousePressed(event -> {
-                Boolean isExistPrice = (Boolean) callBackTyped.call();
-                if (isExistPrice) {
+
+                if (booleanCalBack()) {
                     DirectoryChooserWrapper directoryChooserWrapper = new DirectoryChooserWrapper();
                     path = directoryChooserWrapper.getPath();
-
                     mediator.inform(node);
                     if (nodeWrapper != null) mediator.inform(nodeWrapper);
                 }
@@ -60,5 +59,7 @@ private String path=null;
         }
 
     }
+
+
 
 }

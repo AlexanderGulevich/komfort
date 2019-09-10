@@ -4,24 +4,48 @@ import basisFx.appCore.poi.StringHandler;
 import basisFx.appCore.utils.Registry;
 import lombok.Getter;
 import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class PriceUtils {
-
+    public enum Message {
+        NOT_READ("Не получилось прочитать заказ: "),
+        BRACKET("Скобка на закрыта: "),
+//        SUM("СУММА ПО ТЕКУЩИМ СОСТАТКАМ СОСТАВЛЯЕТ : "),
+        BARCODE_NON("Отсутствует штрихкод : "),
+        BARCODE_13("Шрихкод нижеследующего товара содержит  менее 13 символов: ");
+        private final String mess;
+        private Message(String mess) {
+            this.mess = mess;
+        }
+        public String get() {
+            return mess;
+        }
+    }
     @Getter
-    ArrayList<String> messageArray =new ArrayList<>();
-    
-  protected StringHandler strHandler=new StringHandler();
-  
-     public Boolean isCategory(Cell c ) {
+    HashMap<Message,ArrayList<String>> messageMap =new HashMap<>();
+
+    protected StringHandler strHandler=new StringHandler();
+
+    public PriceUtils() {
+        messageMap.put(Message.NOT_READ,new ArrayList<>());
+        messageMap.put(Message.BARCODE_13,new ArrayList<>());
+        messageMap.put(Message.BRACKET,new ArrayList<>());
+//        messageMap.put(Message.SUM,new ArrayList<>());
+        messageMap.put(Message.BARCODE_NON,new ArrayList<>());
+    }
+    public Boolean isCategory(Cell c ) {
      String value=null;
             if (!(c==null)){
-                 if (!(c.getCellTypeEnum()==c.getCellTypeEnum().BLANK)){
-                        if (c.getCellTypeEnum()==c.getCellTypeEnum().STRING){
+//                 if (!(c.getCellTypeEnum()==c.getCellTypeEnum().BLANK)){
+                 if (!(c.getCellType()== CellType.BLANK)){
+                        if (c.getCellType()==CellType.STRING){
+//                        if (c.getCellTypeEnum()==c.getCellTypeEnum().STRING){
                             value=c.getStringCellValue();
                                 if (value.contains("готовая продукция")&&
                                         (!(value.contains("Итого по группе:")))){
@@ -31,7 +55,6 @@ public class PriceUtils {
                 }else{ return false;}
             }else{ return false;}
     }
-
      public Boolean isFild(Cell c){
             if (!(c==null)){
                  if (!(c.getCellTypeEnum()==c.getCellTypeEnum().BLANK)){//не пустая ячейка
@@ -82,9 +105,8 @@ public class PriceUtils {
                                   }else{ return "не найдено";}
      }
 
-     public String readProdactName(Cell c){
+     public String readProdactName(Cell c,String barcode){
          String value= c.getStringCellValue();
-         String barcode = readBarcode(c);
          if (barcode != null) value=strHandler.delText(value,barcode);
          try {
              value=value.substring( value.indexOf("-")+1);
@@ -203,13 +225,14 @@ public class PriceUtils {
             return value;
      }
      
-     public String readOrder(Cell c){
+     public String readOrderString(Cell c){
             String value=null;
             value=c.getStringCellValue();
-            value= value.substring(0, 10);
-            value= strHandler.delText(value, "з.");
+            value= value.substring(0, 15);
+         value= strHandler.delText(value, "з.");
+         value= strHandler.delText(value, "з");
             if(  value.indexOf("-") <0){
-                messageArray.add("Не получилось прочитать заказ для нижеследующе записи: \n"+ value);
+                messageMap.get(Message.NOT_READ).add("---"+value);
             }else {
                 value= value.substring(0, value.indexOf("-")+5);
                 value=value.substring(0, value.indexOf(" "));
@@ -218,7 +241,53 @@ public class PriceUtils {
             }
             return null;
      }
-     
+
+     public String readPureOrder(Cell c){
+         String value=c.getStringCellValue().substring(0, 15);
+         value= strHandler.delText(value, "з.");
+         value= strHandler.delText(value, "з");
+         value= strHandler.delAllSpace(value);
+         value= strHandler.clearEdges(value);
+         int index = value.indexOf("-");
+
+         if(  index <0){
+             messageMap.get(Message.NOT_READ).add("---"+value);
+             return null;
+            }else {
+
+             String left="";
+             String right="";
+             int length = value.length();
+             int i = index-1;
+             for (;i>=0 ; i--) {
+                     try {
+                     char a_char = value.charAt(i);
+                     String s = String.valueOf(a_char);
+                     Integer integer = Integer.valueOf(s);
+                     left+=s;
+                 } catch (Exception e) {
+                     break;
+                 }
+             }
+             int k = index+1;
+             for (; k< length; k++) {
+                 try {
+                     char a_char = value.charAt(k);
+                     String s = String.valueOf(a_char);
+                     Integer integer = Integer.valueOf(s);
+                     right+=s;
+                 } catch (Exception e) {
+                     break;
+                 }
+             }
+
+            String reverse_left = new StringBuffer(left).reverse().toString();
+             String result = reverse_left + right;
+             return result;
+         }
+
+     }
+
      public String readBarcode(Cell c)  {
         String value=null;
         value=c.getStringCellValue();
@@ -242,13 +311,14 @@ public class PriceUtils {
                  if (barcodeLenth==13) return barcode;
              } catch (NumberFormatException e) {
                  if (barcodeLenth==12 || barcodeLenth==11 || barcodeLenth==10 ) {
-                     messageArray.add("Шрихкод нижеследующего товара содержит  менее 13 символов: \n" + value);
+                     messageMap.get(Message.BARCODE_13).add("---"+value);
                  }
                  barcodeLenth=0;
                  barcode="";
                 continue;
              }
          }
+         messageMap.get(Message.BARCODE_NON).add("---"+c.getStringCellValue());
          return null;
      }
      
@@ -262,7 +332,7 @@ public class PriceUtils {
              try {
                  finded = value.substring( value.lastIndexOf("(")+1, value.lastIndexOf(")"));
              } catch (Exception e) {
-                 messageArray.add("Скобка на закрыта:\n" + c.getStringCellValue());
+                 messageMap.get(Message.BRACKET).add("---"+c.getStringCellValue());
              }
                 finded= strHandler.clearEdges(finded);
              try {
@@ -300,6 +370,6 @@ public class PriceUtils {
          return Integer.parseInt(rightValue);
 
      }
-     
-     
+
+
 }

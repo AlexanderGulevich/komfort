@@ -28,27 +28,12 @@ public class FontHandler {
         return instanse;
     }
 
-
     public void loadFontToScene(){
-
-        URI uri=null;
-        File folder=null;
-        File[] listOfFiles=null;
-
-        String path = System.getProperty("user.dir") + "/"+"src/res/res/fonts";
-        path = path.replace("\\","/");
-        folder = new File(path);
-        listOfFiles = folder.listFiles();
-//
-            boolean directory = folder.isDirectory();
-            boolean absolute = folder.isAbsolute();
-            boolean file = folder.isFile();
-            boolean hidden = folder.isHidden();
-
-
+        String path = ( System.getProperty("user.dir") + "/"+"src/res/res/fonts") .replace("\\","/");;
+        File folder = new File(path);
+        File[] listOfFiles = folder.listFiles();
+        FileUtils.fileChecking(folder);
         addtStylesheetsToSceen(listOfFiles);
-
-
     }
 
     private void addtStylesheetsToSceen( File[] listOfFiles) {
@@ -56,11 +41,7 @@ public class FontHandler {
             for (File listOfFile : listOfFiles) {
                 String fileName = listOfFile.getName();
                 File parentFolder = listOfFile.getParentFile();
-
-
                 Font.loadFont(PathToFile.getPath("/src/res/res/fonts/"+ fileName),15d);
-
-
             }
         }
     }

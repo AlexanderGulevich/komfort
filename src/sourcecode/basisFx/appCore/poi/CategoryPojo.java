@@ -1,6 +1,5 @@
 package basisFx.appCore.poi;
 
-import basisFx.domain.price.Pojo;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleBooleanProperty;
@@ -12,7 +11,7 @@ import javafx.beans.property.StringProperty;
  *
  * @author Alek
  */
-public class CategoryPojo implements Pojo {
+public class CategoryPojo   {
 
     public CategoryPojo(String name ) {
         

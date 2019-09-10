@@ -99,6 +99,11 @@ public class ServiceTablesTwoLinked extends ServiceTables {
 
     }
 
+    @Override
+    public TableWrapper getTableWrapper() {
+        return null;
+    }
+
 }
 
 

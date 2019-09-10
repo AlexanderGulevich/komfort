@@ -1,23 +1,26 @@
 package basisFx.appCore.poi;
 
+import lombok.Getter;
+import org.apache.poi.hssf.usermodel.HSSFRow;
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.util.CellRangeAddress;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-/**
- *
- * @author 62
- */
 public class CellHandler {
-    protected      Cell cell;
-    protected      XSSFWorkbook workbook ;
+    @Getter protected      Cell cell;
+    protected Workbook workbook ;
     protected      CellStylesStore cellStylesStore;
-    protected      XSSFSheet spreadsheet;
+    protected Sheet spreadsheet;
     
 
-    public CellHandler(XSSFWorkbook workbook, XSSFSheet spreadsheet) {
+    public CellHandler(Workbook workbook, Sheet spreadsheet) {
 
         this.workbook=workbook;
         this.spreadsheet=spreadsheet;
@@ -50,7 +53,7 @@ public class CellHandler {
         return cellStylesStore;
     }
     
-    public CellHandler setRowHeight( XSSFRow row,int h) {
+    public CellHandler setRowHeight(Row row, int h) {
        
              row.setHeightInPoints(h);
  
@@ -77,7 +80,7 @@ public class CellHandler {
         return this;
     }
     
-    public CellHandler multipleSetStyle(XSSFRow row,int srartCell,int endCell,CellStylesStore.StyleKind d){
+    public CellHandler multipleSetStyle(Row row, int srartCell, int endCell, CellStylesStore.StyleKind d){
         //set for rirst cell
         this.setCell(row.getCell(srartCell)).setCellStyle(d);
         for (int cellIndex=srartCell+1; cellIndex <=endCell; cellIndex++) {

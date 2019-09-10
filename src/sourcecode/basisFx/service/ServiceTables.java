@@ -26,6 +26,7 @@ public abstract class ServiceTables implements Mediator {
     public abstract void wasChanged(AppNode node, ActiveRecord record);
     public abstract void refresh(AppNode node);
     public abstract void initElements();
+    public abstract TableWrapper getTableWrapper();
 
     protected void commit(TableWrapper tableWrapper) {
             boolean isCommitted = tableWrapper.unitOfWork.commit();
@@ -35,6 +36,9 @@ public abstract class ServiceTables implements Mediator {
     }
     public  void setItems(TableWrapper tableWrapper, ObservableList<ActiveRecord> list ) {
         tableWrapper.setItems(list);
+    }
+    public  void setItems(ObservableList<ActiveRecord> list ) {
+        getTableWrapper().setItems(list);
     }
 
 

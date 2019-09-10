@@ -204,7 +204,7 @@ public class ColWrapperBool<T> extends ColWrapper {
                     if (value == null || empty) {
                         setText(null);
                     } else {
-                        setText(value.getStringValue().trim());
+                        setText(value.getStringValue());
                     }
                 }
             });

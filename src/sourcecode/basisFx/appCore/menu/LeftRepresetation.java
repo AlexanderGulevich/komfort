@@ -32,7 +32,6 @@ public class LeftRepresetation extends MenuRepresent {
     private leftSideMenuIconClickForOnlyVertical startButEvent;
 
     public LeftRepresetation(MenuSketch sketch) {
-        label.setText("");
         makeStructuredMenuView(sketch.getMenuTree(), null);
         setDefaultStyleVerticalButtons();
         fireStartButton();

@@ -80,3 +80,23 @@
 .font_mediumGrey{
     -fx-text-fill:   #697886;
 }
+
+
+.font_Size25{
+        -fx-font-family: "Roboto Light";
+        -fx-font-size: 25;
+}
+
+
+.font_Size23{
+        -fx-font-family: "Roboto Light";
+        -fx-font-size: 23;
+}
+.font_Size20{
+        -fx-font-family: "Roboto Light";
+        -fx-font-size: 20;
+}
+.font_Size18{
+        -fx-font-family: "Roboto Light";
+        -fx-font-size: 18;
+}

@@ -1,5 +1,6 @@
 package basisFx.appCore.events;
 
+import basisFx.appCore.utils.PropertiesUtils;
 import basisFx.dataSource.Db;
 import basisFx.appCore.elements.AppNode;
 import java.sql.SQLException;
@@ -66,6 +67,7 @@ public class CloseMainWindow extends AppEvent{
             }
 
             Thread.sleep(500);
+            PropertiesUtils.store();
             stage.close();
             System.exit(0);
 

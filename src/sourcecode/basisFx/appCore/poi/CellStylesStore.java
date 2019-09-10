@@ -1,27 +1,20 @@
 package basisFx.appCore.poi;
 
 import java.util.HashMap;
-import org.apache.poi.hssf.util.HSSFColor;
-import org.apache.poi.ss.usermodel.BorderStyle;
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.CellStyle;
-import org.apache.poi.ss.usermodel.FillPatternType;
-import org.apache.poi.ss.usermodel.IndexedColors;
-import org.apache.poi.xssf.usermodel.XSSFColor;
-import org.apache.poi.xssf.usermodel.XSSFSheet;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
+import org.apache.poi.ss.usermodel.*;
 
 public class CellStylesStore{
     
 
-    protected    CellStylePOIHandler cellStylePOIHandler;
-    protected    XSSFWorkbook workbook;
+    protected StyleHandlerXSS StyleHandlerXSS;
+    protected    Workbook workbook;
     protected    HashMap<StyleKind,CellStyle> cellStyles=new HashMap();
-    protected    XSSFSheet spreadsheet;
+    protected    Sheet spreadsheet;
     protected    Cell cell;
     protected    CellStylesStore сellStylesStore=null;
 
-    public CellStylesStore(XSSFWorkbook workbook, XSSFSheet spreadsheet) {
+    public CellStylesStore(Workbook workbook, Sheet spreadsheet) {
         this.workbook = workbook;
         this.spreadsheet=spreadsheet;
         Styles.create(cellStyles,workbook,spreadsheet);
@@ -29,6 +22,8 @@ public class CellStylesStore{
 
     public enum StyleKind {
 
+        NOT_FILLED_CELL_9_BLUE_TEXT,
+        ORANGE_FILLED_CELL_9_Brown_TEXT,
         NOT_FILLED_CELL_10_BLUE_TEXT,
         ORANGE_FILLED_CELL_10_Brown_TEXT,
         CELL_BORDERED_STRING_10_CENTER,

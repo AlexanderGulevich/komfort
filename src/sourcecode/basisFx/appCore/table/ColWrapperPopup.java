@@ -26,7 +26,7 @@ public class ColWrapperPopup extends ColWrapper {
             windowBuilder = builder.windowBuilder;
             column =  new TableColumn <>(columnName);
             column.getStyleClass().add("leftColumnContentElighment");
-//            column.getStyleClass().add(CSSclasses.column_with_button_BFx.get());
+//            column.getStyleClass().add(Message.column_with_button_BFx.get());
             column.setResizable(false);
             column.setEditable(isEditeble);
             column.setCellValueFactory(new PropertyValueFactory<>(propertyName));

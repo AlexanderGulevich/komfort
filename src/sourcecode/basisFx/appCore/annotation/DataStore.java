@@ -11,4 +11,5 @@ public @interface DataStore {
     Sorting SORTING () default Sorting.NONE ;
     boolean AS_OUTER_ID() default   false;
     boolean ANALIZED_DATE() default   false;
+    boolean NOT_CHECK_FOR_TRANSACTIONS() default   false;
 }

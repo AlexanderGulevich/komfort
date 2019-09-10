@@ -1,5 +1,6 @@
 package basisFx.appCore.activeRecord;
 
+import java.io.FileNotFoundException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.sql.*;
@@ -139,7 +140,7 @@ public abstract class ActiveRecord {
         String updateExpression = ReflectionUpdate.createUpdateExpression(this,domainPropertiesMetaInfoList);
         ReflectionUpdate.executePepareStatement(this,updateExpression,domainPropertiesMetaInfoList);
     }
-    public void insert() {
+    public void insert()  {
         ArrayList<DomainPropertiesMetaInfo> domainPropertiesMetaInfoList = ReflectionInspectDomain.inspectDomainProperties(this);
         String insertExpression = ReflectionInsert.createInsertExpression(this,domainPropertiesMetaInfoList);
         ReflectionInsert.executeInsertStatement(this,insertExpression,domainPropertiesMetaInfoList);

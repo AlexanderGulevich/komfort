@@ -30,6 +30,9 @@ public class CtrlPosFactory {
             case CTRL_POS_DEL_BUT: {
                 return new CtrlPosDelBut();
             }
+            case CTRL_POS_DEL_BUT_BOTTON: {
+                return new CtrlPosDelButBotton();
+            }
             case CTRL_POS_MIDDLE: {
                 return new CtrlPosMiddle();
             }

@@ -28,7 +28,7 @@ public class EmployeesPanel extends DynamicContentPanel {
                 .setParentAnchorNameForFXML(WindowAbstraction.DefaultPanelsNames.topVisibleAnchor.name())
                 .setWidth(700d)
                 .setHeight(600d)
-                .setCallBack(
+                .setPreClosingCallBack(
                         () -> {
                             TableWrapper tableWrapper =(TableWrapper)   Registry.mainWindow.getNodeFromMap("outer_table_wrapper");
                             tableWrapper.getMediator().refresh(tableWrapper);
@@ -44,7 +44,7 @@ public class EmployeesPanel extends DynamicContentPanel {
                 .setParentAnchorNameForFXML(WindowAbstraction.DefaultPanelsNames.topVisibleAnchor.name())
                 .setWidth(530d)
                 .setHeight(350d)
-                .setCallBack(
+                .setPreClosingCallBack(
                         () -> {
                             TableWrapper tableWrapper =(TableWrapper)   Registry.mainWindow.getNodeFromMap("outer_table_wrapper");
                             tableWrapper.getMediator().refresh(tableWrapper);

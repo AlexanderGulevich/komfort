@@ -19,7 +19,7 @@ public class EntryPoint extends Application  {
      @Override
     public void init() throws Exception {
         new PathesResearch();
-        AppPreloader.coundown(this);
+//        AppPreloader.coundown(this);
 
     }
     

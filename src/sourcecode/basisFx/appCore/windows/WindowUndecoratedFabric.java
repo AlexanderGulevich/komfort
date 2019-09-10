@@ -3,7 +3,6 @@ package basisFx.appCore.windows;
 import basisFx.appCore.interfaces.CallBackParametrized;
 import basisFx.appCore.utils.Registry;
 import basisFx.service.WindowService;
-import javafx.application.Platform;
 import javafx.stage.Stage;
 
 
@@ -33,7 +32,7 @@ public class WindowUndecoratedFabric  extends WindowFabric{
                 .setParentAnchorNameForFXML(WindowAbstraction.DefaultPanelsNames.topVisibleAnchor.name())
                 .setHeight(280d)
                 .setWidth(500d)
-                .setCallBack(null)
+                .setPreClosingCallBack(null)
                 .setCallBackParametrized(callBackParametrized)
                 .build();
 

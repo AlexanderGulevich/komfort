@@ -1,5 +1,6 @@
 package basisFx.appCore.utils;
 
+import com.jfoenix.controls.JFXCheckBox;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
@@ -20,6 +21,11 @@ public class FXMLLoader {
 
         Parent parent = getParent(fxmlName);
         return (Button) parent;
+    }
+    public static JFXCheckBox loadCheckBox(String fxmlName){
+
+        Parent parent = getParent(fxmlName);
+        return (JFXCheckBox) parent;
     }
 
 
