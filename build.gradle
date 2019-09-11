@@ -49,20 +49,22 @@ repositories {
 dependencies {
 //    runtime files('libs/a.jar', 'libs/b.jar')
 //    runtime fileTree(dir: 'res')
-    compile files('scenicView.jar');
-
+//    compile files('scenicView.jar');
+    
+//    implementation 'com.google.code.gson:gson:2.8.5'
+    
     //TEST
-    testCompile group: 'junit', name: 'junit', version: '4.12'
-    testCompile group: 'org.hamcrest', name: 'hamcrest-all', version: '1.3'
-    testCompile("org.junit.jupiter:junit-jupiter-api:5.0.0-M4")
-    testRuntime("org.junit.vintage:junit-vintage-engine:4.12.0-M4")
-    testRuntime("org.junit.jupiter:junit-jupiter-engine:5.0.0-M4")
-    testCompile("org.junit.platform:junit-platform-runner:1.0.0-M4")
+//    testCompile group: 'junit', name: 'junit', version: '4.12'
+//    testCompile group: 'org.hamcrest', name: 'hamcrest-all', version: '1.3'
+//    testCompile("org.junit.jupiter:junit-jupiter-api:5.0.0-M4")
+//    testRuntime("org.junit.vintage:junit-vintage-engine:4.12.0-M4")
+//    testRuntime("org.junit.jupiter:junit-jupiter-engine:5.0.0-M4")
+//    testCompile("org.junit.platform:junit-platform-runner:1.0.0-M4")
 
     //LOGGING
-    compile group: 'org.apache.logging.log4j', name: 'log4j-1.2-api', version: '2.11.0'
-    compile group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.11.0'
-    compile group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.11.0'
+//    compile group: 'org.apache.logging.log4j', name: 'log4j-1.2-api', version: '2.11.0'
+//    compile group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.11.0'
+//    compile group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.11.0'
 
     //BOILERPlATE
     compileOnly 'org.projectlombok:lombok:1.18.4'
@@ -81,23 +83,28 @@ dependencies {
     //REPORTS
 //    compile group: 'net.sf.jasperreports', name: 'jasperreports', version: '6.7.0'
 
+//    //POI
+//    compile group: 'org.apache.poi', name: 'poi', version: '3.16'
+//    compile group: 'org.apache.poi', name: 'poi-ooxml', version: '3.16'
+//    compile group: 'org.apache.poi', name: 'poi-ooxml-schemas', version: '3.16'
+//    compile group: 'org.apache.poi', name: 'poi-scratchpad', version: '3.16'
     //POI
-    compile group: 'org.apache.poi', name: 'poi', version: '3.16'
-    compile group: 'org.apache.poi', name: 'poi-ooxml', version: '3.16'
-    compile group: 'org.apache.poi', name: 'poi-ooxml-schemas', version: '3.16'
-    compile group: 'org.apache.poi', name: 'poi-scratchpad', version: '3.16'
+    compile group: 'org.apache.poi', name: 'poi', version: '4.1.0'
+    compile group: 'org.apache.poi', name: 'poi-ooxml', version: '4.1.0'
+    compile group: 'org.apache.poi', name: 'poi-ooxml-schemas', version: '4.1.0'
+    compile group: 'org.apache.poi', name: 'poi-scratchpad', version: '4.1.0'
 
     //REPORTS
-    compile 'com.google.guava:guava:27.0-jre'
+//    compile 'com.google.guava:guava:27.0-jre'
 
     //GOOGLE
-    compile 'com.google.code.gson:gson:2.8.2'
-    compile group: 'com.google.inject', name: 'guice', version: '4.1.0'
-    compile group: 'com.google.http-client', name: 'google-http-client', version: '1.23.0'
+//    compile 'com.google.code.gson:gson:2.8.2'
+//    compile group: 'com.google.inject', name: 'guice', version: '4.1.0'
+//    compile group: 'com.google.http-client', name: 'google-http-client', version: '1.23.0'
 
     //HIBERNATE
-    compile group: 'org.hibernate', name: 'hibernate-core', version: '5.2.12.Final'
-    compile group: 'org.hibernate', name: 'hibernate-jpamodelgen', version: '5.2.12.Final'
+//    compile group: 'org.hibernate', name: 'hibernate-core', version: '5.2.12.Final'
+//    compile group: 'org.hibernate', name: 'hibernate-jpamodelgen', version: '5.2.12.Final'
 
 }
 
@@ -116,12 +123,13 @@ distributions { custom {} }
 //    publishAlways()
 //}
 jacoco {
+    
     toolVersion = "0.8.1"
     reportsDir = file("$buildDir/customJacocoReportDir")
 }
 
 jar()   {
-    baseName = 'Komfort'
+    baseName = 'PriceHandler'
     version =  '0.1'
     manifest {
         attributes(
@@ -135,7 +143,7 @@ jar()   {
 distributions {
     main {
         contents {
-            baseName = 'Komfort'
+            baseName = 'PriceHandler'
             from jar
             into('lib') {
                 from(project.configurations.runtime)
