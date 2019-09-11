@@ -1,11 +1,14 @@
 package basisFx;
 
+import basisFx.appCore.elements.TableWrapper;
 import basisFx.appCore.menu.MenuFabric;
 import basisFx.appCore.settings.Settings;
 import basisFx.appCore.settings.StylesPathes;
 import basisFx.appCore.utils.*;
+import basisFx.appCore.windows.ButtonsForStageThreeEntity;
 import basisFx.appCore.windows.WindowAbstraction;
 import basisFx.appCore.windows.WindowBuilder;
+import basisFx.appCore.guiStructura.LeftAndTopMenuGUI;
 import basisFx.appCore.windows.WindowFabric;
 import basisFx.dataSource.DbFactory;
 import javafx.stage.Stage;
@@ -51,7 +54,7 @@ public class App{
 
 
 
-        MenuFabric.menuLeft( new MainMenuSketchKomfort());
+        MenuFabric.menuLeft( new MainMenuSketch());
 
 //        ScenicView.show(Registry.mainWindow.getScene());
 
