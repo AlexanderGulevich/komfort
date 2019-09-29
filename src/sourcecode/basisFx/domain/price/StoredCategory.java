@@ -5,7 +5,9 @@ import basisFx.appCore.utils.Registry;
 import basisFx.dataSource.Db;
 import basisFx.domain.Packet;
 import basisFx.domain.PacketSize;
+import basisFx.service.price.ServicePanelTableViewer;
 import javafx.beans.property.SimpleObjectProperty;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 
 import java.sql.PreparedStatement;
@@ -61,6 +63,14 @@ public class StoredCategory extends ActiveRecord {
         ObservableList<ActiveRecord> all = super.getAll();
         List<ActiveRecord> recordList = all.stream().sorted(Comparator.comparing(record -> ((StoredCategory) record).getRank())).collect(Collectors.toList());
         all.setAll(recordList);
+        all.addListener((ListChangeListener<ActiveRecord>) c -> {
+            while (c.next()) {
+                if (c.wasRemoved()) {
+                    ServicePanelTableViewer.bindRecordsHasChanged = true;
+                    System.out.println("remuved@@@@@@@@");
+                }
+            }
+        });
         return all;
     }
 

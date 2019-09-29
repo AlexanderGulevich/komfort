@@ -4,7 +4,7 @@ import basisFx.appCore.interfaces.CallBackParametrized;
 import javafx.stage.Stage;
 
 
-public class WindowDecoratedFabric extends WindowFabric {
+public class WindowFabricDecorated extends WindowFabric {
 
 
     @Override

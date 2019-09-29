@@ -20,6 +20,7 @@ public class ServiceTablesSingle extends ServiceTables {
     public List<DataStoreCallBack> dataStoreCallBack ;
     @Setter @Getter
     private RangeDirector rangeDirector;
+    ActiveRecord record;
 
     @Override
     public void inform(Object node) {
@@ -42,6 +43,7 @@ public class ServiceTablesSingle extends ServiceTables {
     }
     @Override
     public void wasChanged(AppNode node, ActiveRecord record) {
+        this.record=record;
         UnitOfWork unitOfWork = ((TableWrapper) node).unitOfWork;
 //        boolean readyToTransaction = record.isReadyToTransaction();
 //        if (readyToTransaction) {
@@ -73,6 +75,7 @@ public class ServiceTablesSingle extends ServiceTables {
             }
             else {
                 write(record, unitOfWork, ready);
+
             }
         }
 
@@ -103,6 +106,7 @@ public class ServiceTablesSingle extends ServiceTables {
             refreshCallBack.call();
         }else {
             TableWrapper tableWrapper = (TableWrapper) node;
+
             setItems(tableWrapper,tableWrapper.activeRecord.getAll());
         }
 

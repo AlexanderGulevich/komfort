@@ -2,8 +2,10 @@ package basisFx.domain.price;
 
 import basisFx.appCore.activeRecord.ActiveRecord;
 import basisFx.dataSource.Db;
+import basisFx.service.price.ServicePanelTableViewer;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 
 import java.sql.*;
@@ -74,6 +76,7 @@ public class OutputTemplate extends ActiveRecord {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
         return list;
     }
 

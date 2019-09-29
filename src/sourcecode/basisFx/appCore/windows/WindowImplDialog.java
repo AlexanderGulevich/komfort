@@ -13,11 +13,17 @@ public class WindowImplDialog extends WindowImpl {
     protected void setDefaultWidthAndHeight() {
         width=530d;
         height=300d;
+
     }
 
     @Override
     public void customInit(WindowAbstraction windowAbstraction) {
-         windowService.setMessage(builder.message);
+
+        windowService.setMessage(builder.message);
+        setWindowAbstraction(windowAbstraction);
+        windowAbstraction.stage.setAlwaysOnTop(true);
+        windowAbstraction.stage.setTitle(getTitleName());
+
     }
 
     @Override

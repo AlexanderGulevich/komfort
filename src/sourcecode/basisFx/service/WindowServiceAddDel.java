@@ -72,6 +72,10 @@ public  class WindowServiceAddDel extends WindowService {
         closePopupAndSubWindow.setMediator(this);
         closePopupAndSubWindow.setCallBackTyped(()->{
             if (callBackParametrized != null) { //if calback for bind table exist
+                if(table_wrapper.getItems().toArray().length==0){
+                    currentWindow.getStage().close();
+                    close();
+                }
                 if (table_wrapper.clickedDomain != null) {
                     return true;
                 }return false;

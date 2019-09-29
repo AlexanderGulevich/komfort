@@ -52,6 +52,8 @@ public class ServicePanelTableViewer extends ServicePanels {
 
     SingleTableSet singleTableSet;
 
+    public static boolean bindRecordsHasChanged=false;
+
     public ServicePanelTableViewer() {
         Registry.dataExchanger.put("priceTableViewer", this);
     }
@@ -122,6 +124,11 @@ public class ServicePanelTableViewer extends ServicePanels {
                 .build();
 
         singleTableSet.configure();
+
+        if (bindRecordsHasChanged) {
+            singleTableSet.setItems(PriceItem.getINSTANCE().getAllFullData());
+            bindRecordsHasChanged=false;
+        }
 
 
         TableWrapper tableWrapper = singleTableSet.getMediatorSingleTable().getTableWrapper();

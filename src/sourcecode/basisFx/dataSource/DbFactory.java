@@ -5,9 +5,6 @@
  */
 package basisFx.dataSource;
 
-import basisFx.dataSource.DbEmbeded;
-import basisFx.dataSource.DbServer;
-
 import java.sql.SQLException;
 
 /**
@@ -21,9 +18,9 @@ public class DbFactory {
         return new DbEmbeded();
     
     }
-    public static DbServer createDbServer(DbSchema dbSchema ) {
+    public static DbServetHsql createDbServerHsql(DbSchema dbSchema ) {
     
-        return new DbServer(dbSchema );
+        return new DbServetHsql(dbSchema );
     
     }
     

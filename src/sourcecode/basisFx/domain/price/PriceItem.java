@@ -6,6 +6,7 @@ import basisFx.appCore.annotation.DataStore;
 import basisFx.appCore.utils.Registry;
 import basisFx.dataSource.BFxPreparedStatement;
 import basisFx.dataSource.Db;
+import basisFx.service.price.ServicePanelTableViewer;
 import javafx.beans.property.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -61,43 +62,47 @@ public class PriceItem extends ActiveRecord {
     public ObservableList<ActiveRecord> getAll() {
         Price price = (Price) Registry.dataExchanger.get("price");
         if (price != null) {
-            boolean filledItems = price.isFilledItems();
+//            boolean filledItems = price.isFilledItems();
             ObservableList<ActiveRecord> priceAllRecords = price.getAllRecords();
-            if (!filledItems) {
-                priceAllRecords.forEach((record -> {
-                    PriceItem priceItem = (PriceItem) record;
-
-                    priceItem.setImg( Img.getINSTANCE().find(priceItem) );
-                    priceItem.setStoredCategory(priceItem.findStoredCategory() );
-                    priceItem.setAlias(priceItem.findAlias() );
-                    priceItem.setVisibitity(new BoolComboBox(priceItem.findVisibility()));
-                }));
-                price.setFilledItems(true);
-            }
+//            if (!filledItems) {
+//                priceAllRecords.forEach((record -> {
+//                    PriceItem priceItem = (PriceItem) record;
+//
+//                    priceItem.setImg( Img.getINSTANCE().find(priceItem) );
+//                    priceItem.setStoredCategory(priceItem.findStoredCategory() );
+//                    priceItem.setAlias(priceItem.findAlias() );
+//                    priceItem.setVisibitity(new BoolComboBox(priceItem.findVisibility()));
+//                }));
+//                price.setFilledItems(true);
+//            }
             return priceAllRecords;
         } Registry.windowFabric.infoWindow("Чтобы отобразить данные сначала загрузите прайс!");
         return null;
     }
-    public ObservableList<ActiveRecord> getAllWithImg() {
+    public ObservableList<ActiveRecord> getAllFullData() {
         Price price = (Price) Registry.dataExchanger.get("price");
         if (price != null) {
             ObservableList<ActiveRecord> priceAllRecords = price.getAllRecords();
-                priceAllRecords.forEach((record -> {
-                    PriceItem priceItem = (PriceItem) record;
+            List<ActiveRecord> collect = priceAllRecords.stream().peek((record -> {
+                PriceItem priceItem = (PriceItem) record;
 
-                    priceItem.setImg( Img.getINSTANCE().find(priceItem) );
-                    priceItem.setStoredCategory(priceItem.findStoredCategory() );
-                    priceItem.setAlias(priceItem.findAlias() );
-                    priceItem.setVisibitity(new BoolComboBox(priceItem.findVisibility()));
-                }));
-                price.setFilledItems(true);
-            return priceAllRecords;
+                priceItem.setImg(Img.getINSTANCE().find(priceItem));
+                priceItem.setStoredCategory(priceItem.findStoredCategory());
+                priceItem.setAlias(priceItem.findAlias());
+                priceItem.setVisibitity(new BoolComboBox(priceItem.findVisibility()));
+            })).collect(Collectors.toList());
+
+            ObservableList<ActiveRecord> priceAllRecordsNew=FXCollections.observableArrayList();
+            priceAllRecordsNew.addAll(collect);
+            price.setAllRecords(priceAllRecordsNew);
+
+            return priceAllRecordsNew;
         } Registry.windowFabric.infoWindow("Чтобы отобразить данные сначала загрузите прайс!");
         return null;
     }
 
     public ObservableList<ActiveRecord> getAllFromDB() {
-        if (Price.allFromDB!= null) {
+        if (Price.allFromDB!= null && !ServicePanelTableViewer.bindRecordsHasChanged) {
             return Price.allFromDB;
         }
         ObservableList<ActiveRecord> list = FXCollections.observableArrayList();

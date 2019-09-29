@@ -13,28 +13,28 @@
    <children>
       <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="60.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <AnchorPane id="TITLE_PANEL" fx:id="titleAnchor" prefHeight="120.0" prefWidth="200.0" style="-fx-border-color: transparent;" styleClass="mediumBlue">
+            <AnchorPane id="TITLE_PANEL" fx:id="titleAnchor" prefHeight="90.0" prefWidth="200.0" style="-fx-border-color: transparent;" styleClass="mediumBlue">
                <stylesheets>
                   <URL value="@../css/custom_1/windows.css" />
                   <URL value="@../css/custom_1/leftSideMenu.css" />
                   <URL value="@../css/custom_1/colors.css" />
                </stylesheets>
                <children>
-                  <Label id="PROGRAMM_NAME" fx:id="companyNameText" layoutX="14.0" layoutY="3.0" stylesheets="@../css/custom_1/fonts.css" text="KOMFORT" textFill="WHITE" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="3.0">
+                  <Label id="PROGRAMM_NAME" fx:id="companyNameText" layoutX="11.0" layoutY="3.0" stylesheets="@../css/custom_1/fonts.css" text="KOMFORT" textFill="WHITE" AnchorPane.leftAnchor="11.0" AnchorPane.topAnchor="3.0">
                      <font>
-                        <Font name="Roboto Black" size="35.0" />
+                        <Font size="28.0" />
                      </font>
                   </Label>
-                  <Label id="LEFT_SIDE_MENU_COMMON_TEXT" fx:id="commonMenuLabel" alignment="CENTER_RIGHT" prefHeight="20.0" prefWidth="702.0" text="Управление затратами и выработкой за день" textFill="WHITE" wrapText="true" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="120.0" AnchorPane.topAnchor="10.0">
+                  <Label id="LEFT_SIDE_MENU_COMMON_TEXT" fx:id="commonMenuLabel" alignment="BOTTOM_LEFT" layoutX="161.0" layoutY="8.0" prefHeight="30.0" prefWidth="473.0" text="/  Управление затратами и выработкой за день" textFill="WHITE" wrapText="true" AnchorPane.leftAnchor="161.0" AnchorPane.rightAnchor="206.0" AnchorPane.topAnchor="8.0">
+                     <font>
+                        <Font name="Roboto Light" size="18.0" />
+                     </font>
                      <stylesheets>
-                        <URL value="@../css/custom_1/leftSideMenu.css" />
                         <URL value="@../css/custom_1/fonts.css" />
+                        <URL value="@../css/custom_1/leftSideMenu.css" />
                      </stylesheets>
-                     <font>
-                        <Font name="Roboto Light" size="20.0" />
-                     </font>
                   </Label>
-                  <HBox fx:id="horisontalMenuButHolder" alignment="CENTER_LEFT" layoutY="50.0" prefHeight="50.0" prefWidth="496.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                  <HBox fx:id="horisontalMenuButHolder" alignment="CENTER_LEFT" layoutY="40.0" prefHeight="50.0" prefWidth="496.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                      <children>
                         <Button mnemonicParsing="false" styleClass="LEFT_SIDE_MENU_HORIZONTAL_BUTTONS" stylesheets="@../css/custom_1/leftSideMenu.css" text="Button" />
                         <Button mnemonicParsing="false" styleClass="LEFT_SIDE_MENU_HORIZONTAL_BUTTONS" stylesheets="@../css/custom_1/leftSideMenu.css" text="Button" />

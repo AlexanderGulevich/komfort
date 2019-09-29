@@ -13,13 +13,13 @@ public abstract class WindowFabric {
 
 
     public static WindowFabric WindowDecorated(){
-        WindowDecoratedFabric windowFabric = new WindowDecoratedFabric();
+        WindowFabricDecorated windowFabric = new WindowFabricDecorated();
         Registry.windowFabric=windowFabric;
         return windowFabric;
     }
     public static WindowFabric WindowUndecorated(){
 
-        WindowUndecoratedFabric windowFabric = new WindowUndecoratedFabric();
+        WindowFabricUndecorated windowFabric = new WindowFabricUndecorated();
         Registry.windowFabric=windowFabric;
         return windowFabric;
     }

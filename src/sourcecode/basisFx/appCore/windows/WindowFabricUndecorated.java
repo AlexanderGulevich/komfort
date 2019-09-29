@@ -6,7 +6,7 @@ import basisFx.service.WindowService;
 import javafx.stage.Stage;
 
 
-public class WindowUndecoratedFabric  extends WindowFabric{
+public class WindowFabricUndecorated extends WindowFabric{
 
     @Override
     public WindowAbstraction mainWindow( Stage stage,WindowBuilder builder) {
@@ -26,7 +26,7 @@ public class WindowUndecoratedFabric  extends WindowFabric{
                 .setGUIStructura(null)
                 .setButtonsForStage(null)
                 .setPanelCreator(null)
-                .setTitle(null)
+                .setTitle("Вопрос")
                 .setMessage(message)
                 .setFxmlFileName("YN")
                 .setParentAnchorNameForFXML(WindowAbstraction.DefaultPanelsNames.topVisibleAnchor.name())
@@ -52,7 +52,7 @@ public class WindowUndecoratedFabric  extends WindowFabric{
                 .setHeight(280d)
                 .setWidth(500d)
                 .setPanelCreator(null)
-                .setTitle(null)
+                .setTitle("Сообщение")
                 .setMessage(message)
                 .build();
 
@@ -83,7 +83,7 @@ public class WindowUndecoratedFabric  extends WindowFabric{
                     .setHeight(230d)
                     .setWidth(350d)
                     .setPanelCreator(null)
-                    .setTitle(null)
+                    .setTitle("Выбор даты")
                     .build();
 
             WindowImplDatePicker  windowImplDatePicker = new WindowImplDatePicker(builder) ;

@@ -10,7 +10,6 @@ import basisFx.dataSource.DbFactory;
 import basisFx.service.ServicePanels;
 import com.jfoenix.controls.JFXButton;
 import javafx.fxml.FXML;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
 
@@ -69,7 +68,7 @@ public class ServicePanelConfig extends ServicePanels {
             System.out.println(directoryChosserEvent.getPath());
             fild.setText(directoryChosserEvent.getPath());
             PropertiesUtils.setProperty("db_path",directoryChosserEvent.getPath());
-            DbFactory.createDbServer(new DbSchemaPrice());
+            DbFactory.createDbServerHsql(new DbSchemaPrice());
             if (Db.connection != null) {
 
             }

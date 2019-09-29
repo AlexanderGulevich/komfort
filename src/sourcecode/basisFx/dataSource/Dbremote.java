@@ -5,10 +5,16 @@
  */
 package basisFx.dataSource;
 
+import java.sql.Connection;
+
 /**
  *
  * @author Alek
  */
 public class Dbremote extends Db{
-    
+
+    @Override
+    public Connection newConnection() {
+        return null;
+    }
 }

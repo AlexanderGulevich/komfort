@@ -40,14 +40,9 @@ public class DbEmbeded extends Db{
     }
 
 
-              
-           
-
-
-    
-    
-    
-    
-  
+    @Override
+    public Connection newConnection() {
+        return null;
+    }
 }
 

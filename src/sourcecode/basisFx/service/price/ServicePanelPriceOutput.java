@@ -374,14 +374,19 @@ public class ServicePanelPriceOutput extends ServicePanels {
         Map<String, List<ActiveRecord>> map = activeRecordsFiltered.stream()
                 .collect(Collectors.groupingBy(o -> ((PriceItem) o).getStoredCategory().getName()));
 
+//        map.entrySet().stream().forEach(stringListEntry ->{
+//            if(stringListEntry.getValue()==null) map.remove(stringListEntry.getKey());
+//            if(stringListEntry.getValue().toArray().length==0) map.remove(stringListEntry.getKey());
+//        });
+
        return map;
     }
 
     private List<ActiveRecord> filterRecords(Map<Integer, JFXCheckBox> jfxCheckBoxMap) {
-        return PriceItem.getINSTANCE().getAllWithImg().stream().filter(record -> {
+        return PriceItem.getINSTANCE().getAllFullData().stream().filter(record -> {
                 PriceItem priceItem = ((PriceItem) record);
                 StoredCategory storedCategory = priceItem.getStoredCategory();
-                if (storedCategory!=null && storedCategory.getId() != null) {
+                if (storedCategory!=null && storedCategory.getId() != null && priceItem.getVisibitity().getBoolean() == true) {
                     Integer id = storedCategory.getId();
                     JFXCheckBox box = jfxCheckBoxMap.get(id);
                     if (box != null) {

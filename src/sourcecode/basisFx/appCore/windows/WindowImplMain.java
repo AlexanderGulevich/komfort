@@ -23,6 +23,8 @@ public class WindowImplMain extends WindowImpl {
     }
     @Override
     public void customInit(WindowAbstraction windowAbstraction) {
+        setWindowAbstraction(windowAbstraction);
+        windowAbstraction.stage.setTitle(getTitleName());
 
     }
 

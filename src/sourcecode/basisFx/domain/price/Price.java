@@ -16,7 +16,7 @@ public class Price  {
     private ArrayList<PriceCategory> categoriesArrayList=new ArrayList<>();
     @Getter @Setter
     private ArrayList<PriceCategory> newCategoriesArrayListToCustomeOutput=new ArrayList<>();
-    @Getter
+    @Getter @Setter
     private ObservableList<ActiveRecord> allRecords= FXCollections.observableArrayList();
 
     @Getter @Setter

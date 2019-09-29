@@ -16,6 +16,10 @@ public class WindowImplDatePicker extends WindowImpl{
 
     @Override
     public void customInit(WindowAbstraction windowAbstraction) {
+        setWindowAbstraction(windowAbstraction);
+        windowAbstraction.stage.setAlwaysOnTop(true);
+        windowAbstraction.stage.setTitle(getTitleName());
+
     }
 
     @Override
