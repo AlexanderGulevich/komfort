@@ -8,13 +8,14 @@ import javafx.scene.layout.AnchorPane;
 import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
+import java.net.URI;
 import java.net.URL;
 
 public class FXMLLoader {
     public static AnchorPane loadAnchorPane(String fxmlName){
 
         Parent parent = getParent(fxmlName);
-        if (parent == null) throw new NullPointerException();
+//        if (parent == null) throw new NullPointerException();
         return (AnchorPane) parent;
     }
     public static Button loadButton(String fxmlName){
@@ -31,27 +32,25 @@ public class FXMLLoader {
 
     private static Parent getParent(String fxmlName) {
         if (!fxmlName.contains(".fxml")) fxmlName+=".fxml";
-        String elementPath = System.getProperty("user.dir") + "/"+"/src/res/res/fxml/"+fxmlName;
-        elementPath = elementPath.replace("\\","/");
-        File f = new File(elementPath);
-//
-        boolean directory = f.isDirectory();
-        boolean absolute = f.isAbsolute();
-        boolean file1 = f.isFile();
-        boolean hidden = f.isHidden();
 
+        String path = PathToFile.getAbsolutePath("/src/res/res/fxml/" + fxmlName);
         URL url=null;
         Parent parent=null;
-        File file=new File(elementPath);
+        File file=new File(path);
+
+        FileUtils.fileChecking(file);
 
 
         try {
-            url = file.toURI().toURL();
+            URI uri = file.toURI();
+            url = uri.toURL();
             parent = javafx.fxml.FXMLLoader.load(url);
 
         } catch (MalformedURLException e) {
+            System.out.println("MalformedURLException");
             e.printStackTrace();
         }  catch (IOException e) {
+            System.out.println("IOException");
             e.printStackTrace();
         }
         return parent;

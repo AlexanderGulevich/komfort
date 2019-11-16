@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
-<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<!--<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>-->
 <?import java.net.URL?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
@@ -21,7 +21,7 @@
       </AnchorPane>
       <AnchorPane fx:id="titleAnchor" layoutX="72.0" layoutY="7.0" prefHeight="46.0" prefWidth="680.0" styleClass="bottom" stylesheets="@../css/custom_1/borders.css" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
          <children>
-            <FontAwesomeIconView fill="#42606e93" layoutY="38.0" size="45" text="" />
+<!--            <FontAwesomeIconView fill="#42606e93" layoutY="38.0" size="45" text="" />-->
             <Label fx:id="title" layoutX="96.0" layoutY="4.0" prefHeight="38.0" prefWidth="335.0" stylesheets="@../css/custom_1/borders.css" text="Требуется подтверждение" textAlignment="RIGHT" textFill="#436270c1" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="5.0">
                <font>
                   <Font name="Roboto Light" size="30.0" />
@@ -51,7 +51,7 @@
                   <URL value="@../css/custom_1/borders.css" />
                </stylesheets>
             </JFXButton>
-            <FontAwesomeIconView fill="WHITE" layoutX="26.0" layoutY="43.0" size="50" text="" />
+<!--            <FontAwesomeIconView fill="WHITE" layoutX="26.0" layoutY="43.0" size="50" text="" />-->
          </children>
       </AnchorPane>
    </children>

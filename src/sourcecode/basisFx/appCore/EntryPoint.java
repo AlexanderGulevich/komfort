@@ -13,7 +13,10 @@ public class EntryPoint extends Application  {
     
 
     public static void main(String[] args) {
-        LauncherImpl.launchApplication(EntryPoint.class, AppPreloader.class, args);
+        LauncherImpl.launchApplication(
+                EntryPoint.class,
+//                AppPreloader.class,
+                args);
     }
 
      @Override
@@ -25,8 +28,9 @@ public class EntryPoint extends Application  {
     
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Application.setUserAgentStylesheet(PathToFile.getPath("/src/res/res/css/modena/modena.css"));
+//        Application.setUserAgentStylesheet(PathToFile.getFilePath("/src/res/res/css/modena/modena.css"));
         new App(primaryStage);
+
         
 
    }

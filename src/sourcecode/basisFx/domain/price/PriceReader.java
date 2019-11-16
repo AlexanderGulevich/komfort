@@ -66,7 +66,10 @@ public class PriceReader extends Reader {
        @Override
        protected void rowIteration() {
            sheet=wb.getSheetAt(4);
-           price.setPriceDateString(priceUtils.readDate(sheet));
+           price.setPriceDateString(
+                   priceUtils.readDate(sheet)
+           );
+
 
            Iterator<Row> rowIterator = sheet.iterator();
                while (rowIterator.hasNext()) {

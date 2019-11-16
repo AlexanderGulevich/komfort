@@ -25,10 +25,11 @@ public class MainMenuSketch implements MenuSketch {
                 .panelCreator(null)
                 .isActive(true)
                 .fontSize(iconSize)
-                .panelCreator(MainPanel::new)
+//                .panelCreator(MainPanel::new)
+                .panelCreator(null)
                 .build()
         );
-
+//
         menuDirector.setComposite(LeftAndTopBarItemComposite.builder()
                 .description("/ Управление затратами и выработкой за день \n")
                 .fontsStore(FontsStore.WEBHOSTINGHUB)

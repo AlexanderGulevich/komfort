@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
-<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<!--<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>-->
 <?import java.net.URL?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
@@ -11,6 +11,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
+<?import com.jfoenix.controls.JFXButton?>
 <AnchorPane minWidth="700.0" prefHeight="600.0" styleClass="lightGrey" stylesheets="@../css/custom_1/styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="basisFx.service.WindowServiceByDateResearch">
    <children>
       <AnchorPane layoutX="6.0" layoutY="-0.5714302062988281" prefWidth="700.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -29,7 +30,7 @@
                         <Font name="Roboto Light" size="30.0" />
                      </font>
                   </Label>
-                  <FontAwesomeIconView fill="#42606e93" layoutY="38.0" size="45" text="" />
+<!--                  <FontAwesomeIconView fill="#42606e93" layoutY="38.0" size="45" text="" />-->
                </children>
                <stylesheets>
                   <URL value="@../css/custom_1/styles.css" />
@@ -38,7 +39,7 @@
             </AnchorPane>
             <AnchorPane layoutX="-10.0" layoutY="492.0" prefHeight="100.0" prefWidth="0.0" styleClass="mediumBlue" stylesheets="@../css/custom_1/colors.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                <children>
-                  <FontAwesomeIconView fill="#ffffff86" layoutX="14.0" layoutY="93.0" size="99" strokeWidth="200.0" style="-fx-text-alignment: center; -fx-text-insets: 0; -fx-padding: 0;" text="" wrappingWidth="116.57142627239227" />
+<!--                  <FontAwesomeIconView fill="#ffffff86" layoutX="14.0" layoutY="93.0" size="99" strokeWidth="200.0" style="-fx-text-alignment: center; -fx-text-insets: 0; -fx-padding: 0;" text="" wrappingWidth="116.57142627239227" />-->
                   <DatePicker fx:id="dateStart" layoutX="129.0" layoutY="14.0" prefHeight="27.0" prefWidth="191.0" promptText="Начало периода" styleClass="DATEPICKER_BFx" AnchorPane.topAnchor="15.0">
                      <stylesheets>
                         <URL value="@../css/custom_1/dataPicker.css" />

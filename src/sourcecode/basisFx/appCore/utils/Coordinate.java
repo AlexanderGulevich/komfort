@@ -32,7 +32,9 @@ public class Coordinate {
         
                 if (parentAnchorPane!=null){
                     parentAnchorPane.getChildren().add(node);
+
                 }
+//
                 if(top!=null){
                     AnchorPane.setTopAnchor(node, top);
                 }

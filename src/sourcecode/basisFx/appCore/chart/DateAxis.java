@@ -1,7 +1,6 @@
 package basisFx.appCore.chart;
 
 import com.sun.javafx.charts.ChartLayoutAnimator;
-import com.sun.javafx.css.converters.SizeConverter;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.beans.property.*;
@@ -11,6 +10,7 @@ import javafx.css.CssMetaData;
 import javafx.css.Styleable;
 import javafx.css.StyleableDoubleProperty;
 import javafx.css.StyleableProperty;
+import javafx.css.converter.SizeConverter;
 import javafx.geometry.Dimension2D;
 import javafx.geometry.Side;
 import javafx.scene.chart.ValueAxis;
@@ -29,8 +29,12 @@ import java.util.*;
 */
 public class DateAxis extends ValueAxis<Long> {
 
+
+
     /** We use these for auto ranging to pick a user friendly tick unit. (must be increasingly bigger)*/
     private static final double[] TICK_UNIT_DEFAULTS = {
+
+
         86400000,       // 1 day
         172800000,      // 2 das
         259200000,      // 3 days

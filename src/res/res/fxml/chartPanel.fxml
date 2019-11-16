@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
-<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<!--<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>-->
 <?import java.lang.String?>
 <?import java.net.URL?>
 <?import javafx.geometry.Point3D?>
@@ -135,7 +135,7 @@
                   <HBox prefHeight="50.0" prefWidth="220.0">
                      <children>
                         <Region HBox.hgrow="ALWAYS" />
-                        <FontAwesomeIconView fill="#ababab87" size="99" strokeWidth="200.0" style="-fx-text-alignment: center; -fx-text-insets: 0; -fx-padding: 0;" text="" wrappingWidth="116.57142627239227" />
+<!--                        <FontAwesomeIconView fill="#ababab87" size="99" strokeWidth="200.0" style="-fx-text-alignment: center; -fx-text-insets: 0; -fx-padding: 0;" text="" wrappingWidth="116.57142627239227" />-->
                         <Region HBox.hgrow="ALWAYS" />
                      </children>
                   </HBox>

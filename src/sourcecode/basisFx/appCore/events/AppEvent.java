@@ -14,10 +14,18 @@ import lombok.Setter;
 public abstract class AppEvent {
 
     protected AppNode nodeWrapper;
-    @Setter @Getter protected Mediator mediator;
-    @Setter @Getter protected CallBackParametrized callBackParametrized;
-    @Setter @Getter protected CallBackTyped callBackTyped;
-    @Setter @Getter protected CallBack callBack;
+    @Setter
+    @Getter
+    protected Mediator mediator;
+    @Setter
+    @Getter
+    protected CallBackParametrized callBackParametrized;
+    @Setter
+    @Getter
+    protected CallBackTyped callBackTyped;
+    @Setter
+    @Getter
+    protected CallBack callBack;
 
     public abstract void setEventToElement(AppNode node);
     public abstract void setEventToElement(Node node);
@@ -27,6 +35,7 @@ public abstract class AppEvent {
     public abstract void run() ;
 
     protected Boolean booleanCalBack() {
+
         if (getCallBackTyped() != null) {
             return (Boolean) callBackTyped.call();
         }

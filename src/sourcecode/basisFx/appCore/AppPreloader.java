@@ -12,6 +12,7 @@ import static basisFx.appCore.settings.Settings.PRELODER_COUNT_LIMIT;
 
 import basisFx.appCore.utils.Coordinate;
 import basisFx.appCore.utils.IconToPlatform;
+import basisFx.appCore.utils.PathToFile;
 import com.sun.javafx.application.LauncherImpl;
 import javafx.application.Platform;
 import javafx.application.Preloader;
@@ -51,9 +52,10 @@ public class AppPreloader extends Preloader {
 
 
         scene.setFill( Color.TRANSPARENT);
-                    String path = "file:/" + System.getProperty("user.dir") + "/src/res/res/css/preloader.css";
-                    path=path.replace("\\","/");
-                    scene.getStylesheets().add(path);
+
+
+
+                    scene.getStylesheets().add(PathToFile.getFilePath("/src/res/res/css/preloader.css" ));
             }
 
         );

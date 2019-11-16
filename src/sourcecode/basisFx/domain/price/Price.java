@@ -42,6 +42,8 @@ public class Price  {
         categoriesArrayList.add(category);
         allRecords.addAll(priceItems);
 
+
+
     }
 
 

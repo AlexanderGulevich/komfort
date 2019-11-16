@@ -11,58 +11,59 @@ import basisFx.appCore.windows.WindowBuilder;
 import basisFx.appCore.windows.WindowFabric;
 import basisFx.dataSource.DbFactory;
 import basisFx.domain.price.Price;
+import javafx.scene.Scene;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
+import static java.util.Arrays.sort;
+
 import java.sql.Connection;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
-//import org.scenicview.ScenicView;
+import java.util.*;
 
 
-
-public class App{
+public class App {
 
     public App(Stage primaryStage)  {
 
-        Map<String,Double> map=new HashMap<>();
-
-        Set<Map.Entry<String, Double>> entries = map.entrySet();
 
 
-        IconToPlatform.init(primaryStage);
-        CSSHandler.init(StylesPathes.CUSTOM_1);
-        WindowFabric.WindowUndecorated();
-        FontHandler.getInstanse().loadFontToScene();
+        primaryStage.setScene(
+                new Scene( new AnchorPane(),200,200 )
+        );
+        primaryStage.show();
 
+//        IconToPlatform.init(primaryStage);
+//        CSSHandler.init(StylesPathes.CUSTOM_1);
+//        WindowFabric.WindowUndecorated();
+//        FontHandler.getInstanse().loadFontToScene();
+//
 //        PropertiesUtils.setProperty("db_path","C:/komfdb/");
 //        PropertiesUtils.setProperty("db_name","komdb");
+//
+//        PropertiesUtils.run();
+//        PropertiesUtils.setProperty("db_name","komfortdb");
+//        PropertiesUtils.setProperty("db_folder","komfortdb");
+//        DbFactory.createDbServerHsql(new DbSchemaPrice());
 
-        PropertiesUtils.run();
-        PropertiesUtils.setProperty("db_name","komfortdb");
-        PropertiesUtils.setProperty("db_folder","komfortdb");
-        DbFactory.createDbServerHsql(new DbSchemaPrice());
-
-        Registry.windowFabric.mainWindow(primaryStage,
-                WindowBuilder.newBuilder()
-                        .setButtonsForStage(new ButtonsForStageThreeEntity(LeftAndTopMenuGUI.Structura.titleAnchor.name()))
-                        .setFxmlFileName("Main_v1")
-                        .setParentAnchorNameForFXML(WindowAbstraction.DefaultPanelsNames.topVisibleAnchor.name())
-                        .setWidth(Settings.WIDTH).setHeight(Settings.HEIGHT)
-                        .setPanelCreator(null)
-                        .setTitle("KOMFORT")
-                        .setMessage(null)
-                        .build()
-        );
-
-
+//        Registry.windowFabric.mainWindow(primaryStage,
+//                WindowBuilder.newBuilder()
+//                        .setButtonsForStage(new ButtonsForStageThreeEntity(LeftAndTopMenuGUI.Structura.titleAnchor.name()))
+//                        .setFxmlFileName("Main_v1")
+//                        .setParentAnchorNameForFXML(WindowAbstraction.DefaultPanelsNames.topVisibleAnchor.name())
+//                        .setWidth(Settings.WIDTH).setHeight(Settings.HEIGHT)
+//                        .setPanelCreator(null)
+//                        .setTitle("KOMFORT")
+//                        .setMessage(null)
+//                        .build()
+//        );
 
 
-        MenuFabric.menuLeftAndTop( new MainMenuSketch());
+
+
+//        MenuFabric.menuLeftAndTop( new MainMenuSketch());
 
 //        ScenicView.show(Registry.mainWindow.getScene());
-
 
 
     }

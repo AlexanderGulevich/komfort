@@ -1,4 +1,2 @@
 #Properties
-#Thu Sep 26 23:01:28 AST 2019
-db_name=komfortdb
-db_folder=komfortdb
+#Sat Nov 09 20:53:56 MSK 2019

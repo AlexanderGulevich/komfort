@@ -1,7 +1,7 @@
 package basisFx.appCore.chart;
 
 import com.sun.javafx.charts.Legend;
-import com.sun.javafx.css.converters.SizeConverter;
+import javafx.css.converter.SizeConverter;
 import javafx.animation.*;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.ObjectProperty;

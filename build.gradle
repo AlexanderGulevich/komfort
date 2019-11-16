@@ -1,93 +1,359 @@
 plugins {
-    id 'com.gradle.build-scan' version '1.11'
-    id 'java'
-    id 'edu.sc.seis.launch4j' version '2.4.4'
-    id "com.jfrog.bintray" version "1.7"
-    id 'net.ltgt.apt' version '0.10'
-    id 'build-dashboard'
-    id 'jacoco'
-    id 'distribution'
+  id 'java'
+  id 'application'
+//  id 'distribution'
+  id "org.openjfx.javafxplugin" version "0.0.8"
+//  id 'org.beryx.jlink' version '2.12.0'
+  id "io.franzbecker.gradle-lombok" version "3.2.0"
+    id 'org.beryx.runtime' version '1.7.0'
+
 }
-//JDK SETTINGS
-targetCompatibility = '1.8'
-sourceCompatibility = '1.8'
-[compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
+javafx {
+//    configuration = 'compileOnly'
+    version = "11"
+    modules = [
+            'javafx.base'
+            ,
+            'javafx.controls'
+            ,
+            'javafx.fxml'
+            ,
+            'javafx.graphics'
+//            ,
+//            'javafx.media'
+//            ,
+//            'javafx.swing'
 
-//GRADLE
-task customwrapper(type: Wrapper) { gradleVersion = '4.3.1' }
-
-ext {
-    author = "Alexander Gulevich"
-    mainClassName = 'basisFx.appCore.EntryPoint'
-    mainDir=rootProject.projectDir.toString().replace("\\", "/")
-    version = '8x'
-    description = 'An app build'
-    testResultsDirName="my_testResults"
-    testReportDirName="my_testReport"
-    distsDirName="distribution"
-    docsDirName="my_docs"
+    ]
 }
 
-//SOURCE 
+
+
+
+
+
+
+
+
+
+
+//
+//runtime {
+//    options = ['--strip-debug', '--compress', '2', '--no-header-files', '--no-man-pages']
+//    modules = []
+//}
+
+
+//jlink {
+//    options = ['--strip-debug', '--compress', '2', '--no-header-files', '--no-man-pages']
+//    launcher {
+//        name = 'basisFx'
+//    }
+//    forceMerge 'hsqldb'
+//}
+
+
+//mainClassName = "$moduleName/basisFx.appCore.EntryPoint"
+mainClassName = "basisFx.appCore.EntryPoint"
+//mainClassName = "basisFx.appCore.EntryPoint"
+
+
+//[compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
+
 sourceSets { main { java { srcDirs  'src/sourcecode' } } }
 sourceSets { res { resources { srcDirs  'src/res' } }}
 sourceSets{ test{ java{ srcDirs "src/tests" }}}
 //sourceSets{ test{ resources{srcDirs "src/res"}}}
 
-//PLUGIN SETTINGS 
-jacocoTestReport.enabled=true
-assemble.enabled = true
+//assemble.enabled = true
 distTar.enabled = false
 distZip.enabled = true
+assembleDist.enabled=true
+installDist.enabled=true
 
 
-//DEPENDENCIES
+tasks.withType(JavaCompile) {
+//    options.compilerArgs += ['--add-opens', 'java.base/java.lang=ALL-UNNAMED']
+//    options.compilerArgs += ['--add-opens', 'java.base/java.lang.invoke=ALL-UNNAMED']
+//    options.compilerArgs += ['--add-opens' , 'javafx.graphics/com.sun.javafx.scene=ALL-UNNAMED']
+//    options.compilerArgs += ['--add-opens' , 'org.hsqldb/org.hsqldb.Server=ALL-UNNAMED']
+//    options.compilerArgs += ['--add-exports' , 'jdk.compiler/com.sun.tools.javac.util=ALL-UNNAMED']
+//    options.compilerArgs += ['--illegal-access']
+//    options.compilerArgs += ['--add-modules ','org.hsqldb']
+}
+
+//tasks.withType(AbstractCompile) {
+//tasks.withType(JavaCompile) {
+//    options.compilerArgs += ["--add-modules", "org.hsqldb"]
+//}
+
+//ext {
+////
+//    mainDir=rootProject.projectDir.toString().replace("\\", "/")
+//    version = '11x'
+//    description = 'An app build'
+//    testResultsDirName="my_testResults"
+//    testReportDirName="my_testReport"
+////    distsDirName="distribution"
+//    docsDirName="my_docs"
+//}
+//test {
+//    useJUnitPlatform()
+//}
+
+
+
+jar()   {
+    doFirst {
+        manifest {
+            attributes(
+                    "Class-Path":
+                            project.configurations.compile.collect { it.getName() }.join(" "),
+//                            project.configurations.compile.collect { "lib/" + it.getName() }.join(" "),
+                    'Main-Class': mainClassName,
+                    'Manifest-Version': 1.0
+            )
+        }
+    }
+}
+
+
+
+ distributions {
+     main {
+         contents {
+//             baseName = 'Komfort'
+//             from jar
+//             into('lib') {
+//                 from(project.configurations.runtime)
+//             }
+//             into('src/res') {
+//                 from { sourceSets.res.resources }
+//             }
+         }
+
+     }
+ }
+
+
+//task runApp(type: JavaExec) {
+//    classpath = sourceSets.main.runtimeClasspath
+//    main = 'basisFx.appCore.EntryPoint'
+//}
+
+//distZip.shouldRunAfter(build)
+//runApp.shouldRunAfter(build)
+//runApp.mustRunAfter(build)
+//runApp.dependsOn(build)
+
+sourceCompatibility = 12
+targetCompatibility = 12
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+
+
+ext {
+//    cloneDir = "$buildDir/clone"
+//    imageDirPath = "$buildDir/KOMFORT"
+//    imageZipPath = "$buildDir/KOMFORT.zip"
+}
+
+
+tasks.jar.doLast {
+    copy {
+        from(sourceSets.res.resources)
+        into("$buildDir/")
+    }
+}
+runtime {
+
+//    distDir = file("$buildDir/install/Komfort")
+//    imageDir = file(imageDirPath)
+//    imageZip = file(imageZipPath)
+    options = ['--strip-debug', '--compress', '2', '--no-header-files', '--no-man-pages']
+    modules = ['javafx.base','javafx.graphics','javafx.controls','java.logging','javafx.fxml','java.desktop','java.sql']
+
+
+    targetPlatform('linux', '/home/alexander/.sdkman/candidates/java/12.0.2-librca')
+    targetPlatform('win', '/home/alexander/.java/win/jdk-12.0.2')
+
+
+        jpackage {
+////        installerType = 'rpm' //exe, msi, dmg, rpm 'deb'
+            jpackageHome = "/etc/jpackage/jdk-14"
+
+            if (org.gradle.internal.os.OperatingSystem.current().windows) {
+                targetPlatformName = "win"
+                outputDir = file("win")
+//            imageOutputDir = file("$buildDir/jpackageImage-Windows")
+                skipInstaller = false
+//            imageOptions = []
+//            imageOptions = ['--runtime-image']
+                installerOptions = [
+                        '--win-per-user-install',
+                        '--win-dir-chooser',
+                        '--win-menu',
+                        '--win-shortcut',
+//                                '--verbose',
+//                                '--description',
+//                                'Test of proguard with jPackage',
+//                                '--name',
+//                                'Test-ProguardJPackage',
+//                                '--vendor',
+//                                'DoesItMatter'
+                ]
+
+
+            }
+
+            if (org.gradle.internal.os.OperatingSystem.current().linux) {
+                targetPlatformName = "linux"
+//            outputDir = file("linux")
+                skipInstaller = true
+//            imageOutputDir = file("$buildDir/jpackageImage-Linux")
+                installerOptions = [
+                        '--linux-shortcut'
+                       ]
+            }
+
+
+
+
+
+
+
+            installerType = project.findProperty('installerType') // we will pass this from the command line (example: -PinstallerType=msi)
+            if (installerType == 'msi') {
+                imageOptions += ['--icon', './res/icon/panelIcon.ico']
+                installerOptions += [
+                        '--win-per-user-install', '--win-dir-chooser',
+                        '--win-menu', '--win-shortcut'
+                ]
+            }
+            if (installerType == 'pkg') {
+//                imageOptions += ['--icon', 'src/main/resources/pdfdecorator/gui/icon.icns']
+            }
+            if (installerType in ['deb', 'rpm']) {
+                imageOptions += ['--icon', './res/img/7.png']
+                installerOptions += [
+                        '--linux-menu-group', 'Office',
+                        '--linux-shortcut'
+                ]
+            }
+
+
+
+
+
+
+
+
+
+
+
+
+
+        }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 repositories {
-    mavenCentral() 
+    mavenCentral()
     jcenter()
 }
 dependencies {
-//    runtime files('libs/a.jar', 'libs/b.jar')
-//    runtime fileTree(dir: 'res')
-//    compile files('scenicView.jar');
+//    runtimeOnly "org.openjfx:javafx-graphics:$javafx.version:win"
+//    runtimeOnly "org.openjfx:javafx-graphics:$javafx.version:linux"
+//    runtimeOnly "org.openjfx:javafx-graphics:$javafx.version:mac"
 
-//    implementation 'com.google.code.gson:gson:2.8.5'
+
+//    implementation 'com.google.guava:guava:28.0-jre'
+
+//    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.4.2'
+
+//    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.4.2'
+
+    //    runtime files('libs/a.jar', 'libs/b.jar')
+    //    runtime fileTree(dir: 'res')
+    //    compile files('scenicView.jar');
+
+    //    implementation 'com.google.code.gson:gson:2.8.5'
 
     //TEST
-//    testCompile group: 'junit', name: 'junit', version: '4.12'
-//    testCompile group: 'org.hamcrest', name: 'hamcrest-all', version: '1.3'
-//    testCompile("org.junit.jupiter:junit-jupiter-api:5.0.0-M4")
-//    testRuntime("org.junit.vintage:junit-vintage-engine:4.12.0-M4")
-//    testRuntime("org.junit.jupiter:junit-jupiter-engine:5.0.0-M4")
-//    testCompile("org.junit.platform:junit-platform-runner:1.0.0-M4")
+//        testCompile group: 'junit', name: 'junit', version: '4.12'
+//        testCompile group: 'org.hamcrest', name: 'hamcrest-all', version: '1.3'
+//        testCompile("org.junit.jupiter:junit-jupiter-api:5.0.0-M4")
+//        testRuntime("org.junit.vintage:junit-vintage-engine:4.12.0-M4")
+//        testRuntime("org.junit.jupiter:junit-jupiter-engine:5.0.0-M4")
+//        testCompile("org.junit.platform:junit-platform-runner:1.0.0-M4")
+
+    compile group: 'org.openjfx', name: 'javafx-controls', version: '11'
+//    implementation 'org.controlsfx:controlsfx:11.0.0'
+//    compile group: 'org.controlsfx', name: 'controlsfx', version: '11.0.0'
+
+//    implementation 'com.github.datastax-oss:commons-io:2.2.2'
+//    implementation 'org.controlsfx:controlsfx:11.0.0'
+//    implementation 'eu.hansolo:tilesfx:11.14'
+
+//    compile 'org.kordamp.ikonli:ikonli-fontawesome5-pack:11.3.4'
+//    compile 'org.kordamp.ikonli:ikonli-fontawesome-pack:11.3.4'
+//    compile 'org.kordamp.ikonli:ikonli-foundation-pack:11.3.4'
+//    compile 'org.kordamp.ikonli:ikonli-materialdesign-pack:11.3.4'
+//    compile 'org.kordamp.ikonli:ikonli-material-pack:11.3.4'
+//    compile 'org.kordamp.ikonli:ikonli-openiconic-pack:11.3.4'
+//    compile 'org.kordamp.ikonli:ikonli-icomoon-pack:11.3.4'
+//    compile 'org.kordamp.ikonli:ikonli-ionicons4-pack:11.3.4'
+
+    implementation 'com.jfoenix:jfoenix:9.0.9'
+    compile 'com.jfoenix:jfoenix:9.0.9'
+//    implementation 'com.dlsc.formsfx:formsfx-core:11.4.1'
+//    implementation 'org.kordamp.bootstrapfx:bootstrapfx-core:0.2.4'
+
 
     //LOGGING
-//    compile group: 'org.apache.logging.log4j', name: 'log4j-1.2-api', version: '2.11.0'
-//    compile group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.11.0'
-//    compile group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.11.0'
+//        compile group: 'org.apache.logging.log4j', name: 'log4j-1.2-api', version: '2.11.0'
+//        compile group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.11.0'
+//        compile group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.11.0'
 
-    //BOILERPlATE
-    compileOnly 'org.projectlombok:lombok:1.18.4'
-    apt 'org.projectlombok:lombok:1.18.4'
-
-    //DATABASE
+//        DATABASE
     compile group : 'org.hsqldb', name: 'hsqldb', version: '2.4.0'
     compile group: 'xerces', name: 'xercesImpl', version: '2.11.0'
 
-    //CONTROLS AND VIEW
-    compile 'com.jfoenix:jfoenix:8.0.8'
-    compile group: 'org.controlsfx', name: 'controlsfx', version: '8.40.14'
-    compile group: 'xerces', name: 'xercesImpl', version: '2.11.0'
-    compile group: 'de.jensd', name: 'fontawesomefx', version: '8.9'
+
+//    compile 'de.jensd:fontawesomefx-commons:11.0'
+//    compile 'de.jensd:fontawesomefx-commons:9.0.0'
+//        compile 'de.jensd:fontawesomefx-controls:9.0.0'
+//    compile 'de.jensd:fontawesomefx-emojione:3.1.1-9'
+//    compile 'de.jensd:fontawesomefx-fontawesome:4.7.0-9'
+//    compile 'de.jensd:fontawesomefx-icons525:4.2.0-9'
+//    compile 'de.jensd:fontawesomefx-materialdesignfont:2.0.26-9'
+//    compile 'de.jensd:fontawesomefx-materialicons:2.2.0-9'
+//    compile 'de.jensd:fontawesomefx-octicons:4.3.0-9'
+//    compile 'de.jensd:fontawesomefx-weathericons:2.0.10-9'
+
+
+
 
     //REPORTS
-//    compile group: 'net.sf.jasperreports', name: 'jasperreports', version: '6.7.0'
+    //    compile group: 'net.sf.jasperreports', name: 'jasperreports', version: '6.7.0'
 
-//    //POI
-//    compile group: 'org.apache.poi', name: 'poi', version: '3.16'
-//    compile group: 'org.apache.poi', name: 'poi-ooxml', version: '3.16'
-//    compile group: 'org.apache.poi', name: 'poi-ooxml-schemas', version: '3.16'
-//    compile group: 'org.apache.poi', name: 'poi-scratchpad', version: '3.16'
     //POI
     compile group: 'org.apache.poi', name: 'poi', version: '4.1.0'
     compile group: 'org.apache.poi', name: 'poi-ooxml', version: '4.1.0'
@@ -95,105 +361,29 @@ dependencies {
     compile group: 'org.apache.poi', name: 'poi-scratchpad', version: '4.1.0'
 
     //REPORTS
-//    compile 'com.google.guava:guava:27.0-jre'
+    //    compile 'com.google.guava:guava:27.0-jre'
 
     //GOOGLE
-//    compile 'com.google.code.gson:gson:2.8.2'
-//    compile group: 'com.google.inject', name: 'guice', version: '4.1.0'
-//    compile group: 'com.google.http-client', name: 'google-http-client', version: '1.23.0'
+    //    compile 'com.google.code.gson:gson:2.8.2'
+    //    compile group: 'com.google.inject', name: 'guice', version: '4.1.0'
+    //    compile group: 'com.google.http-client', name: 'google-http-client', version: '1.23.0'
+
 
     //HIBERNATE
-//    compile group: 'org.hibernate', name: 'hibernate-core', version: '5.2.12.Final'
-//    compile group: 'org.hibernate', name: 'hibernate-jpamodelgen', version: '5.2.12.Final'
+    //    compile group: 'org.hibernate', name: 'hibernate-core', version: '5.2.12.Final'
+    //    compile group: 'org.hibernate', name: 'hibernate-jpamodelgen', version: '5.2.12.Final'
 
 }
 
-//test {
-//    jacoco {
-//        append = false
-//        destinationFile = file("$buildDir/jacoco/jacocoTest.exec")
-//        classDumpDir = file("$buildDir/jacoco/classpathdumps")
-//    }
-//}
-
-distributions { custom {} }
-//buildScan {
-//    licenseAgreementUrl = 'https://gradle.com/terms-of-service'
-//    licenseAgree = 'yes'
-//    publishAlways()
-//}
-jacoco {
-    toolVersion = "0.8.1"
-    reportsDir = file("$buildDir/customJacocoReportDir")
-}
-
-jar()   {
-    baseName = 'Komfort'
-    version =  '0.1'
-    manifest {
-        attributes(
-                "Class-Path":
-                        configurations.compile.collect {  "lib/" + it.getName() }.join(" "),
-                'Main-Class': mainClassName,
-                'Manifest-Version': 1.0
-        )
-    }
-}
-distributions {
-    main {
-        contents {
-            baseName = 'Komfort'
-            from jar
-            into('lib') {
-                from(project.configurations.runtime)
-            }
-            into('src/res') {
-                from { sourceSets.res.resources }
-            }
-        }
-    }
-}
-
-jacocoTestReport {
-    additionalSourceDirs = files(sourceSets.main.allJava.srcDirs)
-
-    reports {
-        xml.enabled false
-        html.enabled true
-        csv.enabled false
-        html.destination file("${buildDir}/reports/jacoco")
-    }
-    executionData = files('build/jacoco/test.exec')
-}
 
 
-//task copyLib(type: Copy) {
-//    into 'build/output/lib'
-//    from configurations.compile
-//}
 
-task info(type: GradleBuild) {
-    buildFile = 'reflect.gradle'
-    tasks = ['info']
-}
 
-task runApp(type: JavaExec) {
-   classpath = sourceSets.main.runtimeClasspath
-   main = 'basisFx.appCore.EntryPoint'
- }
 
-launch4j {
-    mainClassName = 'basisFx.appCore.EntryPoint'
-    icon = mainDir+"/src/res/res/icon/panelIcon.ico"
-}
 
-////////////////////////////////////////////////////////////////////////////////
 
-//TASK DEPENDENCIES
-assemble.dependsOn createAllExecutables
-distZip.shouldRunAfter(build)
-runApp.shouldRunAfter(build)
-runApp.mustRunAfter(build)
-runApp.dependsOn(build)
-jacocoTestReport.dependsOn build
-test.finalizedBy(project.tasks.jacocoTestReport)
+
+
+
+
+

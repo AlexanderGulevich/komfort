@@ -1,15 +1,6 @@
 package basisFx.dataSource;
 
-import basisFx.DbSchemaPrice;
-
 import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.Statement;
-
-import basisFx.appCore.utils.PropertiesUtils;
-import basisFx.appCore.utils.Registry;
-import org.hsqldb.Server;
-import org.hsqldb.persist.HsqlProperties;
 
 public class DbServerHTTP extends Db{
     @Override

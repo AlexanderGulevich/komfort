@@ -11,8 +11,6 @@ import javafx.stage.StageStyle;
 
 public class WindowAbstractionUndecorated extends WindowAbstraction {
 
-    private static double insets =5d;
-
     public WindowAbstractionUndecorated(Stage primaryStage, WindowImpl implimentation) {
         super(primaryStage,implimentation);
         this.stage.initStyle(StageStyle.TRANSPARENT);
@@ -29,8 +27,8 @@ public class WindowAbstractionUndecorated extends WindowAbstraction {
 
         scene= new Scene(
                 root,
-                this.windowImpl.getWidth()+ insets *2,
-                this.windowImpl.getHeight()+ insets *2
+                this.windowImpl.getWidth()+ 10 ,
+                this.windowImpl.getHeight()+ 10
         );
         stage.setScene(scene);
         scene.setFill(Color.TRANSPARENT);
@@ -42,7 +40,7 @@ public class WindowAbstractionUndecorated extends WindowAbstraction {
     protected void initRoot() {
         root= AnchorWrapper.newBuilder()
                 .setCSSid(CSSid.TRANSPARENT_ROOT)
-                .setInsects(new Insets(insets,insets,insets,insets))
+                .setInsects(new Insets(5,5,5,5))
                 .setMetaName("Root")
                 .build()
                 .getElement();

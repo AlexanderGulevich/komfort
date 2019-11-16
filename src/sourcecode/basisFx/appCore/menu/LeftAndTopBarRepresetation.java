@@ -33,6 +33,9 @@ public class LeftAndTopBarRepresetation extends MenuRepresent {
     private leftSideMenuIconClick startButEvent;
 
     public LeftAndTopBarRepresetation(MenuSketch sketch) {
+        vButHolder.getChildren().clear();
+        horisontalMenuButHolder.getChildren().clear();
+
         label.setText("");
         makeStructuredMenuView(sketch.getMenuTree(), null);
         setDefaultStyleVerticalButtons();
@@ -56,7 +59,9 @@ public class LeftAndTopBarRepresetation extends MenuRepresent {
     }
     private void seachVerticalBut(ArrayList<MenuComponent> components) {
         components.forEach(c ->   {
-            if (c.isComposit())   createVerticalBut((LeftAndTopBarItemComposite) c); }
+            if (c.isComposit())
+                createVerticalBut((LeftAndTopBarItemComposite) c);
+        }
             );
     }
     private void createVerticalBut(LeftAndTopBarItemComposite c) {

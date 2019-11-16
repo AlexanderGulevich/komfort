@@ -10,7 +10,6 @@ import javafx.scene.Scene;
 import javafx.scene.text.Font;
 
 import java.io.File;
-import java.net.URI;
 
 public class FontHandler {
 
@@ -41,7 +40,7 @@ public class FontHandler {
             for (File listOfFile : listOfFiles) {
                 String fileName = listOfFile.getName();
                 File parentFolder = listOfFile.getParentFile();
-                Font.loadFont(PathToFile.getPath("/src/res/res/fonts/"+ fileName),15d);
+                Font.loadFont(PathToFile.getFilePath("/src/res/res/fonts/"+ fileName),15d);
             }
         }
     }

@@ -6,8 +6,9 @@ import javafx.stage.Stage;
 public class IconToPlatform {
 
     public static void init(Stage stage) {
-        stage.getIcons().add(
-                new Image(PathToFile.getPath("/src/res/res/img/panelIcon.png")));
+        String path = PathToFile.getFilePath("/src/res/res/img/panelIcon.png");
+        Image image = new Image(path);
+        stage.getIcons().add(image);
     }
 
 }

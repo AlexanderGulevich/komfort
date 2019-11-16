@@ -42,6 +42,7 @@ public    abstract  class  WindowAbstraction<T extends  Object> {
         initTopVisiblePanel();
         createScene();
         windowImpl.initTemplateMethod(this);
+
     }
     public void closeDynamicContentPanel() {
         if (currentDynamicContent != null) {

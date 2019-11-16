@@ -17,23 +17,23 @@ public class PathesResearch {
         System.err.println("Paths.get(\"\")-----"+ Paths.get(""));
         System.err.println("Paths.get(\"res\")-----"+ Paths.get("res"));
 
-        Path path = Paths.get("src", "res","res", "css", "custom_1", "windows.css");
-        System.err.println(path);
+//        Path path = Paths.get("src", "res","res", "css", "custom_1", "windows.css");
+//        System.err.println(path);
 
-        String str =null;
-        try {
-            str = path.toUri().toURL().toExternalForm();
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
-
-        try {
-            InputStream inputStream= new FileInputStream(path.toFile());
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-
-        System.out.println(path);
+//        String str =null;
+//        try {
+//            str = path.toUri().toURL().toExternalForm();
+//        } catch (MalformedURLException e) {
+//            e.printStackTrace();
+//        }
+//
+//        try {
+//            InputStream inputStream= new FileInputStream(path.toFile());
+//        } catch (FileNotFoundException e) {
+//            e.printStackTrace();
+//        }
+//
+//        System.out.println(path);
 
 
     }
