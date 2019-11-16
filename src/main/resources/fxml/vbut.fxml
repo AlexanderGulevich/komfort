@@ -10,8 +10,8 @@
         xmlns:fx="http://javafx.com/fxml"
 >
 <!--   <stylesheets>-->
-<!--      <URL value="@../css/custom_1/leftSideMenu.css" />-->
-<!--      <URL value="@../css/custom_1/colors.css" />-->
+<!--      <URL value="@../css/leftSideMenu.css" />-->
+<!--      <URL value="@../css/colors.css" />-->
 <!--   </stylesheets>-->
 <!--   <styleClass>-->
 <!--      <String fx:value="LEFT_SIDE_MENU_VERTICAL_BUTTONS" />-->

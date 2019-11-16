@@ -60,7 +60,7 @@
                   <HBox alignment="CENTER" prefHeight="50.0" prefWidth="220.0">
                      <children>
                         <Region HBox.hgrow="ALWAYS" />
-                        <ComboBox fx:id="combobox" prefHeight="27.0" prefWidth="191.0" promptText="hjmhmh" styleClass="COMBOBOX_BFx" stylesheets="@../css/custom_1/combobox.css" />
+                        <ComboBox fx:id="combobox" prefHeight="27.0" prefWidth="191.0" promptText="hjmhmh" styleClass="COMBOBOX_BFx" stylesheets="@../css/combobox.css" />
                         <Region HBox.hgrow="ALWAYS" />
                      </children>
                   </HBox>
@@ -84,7 +84,7 @@
                         <Region HBox.hgrow="ALWAYS" />
                         <DatePicker fx:id="dateStart" prefHeight="27.0" prefWidth="191.0" promptText="Начало периода" styleClass="DATEPICKER_BFx">
                            <stylesheets>
-                              <URL value="@../css/custom_1/dataPicker.css" />
+                              <URL value="@../css/dataPicker.css" />
                            </stylesheets>
                         </DatePicker>
                         <Region HBox.hgrow="ALWAYS" />
@@ -95,7 +95,7 @@
                         <Region HBox.hgrow="ALWAYS" />
                         <DatePicker fx:id="dateEnd" prefHeight="27.0" prefWidth="191.0" promptText="Конец периода" styleClass="DATEPICKER_BFx">
                            <stylesheets>
-                              <URL value="@../css/custom_1/dataPicker.css" />
+                              <URL value="@../css/dataPicker.css" />
                            </stylesheets>
                         </DatePicker>
                         <Region HBox.hgrow="ALWAYS" />
@@ -109,9 +109,9 @@
                               <Font name="Font Awesome 5 Free Solid" size="11.0" />
                            </font>
                            <stylesheets>
-                              <URL value="@../css/custom_1/buttons.css" />
-                              <URL value="@../css/custom_1/styles.css" />
-                              <URL value="@../css/custom_1/borders.css" />
+                              <URL value="@../css/buttons.css" />
+                              <URL value="@../css/styles.css" />
+                              <URL value="@../css/borders.css" />
                            </stylesheets>
                         </JFXButton>
                         <Region prefHeight="200.0" prefWidth="15.0" />
@@ -143,13 +143,13 @@
             </VBox>
             <AnchorPane fx:id="labelAnchor" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="50.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="220.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <Label fx:id="commonLabelName" style="-fx-font-size: 25;" styleClass="LABEL_COMMON" stylesheets="@../css/custom_1/panels.css" text="commonLabelName" AnchorPane.bottomAnchor="4.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0" />
+                  <Label fx:id="commonLabelName" style="-fx-font-size: 25;" styleClass="LABEL_COMMON" stylesheets="@../css/panels.css" text="commonLabelName" AnchorPane.bottomAnchor="4.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0" />
                </children>
             </AnchorPane>
             <AnchorPane fx:id="chartAnchor" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="220.0" AnchorPane.topAnchor="50.0">
                <stylesheets>
-                  <URL value="@../css/custom_1/colors.css" />
-                  <URL value="@../css/custom_1/borders.css" />
+                  <URL value="@../css/colors.css" />
+                  <URL value="@../css/borders.css" />
                </stylesheets>
                <styleClass>
                   <String fx:value="white" />

@@ -22,12 +22,12 @@
 
              <AnchorPane id="TITLE_PANEL" fx:id="titleAnchor" prefHeight="90.0" prefWidth="200.0" style="-fx-border-color: transparent;" styleClass="mediumBlue">
                <stylesheets>
-                  <URL value="@../css/custom_1/windows.css" />
-                  <URL value="@../css/custom_1/leftSideMenu.css" />
-                  <URL value="@../css/custom_1/colors.css" />
+                  <URL value="@../css/windows.css" />
+                  <URL value="@../css/leftSideMenu.css" />
+                  <URL value="@../css/colors.css" />
                </stylesheets>
                <children>
-                  <Label id="PROGRAMM_NAME" fx:id="companyNameText" layoutX="11.0" layoutY="3.0" stylesheets="@../css/custom_1/fonts.css" text="KOMFORT" textFill="WHITE" AnchorPane.leftAnchor="11.0" AnchorPane.topAnchor="3.0">
+                  <Label id="PROGRAMM_NAME" fx:id="companyNameText" layoutX="11.0" layoutY="3.0" stylesheets="@../css/fonts.css" text="KOMFORT" textFill="WHITE" AnchorPane.leftAnchor="11.0" AnchorPane.topAnchor="3.0">
                      <font>
                         <Font size="28.0" />
                      </font>
@@ -37,8 +37,8 @@
                         <Font name="Roboto Light" size="18.0" />
                      </font>
                      <stylesheets>
-                        <URL value="@../css/custom_1/fonts.css" />
-                        <URL value="@../css/custom_1/leftSideMenu.css" />
+                        <URL value="@../css/fonts.css" />
+                        <URL value="@../css/leftSideMenu.css" />
                      </stylesheets>
                   </Label>
                   <HBox fx:id="horisontalMenuButHolder" alignment="CENTER_LEFT" layoutY="40.0" prefHeight="50.0" prefWidth="496.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
@@ -49,7 +49,7 @@
             </AnchorPane>
 
 
-             <AnchorPane fx:id="mainContentAnchor" minHeight="200.0" prefHeight="0.0" prefWidth="200.0" styleClass="lightGrey" stylesheets="@../css/custom_1/colors.css" VBox.vgrow="ALWAYS">
+             <AnchorPane fx:id="mainContentAnchor" minHeight="200.0" prefHeight="0.0" prefWidth="200.0" styleClass="lightGrey" stylesheets="@../css/colors.css" VBox.vgrow="ALWAYS">
 
                <padding>
                   <Insets top="10.0" />
@@ -72,19 +72,19 @@
 
        <AnchorPane fx:id="verticalMenuAnchor" layoutX="14.0" layoutY="66.0" prefHeight="0.0" prefWidth="60.0" style="-fx-pref-width: 60;" styleClass="darckBlue" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <stylesheets>
-            <URL value="@../css/custom_1/leftSideMenu.css" />
-            <URL value="@../css/custom_1/panels.css" />
-            <URL value="@../css/custom_1/windows.css" />
-            <URL value="@../css/custom_1/colors.css" />
+            <URL value="@../css/leftSideMenu.css" />
+            <URL value="@../css/panels.css" />
+            <URL value="@../css/windows.css" />
+            <URL value="@../css/colors.css" />
          </stylesheets>
          <children>
             <AnchorPane fx:id="leftButAnchor" layoutX="-70.0" layoutY="46.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <VBox fx:id="vButHolder" prefHeight="200.0" prefWidth="100.0" stylesheets="@../css/custom_1/colors.css" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="65.0" />
+                  <VBox fx:id="vButHolder" prefHeight="200.0" prefWidth="100.0" stylesheets="@../css/colors.css" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="65.0" />
                   <AnchorPane id="IMG_ICON" fx:id="iconAnchor" blendMode="HARD_LIGHT" layoutX="2.0" layoutY="358.0" prefHeight="200.0" prefWidth="50.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="3.0" AnchorPane.topAnchor="5.0">
                      <stylesheets>
-                        <URL value="@../css/custom_1/leftSideMenu.css" />
-                        <URL value="@../css/custom_1/windows.css" />
+                        <URL value="@../css/leftSideMenu.css" />
+                        <URL value="@../css/windows.css" />
                      </stylesheets></AnchorPane>
                </children>
             </AnchorPane>

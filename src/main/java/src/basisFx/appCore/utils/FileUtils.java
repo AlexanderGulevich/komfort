@@ -24,6 +24,5 @@ public class FileUtils {
         }
 
 
-        System.out.println("FileUtils.fileChecking");
     }
 }

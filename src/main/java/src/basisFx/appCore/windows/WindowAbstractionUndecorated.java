@@ -32,7 +32,7 @@ public class WindowAbstractionUndecorated extends WindowAbstraction {
         );
         stage.setScene(scene);
         scene.setFill(Color.TRANSPARENT);
-        CSSHandler.getInstanse().loadStylesToScene(scene);
+        CSSHandler.getInstanse().loadStylesToSceneFromJar(scene);
     }
 
 

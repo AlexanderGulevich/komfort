@@ -1,9 +1,11 @@
 package basisFx.appCore.utils;
 
 
-import java.io.File;
+import java.net.URL;
 
-public class PathToFile {
+public class PathToFileUtils {
+    private  static  PathToFileUtils pathToFileUtils= new PathToFileUtils();
+
     public  static String getFilePath(String str){
         String path=null;
         switch (System.getProperty("os.name")) {
@@ -26,6 +28,14 @@ public class PathToFile {
         }
         path=path.replace("\\","/");
         return path;
+
+    }
+    public  static String getResourseExternalForm(String str){
+        return pathToFileUtils.getClass().getResource(str).toExternalForm();
+
+    }
+    public  static URL getUrl(String str){
+        return pathToFileUtils.getClass().getResource(str);
 
     }
 }

@@ -12,7 +12,7 @@
 <?import javafx.scene.text.Font?>
 
 <?import com.jfoenix.controls.JFXButton?>
-<AnchorPane minWidth="700.0" prefHeight="600.0" styleClass="lightGrey" stylesheets="@../css/custom_1/styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="basisFx.service.WindowServiceByDateResearch">
+<AnchorPane minWidth="700.0" prefHeight="600.0" styleClass="lightGrey" stylesheets="@../css/styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="basisFx.service.WindowServiceByDateResearch">
    <children>
       <AnchorPane layoutX="6.0" layoutY="-0.5714302062988281" prefWidth="700.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -23,8 +23,8 @@
             </AnchorPane>
             <AnchorPane fx:id="titlePanel" layoutX="72.0" layoutY="7.0" prefHeight="46.0" prefWidth="700.0" styleClass="bottom" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
                <children>
-                  <Button id="PANELS_BUTTON" fx:id="addBut" layoutX="466.0" layoutY="8.0" mnemonicParsing="false" stylesheets="@../css/custom_1/buttons.css" text="ДОБАВИТЬ" visible="false" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="8.0" />
-                  <Button id="PANELS_BUTTON" fx:id="delBut" layoutX="332.0" layoutY="9.0" mnemonicParsing="false" stylesheets="@../css/custom_1/buttons.css" text="УДАЛИТЬ" visible="false" AnchorPane.rightAnchor="140.0" AnchorPane.topAnchor="8.0" />
+                  <Button id="PANELS_BUTTON" fx:id="addBut" layoutX="466.0" layoutY="8.0" mnemonicParsing="false" stylesheets="@../css/buttons.css" text="ДОБАВИТЬ" visible="false" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="8.0" />
+                  <Button id="PANELS_BUTTON" fx:id="delBut" layoutX="332.0" layoutY="9.0" mnemonicParsing="false" stylesheets="@../css/buttons.css" text="УДАЛИТЬ" visible="false" AnchorPane.rightAnchor="140.0" AnchorPane.topAnchor="8.0" />
                   <Label fx:id="title" layoutX="48.0" layoutY="3.0" prefHeight="38.0" prefWidth="364.0" style="-fx-border-width: 0 0 0 0; -fx-border-color: #436271;" text="АРХИВ ЦЕН" textAlignment="RIGHT" textFill="#436270c1">
                      <font>
                         <Font name="Roboto Light" size="30.0" />
@@ -33,24 +33,24 @@
 <!--                  <FontAwesomeIconView fill="#42606e93" layoutY="38.0" size="45" text="" />-->
                </children>
                <stylesheets>
-                  <URL value="@../css/custom_1/styles.css" />
-                  <URL value="@../css/custom_1/borders.css" />
+                  <URL value="@../css/styles.css" />
+                  <URL value="@../css/borders.css" />
                </stylesheets>
             </AnchorPane>
-            <AnchorPane layoutX="-10.0" layoutY="492.0" prefHeight="100.0" prefWidth="0.0" styleClass="mediumBlue" stylesheets="@../css/custom_1/colors.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+            <AnchorPane layoutX="-10.0" layoutY="492.0" prefHeight="100.0" prefWidth="0.0" styleClass="mediumBlue" stylesheets="@../css/colors.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                <children>
 <!--                  <FontAwesomeIconView fill="#ffffff86" layoutX="14.0" layoutY="93.0" size="99" strokeWidth="200.0" style="-fx-text-alignment: center; -fx-text-insets: 0; -fx-padding: 0;" text="" wrappingWidth="116.57142627239227" />-->
                   <DatePicker fx:id="dateStart" layoutX="129.0" layoutY="14.0" prefHeight="27.0" prefWidth="191.0" promptText="Начало периода" styleClass="DATEPICKER_BFx" AnchorPane.topAnchor="15.0">
                      <stylesheets>
-                        <URL value="@../css/custom_1/dataPicker.css" />
+                        <URL value="@../css/dataPicker.css" />
                      </stylesheets>
                   </DatePicker>
                   <DatePicker fx:id="dateEnd" layoutX="333.0" layoutY="14.0" prefHeight="27.0" prefWidth="191.0" promptText="Конец периода" styleClass="DATEPICKER_BFx" AnchorPane.topAnchor="15.0">
                      <stylesheets>
-                        <URL value="@../css/custom_1/dataPicker.css" />
+                        <URL value="@../css/dataPicker.css" />
                      </stylesheets>
                   </DatePicker>
-                  <ComboBox fx:id="combobox" layoutX="333.0" layoutY="59.0" prefHeight="30.0" prefWidth="191.0" styleClass="COMBOBOX_BFx" stylesheets="@../css/custom_1/combobox.css" AnchorPane.bottomAnchor="15.0" />
+                  <ComboBox fx:id="combobox" layoutX="333.0" layoutY="59.0" prefHeight="30.0" prefWidth="191.0" styleClass="COMBOBOX_BFx" stylesheets="@../css/combobox.css" AnchorPane.bottomAnchor="15.0" />
                   <Label layoutX="129.0" layoutY="85.0" opacity="0.61" text="Задать ограничения выборки" textFill="#f8f8f8">
                      <font>
                         <Font name="Roboto Light" size="14.0" />
@@ -67,12 +67,12 @@
                         <Font name="Font Awesome 5 Free Solid" size="11.0" />
                      </font>
                      <stylesheets>
-                        <URL value="@../css/custom_1/buttons.css" />
-                        <URL value="@../css/custom_1/styles.css" />
-                        <URL value="@../css/custom_1/borders.css" />
+                        <URL value="@../css/buttons.css" />
+                        <URL value="@../css/styles.css" />
+                        <URL value="@../css/borders.css" />
                      </stylesheets>
                   </JFXButton>
-                  <Button fx:id="periodBut" layoutX="527.0" layoutY="12.0" mnemonicParsing="false" styleClass="search_but_popup" stylesheets="@../css/custom_1/buttons.css" text=" " />
+                  <Button fx:id="periodBut" layoutX="527.0" layoutY="12.0" mnemonicParsing="false" styleClass="search_but_popup" stylesheets="@../css/buttons.css" text=" " />
                </children>
             </AnchorPane>
          </children>

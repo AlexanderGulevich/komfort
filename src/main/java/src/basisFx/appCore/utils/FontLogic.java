@@ -32,7 +32,7 @@ public class FontLogic {
     public static Font loadFont(FontsStore fs, double size){
 
         Font f=Font.loadFont(
-                PathToFile.getFilePath( "/src/res/"+fs.getPath()), size);
+                PathToFileUtils.getResourseExternalForm( fs.getPath()), size);
         
         if(f!=null ){
                      return f;

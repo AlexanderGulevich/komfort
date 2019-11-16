@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="500.0" prefWidth="720.0" styleClass="lightGrey" stylesheets="@../css/custom_1/styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="basisFx.service.WindowServiceAddDel">
+<AnchorPane prefHeight="500.0" prefWidth="720.0" styleClass="lightGrey" stylesheets="@../css/styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="basisFx.service.WindowServiceAddDel">
    <children>
       <AnchorPane layoutX="4.0" layoutY="57.57143020629883" prefHeight="433.0" prefWidth="680.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="60.0">
          <children>
@@ -22,18 +22,18 @@
                </font>
             </Label>
 <!--            <FontAwesomeIconView fill="#42606e94" layoutY="38.0" size="45" text="" AnchorPane.topAnchor="-1.0" />-->
-            <Button id="PANELS_BUTTON" fx:id="selectBut" layoutX="596.0" layoutY="8.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="130.0" style="-fx-pref-width: 130; -fx-font-size: 17; -fx-pref-height: 39;" stylesheets="@../css/custom_1/buttons.css" text="Принять" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="1.0">
+            <Button id="PANELS_BUTTON" fx:id="selectBut" layoutX="596.0" layoutY="8.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="130.0" style="-fx-pref-width: 130; -fx-font-size: 17; -fx-pref-height: 39;" stylesheets="@../css/buttons.css" text="Принять" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="1.0">
                <graphic>
 <!--                  <FontAwesomeIconView fill="#686e75bf" size="20" text="" />-->
                </graphic>
             </Button>
          </children>
          <stylesheets>
-            <URL value="@../css/custom_1/styles.css" />
-            <URL value="@../css/custom_1/borders.css" />
+            <URL value="@../css/styles.css" />
+            <URL value="@../css/borders.css" />
          </stylesheets>
       </AnchorPane>
-      <Button id="PANELS_BUTTON" fx:id="addBut" layoutX="576.0" layoutY="458.0" mnemonicParsing="false" stylesheets="@../css/custom_1/buttons.css" text="ДОБАВИТЬ" visible="false" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0" />
-      <Button id="PANELS_BUTTON" fx:id="delBut" layoutX="438.0" layoutY="450.0" mnemonicParsing="false" stylesheets="@../css/custom_1/buttons.css" text="УДАЛИТЬ" visible="false" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="152.0" />
+      <Button id="PANELS_BUTTON" fx:id="addBut" layoutX="576.0" layoutY="458.0" mnemonicParsing="false" stylesheets="@../css/buttons.css" text="ДОБАВИТЬ" visible="false" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0" />
+      <Button id="PANELS_BUTTON" fx:id="delBut" layoutX="438.0" layoutY="450.0" mnemonicParsing="false" stylesheets="@../css/buttons.css" text="УДАЛИТЬ" visible="false" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="152.0" />
    </children>
 </AnchorPane>

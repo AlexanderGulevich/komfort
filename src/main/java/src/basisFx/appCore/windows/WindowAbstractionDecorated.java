@@ -1,9 +1,6 @@
 package basisFx.appCore.windows;
 
-import basisFx.appCore.settings.CSSid;
 import basisFx.appCore.utils.CSSHandler;
-import basisFx.appCore.elements.AnchorWrapper;
-import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
@@ -24,7 +21,7 @@ public  class WindowAbstractionDecorated extends WindowAbstraction {
         scene= new Scene(root, this.windowImpl.getWidth(), this.windowImpl.getHeight());
         stage.setScene(scene);
         scene.setFill(Color.TRANSPARENT);
-        CSSHandler.getInstanse().loadStylesToScene(scene);
+        CSSHandler.getInstanse().loadStylesToSceneFromJar(scene);
     }
 
     public WindowAbstractionDecorated(WindowImpl implimentation) {

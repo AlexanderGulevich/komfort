@@ -33,17 +33,10 @@ public class FXMLLoader {
     private static Parent getParent(String fxmlName) {
         if (!fxmlName.contains(".fxml")) fxmlName+=".fxml";
 
-        String path = PathToFile.getAbsolutePath("/src/res/res/fxml/" + fxmlName);
-        URL url=null;
+        URL url=PathToFileUtils.getUrl("/fxml/" + fxmlName);
         Parent parent=null;
-        File file=new File(path);
-
-        FileUtils.fileChecking(file);
-
 
         try {
-            URI uri = file.toURI();
-            url = uri.toURL();
             parent = javafx.fxml.FXMLLoader.load(url);
 
         } catch (MalformedURLException e) {

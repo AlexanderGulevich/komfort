@@ -4,6 +4,8 @@ plugins {
   id "org.openjfx.javafxplugin" version "0.0.8"
   id "io.franzbecker.gradle-lombok" version "3.2.0"
   id 'org.beryx.runtime' version '1.7.0'
+    //ИЗМЕНИТЬ ВЕРСИЮ НА ВИНДЕ НА 1.8
+    // id 'org.beryx.runtime' version '1.8.0'
 }
 mainClassName = "basisFx.appCore.EntryPoint"
 javafx { //    configuration = 'compileOnly'
@@ -29,6 +31,27 @@ tasks.jar.doLast {
         into("$buildDir/resources")
     }
 }
+tasks.run.doLast {
+    copy {
+        from(sourceSets.main.resources)
+        into("$buildDir/classes/java/main/")
+    }
+}
+
+jar()   {
+    doFirst {
+        manifest {
+            attributes(
+                    "Class-Path":
+                            project.configurations.compile.collect { it.getName() }.join(" "),
+//                            project.configurations.compile.collect { "lib/" + it.getName() }.join(" "),
+                    'Main-Class': mainClassName,
+                    'Manifest-Version': 1.0
+            )
+        }
+    }
+}
+
 runtime {
     options = ['--strip-debug', '--compress', '2', '--no-header-files', '--no-man-pages']
     modules = ['javafx.base','javafx.graphics','javafx.controls','java.logging','javafx.fxml','java.desktop','java.sql']

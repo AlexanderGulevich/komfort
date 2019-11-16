@@ -12,12 +12,12 @@
          <children>
             <AnchorPane fx:id="labelAnchor" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="50.0">
                <children>
-                  <Label fx:id="commonLabelName" prefHeight="36.0" prefWidth="585.0" style="-fx-font-size: 25;" styleClass="LABEL_COMMON" stylesheets="@../css/custom_1/panels.css" text="Загрузка картинки для штихкода" AnchorPane.bottomAnchor="4.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0" />
+                  <Label fx:id="commonLabelName" prefHeight="36.0" prefWidth="585.0" style="-fx-font-size: 25;" styleClass="LABEL_COMMON" stylesheets="@../css/panels.css" text="Загрузка картинки для штихкода" AnchorPane.bottomAnchor="4.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0" />
                </children>
             </AnchorPane>
             <AnchorPane>
                <children>
-                  <TableView layoutX="2.0" layoutY="2.0" prefHeight="200.0" prefWidth="200.0" styleClass="TABLE_BFx" stylesheets="@../css/custom_1/tables.css">
+                  <TableView layoutX="2.0" layoutY="2.0" prefHeight="200.0" prefWidth="200.0" styleClass="TABLE_BFx" stylesheets="@../css/tables.css">
                     <columns>
                       <TableColumn prefWidth="75.0" text="C1" />
                       <TableColumn prefWidth="75.0" text="C2" />

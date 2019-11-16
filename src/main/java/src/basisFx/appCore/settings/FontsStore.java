@@ -12,19 +12,19 @@ package basisFx.appCore.settings;
 public enum FontsStore {
 
 
-    FAWESOME5REGULAR("/res/fonts/Font-Awesome-5-Free-Regular-400.ttf"),
-    FAWESOME5SOLID("/res/fonts/Font-Awesome-5-Free-Solid-900.ttf"),
-    WEBHOSTINGHUB("/res/fonts/webhostinghub-glyphs.ttf"),
-    fontcustom("/res/fonts/foundation-icons.ttf"),
-    IONICONS("/res/fonts/ionicons.ttf"),
-    THEMIFY("/res/fonts/themify.ttf"),
-    BATCH("/res/fonts/batch-icons-webfont.ttf"),
-    MATERIAL_ICONS("/res/fonts/MaterialIcons-Regular.ttf"),
+    FAWESOME5REGULAR("/fonts/Font-Awesome-5-Free-Regular-400.ttf"),
+    FAWESOME5SOLID("/fonts/Font-Awesome-5-Free-Solid-900.ttf"),
+    WEBHOSTINGHUB("/fonts/webhostinghub-glyphs.ttf"),
+    fontcustom("/fonts/foundation-icons.ttf"),
+    IONICONS("/fonts/ionicons.ttf"),
+    THEMIFY("/fonts/themify.ttf"),
+    BATCH("/fonts/batch-icons-webfont.ttf"),
+    MATERIAL_ICONS("/fonts/MaterialIcons-Regular.ttf"),
 
-    MARGOT("/res/fonts/Margot.ttf"),
-    ROBOTO_BOLD("/res/fonts/Roboto-Bold.ttf"),
-    ROBOTO_LIGHT("/res/fonts/Roboto-Light.ttf"),
-    FIRA_BOLD("/res/fonts/FiraSans-Bold.ttf");
+    MARGOT("/fonts/Margot.ttf"),
+    ROBOTO_BOLD("/fonts/Roboto-Bold.ttf"),
+    ROBOTO_LIGHT("/fonts/Roboto-Light.ttf"),
+    FIRA_BOLD("/fonts/FiraSans-Bold.ttf");
     
 
     

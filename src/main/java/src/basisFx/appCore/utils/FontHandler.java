@@ -5,7 +5,6 @@
  */
 package basisFx.appCore.utils;
 
-import basisFx.appCore.settings.StylesPathes;
 import javafx.scene.Scene;
 import javafx.scene.text.Font;
 
@@ -15,7 +14,6 @@ public class FontHandler {
 
         private static FontHandler instanse;
         private static Scene scene;
-        private static StylesPathes stylesPathe;
 
     public static FontHandler getInstanse(){
 
@@ -28,7 +26,8 @@ public class FontHandler {
     }
 
     public void loadFontToScene(){
-        String path = ( System.getProperty("user.dir") + "/"+"src/res/res/fonts") .replace("\\","/");;
+//        String path = ( System.getProperty("user.dir") + "/"+"src/res/res/fonts") .replace("\\","/");;
+        String path = ( PathToFileUtils.getResourseExternalForm("/fonts")) ;
         File folder = new File(path);
         File[] listOfFiles = folder.listFiles();
         FileUtils.fileChecking(folder);
@@ -40,7 +39,7 @@ public class FontHandler {
             for (File listOfFile : listOfFiles) {
                 String fileName = listOfFile.getName();
                 File parentFolder = listOfFile.getParentFile();
-                Font.loadFont(PathToFile.getFilePath("/src/res/res/fonts/"+ fileName),15d);
+                Font.loadFont(PathToFileUtils.getResourseExternalForm("/fonts/"+ fileName),15d);
             }
         }
     }

@@ -12,7 +12,7 @@ import static basisFx.appCore.settings.Settings.PRELODER_COUNT_LIMIT;
 
 import basisFx.appCore.utils.Coordinate;
 import basisFx.appCore.utils.IconToPlatform;
-import basisFx.appCore.utils.PathToFile;
+import basisFx.appCore.utils.PathToFileUtils;
 import com.sun.javafx.application.LauncherImpl;
 import javafx.application.Platform;
 import javafx.application.Preloader;
@@ -22,6 +22,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+
+import java.io.InputStream;
 
 public class AppPreloader extends Preloader {
 
@@ -53,9 +55,9 @@ public class AppPreloader extends Preloader {
 
         scene.setFill( Color.TRANSPARENT);
 
-
-
-                    scene.getStylesheets().add(PathToFile.getFilePath("/src/res/res/css/preloader.css" ));
+//                    InputStream resourceAsStream = getClass().getClassLoader().getResourceAsStream("css/preloader.css");
+//                    scene.getStylesheets().add(PathToFileUtils.getFilePath("/src/res/res/css/preloader.css" ));
+                    scene.getStylesheets().add(PathToFileUtils.getResourseExternalForm("/css/preloader.css"));
             }
 
         );

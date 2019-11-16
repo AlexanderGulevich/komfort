@@ -23,23 +23,23 @@
          <children>
             <AnchorPane fx:id="titleAnchor" prefHeight="40.0" prefWidth="900.0" styleClass="bottom">
                <stylesheets>
-                  <URL value="@../css/custom_1/colors.css" />
-                  <URL value="@../css/custom_1/borders.css" />
+                  <URL value="@../css/colors.css" />
+                  <URL value="@../css/borders.css" />
                </stylesheets>
                <children>
-                  <Label fx:id="commonMenuLabel" layoutX="24.0" layoutY="8.0" styleClass="font_mediumBlue2" stylesheets="@../css/custom_1/fonts.css" text="Анализ прайса" textFill="WHITE">
+                  <Label fx:id="commonMenuLabel" layoutX="24.0" layoutY="8.0" styleClass="font_mediumBlue2" stylesheets="@../css/fonts.css" text="Анализ прайса" textFill="WHITE">
                      <font>
                         <Font name="Roboto" size="20.0" />
                      </font>
                   </Label>
-                  <JFXButton fx:id="cls_but" styleClass="lightGrey" stylesheets="@../css/custom_1/buttons.css" text="" textFill="#726f6f" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <JFXButton fx:id="cls_but" styleClass="lightGrey" stylesheets="@../css/buttons.css" text="" textFill="#726f6f" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <font>
                         <Font name="Font Awesome 5 Free Solid" size="22.0" />
                      </font>
                   </JFXButton>
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="mainContentAnchor" minHeight="200.0" prefHeight="0.0" prefWidth="200.0" styleClass="lightGrey" stylesheets="@../css/custom_1/colors.css" VBox.vgrow="ALWAYS">
+            <AnchorPane fx:id="mainContentAnchor" minHeight="200.0" prefHeight="0.0" prefWidth="200.0" styleClass="lightGrey" stylesheets="@../css/colors.css" VBox.vgrow="ALWAYS">
                <padding>
                   <Insets top="10.0" />
                </padding></AnchorPane>
@@ -47,17 +47,17 @@
       </VBox>
       <AnchorPane fx:id="verticalMenuAnchor" layoutX="14.0" layoutY="66.0" prefHeight="0.0" styleClass="transparent" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <stylesheets>
-            <URL value="@../css/custom_1/leftSideMenu.css" />
-            <URL value="@../css/custom_1/panels.css" />
-            <URL value="@../css/custom_1/windows.css" />
-            <URL value="@../css/custom_1/colors.css" />
+            <URL value="@../css/leftSideMenu.css" />
+            <URL value="@../css/panels.css" />
+            <URL value="@../css/windows.css" />
+            <URL value="@../css/colors.css" />
          </stylesheets>
          <children>
             <AnchorPane fx:id="leftButAnchor" layoutX="-70.0" layoutY="46.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
                   <VBox fx:id="vButHolder" alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="right" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="20.0">
                      <children>
-                        <VBox alignment="CENTER" styleClass="l_but" stylesheets="@../css/custom_1/styles.css" />
+                        <VBox alignment="CENTER" styleClass="l_but" stylesheets="@../css/styles.css" />
                         <VBox alignment="CENTER" />
                         <VBox alignment="CENTER" />
                         <VBox alignment="CENTER" />
@@ -66,8 +66,8 @@
                   </VBox>
                </children>
                <stylesheets>
-                  <URL value="@../css/custom_1/colors.css" />
-                  <URL value="@../css/custom_1/borders.css" />
+                  <URL value="@../css/colors.css" />
+                  <URL value="@../css/borders.css" />
                </stylesheets>
                <styleClass>
                   <String fx:value="right" />

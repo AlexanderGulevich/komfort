@@ -17,11 +17,11 @@
 
 
 
-            <HBox alignment="CENTER" prefHeight="40.0" spacing="2.0" styleClass="transparent" stylesheets="@../css/custom_1/colors.css">
+            <HBox alignment="CENTER" prefHeight="40.0" spacing="2.0" styleClass="transparent" stylesheets="@../css/colors.css">
                <children>
                   <VBox prefHeight="70.0" prefWidth="220.0" styleClass="all_side" HBox.hgrow="ALWAYS">
                      <children>
-                        <VBox alignment="CENTER_LEFT" fillWidth="false" prefHeight="50.0" prefWidth="170.0" stylesheets="@../css/custom_1/colors.css">
+                        <VBox alignment="CENTER_LEFT" fillWidth="false" prefHeight="50.0" prefWidth="170.0" stylesheets="@../css/colors.css">
                            <children>
                               <VBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="100.0">
                                  <children>
@@ -30,9 +30,9 @@
                                           <Font name="FontAwesome Regular" size="48.0" />
                                        </font>
                                        <stylesheets>
-                                          <URL value="@../css/custom_1/fonts.css" />
-                                          <URL value="@../css/custom_1/colors.css" />
-                                          <URL value="@../css/custom_1/borders.css" />
+                                          <URL value="@../css/fonts.css" />
+                                          <URL value="@../css/colors.css" />
+                                          <URL value="@../css/borders.css" />
                                        </stylesheets>
                                     </Label>
                                  </children>
@@ -49,15 +49,15 @@
                         </VBox>
                         <VBox fillWidth="false" prefHeight="50.0" prefWidth="220.0" styleClass="mediumBlue3">
                            <children>
-                              <VBox prefHeight="50.0" prefWidth="220.0" styleClass="bottom_shawdow" stylesheets="@../css/custom_1/borders.css">
+                              <VBox prefHeight="50.0" prefWidth="220.0" styleClass="bottom_shawdow" stylesheets="@../css/borders.css">
                                  <children>
                                     <Label alignment="CENTER" opacity="0.79" prefHeight="50.0" prefWidth="222.0" text="Панель управления" textFill="WHITE">
                                        <font>
                                           <Font name="Roboto Bold" size="20.0" />
                                        </font>
                                        <stylesheets>
-                                          <URL value="@../css/custom_1/colors.css" />
-                                          <URL value="@../css/custom_1/fonts.css" />
+                                          <URL value="@../css/colors.css" />
+                                          <URL value="@../css/fonts.css" />
                                        </stylesheets>
                                        <styleClass>
                                           <String fx:value="darckBlue" />
@@ -72,8 +72,8 @@
                               </VBox>
                            </children>
                            <stylesheets>
-                              <URL value="@../css/custom_1/colors.css" />
-                              <URL value="@../css/custom_1/borders.css" />
+                              <URL value="@../css/colors.css" />
+                              <URL value="@../css/borders.css" />
                            </stylesheets>
                            <VBox.margin>
                               <Insets left="-1.0" right="-1.0" />
@@ -81,8 +81,8 @@
                         </VBox>
                      </children>
                      <stylesheets>
-                        <URL value="@../css/custom_1/borders.css" />
-                        <URL value="@../css/custom_1/colors.css" />
+                        <URL value="@../css/borders.css" />
+                        <URL value="@../css/colors.css" />
                      </stylesheets>
                   </VBox>
                </children>
@@ -93,8 +93,8 @@
 
          </children>
          <stylesheets>
-            <URL value="@../css/custom_1/colors.css" />
-            <URL value="@../css/custom_1/borders.css" />
+            <URL value="@../css/colors.css" />
+            <URL value="@../css/borders.css" />
          </stylesheets>
       </VBox>
    </children>
@@ -106,8 +106,8 @@
 
 
    <stylesheets>
-      <URL value="@../css/custom_1/styles.css" />
-      <URL value="@../css/custom_1/colors.css" />
+      <URL value="@../css/styles.css" />
+      <URL value="@../css/colors.css" />
    </stylesheets>
    <padding>
       <Insets bottom="10.0" top="10.0" />

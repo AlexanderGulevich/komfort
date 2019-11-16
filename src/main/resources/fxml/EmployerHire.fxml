@@ -40,7 +40,7 @@
                         <Font name="Roboto Light" size="19.0" />
                      </font>
                   </Label>
-                  <Button id="PANELS_BUTTON" fx:id="okBut" layoutX="2.0" layoutY="194.0" mnemonicParsing="false" stylesheets="@../css/custom_1/buttons.css" text="ПРИНЯТЬ" AnchorPane.leftAnchor="0.0">
+                  <Button id="PANELS_BUTTON" fx:id="okBut" layoutX="2.0" layoutY="194.0" mnemonicParsing="false" stylesheets="@../css/buttons.css" text="ПРИНЯТЬ" AnchorPane.leftAnchor="0.0">
                      <font>
                         <Font name="Roboto Light" size="12.0" />
                      </font>
@@ -49,8 +49,8 @@
             </AnchorPane>
          </children>
       </AnchorPane>
-      <TextField fx:id="fioField" layoutX="230.0" layoutY="113.0" prefHeight="25.0" prefWidth="281.0" promptText="Фамилия Имя Отчество" styleClass="TEXTFIELD_BFx" stylesheets="@../css/custom_1/textField.css" />
-      <TextField fx:id="rateField" layoutX="230.0" layoutY="164.0" prefHeight="25.0" prefWidth="281.0" promptText="Тарифная ставка (бел. руб. / час)" styleClass="TEXTFIELD_BFx" stylesheets="@../css/custom_1/textField.css" />
+      <TextField fx:id="fioField" layoutX="230.0" layoutY="113.0" prefHeight="25.0" prefWidth="281.0" promptText="Фамилия Имя Отчество" styleClass="TEXTFIELD_BFx" stylesheets="@../css/textField.css" />
+      <TextField fx:id="rateField" layoutX="230.0" layoutY="164.0" prefHeight="25.0" prefWidth="281.0" promptText="Тарифная ставка (бел. руб. / час)" styleClass="TEXTFIELD_BFx" stylesheets="@../css/textField.css" />
       <AnchorPane fx:id="titlePanel" layoutX="215.0" prefHeight="62.0" prefWidth="317.0" style="-fx-background-color: #DD614A;">
          <children>
             <Label alignment="CENTER" contentDisplay="CENTER" layoutX="-2.0" prefHeight="70.0" prefWidth="317.0" text="Личная карточка" textAlignment="CENTER" textFill="WHITE" wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -58,13 +58,13 @@
                   <Font name="Roboto Medium" size="28.0" />
                </font>
             </Label>
-            <JFXButton id="TOP_CONTROL_SINGLE_BUTTON" fx:id="closeBut" layoutX="294.0" layoutY="5.0" style="-fx-padding: 0; -fx-text-fill: #FFFFFF;" stylesheets="@../css/custom_1/buttons.css" text="" textFill="WHITE">
+            <JFXButton id="TOP_CONTROL_SINGLE_BUTTON" fx:id="closeBut" layoutX="294.0" layoutY="5.0" style="-fx-padding: 0; -fx-text-fill: #FFFFFF;" stylesheets="@../css/buttons.css" text="" textFill="WHITE">
                <font>
                   <Font name="Font Awesome 5 Free Solid" size="18.0" />
                </font>
             </JFXButton>
          </children>
       </AnchorPane>
-      <DatePicker fx:id="dateForHiringDatePicker" layoutX="230.0" layoutY="218.0" prefHeight="25.0" prefWidth="281.0" styleClass="DATEPICKER_BFx" stylesheets="@../css/custom_1/dataPicker.css" />
+      <DatePicker fx:id="dateForHiringDatePicker" layoutX="230.0" layoutY="218.0" prefHeight="25.0" prefWidth="281.0" styleClass="DATEPICKER_BFx" stylesheets="@../css/dataPicker.css" />
    </children>
 </AnchorPane>

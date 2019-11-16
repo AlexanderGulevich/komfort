@@ -3,40 +3,28 @@ package basisFx;
 import basisFx.appCore.guiStructura.LeftAndTopMenuGUI;
 import basisFx.appCore.menu.MenuFabric;
 import basisFx.appCore.settings.Settings;
-import basisFx.appCore.settings.StylesPathes;
 import basisFx.appCore.utils.*;
 import basisFx.appCore.windows.ButtonsForStageThreeEntity;
 import basisFx.appCore.windows.WindowAbstraction;
 import basisFx.appCore.windows.WindowBuilder;
 import basisFx.appCore.windows.WindowFabric;
-import basisFx.dataSource.DbFactory;
-import basisFx.domain.price.Price;
-import javafx.scene.Scene;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import static java.util.Arrays.sort;
-
-import java.sql.Connection;
-import java.util.*;
 
 
 public class App {
 
     public App(Stage primaryStage)  {
 
+//        primaryStage.setScene(
+//                new Scene( new AnchorPane(),200,200 )
+//        );
+//        primaryStage.show();
 
-
-        primaryStage.setScene(
-                new Scene( new AnchorPane(),200,200 )
-        );
-        primaryStage.show();
-
-//        IconToPlatform.init(primaryStage);
-//        CSSHandler.init(StylesPathes.CUSTOM_1);
-//        WindowFabric.WindowUndecorated();
-//        FontHandler.getInstanse().loadFontToScene();
+        IconToPlatform.init(primaryStage);
+        WindowFabric.WindowUndecorated();
+        FontHandler.getInstanse().loadFontToScene();
 //
 //        PropertiesUtils.setProperty("db_path","C:/komfdb/");
 //        PropertiesUtils.setProperty("db_name","komdb");
@@ -46,24 +34,31 @@ public class App {
 //        PropertiesUtils.setProperty("db_folder","komfortdb");
 //        DbFactory.createDbServerHsql(new DbSchemaPrice());
 
-//        Registry.windowFabric.mainWindow(primaryStage,
-//                WindowBuilder.newBuilder()
-//                        .setButtonsForStage(new ButtonsForStageThreeEntity(LeftAndTopMenuGUI.Structura.titleAnchor.name()))
-//                        .setFxmlFileName("Main_v1")
-//                        .setParentAnchorNameForFXML(WindowAbstraction.DefaultPanelsNames.topVisibleAnchor.name())
-//                        .setWidth(Settings.WIDTH).setHeight(Settings.HEIGHT)
-//                        .setPanelCreator(null)
-//                        .setTitle("KOMFORT")
-//                        .setMessage(null)
-//                        .build()
-//        );
+        Registry.windowFabric.mainWindow(primaryStage,
+                WindowBuilder.newBuilder()
+                        .setButtonsForStage(new ButtonsForStageThreeEntity(LeftAndTopMenuGUI.Structura.titleAnchor.name()))
+                        .setFxmlFileName("Main_v1")
+                        .setParentAnchorNameForFXML(WindowAbstraction.DefaultPanelsNames.topVisibleAnchor.name())
+                        .setWidth(Settings.WIDTH).setHeight(Settings.HEIGHT)
+                        .setPanelCreator(null)
+                        .setTitle("KOMFORT")
+                        .setMessage(null)
+                        .build()
+        );
 
 
 
 
-//        MenuFabric.menuLeftAndTop( new MainMenuSketch());
+        MenuFabric.menuLeftAndTop( new MainMenuSketch());
 
 //        ScenicView.show(Registry.mainWindow.getScene());
+
+
+
+
+
+
+
 
 
     }
