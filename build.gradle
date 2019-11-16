@@ -1,278 +1,53 @@
 plugins {
   id 'java'
   id 'application'
-//  id 'distribution'
   id "org.openjfx.javafxplugin" version "0.0.8"
-//  id 'org.beryx.jlink' version '2.12.0'
   id "io.franzbecker.gradle-lombok" version "3.2.0"
-    id 'org.beryx.runtime' version '1.7.0'
-
+  id 'org.beryx.runtime' version '1.7.0'
 }
-javafx {
-//    configuration = 'compileOnly'
-    version = "11"
-    modules = [
-            'javafx.base'
-            ,
-            'javafx.controls'
-            ,
-            'javafx.fxml'
-            ,
-            'javafx.graphics'
-//            ,
-//            'javafx.media'
-//            ,
-//            'javafx.swing'
-
-    ]
-}
-
-
-
-
-
-
-
-
-
-
-
-//
-//runtime {
-//    options = ['--strip-debug', '--compress', '2', '--no-header-files', '--no-man-pages']
-//    modules = []
-//}
-
-
-//jlink {
-//    options = ['--strip-debug', '--compress', '2', '--no-header-files', '--no-man-pages']
-//    launcher {
-//        name = 'basisFx'
-//    }
-//    forceMerge 'hsqldb'
-//}
-
-
-//mainClassName = "$moduleName/basisFx.appCore.EntryPoint"
 mainClassName = "basisFx.appCore.EntryPoint"
-//mainClassName = "basisFx.appCore.EntryPoint"
-
-
-//[compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
-
-sourceSets { main { java { srcDirs  'src/sourcecode' } } }
-sourceSets { res { resources { srcDirs  'src/res' } }}
-sourceSets{ test{ java{ srcDirs "src/tests" }}}
-//sourceSets{ test{ resources{srcDirs "src/res"}}}
-
-//assemble.enabled = true
-distTar.enabled = false
-distZip.enabled = true
-assembleDist.enabled=true
-installDist.enabled=true
-
-
-tasks.withType(JavaCompile) {
-//    options.compilerArgs += ['--add-opens', 'java.base/java.lang=ALL-UNNAMED']
-//    options.compilerArgs += ['--add-opens', 'java.base/java.lang.invoke=ALL-UNNAMED']
-//    options.compilerArgs += ['--add-opens' , 'javafx.graphics/com.sun.javafx.scene=ALL-UNNAMED']
-//    options.compilerArgs += ['--add-opens' , 'org.hsqldb/org.hsqldb.Server=ALL-UNNAMED']
-//    options.compilerArgs += ['--add-exports' , 'jdk.compiler/com.sun.tools.javac.util=ALL-UNNAMED']
-//    options.compilerArgs += ['--illegal-access']
-//    options.compilerArgs += ['--add-modules ','org.hsqldb']
+javafx { //    configuration = 'compileOnly'
+    version = "11"
+    modules = ['javafx.base','javafx.controls','javafx.fxml','javafx.graphics'] //            'javafx.media' , 'javafx.swing'
 }
-
-//tasks.withType(AbstractCompile) {
-//tasks.withType(JavaCompile) {
-//    options.compilerArgs += ["--add-modules", "org.hsqldb"]
-//}
-
-//ext {
-////
-//    mainDir=rootProject.projectDir.toString().replace("\\", "/")
-//    version = '11x'
-//    description = 'An app build'
-//    testResultsDirName="my_testResults"
-//    testReportDirName="my_testReport"
-////    distsDirName="distribution"
-//    docsDirName="my_docs"
-//}
 //test {
 //    useJUnitPlatform()
 //}
-
-
-
-jar()   {
-    doFirst {
-        manifest {
-            attributes(
-                    "Class-Path":
-                            project.configurations.compile.collect { it.getName() }.join(" "),
-//                            project.configurations.compile.collect { "lib/" + it.getName() }.join(" "),
-                    'Main-Class': mainClassName,
-                    'Manifest-Version': 1.0
-            )
-        }
-    }
-}
-
-
-
- distributions {
-     main {
-         contents {
-//             baseName = 'Komfort'
-//             from jar
-//             into('lib') {
-//                 from(project.configurations.runtime)
-//             }
-//             into('src/res') {
-//                 from { sourceSets.res.resources }
-//             }
-         }
-
-     }
- }
-
-
-//task runApp(type: JavaExec) {
-//    classpath = sourceSets.main.runtimeClasspath
-//    main = 'basisFx.appCore.EntryPoint'
-//}
-
-//distZip.shouldRunAfter(build)
-//runApp.shouldRunAfter(build)
-//runApp.mustRunAfter(build)
-//runApp.dependsOn(build)
-
 sourceCompatibility = 12
 targetCompatibility = 12
 tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'
 }
-
-
-
-ext {
-//    cloneDir = "$buildDir/clone"
-//    imageDirPath = "$buildDir/KOMFORT"
-//    imageZipPath = "$buildDir/KOMFORT.zip"
-}
-
+sourceSets { main { java { srcDirs  'src/main/java/src/' } } }
+sourceSets { main { resources { srcDirs  'src/main/resources/' } }}
+sourceSets{ test{ java{ srcDirs "src/tests" }}}
+sourceSets{ test{ resources{srcDirs "src/main/resources/"}}}
 
 tasks.jar.doLast {
     copy {
-        from(sourceSets.res.resources)
-        into("$buildDir/")
+        from(sourceSets.main.resources)
+        into("$buildDir/resources")
     }
 }
 runtime {
-
-//    distDir = file("$buildDir/install/Komfort")
-//    imageDir = file(imageDirPath)
-//    imageZip = file(imageZipPath)
     options = ['--strip-debug', '--compress', '2', '--no-header-files', '--no-man-pages']
     modules = ['javafx.base','javafx.graphics','javafx.controls','java.logging','javafx.fxml','java.desktop','java.sql']
 
-
-    targetPlatform('linux', '/home/alexander/.sdkman/candidates/java/12.0.2-librca')
-    targetPlatform('win', '/home/alexander/.java/win/jdk-12.0.2')
-
-
         jpackage {
-////        installerType = 'rpm' //exe, msi, dmg, rpm 'deb'
-            jpackageHome = "/etc/jpackage/jdk-14"
-
             if (org.gradle.internal.os.OperatingSystem.current().windows) {
-                targetPlatformName = "win"
-                outputDir = file("win")
-//            imageOutputDir = file("$buildDir/jpackageImage-Windows")
-                skipInstaller = false
-//            imageOptions = []
-//            imageOptions = ['--runtime-image']
-                installerOptions = [
-                        '--win-per-user-install',
-                        '--win-dir-chooser',
-                        '--win-menu',
-                        '--win-shortcut',
-//                                '--verbose',
-//                                '--description',
-//                                'Test of proguard with jPackage',
-//                                '--name',
-//                                'Test-ProguardJPackage',
-//                                '--vendor',
-//                                'DoesItMatter'
-                ]
-
-
+                jpackageHome = "/c/jdk-14"
+                imageOptions += ['--icon', './resources/icon/panelIcon.ico']
+                skipInstaller = true
             }
 
             if (org.gradle.internal.os.OperatingSystem.current().linux) {
-                targetPlatformName = "linux"
-//            outputDir = file("linux")
+                jpackageHome = "/etc/jpackage/jdk-14"
+                imageOptions += ['--icon', './resources/img/7.png']
                 skipInstaller = true
-//            imageOutputDir = file("$buildDir/jpackageImage-Linux")
-                installerOptions = [
-                        '--linux-shortcut'
-                       ]
             }
-
-
-
-
-
-
-
-            installerType = project.findProperty('installerType') // we will pass this from the command line (example: -PinstallerType=msi)
-            if (installerType == 'msi') {
-                imageOptions += ['--icon', './res/icon/panelIcon.ico']
-                installerOptions += [
-                        '--win-per-user-install', '--win-dir-chooser',
-                        '--win-menu', '--win-shortcut'
-                ]
-            }
-            if (installerType == 'pkg') {
-//                imageOptions += ['--icon', 'src/main/resources/pdfdecorator/gui/icon.icns']
-            }
-            if (installerType in ['deb', 'rpm']) {
-                imageOptions += ['--icon', './res/img/7.png']
-                installerOptions += [
-                        '--linux-menu-group', 'Office',
-                        '--linux-shortcut'
-                ]
-            }
-
-
-
-
-
-
-
-
-
-
-
-
-
         }
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 repositories {
     mavenCentral()
