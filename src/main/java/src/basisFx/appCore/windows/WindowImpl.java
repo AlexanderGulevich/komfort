@@ -42,7 +42,7 @@ public abstract class WindowImpl {
         fxmlFileName =builder.fxmlFileName;
         buttonsForStage=builder.buttonsForStage;
         parentAnchorNameForFXML=builder.parentAnchorNameForFXML;
-        callBack =builder.callBack;
+        callBack =builder.preClosingCallBack;
         panelCreator =builder.panelCreator;
         callBackParametrized=builder.callBackParametrized;
         this.builder=builder;
@@ -87,7 +87,7 @@ public abstract class WindowImpl {
         windowService.setCurrentWindow(windowAbstraction);
         windowService.init();
         windowService.setCallBackParametrized(callBackParametrized);
-        windowService.setCallBack(callBack);
+        windowService.setPreClosingCallBack(callBack);
     }
 
     private void toBindWithWindow(WindowAbstraction windowAbstraction) {

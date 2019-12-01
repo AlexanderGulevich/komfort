@@ -25,18 +25,27 @@ sourceSets { main { resources { srcDirs  'src/main/resources/' } }}
 sourceSets{ test{ java{ srcDirs "src/tests" }}}
 sourceSets{ test{ resources{srcDirs "src/main/resources/"}}}
 
-tasks.jar.doLast {
+//tasks.jar.doLast {
+//    copy {
+//        from(sourceSets.main.resources)
+//        into("$buildDir/resources")
+//    }
+//}
+tasks.processResources.doLast {
     copy {
         from(sourceSets.main.resources)
         into("$buildDir/resources")
     }
 }
-tasks.run.doLast {
-    copy {
-        from(sourceSets.main.resources)
-        into("$buildDir/classes/java/main/")
-    }
-}
+
+
+
+//tasks.run.doLast {
+//    copy {
+//        from(sourceSets.main.resources)
+//        into("$buildDir/classes/java/")
+//    }
+//}
 
 jar()   {
     doFirst {
@@ -90,7 +99,7 @@ dependencies {
 
     //    runtime files('libs/a.jar', 'libs/b.jar')
     //    runtime fileTree(dir: 'res')
-    //    compile files('scenicView.jar');
+        compile files('scenicView.jar');
 
     //    implementation 'com.google.code.gson:gson:2.8.5'
 
@@ -108,10 +117,11 @@ dependencies {
 
 //    implementation 'com.github.datastax-oss:commons-io:2.2.2'
 //    implementation 'org.controlsfx:controlsfx:11.0.0'
-//    implementation 'eu.hansolo:tilesfx:11.14'
+    implementation 'eu.hansolo:tilesfx:11.14'
 
-//    compile 'org.kordamp.ikonli:ikonli-fontawesome5-pack:11.3.4'
-//    compile 'org.kordamp.ikonli:ikonli-fontawesome-pack:11.3.4'
+    compile 'org.kordamp.ikonli:ikonli-javafx:11.3.4'
+    compile 'org.kordamp.ikonli:ikonli-fontawesome5-pack:11.3.4'
+    compile 'org.kordamp.ikonli:ikonli-fontawesome-pack:11.3.4'
 //    compile 'org.kordamp.ikonli:ikonli-foundation-pack:11.3.4'
 //    compile 'org.kordamp.ikonli:ikonli-materialdesign-pack:11.3.4'
 //    compile 'org.kordamp.ikonli:ikonli-material-pack:11.3.4'

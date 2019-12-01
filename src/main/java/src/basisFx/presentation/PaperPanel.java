@@ -27,7 +27,7 @@ public class PaperPanel  extends DynamicContentPanel {
                                 r -> {
                                     Paper var = (Paper) r;
                                     if (!ActiveRecord.isNewDomane(var)) {
-                                        return  var.counterpartyProperty();
+                                        return  var.counterpartyProperty().get().currencyProperty();
                                     }
                                     else return null;
                                 }

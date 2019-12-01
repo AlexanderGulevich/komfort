@@ -136,7 +136,7 @@ public  class GridPaneWrapper extends AppNode {
                     .setText(text)
                     .setFont(FontsStore.ROBOTO_LIGHT)
                     .setAlignment(Pos.BASELINE_LEFT)
-                    .setFontSize(25d)
+                    .setFontSize(20d)
                     .build();
 
 

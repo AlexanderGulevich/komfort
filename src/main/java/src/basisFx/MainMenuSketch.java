@@ -17,7 +17,7 @@ public class MainMenuSketch implements MenuSketch {
     public MainMenuSketch() {
 
         menuDirector.setComposite(LeftAndTopBarItemComposite.builder()
-                .description("/ ПАНЕЛЬ УПРАВЛЕНИЯ \n")
+                .description("  ПАНЕЛЬ УПРАВЛЕНИЯ \n")
                 .callBack(WindowServiceDatePicker::closeIfExist)
                 .fontsStore(FontsStore.FAWESOME5SOLID)
                 .fxmlFileName("vbut.fxml")
@@ -29,9 +29,8 @@ public class MainMenuSketch implements MenuSketch {
                 .panelCreator(null)
                 .build()
         );
-//
         menuDirector.setComposite(LeftAndTopBarItemComposite.builder()
-                .description("/ Управление затратами и выработкой за день \n")
+                .description("  Меню управления затратами и выработкой за день \n")
                 .fontsStore(FontsStore.WEBHOSTINGHUB)
                 .callBack(() -> Registry.windowFabric.dateWindow())
                 .panelCreator( () -> new CommonPanel("\uF0A1",FontsStore.WEBHOSTINGHUB))
@@ -62,7 +61,7 @@ public class MainMenuSketch implements MenuSketch {
         menuDirector.setComposite(LeftAndTopBarItemComposite.builder()
                 .panelCreator( () -> new CommonPanel("\uF080",FontsStore.FAWESOME5SOLID))
                 .callBack(WindowServiceDatePicker::closeIfExist)
-                .description("/ Графики")
+                .description("  Меню вывода графиков ")
                 .fontsStore(FAWESOME5SOLID)
                 .fxmlFileName("vbut.fxml")
                 .fontSymbol("\uF080")
@@ -85,7 +84,7 @@ public class MainMenuSketch implements MenuSketch {
         menuDirector.setComposite(LeftAndTopBarItemComposite.builder()
                 .panelCreator( () -> new CommonPanel("\uF15C",FontsStore.FAWESOME5SOLID))
                 .callBack(WindowServiceDatePicker::closeIfExist)
-                .description("/ Статистическая информация")
+                .description("   Меню вывода статистической информации")
                 .fontsStore(FAWESOME5SOLID)
                 .fxmlFileName("vbut.fxml")
                 .fontSymbol("\uF15C")
@@ -103,7 +102,7 @@ public class MainMenuSketch implements MenuSketch {
 
         menuDirector.setComposite(LeftAndTopBarItemComposite.builder()
                 .panelCreator( () -> new CommonPanel("\uF007",FontsStore.FAWESOME5REGULAR))
-                .description("Управление сотрудниками")
+                .description("  Меню управления сотрудниками")
                 .callBack(WindowServiceDatePicker::closeIfExist)
                 .fontsStore(FontsStore.FAWESOME5REGULAR)
                 .fxmlFileName("vbut.fxml")
@@ -118,7 +117,7 @@ public class MainMenuSketch implements MenuSketch {
 
         menuDirector.setComposite(LeftAndTopBarItemComposite.builder()
                 .panelCreator( () -> new CommonPanel("",FontsStore.MATERIAL_ICONS))
-                .description("/ Прочая информация")
+                .description("  Меню управления прочими категориями данных")
                 .callBack(WindowServiceDatePicker::closeIfExist)
                 .fontsStore(FontsStore.MATERIAL_ICONS)
                 .fxmlFileName("vbut.fxml")

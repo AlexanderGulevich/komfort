@@ -15,13 +15,13 @@ public class EntryPoint extends Application  {
     public static void main(String[] args) {
         LauncherImpl.launchApplication(
                 EntryPoint.class,
-                AppPreloader.class,
+//                AppPreloader.class,
                 args);
     }
 
      @Override
     public void init() throws Exception {
-        AppPreloader.coundown(this);
+//        AppPreloader.coundown(this);
 
     }
     

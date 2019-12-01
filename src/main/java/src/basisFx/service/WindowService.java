@@ -12,7 +12,7 @@ public abstract class WindowService<T extends Object> implements Mediator {
 
     protected WindowAbstraction currentWindow;
     protected AnchorPane dynamicContentAnchor;
-    @Setter protected CallBack callBack;
+    @Setter protected CallBack preClosingCallBack;
     @Setter protected CallBackParametrized callBackParametrized;
     public void setCurrentWindow(WindowAbstraction currentWindow) {
         this.currentWindow = currentWindow;
@@ -27,8 +27,8 @@ public abstract class WindowService<T extends Object> implements Mediator {
         if (callBackSubWindowClosing != null) {
             callBackSubWindowClosing.call();
         }
-        if (callBack != null) {
-            callBack.call();
+        if (preClosingCallBack != null) {
+            preClosingCallBack.call();
         }
     }
 

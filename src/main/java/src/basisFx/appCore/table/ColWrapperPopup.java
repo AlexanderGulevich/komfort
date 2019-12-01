@@ -1,6 +1,5 @@
 package basisFx.appCore.table;
 
-import basisFx.appCore.settings.CSSclasses;
 import basisFx.appCore.utils.Registry;
 import basisFx.appCore.windows.WindowAbstraction;
 import basisFx.appCore.windows.WindowBuilder;
@@ -50,6 +49,7 @@ public class ColWrapperPopup extends ColWrapper {
                     WindowAbstraction windowAbstraction = Registry.windowFabric.customSubWindow(windowBuilder);
                     WindowImpl windowImpl = windowAbstraction.getWindowImpl();
                     WindowService windowService =windowImpl.getWindowService();
+                    windowService.setPreClosingCallBack(windowBuilder.preClosingCallBack);
                     windowService.setCallBackParametrized(
                             (t)->{
                                 ActiveRecord record = (ActiveRecord) t;

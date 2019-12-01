@@ -6,16 +6,17 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import lombok.Getter;
 
-public class CommonLabel extends WindowService {
+public class CategoriesPanel extends WindowService {
 
     @FXML @Getter
     private Label commonLabel;
     @FXML @Getter
     private AnchorPane anchor;
 
-    public CommonLabel()
+    public CategoriesPanel()
     {
-        Registry.crossWindowMediators.put("CommonLabel",this);
+
+        Registry.crossWindowMediators.put("CategoriesPanel",this);
     }
 
     @Override

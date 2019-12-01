@@ -121,6 +121,9 @@ public  class TableWrapper extends AppNode  {
     private void applyClassName() {
         if (className != null) {
             element.getStyleClass().add(className);
+        }else {
+            element.getStyleClass().add("wrappedHeaderColumn_font_size_16");
+
         }
     }
 

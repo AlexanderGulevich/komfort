@@ -8,7 +8,9 @@ import basisFx.appCore.windows.ButtonsForStageThreeEntity;
 import basisFx.appCore.windows.WindowAbstraction;
 import basisFx.appCore.windows.WindowBuilder;
 import basisFx.appCore.windows.WindowFabric;
+import basisFx.dataSource.DbFactory;
 import javafx.stage.Stage;
+import org.scenicview.ScenicView;
 
 import static java.util.Arrays.sort;
 
@@ -16,23 +18,11 @@ import static java.util.Arrays.sort;
 public class App {
 
     public App(Stage primaryStage)  {
-
-//        primaryStage.setScene(
-//                new Scene( new AnchorPane(),200,200 )
-//        );
-//        primaryStage.show();
-
         IconToPlatform.init(primaryStage);
         WindowFabric.WindowUndecorated();
         FontHandler.getInstanse().loadFontToScene();
-//
-//        PropertiesUtils.setProperty("db_path","C:/komfdb/");
-//        PropertiesUtils.setProperty("db_name","komdb");
-//
-//        PropertiesUtils.run();
-//        PropertiesUtils.setProperty("db_name","komfortdb");
-//        PropertiesUtils.setProperty("db_folder","komfortdb");
-//        DbFactory.createDbServerHsql(new DbSchemaPrice());
+//        DbFactory.createEmbeded(new DbSchemaKomfort());
+        DbFactory.createDbServerHsql(new DbSchemaKomfort());
 
         Registry.windowFabric.mainWindow(primaryStage,
                 WindowBuilder.newBuilder()
@@ -47,23 +37,10 @@ public class App {
         );
 
 
-
-
         MenuFabric.menuLeftAndTop( new MainMenuSketch());
 
 //        ScenicView.show(Registry.mainWindow.getScene());
-
-
-
-
-
-
-
-
-
     }
-
-
 }
 
 

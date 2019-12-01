@@ -77,8 +77,8 @@ public class TwoVerticalTablesSet  implements PanelSets{
                 .setCoordinate(new Coordinate(0d, 10d, 10d, 0d))
                 .setOrganization(
                         new TwoVerticaGrids(
-                                new SingleTable(topTableWrapper,new ButSizeBig(),new CtrlPosTop())  , littleTitleTop,
-                                new SingleTable(bottomTableWrapper,new ButSizeBig(),new CtrlPosTop()), littleTitleBottom
+                                new SingleTable(topTableWrapper,new ButSizeLittle(),new CtrlPosTop())  , littleTitleTop,
+                                new SingleTable(bottomTableWrapper,new ButSizeLittle(),new CtrlPosTop()), littleTitleBottom
                         )
                 )
                 .build();

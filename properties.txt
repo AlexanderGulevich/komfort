@@ -1,2 +1,5 @@
 #Properties
-#Sun Nov 17 00:35:15 MSK 2019
+#Sun Dec 01 19:39:13 MSK 2019
+db_name=komfortdb
+db_folder=komfortdb
+db_path=C\:/komfdb/

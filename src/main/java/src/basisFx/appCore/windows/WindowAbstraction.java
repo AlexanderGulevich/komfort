@@ -61,12 +61,6 @@ public    abstract  class  WindowAbstraction<T extends  Object> {
     public void setNodeToMap(T  node, String name) {
         nodMap.put(name,node);
     }
-    public void delNodeFromMap(String name) {
-        nodMap.remove(name);
-    }
-    public void delNodeFromMap(T  node) {
-        nodMap.values().remove(node);
-    }
     public T getNodeFromMap(String str){
         return nodMap.get(str);
     }

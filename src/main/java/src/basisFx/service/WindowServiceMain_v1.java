@@ -18,6 +18,7 @@ public class WindowServiceMain_v1 extends WindowService {
     @FXML private AnchorPane titleAnchor;
     @FXML private Label companyNameText;
     @FXML private Label commonMenuLabel;
+    @FXML private Label panelTitle;
     @FXML private FlowPane horisontalMenuButHolderFlowPane;
     @FXML private HBox horisontalMenuButHolder;
     @FXML private VBox vButHolder;
@@ -39,11 +40,9 @@ public class WindowServiceMain_v1 extends WindowService {
         Registry.mainWindow.setNodeToMap(companyNameText,"companyNameText");
         Registry.mainWindow.setNodeToMap(commonMenuLabel,"commonMenuLabel");
         Registry.mainWindow.setNodeToMap(horisontalMenuButHolderFlowPane,"horisontalMenuButHolderFlowPane");
+        Registry.mainWindow.setNodeToMap(panelTitle,"panelTitle");
 
         new StageDragging().setEventToElement(titleAnchor);
-//        companyNameText.setFont(FontLogic.loadFont(FontsStore.ROBOTO_BOLD,35));
-
-
     }
 
     @Override

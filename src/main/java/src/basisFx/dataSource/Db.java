@@ -1,5 +1,6 @@
 package basisFx.dataSource;
 
+import basisFx.DbSchemaPrice;
 import org.hsqldb.Server;
 
 import java.sql.Connection;
@@ -8,6 +9,7 @@ import java.sql.SQLException;
 
 public abstract class Db {
 
+    protected DbSchema dbSchema;
 
    
     public static Connection connection = null;
@@ -28,6 +30,9 @@ public abstract class Db {
     }
 
     public abstract Connection newConnection() ;
+
+
+
 
 
 

@@ -19,11 +19,11 @@ public class FiredEmployeesPanel extends DynamicContentPanel {
                 .isSortable(false) .isEditable(true)
                 .currentWindow(window)
                 .cssClass(null)
-                .bigTitle(null)
-                .littleTitle("Уволенные сотрудники ")
+                .bigTitle("Уволенные сотрудники ")
+                .littleTitle("")
                 .parentAnchor(dynamicContentAnchorHolder)
-                .ctrlPosEnum(CtrlPosEnum.CTRL_POS_DEL_BUT)
-                .butSizeEnum(ButSizeEnum.BUT_SIZE_BIG)
+                .ctrlPosEnum(CtrlPosEnum.CTRL_POS_DEL_BUT_MIDDLE)
+                .butSizeEnum(ButSizeEnum.BUT_SIZE_LITTLE)
                 .addButEvent(null)
                 .delButEvent( new YNWindowCreaterForTable(
                         new RowDeleteFromTable(),

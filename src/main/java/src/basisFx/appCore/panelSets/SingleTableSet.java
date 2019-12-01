@@ -135,7 +135,7 @@ public class SingleTableSet implements PanelSets {
                     .setCssClasses(CSSclasses.LABEL_COMMON)
                     .setText(bigTitle)
                     .setParentAnchor(parentAnchor)
-                    .setCoordinate(new Coordinate(-5d, null, null, 0d))
+                    .setCoordinate(new Coordinate(0d, null, -10d, 0d))
                     .setFont(FontsStore.ROBOTO_LIGHT)
                     .setAlignment(Pos.TOP_LEFT)
                     .setFontSize(30d)

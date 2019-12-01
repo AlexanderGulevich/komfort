@@ -20,7 +20,6 @@ public class DbServetHsql extends Db{
     private String db_name= PropertiesUtils.getProperty("db_name");
     private String db_path=PropertiesUtils.getProperty("db_path");
     private String db_folder=PropertiesUtils.getProperty("db_folder");
-    private DbSchema dbSchema;
 
     public DbServetHsql(DbSchema dbSchema)  {
 

@@ -30,11 +30,11 @@ public class OutputPanel  extends DynamicContentPanel {
                 .setParentAnchorNameForFXML(WindowAbstraction.DefaultPanelsNames.topVisibleAnchor.name())
                 .setWidth(700d)
                 .setHeight(600d)
-                .setPreClosingCallBack(
-                        () -> {
-                            TableWrapper tableWrapper = (TableWrapper) Registry.mainWindow.getNodeFromMap("outer_table_wrapper");
-                            tableWrapper.getMediator().refresh(tableWrapper);
-                        })
+//                .setPreClosingCallBack(
+//                        () -> {
+//                            TableWrapper tableWrapper = (TableWrapper) Registry.mainWindow.getNodeFromMap("outer_table_wrapper");
+//                            tableWrapper.getMediator().refresh(tableWrapper);
+//                        })
                 .build();
 
         DataStoreCallBack cb_product_price = activeRecord -> {

@@ -25,9 +25,9 @@ public class WindowServiceDatePicker extends WindowService {
 
     }
     public static void closeIfExist(){
-        WindowServiceDatePicker windowService = (WindowServiceDatePicker) Registry.crossWindowMediators.get("SelectDate");
+        WindowServiceDatePicker windowService = (
+                WindowServiceDatePicker) Registry.crossWindowMediators.get("SelectDate");
             if (windowService != null)  {
-
                 windowService.closeWithoutChecking();
             }
     }

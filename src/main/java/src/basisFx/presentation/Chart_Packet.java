@@ -27,7 +27,7 @@ public class Chart_Packet extends DynamicContentPanel {
                                 .kind(ChartBfxXY.KIND.AREA)
                                 .dateBasedChart(true)
                                 .dateformat(ChartBfxXY.DATEFORMAT.MONTHYEAR)
-                                .xLabel("Дата").yLabel("Зарплата")
+                                .xLabel("Дата").yLabel("Сумма")
                                 .xPrefix("x").yPrefix("y")
                                 .xLines(true).yLines(true)
                                 .coordinate(new Coordinate(20d, 30d, 0d, 0d))

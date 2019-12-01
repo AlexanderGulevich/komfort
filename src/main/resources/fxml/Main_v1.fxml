@@ -1,18 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import java.net.URL?>
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="900.0"
-            xmlns="http://javafx.com/javafx/11.0.1"
-            xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="basisFx.service.WindowServiceMain_v1">
+<AnchorPane prefHeight="400.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="basisFx.service.WindowServiceMain_v1">
    <children>
 
 
@@ -20,11 +16,12 @@
          <children>
 
 
-             <AnchorPane id="TITLE_PANEL" fx:id="titleAnchor" prefHeight="90.0" prefWidth="200.0" style="-fx-border-color: transparent;" styleClass="mediumBlue">
+             <AnchorPane id="TITLE_PANEL" fx:id="titleAnchor" prefHeight="90.0" prefWidth="200.0" VBox.vgrow="NEVER">
                <stylesheets>
                   <URL value="@../css/windows.css" />
                   <URL value="@../css/leftSideMenu.css" />
                   <URL value="@../css/colors.css" />
+                  <URL value="@../css/borders.css" />
                </stylesheets>
                <children>
                   <Label id="PROGRAMM_NAME" fx:id="companyNameText" layoutX="11.0" layoutY="3.0" stylesheets="@../css/fonts.css" text="KOMFORT" textFill="WHITE" AnchorPane.leftAnchor="11.0" AnchorPane.topAnchor="3.0">
@@ -41,25 +38,23 @@
                         <URL value="@../css/leftSideMenu.css" />
                      </stylesheets>
                   </Label>
-                  <HBox fx:id="horisontalMenuButHolder" alignment="CENTER_LEFT" layoutY="40.0" prefHeight="50.0" prefWidth="496.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                  <HBox fx:id="horisontalMenuButHolder" alignment="CENTER_LEFT" layoutY="40.0" prefHeight="50.0" prefWidth="496.0" stylesheets="@../css/borders.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                      <children>
                      </children>
                   </HBox>
                </children>
+               <styleClass>
+                  <String fx:value="mediumBlue" />
+                  <String fx:value="bottom_shawdow" />
+               </styleClass>
             </AnchorPane>
-
-
-             <AnchorPane fx:id="mainContentAnchor" minHeight="200.0" prefHeight="0.0" prefWidth="200.0" styleClass="lightGrey" stylesheets="@../css/colors.css" VBox.vgrow="ALWAYS">
-
-               <padding>
-                  <Insets top="10.0" />
-               </padding>
-
+            <AnchorPane styleClass="lightGrey" stylesheets="@../css/colors.css" VBox.vgrow="ALWAYS">
                <children>
-<!--                  <fx:include source="mainPanel.fxml" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="10.0" />-->
+      
+            
+                         <AnchorPane fx:id="mainContentAnchor" prefHeight="0.0" styleClass="transparent" stylesheets="@../css/colors.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                </children>
-
-             </AnchorPane>
+            </AnchorPane>
 
 
          </children>

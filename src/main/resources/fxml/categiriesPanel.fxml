@@ -5,15 +5,15 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="anchor" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="basisFx.service.CommonLabel">
+<AnchorPane fx:id="anchor" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="basisFx.service.CategoriesPanel">
    <children>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Label id="commonLabel" fx:id="commonLabel" alignment="CENTER" contentDisplay="CENTER" opacity="0.22" prefHeight="300.0" prefWidth="300.0" styleClass="commonLabel" text="">
+            <Label fx:id="commonLabel" opacity="0.14" styleClass="font_mediumBlue2" stylesheets="@../css/fonts.css" text="Label" textFill="#00000066">
                <font>
-                  <Font name="FontAwesome Regular" size="200.0" />
-               </font></Label>
-         </children>
-      </HBox>
+                  <Font name="Font Awesome 5 Free Regular" size="51.0" />
+               </font>
+            </Label>
+         </children></HBox>
    </children>
 </AnchorPane>

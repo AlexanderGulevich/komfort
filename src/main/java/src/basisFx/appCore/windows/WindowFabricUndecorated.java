@@ -75,7 +75,9 @@ public class WindowFabricUndecorated extends WindowFabric{
     @Override
     public WindowAbstraction dateWindow() {
 
-        WindowService service = Registry.crossWindowMediators.get("SelectDate");
+        WindowService service =
+                Registry.crossWindowMediators.get("SelectDate");
+
         if (service == null) {
             WindowBuilder builder = WindowBuilder.newBuilder()
                     .setFxmlFileName("SelectDate")
